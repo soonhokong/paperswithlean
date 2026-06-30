@@ -1,0 +1,31 @@
+# Papers With Lean
+
+> A daily-updated index of arXiv papers that use Lean, the interactive theorem
+> prover (and Mathlib). Each entry is screened by an LLM relevance gate so the
+> list is Lean-specific, not colloquial "lean". 562 papers as of 2026-06-29.
+
+## Structured data (start here)
+
+- [Full dataset (JSON)](https://paperswithlean.com/site_papers.json): every paper as a JSON
+  object. Shape: `{"generated": "YYYY-MM-DD", "papers": [{...}]}`. Each paper
+  has: `id` (arXiv id), `title`, `authors` (list), `abstract`, `abs_url`,
+  `pdf_url`, `primary_category`, `published` (YYYY-MM-DD), `tags` (list),
+  `lean_note` (one-line description of how the paper uses Lean), `repo` (code
+  repo URL if any), `thumb` (first-page thumbnail path). Prefer this over
+  scraping the HTML.
+- [RSS feed](https://paperswithlean.com/feed.xml): the most recently added papers (recent
+  window only, not the full archive).
+- [Sitemap](https://paperswithlean.com/sitemap.xml): every page on the site.
+
+## Pages
+
+- [Home / searchable list](https://paperswithlean.com/): client-side search and time filters.
+- Per-paper detail pages: `https://paperswithlean.com/paper/<arxiv-id>.html`.
+- [Stats](https://paperswithlean.com/stat/): dataset statistics.
+
+## Notes
+
+- Source of truth is `site_papers.json`; the site is rebuilt daily from the
+  arXiv API plus an LLM relevance/summary pass.
+- arXiv ids are the stable key; a paper's detail page is always
+  `https://paperswithlean.com/paper/<id>.html`.
