@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning · Papers With Lean</title>
+<meta name="description" content="Autoformalization - automatically translating natural language mathematical texts into formal proof language such as Lean4 - can help accelerate AI-assisted mathematical research, be it via proof verification or proof search. I fine-tune Qwen3.5-2B with LoRA for natural language…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning">
+<meta property="og:description" content="Autoformalization - automatically translating natural language mathematical texts into formal proof language such as Lean4 - can help accelerate AI-assisted mathematical research, be it via proof verification or proof search. I fine-tune Qwen3.5-2B with LoRA for natural language…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.24372.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.24372.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.24372v1" target="_blank" rel="noopener"><img src="../thumbs/2603.24372.jpg" alt="First page of Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning</h1>
+        <p class="authors">Arsen Shebzukhov</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Mar 25, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.24372v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.24372" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Fine-tunes a 2B model for NL-to-Lean4 autoformalization with a GRPO cycle-consistency reward.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Autoformalization - automatically translating natural language mathematical texts into formal proof language such as Lean4 - can help accelerate AI-assisted mathematical research, be it via proof verification or proof search. I fine-tune Qwen3.5-2B with LoRA for natural language to Lean4 formalization on FineLeanCorpus and consider three training regimes: supervised fine-tuning (SFT) with curriculum learning (difficulty 1 to 10), SFT without curriculum ordering, and reinforcement learning using group relative policy optimization (GRPO) with a cycle consistency reward. Cycle consistency measures how well the meaning of a statement is preserved through a NL to Lean4 to NL&#x27; loop, computed as cosine similarity of off-the-shelf sentence embeddings. On an unseen subset of FineLeanCorpus (FLC) and on PutnamBench, RL substantially outperforms both SFT variants (mean cycle consistency 0.669 vs. 0.513 on FLC; 0.561 vs. 0.422 on PutnamBench), while increasing cross-entropy loss by only 0.011 nats, with minimal impact on formalization quality. Curriculum ordering provides no measurable benefit over shuffled training.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Autoformalization models often produce Lean4 code that compiles but is semantically incorrect, and it is unclear whether curriculum ordering or RL helps small models.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Qwen3.5-2B is fine-tuned with LoRA on FineLeanCorpus under three regimes: SFT with curriculum (difficulty 1-10), SFT without curriculum, and GRPO reinforcement learning with a cycle-consistency reward measuring NL-&gt;Lean4-&gt;NL&#x27; fidelity via sentence-embedding cosine similarity.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">RL substantially outperforms both SFT variants (mean cycle consistency 0.669 vs 0.513 on the FLC held-out set; 0.561 vs 0.422 on PutnamBench) while raising cross-entropy by only 0.011 nats. Curriculum ordering gives no measurable benefit over shuffled training.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2603.24372/paper_mean_scores.png" alt=""><figcaption>Figure 2 : Mean cycle consistency by model and evaluation set. Error bars show \pm 1 std.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Model</th><th>FLC</th><th>PutnamBench</th></tr></thead><tbody><tr><td>SFT No-Curriculum</td><td>0.519</td><td>0.432</td></tr><tr><td>SFT Curriculum</td><td>0.513</td><td>0.422</td></tr><tr><td>RL (GRPO)</td><td>0.669</td><td>0.561</td></tr></tbody></table><div class="tbl-cap">Mean cycle consistency by training regime (2B)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BRIDGE: Building Representations In Domain Guided Program Synthesis · Papers With Lean</title>
+<meta name="description" content="Large language models can generate plausible code, but remain brittle for formal verification in proof assistants such as Lean. A central scalability challenge is that verified synthesis requires consistent artifacts across several coupled domains: executable code, formal…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BRIDGE: Building Representations In Domain Guided Program Synthesis">
+<meta property="og:description" content="Large language models can generate plausible code, but remain brittle for formal verification in proof assistants such as Lean. A central scalability challenge is that verified synthesis requires consistent artifacts across several coupled domains: executable code, formal…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2511.21104.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2511.21104.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2511.21104v4" target="_blank" rel="noopener"><img src="../thumbs/2511.21104.jpg" alt="First page of BRIDGE: Building Representations In Domain Guided Program Synthesis"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">BRIDGE: Building Representations In Domain Guided Program Synthesis</h1>
+        <p class="authors">Robert Joseph George, Carson Eisenach, Udaya Ghai, Dominique Perrault-Joncas, Anima Anandkumar, Dean Foster</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Nov 26, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2511.21104v4" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2511.21104" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/lean-dojo/BRIDGE" target="_blank" rel="noopener" title="lean-dojo/BRIDGE">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">BRIDGE structures LLM program synthesis into code, specification, and theorem/proof artifacts, measuring Lean executable correctness on VERINA and CLEVER.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language models can generate plausible code, but remain brittle for formal verification in proof assistants such as Lean. A central scalability challenge is that verified synthesis requires consistent artifacts across several coupled domains: executable code, formal specifications, theorem statements, and proof attempts. Existing approaches often treat these artifacts separately. We present BRIDGE, a structured prompting framework for multi-artifact program synthesis. BRIDGE decomposes generation into three interconnected domains: Code, Specification, and Theorem/Proof, and uses domain-specific intermediate reasoning to connect them. In Lean, BRIDGE often follows a code-first workflow, using the generated implementation as a semantic anchor for downstream specification, theorem statement, and proof-attempt generation. Across 178 algorithmic problems and five LLMs, BRIDGE improves Lean executable correctness by up to nearly 1.5x over direct prompting and can be roughly 2x more sample efficient at comparable generation lengths. We further find that specification-oriented prompting improves Python pass rates by up to 17.5 percentage points. Beyond inference-time prompting, supervised fine-tuning on BRIDGE-style reasoning traces yields nearly 1.5x higher Lean pass success than code-only fine-tuning, suggesting that these intermediate representations provide a learnable inductive bias. BRIDGE provides a practical framework for scaling verified synthesis while highlighting the remaining gap between executable correctness and full formal proof generation.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLMs can generate plausible code but remain brittle for formal verification in proof assistants. Verified synthesis requires consistent artifacts across coupled domains (executable code, specifications, theorem statements, proofs), which existing approaches treat separately.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">BRIDGE is a structured prompting framework that decomposes generation into three interconnected domains: Code, Specification, and Theorem/Proof. Domain-specific reasoning strategies (functional, specification, theorem/proof reasoning) are linked so that each domain&#x27;s output informs the others. The framework uses cross-domain signals to improve coherence and correctness.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2511.21104/image.png" alt=""><figcaption>Figure 1 : BRIDGE methodology and key results. BRIDGE decomposes verifiable coding into linked Code, Specification, and Theorem/Proof domains. The example shows how a problem statement is converted into functional reasoning, specification reasoning, and theorem/proof reasoning, while the accompanying results summarize the main empirical gains from functional scaffolding. Appendix G gives the detai</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On VERINA, Qwen2.5 Coder improves from 51/187 to 60/187 pass@1 (+4.8pp). On CLEVER, gains range from +2.5pp to +6.3pp. On DafnyBench, solver-backed pass@5 improves from 315/782 to 372/782 (+7.3pp). Functional reasoning consistently helps across models and benchmarks.</p><div class="sum-table"><table><thead><tr><th>Benchmark</th><th>Model</th><th>Direct</th><th>Functional</th><th>Delta</th></tr></thead><tbody><tr><td>VERINA</td><td>Qwen2.5 Coder pass@1</td><td>51/187</td><td>60/187</td><td>+4.8pp</td></tr><tr><td>CLEVER</td><td>Qwen pass@1</td><td>28/161</td><td>36/161</td><td>+5.0pp</td></tr><tr><td>CLEVER</td><td>Qwen larger budget</td><td>59/161</td><td>69/161</td><td>+6.3pp</td></tr><tr><td>DafnyBench</td><td>Solver backed pass@5</td><td>315/782</td><td>372/782</td><td>+7.3pp</td></tr></tbody></table><div class="tbl-cap">Results across benchmarks with functional reasoning</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AlgoVeri: An Aligned Benchmark for Verified Code Generation on Classical Algorithms · Papers With Lean</title>
+<meta name="description" content="Vericoding refers to the generation of formally verified code from rigorous specifications. Recent AI models show promise in vericoding, but a unified methodology for cross-paradigm evaluation is lacking. Existing benchmarks test only individual languages/tools (e.g., Dafny,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AlgoVeri: An Aligned Benchmark for Verified Code Generation on Classical Algorithms">
+<meta property="og:description" content="Vericoding refers to the generation of formally verified code from rigorous specifications. Recent AI models show promise in vericoding, but a unified methodology for cross-paradigm evaluation is lacking. Existing benchmarks test only individual languages/tools (e.g., Dafny,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2602.09464.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2602.09464.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2602.09464v2" target="_blank" rel="noopener"><img src="../thumbs/2602.09464.jpg" alt="First page of AlgoVeri: An Aligned Benchmark for Verified Code Generation on Classical Algorithms"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">AlgoVeri: An Aligned Benchmark for Verified Code Generation on Classical Algorithms</h1>
+        <p class="authors">Haoyu Zhao, Ziran Yang, Jiawei Li, Deyuan He, Zenan Li, Chi Jin, Venugopal V. Veeravalli, Aarti Gupta, Sanjeev Arora</p>
+        <div class="row">
+          <span class="badge">cs.SE</span>
+          <span class="date">Feb 10, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-amber" href="../#tag=verification">verification</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2602.09464v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2602.09464" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/haoyuzhao123/algoveri" target="_blank" rel="noopener" title="haoyuzhao123/algoveri">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Includes 77 classical algorithms with identical functional contracts in Lean (alongside Dafny and Verus) and evaluates LLM vericoding on the Lean track.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Vericoding refers to the generation of formally verified code from rigorous specifications. Recent AI models show promise in vericoding, but a unified methodology for cross-paradigm evaluation is lacking. Existing benchmarks test only individual languages/tools (e.g., Dafny, Verus, and Lean) and each covers very different tasks, so the performance numbers are not directly comparable. We address this gap with AlgoVeri, a benchmark that evaluates vericoding of $77$ classical algorithms in Dafny, Verus, and Lean. By enforcing identical functional contracts, AlgoVeri reveals critical capability gaps in verification systems. While frontier models achieve tractable success in Dafny ($40.3$% for Gemini-3 Flash), where high-level abstractions and SMT automation simplify the workflow, performance collapses under the systems-level memory constraints of Verus ($24.7$%) and the explicit proof construction required by Lean (7.8%). Beyond aggregate metrics, we uncover a sharp divergence in test-time compute dynamics: Gemini-3 effectively utilizes iterative repair to boost performance (e.g., tripling pass rates in Dafny), whereas GPT-OSS saturates early. Finally, our error analysis shows that language design affects the refinement trajectory: while Dafny allows models to focus on logical correctness, Verus and Lean trap models in persistent syntactic and semantic barriers. All data and evaluation code can be found at <a href="https://github.com/haoyuzhao123/algoveri" target="_blank" rel="noopener">https://github.com/haoyuzhao123/algoveri</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">AI models show promise in verified code generation, but a unified benchmark for cross-paradigm evaluation across verification systems (Dafny, Verus, Lean) with identical functional contracts was lacking, making performance comparisons impossible.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">AlgoVeri evaluates vericoding of 77 classical algorithms across Dafny, Verus, and Lean under identical functional contracts. Models undergo iterative repair over 15 rounds with compiler feedback. The benchmark tests frontier proprietary models and open-weight models, and analyzes error evolution patterns across verification paradigms.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2602.09464/x1.png" alt=""><figcaption>Figure 1 : (AlgoVeri benchmark pipeline.) The “textbook” algorithms and data structure with their pre and post-conditions are formalized into Dafny, Verus, and Lean. Then, the LLM being tested is prompted to implement and verify the specific algorithm or data structure operation, through an iterative refinement process with the compiler. If the generated code (implementation and proof) is successf</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Gemini-3 Flash achieves 40.3% pass rate in Dafny, 24.7% in Verus, and 7.8% in Lean, revealing that high-level abstraction and SMT automation (Dafny) are far easier for models than systems-level constraints (Verus) or explicit proof construction (Lean). Gemini-3 effectively uses iterative repair to triple pass rates in Dafny, while GPT-OSS saturates early.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2602.09464/avg_pass_at_round_r_comparison.png" alt=""><figcaption>Figure 4 : Average Pass Rate across 14 Repair Rounds. We compare Gemini-3 Flash (solid) and GPT-OSS-120B (dashed). The frontier model (Gemini) achieves consistent improvement in both Dafny and Verus as repair depth increases, effectively converting test-time compute into verification success. In contrast, the open model (GPT-OSS) saturates early across all languages, showing minimal gains beyond R</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

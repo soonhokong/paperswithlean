@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scaling Self-Play with Self-Guidance · Papers With Lean</title>
+<meta name="description" content="LLM self-play algorithms are notable in that, in principle, nothing bounds their learning: a Conjecturer model creates problems for a Solver, and both improve together. However, in practice, existing LLM self-play methods do not scale well with large amounts of compute, instead…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scaling Self-Play with Self-Guidance">
+<meta property="og:description" content="LLM self-play algorithms are notable in that, in principle, nothing bounds their learning: a Conjecturer model creates problems for a Solver, and both improve together. However, in practice, existing LLM self-play methods do not scale well with large amounts of compute, instead…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2604.20209.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2604.20209.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2604.20209v1" target="_blank" rel="noopener"><img src="../thumbs/2604.20209.jpg" alt="First page of Scaling Self-Play with Self-Guidance"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Scaling Self-Play with Self-Guidance</h1>
+        <p class="authors">Luke Bailey, Kaiyue Wen, Kefan Dong, Tatsunori Hashimoto, Tengyu Ma</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Apr 22, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2604.20209v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2604.20209" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/LukeBailey181/sgs" target="_blank" rel="noopener" title="LukeBailey181/sgs">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Applies the Self-Guided Self-Play algorithm to Lean4 formal theorem proving, with a Guide model preventing conjecturer collapse.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">LLM self-play algorithms are notable in that, in principle, nothing bounds their learning: a Conjecturer model creates problems for a Solver, and both improve together. However, in practice, existing LLM self-play methods do not scale well with large amounts of compute, instead hitting learning plateaus. We argue this is because over long training runs, the Conjecturer learns to hack its reward, collapsing to artificially complex problems that do not help the Solver improve. To overcome this, we introduce Self-Guided Self-Play (SGS), a self-play algorithm in which the language model itself guides the Conjecturer away from degeneracy. In SGS, the model takes on three roles: Solver, Conjecturer, and a Guide that scores synthetic problems by their relevance to unsolved target problems and how clean and natural they are, providing supervision against Conjecturer collapse. Our core hypothesis is that language models can assess whether a subproblem is useful for achieving a goal. We evaluate the scaling properties of SGS by running training for significantly longer than prior works and by fitting scaling laws to cumulative solve rate curves. Applying SGS to formal theorem proving in Lean4, we find that it surpasses the asymptotic solve rate of our strongest RL baseline in fewer than 80 rounds of self-play and enables a 7B parameter model, after 200 rounds of self-play, to solve more problems than a 671B parameter model pass@4.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM self-play for theorem proving plateaus because, over long training runs, the Conjecturer hacks its reward by producing artificially complex problems that do not help the Solver.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Self-Guided Self-Play (SGS) gives one model three roles -- Solver, Conjecturer, and a Guide that scores synthetic problems by relevance to unsolved targets and by how clean and natural they are. Problems are formal math questions in Lean4, providing verifiable rewards.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.20209/x1.png" alt=""><figcaption>Figure 1: Left: Intuition behind SGS. Bottom, the space of problems solvable over course of SGS, starting as a small area , expanding past asymptotic RL performance , directed towards unsolved target problems ( \blacklozenge ) by synthetic problems ( \bm{\times} ). Top, the Guide score for synthetic problems, which is high along the path to unsolved targets, and low for not related and inelegant p</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On Lean4 theorem proving, SGS surpasses the asymptotic solve rate of the strongest RL baseline in under 80 rounds, and after 200 rounds a 7B model solves more problems than a 671B model at pass@4. Without the Guide, over 80% of generated problems degenerate into disjunctive conclusions.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.20209/x12.png" alt=""><figcaption>Figure 12: SGS and STP (Dong &amp; Ma, 2025 ) performance on D_{\text{3k}} . We see that SGS has superior scaling, with a crossover happening at around 1M generations.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

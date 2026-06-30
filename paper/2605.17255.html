@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CAM-Bench: A Benchmark for Computational and Applied Mathematics in Lean · Papers With Lean</title>
+<meta name="description" content="Formal theorem-proving benchmarks enable mechanically verifiable evaluation of mathematical reasoning in large language models. However, existing benchmarks mainly focus on Olympiad-style problems and algebraic domains, leaving computational and applied mathematics…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CAM-Bench: A Benchmark for Computational and Applied Mathematics in Lean">
+<meta property="og:description" content="Formal theorem-proving benchmarks enable mechanically verifiable evaluation of mathematical reasoning in large language models. However, existing benchmarks mainly focus on Olympiad-style problems and algebraic domains, leaving computational and applied mathematics…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.17255.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.17255.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.17255v1" target="_blank" rel="noopener"><img src="../thumbs/2605.17255.jpg" alt="First page of CAM-Bench: A Benchmark for Computational and Applied Mathematics in Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">CAM-Bench: A Benchmark for Computational and Applied Mathematics in Lean</h1>
+        <p class="authors">Wentao Long, Yunfei Zhang, Chenyi Li, Li Zhou, Chumin Sun, Zaiwen Wen</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">May 17, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.17255v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.17255" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/optpku/CAM-Bench" target="_blank" rel="noopener" title="optpku/CAM-Bench">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces CAM-Bench, 1000 Lean 4 proof targets in computational and applied mathematics with a dependency-recovery pipeline.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Formal theorem-proving benchmarks enable mechanically verifiable evaluation of mathematical reasoning in large language models. However, existing benchmarks mainly focus on Olympiad-style problems and algebraic domains, leaving computational and applied mathematics underrepresented. We introduce CAM-Bench, a Lean 4 theorem-proving benchmark of 1,000 Lean proof targets in computational and applied mathematics, with coverage spanning optimization, numerical linear algebra, and numerical analysis. These problems are adapted from textbook exercises and often depend on locally introduced definitions, notation, algorithms, and elementary results. To construct CAM-Bench, we develop a dependency-recovery pipeline that reconstructs the local textbook context needed to state each problem faithfully. It then normalizes each problem into a standalone informal theorem and translates it into a Lean target. We validate the resulting formal problems through Lean compilation and semantic review, checking both formal correctness and semantic alignment with the original exercises. For each problem, we release the raw exercise, recovered context, normalized informal theorem, and final Lean target. CAM-Bench complements existing formal mathematics benchmarks by targeting applied mathematics problems that rely on textbook concepts and elementary theorems, many of which are not directly available as standard Mathlib4 lemmas. We evaluate widely used large language models and formalization agents on CAM-Bench, and analyze common failure modes in tracking local assumptions, applying elementary results, decomposing proofs, and maintaining long-horizon control in Lean.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Formal theorem-proving benchmarks focus primarily on Olympiad-style problems and algebraic domains, leaving computational and applied mathematics underrepresented. Problems in optimization, numerical linear algebra, and numerical analysis depend on locally introduced definitions and textbook context that existing benchmarks do not capture.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors construct CAM-Bench, a Lean 4 benchmark of 1,000 proof targets derived from 778 textbook exercises, using a dependency-recovery pipeline that reconstructs local textbook context (definitions, notation, algorithms, elementary results) needed to state each problem. The pipeline normalizes exercises into standalone informal theorems, performs semantic review for assumption and task preservation, then translates them into Lean targets via modularization-driven formalization with compiler-guided repair.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.17255/pipeline.png" alt=""><figcaption>Figure 1 : Pipeline Overview</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Among non-agentic pass@32 baselines, Deepseek-v4-pro achieves the highest verified Lean accuracy at 19.67%, closely followed by Claude-sonnet-4.6 at 19.28%. The agentic proof-search setting with GPT-5.4 reaches 44.00% verified accuracy, more than doubling the strongest non-agentic baseline. Common failure modes include library/API grounding (50-55% of failures), proof decomposition and long-horizon control (68-69%), and formal representation issues (39-46%).</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.17255/x2.png" alt=""><figcaption>Figure 5 : Model performance and token efficiency on CAM-Bench. Pass@32 Lean accuracy and Pass@1 informal accuracy are shown as percentages (%) on the left y-axis, while average token usage per evaluated benchmark instance is shown in millions of tokens (M) on the right y-axis. Lean accuracy is evaluated at the file level, requiring all sorry blocks to be completed and the full Lean file to verify</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Failure Mode</th><th>pass@32</th><th>M2F (N=57)</th><th>Aristotle (N=75)</th></tr></thead><tbody><tr><td>Library/API grounding and infrastructure</td><td>72.6%</td><td>31/57 (54.4%)</td><td>38/75 (50.7%)</td></tr><tr><td>Formal representation and type discipline</td><td>50.8%</td><td>26/57 (45.6%)</td><td>29/75 (38.7%)</td></tr><tr><td>Proof decomposition and long-horizon control</td><td>71.5%</td><td>39/57 (68.4%)</td><td>52/75 (69.3%)</td></tr></tbody></table><div class="tbl-cap">Failure attribution across unsolved instances</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

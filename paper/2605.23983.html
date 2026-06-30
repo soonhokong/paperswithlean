@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saturating Scaling Laws for Equational Discovery: A Phenomenology of Growth Dynamics in Three Toy Substrates with Two Real-World Replications · Papers With Lean</title>
+<meta name="description" content="We investigate growth dynamics in deterministic equational discovery substrates. Across three toy domains (arithmetic, boolean, higher-order list; n=592 trajectories), short-range substrate sizes fit a power-law N(t) proportional to t^b. Within each substrate b is…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Saturating Scaling Laws for Equational Discovery: A Phenomenology of Growth Dynamics in Three Toy Substrates with Two Real-World Replications">
+<meta property="og:description" content="We investigate growth dynamics in deterministic equational discovery substrates. Across three toy domains (arithmetic, boolean, higher-order list; n=592 trajectories), short-range substrate sizes fit a power-law N(t) proportional to t^b. Within each substrate b is…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.23983.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.23983.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.23983v1" target="_blank" rel="noopener"><img src="../thumbs/2605.23983.jpg" alt="First page of Saturating Scaling Laws for Equational Discovery: A Phenomenology of Growth Dynamics in Three Toy Substrates with Two Real-World Replications"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Saturating Scaling Laws for Equational Discovery: A Phenomenology of Growth Dynamics in Three Toy Substrates with Two Real-World Replications</h1>
+        <p class="authors">Fabio Rovai</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">May 14, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-slate" href="../#tag=meta-study">meta-study</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.23983v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.23983" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Studies Mathlib4 monthly file-addition counts as a real-world growth dataset to test saturating power-law models.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We investigate growth dynamics in deterministic equational discovery substrates. Across three toy domains (arithmetic, boolean, higher-order list; n=592 trajectories), short-range substrate sizes fit a power-law N(t) proportional to t^b. Within each substrate b is architecture-sensitive (cross-validated R^2 approximately 0.82); the regression does not transfer across substrates (arith+bool to list yields R^2 approximately -0.84). A heuristic mean-field closure model predicts a saturating power-law dN/dt = K N^k exp(-mu N) of which the pure power-law is the short-range approximation. Three robustness checks: bootstrap intervals on (k, mu) are tight in 4/5 toy trajectories and degenerate in 1/5; out-of-sample forecasting on toy data (fit first 100 epochs, predict next 400) is won by pure power-law 5/5, indicating the toy trajectories do not reach saturation; on two real-world growth proxies the result splits. New Mathlib/*.lean file additions per month (mathlib4, 60 months, 9701 files) support the saturating form on OOS forecasting by approximately 7x over pure power-law; Coq mathcomp monthly commits (129 months, 3083 commits) favour pure power-law on both tests with mu collapsing to zero. The dynamics are substrate-conditional at two levels: within-substrate architecture-to-b regressions do not transfer, and the preferred functional family for N(t) itself (pure vs. saturating power-law) differs by substrate. We propose &quot;saturating power-law growth with substrate-conditional (k, mu), observable when the substrate has reached its saturation regime&quot; as a working framing.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Empirical scaling laws guide LLM engineering, but whether deterministic symbolic discovery systems obey comparable growth laws is unknown. It is unclear what functional form governs substrate growth and whether scaling behavior transfers across domains.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors run 592 discovery trajectories across three toy equational substrates (arithmetic, boolean, higher-order list) and fit power-law and saturating power-law models to substrate size over time. A gradient-boosted regression predicts the trajectory exponent b from architecture features. They derive a mean-field closure model predicting dN/dt = K N^k exp(-mu N) and test it against two real-world growth proxies: monthly new Mathlib .lean files (60 months) and Coq mathcomp commits (129 months).</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.23983/phase_b_summary.png" alt=""><figcaption>Figure 1: Phase A+B in arith+bool: held-out scaling-law prediction (R {}^{2}=0.815 ), distribution of b , b vs. batch-size by generator, top-12 architectures.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Short-range growth fits power-law t^b with cross-validated R^2 of approximately 0.82 within each substrate, but cross-substrate transfer fails (R^2 = -0.84). The saturating power-law wins out-of-sample forecasting on Mathlib data by approximately 7x over pure power-law, while Coq mathcomp favors pure power-law. The preferred functional form is substrate-conditional.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.23983/mathlib_monthly.png" alt=""><figcaption>Figure 4: Mathlib4 monthly cumulative commits (proxy for substrate size). Left: log-log fits across all 60 months; saturating power-law wins in-sample AIC (725 vs 917 for pure power-law). Right: out-of-sample forecast fit on first 30 months, predicting next 30; saturating RMSE 15,821 vs pure power-law 79,261 ( \sim 5 \times better).</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Domain</th><th>n</th><th>Mean b</th><th>Max b</th><th>b&gt;1.0</th></tr></thead><tbody><tr><td>arith</td><td>162</td><td>0.71</td><td>1.15</td><td>4</td></tr><tr><td>bool</td><td>182</td><td>0.78</td><td>1.13</td><td>7</td></tr><tr><td>list</td><td>248</td><td>0.36</td><td>0.99</td><td>0</td></tr></tbody></table><div class="tbl-cap">Short-range power-law exponent b by substrate</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

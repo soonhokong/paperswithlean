@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Using Aristotle API for AI-Assisted Theorem Proving in Lean 4: A Formalisation Case Study of the Grasshopper Problem · Papers With Lean</title>
+<meta name="description" content="AI-assisted theorem proving can now generate substantial Lean developments for olympiad-level mathematics, but the evidential status of such developments depends on which declarations are actually verified. This paper reports a Lean 4 formalization case study of an Aristotle API…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Using Aristotle API for AI-Assisted Theorem Proving in Lean 4: A Formalisation Case Study of the Grasshopper Problem">
+<meta property="og:description" content="AI-assisted theorem proving can now generate substantial Lean developments for olympiad-level mathematics, but the evidential status of such developments depends on which declarations are actually verified. This paper reports a Lean 4 formalization case study of an Aristotle API…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.20120.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.20120.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.20120v1" target="_blank" rel="noopener"><img src="../thumbs/2605.20120.jpg" alt="First page of Using Aristotle API for AI-Assisted Theorem Proving in Lean 4: A Formalisation Case Study of the Grasshopper Problem"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Using Aristotle API for AI-Assisted Theorem Proving in Lean 4: A Formalisation Case Study of the Grasshopper Problem</h1>
+        <p class="authors">Gabriel Rongyang Lau</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">May 19, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.20120v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.20120" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Case study formalizing an Aristotle API proof attempt for the IMO Grasshopper problem in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">AI-assisted theorem proving can now generate substantial Lean developments for olympiad-level mathematics, but the evidential status of such developments depends on which declarations are actually verified. This paper reports a Lean 4 formalization case study of an Aristotle API proof attempt for the Grasshopper problem, originally posed as IMO 2009 Problem 6. The generated artifact states a generalized Lean version of the theorem, contains four verified helper lemmas for local components of a maximality and adjacent-swap exchange strategy, and leaves the main theorem grasshopper closed directly by one unresolved sorry. The verified components establish that the final partial sum equals the total sum, that an adjacent transposition can affect only the relevant intermediate partial sum, that the changed partial sum has the expected form, and that maximality at a position admitting an adjacent successor swap forces a corresponding forbidden-set membership fact. The Aristotle output summary identifies the intended remaining mathematical step as the global counting step needed to show that these membership facts produce at least n distinct forbidden values, contradicting the cardinality assumption |M| &lt; n; the Lean source itself does not reduce the main theorem to a separately encoded counting lemma. This case study gives an inspectable example of a central limitation in AI-assisted formalization, namely that local proof search can succeed while the global combinatorial bookkeeping required for a theorem remains unresolved. The paper contributes a reproducible Lean artifact and a precise analysis of its verified and unverified proof content.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">AI-assisted theorem proving can generate Lean developments for olympiad-level problems, but it is difficult to distinguish verified content from unverified placeholders. The Grasshopper problem (IMO 2009 Problem 6) is a challenging combinatorial theorem that resists automated formalization.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors report a Lean 4 formalization attempt using the Aristotle API. The generated artifact states a generalized version of the Grasshopper theorem and contains four verified helper lemmas implementing components of a maximality and adjacent-swap exchange strategy. The verified lemmas establish that the final partial sum equals the total sum, that adjacent transpositions affect only one intermediate partial sum, that the changed sum has the expected form, and that maximality forces forbidden-set membership. The main theorem remains closed by a single sorry.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Four helper lemmas (PS_last, PS_swap, PS_swap_eq, maximizer_swap_in_M) are fully verified by the Lean kernel. The main theorem grasshopper is incomplete, closed by one unresolved sorry. The unresolved gap is the global counting argument showing that the membership facts produce at least n distinct forbidden values, contradicting |M| &lt; n.</p><div class="sum-table"><table><thead><tr><th>Lean component</th><th>Mathematical role</th><th>Status</th></tr></thead><tbody><tr><td>PS_last</td><td>Final partial sum equals total sum</td><td>Verified</td></tr><tr><td>PS_swap</td><td>Adjacent transposition affects only one partial sum</td><td>Verified</td></tr><tr><td>PS_swap_eq</td><td>Computes changed partial sum after swap</td><td>Verified</td></tr><tr><td>maximizer_swap_in_M</td><td>Maximality implies forbidden-set membership</td><td>Verified</td></tr><tr><td>grasshopper</td><td>Main theorem</td><td>Incomplete (one sorry)</td></tr></tbody></table><div class="tbl-cap">Verification status of the Aristotle-generated Lean development</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

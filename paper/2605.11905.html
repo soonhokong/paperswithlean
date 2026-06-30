@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rethinking Supervision Granularity: Segment-Level Learning for LLM-Based Theorem Proving · Papers With Lean</title>
+<meta name="description" content="Automated theorem proving with large language models in Lean 4 is commonly approached through either step-level tactic prediction with tree search or whole-proof generation. These two paradigms represent opposite granularities for constructing supervised training data: the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rethinking Supervision Granularity: Segment-Level Learning for LLM-Based Theorem Proving">
+<meta property="og:description" content="Automated theorem proving with large language models in Lean 4 is commonly approached through either step-level tactic prediction with tree search or whole-proof generation. These two paradigms represent opposite granularities for constructing supervised training data: the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.11905.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.11905.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.11905v1" target="_blank" rel="noopener"><img src="../thumbs/2605.11905.jpg" alt="First page of Rethinking Supervision Granularity: Segment-Level Learning for LLM-Based Theorem Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Rethinking Supervision Granularity: Segment-Level Learning for LLM-Based Theorem Proving</h1>
+        <p class="authors">Shuo Xu, Jiakun Zhang, Junyu Lai, Chun Cao, Jingwei Xu</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">May 12, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.11905v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.11905" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/NJUDeepEngine/SEG-ATP" target="_blank" rel="noopener" title="NJUDeepEngine/SEG-ATP">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Proposes segment-level supervision for training LLM policy models on Lean 4 theorem proving, evaluated on miniF2F.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Automated theorem proving with large language models in Lean 4 is commonly approached through either step-level tactic prediction with tree search or whole-proof generation. These two paradigms represent opposite granularities for constructing supervised training data: the former provides dense local signals but may fragment coherent proof processes, while the latter preserves global structure but requires complex end-to-end generation. In this paper, we revisit supervision granularity as a training set construction problem over proof trajectories and propose segment-level supervision, a training data construction strategy that extracts locally coherent proof segments for training policy models. We further reuse the same strategy at inference time to trigger short rollouts for existing step-level models. When trained with segment-level supervision on STP, LeanWorkbook, and NuminaMath-LEAN, the resulting policy models achieve proof success rates of 64.84%, 60.90%, and 66.31% on miniF2F, respectively, consistently outperforming both step-level and whole-proof baselines. Goal-aware rollout further improves existing step-level provers while reducing inference costs. It increases the proof success rate of BFS-Prover-V2-7B from 68.77% to 70.74% and that of InternLM2.5-StepProver from 59.59% to 60.33%, showing that appropriate supervision granularity better aligns model learning with proof structure and search. Code and models are available at <a href="https://github.com/NJUDeepEngine/SEG-ATP" target="_blank" rel="noopener">https://github.com/NJUDeepEngine/SEG-ATP</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-based theorem proving in Lean 4 uses either step-level tactic prediction (dense local signals, fragmented proof structure) or whole-proof generation (global structure, complex generation). Neither granularity aligns well with how proofs are naturally organized into locally coherent segments.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors propose segment-level supervision, a training data construction strategy that extracts locally coherent proof segments by placing boundaries at goal-count changes in proof trajectories. They also introduce goal-aware rollout, an inference-time strategy that triggers short multi-tactic rollouts for existing step-level models when the open-goal count drops. Models are fine-tuned from Qwen2.5-Math-7B on three Lean 4 datasets: STP, LeanWorkbook, and NuminaMath-LEAN.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.11905/x1.png" alt=""><figcaption>Figure 1 : Illustration of supervision granularity on the problem algebra_9052 from NuminaMath-LEAN. For simplicity, proof states show only tactic transitions and open-goal counts, omitting premises. The same verified proof trajectory is organized into step-level, whole-proof, and segment-level supervision targets, together with their corresponding inference patterns.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Segment-level models achieve 64.84%, 60.90%, and 66.31% proof success rates on miniF2F from STP, LeanWorkbook, and NuminaMath-LEAN respectively, consistently outperforming both step-level and whole-proof baselines. Goal-aware rollout improves BFS-Prover-V2-7B from 68.77% to 70.74% and InternLM2.5-StepProver from 59.59% to 60.33% without retraining.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.11905/x9.png" alt=""><figcaption>Figure 6 : Cumulative accuracy over per-theorem elapsed time for goal-aware rollout on miniF2F. For each time cutoff t , cumulative accuracy is defined as the fraction of theorems solved within t seconds. All curves are computed from the same evaluation runs with a per-theorem timeout of 1800 seconds. The x-axis uses \log(1+t) for visualization. Lines denote the mean over five independent runs, an</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

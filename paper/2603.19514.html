@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning to Disprove: Formal Counterexample Generation with Large Language Models · Papers With Lean</title>
+<meta name="description" content="Mathematical reasoning demands two critical, complementary skills: constructing rigorous proofs for true statements and discovering counterexamples that disprove false ones. However, current AI efforts in mathematics focus almost exclusively on proof construction, often…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning to Disprove: Formal Counterexample Generation with Large Language Models">
+<meta property="og:description" content="Mathematical reasoning demands two critical, complementary skills: constructing rigorous proofs for true statements and discovering counterexamples that disprove false ones. However, current AI efforts in mathematics focus almost exclusively on proof construction, often…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.19514.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.19514.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.19514v1" target="_blank" rel="noopener"><img src="../thumbs/2603.19514.jpg" alt="First page of Learning to Disprove: Formal Counterexample Generation with Large Language Models"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Learning to Disprove: Formal Counterexample Generation with Large Language Models</h1>
+        <p class="authors">Zenan Li, Zhaoyu Li, Kaiyu Yang, Xiaoxing Ma, Zhendong Su</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Mar 19, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.19514v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.19514" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Fine-tunes LLMs to generate formal counterexamples with proofs automatically verified in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Mathematical reasoning demands two critical, complementary skills: constructing rigorous proofs for true statements and discovering counterexamples that disprove false ones. However, current AI efforts in mathematics focus almost exclusively on proof construction, often neglecting the equally important task of finding counterexamples. In this paper, we address this gap by fine-tuning large language models (LLMs) to reason about and generate counterexamples. We formalize this task as formal counterexample generation, which requires LLMs not only to propose candidate counterexamples but also to produce formal proofs that can be automatically verified in the Lean 4 theorem prover. To enable effective learning, we introduce a symbolic mutation strategy that synthesizes diverse training data by systematically extracting theorems and discarding selected hypotheses, thereby producing diverse counterexample instances. Together with curated datasets, this strategy enables a multi-reward expert iteration framework that substantially enhances both the effectiveness and efficiency of training LLMs for counterexample generation and theorem proving. Experiments on three newly collected benchmarks validate the advantages of our approach, showing that the mutation strategy and training framework yield significant performance gains.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Current AI mathematical reasoning focuses almost exclusively on proof construction, neglecting the equally important task of finding counterexamples to disprove false statements. No systematic framework exists for training LLMs to generate formal counterexamples.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors formalize counterexample generation as producing a witness x* and a Lean proof that P(x*) is false given a universally quantified conjecture. They propose a two-stage framework: (1) counterexample problem synthesis via symbolic mutation of seed theorems from Mathlib, Leanworkbook, MiniF2F, and PutnamBench (generating 575,039 mutated theorems from 321,929 seeds), and (2) multi-reward guided training using expert iteration where the LLM generates candidates verified by Lean. Multiple reward signals guide training beyond single-reward approaches.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The framework achieves 49.8% pass@1 on the validation set, a 24.4 percentage point improvement over the best baseline (Leanabell at 25.4%). At pass@9, it reaches 54.1% versus 39.9% for the best baseline. On the For-Counter subset, the method achieves 20.9% pass@1 compared to 15.2% for the next best model.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>@1</th><th>@4</th><th>@9</th></tr></thead><tbody><tr><td>Leanabell</td><td>25.4%</td><td>36.0%</td><td>39.9%</td></tr><tr><td>STP</td><td>23.7%</td><td>33.2%</td><td>37.5%</td></tr><tr><td>Goedel-v2</td><td>14.0%</td><td>31.1%</td><td>38.2%</td></tr><tr><td>Ours</td><td>49.8%</td><td>52.7%</td><td>54.1%</td></tr></tbody></table><div class="tbl-cap">Counterexample generation pass rates</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

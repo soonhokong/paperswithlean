@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Machine-Checked Itô Calculus for Brownian Motion · Papers With Lean</title>
+<meta name="description" content="We present a machine-checked development of the $L^2$ Itô calculus of Brownian motion on a bounded time interval $[0,T]$, formalized in Lean 4 on top of Mathlib and the BrownianMotion package. The development contains: the construction of the Itô integral as an isometry of…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Machine-Checked Itô Calculus for Brownian Motion">
+<meta property="og:description" content="We present a machine-checked development of the $L^2$ Itô calculus of Brownian motion on a bounded time interval $[0,T]$, formalized in Lean 4 on top of Mathlib and the BrownianMotion package. The development contains: the construction of the Itô integral as an isometry of…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.15089.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.15089.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.15089v1" target="_blank" rel="noopener"><img src="../thumbs/2606.15089.jpg" alt="First page of A Machine-Checked Itô Calculus for Brownian Motion"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Machine-Checked Itô Calculus for Brownian Motion</h1>
+        <p class="authors">Raphael Coelho</p>
+        <div class="row">
+          <span class="badge">q-fin.MF</span>
+          <span class="date">Jun 13, 2026 · v1</span>
+          <span class="badge">math.PR</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-orange" href="../#tag=probability">probability</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.15089v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.15089" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/RemyDegenne/brownian-motion" target="_blank" rel="noopener" title="RemyDegenne/brownian-motion">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes the L^2 Itô calculus of Brownian motion in Lean 4 on Mathlib and the BrownianMotion package, including Itô&#x27;s formula.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present a machine-checked development of the $L^2$ Itô calculus of Brownian motion on a bounded time interval $[0,T]$, formalized in Lean 4 on top of Mathlib and the BrownianMotion package. The development contains: the construction of the Itô integral as an isometry of Hilbert spaces, from a predictable-rectangle $π$-system through the density of simple adapted processes; the Itô integral as a process, proved to be an $L^2$-continuous martingale through a single structural identity (the integral at time $t$ is the conditional-expectation projection of its terminal value onto $\mathcal{F}t$), from which adaptedness, the martingale property, the contraction bound, and both the terminal and the time-indexed Itô isometries follow as corollaries; and Itô&#x27;s formula for $C^3$ functions with bounded derivatives, including its time-dependent form $df = f_x,dB + (f_t + \tfrac12 f{xx}),dt$, obtained by a discrete-to-continuous argument through weighted quadratic variation and explicit $L^2$ remainder bounds. To our knowledge this includes the first machine-checked proof of Itô&#x27;s formula, and the first machine-checked construction of the Itô integral as a martingale-valued process, in any proof assistant. We are deliberate about the boundary: the theory is the $L^2$ theory on $[0,T]$ with bounded-derivative integrand classes; localization to the unrestricted $C^2$ formula, integrators beyond Brownian motion, and pathwise statements are out of scope, and we say precisely why and where. The development is roughly 7,200 lines of Lean across 22 modules; every theorem is sorry-free, the axioms of each headline result are pinned to Mathlib&#x27;s classical defaults by a build-enforced gate, and the whole is reproducible from a pinned toolchain.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">No proof assistant had a machine-checked construction of the Itô integral as a martingale-valued process, nor a machine-checked proof of Itô&#x27;s formula.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Formalizes the L^2 Itô calculus of Brownian motion on [0,T] in Lean 4 on top of Mathlib and the BrownianMotion package. The Itô integral is built as a Hilbert-space isometry from a predictable-rectangle pi-system through density of simple adapted processes. A single structural identity (the integral as the conditional-expectation projection of its terminal value) yields the L^2-continuous martingale property and both isometries as corollaries. Itô&#x27;s formula for C^3 functions with bounded derivatives follows from a discrete-to-continuous weighted quadratic-variation argument with explicit L^2 remainder bounds.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Roughly 7,200 lines of Lean across 22 modules, every theorem sorry-free with axioms gated to Mathlib&#x27;s classical defaults; reported as the first machine-checked Itô formula and first Itô integral as a martingale-valued process in any proof assistant.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

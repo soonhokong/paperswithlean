@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inference-Time Diversity in RL-Trained Lean Theorem Provers: A Diagnostic Study · Papers With Lean</title>
+<meta name="description" content="RL-trained Lean theorem provers mode-collapse at inference time: on miniF2F-test with DeepSeek-Prover-V1.5-RL, doubling the i.i.d.\ sampling budget from $k{=}32$ to $k{=}64$ produces zero additional solved theorems (42/244 in both cases). A fixed schedule of 15 tactic skeletons…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Inference-Time Diversity in RL-Trained Lean Theorem Provers: A Diagnostic Study">
+<meta property="og:description" content="RL-trained Lean theorem provers mode-collapse at inference time: on miniF2F-test with DeepSeek-Prover-V1.5-RL, doubling the i.i.d.\ sampling budget from $k{=}32$ to $k{=}64$ produces zero additional solved theorems (42/244 in both cases). A fixed schedule of 15 tactic skeletons…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2601.16172.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2601.16172.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2601.16172v2" target="_blank" rel="noopener"><img src="../thumbs/2601.16172.jpg" alt="First page of Inference-Time Diversity in RL-Trained Lean Theorem Provers: A Diagnostic Study"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Inference-Time Diversity in RL-Trained Lean Theorem Provers: A Diagnostic Study</h1>
+        <p class="authors">Zachary Burton</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jan 22, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-slate" href="../#tag=meta-study">meta-study</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2601.16172v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2601.16172" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Diagnoses inference-time mode collapse of RL-trained Lean theorem provers on miniF2F.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">RL-trained Lean theorem provers mode-collapse at inference time: on miniF2F-test with DeepSeek-Prover-V1.5-RL, doubling the i.i.d.\ sampling budget from $k{=}32$ to $k{=}64$ produces zero additional solved theorems (42/244 in both cases). A fixed schedule of 15 tactic skeletons breaks this plateau and recovers a $+45%$ relative improvement at $k{=}16$ (mean $Δ= +12.3 \pm 4.2$ theorems across $n{=}3$ seeds, sign preserved in every seed). A controlled diversity ablation rules out the prompt-diversity confound: tactic skeletons help, paraphrases match the baseline, and irrelevant Lean comments actively degrade. A leave-one-out formalization-difficulty stratification reveals a structural-content gradient across the three perturbations. The phenomenon is RL-specific: V1.5-Base proves zero theorems regardless of intervention, identifying RL as the stage that creates the proof capability which subsequently collapses; extending to two additional 7B Lean provers, RL-trained DeepSeek-Prover-V2-7B contributes $+3$ frontier solves no i.i.d.\ baseline can reach despite a flat aggregate, while SFT-trained Goedel-Prover does not ($-10.0 \pm 4.4$ theorems, $n{=}3$, sign preserved every seed). Inference-time structural diversity is a cheap, complementary axis for RL-trained provers, orthogonal to scaling model size or training compute.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">RL-trained Lean theorem provers suffer from mode-collapse at inference time: on miniF2F-test with DeepSeek-Prover-V1.5-RL, doubling the sampling budget from k=32 to k=64 produces zero additional solved theorems (42/244 in both cases).</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors introduce a fixed schedule of 15 tactic skeletons (hand-selected Lean tactic patterns) crossed with 8 goal-hint comments, creating a 120-attempt grid. Each attempt uses a distinct structured query combining the theorem statement with a tactic skeleton. A controlled diversity ablation compares tactic skeletons against paraphrases and irrelevant comments to isolate the source of improvement. A leave-one-out difficulty stratification analyzes which theorem classes benefit.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The skeleton schedule recovers a +45% relative improvement at k=16 (mean +12.3 +/- 4.2 theorems across n=3 seeds). Tactic skeletons help, paraphrases match the baseline, and irrelevant Lean comments actively degrade performance. The phenomenon is RL-specific: V1.5-Base proves zero theorems under any condition, confirming the gains require an RL-trained model whose mode-collapse can be broken by structural diversity.</p><div class="sum-table"><table><thead><tr><th>Condition</th><th>Pass@16</th><th>Pass@32</th><th>Pass@64</th></tr></thead><tbody><tr><td>A-RL (i.i.d. baseline)</td><td>38/244 (15.6%)</td><td>42/244 (17.2%)</td><td>42/244 (17.2%)</td></tr></tbody></table><div class="tbl-cap">Pass rates under different conditions on miniF2F-test</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Papers With Lean</title>
+<meta name="description" content="arXiv papers that use Lean, the interactive theorem prover. Updated daily.">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="vendor/fonts/fonts.css">
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<script defer src="vendor/katex/katex.min.js"></script>
+<script defer src="vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1>Papers <span class="with">With</span> <img class="leanlogo" src="assets/lean-logo.png" alt="Lean"></h1>
+      <input id="search" class="search" type="search"
+             placeholder="Search title, author, abstract, tag…  ( / )" autocomplete="off">
+      <div class="segmented" id="timeButtons">
+        <button class="seg" data-window="week">Last 7 days</button>
+        <button class="seg" data-window="month">Last 30 days</button>
+        <button class="seg active" data-window="all">All</button>
+      </div>
+    </div>
+  </div>
+</div>
+<header>
+  <div class="wrap">
+    <p class="meta-line"><span id="metaLine"></span> · <a href="stat/">Stats ↗</a> · Curated by <a href="https://phonetool.amazon.com/users/soonho" target="_blank" rel="noopener">soonho@</a></p>
+    <div class="controls">
+      <div class="chips" id="chips"></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div id="list"></div>
+    <div id="sentinel" style="height:1px"></div>
+    <div class="empty" id="empty" style="display:none">No papers match your filters.</div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance filtering, one-line notes, and tags by Claude. Source list updated 2026-06-29.
+  </div>
+</footer>
+
+<script>
+let DATA, papers, allTags, tagCounts = {}, windowStart;
+let activeTags = new Set(), activeWindow = "all", query = "";
+let shownPapers = [], renderedCount = 0, monthCounts = {}, lastYM = null;
+const BATCH = 20;
+
+const TAG_COLOR = {"formalization": "blue", "autoformalization": "indigo", "theorem-proving-ml": "purple", "tactic-automation": "cyan", "tooling": "teal", "mathlib": "green", "verification": "amber", "benchmark": "orange", "dataset": "lime", "meta-study": "slate", "ai-agents": "rose", "algebra": "purple", "analysis": "blue", "number-theory": "indigo", "combinatorics": "green", "geometry": "teal", "topology": "cyan", "probability": "orange", "logic": "slate", "type-theory": "pink", "category-theory": "rose", "quantum": "purple", "cryptography": "amber", "economics": "lime", "ml-theory": "pink", "physics": "blue"};
+const TAG_FALLBACK = ["amber","blue","green","purple","pink","orange","teal","rose","cyan","indigo","lime","slate"];
+function tagColor(t){
+  if (TAG_COLOR[t]) return TAG_COLOR[t];
+  let s=0; for (const c of t) s+=c.charCodeAt(0);
+  return TAG_FALLBACK[s % TAG_FALLBACK.length];
+}
+
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const fmtDate = d => { const [y,m,day] = d.split("-"); return MONTHS[+m-1] + " " + (+day) + ", " + y; };
+const esc = s => (s||"").replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function escLinkify(text){
+  const re = /(https?:\/\/[^\s<>()\[\]]+)/g;
+  let out = "", last = 0, m;
+  while ((m = re.exec(text)) !== null) {
+    out += esc(text.slice(last, m.index));
+    let url = m[1], trail = "";
+    while (url && ".,;:)]}'\"".includes(url[url.length-1])) { trail = url[url.length-1] + trail; url = url.slice(0,-1); }
+    out += '<a href="'+esc(url)+'" target="_blank" rel="noopener">'+esc(url)+'</a>'+esc(trail);
+    last = m.index + m[1].length;
+  }
+  out += esc(text.slice(last));
+  return out;
+}
+const fmtAuthors = a => {
+  if (!a || !a.length) return "";
+  if (a.length <= 4) return a.join(", ");
+  return a.slice(0,3).join(", ") + ", … (" + a.length + " authors)";
+};
+
+function shiftDays(isoDate, days) {
+  const d = new Date(isoDate + "T00:00:00Z");
+  d.setUTCDate(d.getUTCDate() + days);
+  return d.toISOString().slice(0,10);
+}
+
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+
+function renderChips() {
+  const box = document.getElementById("chips");
+  box.innerHTML = "";
+  if (activeTags.size) {
+    const clr = document.createElement("span");
+    clr.className = "chip active"; clr.textContent = "clear ✕";
+    clr.onclick = () => { activeTags.clear(); render(); };
+    box.appendChild(clr);
+  }
+  allTags.forEach(t => {
+    const c = document.createElement("span");
+    c.className = "chip c-" + tagColor(t) + (activeTags.has(t) ? " active" : "");
+    c.innerHTML = esc(t) + '<span class="n">' + tagCounts[t] + '</span>';
+    c.onclick = () => { activeTags.has(t) ? activeTags.delete(t) : activeTags.add(t); render(); };
+    box.appendChild(c);
+  });
+}
+
+function matches(p) {
+  if (p.published < windowStart[activeWindow]) return false;
+  for (const t of activeTags) if (!(p.tags||[]).includes(t)) return false;
+  if (query) {
+    const hay = (p.title+" "+(p.authors||[]).join(" ")+" "+p.abstract+" "+
+                 (p.tags||[]).join(" ")+" "+p.lean_note).toLowerCase();
+    for (const term of query.toLowerCase().split(/\s+/)) if (term && !hay.includes(term)) return false;
+  }
+  return true;
+}
+
+function card(p) {
+  const href = "paper/" + p.id + ".html";
+  const thumbInner = p.thumb
+    ? '<img class="thumb" loading="lazy" decoding="async" src="'+esc(p.thumb)+'" alt="First page of '+esc(p.title)+'">'
+    : '<div class="thumb-ph">'+esc(p.primary_category)+'</div>';
+  const thumb = '<a class="thumb-link" href="'+href+'">'+thumbInner+'</a>';
+  const tags = (p.tags||[]).map(t =>
+    '<span class="tag c-'+tagColor(t)+'" data-tag="'+esc(t)+'">'+esc(t)+'</span>').join("");
+  return `
+  <div class="card">
+    ${thumb}
+    <div class="body">
+      <p class="title"><a href="${href}">${esc(p.title)}</a></p>
+      <p class="authors">${esc(fmtAuthors(p.authors))}</p>
+      <p class="lean-note">${esc(p.lean_note)}</p>
+      <p class="abs">${escLinkify(p.abstract)}</p>
+      <div class="row">
+        <span class="badge">${esc(p.primary_category)}</span>
+        <span class="date">${fmtDate(p.published)}</span>
+        ${tags}
+        <span class="links">
+          <a href="${href}">Details</a>
+          <a href="${esc(p.abs_url)}" target="_blank" rel="noopener">arXiv</a>
+          <a href="${esc(p.pdf_url)}" target="_blank" rel="noopener">PDF</a>
+          ${p.repo ? '<a class="repo" href="'+esc(p.repo)+'" target="_blank" rel="noopener">Code</a>' : ''}
+        </span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function monthSep(ym, count) {
+  const [y,m] = ym.split("-");
+  return '<div class="month-sep" id="sep-'+ym+'" data-ym="'+ym+'">' + MONTHS[+m-1] + " " + y +
+         '<span class="mn">' + count + (count===1?" paper":" papers") + '</span></div>';
+}
+
+function renderBatch() {
+  if (renderedCount >= shownPapers.length) return;
+  const list = document.getElementById("list");
+  const end = Math.min(renderedCount + BATCH, shownPapers.length);
+  const wrapper = document.createElement("div");
+  let h = "";
+  for (let i = renderedCount; i < end; i++) {
+    const p = shownPapers[i];
+    const ym = p.published.slice(0,7);
+    if (ym !== lastYM) { h += monthSep(ym, monthCounts[ym]); lastYM = ym; }
+    h += card(p);
+  }
+  wrapper.innerHTML = h;
+  wrapper.querySelectorAll(".tag").forEach(el => el.onclick = () => {
+    const t = el.dataset.tag;
+    activeTags.has(t) ? activeTags.delete(t) : activeTags.add(t); render();
+    window.scrollTo({top:0, behavior:"smooth"});
+  });
+  wrapper.querySelectorAll(".card").forEach(el => renderMath(el));
+  while (wrapper.firstChild) list.appendChild(wrapper.firstChild);
+  renderedCount = end;
+}
+
+function render() {
+  renderChips();
+  shownPapers = papers.filter(matches);
+  renderedCount = 0;
+  lastYM = null;
+  monthCounts = {};
+  shownPapers.forEach(p => { const ym = p.published.slice(0,7); monthCounts[ym] = (monthCounts[ym]||0)+1; });
+
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+  document.getElementById("empty").style.display = shownPapers.length ? "none" : "block";
+
+  const filtered = (query || activeTags.size || activeWindow !== "all");
+  document.getElementById("metaLine").textContent = filtered
+    ? shownPapers.length + " of " + papers.length + " papers"
+    : papers.length + " papers · updated " + fmtDate(DATA.generated);
+
+  renderBatch();
+}
+
+const observer = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting && renderedCount < shownPapers.length) renderBatch();
+}, { rootMargin: "400px" });
+observer.observe(document.getElementById("sentinel"));
+
+const searchEl = document.getElementById("search");
+searchEl.addEventListener("input", e => { query = e.target.value; render(); });
+document.addEventListener("keydown", e => {
+  const t = e.target, typing = t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable);
+  if (e.key === "/" && !typing && !e.metaKey && !e.ctrlKey && !e.altKey) {
+    e.preventDefault(); searchEl.focus(); searchEl.select();
+  } else if (e.key === "Escape" && t === searchEl) {
+    searchEl.value = ""; query = ""; render(); searchEl.blur();
+  }
+});
+document.getElementById("timeButtons").addEventListener("click", e => {
+  const btn = e.target.closest(".seg"); if (!btn) return;
+  activeWindow = btn.dataset.window;
+  document.querySelectorAll("#timeButtons .seg").forEach(b => b.classList.toggle("active", b === btn));
+  render();
+});
+
+(function initFromHash(){
+  const m = (location.hash||"").match(/tag=([^&]+)/);
+  if (m) activeTags.add(decodeURIComponent(m[1]));
+})();
+
+fetch("site_papers.json").then(r => r.json()).then(data => {
+  DATA = data;
+  papers = data.papers;
+  tagCounts = {};
+  papers.forEach(p => (p.tags||[]).forEach(t => tagCounts[t]=(tagCounts[t]||0)+1));
+  allTags = Object.keys(tagCounts).sort((a,b)=>tagCounts[b]-tagCounts[a]);
+  const newest = papers.reduce((m,p)=> p.published > m ? p.published : m, "0000-00-00");
+  windowStart = { week: shiftDays(newest,-7), month: shiftDays(newest,-30), all: "0000-00-00" };
+  render();
+  renderMath(document.querySelector("header"));
+});
+</script>
+</body>
+</html>

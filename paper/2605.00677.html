@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evaluating the Architectural Reasoning Capabilities of LLM Provers via the Obfuscated Natural Number Game · Papers With Lean</title>
+<meta name="description" content="While Large Language Models have achieved notable success on formal mathematics benchmarks such as MiniF2F, it remains unclear whether these results stem from genuine logical reasoning or semantic pattern matching against pre-training data. This paper identifies Architectural…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Evaluating the Architectural Reasoning Capabilities of LLM Provers via the Obfuscated Natural Number Game">
+<meta property="og:description" content="While Large Language Models have achieved notable success on formal mathematics benchmarks such as MiniF2F, it remains unclear whether these results stem from genuine logical reasoning or semantic pattern matching against pre-training data. This paper identifies Architectural…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.00677.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.00677.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.00677v1" target="_blank" rel="noopener"><img src="../thumbs/2605.00677.jpg" alt="First page of Evaluating the Architectural Reasoning Capabilities of LLM Provers via the Obfuscated Natural Number Game"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Evaluating the Architectural Reasoning Capabilities of LLM Provers via the Obfuscated Natural Number Game</h1>
+        <p class="authors">Lixing Li</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">May 1, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.00677v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.00677" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/lllx125/Obfuscated-NNG" target="_blank" rel="noopener" title="lllx125/Obfuscated-NNG">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Evaluates LLM provers on an obfuscated Natural Number Game in Lean 4 to probe architectural reasoning.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">While Large Language Models have achieved notable success on formal mathematics benchmarks such as MiniF2F, it remains unclear whether these results stem from genuine logical reasoning or semantic pattern matching against pre-training data. This paper identifies Architectural Reasoning: the ability to synthesize formal proofs using exclusively local axioms and definitions within an alien math domain, as the necessary ability for future automated theorem discovery AI. We use the Obfuscated Natural Number Game, a benchmark to evaluate Architectural Reasoning. By renaming identifiers in the Natural Number Game in Lean 4, we created a zero-knowledge, closed environment. We evaluate state-of-the-art models, finding a universal latency tax where obfuscation increases inference time. The results also reveal a divergence in robustness: while general models (Claude-Sonnet-4.5, GPT-4o) suffer performance degradation, reasoning models (DeepSeek-R1, GPT-5, DeepSeek-Prover-V2) maintain the same accuracy despite the absence of semantic cues. These findings provide a quantitative metric for assessing the true capacity for mathematical reasoning.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLMs achieve high scores on formal math benchmarks like MiniF2F, but it is unclear whether this reflects genuine logical reasoning or pattern matching against pre-training data. A method to distinguish these capabilities is needed.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors define Architectural Reasoning as the ability to synthesize proofs using only local axioms in an alien domain, and introduce the Obfuscated Natural Number Game (O-NNG) benchmark. By renaming all identifiers in the Lean 4 Natural Number Game, they create a zero-knowledge closed environment. They evaluate GPT-4o, Claude-Sonnet-4.5, DeepSeek-R1, GPT-5, and DeepSeek-Prover-V2 across varying obfuscation noise levels.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.00677/x1.png" alt=""><figcaption>Figure 1: LLM performance metrics across varying noise levels \lambda . The plots illustrate Correct Rate (%) and Average Time (s) for GPT-4o, Claude-Sonnet-4.5, DeepSeek-R1, GPT-5, and DeepSeek-Prover-V2. Error bars represent standard deviation over 5 independent runs.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">All models exhibit a latency tax from obfuscation. General models (Claude-Sonnet-4.5, GPT-4o) suffer performance degradation, while reasoning models (DeepSeek-R1, GPT-5, DeepSeek-Prover-V2) maintain accuracy despite the absence of semantic cues. DeepSeek-Prover-V2 shows the highest robustness (p=0.3077 for correct rate change).</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Correct Rate p-value</th><th>Avg Time p-value</th></tr></thead><tbody><tr><td>GPT-4o</td><td>0.0242*</td><td>0.0004*</td></tr><tr><td>Claude-Sonnet-4.5</td><td>0.0001*</td><td>0.0000*</td></tr><tr><td>DeepSeek-R1</td><td>0.1573</td><td>0.0000*</td></tr><tr><td>GPT-5</td><td>0.0863</td><td>0.0001*</td></tr><tr><td>DeepSeek-Prover-V2</td><td>0.3077</td><td>0.0000*</td></tr></tbody></table><div class="tbl-cap">Statistical significance of performance degradation under obfuscation</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stokes&#x27; Theorem for Smooth Singular Cubes in Lean 4: True Pullback, Bridges to mathlib4, and Chain-Level d^2=0 · Papers With Lean</title>
+<meta name="description" content="We present a sorry-free Lean 4/mathlib4 formalization of Stokes&#x27; theorem for smooth singular cubes in arbitrary dimension, using true differential-form pullback via the Frechet derivative. The development also includes a bridge to mathlib4&#x27;s abstract extDeriv, chain-level Stokes…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stokes&#x27; Theorem for Smooth Singular Cubes in Lean 4: True Pullback, Bridges to mathlib4, and Chain-Level d^2=0">
+<meta property="og:description" content="We present a sorry-free Lean 4/mathlib4 formalization of Stokes&#x27; theorem for smooth singular cubes in arbitrary dimension, using true differential-form pullback via the Frechet derivative. The development also includes a bridge to mathlib4&#x27;s abstract extDeriv, chain-level Stokes…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.01028.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.01028.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.01028v1" target="_blank" rel="noopener"><img src="../thumbs/2605.01028.jpg" alt="First page of Stokes&#x27; Theorem for Smooth Singular Cubes in Lean 4: True Pullback, Bridges to mathlib4, and Chain-Level d^2=0"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Stokes&#x27; Theorem for Smooth Singular Cubes in Lean 4: True Pullback, Bridges to mathlib4, and Chain-Level d^2=0</h1>
+        <p class="authors">David B. Hulak, Arthur F. Ramos, Ruy J. G. B. de Queiroz</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">May 1, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.01028v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.01028" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/d0d1/lean-stokes-theorem" target="_blank" rel="noopener" title="d0d1/lean-stokes-theorem">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Sorry-free Lean 4/mathlib4 formalization of Stokes&#x27; theorem for smooth singular cubes with true pullback.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present a sorry-free Lean 4/mathlib4 formalization of Stokes&#x27; theorem for smooth singular cubes in arbitrary dimension, using true differential-form pullback via the Frechet derivative. The development also includes a bridge to mathlib4&#x27;s abstract extDeriv, chain-level Stokes extended by Z-linearity, d^2=0 for singular cubical chains, box Stokes for axis-aligned cubes, dimensional specializations, and a structured comparison with Harrison&#x27;s HOL Light formalization.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">No complete formalization of the differential-form Stokes theorem for smooth singular cubes existed in Lean 4/mathlib4 as of April 2026. Prior work by Harrison in HOL Light covered only convex and polyhedral domains without smooth manifolds with boundary.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The formalization covers Stokes&#x27; theorem for smooth singular cubes in arbitrary dimension using true differential-form pullback via the Frechet derivative. The development uses coordinate n-forms on R^(n+1), reduces the singular cube case to a box Stokes theorem via mathlib4&#x27;s extDeriv_pullback, and builds a bridge validating the coordinate formula against mathlib&#x27;s abstract exterior derivative. All proofs are sorry-free.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The formalization includes: singular cube Stokes with true pullback via fderiv, chain-level d^2=0 for singular cubical chains, box Stokes for axis-aligned cubes, a bridge to mathlib4&#x27;s abstract extDeriv, and Z-linearity extensions. A structured comparison with Harrison&#x27;s HOL Light formalization is provided.</p><div class="sum-table"><table><thead><tr><th>Feature</th><th>This paper</th><th>Harrison (HOL)</th></tr></thead><tbody><tr><td>Singular cubes</td><td>Yes</td><td>No (polyhedral)</td></tr><tr><td>Pullback of forms</td><td>Yes (fderiv)</td><td>Yes</td></tr><tr><td>Chain-level boundary</td><td>Yes (d^2=0)</td><td>Yes (polyhedral)</td></tr><tr><td>Library integration</td><td>Lean 4/mathlib4</td><td>HOL Light</td></tr><tr><td>Smooth manifolds</td><td>No</td><td>No</td></tr></tbody></table><div class="tbl-cap">Feature comparison with Harrison&#x27;s HOL Light formalization</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MA-ProofBench: A Two-Tiered Evaluation of LLMs for Theorem Proving in Mathematical Analysis · Papers With Lean</title>
+<meta name="description" content="Large Language Models (LLMs) have made notable progress in automated theorem proving, yet existing formal benchmarks remain limited in both mathematical coverage and difficulty. Most are concentrated in areas that are easier to formalize, such as algebra and elementary number…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MA-ProofBench: A Two-Tiered Evaluation of LLMs for Theorem Proving in Mathematical Analysis">
+<meta property="og:description" content="Large Language Models (LLMs) have made notable progress in automated theorem proving, yet existing formal benchmarks remain limited in both mathematical coverage and difficulty. Most are concentrated in areas that are easier to formalize, such as algebra and elementary number…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.13782.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.13782.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.13782v2" target="_blank" rel="noopener"><img src="../thumbs/2606.13782.jpg" alt="First page of MA-ProofBench: A Two-Tiered Evaluation of LLMs for Theorem Proving in Mathematical Analysis"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">MA-ProofBench: A Two-Tiered Evaluation of LLMs for Theorem Proving in Mathematical Analysis</h1>
+        <p class="authors">Lushi Pu, Weiming Zhang, Xinheng Xie, Zixuan Fu, Bingxiang He, Hongya Lyu, Xin Li, Jie Zhou, Yudong Wang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jun 11, 2026 · v2</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.13782v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.13782" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/zai-org/GLM-5" target="_blank" rel="noopener" title="zai-org/GLM-5">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces MA-ProofBench, 200 Lean 4 formal theorems in mathematical analysis, and evaluates LLMs and theorem provers on them.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large Language Models (LLMs) have made notable progress in automated theorem proving, yet existing formal benchmarks remain limited in both mathematical coverage and difficulty. Most are concentrated in areas that are easier to formalize, such as algebra and elementary number theory, and provide limited coverage of subfields that require deeper reasoning, including mathematical analysis. To address this gap, we introduce MA-ProofBench, to the best of our knowledge, the first formal theorem-proving benchmark dedicated to Mathematical Analysis. The benchmark contains 200 formalized theorems covering 6 core topics and 27 subcategories, including measure and integration theory, complex analysis, and functional analysis. The problems are divided into two difficulty levels, an undergraduate level (Level I, 100 problems) and a Ph.D. qualifying level (Level II, 100 problems), to evaluate how well LLMs perform formal reasoning at different mathematical depths. Each problem is constructed through a human-led, LLM-assisted formalization pipeline followed by independent expert review, ensuring that the formal statements remain faithful to the original mathematics. We evaluate a range of recent general-purpose reasoning models and formal theorem provers on MA-ProofBench. However, most models perform poorly: even the best-performing model, GPT-5.5, achieves only 16% Pass@8 on Level I and 5% on Level II, while most models stay close to 0% on Level II. Further analysis identifies Mathlib hallucinations and incomplete proofs as the two dominant failure modes, while an evaluation on the natural-language version of the benchmark exposes a clear gap between informal and formal reasoning. MA-ProofBench is intended to serve as a reliable reference for tracking progress in formal mathematical reasoning in advanced domains.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Existing formal theorem-proving benchmarks concentrate on algebra and elementary number theory and underrepresent mathematical analysis, which requires joint reasoning about continuity, limits, and topological structure. Several are also saturated (e.g. miniF2F) or contain semantic flaws.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">MA-ProofBench provides 200 Lean 4 formal theorems spanning 6 core analysis topics and 27 subcategories, split into an undergraduate tier (Level I, 100 problems) and a Ph.D.-qualifying tier (Level II, 100 problems). Each problem comes from a human-led, LLM-assisted formalization pipeline with independent expert review. Models are evaluated on Mathlib 4.28.0 with the Kimina Lean Server as backend, scored with Pass@k.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.13782/x3.png" alt=""><figcaption>Figure 3: Overview of the curation workflow of MA-ProofBench, comprising Problem Collection, Formalization, Independent Expert Review, and Difficulty Grading.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Most models perform poorly: the best, GPT-5.5, reaches only 16% Pass@8 on Level I and 5% on Level II, while most models stay near 0% on Level II. Mathlib hallucinations and incomplete proofs are the dominant failure modes, and a natural-language version exposes a clear informal-to-formal gap.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.13782/x4.png" alt=""><figcaption>(a) Error category distribution on Level I</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Model</th><th>Level I</th><th>Level II</th></tr></thead><tbody><tr><td>GPT-5.5 (xhigh)</td><td>16.00</td><td>5.00</td></tr><tr><td>Gemini 3.1 Pro (High)</td><td>13.00</td><td>5.00</td></tr><tr><td>DeepSeek-Prover-V2-671B</td><td>6.86</td><td>0.44</td></tr><tr><td>Claude Sonnet 4.6 (High)</td><td>6.00</td><td>3.00</td></tr><tr><td>DeepSeek-V3.2-Thinking</td><td>5.56</td><td>1.85</td></tr></tbody></table><div class="tbl-cap">Pass@8 (%) on MA-ProofBench, selected models.</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

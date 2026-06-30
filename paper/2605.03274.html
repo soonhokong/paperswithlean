@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formalizing Singer Sidon Constructions and Sidon Set Infrastructure in Lean 4 · Papers With Lean</title>
+<meta name="description" content="Erdős Problem 30 asks for sharp asymptotics of the Sidon extremal function $h(N)$, and Singer&#x27;s construction is the classical source of lower-bound examples matching the main term. We present a Lean 4 formalization of Singer&#x27;s Sidon set construction, together with reusable…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Formalizing Singer Sidon Constructions and Sidon Set Infrastructure in Lean 4">
+<meta property="og:description" content="Erdős Problem 30 asks for sharp asymptotics of the Sidon extremal function $h(N)$, and Singer&#x27;s construction is the classical source of lower-bound examples matching the main term. We present a Lean 4 formalization of Singer&#x27;s Sidon set construction, together with reusable…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.03274.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.03274.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.03274v2" target="_blank" rel="noopener"><img src="../thumbs/2605.03274.jpg" alt="First page of Formalizing Singer Sidon Constructions and Sidon Set Infrastructure in Lean 4"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Formalizing Singer Sidon Constructions and Sidon Set Infrastructure in Lean 4</h1>
+        <p class="authors">David B. Hulak, Arthur F. Ramos, Ruy J. G. B. de Queiroz</p>
+        <div class="row">
+          <span class="badge">math.CO</span>
+          <span class="date">May 5, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.03274v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.03274" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/d0d1/singer-theorem-lean" target="_blank" rel="noopener" title="d0d1/singer-theorem-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes Singer&#x27;s Sidon set construction and reusable Sidon-set infrastructure in 7541 lines of Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Erdős Problem 30 asks for sharp asymptotics of the Sidon extremal function $h(N)$, and Singer&#x27;s construction is the classical source of lower-bound examples matching the main term. We present a Lean 4 formalization of Singer&#x27;s Sidon set construction, together with reusable Sidon-set infrastructure for additive combinatorics. For every prime power $q=p^k$, we prove the existence of a Sidon set modulo $q^2+q+1$ of cardinality $q+1$; the prime-field case $q=p$ is the base presentation. The proof proceeds through a non-trivial algebraic chain: construction of the base field and its degree-three extension, analysis of the trace kernel as a 2-dimensional subspace over the base field, a geometric argument via subspace intersections establishing the multiplicative Sidon property in the quotient group, and a transfer from quotient multiplication to modular integer addition. Around this central result, we develop a reusable Sidon set library. It comprises interval and modular Sidon sets, the extremal function $h(N)$, Lindström&#x27;s cross-difference inequality, a Johnson-route shift-incidence upper bound of the form $h(N)\leq\sqrt{N}+N^{1/4}+O(1)$, representation-function identities, and unconditional two-sided $h(N)=Θ(\sqrt{N})$ bounds with exact floor-rounded finite statements for $N\geq 5$. We further formalize a conditional reduction: subpolynomial prime gaps together with a full subpolynomial upper-error hypothesis for $h(N)$ imply the Erdős Problem 30 estimate $h(N)=\sqrt{N}+O_ε(N^ε)$ for every $ε&gt;0$. The Singer/Sidon modules and transfer lemmas comprise 7,541 lines of Lean 4 with zero active uses of sorry. We describe the mathematical lessons learned, focusing on how formalization clarifies the precise scope of classical arguments and forces explicit treatment of the passage from the field-theoretic construction to integer Sidon predicates.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Erdos Problem 30 asks for sharp asymptotics of the Sidon extremal function h(N), and Singer&#x27;s construction is the classical source of lower-bound examples. No prior Lean formalization existed for Singer&#x27;s construction or for reusable Sidon set infrastructure in additive combinatorics.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors formalize Singer&#x27;s Sidon set construction in Lean 4, proving that for every prime power q there exists a Sidon set modulo q^2+q+1 of cardinality q+1. The proof proceeds through construction of the base field and its degree-three extension, analysis of the trace kernel as a 2-dimensional subspace, a geometric argument via subspace intersections establishing the multiplicative Sidon property, and transfer from quotient multiplication to modular integer addition. Around this, the authors develop a reusable Sidon set library including interval and modular Sidon sets, the extremal function h(N), Lindstrom&#x27;s cross-difference inequality, a Johnson-route shift-incidence upper bound, representation-function identities, and unconditional two-sided bounds.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The formalization comprises 7,541 lines of Lean 4 with zero active uses of sorry. It establishes unconditional two-sided h(N) = Theta(sqrt(N)) bounds with exact floor-rounded finite statements for N &gt;= 5, and formalizes a conditional reduction showing that subpolynomial prime gaps together with a subpolynomial upper-error hypothesis imply h(N) = sqrt(N) + O_epsilon(N^epsilon).</p><div class="sum-table"><table><thead><tr><th>Module</th><th>Content</th><th>Lines</th></tr></thead><tbody><tr><td>Sidon.lean</td><td>Sidon predicate, basic properties</td><td>85</td></tr><tr><td>Interval.lean</td><td>Interval/modular Sidon, transfer</td><td>526</td></tr><tr><td>SidonGap.lean</td><td>Sidon gap distinctness and quantitative transfer</td><td>1395</td></tr><tr><td>SingerSidon.lean</td><td>Quotient-group Sidon property</td><td>129</td></tr><tr><td>SingerTheorem.lean</td><td>Quotient-to-modular transfer</td><td>316</td></tr><tr><td>FormalStatement.lean</td><td>h(N), Erdos 30 statement</td><td>171</td></tr></tbody></table><div class="tbl-cap">Module breakdown of the formalization</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The 1-Bit Barrier is Universal: k-Stage Pipeline Composition and Unified Leakage Bounds for Standard Modular Reductions in PQC Hardware · Papers With Lean</title>
+<meta name="description" content="This is Paper 7 of a series of formally-verified analyses of masked NTT hardware for post-quantum cryptography; Paper 1 [1] established structural dependency analysis of the QANARY platform, and Paper 2 [2] quantified security margins under partial NTT masking. Arbitrary-depth…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The 1-Bit Barrier is Universal: k-Stage Pipeline Composition and Unified Leakage Bounds for Standard Modular Reductions in PQC Hardware">
+<meta property="og:description" content="This is Paper 7 of a series of formally-verified analyses of masked NTT hardware for post-quantum cryptography; Paper 1 [1] established structural dependency analysis of the QANARY platform, and Paper 2 [2] quantified security margins under partial NTT masking. Arbitrary-depth…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.02856.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.02856.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.02856v2" target="_blank" rel="noopener"><img src="../thumbs/2605.02856.jpg" alt="First page of The 1-Bit Barrier is Universal: k-Stage Pipeline Composition and Unified Leakage Bounds for Standard Modular Reductions in PQC Hardware"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">The 1-Bit Barrier is Universal: k-Stage Pipeline Composition and Unified Leakage Bounds for Standard Modular Reductions in PQC Hardware</h1>
+        <p class="authors">Ray Iskander, Khaled Kirah</p>
+        <div class="row">
+          <span class="badge">cs.CR</span>
+          <span class="date">May 4, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-amber" href="../#tag=cryptography">cryptography</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.02856v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.02856" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Machine-checks in Lean 4 cardinality and leakage bounds for masked NTT pipelines in post-quantum cryptography hardware.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">This is Paper 7 of a series of formally-verified analyses of masked NTT hardware for post-quantum cryptography; Paper 1 [1] established structural dependency analysis of the QANARY platform, and Paper 2 [2] quantified security margins under partial NTT masking. Arbitrary-depth $k$-stage masked NTT pipelines with fresh inter-stage masking and per-stage PF-PINI($\leq 2$) gadgets satisfy a per-observation cardinality bound of $2 \cdot q^{2k-2}$ on the preimage of any output value, machine-checked in Lean 4 with zero \texttt{sorry}. Under the standard (informal) semantic translation that divides this cardinality by the total mask-tuple space size $q^{2k-1}$, the per-observation conditional probability bound is $2/q$, independent of pipeline depth $k$. The QANARY program has previously established machine-checked cardinality bounds on the per-observation leakage of masked NTT hardware: PF-PINI(2) for Barrett reduction (Paper 5 [3]), 2-stage composition with fresh inter-stage masking (Paper 6 [4]), an underlying universality theorem (Paper 3 [5]), and PF-PINI(1) for butterfly wires (Paper 4 [6]). This paper closes the program with four contributions. First, a $k$-stage composition theorem generalizing Paper 6&#x27;s two-stage result to arbitrary $k \geq 1$ gives the last-stage-determined bound $G_{k-1}.\texttt{maxMult} \cdot q^{2k-2}$: only the last stage&#x27;s PF-PINI parameter survives, with intermediate parameters erased by fresh inter-stage masking. Second, Montgomery reduction satisfies PF-PINI(2) with tight max-multiplicity 2. Third, we assemble these into the end-to-end bound $2 \cdot q^{2k-2}$ for any depth-$k$ PF-PINI($\leq 2$) pipeline under fresh inter-stage masking. Fourth, a Lean-verified hypothesis-violation conditional anchors the prior empirical and structural Adams Bridge analyses ([1, 2, 7, 8]).</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Masked NTT pipelines for post-quantum cryptography hardware require formal security guarantees that leakage bounds hold regardless of pipeline depth, but prior work only covered two-stage composition and specific gadgets like Barrett reduction.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The paper proves a k-stage composition theorem generalizing prior two-stage results to arbitrary depth k &gt;= 1, showing that only the last stage&#x27;s PF-PINI parameter survives when fresh inter-stage masking is applied. It also establishes PF-PINI(2) with tight max-multiplicity 2 for Montgomery reduction. These are assembled into an end-to-end bound of 2*q^(2k-2) for any depth-k PF-PINI(&lt;=2) pipeline. All results are machine-checked in Lean 4 with zero sorry axioms.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The per-observation conditional probability bound is 2/q, independent of pipeline depth k. This closes the QANARY formal verification program by covering all standard modular reductions (Barrett and Montgomery) and arbitrary pipeline depths with machine-checked proofs.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

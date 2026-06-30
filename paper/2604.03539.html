@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CB-VER: A Stable Foundation for Modular Control Plane Verification · Papers With Lean</title>
+<meta name="description" content="Network operators are often interested in verifying \emph{eventually-stable properties} of network control planes: properties of control plane states that hold eventually, and hold forever thereafter, provided the operating environment remains unchanged. Examples include…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CB-VER: A Stable Foundation for Modular Control Plane Verification">
+<meta property="og:description" content="Network operators are often interested in verifying \emph{eventually-stable properties} of network control planes: properties of control plane states that hold eventually, and hold forever thereafter, provided the operating environment remains unchanged. Examples include…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2604.03539.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2604.03539.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2604.03539v2" target="_blank" rel="noopener"><img src="../thumbs/2604.03539.jpg" alt="First page of CB-VER: A Stable Foundation for Modular Control Plane Verification"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">CB-VER: A Stable Foundation for Modular Control Plane Verification</h1>
+        <p class="authors">Dexin Zhang, Timothy Alberdingk Thijm, David Walker, Aarti Gupta</p>
+        <div class="row">
+          <span class="badge">cs.NI</span>
+          <span class="date">Apr 4, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2604.03539v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2604.03539" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/dz7903/cbgraphs-benchmarks" target="_blank" rel="noopener" title="dz7903/cbgraphs-benchmarks">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The converges-before-graph verification algorithm for eventually-stable control-plane properties is formalized in Lean and proved sound.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Network operators are often interested in verifying \emph{eventually-stable properties} of network control planes: properties of control plane states that hold eventually, and hold forever thereafter, provided the operating environment remains unchanged. Examples include eventually-stable reachability, access control, or path length properties. In this work, we introduce \textsc{CB-Ver}, a new framework for verifying such properties, based on the key idea of a \emph{converges-before graph} (CB-graph for short). When a user provides interfaces for each network component, \textsc{CB-Ver} checks the necessary component-by-component requirements in parallel using an SMT solver. In addition, the tool automatically synthesizes a CB-graph and checks whether it connects all nodes in a network -- if it does, the interfaces are valid and users can check whether additional eventually-stable properties are implied. Moreover, the CB-graph can then be used to determine fault tolerance properties of the network. We formalize our verification algorithm in the Lean theorem proving environment and prove its soundness. We evaluate the performance of \textsc{CB-Ver} on a range of benchmarks that demonstrate its ability to verify expressive properties in reasonable time. Finally, we demonstrate it is possible to automatically generate suitable interfaces by turning the problem around: Given a CB-graph, we use an off-the-shelf Constrained Horn Clause (CHC) solver to synthesize interfaces for every network component that together ensure the given correctness property.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Network operators need to verify eventually-stable properties of control planes (reachability, access control, path length), but doing so for large networks with modular, component-by-component reasoning has lacked a verified algorithmic foundation.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors introduce CB-VER, a framework based on converges-before graphs (CB-graphs). When a user provides interfaces for each network component, CB-VER checks requirements in parallel using an SMT solver, then automatically synthesizes a CB-graph to verify that interfaces are valid. Given a CB-graph, a CHC solver can synthesize interfaces automatically. The verification algorithm is formalized in Lean and proved sound.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.03539/Fault-3.png" alt=""><figcaption>Figure 4 : CB-graph of a cross-world network from the Batfish tutorial [ batfish-tutorials-failure ] . Houston (bordered in red) is a CB-root and directed arrows are CB-edges.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">CB-VER verifies expressive eventually-stable properties on a range of benchmarks in reasonable time. It handles fault tolerance analysis and supports automatic interface generation via CHC solvers.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

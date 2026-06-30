@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning an Effective Premise Retrieval Model for Efficient Mathematical Formalization · Papers With Lean</title>
+<meta name="description" content="Formalized mathematics has recently garnered significant attention for its ability to assist mathematicians across various fields. Premise retrieval, as a common step in mathematical formalization, has been a challenge, particularly for inexperienced users. Existing retrieval…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning an Effective Premise Retrieval Model for Efficient Mathematical Formalization">
+<meta property="og:description" content="Formalized mathematics has recently garnered significant attention for its ability to assist mathematicians across various fields. Premise retrieval, as a common step in mathematical formalization, has been a challenge, particularly for inexperienced users. Existing retrieval…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2501.13959.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2501.13959.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2501.13959v3" target="_blank" rel="noopener"><img src="../thumbs/2501.13959.jpg" alt="First page of Learning an Effective Premise Retrieval Model for Efficient Mathematical Formalization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Learning an Effective Premise Retrieval Model for Efficient Mathematical Formalization</h1>
+        <p class="authors">Yicheng Tao, Haotian Liu, Shanwen Wang, Hongteng Xu</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Jan 21, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2501.13959v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2501.13959" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ruc-ai4math/Premise-Retrieval" target="_blank" rel="noopener" title="ruc-ai4math/Premise-Retrieval">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Trains a premise retrieval model on Mathlib data that embeds Lean proof states and premises for mathematical formalization.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Formalized mathematics has recently garnered significant attention for its ability to assist mathematicians across various fields. Premise retrieval, as a common step in mathematical formalization, has been a challenge, particularly for inexperienced users. Existing retrieval methods that facilitate natural language queries require a certain level of mathematical expertise from users, while approaches based on formal languages (e.g., Lean) typically struggle with the scarcity of training data, hindering the training of effective and generalizable retrieval models. In this work, we introduce a novel method that leverages data extracted from Mathlib to train a lightweight and effective premise retrieval model. In particular, the proposed model embeds queries (i.e., proof state provided by Lean) and premises in a latent space, featuring a tokenizer specifically trained on formal corpora. The model is learned in a contrastive learning framework, in which a fine-grained similarity calculation method and a re-ranking module are applied to enhance the retrieval performance. Experimental results demonstrate that our model outperforms existing baselines, achieving higher accuracy while maintaining a lower computational load. We have released an open-source search engine based on our retrieval model at <a href="https://premise-search.com/" target="_blank" rel="noopener">https://premise-search.com/</a>. The source code and the trained model can be found at <a href="https://github.com/ruc-ai4math/Premise-Retrieval" target="_blank" rel="noopener">https://github.com/ruc-ai4math/Premise-Retrieval</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Premise retrieval is a common step in mathematical formalization that is challenging for inexperienced users. Existing retrieval methods either require mathematical expertise for natural language queries or struggle with scarcity of formal-language training data.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors introduce a premise retrieval model for Lean 4 trained on data extracted from Mathlib4. The system uses a two-stage architecture: a BERT-based retrieval model computes similarity between proof states and premise embeddings (using arguments and goals), followed by a re-ranking model that reorders the top candidates. The retrieval model uses contrastive learning with hard negatives, and the re-ranking model uses a cross-encoder architecture. Pre-training on concatenated states and premises provides domain adaptation.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The retrieval model selects top-100 candidates which are reordered by the re-ranker to produce final top-20 results. The method outperforms previous models on the Lean premise retrieval task. The authors developed a search engine based on the model and note that results with stronger provers (e.g., DeepSeek-Prover-V2) would further demonstrate the effect of premise selection on automated theorem proving.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

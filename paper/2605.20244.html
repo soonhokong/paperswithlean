@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lean Refactor: Multi-Objective Controllable Proof Optimization via Agentic Strategy Search · Papers With Lean</title>
+<meta name="description" content="We present Lean Refactor, a plug-and-play retrieval-augmented agentic framework for multi-objective, controllable, and version-robust refactoring of Lean proofs. LLM-generated proofs are notoriously correct-but-verbose and brittle across library versions, yet existing…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lean Refactor: Multi-Objective Controllable Proof Optimization via Agentic Strategy Search">
+<meta property="og:description" content="We present Lean Refactor, a plug-and-play retrieval-augmented agentic framework for multi-objective, controllable, and version-robust refactoring of Lean proofs. LLM-generated proofs are notoriously correct-but-verbose and brittle across library versions, yet existing…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.20244.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.20244.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.20244v1" target="_blank" rel="noopener"><img src="../thumbs/2605.20244.jpg" alt="First page of Lean Refactor: Multi-Objective Controllable Proof Optimization via Agentic Strategy Search"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Lean Refactor: Multi-Objective Controllable Proof Optimization via Agentic Strategy Search</h1>
+        <p class="authors">Jialin Lu, Soonho Kong, Rodrigo Stehling, Kaiyu Yang, Zhangyang Wang, Weiran Sun, Wuyang Chen</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">May 18, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.20244v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.20244" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/oOo0oOo/lean-lsp-mcp" target="_blank" rel="noopener" title="oOo0oOo/lean-lsp-mcp">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Presents Lean Refactor, a retrieval-augmented agentic framework for multi-objective refactoring of Lean/Mathlib proofs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present Lean Refactor, a plug-and-play retrieval-augmented agentic framework for multi-objective, controllable, and version-robust refactoring of Lean proofs. LLM-generated proofs are notoriously correct-but-verbose and brittle across library versions, yet existing refactoring works overlook three practical challenges: 1) Lean refactoring is natively multi-objective (proof length, compilation cost, and version compatibility are often in tension); 2) Lean repositories have fragile compatibility, whereas LLM releases are unaware of Lean/Mathlib versions; 3) Training-based pipelines require repeated fine-tuning with each new LLM release, scaling neither with model churn nor with Lean&#x27;s release cycle. Lean Refactor steers a frozen agentic LLM with retrievals from a curated database of multi-objective refactoring strategies, each densely annotated with metadata such as supported Lean/Mathlib versions and expected compilation-cost reduction. Experiments show over $70\%$ token-level compression on competition benchmarks, over $20\%$ on research repositories, and up to $60\%$ compilation-time reduction, outperforming prior work and Claude Code. Version-filtered retrieval further improves compression on the target Lean version, and refactored miniF2F proofs exhibit stronger zero-shot version transfer to future Lean releases than their unrefactored counterparts.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-generated Lean proofs are correct but verbose and brittle across Lean/Mathlib versions. Existing refactoring methods address only a single objective, require retraining with each new LLM or Lean release, and ignore the misalignment between LLM knowledge cutoffs and the Lean toolchain.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Lean Refactor is a retrieval-augmented agentic framework that steers a frozen LLM with strategies from a curated database annotated with Lean/Mathlib version compatibility and expected compilation-cost reduction. A trained retrieval model maps target proofs to relevant strategies, with multi-objective reranking for proof length, compilation cost, or version filtering. The agent loop (planner, refactorer, debugger) works with any frozen frontier LLM without retraining.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.20244/x4.png" alt=""><figcaption>Figure 4 : Overview of Lean Refactor framework. 1. We first summarize raw long-short proof pairs sourced from diverse Lean code sources into well-structured reusable strategies, and more importantly, we annotate each strategy with code refactoring metadata, including compilation time cost and version compatibility (Section 3.1 ). 2. We then train a strategy retrieval model that maps Lean code (tha</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2605.20244/x5.png" alt=""><figcaption>Figure 5 : Multi-objective Lean proof refactoring. A single strategy bank adapts to diverse user objectives at inference without retraining. Top: for shortest proofs, top- K strategies by cosine similarity are used directly. Middle: to balance faster compilation, candidates are reranked by annotated compile-cost reduction. Bottom: for a target toolchain (e.g., v4.16.0), incompatible strategies are</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Lean Refactor achieves over 70% token-level compression on competition benchmarks (miniF2F), over 20% on research repositories, and up to 60% compilation-time reduction. On PutnamBench it reaches 70.38% compression versus 57.20% for the prior ProofOptimizer. Version-filtered retrieval improves compression on target Lean versions, and refactored proofs show stronger zero-shot transfer to future Lean releases.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>miniF2F</th><th>PutnamBench</th><th>Putnam 2025</th></tr></thead><tbody><tr><td>ProofOptimizer</td><td>87.90</td><td>57.20</td><td>--</td></tr><tr><td>Lean Refactor</td><td>88.40</td><td>70.38</td><td>79.27</td></tr><tr><td>Base Agent</td><td>79.75</td><td>41.15</td><td>68.18</td></tr></tbody></table><div class="tbl-cap">Proof length compression (%) on competition and research benchmarks</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

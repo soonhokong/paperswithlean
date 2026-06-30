@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intent-aligned Formal Specification Synthesis via Traceable Refinement · Papers With Lean</title>
+<meta name="description" content="Large language models are increasingly used to generate code from natural language, but ensuring correctness remains challenging. Formal verification offers a principled way to obtain such guarantees by proving that a program satisfies a formal specification. However,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Intent-aligned Formal Specification Synthesis via Traceable Refinement">
+<meta property="og:description" content="Large language models are increasingly used to generate code from natural language, but ensuring correctness remains challenging. Formal verification offers a principled way to obtain such guarantees by proving that a program satisfies a formal specification. However,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2604.10392.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2604.10392.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2604.10392v1" target="_blank" rel="noopener"><img src="../thumbs/2604.10392.jpg" alt="First page of Intent-aligned Formal Specification Synthesis via Traceable Refinement"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Intent-aligned Formal Specification Synthesis via Traceable Refinement</h1>
+        <p class="authors">Zhe Ye, Aidan Z. H. Yang, Huangyuan Su, Zhenyu Liao, Samuel Tenka, Zhizhen Qin, Udaya Ghai, Dawn Song, Soonho Kong</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Apr 12, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2604.10392v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2604.10392" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Synthesizes intent-aligned formal specifications in Lean, validating them with Lean-checked requirement-targeted tests and traceable clause-level repair.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language models are increasingly used to generate code from natural language, but ensuring correctness remains challenging. Formal verification offers a principled way to obtain such guarantees by proving that a program satisfies a formal specification. However, specifications are frequently missing in real-world codebases, and writing high-quality specifications remains expensive and expertise-intensive. We present VeriSpecGen, a traceable refinement framework that synthesizes intent-aligned specifications in Lean through requirement-level attribution and localized repair. VeriSpecGen decomposes natural language into atomic requirements and generates requirement-targeted tests with explicit traceability maps to validate generated specifications. When validation fails, traceability maps attribute failures to specific requirements, enabling targeted clause-level repairs. VeriSpecGen achieve 86.6% on VERINA SpecGen task using Claude Opus 4.5, improving over baselines by up to 31.8 points across different model families and scales. Beyond inference-time gains, we generate 343K training examples from VeriSpecGen refinement trajectories and demonstrate that training on these trajectories substantially improves specification synthesis by 62-106% relative and transfers gains to general reasoning abilities.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-generated code lacks correctness guarantees, and formal specifications needed for verification are expensive to write. Existing specification synthesis approaches lack traceability between natural language intent and the formal output.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">VeriSpecGen is a traceable refinement framework that synthesizes Lean specifications from natural language through three stages: atomic requirement decomposition, requirement-to-specification translation, and iterative self-repair with Lean compiler feedback. The authors use trajectory distillation to construct training data and fine-tune models with multi-task supervision covering specification generation, code generation, and proof generation.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.10392/x1.png" alt=""><figcaption>Figure 1 : VeriSpecGen traceable refinement workflow. Given a natural language problem description (e.g., “Find the most frequent element…”), VeriSpecGen synthesizes formal specifications through three stages: (1) Atomic Requirement Decomposition : An LLM decomposes the description into testable atomic requirements (AR1: non-empty input, AR2: frequency constraint, AR3: tie-breaking rule). (2) Requ</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The best SFT configuration (No-Test, 30B model at T=0.3) achieves 47.6% Spec Pass@1, an 18.2 point absolute improvement over the base model (29.4%). The multi-task training signal is essential; single-task (Spec-Only) training degrades below the base model at higher temperatures.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.10392/x3.png" alt=""><figcaption>Figure 3 : Code Pass@1 vs. Spec Pass@1 at T=0.3 . Each point represents a training epoch (e1–e5). SFT No-Test achieves the best specification performance while maintaining competitive code generation capability. SFT Spec-Only clusters in the lower-left quadrant, exhibiting degraded performance on both tasks despite being trained specifically for specification generation.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kops: Safely Extending the eBPF Compilation Pipeline with Native Operations · Papers With Lean</title>
+<meta name="description" content="eBPF safely extends OS kernels in domains such as networking, observability, and security. The safety comes from an in-kernel compilation pipeline where a verifier checks every program, and a kernel just-in-time compiler (JIT) translates the verified bytecode to native code. The…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kops: Safely Extending the eBPF Compilation Pipeline with Native Operations">
+<meta property="og:description" content="eBPF safely extends OS kernels in domains such as networking, observability, and security. The safety comes from an in-kernel compilation pipeline where a verifier checks every program, and a kernel just-in-time compiler (JIT) translates the verified bytecode to native code. The…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.24213.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.24213.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.24213v1" target="_blank" rel="noopener"><img src="../thumbs/2606.24213.jpg" alt="First page of Kops: Safely Extending the eBPF Compilation Pipeline with Native Operations"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Kops: Safely Extending the eBPF Compilation Pipeline with Native Operations</h1>
+        <p class="authors">Yusheng Zheng, Zhengjie Ji, Weichen Tao, Hao Sun, Wei Zhang, Dan Williams, Andi Quinn</p>
+        <div class="row">
+          <span class="badge">cs.OS</span>
+          <span class="date">Jun 23, 2026 · v1</span>
+          <span class="badge">cs.CR</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.24213v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.24213" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/aquasecurity/tracee" target="_blank" rel="noopener" title="aquasecurity/tracee">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Proves in Lean 4 that each eBPF native-emit operation computes the same result as its vanilla-bytecode proof sequence.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">eBPF safely extends OS kernels in domains such as networking, observability, and security. The safety comes from an in-kernel compilation pipeline where a verifier checks every program, and a kernel just-in-time compiler (JIT) translates the verified bytecode to native code. The kernel keeps the JIT simple to stay trustworthy, translating one bytecode instruction at a time in a single pass. This single-pass design misses optimization opportunities, so eBPF runs up to twice as slow as natively compiled code in our characterization. Adding optimizations to the kernel JIT directly requires upstream acceptance and a long release cycle, enlarges the trusted computing base (TCB), and grows the per-architecture kernel code. To address this, we present Kops, an extension interface that lets userspace compilers and kernel modules introduce new operations without modifying the kernel core, while keeping a minimal trusted computing base (TCB). Each operation has two forms, a proof sequence of vanilla eBPF instructions that the existing verifier checks and a native emit of machine instructions that the JIT compiles. Because the verifier checks the proof sequence, the native emit is the only per-operation addition to the TCB. Hardware idioms are the lowest-hanging fruit for this interface. With Kops, we build EInsn, seven operations such as rotate and conditional select that CPUs execute as single instructions. Lean 4 proofs show that each native emit computes the same result as its proof sequence. On x86-64 and ARM64, EInsn speeds up eBPF microbenchmarks by up to 24% and production applications by up to 12%. The same interface also supports whole-program native replacement, reaching 2.358x at the cost of a larger TCB.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The eBPF kernel JIT&#x27;s single-pass design misses optimization opportunities, running up to 2x slower than natively compiled code.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Kops provides an extension interface where each operation has a proof sequence (vanilla eBPF checked by the verifier) and a native emit (machine instructions compiled by the JIT). Lean 4 proofs show each native emit computes the same result as its proof sequence. Seven EInsn operations (rotate, conditional select, etc.) are implemented.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.24213/x4.png" alt=""><figcaption>Figure 4 . The original eBPF pipeline (orange) and the Kops pipeline (green). The original pipeline verifies and JIT-compiles the bytecode unchanged, producing under-optimized native code. With Kops , the compile-time recognizer rewrites supported operations into extended instructions, and the EInsn modules supply each operation’s proof sequence to the verifier and its native emit to the JIT, prod</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">EInsn speeds up eBPF microbenchmarks by up to 24% and production applications by up to 12% on x86-64 and ARM64. Whole-program native replacement reaches 2.358x speedup.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.24213/x2.png" alt=""><figcaption>Figure 2 . Per-case speedup over the kernel eBPF JIT on the 27 pure-bytecode microbenchmarks, on x86-64 (top) and ARM64 (bottom). Each bar is one non-baseline path. The ARM64 paths come from separate runs, each over its own baseline.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Platform</th><th>Path</th><th>Speedup</th><th># Cases Faster</th></tr></thead><tbody><tr><td>x86-64</td><td>In-kernel native</td><td>1.55x</td><td>24/27</td></tr><tr><td>x86-64</td><td>Userspace native</td><td>1.57x</td><td>25/27</td></tr><tr><td>ARM64</td><td>In-kernel native</td><td>1.88x</td><td>27/27</td></tr><tr><td>ARM64</td><td>Userspace native</td><td>1.98x</td><td>27/27</td></tr></tbody></table><div class="tbl-cap">Microbenchmark speedups by platform and path</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OProver: A Unified Framework for Agentic Formal Theorem Proving · Papers With Lean</title>
+<meta name="description" content="Recent progress in formal theorem proving has benefited from large-scale proof generation and verifier-aware training, but agentic proving is rarely integrated into prover training, appearing only at inference time. We present OProver, a unified framework for agentic formal…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OProver: A Unified Framework for Agentic Formal Theorem Proving">
+<meta property="og:description" content="Recent progress in formal theorem proving has benefited from large-scale proof generation and verifier-aware training, but agentic proving is rarely integrated into prover training, appearing only at inference time. We present OProver, a unified framework for agentic formal…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.17283.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.17283.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.17283v1" target="_blank" rel="noopener"><img src="../thumbs/2605.17283.jpg" alt="First page of OProver: A Unified Framework for Agentic Formal Theorem Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">OProver: A Unified Framework for Agentic Formal Theorem Proving</h1>
+        <p class="authors">David Ma, Kaijing Ma, Shawn Guo, Yunfeng Shi, Enduo Zhao, Jiajun Shi, Zhaoxiang Zhang, Gavin Cheung, Jiaheng Liu, Zili Wang</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">May 17, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.17283v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.17283" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Presents OProver, an agentic framework training and proving formal theorems in Lean 4 with compiler feedback.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Recent progress in formal theorem proving has benefited from large-scale proof generation and verifier-aware training, but agentic proving is rarely integrated into prover training, appearing only at inference time. We present OProver, a unified framework for agentic formal theorem proving in Lean 4, in which failed proof attempts are iteratively revised using retrieved compiler verified proofs and Lean compiler feedback. OProver is trained through continued pretraining followed by iterative post-training: each iteration runs agentic proving, indexes newly verified proofs into OProofs and the retrieval memory, uses repair trajectories as SFT data, and uses unresolved hard cases for RL. OProofs is built from public Lean resources, large-scale proof synthesis, and agentic proving traces, containing 1.77M Lean statements, 6.86M compiler-verified proofs, and serialized trajectories with retrieved context, failed attempts, feedback, and repairs. Across five benchmarks, OProver-32B attains the best Pass@32 on MiniF2F (93.3%), ProverBench (58.2%), and PutnamBench (11.3%), and ranks second on MathOlympiad (22.8%) and ProofNet (33.2%) more top placements than any prior open-weight whole-proof prover.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Agentic proving capabilities (retrieval, compiler feedback, iterative repair) are typically applied only at inference time in formal theorem provers, creating a train-inference mismatch. Existing corpora also lack the multi-round interaction histories needed to learn self-correction policies.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">OProver formulates Lean 4 theorem proving as a bounded multi-round refinement process where a policy revises failed proof attempts using retrieved compiler-verified proofs and Lean 4 compiler feedback. The framework is trained through continued pretraining on OProofs (1.77M Lean statements, 6.86M compiler-verified proofs, and serialized agentic trajectories), followed by iterative post-training with SFT on round-level repair examples and RL on unresolved hard cases. Verified proofs from each iteration are folded back into the corpus and retrieval memory.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.17283/x2.png" alt=""><figcaption>Figure 2 : Overview of OProver. The framework has three components: OProofs Construction (top-left), which builds a Lean-specific corpus from public Lean resources and autoformalized statements; OProver Agentic Proving (top-right), which performs multi-round refinement under retrieval and Lean 4 compiler feedback; and OProver Agentic Training (bottom), where a one-time CPT yields OProver-Base, fol</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">OProver-32B achieves the best Pass@32 among open-weight whole-proof provers on MiniF2F (93.3%), ProverBench (58.2%), and PutnamBench (11.3%), and ranks second on MathOlympiad (22.8%) and ProofNet (33.2%), achieving more top placements than any prior open-weight system.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.17283/x1.png" alt=""><figcaption>Figure 1 : Pass@32 performance on MiniF2F-Test, PutnamBench, and MathOlympiadBench. OProver consistently outperforms prior open-source whole-proof provers across all three benchmarks; the only exception is LongCat-Flash-Prover with TIR on MathOlympiadBench.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

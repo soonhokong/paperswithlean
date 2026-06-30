@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formalizing Numerical Analysis: An Agent Pipeline and Quality Audit Beyond Kernel Acceptance · Papers With Lean</title>
+<meta name="description" content="Recent work has demonstrated that coding agents can formalize entire advanced mathematics textbooks in Lean 4, yet existing efforts concentrate on branches of mathematics already well-represented in mathlib and measure success solely through kernel acceptance. We address both…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Formalizing Numerical Analysis: An Agent Pipeline and Quality Audit Beyond Kernel Acceptance">
+<meta property="og:description" content="Recent work has demonstrated that coding agents can formalize entire advanced mathematics textbooks in Lean 4, yet existing efforts concentrate on branches of mathematics already well-represented in mathlib and measure success solely through kernel acceptance. We address both…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.14000.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.14000.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.14000v1" target="_blank" rel="noopener"><img src="../thumbs/2606.14000.jpg" alt="First page of Formalizing Numerical Analysis: An Agent Pipeline and Quality Audit Beyond Kernel Acceptance"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Formalizing Numerical Analysis: An Agent Pipeline and Quality Audit Beyond Kernel Acceptance</h1>
+        <p class="authors">Theodore Meek, Siyuan Ge, Di Qiu Xiang, Simon Chess, Vasily Ilin</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jun 12, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-slate" href="../#tag=meta-study">meta-study</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.14000v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.14000" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses a Claude-driven agent pipeline to formalize a numerical-analysis ODE textbook in Lean 4 and audits formalization faithfulness beyond compilation.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Recent work has demonstrated that coding agents can formalize entire advanced mathematics textbooks in Lean 4, yet existing efforts concentrate on branches of mathematics already well-represented in mathlib and measure success solely through kernel acceptance. We address both limitations by applying a coding agent to formalize Numerical Methods for Ordinary Differential Equations, a textbook in numerical analysis that is largely absent from mathlib, stressing the agent&#x27;s capacity to develop new theory from scratch. We further introduce a systematic, reproducible three-dimensional framework for evaluating the quality of agent-produced formalizations beyond compilation: semantic correctness, Mathlib reuse, and cross-file reuse via LLM-as-judge methods. Applying this framework to our own formalization and to the released outputs of RepoProver and M2F, we uncover recurring unfaithful formalization patterns, including incomplete multi-part statements, added weakening hypotheses, and parameter restrictions, that kernel acceptance entirely obscures. Our results suggest that compilation-based metrics substantially overstate formalization quality, and we provide a reproducible audit methodology to support more rigorous evaluation of future autoformalization systems.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Agentic autoformalization has scaled to whole textbooks, but prior work targets mathematics already well-covered by Mathlib and reports success only as kernel acceptance. It is unclear how these systems behave when theory must be built from scratch, or whether compilation reflects faithfulness to the source.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An autonomous loop driven by a Python orchestrator invokes four LLM roles (Planner, Worker, Evaluator, Consultant), implemented with Claude Opus 4.6 and Sonnet, to formalize Butcher&#x27;s Numerical Methods for Ordinary Differential Equations in Lean 4, committing edits only when Lean builds. A reproducible three-dimensional LLM-as-judge framework then scores semantic correctness, Mathlib reuse, and cross-file reuse, applied to their own output and to the released RepoProver and M2F formalizations.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The pipeline produced proof-complete Lean for 84 of 175 statements (48%, or 54.9% counting partials) with zero sorries and zero added axioms, yet 42% of its statements diverged semantically from their natural-language sources. RepoProver and M2F diverged 18% and 25% despite near-zero sorry counts, showing that compilation-based metrics substantially overstate formalization quality.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.14000/loc_over_time_openmath.png" alt=""><figcaption>Figure 3 : LOC vs active compute time.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>System</th><th>Sorries</th><th>Axioms</th></tr></thead><tbody><tr><td>RepoProver</td><td>5*</td><td>0</td></tr><tr><td>M2F</td><td>12</td><td>4</td></tr><tr><td>OpenMath</td><td>0</td><td>0</td></tr></tbody></table><div class="tbl-cap">Table 1: Open sorries and unnecessary axioms across systems (RepoProver sorries are intentional exercises).</div></div><div class="sum-table"><table><thead><tr><th>System</th><th>Faithful</th><th>Stronger</th><th>Different</th></tr></thead><tbody><tr><td>OpenMath</td><td>54%</td><td>4%</td><td>42%</td></tr><tr><td>M2F</td><td>73%</td><td>2%</td><td>25%</td></tr><tr><td>RepoProver</td><td>82%</td><td>1%</td><td>18%</td></tr></tbody></table><div class="tbl-cap">Faithfulness of formal statements vs. natural-language sources (direct judgment).</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

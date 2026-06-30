@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Robust Sublinear Convergence Rates for Iterative Bregman Projections · Papers With Lean</title>
+<meta name="description" content="Entropic regularization provides a simple way to approximate linear programs whose constraints split into two or more tractable blocks. The resulting objectives are amenable to cyclic Kullback-Leibler (KL) Bregman projections, with Sinkhorn-type algorithms for optimal transport,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Robust Sublinear Convergence Rates for Iterative Bregman Projections">
+<meta property="og:description" content="Entropic regularization provides a simple way to approximate linear programs whose constraints split into two or more tractable blocks. The resulting objectives are amenable to cyclic Kullback-Leibler (KL) Bregman projections, with Sinkhorn-type algorithms for optimal transport,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2602.01372.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2602.01372.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2602.01372v2" target="_blank" rel="noopener"><img src="../thumbs/2602.01372.jpg" alt="First page of Robust Sublinear Convergence Rates for Iterative Bregman Projections"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Robust Sublinear Convergence Rates for Iterative Bregman Projections</h1>
+        <p class="authors">Gabriel Peyré</p>
+        <div class="row">
+          <span class="badge">math.OC</span>
+          <span class="date">Feb 1, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2602.01372v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2602.01372" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/gpeyre/flow-sinkhorn" target="_blank" rel="noopener" title="gpeyre/flow-sinkhorn">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Provides a machine-checked Lean formalization of the convergence-rate blueprint and its graph Wasserstein-1 instantiation.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Entropic regularization provides a simple way to approximate linear programs whose constraints split into two or more tractable blocks. The resulting objectives are amenable to cyclic Kullback-Leibler (KL) Bregman projections, with Sinkhorn-type algorithms for optimal transport, matrix scaling, and barycenters as canonical examples. This paper gives a general blueprint for proving $O(1/k)$ dual convergence rate with a constant that scales only linearly in $1/γ$, where $γ$ is the entropic regularization parameter. We call such rates &quot;robust&quot;, because this mild dependence on $γ$ underpins favorable complexity bounds for approximating the unregularized problem via alternating KL projections. The blueprint reduces the proof to a uniform primal bound and a dual bound for a quotient norm induced by the constraint split. To make these inputs usable, we propose two helper results, which rely on the non-expansiveness of the dual iterations in this quotient dual norm. Instantiating this blueprint for graph-structured transport yields a new flow-Sinkhorn algorithm for the Wasserstein-1 distance on graphs. It achieves $\varepsilon$-additive accuracy on the transshipment cost in $O(p\,\mathrm{diameter}^3/\varepsilon^{4})$ arithmetic operations (up to logarithmic factors), where $p$ is the number of edges. We also provide a machine-checked Lean formalization of the core blueprint and its graph-$\mathrm{W}_1$ instantiation.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Iterative Bregman projections (Sinkhorn-type algorithms) are widely used for entropy-regularized constrained optimization, but existing convergence rate analyses often have poor dependence on the regularization parameter, limiting their use for approximating unregularized problems.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The paper provides a general blueprint for proving O(1/k) dual convergence rates with constants scaling only linearly in 1/gamma, where gamma is the entropic regularization parameter. The blueprint reduces the proof to a uniform primal bound and a dual bound for a quotient norm induced by the constraint split, using non-expansiveness of dual iterations. This is instantiated for graph-structured transport via a new flow-Sinkhorn algorithm for Wasserstein-1 on graphs. A machine-checked Lean formalization of the core blueprint and its graph-W1 instantiation is provided.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The flow-Sinkhorn algorithm achieves epsilon-additive accuracy on transshipment cost in O(p * diameter^3 / epsilon^4) arithmetic operations (up to log factors), where p is the number of edges. GPU benchmarks demonstrate practical performance on line graphs, planar Delaunay graphs, and single-cell graphs.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2602.01372/x1.png" alt=""><figcaption>Figure 2 : Top row: benched graph together with the flow f (line graph, planar Delaunay, single cell). Bottom row: \ell^{2} error \|f^{(s)}-f^{\star}\|_{2}/\|f^{\star}\|_{2} , against wall-clock time. Flow Sinkhorn is plain and vanilla Sinkhorn is dashed; colors encode \gamma from blue (small) to red (large). Gamma ranges are: line (flow \gamma\in[10^{-3},5] , vanilla \gamma\in[10^{-1},1] ), Delau</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

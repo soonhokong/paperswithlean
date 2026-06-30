@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BAPR: Bayesian amnesic piecewise-robust reinforcement learning for non-stationary continuous control · Papers With Lean</title>
+<meta name="description" content="Real-world control systems frequently operate under \emph{piecewise stationary} conditions, where dynamics remain stable for extended periods before undergoing abrupt regime changes. Standard robust RL methods face a fundamental dilemma: a globally conservative policy wastes…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BAPR: Bayesian amnesic piecewise-robust reinforcement learning for non-stationary continuous control">
+<meta property="og:description" content="Real-world control systems frequently operate under \emph{piecewise stationary} conditions, where dynamics remain stable for extended periods before undergoing abrupt regime changes. Standard robust RL methods face a fundamental dilemma: a globally conservative policy wastes…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.16170.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.16170.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.16170v2" target="_blank" rel="noopener"><img src="../thumbs/2605.16170.jpg" alt="First page of BAPR: Bayesian amnesic piecewise-robust reinforcement learning for non-stationary continuous control"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">BAPR: Bayesian amnesic piecewise-robust reinforcement learning for non-stationary continuous control</h1>
+        <p class="authors">Yifan Zhang, Liang Zheng</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">May 15, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.16170v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.16170" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/erzhu419/BAPR" target="_blank" rel="noopener" title="erzhu419/BAPR">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Machine-verifies a contraction counterexample and error budget in Lean 4 across three files with 22 theorems.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Real-world control systems frequently operate under \emph{piecewise stationary} conditions, where dynamics remain stable for extended periods before undergoing abrupt regime changes. Standard robust RL methods face a fundamental dilemma: a globally conservative policy wastes performance during stable periods, while a locally adaptive policy risks catastrophic failure when the regime changes undetected. We propose \textbf{BAPR} (Bayesian Amnesic Piecewise-Robust SAC), which unifies Bayesian Online Change Detection (BOCD) with robust ensemble RL. The BAPR operator -- a convex combination of mode-conditional Bellman operators weighted by a frozen belief distribution -- is a $γ$-contraction. A complementary counterexample, machine-verified in Lean~4, establishes a \emph{sharp boundary}: when beliefs depend on the Q-function, the contraction factor becomes $γ+ λΔ$ (where $Δ$ is the mode reward gap), and contraction fails exactly when $γ+ λΔ\geq 1$. We derive a \emph{component-wise} formal error budget for the abstract operator -- every component machine-verified -- bounding post-switch recovery; the budget applies to the abstract mode-mixture operator and inherits to the implemented shared-critic algorithm only through the frozen-parameter design intuition. All results are formally verified with no \texttt{sorry} (1,145 lines across 3 Lean~4 files, 22 machine-verified theorems). BOCD drives an adaptive conservatism mechanism: the policy becomes maximally conservative after detected change-points and smoothly relaxes as confidence grows, with detection delay $O(\log(1/δ))$. A context-conditioning module trained via RMDM loss provides mode-aware representations from simulator-provided mode IDs at training time and requires no mode labels at deployment.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Real-world control systems operate under piecewise-stationary conditions with abrupt regime changes. Globally conservative robust RL wastes performance during stable periods, while locally adaptive policies risk catastrophic failure when regime changes go undetected.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">BAPR unifies Bayesian Online Change Detection (BOCD) with robust ensemble RL (RE-SAC). The BAPR operator is a convex combination of mode-conditional Bellman operators weighted by a frozen belief distribution. The policy becomes maximally conservative after detected change-points and relaxes as confidence grows. Core theoretical results (gamma-contraction of the operator, a counterexample showing contraction fails when beliefs depend on the Q-function) are formally verified in Lean 4 with no sorry across 1,145 lines and 22 theorems.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.16170/x1.png" alt=""><figcaption>Figure 1: Training curves (smoothed) and evaluation rewards over 2000 iterations in non-stationary MuJoCo environments. Shaded regions denote 95% bootstrap confidence intervals across available seeds. BAPR (ours) achieves higher final performance in HalfCheetah and Ant in this benchmark, while Walker2d remains challenging for the tested methods.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On non-stationary MuJoCo environments, BAPR achieves +349% mean return over ESCP on Ant in a discrete-regime benchmark (20,679 vs 4,600, N=3 seeds, with min(BAPR) &gt; max(ESCP)). BOCD detection delay is O(log(1/delta)) and the adaptive conservatism mechanism behaves as theoretically predicted.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.16170/x2.png" alt=""><figcaption>Figure 2: Training curves on the discrete-regime benchmark ( K{=}4 modes, exponential dwell). Solid lines are mean evaluation returns (averaged across K{=}4 test modes per evaluation); shaded bands denote 95\% bootstrap confidence intervals across seeds. Left : HalfCheetah ( N{=}5 seeds). Right : Ant ( N{=}3 seeds) — BAPR’s lower confidence bound exceeds ESCP’s upper confidence bound after iter \a</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2605.16170/x3.png" alt=""><figcaption>Figure 3: BOCD detection + adaptive-conservatism dynamics on Ant-v2 discrete-mode (seed 2 , BAPR “no per-trans” configuration). Top : true mode (background) and per-iter eval return. Second : BOCD belief entropy H[\rho_{t}] , which spikes after each true-mode switch and decays as evidence accumulates. Third : entropy temperature \alpha . Bottom : effective belief window. Across the 22 switches in </figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

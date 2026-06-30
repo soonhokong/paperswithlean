@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Semantics for 2D Rasterization · Papers With Lean</title>
+<meta name="description" content="Rasterization is the process of determining the color of every pixel drawn by an application. Powerful rasterization libraries like Skia, CoreGraphics, and Direct2D put exceptional effort into drawing, blending, and rendering efficiently. Yet applications are still hindered by…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Semantics for 2D Rasterization">
+<meta property="og:description" content="Rasterization is the process of determining the color of every pixel drawn by an application. Powerful rasterization libraries like Skia, CoreGraphics, and Direct2D put exceptional effort into drawing, blending, and rendering efficiently. Yet applications are still hindered by…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.23696.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.23696.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.23696v1" target="_blank" rel="noopener"><img src="../thumbs/2603.23696.jpg" alt="First page of Semantics for 2D Rasterization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Semantics for 2D Rasterization</h1>
+        <p class="authors">Bhargav Kulkarni, Henry Whiting, Pavel Panchekha</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Mar 24, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.23696v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.23696" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Mechanizes muSkia, a formal semantics for the Skia 2D graphics library, in Lean and uses it to verify and translation-validate optimizer rewrites.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Rasterization is the process of determining the color of every pixel drawn by an application. Powerful rasterization libraries like Skia, CoreGraphics, and Direct2D put exceptional effort into drawing, blending, and rendering efficiently. Yet applications are still hindered by the inefficient sequences of operations that they ask these libraries to perform. Even Google Chrome, a highly optimized program co-developed with the Skia rasterization library, still produces inefficient instruction sequences even on the top 100 most visited websites. The underlying reason for this inefficiency is that rasterization libraries have complex semantics and opaque and non-obvious execution models. To address this issue, we introduce $μ$Skia, a formal semantics for the Skia 2D graphics library, and mechanize this semantics in Lean. $μ$Skia covers language and graphics features like canvas state, the layer stack, blending, and color filters, and the semantics itself is split into three strata to separate concerns and enable extensibility. We then identify four patterns of sub-optimal Skia code produced by Google Chrome, and then write replacements for each pattern. $μ$Skia allows us to verify the replacements are correct, including identifying numerous tricky side conditions. We then develop a high-performance Skia optimizer that applies these patterns to speed up rasterization. On 99 Skia programs gathered from the top 100 websites, this optimizer yields a speedup of 18.7% over Skia&#x27;s most modern GPU backend, while taking at most 32 $μ$s for optimization. The speedups persist across a variety of websites, Skia backends, and GPUs. To provide true, end-to-end verification, optimization traces produced by the optimizer are loaded back into the $μ$Skia semantics and translation validated in Lean.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Rasterization libraries like Skia have complex semantics and opaque execution models, leading to inefficient instruction sequences even in highly optimized applications like Google Chrome.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors introduce muSkia, a formal semantics for the Skia 2D graphics library, mechanized in Lean. The semantics covers canvas state, the layer stack, blending, and color filters, and is split into three strata to separate concerns. This provides a foundation for reasoning about and optimizing rasterization instruction sequences.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">muSkia provides a mechanized formal semantics enabling correctness reasoning about 2D rasterization operations, targeting the optimization of instruction sequences in applications using Skia-style libraries.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

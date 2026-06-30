@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LAMP: Lean-based Agentic framework with MCP and Proof Repair · Papers With Lean</title>
+<meta name="description" content="Large language models are increasingly capable of mathematical reasoning, but the proofs they generate are often unreliable and hard to verify. Interactive theorem provers such as Lean 4 address this by accepting only kernel-checked proofs; however, their reach is bounded by the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LAMP: Lean-based Agentic framework with MCP and Proof Repair">
+<meta property="og:description" content="Large language models are increasingly capable of mathematical reasoning, but the proofs they generate are often unreliable and hard to verify. Interactive theorem provers such as Lean 4 address this by accepting only kernel-checked proofs; however, their reach is bounded by the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.28841.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.28841.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.28841v1" target="_blank" rel="noopener"><img src="../thumbs/2606.28841.jpg" alt="First page of LAMP: Lean-based Agentic framework with MCP and Proof Repair"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">LAMP: Lean-based Agentic framework with MCP and Proof Repair</h1>
+        <p class="authors">Santhana Srinivasan R, Maithilee Patawar</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Jun 27, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.CL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.28841v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.28841" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/oOo0oOo/lean-lsp-mcp" target="_blank" rel="noopener" title="oOo0oOo/lean-lsp-mcp">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Presents a multi-agent framework that synthesizes verified Lean 4 proofs using domain-specific ontology access via MCP.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language models are increasingly capable of mathematical reasoning, but the proofs they generate are often unreliable and hard to verify. Interactive theorem provers such as Lean 4 address this by accepting only kernel-checked proofs; however, their reach is bounded by the formalized knowledge available. While Mathlib, a repository of formalized Lean 4 theorems that covers diverse mathematical areas, certain specialized areas remain underrepresented; notably, the domain of Combinatorics on Words (CoW). CoW studies sequences, exploring their properties such as periodicity, borders, conjugacy, and morphisms. As a result, specialized provers, trained on Mathlib-centered data, lack the lemmas to operate in CoW. We present two contributions. First, we introduce a Lean 4 formalization of CoW containing eight modules and \textbf{93} declarations of core definitions and foundational lemmas. Second, we present LAMP, a multi-agent framework that synthesizes kernel-verified Lean 4 proofs by providing explicit, structured domain knowledge at inference time through an ontology, rather than by fine-tuning a prover. LAMP coordinates a Planner, Builder, and Verifier with Model Context Protocol based access to a domain-specific CoW ontology. In a suite of 90 CoW theorems that span all eight modules and three difficulty levels, LAMP synthesizes verified proofs for 96.7% of theorems, substantially exceeding both an unscaffolded baseline and existing specialized provers. An ablation shows that removing LAMP&#x27;s tool-grounded architecture or its Planner/Builder separation each cost roughly 12 percentage points, even with the backbone model held fixed.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Specialized Lean provers trained on Mathlib-centered data fail on domains not yet formalized, such as Combinatorics on Words (CoW), because they lack the definitions and lemmas to operate there.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Introduces a Lean 4 library for CoW (8 modules, 93 declarations) and LAMP, a multi-agent framework coordinating a Planner, Builder, and Verifier with Model Context Protocol-based access to a domain-specific CoW ontology. Domain knowledge is provided at inference time rather than through fine-tuning.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.28841/fig_1.png" alt=""><figcaption>Figure 2 : LAMP architecture and data flow</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">LAMP synthesizes verified proofs for 96.7% of 90 CoW theorems across three difficulty levels. DeepSeek-Prover-V2 7B achieves 8.9%, Kimina-Prover 7B 3.3%, and Goedel-Prover-V2 32B 1.1% on the same suite. Ablation shows removing MCP tools or the Planner/Builder separation each costs roughly 12 percentage points.</p><div class="sum-table"><table><thead><tr><th>System</th><th>Pass@1 (%)</th></tr></thead><tbody><tr><td>DeepSeek-Prover-V2 7B</td><td>8.9</td></tr><tr><td>Kimina-Prover 7B</td><td>3.3</td></tr><tr><td>Goedel-Prover-V2 32B</td><td>1.1</td></tr><tr><td>Backbone LLM, no agents</td><td>58.9</td></tr><tr><td>LAMP</td><td>96.7</td></tr></tbody></table><div class="tbl-cap">LAMP vs. specialized provers on CoW suite</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

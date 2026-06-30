@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Characterizing Paraphrase-Induced Failures in Lean 4 Autoformalization · Papers With Lean</title>
+<meta name="description" content="Lean 4 autoformalization has become increasingly popular in recent years, with frontier language models and open-weight autoformalizers now producing valid formalizations of mathematical theorems. However, these evaluations often rely on single canonical phrasings of theorems…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Characterizing Paraphrase-Induced Failures in Lean 4 Autoformalization">
+<meta property="og:description" content="Lean 4 autoformalization has become increasingly popular in recent years, with frontier language models and open-weight autoformalizers now producing valid formalizations of mathematical theorems. However, these evaluations often rely on single canonical phrasings of theorems…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2604.23135.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2604.23135.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2604.23135v2" target="_blank" rel="noopener"><img src="../thumbs/2604.23135.jpg" alt="First page of Characterizing Paraphrase-Induced Failures in Lean 4 Autoformalization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Characterizing Paraphrase-Induced Failures in Lean 4 Autoformalization</h1>
+        <p class="authors">William Feng, Ethan Lou, Aryan Sharma</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Apr 25, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2604.23135v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2604.23135" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Studies paraphrase-induced failure modes of Lean 4 autoformalizers.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Lean 4 autoformalization has become increasingly popular in recent years, with frontier language models and open-weight autoformalizers now producing valid formalizations of mathematical theorems. However, these evaluations often rely on single canonical phrasings of theorems and rarely probe whether outputs are robust to natural variation in inputs, while prior work has shown that semantically equivalent paraphrases often induce divergent formal outputs. We study the structure of these divergences in Lean 4 by applying deterministic paraphrase rules to datasets of undergraduate and Olympiad-level math problems. Across four frontier models and three open-weight autoformalizers, we find that paraphrase sensitivity is dominated by failures at the code-generation layer, and that these failures are typed differently by dataset. Furthermore, these patterns generalize to open-weight models, showing that state-of-the-art autoformalizers still struggle to generate valid Lean code. Our results provide a failure-mode taxonomy for autoformalization and motivate training-time interventions targeted at specific compilation failures.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Lean 4 autoformalization benchmarks evaluate models on single canonical phrasings of theorems and rarely probe whether outputs are robust to natural variation in inputs. Semantically equivalent paraphrases often induce divergent formal outputs, but the structure of these divergences is poorly understood.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors apply 60 deterministic paraphrase rules across 11 categories to datasets of undergraduate (ProofNet#) and Olympiad-level (miniF2F) math problems. They test four frontier models (GPT-5.4, o3, o1, o4-mini) and three open-weight autoformalizers on the original and paraphrased inputs, then classify all compilation failures by type (unknown identifier, syntax error, elaboration error, other) to build a failure-mode taxonomy for Lean 4 autoformalization.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.23135/x1.png" alt=""><figcaption>Figure 1: (a) Per-model surface consistency under paraphrased inputs on ProofNet# (teal) and miniF2F (orange). Pair agreement ranges from 19 – 56\% across the GPT panel. Error bars are 95\% bootstrap CIs. (b) Per-category BEq+ surface consistency, pooled across the GPT panel, with ProofNet# categories (teal) and miniF2F categories (orange) shown together.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Pair agreement (surface consistency) ranges from 19-56% across the GPT panel. Paraphrase sensitivity is dominated by failures at the code-generation layer rather than semantic misunderstanding. Failure types differ by dataset: ProofNet# shows more unknown-identifier errors while miniF2F shows more syntax and elaboration errors. These patterns generalize to open-weight models, indicating that state-of-the-art autoformalizers still struggle to generate valid Lean code under input variation.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.23135/x3.png" alt=""><figcaption>Figure 3: Per-(rule, model) BEq+ equivalence on ProofNet# (GPT panel). Rows sorted by panel-mean ascending. Dots denote cells with no paired predictions.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Dataset</th><th>Model</th><th>N</th><th>Base</th><th>Pert</th><th>Both</th></tr></thead><tbody><tr><td>PN#</td><td>GPT-5.4</td><td>299</td><td>11.7%</td><td>11.4%</td><td>9.7%</td></tr><tr><td>PN#</td><td>o3</td><td>237</td><td>18.1%</td><td>19.0%</td><td>14.3%</td></tr><tr><td>PN#</td><td>o1</td><td>249</td><td>13.3%</td><td>12.0%</td><td>8.4%</td></tr><tr><td>PN#</td><td>o4-mini</td><td>324</td><td>12.3%</td><td>12.0%</td><td>6.8%</td></tr><tr><td>MF2F</td><td>GPT-5.4</td><td>827</td><td>15.8%</td><td>16.1%</td><td>14.6%</td></tr><tr><td>MF2F</td><td>o3</td><td>582</td><td>23.7%</td><td>23.9%</td><td>20.6%</td></tr><tr><td>MF2F</td><td>o1</td><td>723</td><td>24.2%</td><td>24.1%</td><td>19.9%</td></tr><tr><td>MF2F</td><td>o4-mini</td><td>658</td><td>21.7%</td><td>21.6%</td><td>16.9%</td></tr></tbody></table><div class="tbl-cap">Compilation success rates across models and datasets</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

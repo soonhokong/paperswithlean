@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Structural Enforcement of Statistical Rigor in AI-Driven Discovery: A Functional Architecture · Papers With Lean</title>
+<meta name="description" content="AI-Scientist systems that use large language models to automate research risk generating spurious discoveries through uncontrolled multiple testing. We present a functional architecture that enforces statistical rigor at two levels: a Haskell embedded DSL (the Research monad)…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Structural Enforcement of Statistical Rigor in AI-Driven Discovery: A Functional Architecture">
+<meta property="og:description" content="AI-Scientist systems that use large language models to automate research risk generating spurious discoveries through uncontrolled multiple testing. We present a functional architecture that enforces statistical rigor at two levels: a Haskell embedded DSL (the Research monad)…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2511.06701.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2511.06701.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2511.06701v2" target="_blank" rel="noopener"><img src="../thumbs/2511.06701.jpg" alt="First page of Structural Enforcement of Statistical Rigor in AI-Driven Discovery: A Functional Architecture"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Structural Enforcement of Statistical Rigor in AI-Driven Discovery: A Functional Architecture</h1>
+        <p class="authors">Karen Sargsyan</p>
+        <div class="row">
+          <span class="badge">cs.SE</span>
+          <span class="date">Nov 10, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2511.06701v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2511.06701" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/karsar/ai-scientist-guards" target="_blank" rel="noopener" title="karsar/ai-scientist-guards">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Provides a machine-checked Lean 4 formalization (855 lines, zero sorry) of the LORD++ online FDR-control theorem.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">AI-Scientist systems that use large language models to automate research risk generating spurious discoveries through uncontrolled multiple testing. We present a functional architecture that enforces statistical rigor at two levels: a Haskell embedded DSL (the Research monad) that makes it impossible to test a hypothesis without updating the error budget, and a declarative scaffolding technique that structurally prevents data leakage across the boundary into LLM-generated code. We ground these guarantees in a machine-checked Lean 4 formalization of the LORD++ online FDR control theorem (855 lines, zero sorry), which identifies four sufficient conditions for FDR control. Three are structural conditions -- about information flow, data separation, and test validity -- enforced by the architecture&#x27;s type system and scaffolding. The fourth is an arithmetic condition: a budget invariant requiring that a wealth process remain non-negative under floating-point computation. We verify this condition over IEEE 754 doubles using SPARK/Ada, whose GNATprove toolchain statically confirms that no rounding sequence can violate the invariant and whose flow analysis independently confirms the predictability condition. The resulting verification chain -- from real-analysis proof to floating-point implementation -- is, to our knowledge, the first for any online FDR control procedure. Monte Carlo simulation (N=2000 hypotheses) and an end-to-end case study confirm that the monadic implementation controls FDR at 1.1% against a 5% target, while a naive approach inflates to 41%.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">AI-Scientist systems that use LLMs to automate research risk generating spurious discoveries through uncontrolled multiple testing. Existing approaches lack structural enforcement of statistical rigor guarantees.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors present a functional architecture enforcing statistical rigor at two levels: a Haskell embedded DSL (the Research monad) that prevents hypothesis testing without updating the error budget, and a scaffolding technique that structurally prevents data leakage into LLM-generated code. These guarantees are grounded in a machine-checked Lean 4 formalization of the LORD++ online FDR control theorem (855 lines, zero sorry), which identifies four sufficient conditions for FDR control. The arithmetic budget invariant is verified over IEEE 754 doubles using SPARK/Ada.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The resulting verification chain from real-analysis proof to floating-point implementation is the first for any online FDR control procedure. Monte Carlo simulation (N=2000 hypotheses) confirms that the monadic implementation achieves empirical FDR of 0.011 at target 0.05, compared to 0.409 for naive fixed-alpha testing.</p><div class="sum-table"><table><thead><tr><th>Approach</th><th>Target FDR</th><th>Empirical FDR</th><th>Power</th></tr></thead><tbody><tr><td>Naive (Fixed alpha=0.05)</td><td>0.05</td><td>0.409</td><td>0.640</td></tr><tr><td>Monadic (LORD++)</td><td>0.05</td><td>0.011</td><td>0.290</td></tr></tbody></table><div class="tbl-cap">FDR control comparison</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

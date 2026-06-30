@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SorryDB: Can AI Provers Complete Real-World Lean Theorems? · Papers With Lean</title>
+<meta name="description" content="We present SorryDB, a dynamically-updating benchmark of open Lean tasks drawn from 78 real world formalization projects on GitHub. Unlike existing static benchmarks, often composed of competition problems, hillclimbing the SorryDB benchmark will yield tools that are aligned to…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SorryDB: Can AI Provers Complete Real-World Lean Theorems?">
+<meta property="og:description" content="We present SorryDB, a dynamically-updating benchmark of open Lean tasks drawn from 78 real world formalization projects on GitHub. Unlike existing static benchmarks, often composed of competition problems, hillclimbing the SorryDB benchmark will yield tools that are aligned to…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.02668.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.02668.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.02668v1" target="_blank" rel="noopener"><img src="../thumbs/2603.02668.jpg" alt="First page of SorryDB: Can AI Provers Complete Real-World Lean Theorems?"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">SorryDB: Can AI Provers Complete Real-World Lean Theorems?</h1>
+        <p class="authors">Austin Letson, Leopoldo Sarra, Auguste Poiroux, Oliver Dressler, Paul Lezeau, Dhyan Aranha, Frederick Pu, Aaron Hill, Miguel Corredera Hidalgo, Julian Berman, George Tsoukalas, Lenny Taelman</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Mar 3, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.02668v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.02668" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/SorryDB/SorryDB" target="_blank" rel="noopener" title="SorryDB/SorryDB">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces a dynamically-updating benchmark of open `sorry` tasks scraped from 78 active real-world Lean GitHub projects and evaluates provers on filling them.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present SorryDB, a dynamically-updating benchmark of open Lean tasks drawn from 78 real world formalization projects on GitHub. Unlike existing static benchmarks, often composed of competition problems, hillclimbing the SorryDB benchmark will yield tools that are aligned to the community needs, more usable by mathematicians, and more capable of understanding complex dependencies. Moreover, by providing a continuously updated stream of tasks, SorryDB mitigates test-set contamination and offers a robust metric for an agent&#x27;s ability to contribute to novel formal mathematics projects. We evaluate a collection of approaches, including generalist large language models, agentic approaches, and specialized symbolic provers, over a selected snapshot of 1000 tasks from SorryDB. We show that current approaches are complementary: even though an agentic approach based on Gemini Flash is the most performant, it is not strictly better than other off-the-shelf large-language models, specialized provers, or even a curated list of Lean tactics.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Existing formal theorem proving benchmarks are static, often composed of competition problems, and do not reflect the actual needs of the Lean formalization community. Static benchmarks are also vulnerable to test-set contamination.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">SorryDB is a dynamically-updating benchmark of open Lean tasks drawn from 78 real-world formalization projects on GitHub. It extracts all theorems containing a sorry keyword, stores metadata for each, and provides a framework for solution extraction and verification. The benchmark updates continuously as new sorries appear and old ones are resolved, mitigating contamination.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2603.02668/x1.png" alt=""><figcaption>Figure 1: Dataset extraction pipeline for SorryDB. We consider 78 repositories on active GitHub Lean projects and list all the theorems that contain a sorry. We save the metadata for each of them and store it in the database. A project is considered active when it had at least one commit in the previous three months.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Evaluation of multiple provers shows the best combined approach solves 35.7% of tasks. Among individual models, agentic Gemini Flash 3 achieves 30.3% with iterative self-correction. Specialized LLMs like Kimina Prover 8B (1.0% pass@1) significantly underperform general-purpose LLMs like Gemini Pro 3 (11.0% pass@1), suggesting real-world formalization tasks differ substantially from competition benchmarks.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2603.02668/x2.png" alt=""><figcaption>Figure 2: Success rate of different provers split by repository category. We compare general purpose LLMs, specialized models (pass@32), self-correcting (SC) and agentic approaches ( 16 iterations). We see that tasks from pedagogical repositories are easier to prove, while those from math formalization projects are harder. A specialized prover such as Goedel Prover works relatively better on bench</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Approach</th><th>Pass@1</th><th>Pass@32</th></tr></thead><tbody><tr><td>Gemini Flash 3 (agentic)</td><td>30.3%</td><td>-</td></tr><tr><td>Claude Opus 4.5 (SC)</td><td>27.1%</td><td>-</td></tr><tr><td>Gemini Pro 3</td><td>11.0%</td><td>20.5%</td></tr><tr><td>Goedel Prover V2 32B</td><td>2.7%</td><td>11.3%</td></tr><tr><td>Combined</td><td>35.7%</td><td>-</td></tr></tbody></table><div class="tbl-cap">SorryDB prover performance</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Witness-split + window-cardinality refinement for $r_3(N)$: Architecture, empirical results, and a structural hard pocket · Papers With Lean</title>
+<meta name="description" content="We describe a reproducible computational framework for upper-bound searches on r_3(N), the maximum size of a 3-term-arithmetic-progression-free subset of [1,N]. The framework combines a verified lower-bound witness, endpoint forcing, depth-d witness-variable splitting, OEIS…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Witness-split + window-cardinality refinement for $r_3(N)$: Architecture, empirical results, and a structural hard pocket">
+<meta property="og:description" content="We describe a reproducible computational framework for upper-bound searches on r_3(N), the maximum size of a 3-term-arithmetic-progression-free subset of [1,N]. The framework combines a verified lower-bound witness, endpoint forcing, depth-d witness-variable splitting, OEIS…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.04016.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.04016.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.04016v1" target="_blank" rel="noopener"><img src="../thumbs/2606.04016.jpg" alt="First page of Witness-split + window-cardinality refinement for $r_3(N)$: Architecture, empirical results, and a structural hard pocket"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Witness-split + window-cardinality refinement for $r_3(N)$: Architecture, empirical results, and a structural hard pocket</h1>
+        <p class="authors">Mehmet Ergezer</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">May 31, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.04016v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.04016" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.20463334" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Releases a Lean formal-proof-search encoding of the two resistant subproblems from an upper-bound search on r_3(212).</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We describe a reproducible computational framework for upper-bound searches on r_3(N), the maximum size of a 3-term-arithmetic-progression-free subset of [1,N]. The framework combines a verified lower-bound witness, endpoint forcing, depth-d witness-variable splitting, OEIS A003002 window-cardinality pruning, and recursive refinement of timed-out subproblems. Applied to the frontier case N = 212, K = 44, it found no feasible 44-set across millions of CP-SAT subproblems, supporting but not proving the conjectural value r_3(212) = 43. A 300-second recap leaves 45 resistant chunks; one-hour HiGHS MIP closes none of them; the full eight-hour HiGHS audit closes 25/45 and leaves 20/45 with dual bounds still pinned at 0.0. A CDCL/SAT re-attack on those LP-paradigm-resistant chunks closes 18 via conflict-driven clause learning; all eighteen carry independently verified DRAT proofs. The remaining two chunks (T1c) resist every tested paradigm under generous wall caps. We release the witness, solver scripts, result logs, tiered benchmark instances, verified DRAT/LRAT proofs, and a Lean formal-proof-search encoding of T1c, and frame the unit-gap problem r_3(212) in {43,44} as a target for stronger additive-combinatorial bounds, custom branch-and-bound, or formal proof-search systems.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Determining the exact value of r_3(N), the maximum size of a 3-term-arithmetic-progression-free subset of [1,N], is computationally hard at the frontier. The next open case is N=212, where it is unknown whether r_3(212)=43 or 44.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors build a reproducible CP-SAT framework combining a verified 43-element lower-bound witness, endpoint forcing, depth-24 witness-variable splitting, OEIS A003002 window-cardinality pruning, and recursive refinement of timed-out subproblems. Millions of CP-SAT subproblems are generated and attacked with CP-SAT, HiGHS MIP, and CDCL/SAT solvers. DRAT/LRAT proofs are independently verified for closed chunks, and a Lean formal-proof-search encoding is released for the two remaining resistant chunks (T1c).</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Zero feasible 44-sets were found across millions of subproblems, providing strong empirical support for r_3(212)=43 but not a formal proof. Window-cardinality pruning reduced the UNKNOWN rate from 30% to 1.65-6.07%. Two chunks resist every tested paradigm and are released as benchmark instances alongside a Lean encoding.</p><div class="sum-table"><table><thead><tr><th>Range</th><th>Chunks</th><th>UNK without bounds</th><th>UNK with bounds</th><th>Reduction</th></tr></thead><tbody><tr><td>[575, 675)</td><td>100</td><td>27.00%</td><td>0.00%</td><td>-27.0 pp</td></tr><tr><td>[1575, 11575)</td><td>10,000</td><td>30.33%</td><td>1.65%</td><td>-28.7 pp</td></tr><tr><td>[11575, 111575)</td><td>100,000</td><td>n/a</td><td>6.07%</td><td>--</td></tr></tbody></table><div class="tbl-cap">Window-cardinality pruning effect</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

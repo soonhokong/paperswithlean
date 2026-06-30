@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signed Compression Progress on a Sealed Audit is Goodhart-Resistant · Papers With Lean</title>
+<meta name="description" content="Compression progress is a long-standing proposal for intrinsic motivation: reward an agent when its world model becomes better at predicting or compressing experience. The folk claim is that this reward is &quot;credible&quot; because it is paid only for learning. We make this precise and…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Signed Compression Progress on a Sealed Audit is Goodhart-Resistant">
+<meta property="og:description" content="Compression progress is a long-standing proposal for intrinsic motivation: reward an agent when its world model becomes better at predicting or compressing experience. The folk claim is that this reward is &quot;credible&quot; because it is paid only for learning. We make this precise and…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.11417.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.11417.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.11417v1" target="_blank" rel="noopener"><img src="../thumbs/2606.11417.jpg" alt="First page of Signed Compression Progress on a Sealed Audit is Goodhart-Resistant"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Signed Compression Progress on a Sealed Audit is Goodhart-Resistant</h1>
+        <p class="authors">Ayush Mittal, Dhruv Gupta</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Jun 9, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.11417v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.11417" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A self-contained Lean 4 / Mathlib development mechanizes the structural core: telescoping, the finite-audit bound, finite Gibbs, and the entropy floor.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Compression progress is a long-standing proposal for intrinsic motivation: reward an agent when its world model becomes better at predicting or compressing experience. The folk claim is that this reward is &quot;credible&quot; because it is paid only for learning. We make this precise and prove it. If intrinsic reward is the signed decrease of a fixed sealed-audit loss, r_t = E(theta_{t-1}) - E(theta_t), then cumulative reward telescopes exactly to endpoint audit improvement, so no policy can push reward up indefinitely while true audit performance stagnates or degrades. For finite audit panels the same result holds with a sharp false-positive budget: cumulative empirical reward is at most true audit improvement plus 2 Delta_n(F, delta), the uniform audit deviation of the model class. This is horizon-free: adaptivity over time costs nothing once the sealed panel uniformly controls the class. The theorem also identifies the failure modes: the guarantee disappears if progress is clipped, scored on the agent&#x27;s own stream, exposed to a high-capacity model on a reusable panel, or applied to a neural class that makes Delta_n vacuous. We give a Lean 4 mechanization of the structural core (telescoping, the finite-audit bound, finite Gibbs, and the entropy floor) and an experiment suite on ARC-TGI grid-transformation generators with adaptive holdout attacks. Experiments confirm the theory: finite-audit deviation scales as n^{-0.527}; signed progress resists clip-farming, stream leakage, and noisy-TV curiosity; naive reusable audits are exploitable by black-box scalar feedback, while standard release defenses keep the attack below the 2 Delta_n threshold. Signed compression progress on a sealed audit is an accounting signal of genuine improvement.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Compression progress is a long-standing intrinsic motivation proposal for RL agents, but informal claims about its credibility leave open Goodhart failure modes: reward clipping, stream scoring, panel memorization, and overfitting a finite validation set can all allow cumulative reward to grow without genuine learning.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors formalize signed compression progress on a sealed audit as a potential-drop identity: cumulative reward telescopes to endpoint audit-loss improvement, giving zero false-positive budget for exact audits and a 2*Delta_n budget for finite panels. They provide a Lean 4 mechanization of the structural core (telescoping, finite-audit bound, finite Gibbs, entropy floor) and run experiments on ARC-TGI grid-transformation generators with adaptive holdout attacks.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.11417/x1.png" alt=""><figcaption>Figure 1: The measurement frame. Training data may be selected adaptively, but reward is computed only from the signed change in a fixed audit loss. This makes intrinsic reward an endpoint accounting identity over the sealed audit.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2606.11417/x7.png" alt=""><figcaption>Figure 7: Proof architecture. Signed audit progress is an endpoint potential drop, which keeps the mechanized theorems short. The finite-class and ARC experiments instantiate the structural result; the boundary experiments mark assumptions that cannot be dropped.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Finite-audit deviation decays as n^{-0.527}, close to the theoretical n^{-1/2}. Signed progress resists clip-farming, stream leakage, and noisy-TV curiosity. Naive reusable audits are exploitable by scalar feedback, but standard release defenses keep the attack below the 2*Delta_n threshold.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.11417/x3.png" alt=""><figcaption>Figure 3: Finite-audit concentration: empirical uniform deviation of floored cross-entropy over a finite family decays as \Delta_{n}\propto n^{-0.527} , close to the n^{-1/2} prediction.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2606.11417/x4.png" alt=""><figcaption>Figure 4: Reward-signal ablation with the same scheduler. Final active-cell reconstruction accuracy (left axis) and distractor allocation fraction (right axis) per reward signal, 20 seeds. Audit-CP is the strongest non-oracle reward signal and spends less than half the distractor budget of prediction-error curiosity.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

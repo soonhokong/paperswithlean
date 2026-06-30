@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition · Papers With Lean</title>
+<meta name="description" content="We introduce DeepSeek-Prover-V2, an open-source large language model designed for formal theorem proving in Lean 4, with initialization data collected through a recursive theorem proving pipeline powered by DeepSeek-V3. The cold-start training procedure begins by prompting…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition">
+<meta property="og:description" content="We introduce DeepSeek-Prover-V2, an open-source large language model designed for formal theorem proving in Lean 4, with initialization data collected through a recursive theorem proving pipeline powered by DeepSeek-V3. The cold-start training procedure begins by prompting…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2504.21801.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2504.21801.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2504.21801v2" target="_blank" rel="noopener"><img src="../thumbs/2504.21801.jpg" alt="First page of DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition</h1>
+        <p class="authors">Z. Z. Ren, Zhihong Shao, Junxiao Song, Huajian Xin, Haocheng Wang, Wanjia Zhao, Liyue Zhang, Zhe Fu, Qihao Zhu, Dejian Yang, Z. F. Wu, Zhibin Gou, Shirong Ma, Hongxuan Tang, Yuxuan Liu, Wenjun Gao, Daya Guo, Chong Ruan</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Apr 30, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2504.21801v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2504.21801" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">DeepSeek-Prover-V2 is an LLM for formal theorem proving in Lean 4, trained via RL with recursive subgoal decomposition.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We introduce DeepSeek-Prover-V2, an open-source large language model designed for formal theorem proving in Lean 4, with initialization data collected through a recursive theorem proving pipeline powered by DeepSeek-V3. The cold-start training procedure begins by prompting DeepSeek-V3 to decompose complex problems into a series of subgoals. The proofs of resolved subgoals are synthesized into a chain-of-thought process, combined with DeepSeek-V3&#x27;s step-by-step reasoning, to create an initial cold start for reinforcement learning. This process enables us to integrate both informal and formal mathematical reasoning into a unified model. The resulting model, DeepSeek-Prover-V2-671B, achieves state-of-the-art performance in neural theorem proving, reaching 88.9% pass ratio on the MiniF2F-test and solving 49 out of 658 problems from PutnamBench. In addition to standard benchmarks, we introduce ProverBench, a collection of 325 formalized problems, to enrich our evaluation, including 15 selected problems from the recent AIME competitions (years 24-25). Further evaluation on these 15 AIME problems shows that the model successfully solves 6 of them. In comparison, DeepSeek-V3 solves 8 of these problems using majority voting, highlighting that the gap between formal and informal mathematical reasoning in large language models is substantially narrowing.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Formal theorem proving in Lean 4 requires both informal mathematical reasoning to identify proof strategies and formal tactic-level generation to produce verified proofs. Combining these capabilities in a single system at scale remained an open challenge.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">DeepSeek-Prover-V2 uses a recursive theorem proving pipeline powered by DeepSeek-V3 for cold-start data collection. Complex problems are decomposed into subgoals by prompting DeepSeek-V3 to generate natural-language proof sketches while simultaneously formalizing them into Lean statements with sorry placeholders. A 7B prover model recursively solves decomposed subgoals. The synthesized proofs create chain-of-thought training data that combines informal and formal reasoning, used as a cold start for reinforcement learning.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">DeepSeek-Prover-V2 achieves 88.9% pass rate on miniF2F-test with a budget of 8192 samples, reaching 100% on MATH Algebra and 93.3% on AIME problems. The 671B model uses chain-of-thought reasoning with average 6752 output tokens per proof. On PutnamBench it sets a new state-of-the-art.</p><div class="sum-table"><table><thead><tr><th>Category</th><th>Pass Rate</th></tr></thead><tbody><tr><td>MATH Algebra</td><td>70/70 = 100%</td></tr><tr><td>MATH Number Theory</td><td>58/60 = 96.7%</td></tr><tr><td>AIME</td><td>14/15 = 93.3%</td></tr><tr><td>AMC</td><td>35/45 = 77.8%</td></tr><tr><td>IMO</td><td>10/20 = 50.0%</td></tr><tr><td>Overall</td><td>217/244 = 88.9%</td></tr></tbody></table><div class="tbl-cap">DeepSeek-Prover-V2 miniF2F-test results by category (Pass@8192)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

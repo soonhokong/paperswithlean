@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formalizing Mathematics at Scale · Papers With Lean</title>
+<meta name="description" content="We present AutoformBot, a multi-agent system for building an Autoformalized Textbook Library At Scale (Atlas) in Lean 4. AutoformBot orchestrates thousands of LLM agents, equipped with formal verification tools, dependency-aware task scheduling, and collaborative version…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Formalizing Mathematics at Scale">
+<meta property="og:description" content="We present AutoformBot, a multi-agent system for building an Autoformalized Textbook Library At Scale (Atlas) in Lean 4. AutoformBot orchestrates thousands of LLM agents, equipped with formal verification tools, dependency-aware task scheduling, and collaborative version…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.29955.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.29955.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.29955v1" target="_blank" rel="noopener"><img src="../thumbs/2605.29955.jpg" alt="First page of Formalizing Mathematics at Scale"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Formalizing Mathematics at Scale</h1>
+        <p class="authors">Ahmad Rammal, Niket Patel, Fabian Gloeckle, Amaury Hayat, Julia Kempe, Remi Munos, Charles Arnal, Vivien Cabannes</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">May 28, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.29955v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.29955" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/bors-ng/bors-ng" target="_blank" rel="noopener" title="bors-ng/bors-ng">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds AutoformBot multi-agent system producing Atlas, a verified library of 45,000+ Lean 4 declarations from textbooks.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present AutoformBot, a multi-agent system for building an Autoformalized Textbook Library At Scale (Atlas) in Lean 4. AutoformBot orchestrates thousands of LLM agents, equipped with formal verification tools, dependency-aware task scheduling, and collaborative version control, to translate informal textbook prose into machine-checked definitions and proofs. We apply our methods to a corpus of 26 open-access textbooks spanning analysis, algebra, topology, combinatorics, and probability, producing Atlas: a verified library of over 45,000 Lean 4 declarations and 500 thousand lines of code. We release two artifacts: (i) AutoformBot, the open-source multi-agent framework; and (ii) Atlas, the resulting formal library. Our results suggest that autoformalizing the core content of graduate-level mathematics at scale is now economically and technically feasible. This opens the door to the automated verification of both human- and machine-generated mathematics at a research level.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">As LLMs accelerate production of mathematical reasoning, verification becomes a bottleneck. Peer review cannot scale to check every step, and prior autoformalization work targets isolated theorems rather than systematic textbook-level formalization.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">AutoformBot is a multi-agent system that orchestrates thousands of LLM agents (powered by Opus 4.6) with formal verification tools, dependency-aware task scheduling via a DAG, and collaborative version control to translate informal textbook prose into machine-checked Lean 4 definitions and proofs. The pipeline has three tiers: a high-level orchestrator that plans from mathematical structure, mid-level agents for learning and evaluation, and low-level workers and reviewers. It was applied to 26 open-access textbooks spanning analysis, algebra, topology, combinatorics, and probability.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.29955/visualizer.png" alt=""><figcaption>Figure 4 : The graph of tasks of a formalization attempt, as shown by AutoformBot ’s visual interface.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The system produced Atlas: a verified library of over 45,000 Lean 4 declarations and 500 thousand lines of code across 26 books. Per-book formalization rates range from about 41% to 97%, with the overall corpus comparable in scale to mathlib. Human involvement was minimal, typically limited to occasional general advice.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.29955/x1.png" alt=""><figcaption>Figure 5 : For each statement within each book, we estimate its difficulty in terms of how much infrastructure required to formalize it is missing from mathlib , and report these statistics for each book. The rubric used for this estimation is provided in Appendix 10.5 .</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Course</th><th>Area</th><th>Formalized</th><th>LoC</th></tr></thead><tbody><tr><td>Algebraic Combinatorics</td><td>Combinatorics</td><td>37/39 (94.9%)</td><td>9,343</td></tr><tr><td>Complex Variables</td><td>Analysis</td><td>37/38 (97.4%)</td><td>6,225</td></tr><tr><td>Algebra Notes I &amp; II</td><td>Algebra</td><td>151/176 (85.8%)</td><td>4,409</td></tr><tr><td>Algebraic Geometry I</td><td>Alg. Geometry</td><td>112/186 (60.2%)</td><td>27,393</td></tr><tr><td>Boolean Functions</td><td>Combinatorics</td><td>44/108 (40.7%)</td><td>7,949</td></tr></tbody></table><div class="tbl-cap">Formalization results across selected books</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

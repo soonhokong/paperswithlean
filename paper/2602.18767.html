@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nazrin: Atomic Tactics for Graph Neural Networks for Theorem Proving in Lean 4 · Papers With Lean</title>
+<meta name="description" content="In Machine-Assisted Theorem Proving, a theorem proving agent searches for a sequence of expressions and tactics that can prove a conjecture in a proof assistant. In this work, we introduce several novel concepts and capabilities to address obstacles faced by machine-assisted…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nazrin: Atomic Tactics for Graph Neural Networks for Theorem Proving in Lean 4">
+<meta property="og:description" content="In Machine-Assisted Theorem Proving, a theorem proving agent searches for a sequence of expressions and tactics that can prove a conjecture in a proof assistant. In this work, we introduce several novel concepts and capabilities to address obstacles faced by machine-assisted…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2602.18767.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2602.18767.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2602.18767v2" target="_blank" rel="noopener"><img src="../thumbs/2602.18767.jpg" alt="First page of Nazrin: Atomic Tactics for Graph Neural Networks for Theorem Proving in Lean 4"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Nazrin: Atomic Tactics for Graph Neural Networks for Theorem Proving in Lean 4</h1>
+        <p class="authors">Leni Aniva, Iori Oikawa, David Dill, Clark Barrett</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Feb 21, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2602.18767v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2602.18767" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces atomic tactics, the ExprGraph structure, and a GNN-based prover for Lean evaluated on Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">In Machine-Assisted Theorem Proving, a theorem proving agent searches for a sequence of expressions and tactics that can prove a conjecture in a proof assistant. In this work, we introduce several novel concepts and capabilities to address obstacles faced by machine-assisted theorem proving. We first present a set of \textbf{atomic tactics}, a small finite set of tactics capable of proving any provable statement in Lean. We then introduce a \textbf{transposing atomization} algorithm which turns arbitrary proof expressions into a series of atomic tactics. We next introduce the \textbf{ExprGraph} data structure, which provides a succinct representation for Lean expressions. Finally, we present the \textbf{Nazrin Prover}, a graph neural network-based theorem proving agent using atomic tactics and ExprGraph. Nazrin circumvents many challenges faced by existing proving agents by exclusively dispatching atomic tactics, and it is robust enough to both train and evaluate on consumer-grade hardware. We demonstrate the potential of tools like Nazrin using theorems from Lean&#x27;s standard library and from Mathlib.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Machine-assisted theorem proving in Lean requires effective proof search over large tactic spaces. Existing approaches use tree search over the full tactic language, leading to high branching factors and difficulty in generalizing learned proof strategies across different proof contexts.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors introduce Nazrin, which defines a set of atomic tactics sufficient to prove any provable statement in Lean. They present a transposing atomization algorithm that converts arbitrary proof expressions into sequences of atomic tactics, creating a uniform representation. They then introduce ExprGraph, a graph-based representation of Lean expressions suitable for graph neural networks. A GNN-based prover (Nazrin Prover) is trained on atomized proofs to predict the next atomic tactic given the current proof state.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2602.18767/x1.png" alt=""><figcaption>(a) Visualization of Proof</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2602.18767/x2.png" alt=""><figcaption>(b) Visualization of State-Level Transposed Proof</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The atomization algorithm succeeds on approximately 58% of 170,180 user-defined theorems in Lean&#x27;s standard library and Mathlib. Nazrin Prover trained on standard library slice 1 achieves 57% accuracy on slice 2; trained on Mathlib slice 3, it reaches 34% on slice 4. The prover can discharge theorems that Aesop and Grind automation tactics cannot.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Advancing Mathematics Research with AI-Driven Formal Proof Search · Papers With Lean</title>
+<meta name="description" content="Large language models (LLMs) increasingly excel at mathematical reasoning, but their unreliability limits their utility in mathematics research. A mitigation is using LLMs to generate formal proofs in languages like Lean. We perform the first large-scale evaluation of this…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Advancing Mathematics Research with AI-Driven Formal Proof Search">
+<meta property="og:description" content="Large language models (LLMs) increasingly excel at mathematical reasoning, but their unreliability limits their utility in mathematics research. A mitigation is using LLMs to generate formal proofs in languages like Lean. We perform the first large-scale evaluation of this…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.22763.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.22763.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.22763v2" target="_blank" rel="noopener"><img src="../thumbs/2605.22763.jpg" alt="First page of Advancing Mathematics Research with AI-Driven Formal Proof Search"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Advancing Mathematics Research with AI-Driven Formal Proof Search</h1>
+        <p class="authors">George Tsoukalas, Anton Kovsharov, Sergey Shirobokov, Anja Surina, Moritz Firsching, Gergely Bérczi, Francisco J. R. Ruiz, Arun Suggala, Adam Zsolt Wagner, Eric Wieser, Lei Yu, Aja Huang, Miklós Z. Horváth, Andrew Ferraiuolo, Henryk Michalewski, Edward Lockhart, Codrut Grosu, Thomas Hubert, Matej Balog, Pushmeet Kohli, Swarat Chaudhuri</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">May 21, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.22763v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.22763" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">LLM agents generate Lean proofs verified by its compiler to autonomously resolve open Erdős and OEIS conjectures.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language models (LLMs) increasingly excel at mathematical reasoning, but their unreliability limits their utility in mathematics research. A mitigation is using LLMs to generate formal proofs in languages like Lean. We perform the first large-scale evaluation of this method&#x27;s ability to solve open problems. Our most capable agent autonomously resolved 9 of 353 open Erdős problems at the per-problem cost of a few hundred dollars, proved 44/492 OEIS conjectures, and is being deployed in combinatorics, optimization, graph theory, algebraic geometry, and quantum optics research. A basic agent alternating LLM-based generation with Lean-based verification replicated the Erdős successes but proved costlier on the hardest problems. These findings demonstrate the power of AI-aided formal proof search and shed light on the agent designs that enable it.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLMs are unreliable for mathematics research because natural-language proofs can contain subtle errors. Formal verification in languages like Lean can filter correct proofs, but the ability of AI agents to solve genuinely open problems at scale had not been evaluated.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors develop AlphaProof Nexus, a framework for LLM-aided formal proof generation in Lean. A basic agent alternates LLM-based generation (Gemini 3.1 Pro) with Lean compiler feedback. The full-featured agent coordinates multiple prover subagents via an evolutionary algorithm with P-UCB selection, uses LLM-based raters, and can invoke AlphaProof (an RL-based theorem prover) as a focused proof tool. Proofs are verified end-to-end by the Lean compiler.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.22763/x2.png" alt=""><figcaption>Figure 2: Design of the full-featured AlphaProof Nexus agent. The mathematician provides as input a Lean theorem with sorry for a proof, and optionally, natural language context and additional domain knowledge encoded in Lean. The agent architecture consists of a basic generation-validation pipeline and an optional evolutionary framework. An LLM-based prover subagent attempts to solve the problem </figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The full-featured agent solved 9 of 353 open Erdos problems (including two open since 1970) at a per-problem cost of a few hundred dollars, proved 44/492 OEIS conjectures, and resolved an open question in optimization theory. The basic agent replicated the Erdos successes but at higher cost on the hardest problems (2-5x more expensive).</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.22763/x3.png" alt=""><figcaption>Figure 3: Solve rate versus mean inference cost (USD) across six Erdős problem instances. The solve rates are evaluated for the four agents: (A) basic (blue circles), (B) basic with AlphaProof (orange squares), (C) basic with evolution (green diamonds), and (D) full-featured (red triangles). Numeric annotations denote the number of independent attempts K\in\{1,3,6,10\} grouped together; error bars</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automating Formal Verification with Reinforcement Learning and Recursive Inference · Papers With Lean</title>
+<meta name="description" content="Automated formal verification remains challenging for large language models because data for proof assistants and verification-aware languages is scarce, and correctness depends on satisfying precise machine-checkable specifications rather than producing plausible code. This…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Automating Formal Verification with Reinforcement Learning and Recursive Inference">
+<meta property="og:description" content="Automated formal verification remains challenging for large language models because data for proof assistants and verification-aware languages is scarce, and correctness depends on satisfying precise machine-checkable specifications rather than producing plausible code. This…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.30914.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.30914.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.30914v1" target="_blank" rel="noopener"><img src="../thumbs/2605.30914.jpg" alt="First page of Automating Formal Verification with Reinforcement Learning and Recursive Inference"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Automating Formal Verification with Reinforcement Learning and Recursive Inference</h1>
+        <p class="authors">Max Tan</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">May 29, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.30914v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.30914" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A verifier-guided inference scaffold in Lean treats proof generation as decomposed subgoal search with feedback and repair, evaluated on VeriCoding, VERINA, and a new Dalek-Bench.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Automated formal verification remains challenging for large language models because data for proof assistants and verification-aware languages is scarce, and correctness depends on satisfying precise machine-checkable specifications rather than producing plausible code. This thesis studies how verifier environments can improve LLM generation of verified programs and proofs through reinforcement learning from verifiable rewards (RLVR) and verifier-guided inference-time search. First, we train open-source models in Dafny with RLVR using Group Relative Policy Optimization (GRPO) and related variants, assembling generated candidates into complete programs and scoring them with compiler and verifier outcomes. Initial experiments on an APPS-derived Dafny dataset increased verified reward from 2.2% to 58.1%, but revealed specification hacking, where models exploit weak formal specifications instead of implementing the intended solutions. After filtering underspecified and vulnerable tasks, multi-turn RLVR on the refined benchmark improves the verified pass rate from 9.7% to 31.1%. Second, we develop a verifier-guided inference scaffold in Lean that treats proof generation as structured search over decomposed subgoals, verifier feedback, diagnostics, and repair. With a fixed base model, the full scaffold with proof reviser improves pass rate on an initial VeriCoding pilot set from 46.2% under direct repair to 69.2%. On the larger VERINA dataset, whole-task decomposition plus proof reviser solves 7 of 42 previously unsolved tasks. We also introduce Dalek-Bench, a repository-scale Lean benchmark derived from the Rust $\texttt{curve25519-dalek}$ verification project; preliminary results remain weak, indicating that stronger progress evaluation and task-specific tool-use policies are still needed.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Automated formal verification remains difficult for LLMs because training data for proof assistants is scarce, and correctness requires satisfying precise machine-checkable specifications rather than producing plausible code.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The thesis studies two complementary approaches. First, reinforcement learning from verifiable rewards (RLVR) using GRPO trains models to generate verified Dafny programs, with a multi-turn verifier-feedback environment for iterative repair. Second, a verifier-guided inference scaffold in Lean treats proof generation as structured search over decomposed subgoals, verifier feedback, diagnostics, and repair. A new benchmark (Dalek-Bench) is introduced from a production Rust cryptography verification project.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.30914/fig_agent_scaffold_pipeline.png" alt=""><figcaption>Figure 5.1: Overview of the verifier-in-the-loop scaffold for Lean verified coding. The task adapter manages sectioned VeriCoding artifacts, while RecursiveWorker performs recursive proof search over theorem and lemma obligations. Lean verification is the authoritative acceptance gate; the MCP tool layer provides auxiliary inspection and retrieval support.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2605.30914/fig_dafny_multi_turn_pipeline.png" alt=""><figcaption>Figure 4.5: Multi-turn verifier-feedback environment for Dafny RLVR. The policy samples a JSON replacement at attempt t , after which the environment reconstructs the Dafny file and evaluates it with dafny build / dafny verify . If verification succeeds, the trajectory terminates with discounted reward \gamma^{t-1} ; otherwise, verifier diagnostics define a local repair state for attempt t+1 , unt</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On a filtered Dafny benchmark, multi-turn RLVR improves verified pass rate from 9.7% to 31.1%. The Lean scaffold with proof reviser improves pass rate from 46.2% (direct repair) to 69.2% on a VeriCoding pilot set and solves 7 of 42 previously unsolved tasks on VERINA. Initial experiments revealed specification hacking where models exploit weak formal specifications.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.30914/budget_efficiency_curves.png" alt=""><figcaption>Figure 5.4: Budget-efficiency curves on the 26-task Vericoding pilot set. The left panel plots cumulative solved tasks against reported or token-backed dollar cost, omitting runs whose provider cost was not reliably captured. The right panel plots solved tasks against captured interactive tool calls and therefore includes only runs with nonzero tool-event logging. The full scaffold with proof revi</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Setting</th><th>Tasks</th><th>Best Model</th><th>Best Success</th><th>Union</th></tr></thead><tbody><tr><td>Overall Dafny</td><td>2161</td><td>Claude Opus 4.1</td><td>67.5%</td><td>82.2%</td></tr><tr><td>Overall Verus/Rust</td><td>2166</td><td>GPT-5</td><td>30.9%</td><td>44.3%</td></tr><tr><td>Overall Lean</td><td>2361</td><td>GPT-5</td><td>17.9%</td><td>26.8%</td></tr></tbody></table><div class="tbl-cap">Vericoding benchmark language-level results</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

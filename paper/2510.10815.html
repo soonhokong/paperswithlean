@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems · Papers With Lean</title>
+<meta name="description" content="Automating the formalization of mathematical statements for theorem proving remains a major challenge for Large Language Models (LLMs). LLMs struggle to identify and utilize the prerequisite mathematical knowledge and its corresponding formal representation in languages like…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems">
+<meta property="og:description" content="Automating the formalization of mathematical statements for theorem proving remains a major challenge for Large Language Models (LLMs). LLMs struggle to identify and utilize the prerequisite mathematical knowledge and its corresponding formal representation in languages like…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2510.10815.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2510.10815.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2510.10815v4" target="_blank" rel="noopener"><img src="../thumbs/2510.10815.jpg" alt="First page of DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems</h1>
+        <p class="authors">Meiru Zhang, Philipp Borchert, Milan Gritta, Gerasimos Lampouras</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 12, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2510.10815v4" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2510.10815" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Formal-Math-Reasoning/DRIFT" target="_blank" rel="noopener" title="Formal-Math-Reasoning/DRIFT">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">DRIFT decomposes informal statements to retrieve Mathlib premises for Lean autoformalization, evaluated on ProofNet, MiniF2F, and ConNF.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Automating the formalization of mathematical statements for theorem proving remains a major challenge for Large Language Models (LLMs). LLMs struggle to identify and utilize the prerequisite mathematical knowledge and its corresponding formal representation in languages like Lean. Current retrieval-augmented autoformalization methods query external libraries using the informal statement directly, but overlook a fundamental limitation: informal statements lack direct mappings to mathematical theorems and lemmata, nor do those theorems translate trivially into the formal primitives of languages like Lean. To address this, we introduce DRIFT, a novel framework that enables LLMs to decompose informal mathematical statements into smaller, more tractable &quot;sub-components&quot;. This facilitates targeted retrieval of premises from mathematical libraries such as Mathlib. Additionally, DRIFT retrieves illustrative theorems to help models use premises more effectively in formalization tasks. We evaluate DRIFT across diverse benchmarks (ProofNet, ConNF, and MiniF2F-test) and find that it consistently improves premise retrieval, nearly doubling the F1 score compared to the DPR baseline on ProofNet. Notably, DRIFT demonstrates strong performance on the out-of-distribution ConNF benchmark, with BEq+@10 improvements of 42.25% and 37.14% using GPT-4.1 and DeepSeek-V3.1, respectively. Our analysis shows that retrieval effectiveness in mathematical autoformalization depends heavily on model-specific knowledge boundaries, highlighting the need for adaptive retrieval strategies aligned with each model&#x27;s capabilities.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Automating the formalization of mathematical statements requires identifying prerequisite mathematical knowledge and its formal representation in Lean. Current retrieval-augmented methods query external libraries using the informal statement directly, missing the fact that informal statements lack direct mappings to mathematical primitives in formal languages.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">DRIFT (Decompose, Retrieve, Illustrate, then Formalize Theorems) decomposes an informal statement into atomic concept-focused sub-queries using an LLM, retrieves foundational dependent premises from a formal library for each sub-query using a dense retriever, selects a small set of illustrative examples via greedy coverage, and uses all this context to guide an LLM formalizer.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2510.10815/x1.png" alt=""><figcaption>Figure 1: An overview of the Drift framework. Given an informal statement, Drift operates in four stages: ① Decompose: An LLM breaks down the informal statement into atomic, concept-focused sub-queries ( \mathcal{Q} ) (§ 3.1 ). ② Retrieve: For each sub-query, a dense retriever identifies foundational dependent premises from a formal library (§ 3.2 ). ③ Illustrate: Greedy selection of a small set o</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On ProofNet, DRIFT with Claude-Opus-4 achieves F1 of 27.68 for dependency retrieval, roughly doubling the no-decomposition baseline (13.77). On the ConNF benchmark, DeepSeek-V3.1 reaches F1 of 36.88. The decomposition step consistently improves precision and recall of retrieved premises across all benchmarks.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Benchmarking Testing in Automated Theorem Proving · Papers With Lean</title>
+<meta name="description" content="Recent advances in large language models (LLMs) have shown promise in formal theorem proving, yet evaluating semantic correctness remains challenging. Existing evaluations rely on indirect proxies such as lexical overlap with human-annotated proof, or expensive manual…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Benchmarking Testing in Automated Theorem Proving">
+<meta property="og:description" content="Recent advances in large language models (LLMs) have shown promise in formal theorem proving, yet evaluating semantic correctness remains challenging. Existing evaluations rely on indirect proxies such as lexical overlap with human-annotated proof, or expensive manual…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2604.23698.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2604.23698.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2604.23698v1" target="_blank" rel="noopener"><img src="../thumbs/2604.23698.jpg" alt="First page of Benchmarking Testing in Automated Theorem Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Benchmarking Testing in Automated Theorem Proving</h1>
+        <p class="authors">Jongyoon Kim, Hojae Han, Seung-won Hwang</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Apr 26, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2604.23698v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2604.23698" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ldilab/T2" target="_blank" rel="noopener" title="ldilab/T2">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Constructs a semantic-correctness benchmark from 5 real-world Lean 4 repositories.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Recent advances in large language models (LLMs) have shown promise in formal theorem proving, yet evaluating semantic correctness remains challenging. Existing evaluations rely on indirect proxies such as lexical overlap with human-annotated proof, or expensive manual inspection. Inspired by the shift from lexical comparison to test-based evaluation in code generation, we propose T , a framework that evaluates the semantic correctness of formal theorems: a generated theorem is considered correct only if all dependent successor theorems compile successfully, analogous to integration testing. We construct a benchmark from 5 real-world Lean 4 repositories, comprising 2,206 problems paired with 41 successor theorems on average, automatically extracted without human effort. Experiments demonstrate that while state-of-the-art models achieve high compilation success, they perform significantly worse under our semantic metric. The best model, Claude-Sonnet-4.5, achieves only 38.9% Testing Accuracy on the full set, given both natural language proof and successor theorems as context, revealing a critical gap in current theorem generation capabilities.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Evaluating the semantic correctness of generated formal theorems is challenging. Existing evaluations rely on compilation (which accepts tautologies) or expensive manual inspection, failing to detect statements that are logically valid but semantically unfaithful to the intended theorem.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors propose T2, a testing-based evaluation framework for formal theorems in Lean. A generated theorem is considered correct only if all dependent successor theorems compile successfully when using it, analogous to integration testing in software engineering. The framework extracts dependency graphs from Lean repositories, identifies successor theorems for each target, and evaluates whether a candidate theorem supports its downstream dependents. The benchmark is constructed via a fully automated, dependency-aware extraction pipeline.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.23698/x1.png" alt=""><figcaption>Figure 1: Two candidate theorems for proving commutativity of addition: one correct ( a+b=b+a ) and one tautology ( a+b=a+b ).(a) Under compilation-based evaluation, both candidates pass, as each is logically valid in isolation.(b) Under testing-based evaluation, the tautology is exposed: the successor theorem ( cancel_eq ) fails when it depends on the incorrect candidate, while it compiles succes</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On T2 Hard, even the best models show large performance drops: Claude-4-Sonnet achieves 81.1% compilation but only 36.0% testing accuracy (TA) on T2, dropping to 47.5% compilation and 4.5% TA on T2 Hard. GPT-5 reaches 85.7% compilation but only 37.7% TA on T2 and 3.4% on T2 Hard. Prover/formalizer models show compilation gains that do not translate to TA improvements.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.23698/x2.png" alt=""><figcaption>Figure 3: Relative performance drop from existing benchmarks to T 2 Hard, in compilation accuracy (x-axis) vs. TA(y-axis).Prover/Formalizer models ( red stars) in the lower-right quadrant, where compilation gains do not translate to TAimprovements.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

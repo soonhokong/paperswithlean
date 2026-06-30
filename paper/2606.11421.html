@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Second-Order Least Squares as a Special Case of the Polynomial Maximization Method · Papers With Lean</title>
+<meta name="description" content="We prove that optimally weighted second-order least squares (SLS) and the degree-two generalized polynomial maximization method (PMM) are the same population estimating equation for linear regression with conditionally homoskedastic non-Gaussian errors: they choose the same…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Second-Order Least Squares as a Special Case of the Polynomial Maximization Method">
+<meta property="og:description" content="We prove that optimally weighted second-order least squares (SLS) and the degree-two generalized polynomial maximization method (PMM) are the same population estimating equation for linear regression with conditionally homoskedastic non-Gaussian errors: they choose the same…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.11421.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.11421.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.11421v1" target="_blank" rel="noopener"><img src="../thumbs/2606.11421.jpg" alt="First page of Second-Order Least Squares as a Special Case of the Polynomial Maximization Method"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Second-Order Least Squares as a Special Case of the Polynomial Maximization Method</h1>
+        <p class="authors">Serhii Zabolotnii</p>
+        <div class="row">
+          <span class="badge">stat.ME</span>
+          <span class="date">Jun 9, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.11421v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.11421" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/SZabolotnii/PMM-SLS-BRIDGE-code-supplement" target="_blank" rel="noopener" title="SZabolotnii/PMM-SLS-BRIDGE-code-supplement">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A Lean 4 development with Mathlib machine-checks the algebraic core: closed forms for g2 and g3, the g2&lt;=1 bound, and the symmetric collapse.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We prove that optimally weighted second-order least squares (SLS) and the degree-two generalized polynomial maximization method (PMM) are the same population estimating equation for linear regression with conditionally homoskedastic non-Gaussian errors: they choose the same optimal linear combination of the first two centered residual moments, solve one population normal system, share one influence function, and attain the common asymptotic variance $c_2g_2/N$ -- the ordinary-least-squares slope-variance factor $c_2$ scaled by the PMM variance-reduction coefficient $g_2=1-γ_3^2/(2+γ_4)$ (with $γ_3,γ_4$ the error skewness and excess kurtosis). Feasible plug-in implementations are therefore first-order equivalent, with only higher-order finite-sample differences. The identity is sharp: under heteroskedasticity the unconditional PMM body and the conditional SLS weighting separate, costing efficiency for symmetric errors and consistency for asymmetric errors. Beyond degree two, PMM holds an efficiency reserve that SLS cannot reach within its second-moment span. For symmetric platykurtic errors SLS collapses to ordinary least squares for the slope, while degree-three PMM exploits kurtosis information outside the SLS moment span through a closed-form coefficient $g_3$; for canonical asymmetric laws this reserve is $30$--$50\%$ within the degree-three polynomial moment class. The Lean 4 development machine-checks the degree-specific algebraic core -- the closed forms for $g_2$ and $g_3$, the $g_2\le1$ result, the design cancellations, and the symmetric collapse -- while the general monotonicity $g_{S+1}\le g_S\le1$ is proved analytically by nesting. A Monte Carlo study illustrates the equivalence, the reserve, and the heteroskedastic boundary at finite samples.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Optimally weighted second-order least squares (SLS) and degree-two polynomial maximization (PMM) are both semiparametric regression estimators exploiting higher-order error moments, but the literature has treated them as separate methods. Whether they produce the same estimator, and what efficiency gains remain beyond degree two, was unresolved.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors prove algebraically that SLS and degree-two PMM solve identical population normal systems, share one influence function, and attain the same asymptotic variance c2*g2/N under conditionally homoskedastic non-Gaussian errors. They then show that degree-three PMM accesses moment information (e^3) outside the SLS span, yielding a 30-50% efficiency reserve on canonical asymmetric laws. The algebraic core, including closed forms for g2 and g3, the inequality g2 &lt;= 1, design cancellations, and the symmetric collapse, is machine-checked in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The equivalence is confirmed in Monte Carlo simulations: per-replication correlations between PMM2 and SLS slope estimates reach 0.9997 at n=1000. Under symmetric platykurtic (Uniform) errors, PMM3 attains relative efficiency up to 3.16 over OLS while SLS collapses to OLS. The identity breaks under heteroskedasticity.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.11421/x1.png" alt=""><figcaption>Figure 1: PMM2 and SLS become empirically indistinguishable as n grows under asymmetric errors (H1). (a) Per-replication correlation \widehat{\rho}(\hat{\beta}_{1}^{\mathrm{PMM2}},\hat{\beta}_{1}^{\mathrm{SLS}}) rises toward unity in n . (b) Realized slope efficiencies of PMM2 (filled) and SLS (open) coincide across n for \chi^{2}(3) and \mathrm{Gamma}(2,1) errors; dotted lines mark the location r</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2606.11421/x2.png" alt=""><figcaption>Figure 2: PMM3 captures a degree-3 efficiency reserve that SLS and GMM miss under symmetric platykurtic errors (H2). On symmetric platykurtic (Uniform) errors SLS and GMM coincide with OLS ( \mathrm{RE}\approx 1 ), while PMM3 attains \mathrm{RE} up to 3.16 — a regime SLS cannot reach because the information lives in the e^{3} moment its residual vector omits.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

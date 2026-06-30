@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TorchLean: Formalizing Neural Networks in Lean · Papers With Lean</title>
+<meta name="description" content="Neural networks are increasingly deployed in scientific, safety critical, and mission critical pipelines, yet verification and analysis are often performed outside the programming environment that defines and runs the model. This creates a semantic gap between the executed…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TorchLean: Formalizing Neural Networks in Lean">
+<meta property="og:description" content="Neural networks are increasingly deployed in scientific, safety critical, and mission critical pipelines, yet verification and analysis are often performed outside the programming environment that defines and runs the model. This creates a semantic gap between the executed…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2602.22631.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2602.22631.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2602.22631v2" target="_blank" rel="noopener"><img src="../thumbs/2602.22631.jpg" alt="First page of TorchLean: Formalizing Neural Networks in Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">TorchLean: Formalizing Neural Networks in Lean</h1>
+        <p class="authors">Robert Joseph George, Jennifer Cruden, Will Adkisson, Xiangru Zhong, Huan Zhang, Anima Anandkumar</p>
+        <div class="row">
+          <span class="badge">cs.MS</span>
+          <span class="date">Feb 26, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2602.22631v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2602.22631" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/lean-dojo/TorchLean" target="_blank" rel="noopener" title="lean-dojo/TorchLean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Presents TorchLean, a Lean 4 framework for formalizing, executing, and verifying neural networks with verified differentiation and bound propagation.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Neural networks are increasingly deployed in scientific, safety critical, and mission critical pipelines, yet verification and analysis are often performed outside the programming environment that defines and runs the model. This creates a semantic gap between the executed network and the analyzed artifact: guarantees can depend on implicit conventions about operator semantics, tensor layouts, preprocessing, floating-point behavior, graph transformations, accelerated kernels, and external certificates. We present TorchLean, a unified framework for formalizing, executing, and verifying neural networks in Lean 4. TorchLean treats learned models as executable programs and mathematical objects with a shared semantics for computation, verification, and theorem proving. The framework provides a PyTorch style API for typed tensors, layers, objectives, optimizers, automatic differentiation, and graph programs, with eager and compiled execution paths that lower to a common computation-graph representation. TorchLean supports exact and finite-precision tensor semantics, verified reverse-mode differentiation, interval and affine bound propagation, CROWN/LiRPA style certificate checking, import/export workflows, and CUDA-backed execution through explicit FFI boundaries. It also includes semantic layers for attention and FlashAttention, state-space sequence models, diffusion and sampling processes, probability kernels, reinforcement-learning objectives and Markov decision processes, and self-supervised objectives such as masked autoencoding, JEPA-style predictive views, and variance/correlation-based anti-collapse losses. Together, these components provide a semantic foundation for verified machine learning, where executable neural network artifacts, verification procedures, runtime boundaries, and mathematical claims can be stated and related inside one theorem-proving environment.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Neural networks are deployed in safety-critical pipelines, yet verification and analysis are performed outside the programming environment that defines and runs the model. This semantic gap means guarantees can depend on implicit conventions about operator semantics, tensor layouts, and floating-point behavior.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">TorchLean is a framework that formalizes neural networks in Lean 4, providing a PyTorch-style API where models are written as executable neural network programs. Models are lowered to a shared operator-tagged SSA/DAG intermediate representation and interpreted by execution, automatic differentiation, bound propagation, and certificate checking through the same formal semantics. The framework supports typed tensors, verified graph-level differentiation, explicit floating-point semantics, and native IBP/CROWN-style verification.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2602.22631/main2.png" alt=""><figcaption>Figure 1: TorchLean provides a shared semantic layer for verified machine learning. Model code, imported graphs, modern ML workflows, scientific ML artifacts, and certificates are funneled into a common typed tensor and operator-tagged SSA/DAG graph semantics in Lean. Execution, automatic differentiation, bound propagation, and certificate checking are all performed against this shared representat</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">TorchLean supports modern ML workflows including convolutional networks, residual blocks, and transformer attention. It successfully performs certified robustness verification, neural-controller verification, and scientific ML residual checking within a single formal system. The framework can import VNN-COMP style artifacts and check certificates against one mathematical denotation.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

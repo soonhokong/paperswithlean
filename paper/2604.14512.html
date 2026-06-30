@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CBCL: Safe Self-Extending Agent Communication · Papers With Lean</title>
+<meta name="description" content="Agent communication languages (ACLs) enable heterogeneous agents to share knowledge and coordinate across diverse domains. This diversity demands extensibility, but expressive extension mechanisms can push the input language beyond the complexity classes where full validation is…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CBCL: Safe Self-Extending Agent Communication">
+<meta property="og:description" content="Agent communication languages (ACLs) enable heterogeneous agents to share knowledge and coordinate across diverse domains. This diversity demands extensibility, but expressive extension mechanisms can push the input language beyond the complexity classes where full validation is…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2604.14512.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2604.14512.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2604.14512v1" target="_blank" rel="noopener"><img src="../thumbs/2604.14512.jpg" alt="First page of CBCL: Safe Self-Extending Agent Communication"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">CBCL: Safe Self-Extending Agent Communication</h1>
+        <p class="authors">Hugo O&#x27;Connor</p>
+        <div class="row">
+          <span class="badge">cs.CR</span>
+          <span class="date">Apr 16, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2604.14512v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2604.14512" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://codeberg.org/anuna/cbcl-rs" target="_blank" rel="noopener" title="anuna/cbcl-rs">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Three CBCL safety invariants machine-checked in Lean 4 (with a verified Rust parser).</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Agent communication languages (ACLs) enable heterogeneous agents to share knowledge and coordinate across diverse domains. This diversity demands extensibility, but expressive extension mechanisms can push the input language beyond the complexity classes where full validation is tractable. We present CBCL (Common Business Communication Language), an agent communication language that constrains all messages, including runtime language extensions, to the deterministic context-free language (DCFL) class. CBCL allows agents to define, transmit, and adopt domain-specific &quot;dialect&quot; extensions as first-class messages; three safety invariants (R1--R3), machine-checked in Lean 4 and enforced in a Rust reference implementation, prevent unbounded expansion, applying declared resource limits, and preserving core vocabulary. We formalize the language and its safety properties in Lean 4, implement a reference parser and dialect engine in Rust with property-based and differential tests, and extract a verified parser binary. Our results demonstrate that homoiconic protocol design, where extension definitions share the same representation as ordinary messages, can be made provably safe. As autonomous agents increasingly extend their own communication capabilities, formally bounding what they can express to each other is a precondition for oversight.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Agent communication languages must be extensible to support diverse domains, but expressive extension mechanisms can push input languages beyond complexity classes where full validation is tractable, creating security vulnerabilities including stack-bombing and Turing-complete payloads.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors present CBCL (Common Business Communication Language), which constrains all messages, including runtime dialect extensions, to the deterministic context-free language (DCFL) class. Agents can define, transmit, and adopt domain-specific dialect extensions as first-class protocol objects while maintaining O(n) parsing with no backtracking. Safety properties (no recursion, no weird machines, completeness) are formally verified in Lean 4 using structural induction and fuel-bounded evaluation models.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The Lean 4 formalization covers parsing, validation, dialect verification, and a fuel-bounded evaluation model with 101 verified theorems across core modules (S-Expression types, parser, serializer, message parser, R1-R3 safety properties). The implementation totals approximately 11,050 lines of Rust across five crates. CBCL achieves DCFL complexity with full extensibility verification while existing protocols (KQML, FIPA-ACL, MCP) permit CFL or RE complexity.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

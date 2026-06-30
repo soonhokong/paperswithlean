@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lean Atlas: An Integrated Proof Environment for Scalable Human-AI Collaborative Formalization · Papers With Lean</title>
+<meta name="description" content="AI-driven autoformalization of mathematics is advancing rapidly. However, the type checker of a proof assistant guarantees only the logical correctness of proofs; it does not verify whether propositions and definitions faithfully capture their intended mathematical content.…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lean Atlas: An Integrated Proof Environment for Scalable Human-AI Collaborative Formalization">
+<meta property="og:description" content="AI-driven autoformalization of mathematics is advancing rapidly. However, the type checker of a proof assistant guarantees only the logical correctness of proofs; it does not verify whether propositions and definitions faithfully capture their intended mathematical content.…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2604.16347.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2604.16347.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2604.16347v1" target="_blank" rel="noopener"><img src="../thumbs/2604.16347.jpg" alt="First page of Lean Atlas: An Integrated Proof Environment for Scalable Human-AI Collaborative Formalization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Lean Atlas: An Integrated Proof Environment for Scalable Human-AI Collaborative Formalization</h1>
+        <p class="authors">Banri Yanahama, Akiyoshi Sannai</p>
+        <div class="row">
+          <span class="badge">cs.HC</span>
+          <span class="date">Mar 16, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2604.16347v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2604.16347" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/NyxFoundation/lean-atlas" target="_blank" rel="noopener" title="NyxFoundation/lean-atlas">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Develops Lean Atlas, a Lean 4 tool visualizing project dependency graphs to support human semantic review of formalizations.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">AI-driven autoformalization of mathematics is advancing rapidly. However, the type checker of a proof assistant guarantees only the logical correctness of proofs; it does not verify whether propositions and definitions faithfully capture their intended mathematical content. Consequently, AI-generated formal proofs can exhibit semantic hallucination-passing the type checker yet failing to express the intended mathematics. We propose a human-in-the-loop approach in which human scientists and AI collaboratively produce formal proofs, with humans responsible for the semantic verification of propositions and definitions. To realize this approach, we develop Lean Atlas, a Lean 4 tool that visualizes the dependency graph of a Lean 4 project as an interactive web viewer, enabling human scientists to grasp the overall structure of a formalization efficiently. Its core feature, Lean Compass, is an algorithm that, given a selected theorem set, automatically extracts the project-specific nodes whose semantic correctness can affect those target statements, thereby reducing the candidate set for semantic review in large-scale formalizations. We further define *aligned Lean code* as formalization code that has undergone human semantic verification, and propose it as a quality standard for AI-generated formalizations. We evaluate the tool on six Lean 4 formalization projects with different structural characteristics; proof-heavy projects (PrimeNumberTheoremAnd, Carleson, Brownian Motion) achieved 94-99% average node reduction, a 6-theorem milestone subset of FLT achieved 59.8%, mixed PhysLib 69.0%, and definition-heavy XMSS 27.3%. Lean Atlas is available as open-source software at <a href="https://github.com/NyxFoundation/lean-atlas" target="_blank" rel="noopener">https://github.com/NyxFoundation/lean-atlas</a> .</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">AI-generated formal proofs can pass Lean&#x27;s type checker yet fail to faithfully capture intended mathematical content (semantic hallucination). Humans need efficient tools to verify semantics in large-scale formalizations.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Lean Atlas is a Lean 4 tool that visualizes the dependency graph of a project as an interactive web viewer. Its core algorithm, Lean Compass, given a selected theorem set, automatically extracts the minimal set of project-specific nodes whose semantic correctness can affect those targets, reducing the review burden. The authors define aligned Lean code as code that has undergone human semantic verification.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.16347/fig1-teaser.png" alt=""><figcaption>Figure 1: Lean Atlas web viewer. Visualizing the review cone (227 nodes) of the main theorem IsBrownian_brownian in the Brownian Motion project. The orange nodes (14) are the nodes automatically extracted by Lean Compass as targets for semantic verification (93.8% reduction).</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2604.16347/fig2-architecture.png" alt=""><figcaption>Figure 2: Architecture of Lean Atlas. The Lean 4 backend extracts and classifies the dependency graph, and the web frontend provides interactive visualization. Lean Compass automatically extracts, for a selected theorem set, the project-specific nodes whose semantic correctness can affect those target statements.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On proof-heavy projects (PrimeNumberTheoremAnd, Carleson, Brownian Motion), Lean Compass achieves over 99% reduction in the review cone. On definition-heavy projects the reduction is smaller but still substantial, demonstrating that the tool scales to diverse project structures.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.16347/fig3-compass-comparison.png" alt=""><figcaption>Figure 3: Dependency graph reduction by Lean Compass (Brownian Motion, main theorem IsBrownian_brownian ). (a) Before: 227 nodes (review cone), (b) After: 14 nodes (93.8% reduction).</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Project / Main Theorem</th><th>Review Cone</th><th>After Compass</th><th>Reduction</th></tr></thead><tbody><tr><td>PrimeNumberTheoremAnd Erdos392</td><td>315</td><td>1</td><td>99.7%</td></tr><tr><td>MediumPNT</td><td>309</td><td>1</td><td>99.7%</td></tr><tr><td>WeakPNT</td><td>213</td><td>2</td><td>99.1%</td></tr><tr><td>WeakPNT_AP</td><td>239</td><td>2</td><td>99.2%</td></tr></tbody></table><div class="tbl-cap">Review cone reduction by Lean Compass</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

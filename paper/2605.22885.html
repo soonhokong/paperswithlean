@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ImProver 2: Iteratively Self-Improving LMs for Neurosymbolic Proof Optimization · Papers With Lean</title>
+<meta name="description" content="Formal mathematics libraries are rapidly expanding, creating a growing need to refactor verified proofs for maintainability and to improve training data quality for neural provers. However, scalable proof optimization is hindered by heterogeneous and heuristically specified…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ImProver 2: Iteratively Self-Improving LMs for Neurosymbolic Proof Optimization">
+<meta property="og:description" content="Formal mathematics libraries are rapidly expanding, creating a growing need to refactor verified proofs for maintainability and to improve training data quality for neural provers. However, scalable proof optimization is hindered by heterogeneous and heuristically specified…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.22885.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.22885.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.22885v1" target="_blank" rel="noopener"><img src="../thumbs/2605.22885.jpg" alt="First page of ImProver 2: Iteratively Self-Improving LMs for Neurosymbolic Proof Optimization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">ImProver 2: Iteratively Self-Improving LMs for Neurosymbolic Proof Optimization</h1>
+        <p class="authors">Riyaz Ahuja, Tate Rowney, Jeremy Avigad, Sean Welleck</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">May 21, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.22885v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.22885" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/riyazahuja/improver" target="_blank" rel="noopener" title="riyazahuja/improver">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces ImProver 2, a neurosymbolic framework for automated proof optimization in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Formal mathematics libraries are rapidly expanding, creating a growing need to refactor verified proofs for maintainability and to improve training data quality for neural provers. However, scalable proof optimization is hindered by heterogeneous and heuristically specified objectives, scarce data, and high training and inference costs. To overcome these challenges, we introduce ImProver 2, a neurosymbolic framework for automated proof optimization in Lean 4. ImProver 2 combines a data-efficient expert-iteration pipeline with a scaffold that exposes formal structure alongside lightweight informal abstractions. We further introduce a suite of metrics capturing structural proof properties. Using ImProver 2, we train a 7B-parameter model that outperforms orders-of-magnitude larger models within the same model family, and is competitive with mid-tier frontier models across metrics. We additionally demonstrate that our neurosymbolic scaffold significantly improves performance across both small and frontier models. We show that with proper scaffolding and training, small models can effectively restructure research-level proofs over complex and varied metrics, matching substantially larger systems and establishing proof optimization as a scalable, learnable task.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Formal mathematics libraries are expanding rapidly, but scalable proof optimization is hindered by heterogeneous objectives, scarce data, and high training/inference costs. Existing methods rely on expensive closed-source models.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ImProver 2 is a neurosymbolic framework for automated proof optimization in Lean 4 combining a data-efficient expert-iteration (IRPO) training pipeline with a scaffold exposing formal structure (goal states, premise retrieval) alongside lightweight informal abstractions. The system trains a 7B-parameter model through iterative preference optimization: generating proof candidates, scoring them on structural metrics (length, modularity, dependencies), and training on filtered preference pairs with a replay buffer.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The trained 7B model outperforms orders-of-magnitude larger models within the same family and is competitive with mid-tier frontier models across all three metrics. On research-level proofs from miniCTX-v2, ImProver 2 achieves 0.330 length, 0.143 modularity, and 0.206 dependency scores, matching or exceeding GPT-5-chat while running locally.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Length</th><th>Mod.</th><th>Dep.</th><th>Cost</th></tr></thead><tbody><tr><td>DS-R1 7B</td><td>0.118</td><td>0.003</td><td>0.050</td><td>Local</td></tr><tr><td>GPT-4o</td><td>0.336</td><td>0.034</td><td>0.050</td><td>$2.50/$10</td></tr><tr><td>GPT-5-high</td><td>0.660</td><td>0.120</td><td>0.208</td><td>$1.25/$10</td></tr><tr><td>ImProver</td><td>0.355</td><td>0.088</td><td>0.047</td><td>$2.50/$10</td></tr><tr><td>ImProver 2</td><td>0.330</td><td>0.143</td><td>0.206</td><td>Local</td></tr></tbody></table><div class="tbl-cap">Model comparison on proof optimization metrics</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STP: Self-play LLM Theorem Provers with Iterative Conjecturing and Proving · Papers With Lean</title>
+<meta name="description" content="A fundamental challenge in formal theorem proving by LLMs is the lack of high-quality training data. Although reinforcement learning or expert iteration partially mitigates this issue by alternating between LLM generating proofs and finetuning them on correctly generated ones,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STP: Self-play LLM Theorem Provers with Iterative Conjecturing and Proving">
+<meta property="og:description" content="A fundamental challenge in formal theorem proving by LLMs is the lack of high-quality training data. Although reinforcement learning or expert iteration partially mitigates this issue by alternating between LLM generating proofs and finetuning them on correctly generated ones,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2502.00212.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2502.00212.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2502.00212v4" target="_blank" rel="noopener"><img src="../thumbs/2502.00212.jpg" alt="First page of STP: Self-play LLM Theorem Provers with Iterative Conjecturing and Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">STP: Self-play LLM Theorem Provers with Iterative Conjecturing and Proving</h1>
+        <p class="authors">Kefan Dong, Tengyu Ma</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Jan 31, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2502.00212v4" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2502.00212" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/kfdong/STP" target="_blank" rel="noopener" title="kfdong/STP">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Self-play conjecturer-prover LLM trained and evaluated in Lean, proving 28.5% of LeanWorkbook and state-of-the-art on miniF2F.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A fundamental challenge in formal theorem proving by LLMs is the lack of high-quality training data. Although reinforcement learning or expert iteration partially mitigates this issue by alternating between LLM generating proofs and finetuning them on correctly generated ones, performance quickly plateaus due to the scarcity of correct proofs (sparse rewards). To keep improving the models with limited data, we draw inspiration from mathematicians, who continuously develop new results, partly by proposing novel conjectures or exercises (which are often variants of known results) and attempting to solve them. We design the Self-play Theorem Prover (STP) that simultaneously takes on two roles, conjecturer and prover, each providing training signals to the other. The conjecturer is trained iteratively on previously generated conjectures that are barely provable by the current prover, which incentivizes it to generate increasingly challenging conjectures over time. The prover attempts to prove the conjectures with standard expert iteration. We evaluate STP with both Lean and Isabelle formal versifiers. With 51.3 billion tokens generated during the training in Lean, STP proves 28.5% of the statements in the LeanWorkbook dataset, doubling the previous best result of 13.2% achieved through expert iteration. The final model achieves state-of-the-art performance among whole-proof generation methods on miniF2F-test (65.0%, pass@3200), Proofnet-test (23.9%, pass@3200) and PutnamBench (8/644, pass@3200). We release our code, model, and dataset in this URL: <a href="https://github.com/kfdong/STP" target="_blank" rel="noopener">https://github.com/kfdong/STP</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">A fundamental challenge in formal theorem proving by LLMs is the lack of high-quality training data. Expert iteration performance plateaus quickly due to the scarcity of correct proofs (sparse rewards), and models cannot improve once they exhaust the discoverable proofs in a fixed problem set.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">STP (Self-play Theorem Prover) has the model play two roles simultaneously: a conjecturer that generates new related conjectures given a seed theorem with its proof, and a prover that attempts to prove both existing statements and generated conjectures. A selection mechanism picks correct, approachable, elegant, yet challenging conjectures (estimated pass rate in (0, 1/4]) to train the conjecturer, creating a self-improving data flywheel.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">STP achieves 65.0% on MiniF2F-test (pass@3200) and 23.9% on ProofNet-test, outperforming DeepSeek-Prover-V1.5-RL (54.9% and 22.0% at the same budget). At pass@128, STP reaches 61.2% on MiniF2F-test compared to 51.6% for the baseline. The approach also transfers to Isabelle with similar gains.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Budget</th><th>MiniF2F-test</th><th>ProofNet-test</th></tr></thead><tbody><tr><td>DeepSeek-Prover-V1.5-RL</td><td>128</td><td>51.6%</td><td>18.2%</td></tr><tr><td>STP</td><td>128</td><td>61.2%</td><td>19.5%</td></tr><tr><td>DeepSeek-Prover-V1.5-RL</td><td>3200</td><td>54.9%</td><td>22.0%</td></tr><tr><td>STP</td><td>3200</td><td>65.0%</td><td>23.9%</td></tr></tbody></table><div class="tbl-cap">STP vs baselines on MiniF2F-test and ProofNet-test</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

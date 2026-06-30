@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Efficient frequentist fractional polynomials for skewed dose-response and survival data: a variance-reducing alternative to OLS-FP · Papers With Lean</title>
+<meta name="description" content="Fractional polynomials (FP) are a standard tool for modelling nonlinear dose-response and covariate effects, implemented in the widely used mfp package. The conventional FP fit estimates its coefficients by ordinary least squares (OLS-FP), which is statistically inefficient when…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Efficient frequentist fractional polynomials for skewed dose-response and survival data: a variance-reducing alternative to OLS-FP">
+<meta property="og:description" content="Fractional polynomials (FP) are a standard tool for modelling nonlinear dose-response and covariate effects, implemented in the widely used mfp package. The conventional FP fit estimates its coefficients by ordinary least squares (OLS-FP), which is statistically inefficient when…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.16846.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.16846.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.16846v3" target="_blank" rel="noopener"><img src="../thumbs/2605.16846.jpg" alt="First page of Efficient frequentist fractional polynomials for skewed dose-response and survival data: a variance-reducing alternative to OLS-FP"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Efficient frequentist fractional polynomials for skewed dose-response and survival data: a variance-reducing alternative to OLS-FP</h1>
+        <p class="authors">Serhii Zabolotnii</p>
+        <div class="row">
+          <span class="badge">stat.ME</span>
+          <span class="date">May 16, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.16846v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.16846" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/SZabolotnii/Ku-PMM-FP-code-supplement" target="_blank" rel="noopener" title="SZabolotnii/Ku-PMM-FP-code-supplement">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The estimator&#x27;s core variance identity is machine-checked in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Fractional polynomials (FP) are a standard tool for modelling nonlinear dose-response and covariate effects, implemented in the widely used mfp package. The conventional FP fit estimates its coefficients by ordinary least squares (OLS-FP), which is statistically inefficient when the regression errors are skewed or heavy-tailed, a common situation for survival times, concentrations and biomarkers. We present a drop-in replacement that keeps the identical FP model and design but estimates the coefficients with a moment-based score tuned to the residual skewness and kurtosis, giving a closed-form efficiency factor g2 = 1 - gamma3^2/(2+gamma4) relative to OLS-FP. Across skewed error laws the method reduces slope-coefficient variance by 10-20% for mildly skewed errors and up to roughly 60% for heavy-tailed log-normal errors, at realistic sample sizes, while keeping confidence-interval coverage close to nominal, and it reverts exactly to OLS-FP under symmetry, so it is never harmful when no gain is available. On the German Breast Cancer Study Group cohort it narrows the tumour-size confidence interval by 26% (bootstrap variance ratio 0.53 against the predicted 0.56), and a primary-biliary-cirrhosis cohort reproduces the gain. The estimator is closed-form, runs in milliseconds, and is released as a reproducible R package (pmm_fp in EstemPMM) with a one-command replication bundle; its core variance identity is machine-checked in Lean 4.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Fractional polynomials (FP) estimated by ordinary least squares are statistically inefficient when regression errors are skewed or heavy-tailed, a common situation in survival times, concentrations, and biomarkers.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors present a drop-in replacement that keeps the identical FP model but estimates coefficients using a moment-based score tuned to residual skewness and kurtosis, yielding a closed-form efficiency factor g2 = 1 - gamma3^2/(2+gamma4). The estimator reverts exactly to OLS-FP under symmetry. Its core variance identity is machine-checked in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The method reduces slope-coefficient variance by 10-20% for mildly skewed errors and up to 60% for heavy-tailed log-normal errors. On the German Breast Cancer Study Group cohort it narrows the tumour-size confidence interval by 26% (bootstrap variance ratio 0.53 vs predicted 0.56). The estimator is released as an R package (pmm_fp in EstemPMM).</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.16846/x1.png" alt=""><figcaption>Figure 1: Robust slope-coefficient variance ratio \hat{g}_{2}=\widehat{\operatorname{Var}}(\hat{\beta}_{1}^{\mathrm{PMM}})/\widehat{\operatorname{Var}}(\hat{\beta}_{1}^{\mathrm{OLS}}) as a function of sample size, for each skewed error law. Dashed lines are the closed-form g_{2}=1-\gamma_{3}^{2}/(2+\gamma_{4}) ; the shaded band marks the small-sample region where cumulant estimates are noisy. Valu</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2605.16846/x2.png" alt=""><figcaption>Figure 2: GBSG real-data evidence. Panel A : bin-averaged partial dependence of fitted curves on tumour size for OLS-FP and PMM-FP pos at the selected linear model (PMM-FP full omitted because its small-sample conditioning is documented as unstable in § 4.4 ). Panel B : bootstrap 95 % percentile intervals for the tumour-size coefficient (fixed linear model, B=2000 ), with bootstrap SE annotated. P</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

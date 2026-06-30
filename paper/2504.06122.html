@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leanabell-Prover: Posttraining Scaling in Formal Reasoning · Papers With Lean</title>
+<meta name="description" content="Recent advances in automated theorem proving (ATP) through LLMs have highlighted the potential of formal reasoning with Lean 4 codes. However, ATP has not yet be revolutionized by the recent posttraining scaling as demonstrated by Open AI O1/O3 and Deepseek R1. In this work, we…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leanabell-Prover: Posttraining Scaling in Formal Reasoning">
+<meta property="og:description" content="Recent advances in automated theorem proving (ATP) through LLMs have highlighted the potential of formal reasoning with Lean 4 codes. However, ATP has not yet be revolutionized by the recent posttraining scaling as demonstrated by Open AI O1/O3 and Deepseek R1. In this work, we…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2504.06122.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2504.06122.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2504.06122v3" target="_blank" rel="noopener"><img src="../thumbs/2504.06122.jpg" alt="First page of Leanabell-Prover: Posttraining Scaling in Formal Reasoning"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Leanabell-Prover: Posttraining Scaling in Formal Reasoning</h1>
+        <p class="authors">Jingyuan Zhang, Qi Wang, Xingguang Ji, Yahui Liu, Yang Yue, Fuzheng Zhang, Di Zhang, Guorui Zhou, Kun Gai</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Apr 8, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2504.06122v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2504.06122" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Leanabell-LM/Leanabell-Prover" target="_blank" rel="noopener" title="Leanabell-LM/Leanabell-Prover">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Posttrains Lean 4 LLM theorem provers with continual training and reinforcement learning using the Lean 4 compiler as reward.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Recent advances in automated theorem proving (ATP) through LLMs have highlighted the potential of formal reasoning with Lean 4 codes. However, ATP has not yet be revolutionized by the recent posttraining scaling as demonstrated by Open AI O1/O3 and Deepseek R1. In this work, we investigate the entire posttraining of ATP, aiming to align it with breakthroughs in reasoning models in natural languages. To begin, we continual train current ATP models with a hybrid dataset, which consists of numerous statement-proof pairs, and additional data aimed at incorporating cognitive behaviors that emulate human reasoning and hypothesis refinement. Next, we explore reinforcement learning with the use of outcome reward returned by Lean 4 compiler. Through our designed continual training and reinforcement learning processes, we have successfully improved existing formal provers, including both DeepSeek-Prover-v1.5 and Goedel-Prover, achieving state-of-the-art performance in the field of whole-proof generation. For example, we achieve a 59.8% pass rate (pass@32) on MiniF2F. This is an on-going project and we will progressively update our findings, release our data and training details.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Automated theorem proving in Lean 4 has not yet been advanced by posttraining scaling techniques (reinforcement learning with compiler feedback) that have proven effective for natural language reasoning.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors continually train existing ATP models with a hybrid dataset combining statement-proof pairs and data incorporating cognitive behaviors that emulate human reasoning and hypothesis refinement. They then apply reinforcement learning using GRPO with outcome rewards from the Lean 4 compiler (success/fail binary signal). The approach is applied on top of both DeepSeek-Prover-v1.5 and Goedel-Prover.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Leanabell-Prover achieves 59.8% pass@32 on MiniF2F-test, establishing state-of-the-art for whole-proof generation. RL training improves both baseline models, with the Goedel-Prover variant showing the largest gains.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Sample Budget</th><th>MiniF2F-test</th></tr></thead><tbody><tr><td>DeepSeek-Prover-v1.5-Base</td><td>6400</td><td>42.2%</td></tr><tr><td>DeepSeek-Prover-v1.5-RL</td><td>6400</td><td>50.0%</td></tr><tr><td>Goedel-Prover</td><td>32</td><td>57.6%</td></tr><tr><td>Leanabell-Prover-GD-RL</td><td>32</td><td>59.8%</td></tr></tbody></table><div class="tbl-cap">Performance on MiniF2F-test</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VeriSoftBench: Repository-Scale Formal Verification Benchmarks for Lean · Papers With Lean</title>
+<meta name="description" content="Large language models have achieved striking results in interactive theorem proving, particularly in Lean. However, most benchmarks for LLM-based proof automation are drawn from mathematics in the Mathlib ecosystem, whereas proofs in software verification are developed inside…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VeriSoftBench: Repository-Scale Formal Verification Benchmarks for Lean">
+<meta property="og:description" content="Large language models have achieved striking results in interactive theorem proving, particularly in Lean. However, most benchmarks for LLM-based proof automation are drawn from mathematics in the Mathlib ecosystem, whereas proofs in software verification are developed inside…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2602.18307.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2602.18307.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2602.18307v1" target="_blank" rel="noopener"><img src="../thumbs/2602.18307.jpg" alt="First page of VeriSoftBench: Repository-Scale Formal Verification Benchmarks for Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">VeriSoftBench: Repository-Scale Formal Verification Benchmarks for Lean</h1>
+        <p class="authors">Yutong Xin, Qiaochu Chen, Greg Durrett, Işil Dillig</p>
+        <div class="row">
+          <span class="badge">cs.SE</span>
+          <span class="date">Feb 20, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2602.18307v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2602.18307" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/utopia-group/VeriSoftBench" target="_blank" rel="noopener" title="utopia-group/VeriSoftBench">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces VeriSoftBench, a benchmark of 500 Lean 4 proof obligations from open-source formal-methods software repositories.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language models have achieved striking results in interactive theorem proving, particularly in Lean. However, most benchmarks for LLM-based proof automation are drawn from mathematics in the Mathlib ecosystem, whereas proofs in software verification are developed inside definition-rich codebases with substantial project-specific libraries. We introduce VeriSoftBench, a benchmark of 500 Lean 4 proof obligations drawn from open-source formal-methods developments and packaged to preserve realistic repository context and cross-file dependencies. Our evaluation of frontier LLMs and specialized provers yields three observations. First, provers tuned for Mathlib-style mathematics transfer poorly to this repository-centric setting. Second, success is strongly correlated with transitive repository dependence: tasks whose proofs draw on large, multi-hop dependency closures are less likely to be solved. Third, providing curated context restricted to a proof&#x27;s dependency closure improves performance relative to exposing the full repository, but nevertheless leaves substantial room for improvement. Our benchmark and evaluation suite are released at <a href="https://github.com/utopia-group/VeriSoftBench" target="_blank" rel="noopener">https://github.com/utopia-group/VeriSoftBench</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Most benchmarks for LLM-based theorem proving in Lean are drawn from Mathlib-style mathematics and do not reflect the definition-rich, multi-module context of software verification projects.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">VeriSoftBench is a benchmark of 500 Lean 4 proof obligations drawn from open-source formal-methods repositories, packaged to preserve realistic cross-file dependencies. The authors evaluate frontier LLMs and specialized provers under two context conditions: curated context restricted to a proof&#x27;s dependency closure, and full repository context.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Provers tuned for Mathlib transfer poorly to this setting. Gemini-3-Pro achieves the best result at 41.0% (Pass@8, curated context) versus 34.8% (full repo). Goedel-Prover-v2, a specialized prover, scores only 5.6% with curated context and 0% with full repo context. Success correlates strongly with transitive dependency closure size.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Curated Context</th><th>Full Repo Context</th></tr></thead><tbody><tr><td>Claude Opus 4.5 (Pass@8)</td><td>31.2%</td><td>23.2%</td></tr><tr><td>GPT-5.2 (Pass@8)</td><td>12.6%</td><td>10.8%</td></tr><tr><td>Gemini-3-Pro (Pass@8)</td><td>41.0%</td><td>34.8%</td></tr><tr><td>Goedel-Prover-v2 (Pass@8)</td><td>5.6%</td><td>0.0%</td></tr></tbody></table><div class="tbl-cap">Performance on VeriSoftBench-Full</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeanProgress: Guiding Search for Neural Theorem Proving via Proof Progress Prediction · Papers With Lean</title>
+<meta name="description" content="Mathematical reasoning remains a significant challenge for Large Language Models (LLMs) due to hallucinations. When combined with formal proof assistants like Lean, these hallucinations can be eliminated through rigorous verification, making theorem proving reliable. However,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeanProgress: Guiding Search for Neural Theorem Proving via Proof Progress Prediction">
+<meta property="og:description" content="Mathematical reasoning remains a significant challenge for Large Language Models (LLMs) due to hallucinations. When combined with formal proof assistants like Lean, these hallucinations can be eliminated through rigorous verification, making theorem proving reliable. However,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2502.17925.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2502.17925.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2502.17925v3" target="_blank" rel="noopener"><img src="../thumbs/2502.17925.jpg" alt="First page of LeanProgress: Guiding Search for Neural Theorem Proving via Proof Progress Prediction"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">LeanProgress: Guiding Search for Neural Theorem Proving via Proof Progress Prediction</h1>
+        <p class="authors">Robert Joseph George, Suozhi Huang, Peiyang Song, Anima Anandkumar</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Feb 25, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2502.17925v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2502.17925" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/lean-dojo/LeanDojo-v2" target="_blank" rel="noopener" title="lean-dojo/LeanDojo-v2">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Trains a model predicting remaining proof steps from Lean Workbook Plus and Mathlib4 to guide best-first search in neural theorem proving.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Mathematical reasoning remains a significant challenge for Large Language Models (LLMs) due to hallucinations. When combined with formal proof assistants like Lean, these hallucinations can be eliminated through rigorous verification, making theorem proving reliable. However, even with formal verification, LLMs still struggle with long proofs and complex mathematical formalizations. While Lean with LLMs offers valuable assistance with retrieving lemmas, generating tactics, or even complete proofs, it lacks a crucial capability: providing a sense of proof progress. This limitation particularly impacts the overall development efficiency in large formalization projects. We introduce LeanProgress, a method that predicts the progress in the proof. Training and evaluating our models made on a large corpus of Lean proofs from Lean Workbook Plus and Mathlib4 and how many steps remain to complete it, we employ data preprocessing and balancing techniques to handle the skewed distribution of proof lengths. Our experiments show that LeanProgress achieves an overall prediction accuracy of 75.8% in predicting the amount of progress and, hence, the remaining number of steps. When integrated into a best-first search framework using Reprover, our method shows a 3.8% improvement on Mathlib4 compared to baseline performances of 41.4%, particularly for longer proofs. These results demonstrate how proof progress prediction can enhance both automated and interactive theorem proving, enabling users to make more informed decisions about proof strategies. Our code is merged in this library here <a href="https://github.com/lean-dojo/LeanDojo-v2" target="_blank" rel="noopener">https://github.com/lean-dojo/LeanDojo-v2</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-based theorem proving in Lean lacks a notion of proof progress, meaning search algorithms cannot distinguish productive proof steps from dead ends, leading to wasted computation on stalled proof attempts.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">LeanProgress trains a language model to predict the number of remaining steps to proof completion given a current proof state. Training data is generated by extracting proof trees via best-first search with ReProver, then balancing the distribution of proof lengths. The step predictor is integrated into LeanCopilot as a tactic (predict_steps) to guide search.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The step predictor provides an interpretable progress signal that improves search efficiency compared to traditional best-first search guided by log probability alone. The framework, data pipeline, and integration with LeanCopilot are open-sourced.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

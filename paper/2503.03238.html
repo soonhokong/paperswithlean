@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FANS -- Formal Answer Selection for Natural Language Math Reasoning Using Lean4 · Papers With Lean</title>
+<meta name="description" content="Large Language Models (LLMs) have displayed astonishing abilities in various tasks, especially in text generation, classification, question answering, etc. However, the reasoning ability of LLMs still faces many debates. The inherent ambiguity of Natural Language (NL) limits…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FANS -- Formal Answer Selection for Natural Language Math Reasoning Using Lean4">
+<meta property="og:description" content="Large Language Models (LLMs) have displayed astonishing abilities in various tasks, especially in text generation, classification, question answering, etc. However, the reasoning ability of LLMs still faces many debates. The inherent ambiguity of Natural Language (NL) limits…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2503.03238.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2503.03238.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2503.03238v2" target="_blank" rel="noopener"><img src="../thumbs/2503.03238.jpg" alt="First page of FANS -- Formal Answer Selection for Natural Language Math Reasoning Using Lean4"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">FANS -- Formal Answer Selection for Natural Language Math Reasoning Using Lean4</h1>
+        <p class="authors">Jiarui Yao, Ruida Wang, Tong Zhang</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Mar 5, 2025 · v2</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2503.03238v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2503.03238" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/MaxwellJryao/FANS" target="_blank" rel="noopener" title="MaxwellJryao/FANS">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">FANS uses Lean4 to formally verify candidate answers for natural-language math reasoning and improve answer selection.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large Language Models (LLMs) have displayed astonishing abilities in various tasks, especially in text generation, classification, question answering, etc. However, the reasoning ability of LLMs still faces many debates. The inherent ambiguity of Natural Language (NL) limits LLMs&#x27; ability to perform verifiable reasoning, making its answers lack coherence and trustworthy support. To tackle the above problems, we propose a novel framework named FANS: Formal ANswer Selection for Natural Language Math Reasoning Using Lean4. To the best of our knowledge, it is the first framework that utilizes Lean4 to enhance LLMs&#x27; NL math reasoning ability. In particular, given an NL math question and LLM-generated answers, FANS first translates it into Lean4 theorem statements. Then it tries to prove it using a Lean4 prover and verify it by Lean4. Finally, it uses the FL result to assist in answer selection. It enhances LLMs&#x27; NL math ability in providing a computer-verifiable solution for its correct answer and proposes an alternative method for answer selection beyond the reward model. Extensive experiments indicate the effectiveness of our framework. It can improve the accuracy rate of reward model enhanced LLMs in the MATH-500 dataset by at most 1.91% and AMC-23 by at most 8.33% on strong reward-model baselines. In some particular fields like number theory that Lean4 experts in, we can even select all correct solutions. The qualitative analysis also shows our framework can make NL results formally backed by Lean4 proofs. As a pioneering work in the corresponding field, we will open-source all our models and datasets to further boost the development of the field.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM natural-language math reasoning lacks verifiable support, so answer selection relies on heuristics like majority voting or reward models.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">FANS translates an NL question and LLM-generated answers into Lean4 theorem statements, proves them with a Lean4 prover, and uses the verification result to assist answer selection, providing a formally backed alternative to reward-model scoring.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2503.03238/x1.png" alt=""><figcaption>Figure 2: FANS Framework: The framework shown in the upper part first passes the Natural Language math questions and the LLM-generated answers to our Long CoT NL-to-FL translator. Subsequently, it invokes a prover to prove the translated Lean4 statements and uses the verifier to check whether the proofs are correct. The correct outputs are used for further answer selection as a verifiable foundati</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">FANS improves reward-model-enhanced selection accuracy by up to 1.91% on MATH-500 and 8.33% on AMC-23, and in number theory can select all correct solutions; relative gains reach 7.9% on MATH500 number theory and 20% on AMC23.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2503.03238/main_res_2.jpg" alt=""><figcaption>Figure 1: Comparision between FANS and majority vote, together with ORM and ORM + FANS method. From the results, we could see FANS based on ORM achieve the highest accuracies consistently across different base models and different test sets. In particular, FANS performs well on the sub-fields of number theory and algebra, which are better supported by Lean4 with its existing libraries.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generating Millions Of Lean Theorems With Proofs By Exploring State Transition Graphs · Papers With Lean</title>
+<meta name="description" content="Large Language Models (LLMs) have demonstrated significant potential in generating mathematical proofs. However, a persistent challenge is that LLMs occasionally make mistakes, while even a minor mistake can invalidate an entire proof. Proof assistants like Lean offer a great…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Generating Millions Of Lean Theorems With Proofs By Exploring State Transition Graphs">
+<meta property="og:description" content="Large Language Models (LLMs) have demonstrated significant potential in generating mathematical proofs. However, a persistent challenge is that LLMs occasionally make mistakes, while even a minor mistake can invalidate an entire proof. Proof assistants like Lean offer a great…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2503.04772.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2503.04772.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2503.04772v1" target="_blank" rel="noopener"><img src="../thumbs/2503.04772.jpg" alt="First page of Generating Millions Of Lean Theorems With Proofs By Exploring State Transition Graphs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Generating Millions Of Lean Theorems With Proofs By Exploring State Transition Graphs</h1>
+        <p class="authors">David Yin, Jing Gao</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Feb 16, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2503.04772v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2503.04772" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://zenodo.org/records/13989482" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Generates 4.7M Lean theorems with proofs from Mathlib4 by exploring proof state-transition graphs to train a prover.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large Language Models (LLMs) have demonstrated significant potential in generating mathematical proofs. However, a persistent challenge is that LLMs occasionally make mistakes, while even a minor mistake can invalidate an entire proof. Proof assistants like Lean offer a great remedy. They are designed for verifying each step of a proof in a formal language, and in recent years researchers have created AI models to generate proofs in their languages. However, the scarcity of large-scale datasets of Lean proofs restrict the performance of such Automated Theorem Proving (ATP) models. We developed LeanNavigator, a novel method for generating a large-scale dataset of Lean theorems and proofs by finding new ways to prove existing Lean theorems. By leveraging an interactive Lean client and an efficient method for proof step generation, LeanNavigator efficiently produces new theorems with corresponding proofs. Applying this approach to Mathlib4, we generated 4.7 million theorems totaling 1 billion tokens, surpassing previous datasets by more than an order of magnitude. Using this extensive dataset, we trained an AI model that outperforms the state-of-the-art ReProver model in theorem-proving tasks. These results confirm our hypothesis and demonstrate the critical role of large datasets in improving the performance of automated theorem provers.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">AI models for automated theorem proving in Lean are limited by the scarcity of large-scale training datasets. Existing datasets like ReProver contain only around 112K theorems.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">LeanNavigator generates millions of Lean theorems with proofs by exploring state transition graphs. Starting from known theorems, it applies tactics to create new proof states, then traverses the resulting graph to extract new theorems. Each theorem accumulates an average of 2035 intermediate states (compared to ReProver&#x27;s 21.69), producing a dataset of 4.7 million theorems with 1 billion tokens.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">LeanNavigator generates 4.7M theorems (vs. ReProver&#x27;s 112K) with 1B tokens (vs. 57M). A flan-t5-base model trained on this data achieves 39/117 on MIL and 104/493 on MiniF2F, outperforming ReProver&#x27;s 30/117 and 99/493 respectively.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>MIL</th><th>MiniF2F</th></tr></thead><tbody><tr><td>LeanNavigator flan-t5 base</td><td>39/117</td><td>104/493</td></tr><tr><td>LeanNavigator flan-t5 small</td><td>25/117</td><td>52/493</td></tr><tr><td>ReProver</td><td>30/117</td><td>99/493</td></tr></tbody></table><div class="tbl-cap">Theorem proving benchmark results</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

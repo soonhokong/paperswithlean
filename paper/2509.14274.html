@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Discovering New Theorems via LLMs with In-Context Proof Learning in Lean · Papers With Lean</title>
+<meta name="description" content="Large Language Models (LLMs) have demonstrated significant promise in formal theorem proving. In this study, we investigate the ability of LLMs to discover novel theorems and produce verified proofs. We propose a pipeline called \textit{Conjecturing-Proving Loop} (CPL), which…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Discovering New Theorems via LLMs with In-Context Proof Learning in Lean">
+<meta property="og:description" content="Large Language Models (LLMs) have demonstrated significant promise in formal theorem proving. In this study, we investigate the ability of LLMs to discover novel theorems and produce verified proofs. We propose a pipeline called \textit{Conjecturing-Proving Loop} (CPL), which…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2509.14274.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2509.14274.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2509.14274v2" target="_blank" rel="noopener"><img src="../thumbs/2509.14274.jpg" alt="First page of Discovering New Theorems via LLMs with In-Context Proof Learning in Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Discovering New Theorems via LLMs with In-Context Proof Learning in Lean</h1>
+        <p class="authors">Kazumi Kasaura, Naoto Onda, Yuta Oriike, Masaya Taniguchi, Akiyoshi Sannai, Sho Sonoda</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Sep 16, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2509.14274v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2509.14274" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/auto-res/ConjecturingProvingLoop" target="_blank" rel="noopener" title="auto-res/ConjecturingProvingLoop">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Iteratively generates and proves novel mathematical conjectures in Lean 4 via a Conjecturing-Proving Loop with in-context proof learning.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large Language Models (LLMs) have demonstrated significant promise in formal theorem proving. In this study, we investigate the ability of LLMs to discover novel theorems and produce verified proofs. We propose a pipeline called \textit{Conjecturing-Proving Loop} (CPL), which iteratively generates mathematical conjectures and attempts to prove them in Lean 4. A key feature of CPL is that each iteration conditions the LLM on previously generated theorems and their formal proofs, enabling parameter-free improvement of proof strategies via in-context learning. We provide both theoretical and experimental evidence that CPL increases the discovery rate of hard-to-prove theorems compared to frameworks that generate statements and proofs simultaneously. Moreover, our experiments show that reusing the LLM&#x27;s own formally verified outputs as context consistently improves subsequent proof success, demonstrating the effectiveness of self-generated in-context learning for neural theorem proving. The source code is available at <a href="https://github.com/auto-res/ConjecturingProvingLoop" target="_blank" rel="noopener">https://github.com/auto-res/ConjecturingProvingLoop</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLMs can prove theorems in formal systems, but their ability to discover novel theorems and produce verified proofs with improving performance over iterations was not well understood. Existing approaches that generate statements and proofs simultaneously tend to converge on easy, short proofs.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The Conjecturing-Proving Loop (CPL) iteratively generates mathematical conjectures and attempts to prove them in Lean 4. Each iteration conditions the LLM on previously generated theorems and their formal proofs, enabling parameter-free improvement via in-context learning. Separating conjecturing from proving employs stratified sampling that allocates search resources according to proof difficulty.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2509.14274/AIMathematician.png" alt=""><figcaption>Figure 1: Overview of Conjecturing-Proving Loop. Conjecturer generates conjectures using the library as context, Prover attempts to prove them, and proven conjectures and their proofs are stored in the library as theorems. The library also provides context to Prover. Both Conjecturer and Prover processes consist of interactions between LLMs and Lean Server.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">CPL increases the discovery rate of hard-to-prove theorems compared to frameworks that generate statements and proofs simultaneously. Reusing the LLM&#x27;s own formally verified outputs as context consistently improves subsequent proof success. The distribution of proof lengths shifts toward longer, harder proofs compared to a simple loop baseline.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2509.14274/x1.png" alt=""><figcaption>Figure 2: Distribution of proof lengths (the numbers of characters) of theorems generated by our framework and the simple loop framework.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings · Papers With Lean</title>
+<meta name="description" content="Translating human-written mathematical theorems and proofs from natural language (NL) into formal languages (FLs) like Lean 4 has long been a significant challenge for AI. Most state-of-the-art methods either focus on theorem-only NL-to-FL auto-formalization or on FL proof…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings">
+<meta property="og:description" content="Translating human-written mathematical theorems and proofs from natural language (NL) into formal languages (FLs) like Lean 4 has long been a significant challenge for AI. Most state-of-the-art methods either focus on theorem-only NL-to-FL auto-formalization or on FL proof…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2510.15681.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2510.15681.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2510.15681v3" target="_blank" rel="noopener"><img src="../thumbs/2510.15681.jpg" alt="First page of ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings</h1>
+        <p class="authors">Prithwish Jana, Kaan Kale, Ahmet Ege Tanriverdi, Cruise Song, Sriram Vishwanath, Vijay Ganesh</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Oct 17, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2510.15681v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2510.15681" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/PrithwishJana/ProofBridge" target="_blank" rel="noopener" title="PrithwishJana/ProofBridge">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">ProofBridge auto-formalizes entire natural-language theorems and proofs into Lean 4 using joint NL-FL embeddings and Lean type-checker feedback.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Translating human-written mathematical theorems and proofs from natural language (NL) into formal languages (FLs) like Lean 4 has long been a significant challenge for AI. Most state-of-the-art methods either focus on theorem-only NL-to-FL auto-formalization or on FL proof synthesis from FL theorems. In practice, auto-formalization of both theorem and proof still requires human intervention, as seen in AlphaProof&#x27;s silver-medal performance at the 2024 IMO, where problem statements were manually translated before automated proof synthesis. We present ProofBridge, a unified framework for automatically translating entire NL theorems and proofs into Lean 4. At its core is a joint embedding model that aligns NL and FL (NL-FL) theorem+proof pairs in a shared semantic space, enabling cross-modal retrieval of semantically relevant FL examples to guide translation. ProofBridge integrates retrieval-augmented fine-tuning with iterative proof repair, leveraging Lean&#x27;s type checker and semantic equivalence feedback to ensure both syntactic correctness and semantic fidelity. Experiments show substantial improvements in proof auto-formalization over strong baselines (including GPT-5, Gemini-2.5, Kimina-Prover, DeepSeek-Prover), with our retrieval-augmented approach yielding significant gains in semantic correctness (SC, via proving bi-directional equivalence) and type correctness (TC, via type-checking theorem+proof) across pass@k metrics on miniF2F-Test-PF, a dataset we curated. In particular, ProofBridge improves cross-modal retrieval quality by up to 3.28x Recall@1 over all-MiniLM-L6-v2, and achieves +31.14% SC and +1.64% TC (pass@32) compared to the baseline Kimina-Prover-RL-1.7B.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Auto-formalization of both theorems and proofs from natural language into Lean 4 remains difficult. Most methods handle only theorem-only translation or proof synthesis from already-formalized theorems, leaving a gap in end-to-end NL-to-FL proof translation.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ProofBridge uses a joint embedding model to align natural language and formal language (Lean 4) theorem+proof pairs in a shared semantic space. Cross-modal retrieval of semantically relevant FL examples guides translation. The framework integrates retrieval-augmented fine-tuning with iterative proof repair using Lean&#x27;s type checker and semantic equivalence feedback.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2510.15681/x1.png" alt=""><figcaption>(a) Joint embedding of NL and FL (Lean) theorems and proofs into shared semantic space</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">ProofBridge improves cross-modal retrieval by up to 3.28x Recall@1 over all-MiniLM-L6-v2. On miniF2F-Test-PF, it achieves +31.14% semantic correctness and +1.64% type correctness at pass@32 compared to the baseline Kimina-Prover-RL-1.7B, outperforming GPT-5, Gemini-2.5, and DeepSeek-Prover.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2510.15681/x5.png" alt=""><figcaption>Figure 3: Category-wise Results. Proof auto-formalization performance across mathematical domains.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

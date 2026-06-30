@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solving Formal Math Problems by Decomposition and Iterative Reflection · Papers With Lean</title>
+<meta name="description" content="General-purpose Large Language Models (LLMs) have achieved remarkable success in intelligence, performing comparably to human experts on complex reasoning tasks such as coding and mathematical reasoning. However, generating formal proofs in specialized languages like Lean 4…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Solving Formal Math Problems by Decomposition and Iterative Reflection">
+<meta property="og:description" content="General-purpose Large Language Models (LLMs) have achieved remarkable success in intelligence, performing comparably to human experts on complex reasoning tasks such as coding and mathematical reasoning. However, generating formal proofs in specialized languages like Lean 4…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2507.15225.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2507.15225.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2507.15225v1" target="_blank" rel="noopener"><img src="../thumbs/2507.15225.jpg" alt="First page of Solving Formal Math Problems by Decomposition and Iterative Reflection"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Solving Formal Math Problems by Decomposition and Iterative Reflection</h1>
+        <p class="authors">Yichi Zhou, Jianqiu Zhao, Yongxin Zhang, Bohan Wang, Siran Wang, Luoxin Chen, Jiahui Wang, Haowei Chen, Allan Jie, Xinbo Zhang, Haocheng Wang, Luong Trung, Rong Ye, Phan Nhat Hoang, Huishuai Zhang, Peng Sun, Hang Li</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jul 21, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2507.15225v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2507.15225" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ByteDance-Seed/lean4-agent" target="_blank" rel="noopener" title="ByteDance-Seed/lean4-agent">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Delta Prover is an agent framework that interactively constructs Lean 4 proofs using a general-purpose LLM and a custom Lean 4 DSL.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">General-purpose Large Language Models (LLMs) have achieved remarkable success in intelligence, performing comparably to human experts on complex reasoning tasks such as coding and mathematical reasoning. However, generating formal proofs in specialized languages like Lean 4 remains a significant challenge for these models, limiting their application in complex theorem proving and automated verification. Current approaches typically require specializing models through fine-tuning on dedicated formal corpora, incurring high costs for data collection and training. In this work, we introduce \textbf{Delta Prover}, an agent-based framework that orchestrates the interaction between a general-purpose LLM and the Lean 4 proof environment. Delta Prover leverages the reflection and reasoning capabilities of general-purpose LLMs to interactively construct formal proofs in Lean 4, circumventing the need for model specialization. At its core, the agent integrates two novel, interdependent components: an algorithmic framework for reflective decomposition and iterative proof repair, and a custom Domain-Specific Language (DSL) built upon Lean 4 for streamlined subproblem management. \textbf{Delta Prover achieves a state-of-the-art 95.9\% success rate on the miniF2F-test benchmark, surpassing all existing approaches, including those requiring model specialization.} Furthermore, Delta Prover exhibits a significantly stronger test-time scaling law compared to standard Best-of-N proof strategies. Crucially, our findings demonstrate that general-purpose LLMs, when guided by an effective agentic structure, possess substantial untapped theorem-proving capabilities. This presents a computationally efficient alternative to specialized models for robust automated reasoning in formal environments.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Generating formal proofs in Lean 4 remains a significant challenge for general-purpose LLMs. Current approaches require expensive fine-tuning on formal corpora and do not leverage the reflection and reasoning strengths of general-purpose models.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Delta Prover is an agent-based framework that orchestrates a general-purpose LLM interacting with the Lean 4 proof environment. It integrates reflective decomposition (breaking hard theorems into subgoals) and iterative proof repair through a custom DSL built on Lean 4 for subproblem management. The framework requires no model specialization or fine-tuning.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Delta Prover achieves 95.9% on miniF2F-test, surpassing all prior methods including specialized provers (DeepSeek-Prover-V2 at 88.9%, Kimina-Prover at 92.2%). It exhibits stronger test-time scaling compared to standard Best-of-N strategies, all without requiring model fine-tuning.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Training-free</th><th>Sample budget</th><th>Accuracy</th></tr></thead><tbody><tr><td>Delta Prover</td><td>Yes</td><td>--</td><td>95.9%</td></tr><tr><td>Kimina-Prover 72B</td><td>No</td><td>42000</td><td>92.2%</td></tr><tr><td>DeepSeek-Prover-V2 671B</td><td>No</td><td>8192</td><td>88.9%</td></tr><tr><td>BFS-Prover 7B</td><td>No</td><td>2457600</td><td>70.8%</td></tr></tbody></table><div class="tbl-cap">Performance on miniF2F-test</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

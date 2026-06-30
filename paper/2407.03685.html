@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verifying Peephole Rewriting In SSA Compiler IRs · Papers With Lean</title>
+<meta name="description" content="There is an increasing need for domain-specific reasoning in modern compilers. This has fueled the use of tailored intermediate representations (IRs) based on static single assignment (SSA), like in the MLIR compiler framework. Interactive theorem provers (ITPs) provide strong…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Verifying Peephole Rewriting In SSA Compiler IRs">
+<meta property="og:description" content="There is an increasing need for domain-specific reasoning in modern compilers. This has fueled the use of tailored intermediate representations (IRs) based on static single assignment (SSA), like in the MLIR compiler framework. Interactive theorem provers (ITPs) provide strong…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2407.03685.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2407.03685.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2407.03685" target="_blank" rel="noopener"><img src="../thumbs/2407.03685.jpg" alt="First page of Verifying Peephole Rewriting In SSA Compiler IRs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Verifying Peephole Rewriting In SSA Compiler IRs</h1>
+        <p class="authors">Siddharth Bhat, Alex Keizer, Chris Hughes, Andrés Goens, Tobias Grosser</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Jul 4, 2024 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2407.03685" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2407.03685" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes SSA compiler IR semantics and verifies peephole rewrites in Lean for MLIR.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">There is an increasing need for domain-specific reasoning in modern compilers. This has fueled the use of tailored intermediate representations (IRs) based on static single assignment (SSA), like in the MLIR compiler framework. Interactive theorem provers (ITPs) provide strong guarantees for the end-to-end verification of compilers (e.g., CompCert). However, modern compilers and their IRs evolve at a rate that makes proof engineering alongside them prohibitively expensive. Nevertheless, well-scoped push-button automated verification tools such as the Alive peephole verifier for LLVM-IR gained recognition in domains where SMT solvers offer efficient (semi) decision procedures. In this paper, we aim to combine the convenience of automation with the versatility of ITPs for verifying peephole rewrites across domain-specific IRs. We formalize a core calculus for SSA-based IRs that is generic over the IR and covers so-called regions (nested scoping used by many domain-specific IRs in the MLIR ecosystem). Our mechanization in the Lean proof assistant provides a user-friendly frontend for translating MLIR syntax into our calculus. We provide scaffolding for defining and verifying peephole rewrites, offering tactics to eliminate the abstraction overhead of our SSA calculus. We prove correctness theorems about peephole rewriting, as well as two classical program transformations. To evaluate our framework, we consider three use cases from the MLIR ecosystem that cover different levels of abstractions: (1) bitvector rewrites from LLVM, (2) structured control flow, and (3) fully homomorphic encryption. We envision that our mechanization provides a foundation for formally verified rewrites on new domain-specific IRs.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Modern compilers use domain-specific intermediate representations (IRs) based on SSA that evolve rapidly, making full end-to-end compiler verification prohibitively expensive. Automated peephole verifiers like Alive exist only for LLVM-IR, not for the broader MLIR ecosystem.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A core calculus for SSA-based IRs is formalized in Lean, generic over the IR and covering regions (nested scoping). The mechanization provides a user-friendly frontend translating MLIR syntax into the calculus, scaffolding for defining and verifying peephole rewrites, and tactics to eliminate abstraction overhead. Correctness theorems about peephole rewriting and two classical program transformations are proved.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Three use cases from the MLIR ecosystem are evaluated: bitvector rewrites from LLVM, structured control flow, and fully homomorphic encryption. The framework provides a verified foundation for peephole rewrites across domain-specific IRs at different abstraction levels.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

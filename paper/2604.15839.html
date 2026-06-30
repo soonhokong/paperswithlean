@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Discover and Prove: An Open-source Agentic Framework for Hard Mode Automated Theorem Proving in Lean 4 · Papers With Lean</title>
+<meta name="description" content="Most ATP benchmarks embed the final answer within the formal statement -- a convention we call &quot;Easy Mode&quot; -- a design that simplifies the task relative to what human competitors face and may lead to optimistic estimates of model capability. We call the stricter, more realistic…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Discover and Prove: An Open-source Agentic Framework for Hard Mode Automated Theorem Proving in Lean 4">
+<meta property="og:description" content="Most ATP benchmarks embed the final answer within the formal statement -- a convention we call &quot;Easy Mode&quot; -- a design that simplifies the task relative to what human competitors face and may lead to optimistic estimates of model capability. We call the stricter, more realistic…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2604.15839.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2604.15839.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2604.15839v1" target="_blank" rel="noopener"><img src="../thumbs/2604.15839.jpg" alt="First page of Discover and Prove: An Open-source Agentic Framework for Hard Mode Automated Theorem Proving in Lean 4"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Discover and Prove: An Open-source Agentic Framework for Hard Mode Automated Theorem Proving in Lean 4</h1>
+        <p class="authors">Chengwu Liu, Yichun Yin, Ye Yuan, Jiaxuan Xie, Botao Li, Siqi Li, Jianhao Shen, Yan Xu, Lifeng Shang, Ming Zhang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Apr 17, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2604.15839v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2604.15839" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/liuchengwucn/discover-and-prove" target="_blank" rel="noopener" title="liuchengwucn/discover-and-prove">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Open-source agentic framework for Hard Mode automated theorem proving in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Most ATP benchmarks embed the final answer within the formal statement -- a convention we call &quot;Easy Mode&quot; -- a design that simplifies the task relative to what human competitors face and may lead to optimistic estimates of model capability. We call the stricter, more realistic setting &quot;Hard Mode&quot;: the system must independently discover the answer before constructing a formal proof. To enable Hard Mode research, we make two contributions. First, we release MiniF2F-Hard and FIMO-Hard, expert-reannotated Hard Mode variants of two widely-used ATP benchmarks. Second, we introduce Discover And Prove (DAP), an agentic framework that uses LLM natural-language reasoning with explicit self-reflection to discover answers, then rewrites Hard Mode statements into Easy Mode ones for existing ATP provers. DAP sets the state of the art: on CombiBench it raises solved problems from 7 (previous SOTA, Pass@16) to 10; on PutnamBench it is the first system to formally prove 36 theorems in Hard Mode -- while simultaneously revealing that state-of-the-art LLMs exceed 80% answer accuracy on the same problems where formal provers manage under 10%, exposing a substantial gap that Hard Mode benchmarks are uniquely suited to measure.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Most automated theorem proving benchmarks embed the final answer in the formal statement (Easy Mode), making the task easier than what human competitors face and potentially overestimating model capability.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors define Hard Mode, where a system must independently discover the answer before constructing a formal proof. They release MiniF2F-Hard and FIMO-Hard, expert-reannotated Hard Mode variants of existing benchmarks. They introduce Discover And Prove (DAP), an agentic framework that uses LLM natural-language reasoning with self-reflection to discover answers, then rewrites Hard Mode statements into Easy Mode ones for existing Lean 4 ATP provers.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.15839/x2.png" alt=""><figcaption>Figure 2: Primary flowchart. A mathematical problem is first processed by the Discovery Module to generate a solution; this solution is then incorporated into the Easy Mode statement during the rewriting stage. Orange circles denote the reasoning LLM, and blue circles denote the theorem prover (another distinct LLM).</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On CombiBench, DAP raises solved problems from 7 (previous SOTA at Pass@16) to 10. On PutnamBench it is the first system to formally prove 36 theorems in Hard Mode. The work also reveals that LLMs exceed 80% answer accuracy on problems where formal provers manage under 10%, exposing a large gap between informal reasoning and formal proving.</p><div class="sum-table"><table><thead><tr><th>Benchmark</th><th>Size / Hard</th><th>DAP w/ Agent</th></tr></thead><tbody><tr><td>PutnamBench</td><td>660 / 340</td><td>36 / 19</td></tr><tr><td>CombiBench</td><td>100 / 45</td><td>9 / 1</td></tr><tr><td>miniF2F-test</td><td>244 / 197</td><td>201 / 168</td></tr><tr><td>FIMO</td><td>149 / 70</td><td>3 / 0</td></tr></tbody></table><div class="tbl-cap">Performance on Hard Mode benchmarks</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

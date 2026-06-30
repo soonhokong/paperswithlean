@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exponential Family Discriminant Analysis: Generalizing LDA-Style Generative Classification to Non-Gaussian Models · Papers With Lean</title>
+<meta name="description" content="We introduce Exponential Family Discriminant Analysis (EFDA), a unified generative framework that extends classical Linear Discriminant Analysis (LDA) beyond the Gaussian setting to any member of the exponential family. Under the assumption that each class-conditional density…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Exponential Family Discriminant Analysis: Generalizing LDA-Style Generative Classification to Non-Gaussian Models">
+<meta property="og:description" content="We introduce Exponential Family Discriminant Analysis (EFDA), a unified generative framework that extends classical Linear Discriminant Analysis (LDA) beyond the Gaussian setting to any member of the exponential family. Under the assumption that each class-conditional density…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.20655.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.20655.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.20655v2" target="_blank" rel="noopener"><img src="../thumbs/2603.20655.jpg" alt="First page of Exponential Family Discriminant Analysis: Generalizing LDA-Style Generative Classification to Non-Gaussian Models"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Exponential Family Discriminant Analysis: Generalizing LDA-Style Generative Classification to Non-Gaussian Models</h1>
+        <p class="authors">Anish Lakkapragada</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Mar 21, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.20655v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.20655" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/anish-lakkapragada/EFDA" target="_blank" rel="noopener" title="anish-lakkapragada/EFDA">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formally verifies all four theoretical propositions of exponential-family discriminant analysis in Lean 4 via multiple proof generators.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We introduce Exponential Family Discriminant Analysis (EFDA), a unified generative framework that extends classical Linear Discriminant Analysis (LDA) beyond the Gaussian setting to any member of the exponential family. Under the assumption that each class-conditional density belongs to a common exponential family, EFDA derives closed-form maximum-likelihood estimators for all natural parameters and yields a decision rule that is linear in the sufficient statistic, recovering LDA as a special case and capturing nonlinear decision boundaries in the original feature space. We prove that EFDA is asymptotically calibrated and statistically efficient under correct specification, and we generalise it to $K \geq 2$ classes and multivariate data. Through extensive simulation across five exponential-family distributions (Weibull, Gamma, Exponential, Poisson, Negative Binomial), EFDA matches the classification accuracy of LDA, QDA, and logistic regression while reducing Expected Calibration Error (ECE) by $2$-$6\times$, a gap that is structural: it persists for all $n$ and across all class-imbalance levels, because misspecified models remain asymptotically miscalibrated. We further prove and empirically confirm that EFDA&#x27;s log-odds estimator approaches the Cramér-Rao bound under correct specification, and is the only estimator in our comparison whose mean squared error converges to zero. Complete derivations are provided for nine distributions. Finally, we formally verify all four theoretical propositions in Lean 4, using Aristotle (Harmonic) and OpenGauss (Math, Inc.) as proof generators, with all outputs independently machine-checked by AXLE (Axiom).</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Classical Linear Discriminant Analysis (LDA) assumes Gaussian class-conditional densities, limiting its applicability to non-Gaussian data and causing structural miscalibration that persists regardless of sample size.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors introduce Exponential Family Discriminant Analysis (EFDA), which extends LDA to any member of the exponential family. Under the assumption that class-conditional densities share a common exponential family, EFDA derives closed-form maximum-likelihood estimators and a decision rule linear in the sufficient statistic. The framework generalizes to K &gt;= 2 classes and multivariate data. All four core theorems (asymptotic calibration, statistical efficiency, Cramer-Rao convergence, decision boundary form) are formally verified in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Across five distributions (Weibull, Gamma, Exponential, Poisson, Negative Binomial), EFDA matches LDA/QDA/logistic regression classification accuracy while reducing Expected Calibration Error by 2-6x. The gap is structural and persists for all sample sizes and class-imbalance levels.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2603.20655/ece-benchmark.png" alt=""><figcaption>Figure 1: ECE (%) by distribution and method ( n=1{,}000 , M=100 trials). EFDA achieves the lowest ECE in every distribution; QDA is dramatically miscalibrated on heavy-tailed data (Exponential, Gamma).</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Construction-Verification: A Benchmark for Applied Mathematics in Lean 4 · Papers With Lean</title>
+<meta name="description" content="Recent advances in large language models have demonstrated impressive capabilities in mathematical formalization. However, existing benchmarks focus on logical verification of declarative propositions, often neglecting the task of explicitly synthesizing solutions. This…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Construction-Verification: A Benchmark for Applied Mathematics in Lean 4">
+<meta property="og:description" content="Recent advances in large language models have demonstrated impressive capabilities in mathematical formalization. However, existing benchmarks focus on logical verification of declarative propositions, often neglecting the task of explicitly synthesizing solutions. This…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2602.01291.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2602.01291.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2602.01291v1" target="_blank" rel="noopener"><img src="../thumbs/2602.01291.jpg" alt="First page of Construction-Verification: A Benchmark for Applied Mathematics in Lean 4"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Construction-Verification: A Benchmark for Applied Mathematics in Lean 4</h1>
+        <p class="authors">Bowen Yang, Yi Yuan, Chenyi Li, Ziyu Wang, Liangqi Li, Bo Zhang, Zhe Li, Zaiwen Wen</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Feb 1, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2602.01291v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2602.01291" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces AMBER, a Lean 4 construction-verification benchmark for applied mathematics tasks.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Recent advances in large language models have demonstrated impressive capabilities in mathematical formalization. However, existing benchmarks focus on logical verification of declarative propositions, often neglecting the task of explicitly synthesizing solutions. This limitation is particularly acute in applied mathematics domains, where the goal is frequently to derive concrete values or executable algorithms rather than solely proving theorems. To address this, we introduce a Lean 4 framework that enforces a construction-verification workflow, compelling the agent to define explicit solutions before proving their correctness. We curate a comprehensive benchmark AMBER (Applied Mathematics BEnchmark for Reasoning) spanning core domains of applied mathematics, including convex analysis, optimization, numerical algebra, and high-dimensional probability. Aside from theorem proving, our benchmark features complex tasks such as evaluation, algorithm design, and representation transformation. Experiments reveal that current models face significant difficulties with these constructive tasks. Notably, we observe that general-purpose reasoning models consistently outperform specialized theorem provers. We attribute this to a degradation of instruction following capabilities in specialized models. Fine-tuning on proof corpora appears to induce ``tactical overfitting&quot;, compromising the ability to adhere to complex constructive requirements, whereas general models retain the versatility needed for multi-task formal reasoning.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Existing formal mathematics benchmarks focus on logical verification of declarative propositions, neglecting the task of explicitly synthesizing solutions. In applied mathematics, the goal is frequently to derive concrete values or executable algorithms rather than solely proving theorems.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors introduce AMBER (Applied Mathematics BEnchmaRk), a Lean 4 benchmark that shifts evaluation from existential verification to explicit solution construction. Tasks span numerical evaluation, algorithm design, and representation transformation across convex analysis, optimization, numerical linear algebra, and probability. Problems are sourced from classical textbooks and require agents to synthesize computable definitions and perform structural modeling before verification.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">At pass@16, the best models solve only a small fraction of problems: DeepSeek-V3.2-Thinking achieves 3/24 Easy problems in optimization and 5/26 in convex analysis, with 0 Hard problems solved across all domains. Specialized theorem provers (Goedel Prover-32B, Kimina Prover-72B) perform no better than general reasoning models, exhibiting a tactical overfitting phenomenon where proof-closing skills do not transfer to constructive tasks.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Opt Easy</th><th>Opt Hard</th><th>Convex Easy</th><th>Convex Hard</th><th>NumAlg Easy</th><th>NumAlg Hard</th><th>Prob Easy</th><th>Prob Hard</th></tr></thead><tbody><tr><td>DeepSeek-V3.2-Thinking</td><td>3/24</td><td>0/26</td><td>5/26</td><td>0/24</td><td>3/25</td><td>0/25</td><td>1/25</td><td>0/25</td></tr><tr><td>GPT-5.1</td><td>2/24</td><td>0/26</td><td>3/26</td><td>0/24</td><td>3/25</td><td>0/25</td><td>1/25</td><td>0/25</td></tr><tr><td>Gemini-3.0 Pro</td><td>3/24</td><td>0/26</td><td>4/26</td><td>0/24</td><td>4/25</td><td>0/25</td><td>1/25</td><td>0/25</td></tr></tbody></table><div class="tbl-cap">Pass@16 results across domains</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

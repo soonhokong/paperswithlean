@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interpretable epistemic uncertainty decomposition in sequential generative models via polynomial chaos surrogates · Papers With Lean</title>
+<meta name="description" content="Sequential generative models conditioned on uncertain rewards are central to AI-driven scientific discovery, yet the epistemic uncertainty they inherit from imperfect reward estimates remains unquantified. We propagate this uncertainty through generative flow networks…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Interpretable epistemic uncertainty decomposition in sequential generative models via polynomial chaos surrogates">
+<meta property="og:description" content="Sequential generative models conditioned on uncertain rewards are central to AI-driven scientific discovery, yet the epistemic uncertainty they inherit from imperfect reward estimates remains unquantified. We propagate this uncertainty through generative flow networks…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2510.21523.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2510.21523.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2510.21523v2" target="_blank" rel="noopener"><img src="../thumbs/2510.21523.jpg" alt="First page of Interpretable epistemic uncertainty decomposition in sequential generative models via polynomial chaos surrogates"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Interpretable epistemic uncertainty decomposition in sequential generative models via polynomial chaos surrogates</h1>
+        <p class="authors">Ramón Nartallo-Kaluarachchi, Shashanka Ubaru, Małgorzata J Zimoń, Dongsung Huh, Robert Manson-Sawko, Lior Horesh, Yoshua Bengio</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 24, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2510.21523v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2510.21523" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/supermanG/uq-gflow-net" target="_blank" rel="noopener" title="supermanG/uq-gflow-net">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Convergence guarantees for the polynomial-chaos surrogate are formally verified in the Lean 4 proof assistant (four of five theorems).</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Sequential generative models conditioned on uncertain rewards are central to AI-driven scientific discovery, yet the epistemic uncertainty they inherit from imperfect reward estimates remains unquantified. We propagate this uncertainty through generative flow networks (GFlowNets) by fitting polynomial chaos expansions (PCEs) to small ensembles of trained models. The PCE coefficients yield analytical Sobol sensitivity indices, providing the first interpretable decomposition of which reward components drive which generative decisions, a capability unavailable from deep ensembles, Bayesian neural networks, or Monte Carlo dropout. Convergence guarantees are established theoretically and four of five are formally verified in the Lean 4 proof assistant. Across three real-world tasks the framework reveals actionable structure invisible to ensembles alone. On the Doyle-Dreher Buchwald-Hartwig dataset catalyst selection is robust ($D_{\mathrm{catalyst}}\approx 71$) while additive selection is fragile ($D_{\mathrm{additive}}\approx 179$, $2.5\times$ higher). In fragment-based molecular design the linker position is the most sensitive ($D_{\mathrm{linker}}\approx 28$) while decoration positions are the most robust ($D\approx 14$-$18$), reversing the conventional scaffold-robust / decoration-fragile assumption. On the Sachs protein signalling network, MAPK-cascade edges and PKA/PKC hub edges separate into distinct sensitivity regimes, providing a targeted map for perturbation experiments. Calibration coverage at the 95% level reaches 0.97-1.00 across the dominant steps, and the surrogate evaluates 10{,}000 policy samples in milliseconds - $10^{3}$-$10^{4}\times$ faster than exhaustive retraining.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Sequential generative models (GFlowNets) conditioned on uncertain rewards inherit epistemic uncertainty from imperfect reward estimates, but existing methods (deep ensembles, BNNs, MC dropout) cannot decompose which reward components drive which generative decisions.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Polynomial chaos expansions (PCEs) are fitted to small ensembles of trained GFlowNets. The PCE coefficients yield analytical Sobol sensitivity indices, providing an interpretable decomposition of policy variance by reward component. Convergence guarantees are established theoretically, with four of five formally verified in Lean 4 using Mathlib.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2510.21523/prism3a.png" alt=""><figcaption>Figure 1: The uncertainty prism: decoding generative decision-making. The PCE surrogate acts as an interpretable prism that decomposes opaque policy variance into analytical Sobol sensitivity indices S_{i}=D_{i}/D , attributing uncertainty to individual reward principal components. Each outgoing ray is labelled by the canonical role of its principal component: S_{1} level (global offset of the rew</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On the Buchwald-Hartwig dataset, catalyst selection is robust (D_catalyst ~ 71) while additive selection is fragile (D_additive ~ 179, 2.5x higher). In fragment-based molecular design, the linker position is most sensitive (D ~ 28) while decorations are most robust (D ~ 14-18), reversing the conventional assumption. On the Sachs signalling network, MAPK-cascade and PKA/PKC hub edges separate into distinct sensitivity regimes.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2510.21523/x1.png" alt=""><figcaption>Figure 2: Reaction condition optimisation for Buchwald–Hartwig cross-coupling. a, GFlowNet sequential construction of reaction conditions (catalyst, base, aryl halide, additive), with per-step total policy variance D indicating sensitivity to reward uncertainty. b, Total policy variance D by reaction component: additive selection is the most fragile step ( D\approx 179 ), while catalyst selection </figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CktFormalizer: Autoformalization of Natural Language into Circuit Representations · Papers With Lean</title>
+<meta name="description" content="LLMs can generate hardware descriptions from natural language specifications, but the resulting Verilog often contains width mismatches, combinational loops, and incomplete case logic that pass syntax checks yet fail in synthesis or silicon. We present CktFormalizer, a framework…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CktFormalizer: Autoformalization of Natural Language into Circuit Representations">
+<meta property="og:description" content="LLMs can generate hardware descriptions from natural language specifications, but the resulting Verilog often contains width mismatches, combinational loops, and incomplete case logic that pass syntax checks yet fail in synthesis or silicon. We present CktFormalizer, a framework…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.07782.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.07782.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.07782v3" target="_blank" rel="noopener"><img src="../thumbs/2605.07782.jpg" alt="First page of CktFormalizer: Autoformalization of Natural Language into Circuit Representations"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">CktFormalizer: Autoformalization of Natural Language into Circuit Representations</h1>
+        <p class="authors">Jing Xiong, Qi Han, Chenchen Ding, He Xiao, Zunhai Su, Chaofan Tao, Ngai Wong</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">May 8, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.07782v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.07782" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/project-oak/silveroak" target="_blank" rel="noopener" title="project-oak/silveroak">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Routes LLM-driven hardware generation through a dependently-typed HDL embedded in Lean 4 with equivalence proofs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">LLMs can generate hardware descriptions from natural language specifications, but the resulting Verilog often contains width mismatches, combinational loops, and incomplete case logic that pass syntax checks yet fail in synthesis or silicon. We present CktFormalizer, a framework that redirects LLM-driven hardware generation through a dependently-typed HDL embedded in Lean 4. Lean serves three roles: (i) type checker:dependent types encode bit-width constraints, case coverage, and acyclicity, turning hardware defects into compile-time errors that guide iterative repair; (ii) correctness firewall:compiled designs are structurally free of defects that cause silent backend failures (the baseline loses 20% of correct designs during synthesis and routing; CktFormalizer preserves all of them); (iii) proof assistant:the agent constructs machine-checked equivalence proofs over arbitrary input sequences and parameterized widths, beyond the reach of bounded SMT-based checking. On VerilogEval (156 problems), RTLLM (50 problems), and ResBench (56 problems), CktFormalizer achieves simulation pass rates competitive with direct Verilog generation while delivering substantially higher backend realizability: 95--100% of compiled designs complete the full synthesis, place-and-route, DRC, and LVS flow. A closed-loop PPA optimization stage yields up to 35% area reduction and 30% power reduction through validated architecture exploration, with automated theorem proof ensuring that each optimized variant remains functionally equivalent to its formal specification.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-generated Verilog often contains width mismatches, combinational loops, and incomplete case logic that pass syntax checks but fail in synthesis or silicon. Existing flows lose about 20% of functionally correct designs during backend synthesis and routing.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">CktFormalizer redirects LLM-driven hardware generation through a dependently-typed HDL embedded in Lean 4. Lean serves as type checker (encoding bit-width constraints, case coverage, and acyclicity as compile-time errors), correctness firewall (ensuring compiled designs are structurally free of defects), and proof assistant (enabling machine-checked equivalence proofs over arbitrary input sequences). A coding agent iteratively writes, compiles, and debugs Lean HDL code, then extracts synthesizable SystemVerilog via metaprogramming.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.07782/x1.png" alt=""><figcaption>Figure 2 : Overview of the CktFormalizer pipeline. Given a natural language specification \mathcal{S} and an optional reference Verilog implementation \mathcal{V}_{\text{ref}} , a coding agent \mathcal{A} translates \mathcal{S} into Lean code \mathcal{L} using few-shot examples and iterative error correction. The Lean compiler type-checks \mathcal{L} and extracts synthesizable SystemVerilog \mathc</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On VerilogEval (156 problems), RTLLM (50 problems), and ResBench (56 problems), CktFormalizer achieves 95-100% backend realizability (synthesis, place-and-route, DRC, LVS) for compiled designs. A closed-loop PPA optimization stage yields up to 35% area reduction and 30% power reduction with machine-checked functional equivalence.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Compile</th><th>Sim Pass</th><th>Synth</th><th>P&amp;R</th><th>DRC</th><th>LVS</th></tr></thead><tbody><tr><td>Direct SV</td><td>89.7%</td><td>71.8%</td><td>71.8%</td><td>67.9%</td><td>67.9%</td><td>67.9%</td></tr><tr><td>CktFormalizer</td><td>92.3%</td><td>72.4%</td><td>91.0%</td><td>91.0%</td><td>91.0%</td><td>91.0%</td></tr><tr><td>CktFormalizer (synth)</td><td>99.4%</td><td>69.9%</td><td>99.4%</td><td>95.5%</td><td>95.5%</td><td>95.5%</td></tr></tbody></table><div class="tbl-cap">Backend realizability comparison on VerilogEval</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evaluation of LLMs for Mathematical Formalization in Lean · Papers With Lean</title>
+<meta name="description" content="Within the past few years, the ability of Large Language Models (LLMs) to generate formal mathematical proofs has improved drastically. We provide a comparison of various LLMs&#x27; effectiveness in producing formal proofs in Lean 4 with the goal of assisting those seeking to use…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Evaluation of LLMs for Mathematical Formalization in Lean">
+<meta property="og:description" content="Within the past few years, the ability of Large Language Models (LLMs) to generate formal mathematical proofs has improved drastically. We provide a comparison of various LLMs&#x27; effectiveness in producing formal proofs in Lean 4 with the goal of assisting those seeking to use…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.05632.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.05632.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.05632v1" target="_blank" rel="noopener"><img src="../thumbs/2606.05632.jpg" alt="First page of Evaluation of LLMs for Mathematical Formalization in Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Evaluation of LLMs for Mathematical Formalization in Lean</h1>
+        <p class="authors">Tyson Klingner, Drew Bladek, Escher Crawford, Bohao Chen, Ariel Fu, Kaira Nair, Jarod Alper, Giovanni Inchiostro, Vasily Ilin</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jun 4, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.05632v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.05632" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/uw-math-ai/LLMsLean" target="_blank" rel="noopener" title="uw-math-ai/LLMsLean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Compares LLMs at generating Lean 4 proofs, evaluated on miniF2F and miniCTX with pass@k and refine@k.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Within the past few years, the ability of Large Language Models (LLMs) to generate formal mathematical proofs has improved drastically. We provide a comparison of various LLMs&#x27; effectiveness in producing formal proofs in Lean 4 with the goal of assisting those seeking to use LLMs to support their own projects. We utilize both pass@$k$ and refine@$k$ metrics as the benchmark for our comparison and evaluate on subsets of both miniF2F and miniCTX datasets. Our testing shows that overall, Gemini 3.1 Pro and Claude Opus 4.7 perform best. Gemini 3.1 Pro achieved a 92\% success rate on miniF2F via refine@32 whereas Opus 4.7 achieved a 86\% success rate on miniCTX via refine@32. When taking cost into account, NVIDIA Nemotron 3 Super and GPT-OSS 120B were the most efficient, with competitive accuracies and average costs of $&lt;\$0.01$ per correct proof.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">With many LLMs now capable of generating formal proofs in Lean 4, practitioners lack a systematic comparison to guide model selection for formalization tasks, considering both accuracy and cost.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors benchmark multiple LLMs (frontier models like Gemini 3.1 Pro, Claude Opus 4.7, and specialized models like Goedel-Prover V2 and Leanstral) on subsets of miniF2F and miniCTX datasets using pass@k and refine@k metrics for k up to 32. They analyze error categories, cost-effectiveness, and the impact of iterative refinement with Lean compiler feedback.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.05632/curves_by_dataset1.png" alt=""><figcaption>(a)</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Gemini 3.1 Pro achieved 92% on miniF2F via refine@32, and Claude Opus 4.7 achieved 86% on miniCTX via refine@32. Specialized models performed well on miniF2F but struggled on miniCTX (over 20% worse than frontier models). For cost efficiency, Nemotron 3 Super and GPT-OSS 120B achieved competitive accuracy at less than $0.01 per correct proof. Iterative refinement consistently outperformed independent sampling across all models.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.05632/error_categories_by_model.png" alt=""><figcaption>Figure 3.2 : Error category distribution per model . See Appendix A.1 for a description of each error type and specific values. The top 4 categories (in order) are tactical errors (improper use of Lean tactics such as ‘ rw ’, ‘ simp ’, etc.), syntactical errors (incorrect Lean syntax), unsolved goals (incomplete proofs), and generation failures (use of ‘ sorry ’/‘ admit ’, failed API calls). Cumul</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From LLM-Generated Conjectures to Lean Formalizations: Automated Polynomial Inequality Proving via Sum-of-Squares Certificates · Papers With Lean</title>
+<meta name="description" content="Automated proving of polynomial inequalities is a fundamental challenge in automated mathematical reasoning, where rich algebraic structure and a rapidly growing certificate search space hinder scalability. Purely symbolic approaches provide strong guarantees but often scale…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="From LLM-Generated Conjectures to Lean Formalizations: Automated Polynomial Inequality Proving via Sum-of-Squares Certificates">
+<meta property="og:description" content="Automated proving of polynomial inequalities is a fundamental challenge in automated mathematical reasoning, where rich algebraic structure and a rapidly growing certificate search space hinder scalability. Purely symbolic approaches provide strong guarantees but often scale…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.15445.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.15445.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.15445v1" target="_blank" rel="noopener"><img src="../thumbs/2605.15445.jpg" alt="First page of From LLM-Generated Conjectures to Lean Formalizations: Automated Polynomial Inequality Proving via Sum-of-Squares Certificates"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">From LLM-Generated Conjectures to Lean Formalizations: Automated Polynomial Inequality Proving via Sum-of-Squares Certificates</h1>
+        <p class="authors">Ruobing Zuo, Hanrui Zhao, Gaolei He, Zhengfeng Yang, Jianlin Wang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">May 14, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.15445v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.15445" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">LLM-proposed sum-of-squares decompositions are refined symbolically and the resulting inequality proofs are machine-checked in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Automated proving of polynomial inequalities is a fundamental challenge in automated mathematical reasoning, where rich algebraic structure and a rapidly growing certificate search space hinder scalability. Purely symbolic approaches provide strong guarantees but often scale poorly as the number of variables or the degree increases, due to expensive algebraic manipulations and rapidly growing intermediate expressions. In parallel, LLM-guided methods have made notable progress, particularly on competition-style inequalities with a small number of variables. To address the remaining scalability challenges, we propose NSPI, a neuro-symbolic framework that combines the complementary strengths of LLMs and symbolic computation for polynomial-inequality proving. Concretely, an LLM proposes a conjecture in the form of an approximate polynomial Sum-Of-Squares (SOS) decomposition; we refine it via symbolic computation to obtain an exact polynomial SOS representation, which directly proves the target inequality, and we further certify the proof in Lean, yielding an end-to-end pipeline from heuristic discovery to machine-checked proof. Experiments on challenging benchmarks involving polynomials with up to 10 variables demonstrate the effectiveness and scalability of the proposed method.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Automated proving of polynomial inequalities scales poorly as the number of variables or degree increases, and LLM-based methods struggle beyond a small number of variables, leaving high-dimensional polynomial inequality proving largely unsolved.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">NSPI is a neuro-symbolic framework combining LLMs and symbolic computation. An LLM trained via supervised fine-tuning and progressive reinforcement learning proposes approximate Sum-of-Squares (SOS) decompositions. A symbolic correction module refines them into exact rational SOS representations via Newton iteration and rational recovery. The exact certificates are then verified in Lean using a custom tactic (LLM_Ineq) that automates the formal proof generation.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.15445/x1.png" alt=""><figcaption>Figure 1 : Overview of Neuro-Symbolic SOS-based Polynomial Inequality Proving (NSPI) . (1) Neural Conjecture Module : Non-negative polynomial-SOS representation pairs are constructed using computation-driven and structure-driven approaches. A Large Language Model (LLM) is trained on the constructed data to function as an SOS structure conjecturer, which generates corresponding SOS representations </figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On the PolyIneqBench benchmark with polynomials up to 10 variables, NSPI achieves higher success rates than symbolic solvers (Maple, Z3) and LLM-based provers (DeepSeek-Prover-v2, Goedel-Prover-v2, Kimina-Prover). NSPI is the only method to solve instances with 10 variables. All successful proofs are certified in Lean.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.15445/x4.png" alt=""><figcaption>Figure 4 : Performance of different methods on PolyIneqBench (PolyIneq-Real and PolyIneq-Synth).</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finishing Oltean&#x27;s Completeness Proof in Lean 4 for Hybrid Logic $L(\forall)$ · Papers With Lean</title>
+<meta name="description" content="We present a machine-checked completeness theorem, in Lean 4, for the hybrid logic $L(\forall)$: propositional modal logic with nominals, the satisfaction-style binder $\forall$, and the box modality. (Machine-checked completeness for basic hybrid logic, without binders, was…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Finishing Oltean&#x27;s Completeness Proof in Lean 4 for Hybrid Logic $L(\forall)$">
+<meta property="og:description" content="We present a machine-checked completeness theorem, in Lean 4, for the hybrid logic $L(\forall)$: propositional modal logic with nominals, the satisfaction-style binder $\forall$, and the box modality. (Machine-checked completeness for basic hybrid logic, without binders, was…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.19761.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.19761.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.19761v1" target="_blank" rel="noopener"><img src="../thumbs/2606.19761.jpg" alt="First page of Finishing Oltean&#x27;s Completeness Proof in Lean 4 for Hybrid Logic $L(\forall)$"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Finishing Oltean&#x27;s Completeness Proof in Lean 4 for Hybrid Logic $L(\forall)$</h1>
+        <p class="authors">Lars Warren Ericson</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Jun 18, 2026 · v1</span>
+          <span class="badge">math.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.19761v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.19761" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/catskillsresearch/hybrid_logic_lean_revisited" target="_blank" rel="noopener" title="catskillsresearch/hybrid_logic_lean_revisited">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Completes a machine-checked completeness theorem for hybrid logic L(forall) in Lean 4, building on Oltean&#x27;s formalization.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present a machine-checked completeness theorem, in Lean 4, for the hybrid logic $L(\forall)$: propositional modal logic with nominals, the satisfaction-style binder $\forall$, and the box modality. (Machine-checked completeness for basic hybrid logic, without binders, was pioneered by Asta Halkjær From in Isabelle/HOL.) We build on Alex Oltean&#x27;s 2023 Lean 4 formalization, which mechanized the syntax, semantics, Hilbert-style proof system, and soundness following Blackburn&#x27;s Hybrid Completeness (1998), but left completeness unfinished. Finishing it requires manufacturing fresh names at two structurally different points, and our central finding is that they call for two different tools. (1) The root witnessed maximal consistent set, built by an extended Lindenbaum construction, needs at each step a nominal fresh for the whole set; the right tool is structural freshness: extend the language so an infinite supply of nominals is reserved by construction. We survey the design space (Oltean&#x27;s odd/even encoding inside $\mathbb{N}$, the disjoint-sum $N \oplus \mathbb{N}$ parameterization suggested by Bud Mishra, and From&#x27;s synthetic-completeness frameworks) and explain the encoding we adopt. (2) The witnessed $\Diamond$-successor of a maximal consistent set cannot be obtained this way: its canonical box-reduct provably mentions every nominal, so no reserved name is fresh. Here the right tool is one Oltean chose but left incomplete: an existence-lemma Henkin construction drawing each witness from the predecessor&#x27;s witnessedness through a fresh state variable; we complete it with a data-carrying witness accumulator and a compactness argument. The theorem $Γ\models \varphi \to Γ\vdash \varphi$ is fully formalized: the development is sorry-free, and #print axioms reports only propext, Classical.choice, and Quot.sound. We port the development to Lean v4.30.0 / mathlib v4.30.0.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Oltean&#x27;s 2023 Lean 4 formalization of the hybrid logic L(forall) mechanized syntax, semantics, a Hilbert-style system, and soundness, but left completeness unfinished.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Finishing completeness requires fresh names at two structurally different points, handled with two tools. The root witnessed maximal consistent set uses structural freshness, extending the language so an infinite supply of nominals is reserved by construction; the witnessed diamond-successor instead uses a Henkin-style existence lemma with a data-carrying witness accumulator and a compactness argument. The authors survey the freshness design space and adopt a specific encoding.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The completeness theorem is fully formalized and sorry-free, with #print axioms reporting only propext, Classical.choice, and Quot.sound; the development is ported to Lean v4.30.0 and Mathlib v4.30.0.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

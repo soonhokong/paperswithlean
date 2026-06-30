@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSLibPremiseBench: Structure-Guided Premise Retrieval and Label Robustness for Lean 4 Computer-Science Theorems · Papers With Lean</title>
+<meta name="description" content="CSLib is an emerging Lean 4 library for computer-science formalization, but its premise-retrieval behavior is not well represented by broad mathematical theorem-proving benchmarks. We introduce CSLibPremiseBench, a reproducible CSLib-specific benchmark and empirical study for…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSLibPremiseBench: Structure-Guided Premise Retrieval and Label Robustness for Lean 4 Computer-Science Theorems">
+<meta property="og:description" content="CSLib is an emerging Lean 4 library for computer-science formalization, but its premise-retrieval behavior is not well represented by broad mathematical theorem-proving benchmarks. We introduce CSLibPremiseBench, a reproducible CSLib-specific benchmark and empirical study for…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.14549.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.14549.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.14549v1" target="_blank" rel="noopener"><img src="../thumbs/2605.14549.jpg" alt="First page of CSLibPremiseBench: Structure-Guided Premise Retrieval and Label Robustness for Lean 4 Computer-Science Theorems"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">CSLibPremiseBench: Structure-Guided Premise Retrieval and Label Robustness for Lean 4 Computer-Science Theorems</h1>
+        <p class="authors">Junye Ji</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">May 14, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.14549v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.14549" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/JJYYY-JJY/CSLibPremiseBench" target="_blank" rel="noopener" title="JJYYY-JJY/CSLibPremiseBench">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces CSLibPremiseBench, a benchmark for premise retrieval over Lean 4 CSLib theorem and lemma declarations.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">CSLib is an emerging Lean 4 library for computer-science formalization, but its premise-retrieval behavior is not well represented by broad mathematical theorem-proving benchmarks. We introduce CSLibPremiseBench, a reproducible CSLib-specific benchmark and empirical study for source-visible premise retrieval over Lean 4 theorem and lemma declarations. The benchmark pins CSLib v4.29.0 at commit 0d37cc7fcc985cfc53b155e7eef2453f846c6da2, builds with Lean 4.29.0, and evaluates a strict import/source-order task set with 801 proxy-labelable tasks and 1875 CSLib candidate declarations. The labels are source-visible CSLib proof-reference proxies, not elaborated Lean dependency traces. We audit label robustness using stricter source-visible matching and a 300-task Lean environment expression probe, then compare BM25, symbol/name overlap, namespace/module and import-graph heuristics, PageRank-style module priors, fixed hybrids, and CSG-Rerank, a structure-guided graph-lexical reranker. CSG-Rerank gives a modest early-rank MRR gain over lexical BM25 under the strict policy, but does not reliably outperform BM25+symbol and does not improve Recall@10. A context-packet audit similarly finds stronger module/family concentration without reliable top-k proxy-gold coverage or token-utility gains. We position CSLibPremiseBench as a benchmark and audit paper: repository structure and candidate-policy design materially shape CSLib premise retrieval, proxy labels require explicit caveats, and proof-generation or proof-repair performance is not claimed.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Premise retrieval for Lean 4 theorem proving is benchmarked mainly on broad mathematical libraries, leaving the retrieval behavior within a computer-science library like CSLib poorly understood. Repository structure, candidate accessibility, and label robustness all shape results but are not measured by existing benchmarks.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">CSLibPremiseBench is a reproducible benchmark pinned to CSLib v4.29.0 (Lean 4.29.0), with 801 strict-policy proxy-labelable tasks and 1875 CSLib candidate declarations. Labels are source-visible proof-reference proxies rather than elaborated Lean dependency traces. The paper audits label robustness using stricter source-visible matching and a 300-task Lean environment expression probe. It compares BM25, symbol/name overlap, namespace/module heuristics, import-graph heuristics, PageRank-style module priors, fixed hybrids, and CSG-Rerank (a structure-guided graph-lexical reranker).</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">BM25 remains a strong baseline (MRR 0.506, Recall@10 0.524). BM25+symbol gives a robust improvement (+0.014 MRR). CSG-Rerank gives a modest MRR gain over BM25 (+0.018) but does not reliably outperform BM25+symbol and does not improve Recall@10. The Lean expression probe finds only 48.2% of proxy links in value-level constants, confirming that source-visible proxy labels are not complete dependency traces.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>R@5</th><th>R@10</th><th>MRR</th></tr></thead><tbody><tr><td>BM25</td><td>0.404</td><td>0.524</td><td>0.506</td></tr><tr><td>BM25+symbol</td><td>0.415</td><td>0.528</td><td>0.520</td></tr><tr><td>CSG-Rerank</td><td>0.404</td><td>0.522</td><td>0.524</td></tr></tbody></table><div class="tbl-cap">Retrieval method comparison on CSLibPremiseBench (strict policy)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs · Papers With Lean</title>
+<meta name="description" content="Informal mathematics has been central to modern large language model (LLM) reasoning, offering flexibility and efficient construction of arguments. However, purely informal reasoning is prone to logical gaps and subtle errors that are difficult to detect and correct. In…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs">
+<meta property="og:description" content="Informal mathematics has been central to modern large language model (LLM) reasoning, offering flexibility and efficient construction of arguments. However, purely informal reasoning is prone to logical gaps and subtle errors that are difficult to detect and correct. In…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2511.18760.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2511.18760.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2511.18760v2" target="_blank" rel="noopener"><img src="../thumbs/2511.18760.jpg" alt="First page of HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs</h1>
+        <p class="authors">Azim Ospanov, Zijin Feng, Jiacheng Sun, Haoli Bai, Xin Shen, Farzan Farnia</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 24, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2511.18760v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2511.18760" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/aziksh-ospanov/HERMES" target="_blank" rel="noopener" title="aziksh-ospanov/HERMES">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A tool-assisted agent interleaves informal LLM reasoning with proof steps verified by a Lean 4 REPL backend.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Informal mathematics has been central to modern large language model (LLM) reasoning, offering flexibility and efficient construction of arguments. However, purely informal reasoning is prone to logical gaps and subtle errors that are difficult to detect and correct. In contrast, formal theorem proving provides rigorous, verifiable mathematical reasoning, where each inference step is checked by a trusted compiler, but lacks the exploratory freedom of informal problem-solving. This mismatch leaves current LLM-based math agents without a principled way to combine the strengths of both paradigms. In this work, we introduce Hermes, the first tool-assisted agent that explicitly interleaves informal reasoning with formally verified proofs in Lean. The framework performs intermediate formal checking to prevent reasoning drift and a memory module for proof continuity across multi-step reasoning chains, enabling both exploration and verification. We evaluate Hermes on four challenging mathematical reasoning benchmarks using LLMs of varying parameter scales, from small models to state-of-the-art systems. Across all settings, Hermes reliably improves the reasoning accuracy of base models while substantially reducing reasoning token usage and computational cost compared to reward-based approaches. On difficult datasets such as AIME and HARDMath2, Hermes@1 achieves up to a 40% accuracy improvement while using 80% fewer total inference FLOPs. When scaled at test time, Hermes@5 boosts accuracy further by 20%. The implementation and codebase are publicly available at <a href="https://github.com/aziksh-ospanov/HERMES" target="_blank" rel="noopener">https://github.com/aziksh-ospanov/HERMES</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Informal mathematical reasoning in LLMs is flexible but prone to logical gaps and subtle errors. Formal theorem proving provides rigorous verification but lacks the exploratory freedom of informal problem-solving. No principled framework existed to combine both paradigms for reliable step-by-step mathematical reasoning.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">HERMES is a Lean 4-driven multi-modular reasoning agent integrating LLM reasoning with formal verification. It comprises four modules: an LLM that generates reasoning steps, a formalizer that translates them into Lean code, a prover that symbolically verifies correctness, and a feedback module that returns error signals for self-correction. A memory buffer stores previously verified steps as context for future attempts.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2511.18760/x1.png" alt=""><figcaption>Figure 1: Overview of Hermes framework. Hermes is a Lean4-driven, multi-modular reasoning agent integrating LLM reasoning with formal verification for reliable mathematical problem solving. It comprises four modules: an LLM that generates reasoning steps, a formalizer that formalizes these steps into Lean code, a prover that symbolically verifies their correctness, and a feedback module that retur</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With DeepSeek-V3.2 as the base reasoner, HERMES achieves 97.4% on MATH500 and 66.7% on AIME&#x27;25 (up from 50.0% baseline). The memory buffer and prover module together contribute the largest gains. HERMES operates between ORM and PRM cost bounds, providing verification without requiring per-step human labels.</p><div class="sum-table"><table><thead><tr><th>Memory</th><th>Prover</th><th>MATH (%)</th><th>AIME (%)</th></tr></thead><tbody><tr><td>No</td><td>No</td><td>93.0</td><td>50.0</td></tr><tr><td>No</td><td>Yes</td><td>97.0</td><td>60.0</td></tr><tr><td>Yes</td><td>No</td><td>93.0</td><td>50.0</td></tr><tr><td>Yes</td><td>Yes</td><td>97.4</td><td>66.7</td></tr></tbody></table><div class="tbl-cap">HERMES ablation on DeepSeek-V3.2</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

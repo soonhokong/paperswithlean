@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning · Papers With Lean</title>
+<meta name="description" content="Formal verification guarantees proof validity but not formalization faithfulness. For natural-language logical reasoning, where models construct axiom systems from scratch without library constraints, this gap between valid proofs and faithful translations is especially acute.…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning">
+<meta property="og:description" content="Formal verification guarantees proof validity but not formalization faithfulness. For natural-language logical reasoning, where models construct axiom systems from scratch without library constraints, this gap between valid proofs and faithful translations is especially acute.…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2604.19459.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2604.19459.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2604.19459v1" target="_blank" rel="noopener"><img src="../thumbs/2604.19459.jpg" alt="First page of Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning</h1>
+        <p class="authors">Kyuhee Kim, Auguste Poiroux, Antoine Bosselut</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Apr 21, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2604.19459v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2604.19459" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/koreankiwi99/formalization-gaming" target="_blank" rel="noopener" title="koreankiwi99/formalization-gaming">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Evaluates whether frontier LLMs &#x27;game&#x27; formalization when generating Lean 4 proofs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Formal verification guarantees proof validity but not formalization faithfulness. For natural-language logical reasoning, where models construct axiom systems from scratch without library constraints, this gap between valid proofs and faithful translations is especially acute. We investigate whether frontier models exploit this gap when generating Lean 4 proofs, a behavior we term formalization gaming. We evaluate GPT-5 and DeepSeek-R1 on 303 first-order logic problems (203 from FOLIO, 100 from Multi-LogiEval), comparing unified generation against a two-stage pipeline that separates formalization from proving. Despite compilation rates of 87-99%, we find no evidence of systematic gaming in unified generation: models prefer reporting failure over forcing proofs, even under prompting designed to encourage it. However, unfaithfulness that evades our detection signals may still occur. The two-stage pipeline reveals two distinct modes of unfaithfulness: GPT-5 fabricates axioms during proof generation, a reactive fallback detectable via cross-stage comparison, while DeepSeek-R1 mistranslates premises during formalization, producing internally consistent outputs that evade detection entirely. These findings show that high compilation rates or accuracies should not be equated with faithful reasoning. Code and data are available at <a href="https://github.com/koreankiwi99/formalization-gaming" target="_blank" rel="noopener">https://github.com/koreankiwi99/formalization-gaming</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Formal verification guarantees proof validity but not formalization faithfulness. When LLMs generate Lean 4 proofs for natural-language logical reasoning, they construct axiom systems from scratch without library constraints, creating potential for &#x27;formalization gaming&#x27; where models exploit the gap between valid proofs and faithful translations.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors evaluate GPT-5 and DeepSeek-R1 on 303 first-order logic problems (203 from FOLIO, 100 from Multi-LogiEval) across four experimental conditions: baseline (unified formalization+proving), Two-Stage (separate formalization and proving), Misaligned (formalization direction contradicts ground truth), and Oracle (ground truth provided as hint). They measure compilation rate, accuracy, and definite precision to detect systematic exploitation.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.19459/sankey_v15_FOLIO_gpt-5.png" alt=""><figcaption>(a) FOLIO / GPT-5</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">No systematic formalization gaming is found in unified generation: both models maintain high definite precision (94-98%), and most prediction errors reflect faithful formalization rather than unfaithful exploitation. Baseline accuracy reaches 85-87% on FOLIO and 70-72% on Multi-LogiEval. In the Misaligned condition, models flow to Uncertain rather than proving incorrectly when given contradictory directions.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

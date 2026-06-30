@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Canonical Byte-String Encoding for Finite-Ring Cryptosystems · Papers With Lean</title>
+<meta name="description" content="Ring-mapping protocols need a canonical byte-to-residue layer before any algebraic encryption step can begin. This paper isolates that layer and presents the base-m length codec, a canonical map from byte strings of length less than 2^64 to lists of residues modulo m. The…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Canonical Byte-String Encoding for Finite-Ring Cryptosystems">
+<meta property="og:description" content="Ring-mapping protocols need a canonical byte-to-residue layer before any algebraic encryption step can begin. This paper isolates that layer and presents the base-m length codec, a canonical map from byte strings of length less than 2^64 to lists of residues modulo m. The…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.23364.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.23364.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.23364v2" target="_blank" rel="noopener"><img src="../thumbs/2603.23364.jpg" alt="First page of Canonical Byte-String Encoding for Finite-Ring Cryptosystems"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Canonical Byte-String Encoding for Finite-Ring Cryptosystems</h1>
+        <p class="authors">Kyrylo Riabov, Serhii Kryvyi</p>
+        <div class="row">
+          <span class="badge">cs.CR</span>
+          <span class="date">Mar 24, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-amber" href="../#tag=cryptography">cryptography</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.23364v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.23364" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/KyrylR/phd-symmetric-cryptography" target="_blank" rel="noopener" title="KyrylR/phd-symmetric-cryptography">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Provides a Lean 4 formalization of an rANS-based byte-to-residue codec with machine-checked roundtrip proofs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Ring-mapping protocols need a canonical byte-to-residue layer before any algebraic encryption step can begin. This paper isolates that layer and presents the base-m length codec, a canonical map from byte strings of length less than 2^64 to lists of residues modulo m. The encoder builds on and adapts an rANS-based system proposed by Duda. Decoding is exact for all moduli satisfying the paper&#x27;s parameter bounds. Because the encoding carries the byte length in its fixed-width header, decoding is also tolerant to appended valid suffix digits. The paper is accompanied by a Rust implementation of the described protocol, a Lean 4 formalization of the abstract codec with machine-checked proofs, and performance benchmarks. The Lean 4 formalization establishes fixed-width prefix inversion and payload-state bounds below 2^64, stream-level roundtrip correctness, and that every emitted symbol is a valid residue modulo m. We conclude with a complexity analysis and a discussion of practical considerations arising in real-world use of the codec.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Ring-mapping cryptographic protocols need a canonical byte-to-residue layer before any algebraic encryption step can begin. Existing approaches use hand-built alphabets and small fixed symbol tables, leaving open the general problem of encoding arbitrary binary data as finite-ring elements.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The paper presents the base-m length codec, a canonical map from byte strings of length less than 2^64 to lists of residues modulo m, adapting an rANS-based system. Decoding is exact for all moduli satisfying stated parameter bounds, and tolerant to appended suffix digits because the encoding carries the byte length in a fixed-width header. A Lean 4 formalization verifies the core round-trip correctness properties, while a Rust implementation provides the practical codec.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The codec achieves exact round-trip encoding and decoding for all moduli m &gt;= 2 satisfying the parameter bound 256 &lt;= decoderLowerBound(w, m). The Lean 4 proofs cover the core correctness theorems. A Rust implementation demonstrates practical performance.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

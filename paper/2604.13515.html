@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SFT-GRPO Data Overlap as a Post-Training Hyperparameter for Autoformalization · Papers With Lean</title>
+<meta name="description" content="Supervised fine-tuning (SFT) followed by Group Relative Policy Optimization (GRPO) is a common post-training recipe. We conduct a controlled ablation over SFT-GRPO data overlap, evaluating Qwen3-8B (thinking disabled) post-trained for Lean 4 autoformalization under six…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SFT-GRPO Data Overlap as a Post-Training Hyperparameter for Autoformalization">
+<meta property="og:description" content="Supervised fine-tuning (SFT) followed by Group Relative Policy Optimization (GRPO) is a common post-training recipe. We conduct a controlled ablation over SFT-GRPO data overlap, evaluating Qwen3-8B (thinking disabled) post-trained for Lean 4 autoformalization under six…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2604.13515.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2604.13515.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2604.13515v1" target="_blank" rel="noopener"><img src="../thumbs/2604.13515.jpg" alt="First page of SFT-GRPO Data Overlap as a Post-Training Hyperparameter for Autoformalization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">SFT-GRPO Data Overlap as a Post-Training Hyperparameter for Autoformalization</h1>
+        <p class="authors">Xiaole Su, Kasey Zhang, Andy Lyu</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Apr 15, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2604.13515v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2604.13515" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Ablates SFT-GRPO data overlap for a Lean 4 autoformalization model.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Supervised fine-tuning (SFT) followed by Group Relative Policy Optimization (GRPO) is a common post-training recipe. We conduct a controlled ablation over SFT-GRPO data overlap, evaluating Qwen3-8B (thinking disabled) post-trained for Lean 4 autoformalization under six conditions that differ solely in training recipe: a base model, SFT-only, GRPO-only, and three SFT+GRPO configurations where 0 percent, 30 percent, or 100 percent of the GRPO prompts coincide with the SFT corpus. Keeping SFT and GRPO data disjoint consistently outperforms full overlap at zero additional compute cost. Evaluating on Gaokao-Formal and PutnamBench under both compile pass at k and semantic pass at k assessed by an LLM judge, we find that lower overlap is monotonically associated with higher compilation and semantic accuracy. At 0 percent overlap, GRPO yields a 10.4 percentage point semantic gain over SFT alone on Gaokao, while at 100 percent overlap both metrics remain flat, rendering the GRPO stage effectively redundant. We further show that dual-metric evaluation reveals compile semantic gaps exceeding 30 percentage points for the highest compiling models, a disparity invisible under compile-only benchmarking. To our knowledge, this is the first controlled investigation of SFT-GRPO data overlap as a post-training hyperparameter, demonstrating how model behavior varies based on the degree of data sharing between training stages.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Supervised fine-tuning (SFT) followed by Group Relative Policy Optimization (GRPO) is a standard post-training recipe for LLMs, but the effect of data overlap between SFT and GRPO stages on downstream performance has not been systematically studied.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors conduct a controlled ablation over SFT-GRPO data overlap for Lean 4 autoformalization, evaluating Qwen3-8B under six conditions differing solely in training recipe: base model, SFT-only, GRPO-only, and three SFT+GRPO configurations where 0%, 30%, or 100% of GRPO prompts coincide with the SFT corpus. Training data comprises 20,000 samples from NuminaMath, Leanabell, HERALD, and Lean Workbook. Evaluation uses both compile pass@k and semantic pass@k (assessed by an LLM judge) on Gaokao-Formal and PutnamBench.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.13515/x1.png" alt=""><figcaption>Figure 6 : Compile and semantic pass@ k as a function of SFT-GRPO data overlap. Top: pass@1. Bottom: pass@8. Dashed lines indicate SFT baselines.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">At 0% overlap, GRPO yields a 10.4 percentage point semantic gain over SFT alone on Gaokao. At 100% overlap both metrics remain flat, making the GRPO stage redundant. Lower overlap is monotonically associated with higher compilation and semantic accuracy. The best configuration (SFT+GRPO-0%) achieves 77.6% compile@1 and 51.4% semantic@1 on Gaokao-Formal. Dual-metric evaluation reveals compile-semantic gaps exceeding 30 percentage points, invisible under compile-only benchmarking.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Gaokao C@1</th><th>Gaokao S@1</th><th>PutnamBench C@1</th><th>PutnamBench S@1</th></tr></thead><tbody><tr><td>Base</td><td>19.9</td><td>10.2</td><td>11.3</td><td>3.3</td></tr><tr><td>SFT</td><td>61.8</td><td>41.0</td><td>28.5</td><td>14.3</td></tr><tr><td>GRPO-only</td><td>50.9</td><td>28.1</td><td>36.1</td><td>11.9</td></tr><tr><td>SFT+GRPO-0%</td><td>77.6</td><td>51.4</td><td>47.9</td><td>23.6</td></tr><tr><td>SFT+GRPO-30%</td><td>76.4</td><td>48.6</td><td>46.4</td><td>22.9</td></tr><tr><td>SFT+GRPO-100%</td><td>62.9</td><td>40.6</td><td>29.1</td><td>14.7</td></tr></tbody></table><div class="tbl-cap">Performance across training configurations</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

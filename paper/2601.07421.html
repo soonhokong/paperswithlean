@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resolution of Erdős Problem #728: a writeup of Aristotle&#x27;s Lean proof · Papers With Lean</title>
+<meta name="description" content="We provide a writeup of a resolution of Erdős Problem #728; this is the first Erdős problem (a problem proposed by Paul Erdős which has been collected in the Erdős Problems website) regarded as fully resolved autonomously by an AI system. The system in question is a combination…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Resolution of Erdős Problem #728: a writeup of Aristotle&#x27;s Lean proof">
+<meta property="og:description" content="We provide a writeup of a resolution of Erdős Problem #728; this is the first Erdős problem (a problem proposed by Paul Erdős which has been collected in the Erdős Problems website) regarded as fully resolved autonomously by an AI system. The system in question is a combination…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2601.07421.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2601.07421.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2601.07421v5" target="_blank" rel="noopener"><img src="../thumbs/2601.07421.jpg" alt="First page of Resolution of Erdős Problem #728: a writeup of Aristotle&#x27;s Lean proof"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Resolution of Erdős Problem #728: a writeup of Aristotle&#x27;s Lean proof</h1>
+        <p class="authors">Nat Sothanaphan</p>
+        <div class="row">
+          <span class="badge">math.NT</span>
+          <span class="date">Jan 12, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2601.07421v5" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2601.07421" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/plby/lean-proofs" target="_blank" rel="noopener" title="plby/lean-proofs">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Writes up, in informal mathematics, a Lean proof produced autonomously by an AI system that resolved Erdős Problem #728.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We provide a writeup of a resolution of Erdős Problem #728; this is the first Erdős problem (a problem proposed by Paul Erdős which has been collected in the Erdős Problems website) regarded as fully resolved autonomously by an AI system. The system in question is a combination of GPT-5.2 Pro by OpenAI and Aristotle by Harmonic, operated by Kevin Barreto. The final result of the system is a formal proof written in Lean, which we translate to informal mathematics in the present writeup for wider accessibility. The proved result is as follows. We show a logarithmic-gap phenomenon regarding factorial divisibility: For any constants $0&lt;C_1&lt;C_2$ and $0 &lt; \varepsilon &lt; 1/2$ there exist infinitely many triples $(a,b,n)\in\mathbb N^3$ with $\varepsilon n \le a,b \le (1-\varepsilon)n$ such that \[ a!\,b!\mid n!\,(a+b-n)!\qquad\text{and}\qquad C_1\log n &lt; a+b-n &lt; C_2\log n. \] The argument reduces this to a binomial divisibility $\binom{m+k}{k}\mid\binom{2m}{m}$ and studies it prime-by-prime. By Kummer&#x27;s theorem, $ν_p\binom{2m}{m}$ translates into a carry count for doubling $m$ in base $p$. We then employ a counting argument to find, in each scale $[M,2M]$, an integer $m$ whose base-$p$ expansions simultaneously force many carries when doubling $m$, for every prime $p\le 2k$, while avoiding the rare event that one of $m+1,\dots,m+k$ is divisible by an unusually high power of $p$. These &quot;carry-rich but spike-free&quot; choices of $m$ force the needed $p$-adic inequalities and the divisibility. The overall strategy is similar to results regarding divisors of $\binom{2n}{n}$ studied earlier by Erdős and by Pomerance.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Erdos Problem #728 asks how large the gap k = a+b-n can be, assuming the factorial divisibility a! b! | n! k!. This is the first Erdos problem regarded as fully resolved autonomously by an AI system.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The resolution was produced by a combination of GPT-5.2 Pro (OpenAI) and Aristotle (Harmonic), operated by Kevin Barreto. The proof reduces the problem to a p-adic valuation inequality via Kummer&#x27;s carry interpretation of binomial coefficient valuations, then performs a prime-by-prime analysis splitting into large primes (p &gt; 2k, where the inequality is free) and small primes (p &lt;= 2k, handled via carry analysis and a sieve argument). The final result is a formal proof in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The proof establishes a logarithmic-gap phenomenon: for sufficiently large M and any constant c in an explicit interval (C_1, C_2), there exist integers a, b, n with a,b &lt;= n, a+b-n = floor(c log M), and a! b! | n! (a+b-n)!. The Lean formalization (Erdos728b.lean) provides a fully formal, machine-checked proof. This is the first Erdos problem resolved autonomously by AI.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

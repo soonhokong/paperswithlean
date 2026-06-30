@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>REAL-Prover: Retrieval Augmented Lean Prover for Mathematical Reasoning · Papers With Lean</title>
+<meta name="description" content="Nowadays, formal theorem provers have made monumental progress on high-school and competition-level mathematics, but few of them generalize to more advanced mathematics. In this paper, we present REAL-Prover, a new open-source stepwise theorem prover for Lean 4 to push this…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="REAL-Prover: Retrieval Augmented Lean Prover for Mathematical Reasoning">
+<meta property="og:description" content="Nowadays, formal theorem provers have made monumental progress on high-school and competition-level mathematics, but few of them generalize to more advanced mathematics. In this paper, we present REAL-Prover, a new open-source stepwise theorem prover for Lean 4 to push this…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2505.20613.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2505.20613.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2505.20613v3" target="_blank" rel="noopener"><img src="../thumbs/2505.20613.jpg" alt="First page of REAL-Prover: Retrieval Augmented Lean Prover for Mathematical Reasoning"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">REAL-Prover: Retrieval Augmented Lean Prover for Mathematical Reasoning</h1>
+        <p class="authors">Ziju Shen, Naohao Huang, Fanyi Yang, Yutong Wang, Guoxiong Gao, Tianyi Xu, Jiedong Jiang, Wanyi He, Pu Yang, Mengzhou Sun, Haocheng Ju, Peihao Wu, Bryan Dai, Bin Dong</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">May 27, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2505.20613v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2505.20613" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/frenzymath/REAL-Prover" target="_blank" rel="noopener" title="frenzymath/REAL-Prover">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A fine-tuned stepwise LLM theorem prover for Lean 4 with a Mathlib retrieval system for college-level mathematics.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Nowadays, formal theorem provers have made monumental progress on high-school and competition-level mathematics, but few of them generalize to more advanced mathematics. In this paper, we present REAL-Prover, a new open-source stepwise theorem prover for Lean 4 to push this boundary. This prover, based on our fine-tuned large language model (REAL-Prover-v1) and integrated with a retrieval system (Leansearch-PS), notably boosts performance on solving college-level mathematics problems. To train REAL-Prover-v1, we developed HERALD-AF, a data extraction pipeline that converts natural language math problems into formal statements, and a new open-source Lean 4 interactive environment (Jixia-interactive) to facilitate synthesis data collection. In our experiments, our prover using only supervised fine-tune achieves competitive results with a 23.7% success rate (Pass@64) on the ProofNet dataset-comparable to state-of-the-art (SOTA) models. To further evaluate our approach, we introduce FATE-M, a new benchmark focused on algebraic problems, where our prover achieves a SOTA success rate of 56.7% (Pass@64).</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Formal theorem provers have made progress on high-school and competition-level mathematics, but few generalize to college-level and more advanced problems. Existing systems lack effective retrieval integration for leveraging large mathematical libraries during proof search.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors present REAL-Prover, a stepwise theorem prover for Lean 4 integrating a fine-tuned LLM (based on Qwen2.5-Math-7B) with a retrieval system (LeanSearch-PS). Training data of 210,420 state-tactic pairs is constructed via the HERALD-AF pipeline, which converts natural language mathematics into formal Lean statements, combined with expert iteration. The prover uses retrieval-augmented prompts containing natural language descriptions, proof context, current state, and retrieved premises.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">REAL-Prover achieves 23.7% on ProofNet with a 64x64 sampling budget using only supervised fine-tuning, surpassing DeepSeek-Prover-V1.5-RL+RMaxTS under a 1x3200 budget. It outperforms Goedel-Prover (15.6%) and DeepSeek-Prover-V1.5-SFT (15.9%) on ProofNet.</p><div class="sum-table"><table><thead><tr><th>Prove System</th><th>Sampling Budget</th><th>ProofNet Test</th></tr></thead><tbody><tr><td>Goedel Prover</td><td>32</td><td>15.6%</td></tr><tr><td>DeepSeek-Prover-V1.5-SFT</td><td>128</td><td>15.9%</td></tr><tr><td>DeepSeek-Prover-V1.5-RL</td><td>128</td><td>18.2%</td></tr><tr><td>DeepSeek-Prover-V1.5-RL + RMaxTS</td><td>1x3200</td><td>21.6%</td></tr><tr><td>REAL-Prover</td><td>64x64</td><td>23.7%</td></tr></tbody></table><div class="tbl-cap">ProofNet results</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

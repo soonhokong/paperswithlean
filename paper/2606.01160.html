@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expected Value Alignment for Generative Reward Modeling in Formal Mathematics Verification · Papers With Lean</title>
+<meta name="description" content="Large Language Models (LLMs) are increasingly used with formal interactive theorem provers such as Lean 4. Scaling these systems with reinforcement learning or search methods requires process reward models (PRMs) that can evaluate intermediate reasoning steps. Existing…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Expected Value Alignment for Generative Reward Modeling in Formal Mathematics Verification">
+<meta property="og:description" content="Large Language Models (LLMs) are increasingly used with formal interactive theorem provers such as Lean 4. Scaling these systems with reinforcement learning or search methods requires process reward models (PRMs) that can evaluate intermediate reasoning steps. Existing…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.01160.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.01160.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.01160v1" target="_blank" rel="noopener"><img src="../thumbs/2606.01160.jpg" alt="First page of Expected Value Alignment for Generative Reward Modeling in Formal Mathematics Verification"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Expected Value Alignment for Generative Reward Modeling in Formal Mathematics Verification</h1>
+        <p class="authors">Shihao Ji, Haotao Tan, Zihui Song, Mingyu Li</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">May 31, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.01160v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.01160" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces EVA reward modeling and the Leibniz reward model for LLM-based Lean 4 formal verification.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large Language Models (LLMs) are increasingly used with formal interactive theorem provers such as Lean 4. Scaling these systems with reinforcement learning or search methods requires process reward models (PRMs) that can evaluate intermediate reasoning steps. Existing reward-model designs expose a practical trade-off. Value-head models provide continuous scores but modify the generative model interface, while generative reward models preserve textual rationales but are poorly matched to continuous floating-point regression because numeric values are split across tokens. We introduce Expected Value Alignment (EVA), a reward-modeling procedure that keeps the surface output discrete while extracting continuous scores from the model&#x27;s token distribution. The model emits integer scores in a structured JSON format, and EVA computes a continuous score as the expectation over the logits of the corresponding anchor tokens. Training combines the causal language modeling objective with an auxiliary mean squared error loss on these expected values. We instantiate EVA in \textit{Leibniz}, a reward model for Lean 4 formal verification, and evaluate it against zero-shot and reward-modeling baselines. The evaluation demonstrates that continuous logit-based scoring significantly reduces discretization artifacts while retaining the interpretability of generative critiques.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Process reward models for Lean 4 theorem proving face a trade-off: value-head models produce continuous scores but lose interpretability, while generative reward models preserve textual critiques but suffer from discretization artifacts when emitting floating-point scores as tokens.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors introduce Expected Value Alignment (EVA), a reward-modeling procedure that keeps surface output discrete (integer scores in structured JSON) while extracting continuous scores from the model&#x27;s token distribution. EVA computes a continuous score as the expectation over logits of anchor tokens (integers 1-5), and training combines a causal language modeling objective with an auxiliary MSE loss on these expected values. The method is instantiated in Leibniz, a reward model for Lean 4 formal verification that evaluates proof steps along three dimensions: Logic, Alignment, and Clarity.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Leibniz-1.5B achieves a Pearson correlation of 0.824 and ranking accuracy of 84.6% on a Lean 4 verification hold-out set, outperforming both value-head reward models (r=0.782, 81.2%) and standard SFT generative reward models (r=0.725, 78.5%), while retaining the generative critique interface.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Logic MSE</th><th>Align MSE</th><th>Pearson r</th><th>Ranking Acc.</th></tr></thead><tbody><tr><td>Zero-Shot GPT-4o</td><td>0.842</td><td>1.154</td><td>0.612</td><td>72.4%</td></tr><tr><td>Zero-Shot Qwen2.5-1.5B</td><td>1.250</td><td>1.680</td><td>0.450</td><td>58.1%</td></tr><tr><td>Standard SFT Generative RM</td><td>0.485</td><td>0.521</td><td>0.725</td><td>78.5%</td></tr><tr><td>Value-Head RM</td><td>0.312</td><td>0.345</td><td>0.782</td><td>81.2%</td></tr><tr><td>Leibniz-1.5B (Ours)</td><td>0.334</td><td>0.368</td><td>0.824</td><td>84.6%</td></tr></tbody></table><div class="tbl-cap">Performance comparison on the Lean 4 mathematical verification hold-out set</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

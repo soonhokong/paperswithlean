@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Awakening the Sleeping Agent: Lean-Specific Agentic Data Reactivates General Tool Use in Goedel Prover · Papers With Lean</title>
+<meta name="description" content="Heavy supervised fine-tuning on a target domain can strongly suppress capabilities that were present in the base model. We study this phenomenon in formal mathematics using Goedel-Prover-V2, an open-source model heavily trained on 1.8 million formal-math examples. After domain…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Awakening the Sleeping Agent: Lean-Specific Agentic Data Reactivates General Tool Use in Goedel Prover">
+<meta property="og:description" content="Heavy supervised fine-tuning on a target domain can strongly suppress capabilities that were present in the base model. We study this phenomenon in formal mathematics using Goedel-Prover-V2, an open-source model heavily trained on 1.8 million formal-math examples. After domain…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2604.08388.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2604.08388.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2604.08388v1" target="_blank" rel="noopener"><img src="../thumbs/2604.08388.jpg" alt="First page of Awakening the Sleeping Agent: Lean-Specific Agentic Data Reactivates General Tool Use in Goedel Prover"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Awakening the Sleeping Agent: Lean-Specific Agentic Data Reactivates General Tool Use in Goedel Prover</h1>
+        <p class="authors">Jui-Hui Chung, Hongzhou Lin, Lai Jiang, Shange Tang, Chi Jin</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Apr 9, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2604.08388v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2604.08388" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Shows 100 Lean-specific agentic traces restore tool use in the Goedel-Prover model.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Heavy supervised fine-tuning on a target domain can strongly suppress capabilities that were present in the base model. We study this phenomenon in formal mathematics using Goedel-Prover-V2, an open-source model heavily trained on 1.8 million formal-math examples. After domain specialization, the model almost completely loses its ability to produce valid tool calls, even when explicitly instructed to use tools, dropping from 89.4% function-calling accuracy in the base model to nearly 0%. We ask whether this agentic collapse is permanent or instead reversible. To answer this question, we fine-tune the specialized model on a small amount of Lean-specific tool-use data. Remarkably, as few as 100 agentic traces are sufficient to restore strong tool-calling behavior. Importantly, this recovery is not the result of reward hacking or benchmark-specific optimization: the recovery data is entirely drawn from the Lean setting, where the model uses natural-language queries to search the Mathlib library for relevant theorems and lemmas, yet the regained capability transfers well beyond that domain. In particular, these same 100 Lean-specific traces improve performance on the Berkeley Function Calling Leaderboard from near zero to 83.8%, approaching the base model&#x27;s 89.4% despite the mismatch in task distribution and protocol. The recovered capability is also practically useful in-domain. On ProofNet, pass@32 improves from 21.51% to 25.81%. Together, these results show that heavy domain supervised fine-tuning can suppress general tool-use ability without permanently erasing it, and that a small amount of domain-specific agentic data can awaken dormant tool-use capabilities.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Heavy supervised fine-tuning on formal mathematics (1.8M examples) causes Goedel-Prover-V2 to completely lose its tool-calling capability, dropping from 89.4% function-calling accuracy to nearly 0%. It was unknown whether this collapse is permanent or reversible.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors fine-tune the domain-specialized model on small amounts of Lean-specific agentic data (tool-use traces involving Mathlib search calls). A cross-model distillation pipeline uses Qwen3-32B to produce agentic prefixes, then Goedel-Prover-V2 regenerates the final proof code. Training sets range from 100 to 18K traces.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.08388/distillation_pipeline.png" alt=""><figcaption>Figure 2: Cross-model trace distillation pipeline. (A) Qwen3-32B runs the full agentic loop (tool calls + Lean code) but produces low-quality code. (B) We keep Qwen3-32B ’s agentic prefix and have Goedel-Prover-V2-32B-SFT regenerate the final proof, then filter for compilation success and retrieval grounding. (C) Goedel-Prover-V2-32B-SFT alone generates strong Lean code but skips tool use entirely</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">As few as 100 Lean-specific agentic traces restore tool-calling from 0% to 83.8% on the Berkeley Function Calling Leaderboard (base model: 89.4%). On ProofNet, pass@32 improves from 21.51% to 25.81%. The recovery generalizes beyond Lean despite training only on Lean-specific traces.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.08388/fig_proofnet_slerp_pass8.png" alt=""><figcaption>(b) ProofNet (186 problems, pass@8).</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

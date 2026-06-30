@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faults in Our Formal Benchmarking: Dataset Defects and Evaluation Failures in Lean Theorem Proving · Papers With Lean</title>
+<meta name="description" content="Benchmarks for LLM-assisted theorem proving in Lean are often treated as intrinsically reliable because every solved instance comes with a machine-checked proof. However, the kernel only checks that a proof establishes a \emph{formal} statement; it does not verify that the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Faults in Our Formal Benchmarking: Dataset Defects and Evaluation Failures in Lean Theorem Proving">
+<meta property="og:description" content="Benchmarks for LLM-assisted theorem proving in Lean are often treated as intrinsically reliable because every solved instance comes with a machine-checked proof. However, the kernel only checks that a proof establishes a \emph{formal} statement; it does not verify that the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.29493.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.29493.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.29493v1" target="_blank" rel="noopener"><img src="../thumbs/2606.29493.jpg" alt="First page of Faults in Our Formal Benchmarking: Dataset Defects and Evaluation Failures in Lean Theorem Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Faults in Our Formal Benchmarking: Dataset Defects and Evaluation Failures in Lean Theorem Proving</h1>
+        <p class="authors">Pawan Sasanka Ammanamanchi, Siddharth Bhat, Stella Biderman</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jun 28, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.29493v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.29493" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Shashi456/atp-checkers" target="_blank" rel="noopener" title="Shashi456/atp-checkers">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Audits five Lean theorem-proving benchmarks with corpus-scale static checkers implemented as Lean 4 metaprograms.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Benchmarks for LLM-assisted theorem proving in Lean are often treated as intrinsically reliable because every solved instance comes with a machine-checked proof. However, the kernel only checks that a proof establishes a \emph{formal} statement; it does not verify that the statement faithfully encodes the intended informal problem, nor that evaluation harnesses are robust to trivial or adversarial solutions. We audit five widely used Lean theorem-proving benchmarks and their forks, using corpus-scale static checkers to surface 4,833 findings, including 398 mechanically certified issues such as counterexamples, vacuous theorems, and unsound axioms. We also document semantic defects such as missing hypotheses, problem simplification, incomplete or incorrect translations, and Lean-specific specification hazards. Beyond dataset construction, we survey evaluation-time failure modes and show, on corrected subsets, that defects can both inflate and deflate reported prover scores. We propose a fault taxonomy, a suite of automated checkers and recall-oriented semantic audit prompts, and release standards to guide the creation of formal math datasets and to make evaluation more reproducible and trustworthy. Our checkers, audit prompts, and corrected dataset snapshots are available at <a href="https://github.com/Shashi456/atp-checkers" target="_blank" rel="noopener">https://github.com/Shashi456/atp-checkers</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Lean theorem-proving benchmarks are treated as intrinsically reliable because solutions are machine-checked, but the kernel only verifies that a proof establishes the formal statement, not that the statement faithfully encodes the intended problem or that evaluation harnesses are robust.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors audit five widely used Lean benchmarks (miniF2F, ProofNet, FormalMath, CombiBench, ProverBench) and their forks using corpus-scale static checkers implemented as Lean 4 metaprograms. They also deploy LLM-based semantic auditors and develop a fault taxonomy separating fidelity issues, evaluation loopholes, and maintenance decay.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.29493/benchmark_stack3.png" alt=""><figcaption>Figure 1 : The formal benchmarking pipeline and where errors can enter. The kernel (trust boundary) certifies only that a proof artifact establishes the formal Lean statement. Three categories of issues arise: Fidelity Issues in the translation step, Evaluation Loopholes (robustness) in the proof-checking and reporting steps, and Maintenance Issues (validity + drift) spanning the entire pipeline. </figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The audit surfaced 4,833 findings across 10,318 problems, including 398 mechanically certified issues (counterexamples, vacuous theorems, unsound axioms). On corrected subsets, defects both inflate and deflate reported prover scores. The authors release checkers, audit prompts, and corrected dataset snapshots.</p><div class="sum-table"><table><thead><tr><th>Benchmark</th><th>Variant</th><th>Prob.</th><th>Find.</th><th>Proven</th><th>Div/0</th><th>Nat Sub</th><th>Int Div</th><th>Analytic</th><th>Axiom</th><th>CEx</th></tr></thead><tbody><tr><td>FormalMath</td><td>all</td><td>5,560</td><td>3,250</td><td>141</td><td>1,127</td><td>582</td><td>423</td><td>351</td><td>0</td><td>55</td></tr><tr><td>ProverBench</td><td>deepseek</td><td>325</td><td>370</td><td>208</td><td>81</td><td>7</td><td>6</td><td>19</td><td>199</td><td>5</td></tr><tr><td>ProofNet</td><td>original</td><td>371</td><td>82</td><td>5</td><td>13</td><td>8</td><td>3</td><td>8</td><td>0</td><td>5</td></tr><tr><td>miniF2F</td><td>v2c</td><td>488</td><td>193</td><td>8</td><td>45</td><td>28</td><td>20</td><td>31</td><td>0</td><td>3</td></tr><tr><td>CombiBench</td><td>hf</td><td>100</td><td>78</td><td>1</td><td>1</td><td>27</td><td>2</td><td>0</td><td>0</td><td>1</td></tr><tr><td>**Total**</td><td></td><td>**10,318**</td><td>**4,833**</td><td>**398**</td><td>**1,518**</td><td>**796**</td><td>**538**</td><td>**540**</td><td>**199**</td><td>**79**</td></tr></tbody></table><div class="tbl-cap">Automated checker findings across benchmarks</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

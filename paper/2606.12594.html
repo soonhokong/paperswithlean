@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pythagoras-Prover: Advancing Efficient Formal Proving via Augmented Lean Formalisation · Papers With Lean</title>
+<meta name="description" content="Modern Lean theorem provers achieve strong performance only with substantial training and inference compute, driven in part by scarce verified proof data and the long reasoning traces of formal proof search, making both supervised fine-tuning (SFT) and sampling expensive. We…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pythagoras-Prover: Advancing Efficient Formal Proving via Augmented Lean Formalisation">
+<meta property="og:description" content="Modern Lean theorem provers achieve strong performance only with substantial training and inference compute, driven in part by scarce verified proof data and the long reasoning traces of formal proof search, making both supervised fine-tuning (SFT) and sampling expensive. We…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.12594.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.12594.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.12594v1" target="_blank" rel="noopener"><img src="../thumbs/2606.12594.jpg" alt="First page of Pythagoras-Prover: Advancing Efficient Formal Proving via Augmented Lean Formalisation"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Pythagoras-Prover: Advancing Efficient Formal Proving via Augmented Lean Formalisation</h1>
+        <p class="authors">Joshua Ong Jun Leang, Zheng Zhao, Mihaela Cătălina Stoian, Qiyuan Xu, Haonan Li, Wenda Li, Shay B. Cohen, Eleonora Giunchiglia</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jun 10, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.12594v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.12594" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/project-numina/aimo-progress-prize" target="_blank" rel="noopener" title="project-numina/aimo-progress-prize">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Trains compute-efficient Lean 4 theorem provers and a Lean corpus augmentation method, evaluated on MiniF2F and PutnamBench.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Modern Lean theorem provers achieve strong performance only with substantial training and inference compute, driven in part by scarce verified proof data and the long reasoning traces of formal proof search, making both supervised fine-tuning (SFT) and sampling expensive. We introduce Pythagoras-Prover, a compute-efficient open-source family of Lean theorem provers built for practical compute budgets. The family spans two generation paradigms: autoregressive models at 4B and 32B parameters, and a first proof-of-concept diffusion-based prover (4B) that iteratively refines Lean proofs at inference time. For training efficiency, we build a Lean-verified corpus stratified into easy, medium, and hard problems for curriculum SFT, so models acquire proof skills progressively from shorter, simpler proofs to longer, harder ones. During SFT, a dynamic proof-reasoning filtering scheme preserves informative proof traces while keeping each instance within an 8k-token context budget. We also introduce Augmented Lean Formalisation (ALF), which expands scarce verified corpora into variants of formal statements, populated via self-distillation for extra training signal without formally verifying every mutated instance. By perturbing known problems while preserving their formal character, ALF reduces reliance on any statement&#x27;s surface form. Empirically, Pythagoras-Prover-4B surpasses DeepSeek-Prover-V2-671B at pass@32 on MiniF2F-Test (86.1% vs 82.4%) with ~167x fewer parameters, while Pythagoras-Prover-32B sets the open-source state of the art at 93.0% on MiniF2F-Test and solves 93 of 672 PutnamBench problems. We release MiniF2F-ALF, an ALF-mutated contamination-sensitive benchmark on which every evaluated model loses accuracy; here our 32B remains strongest and our 4B matches the prior state of the art, Goedel-Prover-V2-32B.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Lean theorem provers reach strong performance only with heavy training and inference compute, driven by scarce verified proof data and long proof-search traces, making supervised fine-tuning and sampling expensive.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Pythagoras-Prover is an open-source family of Lean provers: autoregressive 4B and 32B models plus a proof-of-concept 4B diffusion prover that iteratively refines Lean proofs. Training uses a Lean-verified corpus stratified into easy, medium, and hard tiers for curriculum SFT, with dynamic proof-reasoning filtering kept within an 8k-token budget. Augmented Lean Formalisation (ALF) expands the corpus by perturbing known problems into formal-statement variants populated via self-distillation.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.12594/x4.png" alt=""><figcaption>Figure 3: Overview of Pythagoras-Prover pipeline.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Pythagoras-Prover-4B reaches 86.1% pass@32 on MiniF2F-Test, surpassing DeepSeek-Prover-V2-671B (82.4%) with ~167x fewer parameters; the 32B sets the open-source state of the art at 93.0% and solves 93 of 672 PutnamBench problems.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.12594/x2.png" alt=""><figcaption>Figure 1: Performance comparison across proving tasks. The left and middle panels show results under a limited Pass@32 inference budget on MiniF2F-ALF and PutnamBench, respectively; for PutnamBench we additionally include Pythagoras-Prover at Pass@64, which incurs an inference cost comparable to Goedel-Prover-V2 with self-correction (see § 4 for detailed explanation). The right panel plots best-re</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Method</th><th>#Params</th><th>Pass@32</th><th>Pass@1024</th></tr></thead><tbody><tr><td>DeepSeek-Prover-V2-671B</td><td>671B</td><td>82.4</td><td>–</td></tr><tr><td>Goedel-Prover-V2-32B</td><td>32B</td><td>88.1</td><td>91.8</td></tr><tr><td>Pythagoras-Prover-4B</td><td>4B</td><td>86.1</td><td>88.1</td></tr></tbody></table><div class="tbl-cap">MiniF2F-Test accuracy (pass@32 / pass@1024) across provers.</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

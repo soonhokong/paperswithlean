@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Formally Verified Library of Mathematical Finance in Lean 4 · Papers With Lean</title>
+<meta name="description" content="We describe a library of mathematical finance built in the Lean 4 proof assistant, on top of Mathlib and the BrownianMotion package. It is broad: more than two hundred sorry-free theorems across eleven areas, from the measure-theoretic foundations of continuous-time stochastic…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Formally Verified Library of Mathematical Finance in Lean 4">
+<meta property="og:description" content="We describe a library of mathematical finance built in the Lean 4 proof assistant, on top of Mathlib and the BrownianMotion package. It is broad: more than two hundred sorry-free theorems across eleven areas, from the measure-theoretic foundations of continuous-time stochastic…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.01356.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.01356.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.01356v1" target="_blank" rel="noopener"><img src="../thumbs/2606.01356.jpg" alt="First page of A Formally Verified Library of Mathematical Finance in Lean 4"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Formally Verified Library of Mathematical Finance in Lean 4</h1>
+        <p class="authors">Raphael Coelho</p>
+        <div class="row">
+          <span class="badge">q-fin.MF</span>
+          <span class="date">May 31, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-lime" href="../#tag=economics">economics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.01356v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.01356" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/raphaelrrcoelho/formal-mathfin" target="_blank" rel="noopener" title="raphaelrrcoelho/formal-mathfin">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a sorry-free mathematical finance library in Lean 4 on Mathlib and BrownianMotion, covering stochastic calculus and pricing.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We describe a library of mathematical finance built in the Lean 4 proof assistant, on top of Mathlib and the BrownianMotion package. It is broad: more than two hundred sorry-free theorems across eleven areas, from the measure-theoretic foundations of continuous-time stochastic calculus through derivative pricing to applied risk, portfolio, and fixed-income theory, and, to our knowledge, the most comprehensive machine-checked development of mathematical finance to date. Breadth is the setting, not the point. Two things make it more than a catalogue. It reaches into the continuous theory far enough to construct the L2 Itô integral as a bounded linear isometry and to derive, rather than assume, the risk-neutral pricing measure. And it audits its own faithfulness: every result is classified by how its Lean statement relates to the mathematics it claims, and a build-enforced gate pins the axioms each proof actually uses, so a reader can see precisely what has been proved and what has only been proved under added hypotheses. We close with a candid finding: a formal base over classical financial mathematics yields certified unification of known results rather than new financial theory. The contribution is therefore methodological and infrastructural, reusable verified foundations for mathematical finance, together with the faithfulness audit.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Formalized mathematical finance in proof assistants is narrow and incomplete: prior work covers only isolated models (CRR in Isabelle, a single Ito-to-Black-Scholes derivation in Lean 4), and none offers a systematic way to state how faithful a formalization is to the mathematics it claims.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors build a broad Lean 4 library of mathematical finance on top of Mathlib and the BrownianMotion package, spanning eleven areas with over 200 sorry-free theorems. The library constructs the continuous L2 Ito integral as a bounded linear isometry, derives the risk-neutral pricing measure via a static Girsanov change of measure rather than assuming it, and proves the binomial-to-Black-Scholes scaling limit. A four-tier faithfulness audit classifies every theorem by how its Lean statement relates to the mathematical claim, backed by a build-enforced axiom gate that pins the exact axioms each proof uses.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The library contains 251 sorry-free theorems across eleven areas, with 204 classified as full formalizations and 28 as reduced-core (holding under added hypotheses). This is the most comprehensive machine-checked development of mathematical finance to date, covering derivative pricing, risk measurement, portfolio theory, and fixed income in a single coherent framework.</p><div class="sum-table"><table><thead><tr><th></th><th>this work</th><th>Nagy (2026)</th><th>Echenim-Peltier (2017)</th></tr></thead><tbody><tr><td>prover</td><td>Lean 4</td><td>Lean 4</td><td>Isabelle/HOL</td></tr><tr><td>scope</td><td>11 areas, 251 theorems</td><td>one derivation (Ito to BS)</td><td>one model (CRR) + completeness</td></tr><tr><td>continuous Ito integral</td><td>constructed</td><td>structurally verified</td><td>-</td></tr><tr><td>risk-neutral measure</td><td>derived (Girsanov/Esscher)</td><td>derived (two-state FTAP)</td><td>assumed</td></tr><tr><td>faithfulness audit</td><td>yes (4-tier + axiom gate)</td><td>-</td><td>-</td></tr></tbody></table><div class="tbl-cap">Comparison with prior formalized-finance work</div></div><div class="sum-table"><table><thead><tr><th>tier</th><th>count</th></tr></thead><tbody><tr><td>full</td><td>204</td></tr><tr><td>library_wrapper</td><td>19</td></tr><tr><td>reduced_core</td><td>28</td></tr><tr><td>placeholder</td><td>0</td></tr></tbody></table><div class="tbl-cap">Faithfulness tier breakdown</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Translating Informal Proofs into Formal Proofs Using a Chain of States · Papers With Lean</title>
+<meta name="description" content="We address the problem of translating informal mathematical proofs expressed in natural language into formal proofs in Lean4 under a constrained computational budget. Our approach is grounded in two key insights. First, informal proofs tend to proceed via a sequence of logical…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Translating Informal Proofs into Formal Proofs Using a Chain of States">
+<meta property="og:description" content="We address the problem of translating informal mathematical proofs expressed in natural language into formal proofs in Lean4 under a constrained computational budget. Our approach is grounded in two key insights. First, informal proofs tend to proceed via a sequence of logical…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2512.10317.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2512.10317.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2512.10317v2" target="_blank" rel="noopener"><img src="../thumbs/2512.10317.jpg" alt="First page of Translating Informal Proofs into Formal Proofs Using a Chain of States"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Translating Informal Proofs into Formal Proofs Using a Chain of States</h1>
+        <p class="authors">Ziyu Wang, Bowen Yang, Chenyi Li, Yuan Zhang, Shihao Zhou, Bin Dong, Zaiwen Wen</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Dec 11, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2512.10317v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2512.10317" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Translates informal proofs into Lean 4 via an intermediate Chain of States representation, with custom datasets and benchmarks.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We address the problem of translating informal mathematical proofs expressed in natural language into formal proofs in Lean4 under a constrained computational budget. Our approach is grounded in two key insights. First, informal proofs tend to proceed via a sequence of logical transitions - often implications or equivalences - without explicitly specifying intermediate results or auxiliary lemmas. In contrast, formal systems like Lean require an explicit representation of each proof state and the tactics that connect them. Second, each informal reasoning step can be viewed as an abstract transformation between proof states, but identifying the corresponding formal tactics often requires nontrivial domain knowledge and precise control over proof context. To bridge this gap, we propose a two stage framework. Rather than generating formal tactics directly, we first extract a Chain of States (CoS), a sequence of intermediate formal proof states aligned with the logical structure of the informal argument. We then generate tactics to transition between adjacent states in the CoS, thereby constructing the full formal proof. This intermediate representation significantly reduces the complexity of tactic generation and improves alignment with informal reasoning patterns. We build dedicated datasets and benchmarks for training and evaluation, and introduce an interactive framework to support tactic generation from formal states. Empirical results show that our method substantially outperforms existing baselines, achieving higher proof success rates.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Translating informal mathematical proofs into formal Lean 4 proofs is difficult because informal proofs omit intermediate states and auxiliary lemmas, while formal systems require explicit representation of each proof state and connecting tactics.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors propose CoSProver, which introduces a Chain of States (CoS) representation as an intermediate layer between informal and formal proofs. Each informal reasoning step is decomposed into a sequence of explicit proof states connected by tactics. A CoS generator LLM (fine-tuned DeepSeek Qwen-7B) produces the state sequences from informal proofs, followed by a prover that fills in tactics between states. The system applies deduplication and completeness verification to ensure valid chains.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">CoSLLM (7B parameters) achieves 58.60% on MiniF2F-test and 55.73% on MiniF2F-valid with a single sample, and 95.49%/94.67% with 5 samples. On the CoS benchmark, it reaches 53% with 5 samples. GPT-4o with 5 samples achieves 95.90%/94.90% on MiniF2F but only 40% on the CoS benchmark. DeepSeek-R1 (600B) reaches 67.62%/61.48% with 5 samples.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

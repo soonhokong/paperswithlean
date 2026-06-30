@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GAR: Generative Adversarial Reinforcement Learning for Formal Theorem Proving · Papers With Lean</title>
+<meta name="description" content="Solving math problems through verifiable languages such as Lean has significantly impacted both the mathematics and computer science communities. Current state-of-the-art models are often trained with expensive online Reinforcement Learning (RL) or expert iteration. However,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GAR: Generative Adversarial Reinforcement Learning for Formal Theorem Proving">
+<meta property="og:description" content="Solving math problems through verifiable languages such as Lean has significantly impacted both the mathematics and computer science communities. Current state-of-the-art models are often trained with expensive online Reinforcement Learning (RL) or expert iteration. However,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2510.11769.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2510.11769.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2510.11769v2" target="_blank" rel="noopener"><img src="../thumbs/2510.11769.jpg" alt="First page of GAR: Generative Adversarial Reinforcement Learning for Formal Theorem Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">GAR: Generative Adversarial Reinforcement Learning for Formal Theorem Proving</h1>
+        <p class="authors">Ruida Wang, Jiarui Yao, Rui Pan, Shizhe Diao, Tong Zhang</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 13, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2510.11769v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2510.11769" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/RickySkywalker/GAR-Official" target="_blank" rel="noopener" title="RickySkywalker/GAR-Official">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">GAR trains a problem composer and Lean prover adversarially, evaluated on MiniF2F and ProofNet Lean benchmarks.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Solving math problems through verifiable languages such as Lean has significantly impacted both the mathematics and computer science communities. Current state-of-the-art models are often trained with expensive online Reinforcement Learning (RL) or expert iteration. However, these approaches rely on fixed problem sets, which causes inefficient training and limits the model to tackle complex problems. To overcome these limitations, we propose **GAR**: *Generative Adversarial Reinforcement learning*, a comprehensive RL training framework that jointly trains the problem composer and solver in an adversarial loop. **GAR** introduces an implicit curriculum learning mechanism, which aligns task difficulty with the prover&#x27;s evolving capability. It thereby improves the training efficiency and enables stronger performance of proving advanced theorems. Experiments show that with **GAR** training, Goedel-Prover-V2-8B and DeepSeek-Prover-V2-7B achieve an average relative improvement in pass@32 of **4.20%** on MiniF2F-Test benchmark, while DeepSeek-Prover-V2&#x27;s pass@32 on ProofNet-Test increases from 22.58% to **25.81%**. Beyond formal proving, **GAR** establishes a general RL paradigm for co-evolution of problem generation and solving under verifiable environments. The training code for this paper is open-sourced in <a href="https://github.com/RickySkywalker/GAR-Official" target="_blank" rel="noopener">https://github.com/RickySkywalker/GAR-Official</a></div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Current state-of-the-art formal theorem provers trained with online reinforcement learning or expert iteration rely on fixed problem sets, leading to inefficient training and limited ability to tackle complex problems.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">GAR (Generative Adversarial Reinforcement Learning) jointly trains a problem composer (statement fuser) and a prover in an adversarial loop. The statement fuser generates new Lean 4 theorem statements by combining pairs of existing natural-language statements, creating an implicit curriculum that aligns task difficulty with the prover&#x27;s evolving capability. The prover is trained via RL on these dynamically generated problems.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2510.11769/x1.png" alt=""><figcaption>Figure 1: GAR Training Framework: Each iteration of GAR consists two stages. (a) Generation Stage : Pairs of NL statements are sampled from the base repository and combined by the statement fuser to create more challenging problems that fit the current model’s capability. Then, these statements are autoformalized and submitted to the prover to write multiple proofs. Subsequently, the proofs are ch</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">GAR training of Goedel-Prover-V2-8B and DeepSeek-Prover-V2-7B yields average relative improvements in pass@32 on MiniF2F-Test and ProofNet-Test. The adversarial training induces progressively harder statements over iterations, confirming the implicit curriculum mechanism.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

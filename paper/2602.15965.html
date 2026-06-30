@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FLoPS: Semantics, Operations, and Properties of P3109 Floating-Point Representations in Lean · Papers With Lean</title>
+<meta name="description" content="The upcoming IEEE-P3109 standard for low-precision floating-point arithmetic can become the foundation of future machine learning hardware and software. Unlike IEEE-754, P3109 introduces a parametric framework defined by bitwidth, precision, signedness, and domain. This…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FLoPS: Semantics, Operations, and Properties of P3109 Floating-Point Representations in Lean">
+<meta property="og:description" content="The upcoming IEEE-P3109 standard for low-precision floating-point arithmetic can become the foundation of future machine learning hardware and software. Unlike IEEE-754, P3109 introduces a parametric framework defined by bitwidth, precision, signedness, and domain. This…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2602.15965.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2602.15965.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2602.15965v3" target="_blank" rel="noopener"><img src="../thumbs/2602.15965.jpg" alt="First page of FLoPS: Semantics, Operations, and Properties of P3109 Floating-Point Representations in Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">FLoPS: Semantics, Operations, and Properties of P3109 Floating-Point Representations in Lean</h1>
+        <p class="authors">Tung-Che Chang, Sehyeok Park, Jay P Lim, Santosh Nagarakatte</p>
+        <div class="row">
+          <span class="badge">cs.MS</span>
+          <span class="date">Feb 17, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2602.15965v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2602.15965" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a comprehensive formal model of the IEEE-P3109 low-precision floating-point standard in Lean and verifies properties of algorithms like FastTwoSum.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The upcoming IEEE-P3109 standard for low-precision floating-point arithmetic can become the foundation of future machine learning hardware and software. Unlike IEEE-754, P3109 introduces a parametric framework defined by bitwidth, precision, signedness, and domain. This flexibility results in a vast combinatorial space of formats -- some with as little as one bit of precision -- alongside novel features such as stochastic rounding and saturation arithmetic. These deviations create a unique verification gap that this paper intends to address. This paper presents FLoPS, Formalization in Lean of the P3109 Standard, which is a comprehensive formal model of P3109 in Lean. Our work serves as a rigorous, machine-checked specification that facilitates deep analysis of the standard. We demonstrate the model&#x27;s utility by verifying foundational properties and analyzing key algorithms within the P3109 context. Specifically, we reveal that FastTwoSum exhibits a novel property of computing exact &quot;overflow error&quot; under saturation using any rounding mode, whereas previously established properties of the ExtractScalar algorithm fail for formats with one bit of precision. This work provides a verified foundation for reasoning about P3109 and enables formal verification of future numerical software. Our Lean development is open source and publicly available.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The upcoming IEEE-P3109 standard for low-precision floating-point arithmetic introduces a parametric framework with a vast combinatorial space of formats and novel features (stochastic rounding, saturation arithmetic), creating a verification gap not addressed by existing IEEE-754 formalizations.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">FLoPS formalizes P3109 floating-point representations in Lean 4, establishing a &quot;Triangle of Correctness&quot; consisting of a bit-level representation, an algebraic model, and a semantic value set connected by formally verified bijections. The framework covers encoding/decoding, rounding modes, and analyzes the FastTwoSum and ExtractScalar algorithms under P3109 semantics.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2602.15965/fp-example.png" alt=""><figcaption>Figure 1 : The binary encoding of finite floating-point numbers. For a finite x , t represents the P-1 trailing bits of x ’s significand m . B and W each represent the exponent bias and bitwidth.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The development comprises approximately 15,000 lines of Lean code covering P3109 bit-encodings, the algebraic model, isomorphism proofs, and algorithm analyses. During formalization, the authors discovered multiple errors in the draft P3109 standard itself.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

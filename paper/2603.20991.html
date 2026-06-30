@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Structural Sensitivity in Compressed Transformers: Relative Error Propagation and Layer Removal · Papers With Lean</title>
+<meta name="description" content="Compressing transformer weights makes large language models cheaper to deploy. But each layer&#x27;s compression introduces an error. These errors accumulate as the signal passes through later layers, and how they accumulate is not well understood. We measure this directly: at each…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Structural Sensitivity in Compressed Transformers: Relative Error Propagation and Layer Removal">
+<meta property="og:description" content="Compressing transformer weights makes large language models cheaper to deploy. But each layer&#x27;s compression introduces an error. These errors accumulate as the signal passes through later layers, and how they accumulate is not well understood. We measure this directly: at each…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.20991.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.20991.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.20991v2" target="_blank" rel="noopener"><img src="../thumbs/2603.20991.jpg" alt="First page of Structural Sensitivity in Compressed Transformers: Relative Error Propagation and Layer Removal"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Structural Sensitivity in Compressed Transformers: Relative Error Propagation and Layer Removal</h1>
+        <p class="authors">Abhinaba Basu, Kumkum Basu, Koushik Deb</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Mar 22, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.20991v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.20991" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Twelve Lean 4 norm inequalities provide machine-checked per-matrix error bounds for transformer compression.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Compressing transformer weights makes large language models cheaper to deploy. But each layer&#x27;s compression introduces an error. These errors accumulate as the signal passes through later layers, and how they accumulate is not well understood. We measure this directly: at each layer, we take the ratio of output to input error, calling it rho. A value below one means the layer absorbs the error; above one means it grows. Computing rho on six transformers (117M to 8B parameters) yields three findings. (i) Errors at layer t scale downstream by the product of later rho values, predicting representation drift (Spearman r = -0.44, p &lt; 10^-4). This explains why compressing early layers hurts more than late ones, and why depth-decreasing sparsity schedules outperform uniform ones. Across architecture families, however, model width and redundancy matter more than rho alone. (ii) Within a layer, naive pruning shows a ~600x spread in component sensitivity. Activation-aware pruning (Wanda) shrinks this to 3-7x; the ranking reverses across architectures, so fixed importance scores do not transfer. (iii) For depth pruning, ranking layers by how far rho is from one takes two forward passes. It beats ShortGPT&#x27;s Block Influence with 1.6x lower perplexity at eight layers removed, and physical deletion delivers 1.22x wall-clock speed-up. A blend of the two criteria does best (perplexity 14.2, 60.0% downstream accuracy on LLaMA-2-7B). Twelve Lean 4 norm inequalities provide machine-checked per-matrix error bounds. The contraction profile thus gives a training-free instrument for two decisions: where to compress within layers, and which to remove.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Compressing transformer weights introduces per-layer errors that accumulate through subsequent layers, but how these errors propagate and which layers are most sensitive to compression is not well understood.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors define rho, the ratio of output to input error at each layer, and compute it across six transformers (117M to 8B parameters). They analyze error propagation, component sensitivity within layers under naive and activation-aware pruning (Wanda), and propose a depth-pruning criterion based on rho deviation from one. Twelve Lean 4 norm inequalities provide machine-checked per-matrix error bounds for the theoretical framework.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2603.20991/x1.png" alt=""><figcaption>Figure 1 : Overview. (a) Three composable approximation stages with per-matrix bounds. (b) Relative error energy V(t) trajectories across six architectures: GPT-2 Small contracts monotonically ( \rho_{\max}=0.96 ), while GPT-2 Medium’s final layer amplifies ( \rho_{23}=2.05 ). LFM2-2.6B (hybrid) and Mistral-7B show moderate amplification; Qwen3-8B oscillates most. (c) Catastrophe threshold \tau in</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Errors at layer t scale downstream by the product of later rho values (Spearman r = -0.44, p &lt; 10^-4). The rho-based layer removal criterion beats ShortGPT Block Influence by 1.6x lower perplexity at 8 layers removed, with 1.22x wall-clock speedup. A blended criterion achieves perplexity 14.2 and 60.0% downstream accuracy on LLaMA-2-7B.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

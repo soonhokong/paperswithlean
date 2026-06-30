@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction-Preserving Number Representations · Papers With Lean</title>
+<meta name="description" content="Low-precision number formats are widely used in modern machine learning systems due to their efficiency. Accurate direction representation is key to the accuracy of vector operations. This work precisely explores the extent to which the direction of a vector can be represented…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Direction-Preserving Number Representations">
+<meta property="og:description" content="Low-precision number formats are widely used in modern machine learning systems due to their efficiency. Accurate direction representation is key to the accuracy of vector operations. This work precisely explores the extent to which the direction of a vector can be represented…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.07662.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.07662.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.07662v1" target="_blank" rel="noopener"><img src="../thumbs/2605.07662.jpg" alt="First page of Direction-Preserving Number Representations"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Direction-Preserving Number Representations</h1>
+        <p class="authors">Bardia Zadeh, George A. Constantinides</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">May 8, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-teal" href="../#tag=geometry">geometry</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.07662v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.07662" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/bardia01/Direction-Preserving-Number-Representations" target="_blank" rel="noopener" title="bardia01/Direction-Preserving-Number-Representations">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Provides open-source end-to-end Lean formal proofs of the paper&#x27;s theorems on directional coverage of product-structured number codes.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Low-precision number formats are widely used in modern machine learning systems due to their efficiency. Accurate direction representation is key to the accuracy of vector operations. This work precisely explores the extent to which the direction of a vector can be represented by selecting its scalar elements from a common finite alphabet of a given size. This is standard practice in machine learning, where low-precision significands may be narrow-width floating-point or integer values. A geometric framework is introduced for analyzing the directional coverage of such product-structured codes. This work analytically quantifies the suboptimality gap between such product-structured codes and spherical codes for the vector as a whole, in both low and asymptotically high dimensions. Furthermore, within the product code class, it is proven that the standard formats of two&#x27;s complement, fixed-point, and floating-point are suboptimal, again with quantified gap, pointing to the potential to develop new scalar number formats. Such scalar alphabets are numerically optimized across multiple block dimensions for directional coverage, including the dimension used in NVIDIA&#x27;s NVFP4 format. Experimental results are presented comparing the performance of standard formats and the optimized alphabet. We find that for four bits, NVIDIA&#x27;s choice of E2M1 closely approximates the optimized alphabet, providing a geometric explanation for its strong performance in low-precision machine learning workloads and an analytical understanding of the link between that superiority and block size. We provide open-source formal proofs in Lean for the theorems in this work, along with the experimental code and the optimized alphabets obtained.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Low-precision number formats are widely used in machine learning, but their ability to preserve vector directions when applied element-wise is not well understood. The product structure of quantized vectors fundamentally restricts the geometry of representable directions.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A geometric framework is introduced for analyzing directional coverage of product-structured codes formed from finite scalar alphabets. The authors analytically quantify the suboptimality gap between product codes and unconstrained spherical codes in both low and high dimensions. They prove that standard formats (two&#x27;s complement, fixed-point, floating-point) are suboptimal within the product code class, with quantified gaps. Scalar alphabets are numerically optimized across multiple block dimensions for directional coverage. Formal proofs of the theorems are provided in Lean.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.07662/fp4_e2m1_unit_vectors_2d.png" alt=""><figcaption>Figure 1: The directional coverage for a product code formed from two elements in the 4-bit E2M1 format. Each intersection of the grid lines corresponds to a representable direction through the product structure, projected onto the circle as a red dot. It can be seen that the red dots are not equally spaced in angle, leading to gaps in angular coverage.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For four bits, NVIDIA&#x27;s E2M1 format closely approximates the numerically optimized alphabet, providing a geometric explanation for its strong performance in low-precision ML workloads. The analytical framework links E2M1&#x27;s superiority to block size. Open-source Lean proofs, experimental code, and optimized alphabets are released.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.07662/max_worst_case_angular_error_deg.png" alt=""><figcaption>Figure 2: Sampled worst-case angular error with increasing dimension. E2M1, the format used in NVFP4, comes close to the optimized alphabet.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

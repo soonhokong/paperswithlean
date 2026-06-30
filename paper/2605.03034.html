@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stable Agentic Control: Tool-Mediated LLM Architecture for Autonomous Cyber Defense · Papers With Lean</title>
+<meta name="description" content="Agentic systems involved in high-stake decision-making under adversarial pressure need formal guarantees not offered by existing approaches. Motivated by the operational needs of security operations centers (SOCs) that must configure endpoint detection and response (EDR)…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stable Agentic Control: Tool-Mediated LLM Architecture for Autonomous Cyber Defense">
+<meta property="og:description" content="Agentic systems involved in high-stake decision-making under adversarial pressure need formal guarantees not offered by existing approaches. Motivated by the operational needs of security operations centers (SOCs) that must configure endpoint detection and response (EDR)…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.03034.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.03034.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.03034v1" target="_blank" rel="noopener"><img src="../thumbs/2605.03034.jpg" alt="First page of Stable Agentic Control: Tool-Mediated LLM Architecture for Autonomous Cyber Defense"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Stable Agentic Control: Tool-Mediated LLM Architecture for Autonomous Cyber Defense</h1>
+        <p class="authors">Kerri Prinos, Lilianne Brush, Cameron Denton, Zhanqi Wang, Joshua Knox, Snehal Antani, Anton Foltz, Amy Villaseñor</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">May 4, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.03034v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.03034" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Orange-Cyberdefense/GOAD" target="_blank" rel="noopener" title="Orange-Cyberdefense/GOAD">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A composite Lyapunov function certifying stability of the agentic control architecture is machine-checked in Lean 4 with zero sorry.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Agentic systems involved in high-stake decision-making under adversarial pressure need formal guarantees not offered by existing approaches. Motivated by the operational needs of security operations centers (SOCs) that must configure endpoint detection and response (EDR) policies under adversarial pressure, we present a tool-mediated architecture: LLM agents use deterministic tools (Stackelberg best-response, Bayesian observer updates, attack-graph primitives) and select from finite action catalogs enforced at the tool-output interface. A composite Lyapunov function machine-checked in Lean 4 with zero sorry certifies controllability, observability from asymmetric sensor data, and Input-to-State Stability (ISS) robustness under intelligent adversarial disturbance, with two corollaries extending the certificate to any controller or adversary from the catalogs. On 282 real enterprise attack graphs, the claims hold with margin. On paired offensive/defensive telemetry, a tool-mediated Claude Sonnet 4 controller reduces the attacker&#x27;s expected payoff (game value) by 59% relative to a deterministic greedy baseline, with zero variance across 40 runs at four temperatures. A Claude Haiku 4.5 controller converges to suboptimal game values but stays catalog-bounded over an additional 40 runs, demonstrating that architectural stability is not dependent on the controller capability. The LLM agent&#x27;s non-determinism furthers creative exploration of strategies, while the tool-mediated architecture ensures system stability.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-based agentic systems for cyber defense are non-deterministic, with accuracy variance up to 15% even at temperature 0. Existing approaches lack formal guarantees of controllability, observability, and stability needed for high-stakes autonomous defense in security operations centers.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors present a tool-mediated architecture where LLM agents use deterministic tools (Stackelberg best-response, Bayesian observer updates, attack-graph primitives) and select from finite action catalogs enforced at the tool-output interface. A composite Lyapunov function decomposing into plant and estimator terms is machine-checked in Lean 4 with zero sorry, certifying controllability, observability from asymmetric sensor data, and Input-to-State Stability (ISS) robustness under intelligent adversarial disturbance.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.03034/x1.png" alt=""><figcaption>Figure 1: Experiment 1 results on 282 graphs. (a) Plant trajectory S(k) : defender-only (blue) monotone 0.51\to 0.41 ; defender+attacker (red) stabilizes at \approx 0.85 . (b) ISS gain: all 602 disturbance events satisfy |\Delta S(k)|\leq\gamma=1.0 ; max excursion stays below 0.60 across all graphs. (c) Belief-truth game-value gap |S(k)-\hat{S}(k)| : defender-only plateaus at 0.33 ; defender+attac</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 282 real enterprise attack graphs, all stability claims hold with margin (all 602 disturbance events satisfy the ISS gain bound). A tool-mediated Claude Sonnet 4 controller reduces the attacker&#x27;s expected payoff by 59% relative to a deterministic greedy baseline, with zero variance across 40 runs at four temperatures. A Claude Haiku 4.5 controller converges to suboptimal game values but stays catalog-bounded over 40 additional runs, demonstrating architecture-level stability independent of controller capability.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.03034/x2.png" alt=""><figcaption>Figure 2: Within-family scaling of LLM stability. (a) Sonnet 4: all 40 runs converge to S(k_{\text{final}})=0.3427 with \sigma=0 across temperatures; variance is zero. (b) Haiku 4.5: same architecture, weaker backbone — 19/40 runs reach S=0.3427 , 21/40 stall at 0.85 – 0.90 ( \sigma=0.249 , mean 0.603 ). Both controllers stay catalog-bounded ( 420/420 deployments on-catalog); the achieved S floor </figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

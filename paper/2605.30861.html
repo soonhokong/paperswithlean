@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Distilling LLM Feedback for Lean Theorem Proving · Papers With Lean</title>
+<meta name="description" content="Post-training for reasoning models typically combines supervised fine-tuning with reinforcement learning from verifiable rewards, most commonly with GRPO. However, this algorithm suffers from sparse rewards, limited exploration, and mode collapse. Building upon recent works on…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Distilling LLM Feedback for Lean Theorem Proving">
+<meta property="og:description" content="Post-training for reasoning models typically combines supervised fine-tuning with reinforcement learning from verifiable rewards, most commonly with GRPO. However, this algorithm suffers from sparse rewards, limited exploration, and mode collapse. Building upon recent works on…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.30861.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.30861.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.30861v1" target="_blank" rel="noopener"><img src="../thumbs/2605.30861.jpg" alt="First page of Distilling LLM Feedback for Lean Theorem Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Distilling LLM Feedback for Lean Theorem Proving</h1>
+        <p class="authors">Gaetan Narozniak, Gérard Biau, Rémi Munos, Ahmad Rammal, Pierre Marion</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">May 29, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.30861v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.30861" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Proposes Feedback Distillation for post-training LLMs on Lean 4 theorem proving, evaluated on MiniF2F and LeanWorkbook using a Lean verifier.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Post-training for reasoning models typically combines supervised fine-tuning with reinforcement learning from verifiable rewards, most commonly with GRPO. However, this algorithm suffers from sparse rewards, limited exploration, and mode collapse. Building upon recent works on self-distillation, we propose Feedback Distillation, a training method where the model is trained to match, at the token level, its own distribution conditioned on privileged feedback produced by a language model. Feedback Distillation offers token-level supervision and can inject external knowledge. Evaluating our method for Lean4 theorem-proving, we find that Feedback Distillation maintains greater diversity in generated trajectories than GRPO, yielding higher policy entropy and better pass@k scaling. The two methods are complementary: initializing GRPO from a Feedback Distillation checkpoint outperforms either method alone. All in all, our results suggest a promising avenue to improve post-training for complex reasoning.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Post-training of reasoning models with GRPO suffers from sparse rewards, limited exploration, and mode collapse. In Lean 4 theorem proving, where the search space includes over 300,000 Mathlib declarations, these limitations are especially severe for models starting with low proficiency.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors propose Feedback Distillation, a self-distillation method where the model is trained to match, at the token level, its own distribution conditioned on privileged feedback from an LLM (e.g., Claude). The teacher is an EMA-updated copy of the student that receives textual feedback on the student&#x27;s proof attempt. The loss is a per-token KL divergence between teacher and student distributions along student-sampled trajectories. The method is evaluated in a Lean 4 environment with tool-use (file writing, compilation, Mathlib regex search).</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.30861/x1.png" alt=""><figcaption>Figure 1: Example of Feedback Distillation on a Lean statement from the MiniF2F dataset (Zheng et al. , 2022 ) , with Qwen3-8B as the student. Claude provides feedback on the student’s attempt. The student’s answer is then colored token-by-token by \log p_{\text{teacher}}-\log p_{\text{student}} : green tokens are preferred by the teacher, red tokens by the student, and white tokens are assigned r</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Feedback Distillation maintains higher policy entropy and discovers Mathlib lemmas faster than GRPO. Initializing GRPO from a Feedback Distillation checkpoint outperforms either method alone. On MiniF2F, the combined pipeline achieves the best accuracy, and pass@k scaling is improved due to greater trajectory diversity.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.30861/x2.png" alt=""><figcaption>Figure 2: Test accuracy, train accuracy, policy entropy, and MiniF2F accuracy for Claude Feedback Distillation, GRPO, and GRPO initialized from three different checkpoints from Claude Feedback Distillation. GRPO over Feedback Distillation outperforms either method alone.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

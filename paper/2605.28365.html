@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Risk-Controlled Lean-as-Judge for Natural-Language Mathematical Reasoning · Papers With Lean</title>
+<meta name="description" content="Lean is increasingly used to judge natural-language mathematical answers, but its signal is partial: many answers never formalize, and a failed proof may reflect an ill-typed statement or a missing library fact, not a wrong answer. On MATH-500 we show this signal is (i) sharply…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Risk-Controlled Lean-as-Judge for Natural-Language Mathematical Reasoning">
+<meta property="og:description" content="Lean is increasingly used to judge natural-language mathematical answers, but its signal is partial: many answers never formalize, and a failed proof may reflect an ill-typed statement or a missing library fact, not a wrong answer. On MATH-500 we show this signal is (i) sharply…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.28365.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.28365.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.28365v1" target="_blank" rel="noopener"><img src="../thumbs/2605.28365.jpg" alt="First page of Risk-Controlled Lean-as-Judge for Natural-Language Mathematical Reasoning"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Risk-Controlled Lean-as-Judge for Natural-Language Mathematical Reasoning</h1>
+        <p class="authors">Pauline Bourigault, Xiaotong Ji, Matthieu Zimmer, Rasul Tutunov, Haitham Bou Ammar</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">May 27, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-slate" href="../#tag=meta-study">meta-study</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.28365v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.28365" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/paulinebourigault/covcal-lean" target="_blank" rel="noopener" title="paulinebourigault/covcal-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Treats Lean as a partial-observation judge of natural-language math answers, computing coverage diagnostics from Lean autoformalization and proof-search status logs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Lean is increasingly used to judge natural-language mathematical answers, but its signal is partial: many answers never formalize, and a failed proof may reflect an ill-typed statement or a missing library fact, not a wrong answer. On MATH-500 we show this signal is (i) sharply coverage-dependent, that is the proof-winning answer is correct 96% of the time at high proved coverage but 20% at low, and (ii) sparse and often unfaithful: a 7B autoformalizer proves a class for only 28% of problems, and a manual audit finds only approximately 43% of those proofs faithful. We propose COVCAL, a selector over Lean-trace diagnostics that certifies a finite-sample selective-risk bound on accepted answers or abstains, under two regimes (a conservative Bonferroni bound and a tighter dev-then-cal rule). Feasibility depends on autoformalization coverage: with the 7B formalizer the signal is too sparse and Bonferroni abstains on all 20 bootstrap partitions, whereas a prover-specialized formalizer reaches 79% coverage and flips it to feasible on 17 of 20, accepting approximately 48% of problems at 0.98 accepted accuracy. Since self-consistency alone is already 91% accurate, our contribution is a precise account of when, and with which formalizer, a partial formal signal can be trusted under risk control.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Lean is used to judge natural-language mathematical answers by formalizing and proving them, but this signal is partial: many answers never formalize, and a failed proof may reflect an ill-typed statement or missing library fact rather than a wrong answer. The reliability of formal selection depends sharply on coverage.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The paper proposes CovCal, a selective prediction wrapper that uses Lean-trace diagnostics (typed coverage, proved coverage, unresolved rival mass, formal margin) to decide when the formal signal is trustworthy. It certifies a finite-sample selective-risk bound on accepted answers or abstains, under two regimes: a conservative Bonferroni bound and a tighter dev-then-cal split rule. The method does not retrain the prover; it wraps any Lean-based selector with calibrated acceptance thresholds chosen from a fixed grid.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.28365/covcal_overview_fig.png.png" alt=""><figcaption>Figure 1: CovCal treats Lean as a partial-observation judge: trust formal evidence when coverage is sufficient, and abstain when coverage is too low. The method couples Lean-based formal traces with finite-sample selective prediction.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On MATH-500, a 7B autoformalizer proves only 28% of problems and only ~43% of those proofs are faithful on manual audit; the Bonferroni method abstains on all 20 bootstrap partitions. A prover-specialized formalizer reaching 79% coverage makes CovCal feasible on 17 of 20 partitions, accepting ~48% of problems at 0.98 accepted accuracy. Self-consistency alone already achieves 91% accuracy, so the contribution is a precise characterization of when partial formal signals can be trusted.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.28365/x1.png" alt=""><figcaption>Figure 2: Accepted fraction versus held-out selective-risk upper bound on the main run (dev-then-cal; K\!=\!20 bootstrap mean). The dashed line is \epsilon=0.15 . The formal selectors accept \approx 21\% of items just above \epsilon , while confidence-only abstention reaches 0.89 coverage at lower diagnostic risk; +fallback variants (full coverage) and the Bonferroni reject-all case are omitted.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

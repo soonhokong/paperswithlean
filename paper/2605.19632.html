@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executable Boundary Contracts for Sound Event Traces · Papers With Lean</title>
+<meta name="description" content="Sound event reports often compress timed boundary behavior into frame, segment, or event scores. This paper defines executable boundary contracts for finite sound event traces. The frame fragment is a bounded Boolean fragment embeddable in STL after grid projection. The event…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Executable Boundary Contracts for Sound Event Traces">
+<meta property="og:description" content="Sound event reports often compress timed boundary behavior into frame, segment, or event scores. This paper defines executable boundary contracts for finite sound event traces. The frame fragment is a bounded Boolean fragment embeddable in STL after grid projection. The event…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.19632.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.19632.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.19632v1" target="_blank" rel="noopener"><img src="../thumbs/2605.19632.jpg" alt="First page of Executable Boundary Contracts for Sound Event Traces"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Executable Boundary Contracts for Sound Event Traces</h1>
+        <p class="authors">Faruk Alpay, Hamdi Alakkad</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">May 19, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.19632v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.19632" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://zenodo.org/records/11034682" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A Lean 4 development machine-checks the finite frame core of the trace contract: obligation counting, neighborhood-witness monotonicity, and the Boolean implication evaluator.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Sound event reports often compress timed boundary behavior into frame, segment, or event scores. This paper defines executable boundary contracts for finite sound event traces. The frame fragment is a bounded Boolean fragment embeddable in STL after grid projection. The event layer adds declared interval matching, duration clauses, fragmentation clauses, and obligation restricted vector scoring. The aim is measurement, not a new general temporal logic and not a challenge leaderboard. The artifact evaluates controlled Mini LibriSpeech seeded scenes, MAESTRO Real soundscapes, frozen pretrained timing probes, and an official DCASE 2024 Task 4 baseline track. Across these tracks, standard scores and contract coordinates disagree in interpretable ways. The strongest real corpus finding is that union activity can hide typed boundary failure, while external DCASE outputs provide a class indexed challenge level reference. Code, generated tables, manifests, and Lean checks for the finite frame core are supplied as ancillary material.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Sound event detection benchmarks compress timed boundary behavior into scalar scores (frame F1, segment F1, event F1) that hide interpretable boundary failures. Union activity scores can mask typed boundary errors, and no existing specification language makes trace obligations executable and auditable.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The paper defines executable boundary contracts for finite sound event traces with two sorts: a frame sort (bounded Boolean fragment embeddable in STL after grid projection) and an event sort (declared interval matching, duration clauses, fragmentation clauses, obligation-restricted vector scoring). The monitor evaluates contracts and returns a typed vector of coordinates rather than a single scalar. Lean 4 is used to check the finite frame core logic. The system is evaluated on controlled Mini LibriSpeech scenes, MAESTRO Real soundscapes, frozen pretrained timing probes, and an official DCASE 2024 Task 4 baseline.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Standard scores and contract coordinates disagree in interpretable ways across all evaluation tracks. The strongest finding is that union activity can hide typed boundary failure. The contract-augmented detector (contract_tcn_aug) achieves 0.889 Frame F1 and 0.829 Boundary F1 versus 0.656 and 0.408 for the best non-contract baseline (dilated_cnn).</p><div class="sum-table"><table><thead><tr><th>Detector</th><th>Frame F1</th><th>Segment F1</th><th>Event F1</th><th>Boundary F1</th><th>Logic</th></tr></thead><tbody><tr><td>adaptive_energy</td><td>0.504</td><td>0.568</td><td>0.232</td><td>0.310</td><td>0.514</td></tr><tr><td>spectral_flux</td><td>0.614</td><td>0.739</td><td>0.225</td><td>0.358</td><td>0.560</td></tr><tr><td>temporal_cnn</td><td>0.607</td><td>0.760</td><td>0.294</td><td>0.374</td><td>0.487</td></tr><tr><td>dilated_cnn</td><td>0.656</td><td>0.789</td><td>0.367</td><td>0.408</td><td>0.522</td></tr><tr><td>contract_tcn_aug</td><td>0.889</td><td>0.927</td><td>0.705</td><td>0.829</td><td>0.802</td></tr></tbody></table><div class="tbl-cap">Detector performance comparison</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

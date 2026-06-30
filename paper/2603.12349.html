@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Budget-Sensitive Discovery Scoring: A Formally Verified Framework for Evaluating AI-Guided Scientific Selection · Papers With Lean</title>
+<meta name="description" content="Scientific discovery increasingly relies on AI systems to select candidates for expensive experimental validation, yet no principled, budget-aware evaluation framework exists for comparing selection strategies -- a gap intensified by large language models (LLMs), which generate…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Budget-Sensitive Discovery Scoring: A Formally Verified Framework for Evaluating AI-Guided Scientific Selection">
+<meta property="og:description" content="Scientific discovery increasingly relies on AI systems to select candidates for expensive experimental validation, yet no principled, budget-aware evaluation framework exists for comparing selection strategies -- a gap intensified by large language models (LLMs), which generate…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.12349.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.12349.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.12349v1" target="_blank" rel="noopener"><img src="../thumbs/2603.12349.jpg" alt="First page of Budget-Sensitive Discovery Scoring: A Formally Verified Framework for Evaluating AI-Guided Scientific Selection"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Budget-Sensitive Discovery Scoring: A Formally Verified Framework for Evaluating AI-Guided Scientific Selection</h1>
+        <p class="authors">Abhinaba Basu, Pavan Chakraborty</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Mar 12, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.12349v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.12349" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Defines the Budget-Sensitive Discovery Score with 20 theorems machine-checked in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Scientific discovery increasingly relies on AI systems to select candidates for expensive experimental validation, yet no principled, budget-aware evaluation framework exists for comparing selection strategies -- a gap intensified by large language models (LLMs), which generate plausible scientific proposals without reliable downstream evaluation. We introduce the Budget-Sensitive Discovery Score (BSDS), a formally verified metric -- 20 theorems machine-checked by the Lean 4 proof assistant -- that jointly penalizes false discoveries (lambda-weighted FDR) and excessive abstention (gamma-weighted coverage gap) at each budget level. Its budget-averaged form, the Discovery Quality Score (DQS), provides a single summary statistic that no proposer can inflate by performing well at a cherry-picked budget. As a case study, we apply BSDS/DQS to: do LLMs add marginal value to an existing ML pipeline for drug discovery candidate selection? We evaluate 39 proposers -- 11 mechanistic variants, 14 zero-shot LLM configurations, and 14 few-shot LLM configurations -- using SMILES representations on MoleculeNet HIV (41,127 compounds, 3.5% active, 1,000 bootstrap replicates) under both random and scaffold splits. Three findings emerge. First, the simple RF-based Greedy-ML proposer achieves the best DQS (-0.046), outperforming all MLP variants and LLM configurations. Second, no LLM surpasses the Greedy-ML baseline under zero-shot or few-shot evaluation on HIV or Tox21, establishing that LLMs provide no marginal value over an existing trained classifier. Third, the proposer hierarchy generalizes across five MoleculeNet benchmarks spanning 0.18%-46.2% prevalence, a non-drug AV safety domain, and a 9x7 grid of penalty parameters (tau &gt;= 0.636, mean tau = 0.863). The framework applies to any setting where candidates are selected under budget constraints and asymmetric error costs.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">No principled, budget-aware evaluation framework exists for comparing AI-driven scientific candidate selection strategies. Standard classification metrics obscure performance at the specific budget where decisions are made, and no metric jointly models budget constraints, asymmetric error costs, and the option to abstain.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The Budget-Sensitive Discovery Score (BSDS) jointly penalizes false discoveries (lambda-weighted FDR) and excessive abstention (gamma-weighted coverage gap) at each budget level. Its budget-averaged form, DQS, provides a single summary statistic. 20 theorems are machine-checked in Lean 4. The framework is evaluated with 39 proposers (mechanistic variants, zero-shot and few-shot LLM configurations) on MoleculeNet HIV and other benchmarks.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2603.12349/x1.png" alt=""><figcaption>Figure 1: Evaluation pipeline for 39 proposers across five categories: baselines (2), mechanistic ablations (5), direct optimization (BSDS-Recursive), ablation controls (3), and real LLMs (28). All proposers are evaluated by the formally verified \mathrm{BSDS} / \mathrm{DQS} metric with 1,000 bootstrap replicates. Multi-round proposers receive evaluation feedback (dashed arrow).</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The simple RF-based Greedy-ML proposer achieves the best DQS (-0.046), outperforming all MLP variants and LLM configurations. No LLM surpasses the Greedy-ML baseline under zero-shot or few-shot evaluation on HIV or Tox21. The proposer hierarchy generalizes across five MoleculeNet benchmarks (0.18%-46.2% prevalence) and a non-drug AV safety domain, with ranking stability tau &gt;= 0.636 across a 9x7 grid of penalty parameters.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2603.12349/x2.png" alt=""><figcaption>Figure 2: \mathrm{BSDS} as a function of budget fraction B/N for all 11 mechanistic proposers (2 baselines, 5 ablations, BSDS-Recursive, and 3 ablation controls), with 95% bootstrap confidence bands. Greedy-ML dominates all proposers across budget levels.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

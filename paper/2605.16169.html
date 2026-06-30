@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeanBET: Formally-verified surface area calculations in Lean · Papers With Lean</title>
+<meta name="description" content="The Brunauer--Emmett--Teller (BET) method is a standard tool for estimating surface areas from adsorption isotherms, yet practical implementations involve multiple algorithmic steps whose correctness is rarely made explicit. In this work, we present a fully executable and…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeanBET: Formally-verified surface area calculations in Lean">
+<meta property="og:description" content="The Brunauer--Emmett--Teller (BET) method is a standard tool for estimating surface areas from adsorption isotherms, yet practical implementations involve multiple algorithmic steps whose correctness is rarely made explicit. In this work, we present a fully executable and…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.16169.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.16169.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.16169v1" target="_blank" rel="noopener"><img src="../thumbs/2605.16169.jpg" alt="First page of LeanBET: Formally-verified surface area calculations in Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">LeanBET: Formally-verified surface area calculations in Lean</h1>
+        <p class="authors">Ejike D. Ugwuanyi, Colin T. Jones, John Velkey, Tyler R. Josephson</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">May 15, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.16169v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.16169" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ATOMSLab/LeanBET" target="_blank" rel="noopener" title="ATOMSLab/LeanBET">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Implements a formally verified BET surface-area analysis pipeline in Lean 4 with correctness proofs over the reals.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The Brunauer--Emmett--Teller (BET) method is a standard tool for estimating surface areas from adsorption isotherms, yet practical implementations involve multiple algorithmic steps whose correctness is rarely made explicit. In this work, we present a fully executable and formally verified BET analysis pipeline implemented in the Lean~4 theorem prover. Our formalization covers the complete BET Surface Identification (BETSI)-style workflow, including window enumeration, monotonicity checks, knee selection, and linear regression. We carry out computations in floating-point arithmetic and develop the corresponding correctness proofs over the real numbers, using a shared polymorphic implementation that supports both. On the proof side, we show that the regression coefficients returned by the algorithm agree with their specification-level definitions and minimize the least-squares error under the stated assumptions. We also formalize the algebraic derivation of the BET linearized expression and connect that result directly to the executable analysis pipeline. We further prove that the window enumeration is sound and complete, and that the admissibility checks and knee-based selection satisfy their formal specifications. We evaluate the implementation against the BETSI reference method on benchmark adsorption isotherms. Compared to BETSI, LeanBET agrees to machine precision for 18 of the 19 isotherms, with only a 0.03\% deviation for the UiO-66 dataset. This demonstrates that a scientific computing workflow can be built in Lean, yielding both formal verification guarantees and numerical agreement with an established Python reference implementation.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The BET method for estimating surface areas from adsorption isotherms involves multiple algorithmic steps whose correctness is rarely made explicit, leading to reproducibility issues across implementations. No prior work formally verified the complete BET analysis pipeline.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">LeanBET implements the full BETSI-style BET analysis workflow in Lean 4, including window enumeration, monotonicity checks, knee selection, and linear regression. The implementation uses polymorphic functions that support both floating-point execution and real-number proofs. Correctness proofs cover regression coefficient specification, least-squares optimality, algebraic derivation of the BET linearized expression, and soundness/completeness of window enumeration.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.16169/x1.png" alt=""><figcaption>Figure 1 : Overview of the formally verified BET analysis pipeline. The executable algorithm (top row) transforms adsorption data through BET linearization, windowed linear regression, and BETSI-style filtering to compute surface area and error metrics. Each computational step is paired with a corresponding formal proof (bottom blocks) establishing algebraic correctness of the BET linearization, l</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2605.16169/x2.png" alt=""><figcaption>Figure 2 : Polymorphic functions link proofs (over idealized Real numbers) with execution (over floating point numbers), using a polymorphic function f that uses generic type \alpha . To set up proofs, \alpha is specialized to Real, and to set up executions, \alpha is specialized to Float. Figure taken from [ 20 ] with permission.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">LeanBET agrees with the BETSI Python reference implementation to machine precision for 18 of 19 benchmark isotherms, with only a 0.03% deviation for UiO-66. The work demonstrates that a scientific computing workflow can be built in Lean yielding both formal verification guarantees and numerical agreement with established reference software.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

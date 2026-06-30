@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generalized Stochastic Approximation of the Log-Likelihood Ratio for Robust Sequential Change-Point Detection · Papers With Lean</title>
+<meta name="description" content="Sequential change-point detection in non-Gaussian stochastic processes is challenging because the underlying densities are rarely known in real time. Classical parametric procedures such as CUSUM lose optimality under distributional mismatch, whereas nonparametric alternatives…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Generalized Stochastic Approximation of the Log-Likelihood Ratio for Robust Sequential Change-Point Detection">
+<meta property="og:description" content="Sequential change-point detection in non-Gaussian stochastic processes is challenging because the underlying densities are rarely known in real time. Classical parametric procedures such as CUSUM lose optimality under distributional mismatch, whereas nonparametric alternatives…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.23419.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.23419.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.23419v2" target="_blank" rel="noopener"><img src="../thumbs/2605.23419.jpg" alt="First page of Generalized Stochastic Approximation of the Log-Likelihood Ratio for Robust Sequential Change-Point Detection"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Generalized Stochastic Approximation of the Log-Likelihood Ratio for Robust Sequential Change-Point Detection</h1>
+        <p class="authors">Serhii Zabolotnii</p>
+        <div class="row">
+          <span class="badge">stat.ME</span>
+          <span class="date">May 22, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.23419v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.23419" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/SZabolotnii/KuYuPe-Change_Point-code-supplement" target="_blank" rel="noopener" title="SZabolotnii/KuYuPe-Change_Point-code-supplement">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Core theorems of a sequential change-point detection framework are formally verified in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Sequential change-point detection in non-Gaussian stochastic processes is challenging because the underlying densities are rarely known in real time. Classical parametric procedures such as CUSUM lose optimality under distributional mismatch, whereas nonparametric alternatives often react slowly. We develop a unified framework that approximates the log-likelihood ratio (LLR) on a generalized stochastic basis -- polynomial, logarithmic, or fractional-power -- using only moments up to order 3s, with no analytic form of the distribution, and thereby adapts the classical CUSUM, GRSh, and SRP procedures to non-Gaussian data. The convergence functional J(s) = K^T Y is interpreted as the projection of the Kullback-Leibler divergence onto the basis span, yielding a formal criterion for selecting the approximation order. We target the regime of small relative change-points, where the signal energy changes little but the shape of the distribution -- tail structure and modality -- does. A robust threshold follows from Kunchenko&#x27;s probability-error bound (KU-PE), which controls the false-alarm rate without empirical tuning. On nine public benchmarks across four domains, the method is, to our knowledge, the only one operative on extremely heavy-tailed data (excess kurtosis gamma_4 &gt; 20), where classical methods produce 100% false alarms, while reducing the detection delay at a guaranteed false-alarm level. The core theorems are formally verified in Lean 4.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Sequential change-point detection in non-Gaussian stochastic processes is difficult because the underlying densities are rarely known in real time. Classical parametric methods like CUSUM lose optimality under distributional mismatch, while nonparametric alternatives react slowly. The regime of small relative change-points, where distribution shape changes but signal energy does not, is especially challenging.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The paper develops a unified framework that approximates the log-likelihood ratio on a generalized stochastic basis (polynomial, logarithmic, or fractional-power) using only moments up to order 3s, requiring no analytic form of the distribution. This approximation adapts classical CUSUM, GRSh, and SRP procedures to non-Gaussian data. A robust threshold follows from Kunchenko&#x27;s probability-error bound (KU-PE) to control the false-alarm rate without empirical tuning. The core theorems are formally verified in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On nine public benchmarks across four domains, the GSA method is the only one operative on extremely heavy-tailed data (excess kurtosis &gt; 20), where classical methods produce 100% false alarms. Using polynomial approximation of order s=3 reduces detection delay for weak changes by 30-36% in strongly skewed environments relative to classical CUSUM.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.23419/x9.png" alt=""><figcaption>Figure 9: NASA IMS 2nd_test, feature = vibration kurtosis. The true CP is at position 100 (black vertical line). Six GSA variants (green) trigger after the CP — true detections; classical Sign-CUSUM, MAD-CUSUM, EWMA (red) trigger before the CP — false alarms. \gamma_{4}^{\text{series}}=70.16 for the full series, \gamma_{4}^{\text{calib}}=6.5 for the calibration subsample. Source data: paper/shared</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Attribution Impossibility: No Feature Ranking Is Faithful, Stable, and Complete Under Collinearity · Papers With Lean</title>
+<meta name="description" content="No feature ranking can be simultaneously faithful, stable, and complete when features are collinear. For collinear pairs, ranking reduces to a coin flip. We prove this impossibility, quantify it for four model classes, resolve it via ensemble averaging (DASH), and machine-verify…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Attribution Impossibility: No Feature Ranking Is Faithful, Stable, and Complete Under Collinearity">
+<meta property="og:description" content="No feature ranking can be simultaneously faithful, stable, and complete when features are collinear. For collinear pairs, ranking reduces to a coin flip. We prove this impossibility, quantify it for four model classes, resolve it via ensemble averaging (DASH), and machine-verify…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.21492.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.21492.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.21492v1" target="_blank" rel="noopener"><img src="../thumbs/2605.21492.jpg" alt="First page of The Attribution Impossibility: No Feature Ranking Is Faithful, Stable, and Complete Under Collinearity"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">The Attribution Impossibility: No Feature Ranking Is Faithful, Stable, and Complete Under Collinearity</h1>
+        <p class="authors">Drake Caraker, Bryan Arnold, David Rhoads</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Apr 8, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.21492v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.21492" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/DrakeCaraker/dash-impossibility-lean" target="_blank" rel="noopener" title="DrakeCaraker/dash-impossibility-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Machine-verifies an explainable-AI impossibility result with 305 Lean 4 theorems.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">No feature ranking can be simultaneously faithful, stable, and complete when features are collinear. For collinear pairs, ranking reduces to a coin flip. We prove this impossibility, quantify it for four model classes, resolve it via ensemble averaging (DASH), and machine-verify it with 305 Lean 4 theorems. We characterize the complete attribution design space: exactly two families of methods exist -- faithful-complete methods (unstable, with rankings that flip up to 50% of the time) and ensemble methods like DASH (stable, reporting ties for symmetric features) -- and no method lies outside this dichotomy. The impossibility is quantitative: the attribution ratio diverges as 1/(1-rho^2) for gradient boosting, is infinite for Lasso, and converges for random forests. DASH (Diversified Aggregation of SHAP) is provably Pareto-optimal among unbiased aggregations, achieving the Cramer-Rao variance bound with a tight ensemble size formula. In a survey of 77 public datasets, 68% exhibit attribution instability. Switching to conditional SHAP does not escape the impossibility when features have equal causal effects. The framework includes practical diagnostics -- a Z-test workflow and single-model screening tool -- and has direct consequences for fairness auditing: SHAP-based proxy discrimination audits are provably unreliable under collinearity. The design space theorem, diagnostics, and impossibility are mechanically verified in Lean 4 (305 theorems from 16 axioms, 0 sorry) -- to our knowledge, the first formally verified impossibility in explainable AI.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">SHAP feature importance rankings are unreliable when features are correlated: retraining with a different random seed can invert which feature is ranked most important. In a survey of 77 public datasets, 68% exhibit this instability. It is unclear whether this is an engineering limitation or a fundamental impossibility.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors prove a mathematical impossibility theorem: no feature ranking can simultaneously be faithful (reflect the model), stable (robust to retraining), and complete (rank all features) under collinearity. They characterize the complete design space as exactly two families of methods, propose DASH (ensemble averaging) as a resolution, and machine-verify the framework with 305 Lean 4 theorems from 16 axioms with 0 sorry across 54 files.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.21492/x1.png" alt=""><figcaption>Figure 1 : The Attribution Impossibility. No feature ranking can be simultaneously faithful, stable, and complete under collinearity. Faithful, Stable, Complete: Pick Two. Family \mathcal{A} (single-model) is faithful and complete but rankings flip up to 50% of the time. Family \mathcal{B} ( Dash ensemble) is stable with zero unfaithfulness but reports ties for symmetric features (sacrificing comp</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The impossibility is fundamental, not an engineering failure. Exactly two method families exist: faithful-complete but unstable (rankings flip up to 50% of the time), and ensemble methods (DASH) that are stable with zero unfaithfulness but report ties for symmetric features. The Lean formalization caught two logical inconsistencies that survived informal review.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.21492/x4.png" alt=""><figcaption>Figure 4 : Flip rate as a function of (\rho,\Delta\beta) . The impossibility region (dark) expands with \rho . At \rho\geq 0.95 , instability persists for all \Delta\beta\leq 1 .</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

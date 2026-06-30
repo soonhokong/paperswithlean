@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving · Papers With Lean</title>
+<meta name="description" content="Recent advances in large language models (LLMs) and LLM-based agents have substantially improved the capabilities of automated theorem proving. However, for problems requiring complex mathematical reasoning, current systems rarely succeed on the first try and must repeatedly…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving">
+<meta property="og:description" content="Recent advances in large language models (LLMs) and LLM-based agents have substantially improved the capabilities of automated theorem proving. However, for problems requiring complex mathematical reasoning, current systems rarely succeed on the first try and must repeatedly…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.24465.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.24465.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.24465v1" target="_blank" rel="noopener"><img src="../thumbs/2603.24465.jpg" alt="First page of Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving</h1>
+        <p class="authors">Ruichen Qiu, Yichuan Cao, Junqi Liu, Dakai Guo, Xiao-Shan Gao, Lihong Zhi, Ruyong Feng</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Mar 25, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.24465v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.24465" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/oOo0oOo/lean-lsp-mcp" target="_blank" rel="noopener" title="oOo0oOo/lean-lsp-mcp">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Mechanic uses Lean&#x27;s sorry placeholder to isolate unresolved subgoals while preserving verified proof structure, resolving each failed subproblem in clean context.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Recent advances in large language models (LLMs) and LLM-based agents have substantially improved the capabilities of automated theorem proving. However, for problems requiring complex mathematical reasoning, current systems rarely succeed on the first try and must repeatedly modify their proof strategies. Existing approaches for handling failed attempts typically either discard the entire proof and regenerate it from scratch or iteratively fix errors within the proof. The former is inefficient, as it may abandon mostly correct reasoning due to localized errors, while the latter, although preserving prior progress, leads to progressively longer contexts which progressively degrades the model&#x27;s ability to attend to the remaining unresolved subproblems. To address this dilemma, we propose Mechanic, a novel agent system that employs a sorry-driven formal decomposition strategy. By leveraging the sorry placeholder in Lean to precisely isolate unresolved subgoals while preserving the surrounding verified proof structure, Mechanic extracts each failed subproblem into a clean, self-contained context and resolves it independently. This avoids both the waste of full regeneration and the excessive context length induced by repeated repairs. Experimental results on challenging mathematical competition benchmarks, including IMO 2025 and Putnam 2025, demonstrate that our agent achieves significant advantages in proving efficiency.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">For hard mathematical competition problems, current theorem provers rarely succeed on the first try. Existing error-recovery approaches either discard the entire proof (wasting correct reasoning) or iteratively fix errors (causing excessively long contexts that degrade attention).</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Mechanic uses a sorry-driven formal decomposition strategy. When a Lean proof contains errors, the system uses sorry placeholders to isolate unresolved subgoals while preserving the surrounding verified proof structure. Each failed subproblem is extracted into a clean, self-contained context and resolved independently. This avoids both full regeneration and excessive context growth from repeated repairs.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2603.24465/magnifier.png" alt=""><figcaption>Figure 3: Example of the subgoal splitting workflow. The proof is first verified by Lean (red block, step 1), and the Sorrifier replaces erroneous parts with sorry placeholders. The goal state of each sorry position is extracted, then converted into new subtheorems (orange blocks, step 2). After a subtheorem is proved, it is integrated back into the original proof at the corresponding location usi</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2603.24465/informal.jpg" alt=""><figcaption>Figure 2: Workflow of Mechanic. (1) An informal solution is generated, verified and iteratively improved through a feedback loop. (2) The final informal solution is then translated into a formal proof, which is further revised based on Lean’s feedback. (3) If the proof continues to fail after several revisions, it is transformed into a sorried proof to extract subgoals. (4) Each resulting subgoal </figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On Putnam 2025, Mechanic solves 11/12 problems with average time of 114 minutes per problem, compared to 196 minutes for Seed and 187 for Axiom. On IMO 2025, it solves 4/6 problems (P1, P3, P4, P5). The approach reduces time expenditure relative to baselines while achieving competitive or superior solve rates.</p><div class="sum-table"><table><thead><tr><th>Problem</th><th>A1</th><th>A2</th><th>A3</th><th>A4</th><th>A5</th><th>A6</th><th>B1</th><th>B2</th><th>B3</th><th>B4</th><th>B5</th><th>B6</th><th>Avg</th></tr></thead><tbody><tr><td>Seed</td><td>60</td><td>30</td><td>120</td><td>240</td><td>-</td><td>240</td><td>540</td><td>360</td><td>30</td><td>120</td><td>240</td><td>180</td><td>196</td></tr><tr><td>Mechanic</td><td>21</td><td>179</td><td>108</td><td>64</td><td>-</td><td>82</td><td>132</td><td>41</td><td>148</td><td>126</td><td>258</td><td>93</td><td>114</td></tr></tbody></table><div class="tbl-cap">Per-problem time expenditure on Putnam 2025 (minutes)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

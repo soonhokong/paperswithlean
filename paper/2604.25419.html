@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JURY-RL: Votes Propose, Proofs Dispose for Label-Free RLVR · Papers With Lean</title>
+<meta name="description" content="Reinforcement learning with verifiable rewards (RLVR) enhances the reasoning of large language models (LLMs), but standard RLVR often depends on human-annotated answers or carefully curated reward specifications. In machine-checkable domains, label-free alternatives such as…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JURY-RL: Votes Propose, Proofs Dispose for Label-Free RLVR">
+<meta property="og:description" content="Reinforcement learning with verifiable rewards (RLVR) enhances the reasoning of large language models (LLMs), but standard RLVR often depends on human-annotated answers or carefully curated reward specifications. In machine-checkable domains, label-free alternatives such as…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2604.25419.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2604.25419.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2604.25419v1" target="_blank" rel="noopener"><img src="../thumbs/2604.25419.jpg" alt="First page of JURY-RL: Votes Propose, Proofs Dispose for Label-Free RLVR"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">JURY-RL: Votes Propose, Proofs Dispose for Label-Free RLVR</h1>
+        <p class="authors">Xinjie Chen, Biao Fu, Jing Wu, Guoxin Chen, Xinggao Liu, Dayiheng Liu, Minpeng Liao</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Apr 28, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-amber" href="../#tag=verification">verification</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2604.25419v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2604.25419" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ruixin31/Spurious_Rewards" target="_blank" rel="noopener" title="ruixin31/Spurious_Rewards">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Rewards only majority-voted answers that a Lean formal verifier confirms, using Lean verification to gate label-free RLVR training.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Reinforcement learning with verifiable rewards (RLVR) enhances the reasoning of large language models (LLMs), but standard RLVR often depends on human-annotated answers or carefully curated reward specifications. In machine-checkable domains, label-free alternatives such as majority voting or LLM-as-a-judge remove annotation cost but can introduce false positives that destabilize training. We introduce JURY-RL, a label-free RLVR framework that decouples answer proposal from reward disposal: votes from model rollouts propose a candidate answer, and a formal verifier determines whether that candidate can receive positive reward. Concretely, only rollouts matching the plurality-voted answer are rewarded when that answer is successfully verified in Lean. When verification is inconclusive, we invoke ResZero (Residual-Zero), a fallback reward that discards the unverified plurality proposal and redistributes a zero-mean, variance-preserving signal over the residual answers. This design maintains a stable optimization gradient without reinforcing unverifiable consensus. Across three backbone models trained on mathematical data, JURY-RL consistently outperforms other label-free baselines on mathematical reasoning benchmarks and transfers competitively to code generation and general benchmarks. It attains pass@1 performance comparable to supervised ground-truth training, with superior generalization demonstrated by higher pass@k and response diversity.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Standard RLVR for LLM reasoning depends on human-annotated answers or carefully curated reward specifications. Label-free alternatives such as majority voting or LLM-as-a-judge can introduce false positives that destabilize training.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">JURY-RL decouples answer proposal from reward disposal: majority votes from model rollouts propose a candidate answer, and a Lean formal verifier determines whether that candidate is correct. Verified correctness provides a positive reward to supporting rollouts; when verification is inconclusive, a residual zero-reward fallback is used. The system integrates an autoformalization pipeline to translate informal mathematical answers into Lean statements for machine-checked verification.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.25419/x1.png" alt=""><figcaption>Figure 1 : The JURY-RL workflow: Votes Propose, Proofs Dispose. For each problem, a majority vote from multiple rollouts ( Jury ) proposes a candidate answer. A Lean verifier ( Judge ) then disposes the reward. If the answer is Verified ( \delta=1 ) , supporting rollouts receive a positive reward, directly linking the update to successful formal verification. Conversely, when verification is Incon</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">JURY-RL matches or outperforms ground-truth reward baselines on math reasoning benchmarks across three model scales (1.7B, 3B, 7B) without requiring any labeled data. On Qwen3-1.7B-Base, it achieves an average score of 36.54 across nine benchmarks compared to 35.56 for ground-truth reward, and scales to test-time training settings on Qwen2.5-7B and Qwen2.5-14B.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.25419/x3.png" alt=""><figcaption>Figure 3 : Accuracy on MATH5000 Validation set over training steps.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

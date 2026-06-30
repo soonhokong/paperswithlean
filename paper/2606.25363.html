@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TheoremGraph: Bridging Formal and Informal Mathematics · Papers With Lean</title>
+<meta name="description" content="Mathematical knowledge is organized around statements and their dependencies, but this structure is exposed unevenly: informal papers cite mostly at the document level, while formal libraries record fine-grained dependencies over a much smaller body of mathematics. We introduce…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TheoremGraph: Bridging Formal and Informal Mathematics">
+<meta property="og:description" content="Mathematical knowledge is organized around statements and their dependencies, but this structure is exposed unevenly: informal papers cite mostly at the document level, while formal libraries record fine-grained dependencies over a much smaller body of mathematics. We introduce…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.25363.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.25363.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.25363v1" target="_blank" rel="noopener"><img src="../thumbs/2606.25363.jpg" alt="First page of TheoremGraph: Bridging Formal and Informal Mathematics"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">TheoremGraph: Bridging Formal and Informal Mathematics</h1>
+        <p class="authors">Simon Kurgan, Evan Wang, Eric Leonen, Sophie Szeto, Luke Alexander, Artemii Remizov, Jarod Alper, Giovanni Inchiostro, Vasily Ilin</p>
+        <div class="row">
+          <span class="badge">cs.IR</span>
+          <span class="date">Jun 24, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">math.HO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.25363v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.25363" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces LeanGraph, an elaborator-level dependency extractor producing 388K nodes and 11.3M edges across 25 Lean projects.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Mathematical knowledge is organized around statements and their dependencies, but this structure is exposed unevenly: informal papers cite mostly at the document level, while formal libraries record fine-grained dependencies over a much smaller body of mathematics. We introduce TheoremGraph, a unified statement-level dependency graph spanning both informal and formal mathematics. On the informal side, we parse 11.7M theorem-like environments from mathematics arXiv and recover 18.3M candidate directed dependencies, each labeled by the extractor that proposed it so downstream users can trade coverage for precision. On the formal side, we release LeanGraph, a Lean 4 elaborator-level extractor producing 388,105 declaration nodes and 11.3M typed edges across 25 Lean projects. We bridge the two graphs by embedding generated natural-language slogans into a shared semantic space, linking related statements across papers and across the informal/formal divide; an LLM judge affirms 47,952 such matches above a 0.8 cosine floor, with the judge-acceptance rate rising from 48% across the floor to 87% in the &gt;=0.9 tier. On formal concept retrieval, our name-and-signature representation with graph expansion comes within 0.5pp of LeanSearch v2&#x27;s reranked Recall@10 (0.775 vs. 0.780) without an LM reranker. We release the dataset, extractors, HTTP API, and MCP interface as infrastructure for mathematical search, attribution, and retrieval-augmented reasoning, available at theoremsearch.com and huggingface.co/datasets/uw-math-ai/theorem-matching.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Mathematical knowledge dependencies are fragmented: informal papers cite at document level while formal libraries record fine-grained dependencies over a smaller body.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">TheoremGraph unifies informal and formal mathematics. On the informal side, 11.7M theorem-like environments are parsed from arXiv with 18.3M candidate dependencies. On the formal side, LeanGraph extracts 388K declaration nodes and 11.3M typed edges from 25 Lean projects at the elaborator level. Slogans embedded in a shared semantic space bridge the two graphs, with an LLM judge verifying 47,952 matches above 0.8 cosine.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.25363/x1.png" alt=""><figcaption>Figure 1: The matching pipeline. Lean declarations and L a T e X statements are each sloganized and embedded into one shared index; a formal \to informal rank-1 cosine query proposes candidate matches, which a single GPT-5.4 judge labels exact / inexact / wrong ( exact / inexact count as matches).</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On formal concept retrieval, their name-and-signature representation with graph expansion reaches within 0.5pp of LeanSearch v2&#x27;s reranked Recall@10 (0.775 vs. 0.780) without an LM reranker. The judge-acceptance rate rises from 48% at the cosine floor to 87% in the &gt;=0.9 tier.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.25363/lsv2_perkind.png" alt=""><figcaption>Figure 5: MathlibQR fair-810, Recall@10 by declaration kind, comparing the baseline (Config A) with the full lever stack (Config E). The interventions concentrate their gains on declarations identified mainly by name (structures, classes, definitions, and inductives), while theorem and instance , which usually already carry descriptive slogans, decline slightly. Configurations are defined in Table</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Extractor</th><th>Edges</th><th>Within-paper</th><th>External</th></tr></thead><tbody><tr><td>Deterministic</td><td>5.23M</td><td>3.31M</td><td>1.92M (79K)</td></tr><tr><td>Heuristic</td><td>6.47M</td><td>4.77M</td><td>1.70M (53K)</td></tr><tr><td>Notation</td><td>7.88M</td><td>7.88M</td><td>–</td></tr><tr><td>Any</td><td>18.32M</td><td>14.86M</td><td>3.46M (130K)</td></tr></tbody></table><div class="tbl-cap">Edge extraction statistics by type</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

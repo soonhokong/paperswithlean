@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automating Bitvector and Finite Field Equivalence Proofs in Lean · Papers With Lean</title>
+<meta name="description" content="Efforts to verify Zero-Knowledge Proof circuit encodings have highlighted the challenge of proving the correctness of quantifier-free statements that make use of both bitvector and finite field operations. Existing verification workflows are either manual or rely on SMT solvers,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Automating Bitvector and Finite Field Equivalence Proofs in Lean">
+<meta property="og:description" content="Efforts to verify Zero-Knowledge Proof circuit encodings have highlighted the challenge of proving the correctness of quantifier-free statements that make use of both bitvector and finite field operations. Existing verification workflows are either manual or rely on SMT solvers,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.15163.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.15163.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.15163v1" target="_blank" rel="noopener"><img src="../thumbs/2605.15163.jpg" alt="First page of Automating Bitvector and Finite Field Equivalence Proofs in Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Automating Bitvector and Finite Field Equivalence Proofs in Lean</h1>
+        <p class="authors">Elizaveta Pertseva, Valentin Robert, Clark Barrett, James Parker</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">May 14, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-amber" href="../#tag=cryptography">cryptography</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.15163v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.15163" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces a Lean tactic BitModEq using range lemmas and case analysis to verify translations between finite fields and bitvectors for ZKP circuits.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Efforts to verify Zero-Knowledge Proof circuit encodings have highlighted the challenge of proving the correctness of quantifier-free statements that make use of both bitvector and finite field operations. Existing verification workflows are either manual or rely on SMT solvers, which scale poorly on some classes of problems for reasons that include difficulties with conversion operators and challenges reasoning about inequalities. To address these limitations, we present a novel Lean tactic BitModEq that leverages range lemmas and case analysis to produce verified translations from finite fields to bitvectors. Our approach, combined with bit-blasting, outperforms state-of-the-art SMT solvers, solving 19% more ZKP arithmetization benchmarks.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Verifying Zero-Knowledge Proof circuit encodings requires proving correctness of statements involving both bitvector and finite field operations. Existing approaches are either manual (requiring substantial human effort in ITPs) or rely on SMT solvers that scale poorly due to difficulties with conversion operators and inequality reasoning.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors present BitModEq, a Lean tactic that leverages range lemmas and case analysis to produce verified translations from finite fields to bitvectors. The workflow operates in four phases: converting finite field terms to naturals, discharging natural number inequalities via range analysis, converting remaining naturals to bitvectors, and solving the final bitvector goal via bit-blasting (bv_decide). The ITP-based ff2bv encoding avoids bit splitting and existential quantifiers that bottleneck SMT solvers.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.15163/x1.png" alt=""><figcaption>((a)) Jolt (Lasso and T&amp;S)</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">BitModEq combined with bit-blasting solves 19% more ZKP arithmetization benchmarks than state-of-the-art SMT solvers. On Jolt benchmarks, BitModEq solves 24/24 Lasso and 12/15 T&amp;S instances versus cvc5-weak solving 21 and 5 respectively. BitModEq also produces zero statement-generation timeouts compared to up to 15 for SMT approaches.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.15163/x2.png" alt=""><figcaption>((b)) Sampled CirC</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

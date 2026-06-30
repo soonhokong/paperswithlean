@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeanCat: A Benchmark Suite for Formal Category Theory in Lean (Part I: 1-Categories) · Papers With Lean</title>
+<meta name="description" content="While large language models (LLMs) have demonstrated impressive capabilities in formal theorem proving, current benchmarks fail to adequately measure library-grounded abstraction -- the ability to reason with high-level interfaces and reusable structures central to modern…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeanCat: A Benchmark Suite for Formal Category Theory in Lean (Part I: 1-Categories)">
+<meta property="og:description" content="While large language models (LLMs) have demonstrated impressive capabilities in formal theorem proving, current benchmarks fail to adequately measure library-grounded abstraction -- the ability to reason with high-level interfaces and reusable structures central to modern…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2512.24796.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2512.24796.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2512.24796v2" target="_blank" rel="noopener"><img src="../thumbs/2512.24796.jpg" alt="First page of LeanCat: A Benchmark Suite for Formal Category Theory in Lean (Part I: 1-Categories)"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">LeanCat: A Benchmark Suite for Formal Category Theory in Lean (Part I: 1-Categories)</h1>
+        <p class="authors">Rongge Xu, Hui Dai, Yiming Fu, Jiedong Jiang, Tianjiao Nie, Junkai Wang, Holiverse Yang, Zhi-Hao Zhang</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Dec 31, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=category-theory">category-theory</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2512.24796v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2512.24796" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/sciencraft/LeanCat" target="_blank" rel="noopener" title="sciencraft/LeanCat">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces LeanCat, 100 fully formalized category-theory theorem tasks in Lean 4 used to benchmark LLM provers.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">While large language models (LLMs) have demonstrated impressive capabilities in formal theorem proving, current benchmarks fail to adequately measure library-grounded abstraction -- the ability to reason with high-level interfaces and reusable structures central to modern mathematics and software engineering. We introduce LeanCat, a challenging benchmark comprising 100 fully formalized category-theory tasks in Lean. Unlike algebra or arithmetic, category theory serves as a rigorous stress test for structural, interface-level reasoning. Our evaluation reveals a severe abstraction gap: the best state-of-the-art model solves only 12.0% of tasks at pass@4, with performance collapsing from 55.0% on Easy tasks to 0.0% on High-difficulty tasks, highlighting a failure in compositional generalization. To overcome this, we evaluate LeanBridge, a retrieval-augmented agent that employs a retrieve-generate-verify loop. LeanBridge achieves a peak success rate of 24.0% -- doubling the performance of the best static baseline. These results empirically demonstrate that iterative refinement and dynamic library retrieval are not merely optimizations but strict necessities for neuro-symbolic reasoning in abstract domains. LeanCat offers a compact, reusable testbed for tracking progress toward reliable, research-level formalization.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Current formal theorem proving benchmarks fail to measure library-grounded abstraction, the ability to reason with high-level interfaces and reusable structures central to modern mathematics. Existing models collapse on medium and high difficulty tasks requiring deep library understanding.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">LeanCat is a benchmark of 100 fully formalized category-theory tasks in Lean 4, organized by difficulty (Easy, Medium, High) and covering both abstract and concrete categorical reasoning. The authors also introduce LeanBridge, an agentic approach that uses iterative refinement with natural language and formal statement guidance to close the abstraction gap. Tasks are drawn from standard category theory textbooks.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2512.24796/x1.png" alt=""><figcaption>Figure 1: Closing the Abstraction Gap . Performance comparison of standard baselines (dashed lines) vs. our agentic approach, LeanBridge (solid lines), across difficulty levels. Bold lines highlight the best-performing models (Claude-Opus-4.5 for pass@4 baseline, GPT-5.2 for LeanBridge with NL+Statement input), while faint lines represent other models. Note the sharp performance collapse of baseli</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Standard baselines achieve at best 12% overall (Claude-Opus-4.5 pass@4), revealing a severe abstraction gap. LeanBridge with GPT-5.2 reaches 24% overall, with the biggest gains on Medium tasks (from 5% to 25%). Specialized provers like DeepSeek-Prover-V2-671B achieve only 9% overall. No model solves any High-difficulty task beyond 2.5%.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Easy</th><th>Medium</th><th>High</th><th>Overall</th></tr></thead><tbody><tr><td>Claude-Opus-4.5 (baseline)</td><td>40/55%</td><td>0.6/2.5%</td><td>0/0%</td><td>8.3/12%</td></tr><tr><td>GPT-5.2 (LeanBridge)</td><td>60/65%</td><td>5/25%</td><td>0/2.5%</td><td>14/24%</td></tr><tr><td>DeepSeek-Prover-V2-671B</td><td>45%</td><td>0%</td><td>0%</td><td>9%</td></tr></tbody></table><div class="tbl-cap">LeanCat baseline vs LeanBridge performance (pass@1 / pass@4)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

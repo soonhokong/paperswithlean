@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fresh Masking Makes NTT Pipelines Composable: Machine-Checked Proofs for Arithmetic Masking in PQC Hardware · Papers With Lean</title>
+<meta name="description" content="Post-quantum cryptographic (PQC) accelerators for ML-KEM (FIPS 203) and ML-DSA (FIPS 204) rely on pipelined Number Theoretic Transform (NTT) stages over $\mathbb{Z}_q$. Our prior work established structural dependency analysis at scale [1] and quantified the security margin of…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fresh Masking Makes NTT Pipelines Composable: Machine-Checked Proofs for Arithmetic Masking in PQC Hardware">
+<meta property="og:description" content="Post-quantum cryptographic (PQC) accelerators for ML-KEM (FIPS 203) and ML-DSA (FIPS 204) rely on pipelined Number Theoretic Transform (NTT) stages over $\mathbb{Z}_q$. Our prior work established structural dependency analysis at scale [1] and quantified the security margin of…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2604.20793.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2604.20793.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2604.20793v2" target="_blank" rel="noopener"><img src="../thumbs/2604.20793.jpg" alt="First page of Fresh Masking Makes NTT Pipelines Composable: Machine-Checked Proofs for Arithmetic Masking in PQC Hardware"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Fresh Masking Makes NTT Pipelines Composable: Machine-Checked Proofs for Arithmetic Masking in PQC Hardware</h1>
+        <p class="authors">Ray Iskander, Khaled Kirah</p>
+        <div class="row">
+          <span class="badge">cs.CR</span>
+          <span class="date">Apr 22, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-amber" href="../#tag=cryptography">cryptography</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2604.20793v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2604.20793" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Three machine-checked Lean 4 + Mathlib results on fresh masking in NTT pipelines (zero sorry).</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Post-quantum cryptographic (PQC) accelerators for ML-KEM (FIPS 203) and ML-DSA (FIPS 204) rely on pipelined Number Theoretic Transform (NTT) stages over $\mathbb{Z}_q$. Our prior work established structural dependency analysis at scale [1] and quantified the security margin of partial NTT masking [2]. Whether per-stage arithmetic masking guarantees pipeline-level security had no prior machine-checked answer for the r-bearing case: composition frameworks (ISW, t-SNI, PINI, DOM) were formalized exclusively for Boolean masking over $\mathrm{GF}(2)$; no proof assistant artifact addresses the NTT butterfly over $\mathbb{Z}_q$. We present three machine-checked results in Lean 4 with Mathlib, all zero sorry. First, we close a stated limitation of prior work: value-independence implies constant marginal distribution under fresh randomness (via an algebraic MutualInfoZero proxy). Second, butterfly per-context uniformity: for any Cooley-Tukey butterfly with fresh output mask over $\mathbb{Z}/q\mathbb{Z}$ ($q &gt; 0$), each output wire has exactly one mask value producing each output, a uniform marginal independent of secrets, universal over all moduli, twiddle factors, and inputs. Third, a k-stage NTT pipeline with fresh per-stage masking satisfies per-context uniformity at every stage under the ISW first-order probing model. We document a named warning: pointwise value-independence is false for butterfly outputs. The Adams Bridge accelerator (CHIPS Alliance Caliptra) fails the fresh masking hypothesis, masking active only in INTT round 0, architecturally explaining its structural insecurity. Artifact: nine theorems, 1,738 build jobs, zero sorry. Composition for nonlinear gadgets (Barrett) is addressed in forthcoming manuscripts proving Barrett&#x27;s PF-PINI(2) satisfaction (one-bit barrier) [3] and k-stage composition for PF-PINI gadgets under fresh-mask renewal [4].</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Post-quantum cryptographic accelerators for ML-KEM and ML-DSA rely on pipelined NTT stages. Whether per-stage arithmetic masking guarantees pipeline-level security had no machine-checked answer for the randomness-bearing case, as existing composition frameworks (ISW, t-SNI, PINI, DOM) were formalized only for gate-level or combinational circuits.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors develop a Lean 4 formalization that proves per-stage fresh masking in NTT pipelines composes to pipeline-level security. The formalization covers arithmetic masking over Z_q with structural dependency analysis, extending prior work on partial NTT masking to provide a machine-checked composability proof for the full pipeline.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The formalization provides the first machine-checked proof that fresh masking makes NTT pipelines composable for PQC hardware, closing the gap between per-stage proofs and pipeline-level security guarantees.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

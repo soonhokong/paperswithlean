@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kimina Lean Server: A High-Performance Lean Server for Large-Scale Verification · Papers With Lean</title>
+<meta name="description" content="We introduce the Kimina Lean Server, an open-source project designed as a high-performance verifier for reinforcement learning pipelines. Built on top of the Lean REPL (Read-Eval-Print Loop) maintained by the Lean FRO, our server combines server-side parallelism by managing…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kimina Lean Server: A High-Performance Lean Server for Large-Scale Verification">
+<meta property="og:description" content="We introduce the Kimina Lean Server, an open-source project designed as a high-performance verifier for reinforcement learning pipelines. Built on top of the Lean REPL (Read-Eval-Print Loop) maintained by the Lean FRO, our server combines server-side parallelism by managing…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2504.21230.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2504.21230.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2504.21230v3" target="_blank" rel="noopener"><img src="../thumbs/2504.21230.jpg" alt="First page of Kimina Lean Server: A High-Performance Lean Server for Large-Scale Verification"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Kimina Lean Server: A High-Performance Lean Server for Large-Scale Verification</h1>
+        <p class="authors">Marco Dos Santos, Hugues de Saxcé, Haiming Wang, Ran Wang, Mantas Baksys, Mert Unsal, Junqi Liu, Zhengying Liu, Jia Li</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Apr 29, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2504.21230v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2504.21230" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/project-numina/kimina-lean-server" target="_blank" rel="noopener" title="project-numina/kimina-lean-server">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Open-source high-performance Lean server built on the Lean REPL, parallelizing Lean processes for large-scale proof verification.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We introduce the Kimina Lean Server, an open-source project designed as a high-performance verifier for reinforcement learning pipelines. Built on top of the Lean REPL (Read-Eval-Print Loop) maintained by the Lean FRO, our server combines server-side parallelism by managing multiple Lean processes in parallel with a Least Recently Used (LRU) caching mechanism that reuses Lean imports across requests. On the client side, a lightweight Python package enables submitting proof batches and receiving Lean feedback, including extracted tactics and tactic states. Together, these features enable a scalable workflow for large-scale verification and data extraction. In our experiments, the Kimina Lean Server outperforms previous Lean interaction tools, achieving a 1.5 to 2 times speedup in verification time. Moreover, its improved efficiency has enabled its use in the large-scale training of state-of-the-art models such as Kimina-Prover. We hope that our open-source project will support the neural theorem proving community and accelerate future progress by enabling efficient large-scale verification and proof data extraction.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Reinforcement learning pipelines for theorem proving require high-throughput verification of Lean proofs, but existing Lean interaction tools are too slow and lack efficient parallelism and caching mechanisms.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The Kimina Lean Server is built on top of the Lean REPL with server-side parallelism (managing multiple Lean processes) and an LRU caching mechanism that reuses Lean imports across requests. A lightweight Python client enables submitting proof batches and receiving feedback including extracted tactics and tactic states.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 64 cores, the Kimina Lean Server verifies proofs in 7:56 total time versus 18:01 for leanclient and 12:56 for LeanInteract. Average verification time per proof is 0.051s on 64 cores. Caching reduces total time from 15:28 (non-cached) to 7:56 (cached).</p><div class="sum-table"><table><thead><tr><th>Project</th><th>8 cores</th><th>16 cores</th><th>32 cores</th><th>64 cores</th></tr></thead><tbody><tr><td>leanclient</td><td>109:55</td><td>56:58</td><td>30:16</td><td>18:01</td></tr><tr><td>LeanInteract</td><td>87:35</td><td>45:51</td><td>24:11</td><td>12:56</td></tr><tr><td>Kimina Lean Server</td><td>42:40</td><td>21:48</td><td>11:33</td><td>7:56</td></tr></tbody></table><div class="tbl-cap">Verification time comparison across tools (mm:ss)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

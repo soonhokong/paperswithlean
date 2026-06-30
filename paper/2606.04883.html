@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Optimizing the Cost-Quality Tradeoff of Agentic Theorem Provers in Lean · Papers With Lean</title>
+<meta name="description" content="Large language models (LLMs) are increasingly used in workflows for generating formal proofs in Lean. These workflows often decompose problems into smaller lemmas, sample many proof attempts, and use compiler feedback to guide search. However, they can be prohibitively…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Optimizing the Cost-Quality Tradeoff of Agentic Theorem Provers in Lean">
+<meta property="og:description" content="Large language models (LLMs) are increasingly used in workflows for generating formal proofs in Lean. These workflows often decompose problems into smaller lemmas, sample many proof attempts, and use compiler feedback to guide search. However, they can be prohibitively…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.04883.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.04883.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.04883v1" target="_blank" rel="noopener"><img src="../thumbs/2606.04883.jpg" alt="First page of Optimizing the Cost-Quality Tradeoff of Agentic Theorem Provers in Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Optimizing the Cost-Quality Tradeoff of Agentic Theorem Provers in Lean</h1>
+        <p class="authors">Kári Rögnvaldsson, Chenhao Sun, Jasper Dekoninck, Martin Vechev</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Jun 3, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.04883v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.04883" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/eth-sri/optimizing-lean-agents" target="_blank" rel="noopener" title="eth-sri/optimizing-lean-agents">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">An action-routing agent decides whether to continue or restart Lean proof attempts, allocating compute across lemma decompositions on PutnamBench.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language models (LLMs) are increasingly used in workflows for generating formal proofs in Lean. These workflows often decompose problems into smaller lemmas, sample many proof attempts, and use compiler feedback to guide search. However, they can be prohibitively expensive, often spending substantial compute on attempts that ultimately fail. In this work, we address this problem with an action routing agent that consists of a data plane and a control plane. The data plane generates natural-language lemma decompositions, formalizes them in Lean, and samples proof attempts for the resulting theorem and lemma targets. The control plane observes previous failed Lean attempts, estimates both the likelihood of success and cost of another attempt, and decides whether to continue proving the current target or restart from a new breakdown. On a subset of PutnamBench, our agent decreases the cost by $25.8\%$ over a fixed-step baseline on average, preserving performance while using substantially less compute. These results suggest that failed Lean trajectories provide actionable signals for cost-aware resource allocation in agentic theorem proving.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Agentic theorem provers in Lean scale by sampling many proof attempts per problem, but they spend substantial compute on attempts that ultimately fail, making them prohibitively expensive.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors build an action routing agent with a data plane and a control plane. The data plane decomposes problems into natural-language lemma breakdowns, formalizes them in Lean, and samples proof attempts. The control plane observes failed Lean attempts, extracts features (proof similarity, error diversity, attempt count), and estimates likelihood of success and cost of another attempt. Based on a cost-quality tradeoff threshold, it decides whether to continue proving or restart from a new breakdown.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.04883/x1.png" alt=""><figcaption>Figure 3 : Cost-quality curve of our agent compared with the fixed-step baseline and the zero-noise oracle router.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On a subset of PutnamBench (85 problems), the agent decreases cost by 25.8% over a fixed-step baseline on average while preserving performance, and achieves a 7.8% accuracy improvement at parity cost. An ablation shows that using all three input features outperforms any subset.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.04883/x1.png" alt=""><figcaption>Figure 3 : Cost-quality curve of our agent compared with the fixed-step baseline and the zero-noise oracle router.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Model Configuration</th><th>Avg. Cost Decrease</th></tr></thead><tbody><tr><td>0% noise (oracle signal)</td><td>59.9%</td></tr><tr><td>Our agent</td><td>25.8%</td></tr><tr><td>5% noise</td><td>23.2%</td></tr><tr><td>10% noise</td><td>12.4%</td></tr></tbody></table><div class="tbl-cap">Cost decrease by model configuration</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

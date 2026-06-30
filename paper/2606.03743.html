@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proof-Refactor: Refactoring Generated Formal Proofs into Modular Artifacts · Papers With Lean</title>
+<meta name="description" content="While Large Language Models (LLMs) have shown strong performance in generating formal proofs, their outputs often remain less readable, modular, maintainable, and reusable than proofs in mature formal mathematics libraries. We argue that this gap stems in part from the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Proof-Refactor: Refactoring Generated Formal Proofs into Modular Artifacts">
+<meta property="og:description" content="While Large Language Models (LLMs) have shown strong performance in generating formal proofs, their outputs often remain less readable, modular, maintainable, and reusable than proofs in mature formal mathematics libraries. We argue that this gap stems in part from the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.03743.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.03743.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.03743v1" target="_blank" rel="noopener"><img src="../thumbs/2606.03743.jpg" alt="First page of Proof-Refactor: Refactoring Generated Formal Proofs into Modular Artifacts"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Proof-Refactor: Refactoring Generated Formal Proofs into Modular Artifacts</h1>
+        <p class="authors">Yiming Fu, Peixuan Liu, Zichen Wang, Kun yuan</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jun 2, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.03743v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.03743" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/pelicanhere/proof-refactor" target="_blank" rel="noopener" title="pelicanhere/proof-refactor">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Refactors LLM-generated Lean proofs from PutnamBench into modular artifacts using a four-phase agent on Claude Code with lean-lsp-mcp.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">While Large Language Models (LLMs) have shown strong performance in generating formal proofs, their outputs often remain less readable, modular, maintainable, and reusable than proofs in mature formal mathematics libraries. We argue that this gap stems in part from the compile-first objective implicit in most proof-generation pipelines, which encourages monolithic or ad hoc proof scripts rather than library-quality artifacts. Existing approaches to proof-quality improvement often rely on explicit, computable optimization objectives. In practice, however, the most tractable and experimentally validated objectives are largely length-based, while higher-level qualities such as readability, modularity, maintainability, and reusability are difficult to reduce to reliable automatic metrics. Instead of optimizing proof improvement against a single proxy metric, we take a process-guided approach inspired by human proof-refactoring workflows. We propose an agentic framework $\textbf{Proof-Refactor}$ that decomposes proof refactoring into four phases: extracting candidate proof fragments, designing helper declarations, formally proving the extracted and designed components, and repairing the original proof using the verified components. On generated Lean proofs from PutnamBench and Putnam2025, Proof-Refactor improves rubric-based refactoring scores over a strong Claude Code refactoring baseline, with the largest gains in signature quality and human readability. These results suggest that process-guided refactoring can improve proof structure without treating proof length as the primary objective.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-generated formal proofs compile but lack readability, modularity, maintainability, and reusability compared to proofs in mature libraries like Mathlib. Existing proof-improvement approaches rely on length-based optimization, which favors golfing over meaningful restructuring.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Proof-Refactor is an agentic framework built on Claude Code and lean-lsp-mcp that decomposes Lean proof refactoring into four phases: extracting candidate proof fragments, designing helper declarations, formally proving the extracted components, and repairing the original proof using verified helpers. The pipeline uses lean-lsp-mcp tools for context inspection, declaration search, and proof interaction. External models reason about high-level refactoring decisions while Claude Code handles Lean editing and checking. A custom lean_extract tool based on the Lean tactic extract enables extraction of proof fragments into standalone theorems.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.03743/pipeline.png" alt=""><figcaption>Figure 1: Overview of the Proof-Refactor pipeline.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On PutnamBench (96 problems), Proof-Refactor improves average rubric-based refactoring score by +0.45 over a Claude Code baseline, with gains of +0.68 in Signature Quality and +0.50 in Human Readability. On Putnam2025 (12 problems), the average score improves by +0.31. An ablation removing external assistance degrades all dimensions substantially, with a -0.86 gap in overall pipeline improvement.</p><div class="sum-table"><table><thead><tr><th>Dataset</th><th>Metric</th><th>Baseline</th><th>Proof-Refactor</th><th>Improvement</th></tr></thead><tbody><tr><td>Putnam2025 (12)</td><td>Average score</td><td>3.96</td><td>4.27</td><td>+0.31</td></tr><tr><td>Putnam2025 (12)</td><td>Signature Quality</td><td>3.76</td><td>4.28</td><td>+0.51</td></tr><tr><td>Putnam2025 (12)</td><td>Human Readability</td><td>3.99</td><td>4.26</td><td>+0.28</td></tr><tr><td>PutnamBench (96)</td><td>Average score</td><td>3.75</td><td>4.19</td><td>+0.45</td></tr><tr><td>PutnamBench (96)</td><td>Signature Quality</td><td>3.46</td><td>4.14</td><td>+0.68</td></tr><tr><td>PutnamBench (96)</td><td>Human Readability</td><td>3.67</td><td>4.18</td><td>+0.50</td></tr></tbody></table><div class="tbl-cap">Refactoring scores on PutnamBench and Putnam2025</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

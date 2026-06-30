@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proof-Carrying Materials: Falsifiable Safety Certificates for Machine-Learned Interatomic Potentials · Papers With Lean</title>
+<meta name="description" content="Machine-learned interatomic potentials (MLIPs) are deployed for high-throughput materials screening without formal reliability guarantees. We show that a single MLIP used as a stability filter misses 93% of density functional theory (DFT)-stable materials (recall 0.07) on a…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Proof-Carrying Materials: Falsifiable Safety Certificates for Machine-Learned Interatomic Potentials">
+<meta property="og:description" content="Machine-learned interatomic potentials (MLIPs) are deployed for high-throughput materials screening without formal reliability guarantees. We show that a single MLIP used as a stability filter misses 93% of density functional theory (DFT)-stable materials (recall 0.07) on a…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.12183.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.12183.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.12183v2" target="_blank" rel="noopener"><img src="../thumbs/2603.12183.jpg" alt="First page of Proof-Carrying Materials: Falsifiable Safety Certificates for Machine-Learned Interatomic Potentials"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Proof-Carrying Materials: Falsifiable Safety Certificates for Machine-Learned Interatomic Potentials</h1>
+        <p class="authors">Abhinaba Basu, Pavan Chakraborty</p>
+        <div class="row">
+          <span class="badge">cond-mat.mtrl-sci</span>
+          <span class="date">Mar 12, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=physics">physics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.12183v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.12183" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/abhinaba/alloy_pcm" target="_blank" rel="noopener" title="abhinaba/alloy_pcm">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses Lean 4 formal certification as the final stage of safety certificates for machine-learned interatomic potentials.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Machine-learned interatomic potentials (MLIPs) are deployed for high-throughput materials screening without formal reliability guarantees. We show that a single MLIP used as a stability filter misses 93% of density functional theory (DFT)-stable materials (recall 0.07) on a 25,000-material benchmark. Proof-Carrying Materials (PCM) closes this gap through three stages: adversarial falsification across compositional space, bootstrap envelope refinement with 95% confidence intervals, and Lean 4 formal certification. Auditing CHGNet, TensorNet and MACE reveals architecture-specific blind spots with near-zero pairwise error correlations (r &lt;= 0.13; n = 5,000), confirmed by independent Quantum ESPRESSO validation (20/20 converged; median DFT/CHGNet force ratio 12x). A risk model trained on PCM-discovered features predicts failures on unseen materials (AUC-ROC = 0.938 +/- 0.004) and transfers across architectures (cross-MLIP AUC-ROC ~ 0.70; feature importance r = 0.877). In a thermoelectric screening case study, PCM-audited protocols discover 62 additional stable materials missed by single-MLIP screening - a 25% improvement in discovery yield.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Machine-learned interatomic potentials (MLIPs) are deployed for high-throughput materials screening without formal reliability guarantees. A single MLIP used as a stability filter misses 93% of DFT-stable materials on a 25,000-material benchmark.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Proof-Carrying Materials (PCM) closes the reliability gap through three stages: adversarial falsification across compositional space (using six strategies including LLMs), bootstrap envelope refinement with 95% confidence intervals, and Lean 4 formal certification. The safety envelope compiles into Lean 4 proofs with explicit axioms. Three architecturally distinct MLIPs (CHGNet, TensorNet, MACE) are audited on 5,000 WBM materials.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2603.12183/x1.png" alt=""><figcaption>Figure 1 : The PCM pipeline. Stage 1 : automated adversaries (six strategies including LLMs) propose compositional feature vectors; the MLIP oracle evaluates each against the DFT reference. Stage 2 : counterexamples refine the safety envelope with bootstrap CIs. Stage 3 : the envelope compiles into Lean 4 proofs with explicit axioms.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Auditing reveals architecture-specific blind spots: CHGNet fails on f-electron chemistries, TensorNet on heavy-element oxides, and MACE on mixed-valence transition metals. The Lean 4 certificates provide falsifiable safety guarantees, turning MLIP deployment from a trust-based to a formally auditable process.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2603.12183/x2.png" alt=""><figcaption>Figure 2 : Cross-MLIP comparison of three architecturally distinct MLIPs on 5,000 WBM-derived structures. a , CHGNet vs MACE max force ( r=0.13 ). b , Pairwise force correlation heatmap: all three pairs near zero (CHGNet–TensorNet r=0.10 , CHGNet–MACE r=0.13 , TensorNet–MACE r=-0.01 ). c , Failure rates: CHGNet 31.1%, TensorNet 75.7%, MACE 73.2%. d , Architecture-specific blind spots with largely </figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

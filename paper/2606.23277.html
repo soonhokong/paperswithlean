@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GIF: Locally Sound Geometric Information Flow Control for LLMs · Papers With Lean</title>
+<meta name="description" content="Large language models increasingly mediate interactions between sensitive data, untrusted inputs, and privileged actions in agentic systems, creating security and privacy risks. These range from prompt injections that manipulate downstream tool use to leakage of confidential…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GIF: Locally Sound Geometric Information Flow Control for LLMs">
+<meta property="og:description" content="Large language models increasingly mediate interactions between sensitive data, untrusted inputs, and privileged actions in agentic systems, creating security and privacy risks. These range from prompt injections that manipulate downstream tool use to leakage of confidential…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.23277.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.23277.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.23277v1" target="_blank" rel="noopener"><img src="../thumbs/2606.23277.jpg" alt="First page of GIF: Locally Sound Geometric Information Flow Control for LLMs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">GIF: Locally Sound Geometric Information Flow Control for LLMs</h1>
+        <p class="authors">Adam Storek, Nikolaus Holzer, Zhuo Zhang, Suman Jana</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jun 22, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.23277v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.23277" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Provides a fully mechanized Lean 4 proof that the geometric information-flow measure upper-bounds true information flow under local regularity.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language models increasingly mediate interactions between sensitive data, untrusted inputs, and privileged actions in agentic systems, creating security and privacy risks. These range from prompt injections that manipulate downstream tool use to leakage of confidential information through model outputs. Recent Information Flow Control (IFC)-based defenses show promise but lack a principled semantic foundation for reasoning about information flow through the model itself. Since any input token may influence any output token in an autoregressive LLM, existing approaches suffer from severe taint explosion. We present Geometric Information Flow (GIF), a semantic framework for tracking information flow from input tokens to outputs. GIF uses the LLM Jacobian and local output geometry to upper-bound the Shannon mutual information between perturbed input spans and model outputs, yielding a scalable measure computable on large models via automatic differentiation and low-rank approximation. Unlike attention-based or correlational attribution heuristics, GIF satisfies local geometric soundness, and we provide a fully mechanized Lean 4 proof that it upper-bounds the true information flow induced by a given prompt under local regularity assumptions. We evaluate GIF on integrity and confidentiality tasks across multiple prompt-injection and privacy-leakage benchmarks. GIF achieves near-perfect recall even without a downstream declassifier, outperforming attention-based baselines. Combined with lightweight LLM-based declassifiers, it matches or exceeds the F1 of direct LLM-as-judge baselines such as GPT-5.5 xhigh reasoning while using up to 81x lower token cost. GIF flows detected with small surrogate models transfer to larger state-of-the-art models and other model families, even when the surrogate is up to 200x smaller, suggesting black-box deployment without gradient access.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLMs in agentic systems create security and privacy risks via prompt injection and information leakage. Existing Information Flow Control defenses lack a principled semantic foundation and suffer severe taint explosion in autoregressive models.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Geometric Information Flow (GIF) uses the LLM Jacobian and local output geometry to upper-bound the Shannon mutual information between perturbed input spans and outputs, made scalable via automatic differentiation and low-rank approximation. A fully mechanized Lean 4 proof shows GIF upper-bounds the true information flow under local regularity assumptions.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.23277/x2.png" alt=""><figcaption>Figure 2: GIF-guided declassification vs. full-trajectory judging. Each row block is one model acting as both the monitored agent and its own declassifier. Left: detection quality of GIF- k , as a ratio to the same model’s full-trajectory judge (judge row: absolute %); \geq 1 means the reduced transcript matches or beats the full one. Right: declassifier token cost per benchmark, split into input,</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">GIF achieves near-perfect recall, and with lightweight declassifiers matches or exceeds direct LLM-as-judge baselines such as GPT-5.5 at up to 81x lower token cost. Flows from surrogate models up to 200x smaller transfer to larger models and other families.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.23277/x3.png" alt=""><figcaption>Figure 3: Surrogate analysis models. Detection precision (P), recall (R), F_{1} , F_{2} , and accuracy (Acc) for the three GIF score variants when AgentDojo trajectories from Qwen 3 32B (top) and GPT OSS 120B (bottom) are attributed using the original target model ( Original ) versus a fixed Qwen 3 0.6B surrogate. The surrogate tracks the original across both targets and all variants, including th</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2606.23277/x4.png" alt=""><figcaption>Figure 4: Attribution cutoff k . AUROC (left) and AUPRC (right) of GIF attribution as a function of the cutoff k in \textsc{PSP@}k , for six models averaged over AgentDojo, MSB, and AgentDAM. Both metrics saturate: 95\% of the AUROC gain is reached by k{=}34 and of the AUPRC gain by k{=}29 .</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

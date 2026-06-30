@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sal: Multi-modal Verification of Replicated Data Types · Papers With Lean</title>
+<meta name="description" content="Designing correct replicated data types (RDTs) is challenging because replicas evolve independently and must be merged while preserving application intent. A promising approach is correct-by-construction development in a proof-oriented programming language such as F*, Dafny and…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sal: Multi-modal Verification of Replicated Data Types">
+<meta property="og:description" content="Designing correct replicated data types (RDTs) is challenging because replicas evolve independently and must be merged while preserving application intent. A promising approach is correct-by-construction development in a proof-oriented programming language such as F*, Dafny and…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.27202.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.27202.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.27202v1" target="_blank" rel="noopener"><img src="../thumbs/2603.27202.jpg" alt="First page of Sal: Multi-modal Verification of Replicated Data Types"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Sal: Multi-modal Verification of Replicated Data Types</h1>
+        <p class="authors">Pranav Ramesh, Vimala Soundarapandian, KC Sivaramakrishnan</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Mar 28, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.27202v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.27202" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/fplaunchpad/sal" target="_blank" rel="noopener" title="fplaunchpad/sal">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Designs and verifies state-based CRDTs and MRDTs in Lean using staged kernel-checked tactics, SMT fallback, AI-assisted proving, and Plausible counterexample generation.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Designing correct replicated data types (RDTs) is challenging because replicas evolve independently and must be merged while preserving application intent. A promising approach is correct-by-construction development in a proof-oriented programming language such as F*, Dafny and Lean, where desired correctness guarantees are specified and checked as the RDTs are implemented. Recent work Neem proposes the use of replication-aware linearizability (RA linearizability) as the correctness condition for state-based CRDTs and mergeable replicated data types (MRDTs), with automation in the SMT-aided, proof-oriented programming language F*. However, SMT-centric workflows can be opaque when automation fails to discharge a verification condition (VC), and they enlarge the trusted computing base (TCB). We present Sal, a multi-modal workflow to design and verify state-based CRDTs and MRDTs in Lean. Sal combines (i) kernel-checkable automation with proof reconstruction, (ii) SMT-aided automation when needed, and (iii) AI-assisted interactive theorem proving for remaining proof obligations. When a verification condition is shown to be invalid, we leverage Lean&#x27;s property-based testing to automatically generate and visualize counterexamples, helping developers debug incorrect specifications or implementations. We report on our experience verifying a suite of 13 CRDTs and MRDTs with Sal: 69% of verification conditions are discharged by kernel-verified automation without SMT, and counterexamples automatically expose subtle bugs such as the well-known enable-wins flag anomaly. The codebase for Sal is open-sourced, and is available at \href{<a href="https://github.com/fplaunchpad/sal}{https://github.com/fplaunchpad/sal" target="_blank" rel="noopener">https://github.com/fplaunchpad/sal}{https://github.com/fplaunchpad/sal</a>}</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Designing correct replicated data types (RDTs) is challenging because replicas evolve independently and must be merged while preserving intent. SMT-centric verification workflows can be opaque when automation fails and enlarge the trusted computing base.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Sal is a multi-modal verification workflow for state-based CRDTs and MRDTs in Lean. It combines kernel-checkable automation with proof reconstruction, SMT-aided automation when needed, and AI-assisted interactive theorem proving. When a verification condition is invalid, Lean&#x27;s property-based testing generates and visualizes counterexamples to help debug specifications or implementations.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2603.27202/x1.png" alt=""><figcaption>Figure 2. An enable-wins flag execution: both replicas see a disable at the end, yet merging produces \mathsf{(2,true)} at v_{6} , incorrectly reporting the flag as enabled.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Across a suite of 13 CRDTs and MRDTs, 69% of verification conditions are discharged by kernel-verified automation without SMT. Counterexamples automatically expose subtle bugs such as the well-known enable-wins flag anomaly.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

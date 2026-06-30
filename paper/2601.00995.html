@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grain Theory: Type-Level Granularity Correctness in Data Pipelines · Papers With Lean</title>
+<meta name="description" content="Data transformation correctness is a fundamental challenge in data engineering: how can we verify that pipelines produce correct results before executing on production data? Existing practice relies on iterative testing over materialized data. A common cause of errors is the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Grain Theory: Type-Level Granularity Correctness in Data Pipelines">
+<meta property="og:description" content="Data transformation correctness is a fundamental challenge in data engineering: how can we verify that pipelines produce correct results before executing on production data? Existing practice relies on iterative testing over materialized data. A common cause of errors is the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2601.00995.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2601.00995.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2601.00995v2" target="_blank" rel="noopener"><img src="../thumbs/2601.00995.jpg" alt="First page of Grain Theory: Type-Level Granularity Correctness in Data Pipelines"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Grain Theory: Type-Level Granularity Correctness in Data Pipelines</h1>
+        <p class="authors">Nikos Karayannidis</p>
+        <div class="row">
+          <span class="badge">cs.DB</span>
+          <span class="date">Jan 2, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=type-theory">type-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2601.00995v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2601.00995" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/nkarag/grain-theory-artifacts" target="_blank" rel="noopener" title="nkarag/grain-theory-artifacts">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Mechanically verifies grain theory&#x27;s homomorphism and grain-lift composition theorems in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Data transformation correctness is a fundamental challenge in data engineering: how can we verify that pipelines produce correct results before executing on production data? Existing practice relies on iterative testing over materialized data. A common cause of errors is the absence of formal reasoning about grain -- the level of detail of data -- so transformations inadvertently change granularity, yielding pathologies like fan traps (metric duplication) and chasm traps (data loss). We introduce grain theory, a type-theoretic framework that elevates grain to a composable property of any algebraic data type. It has two phases. First, a denotation of data: grain itself, defined by irreducibility and isomorphism, with no reference to functional dependencies; three grain relations forming a bounded lattice whose axioms recover Armstrong&#x27;s on product types; the entity key as a derived grain; and grain-determined behavioral classes -- together the type-level triple (G[R], EK[R], BC[R]). Second, a denotation of transformations: every transformation $h$ has a grain lift $\varphi(h)$. For collections of product types under the relational algebra we prove an equi-join grain inference theorem and present CalcG, a decidable algorithm that composes grain lifts across a pipeline DAG. The central theorem -- the grain homomorphism -- ties the phases together: grain projection commutes with transformation, and grain lifts compose ($\varphi(h_2 \circ h_1) = \varphi(h_2) \circ \varphi(h_1)$). Grain-correctness is therefore verifiable at design time, before any code or query runs. As corollaries, fan traps emerge as schema-detectable grain-relation violations; chasm traps localize to a specific ordering-chain pattern; and behavioral-class violations, such as point-in-time queries on the wrong collection type, become compile-time type errors. All theorems are mechanically verified in Lean 4.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Data pipeline correctness is undermined by the absence of formal reasoning about grain (the level of detail of data), leading to fan traps (metric duplication) and chasm traps (data loss) that are only caught through iterative testing on materialized data.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors introduce grain theory, a type-theoretic framework that elevates grain to a composable property of algebraic data types. Grain is defined by irreducibility and isomorphism without reference to functional dependencies. Three grain relations form a bounded lattice whose axioms recover Armstrong&#x27;s axioms on product types. The framework is formalized in Lean, enabling compile-time detection of granularity errors in data transformations.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The framework provides type-level grain correctness guarantees for data pipelines, catching fan traps and chasm traps at compile time rather than through runtime testing. The Lean formalization establishes the theoretical foundations including lattice properties and Armstrong axiom recovery.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>interwhen: A Generalizable Framework for Steering Reasoning Models with Test-time Verification · Papers With Lean</title>
+<meta name="description" content="Reasoning models produce long traces of intermediate decisions and tool calls, making test-time verification important for ensuring correctness. Existing approaches either verify only the final answer, which misses early errors, or rely on branch-and-verify strategies that…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="interwhen: A Generalizable Framework for Steering Reasoning Models with Test-time Verification">
+<meta property="og:description" content="Reasoning models produce long traces of intermediate decisions and tool calls, making test-time verification important for ensuring correctness. Existing approaches either verify only the final answer, which misses early errors, or rely on branch-and-verify strategies that…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2602.11202.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2602.11202.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2602.11202v3" target="_blank" rel="noopener"><img src="../thumbs/2602.11202.jpg" alt="First page of interwhen: A Generalizable Framework for Steering Reasoning Models with Test-time Verification"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">interwhen: A Generalizable Framework for Steering Reasoning Models with Test-time Verification</h1>
+        <p class="authors">Vishak K Bhat, Prateek Chanda, Vijval Ekbote, Ashmit Khandelwal, Maitreyi Swaroop, Vineeth N. Balasubramanian, Subbarao Kambhampati, Nagarajan Natarajan, Amit Sharma</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Feb 5, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2602.11202v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2602.11202" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Synthesizes provably correct verifiers in Lean (and z3) from natural-language policies to check intermediate reasoning states.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Reasoning models produce long traces of intermediate decisions and tool calls, making test-time verification important for ensuring correctness. Existing approaches either verify only the final answer, which misses early errors, or rely on branch-and-verify strategies that explore multiple trajectories. We introduce interwhen, a single-trajectory verification framework that steers model behavior by providing feedback on intermediate reasoning traces. It addresses two key challenges. First, given a set of verifiers, obtaining verifiable states from the reasoning trace typically requires prompt engineering or external task decomposition into fixed steps. Instead, we propose a monitoring system that periodically polls the reasoning trace and forks inference of the reasoning model to recover intermediate states. Verifiers are run asynchronously alongside generation, adding negligible overhead on correct executions and intervening only when violations occur. Second, beyond math and code, a central challenge for process verification is the scarcity of verifiers. interwhen addresses this through automatic verifier synthesis from natural-language policy documents. Given a policy, it can generate code-based verifiers, including provably correct verifiers in Lean and z3. Together, these contributions yield a plug-and-play test-time verification system that can improve task completion and policy compliance of any reasoning agent. On reasoning benchmarks where policies encode mathematical or logical constraints, interwhen achieves near-perfect accuracy for reasoning models using a fraction of the tokens of baselines. On agentic benchmarks with policy-based verifier generation, it enables improvements in task quality for SLMs without any finetuning, e.g., task completion rate of Qwen3-30B jumps from 32% to 87% on the telecom domain in tau2-bench. Code at <a href="https://github.com/microsoft/interwhen" target="_blank" rel="noopener">https://github.com/microsoft/interwhen</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Reasoning models produce long traces of intermediate decisions and tool calls, but existing verification approaches either check only the final answer (missing early errors) or use branch-and-verify strategies that explore multiple trajectories, increasing cost.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">interwhen is a single-trajectory verification framework that steers model behavior by providing feedback on intermediate reasoning traces. It has an offline phase (verifier code generation from a task policy) and an online phase that monitors the reasoning trace, extracts verifiable states at regular intervals via a forked execution, and provides corrective feedback. The framework uses Lean as one of its formal verifiers for mathematical reasoning tasks. It decouples verification from generation so that multiple verifiers can run without interrupting the model.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2602.11202/nips_diag_v4.png" alt=""><figcaption>Figure 1 : LLM-Process Modulo has two phases: an offline phase consisting of verifier code generation based on a task policy, and an online phase that steers a single reasoning trajectory and ensures policy compliance. The interwhen system monitors the reasoning trace and decouples verification from generation: at regular intervals, verifiable states are extracted by a forked execution of the same</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The framework proves that its policy-compliant acceptance probability is at least as high as the baseline. On mathematical reasoning and planning tasks, interwhen improves correctness over unverified generation while maintaining a single-trajectory budget, avoiding the cost of multi-trajectory branch-and-verify methods.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
