@@ -6,7 +6,51 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 01 Jul 2026 02:00:02 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jul 2026 03:02:13 +0000</lastBuildDate>
+    <item>
+      <title>Beyond the Library: An Agentic Framework for Autoformalizing Research Mathematics</title>
+      <link>https://paperswithlean.com/paper/2606.31134.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2606.31134.html</guid>
+      <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Arshia Soltani Moakhar, Iman Gholami, Max Springer, Mahdi JafariRaviz, MohammadTaghi Hajiaghayi</dc:creator>
+      <category>autoformalization</category><category>ai-agents</category><category>theorem-proving-ml</category><category>benchmark</category>
+      <description>An agentic multi-agent framework autoformalizes research-level mathematics into Lean 4, extending type definitions beyond Mathlib and machine-checking proofs.
+
+While Large Language Models (LLMs) have demonstrated exceptional capabilities in mathematical reasoning, they frequently produce subtle errors that evade human detection. Formal mathematical languages like Lean 4 offer mechanical proof checking, strongly motivating the need for autoformalization: the automatic translation of natural language mathematics into verifiable code. Recent trends indicate that general-purpose LLMs, heavily optimized for standard programming, now outperform smaller models explicitly fine-tuned for Lean. Leveraging this shift, we introduce an agentic autoformalization framework powered by general coding LLMs. At the core of our system is an orchestrator that manages a multi-agent pipeline tailored for research-level mathematics. Because cutting-edge research frequently relies on concepts outside the scope of existing libraries like Mathlib, our system dynamically extends necessary type definitions and validates them via a novel Auxiliary Lemma technique before formalizing the primary theorems. We applied our approach to PutnamBench, producing machine-checked Lean proofs for a random sample of 32 problems. Furthermore, we evaluate our system on five papers from the ACM Symposium on Theory of Computing (STOC) spanning combinatorics, communication complexity, mechanism design, and learning theory, successfully formalizing their main theorems and validating the generated formalizations with human experts; for all five we also formalize the proofs alongside the statements, and notably two of them are proved with no axioms beyond Lean&#x27;s kernel. All of our formalizations are available at https://beyondthelibrary.github.io/formal_arxiv .</description>
+    </item>
+    <item>
+      <title>Beyond Compilation: Evaluating Faithful Natural-Language-to-Lean Statement Formalization</title>
+      <link>https://paperswithlean.com/paper/2606.31002.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2606.31002.html</guid>
+      <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Ke Zhang, Patricio Gallardo Candela, Sudhir Murthy, Yi Xie, Zhi Wang, Maziar Raissi</dc:creator>
+      <category>autoformalization</category><category>benchmark</category><category>mathlib</category>
+      <description>Introduces a 400-entry benchmark and protocol for evaluating faithful natural-language-to-Lean statement formalization beyond mere compilation.
+
+Theorem-proving benchmarks evaluate proof search against fixed formal statements, but natural-language-to-Lean formalization must generate the formal statement itself. In this setting, compilation is only a validity check: a Lean declaration may type-check while omitting hypotheses, changing domains, or expressing a vacuous claim. We study faithful statement formalization as both an evaluation problem and a bottleneck-attribution problem. On a 400-entry graduate-level benchmark spanning real analysis, complex analysis, topology, and algebra, our protocol combines Lean compilation, cross-model semantic judging, and human expert calibration. The resulting picture is different from compile-rate evaluation: a full tool-augmented agent reaches 89.5% compilation but only 60.5% consensus faithfulness, exposing a 29.0-point compile-pass but consensus-unfaithful gap. Targeted human audits support the metric as a conservative decision boundary: across available case-level audits, 96.0% of consensus-positive outputs are human-confirmed faithful, while 82.4% of compile-pass consensus-negative outputs are human-confirmed semantic failures. Under this metric, existing one-shot formalizer models and prover-oriented Lean models remain low, suggesting that formal validity, proof-oriented Lean competence, and faithful statement generation should be reported separately. We then use a full $2^3$ factorial design to decompose three recurring interventions in formalization pipelines: parametric expert drafting, Mathlib/context search, and Lean elaboration feedback. Elaboration feedback is the largest validity intervention, but it also exposes a larger compile-pass semantic-failure bucket; search mainly improves grounding and selectivity; and fine-tuned drafting is largely substitutable in this tool stack once feedback and grounding are available.</description>
+    </item>
+    <item>
+      <title>Vector alignment in matrix Lie groups</title>
+      <link>https://paperswithlean.com/paper/2606.30868.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2606.30868.html</guid>
+      <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Congzhou M Sha</dc:creator>
+      <category>formalization</category><category>verification</category><category>algebra</category>
+      <description>Formally verifies in Lean 4 with Mathlib the Lie algebra projection formulae, their optimality, and the real-embedding exponential identity.
+
+The difference in gauge between two observers of the same physical system can be thought of as a group element acting on their common vector representations. Recovering that group element from a finite, noisy list of paired observations may be of use in both theory and experiment. The Kabsch and Horn algorithms efficiently align point clouds in $\mathbb R^3$, reconciling rotated frames of reference in Galilean relativity (i.e. $SO(3)$). In a previous work, we proposed an alternative Lie algebra method which extends to the Lorentz group $SO(3,1)_+$, and putatively to all Lie groups. In this work, we report the explicit formulae for applying the Lie algebra method to the classical matrix Lie groups (general linear $GL(n)$, special linear $SL(n)$, special orthogonal $SO(n)$, unitary $U(n)$, indefinite special orthogonal $SO(p,q)$, symplectic $Sp(n)$, spin $Spin(n)$, special Euclidean $SE(n)$) over both the real and complex fields. The four steps (pseudoinverse, matrix logarithm, projection onto the Lie algebra, matrix exponential) are exact in the noiseless case. The only group-dependent step is the projection, which we show produces the unique least squares-optimal element of the Lie algebra whenever its image lies in $\mathfrak g$ and its residual is orthogonal to $\mathfrak g$. Additionally, the Lie algebra method is optimal only to leading order for noisy data, so we refine it with a Newton-style correction. This correction matches the Lie algebra method in the noiseless case and direct least squares optimization in the noisy case, with performance between that of the Lie algebra method without correction and naive least squares optimization. The projections, their optimality, and the identity underlying the correction are formally proven in Lean~4.31.0 (with Mathlib 4.31.0), and numerical experiments are benchmarked in Julia.</description>
+    </item>
+    <item>
+      <title>A Lean 4 Formalization of Scott&#x27;s \emph{Continuous Lattices} (1972)</title>
+      <link>https://paperswithlean.com/paper/2606.30782.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2606.30782.html</guid>
+      <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Lars Warren Ericson</dc:creator>
+      <category>formalization</category><category>logic</category><category>topology</category>
+      <description>Complete sorry-free Lean 4 formalization against Mathlib of Scott&#x27;s 1972 Continuous Lattices, including 43 numbered results and the D∞ λ-calculus model.
+
+We present a complete machine-checked formalization of Dana Scott&#x27;s landmark 1972 paper \emph{Continuous Lattices} \textbf{[Sco72]}, carried out in Lean 4 against mathlib and including the March 1972 Milner correction in \textbf{[Sco72]} (pp.~135--136). Scott&#x27;s paper develops a model for \(λ\)-calculus from a topological starting point. He defines \emph{injective} \(T_0\)-spaces -- those with a strong extension property for continuous maps -- and shows that they are exactly the \emph{continuous lattices}: complete lattices whose Scott topology is determined by the order via the way-below relation (\(\ll\)). On this foundation he studies projections, retractions, products, function spaces, and inverse limits. The capstone (Theorem 4.4) constructs an inverse limit \(D_\infty\) of function-space approximants and proves \(D_\infty \cong [D_\infty \to D_\infty]\), yielding a purely mathematical model for Church&#x27;s untyped \(λ\)-calculus. Our development formalizes \textbf{43 numbered results} from Scott&#x27;s Sections 1--4 (Propositions, Corollaries, Lemmas, and Theorems), each as a sorry-free Lean theorem, together with supporting infrastructure (step functions, the \(\Uparrow a\) basis of Scott opens, Milner&#x27;s coarser-than-Scott hypothesis, the function-space tower, and the \(i_\infty\)/\(j_\infty\) pair). The formalization is \textbf{classical} (uses \texttt{Classical.choice} transitively) and follows Scott&#x27;s proof dependency order. Where the Lean proof required choices not visible in the original -- or where dead ends were encountered -- we record detailed notes in Section 5. All proofs check with the standard footprint \(\texttt{[propext, Classical.choice, Quot.sound]}\).</description>
+    </item>
     <item>
       <title>A Machine-Verified Proof of a Quantum-Optimization Conjecture</title>
       <link>https://paperswithlean.com/paper/2606.29687.html</link>
@@ -622,50 +666,6 @@ Recent advancements in large language models (LLMs) have spurred growing interes
       <description>Builds 18k instruction-response pairs across five formal languages including Lean4, evaluating and fine-tuning LLMs on verifiable formal proofs.
 
 The research in AI-based formal mathematical reasoning has shown an unstoppable growth trend. These studies have excelled in mathematical competitions like IMO and have made significant progress. This paper focuses on formal verification, an immediate application scenario of formal reasoning, and breaks it down into sub-tasks. We constructed 18k high-quality instruction-response pairs across five formal specification languages (Coq, Lean4, Dafny, ACSL, and TLA+) by distilling gpt-4o and evaluated against ten open-sourced LLMs, including recent popular DeepSeek-R1. We also fine-tuned several 7~8B small models to achieve comparable performance with Deepseek-R1-671B. Interestingly, we observed that fine-tuning with formal data also enhances mathematics, reasoning, and coding capabilities. Fine-tuned models are released at https: //huggingface.co/fm-universe.</description>
-    </item>
-    <item>
-      <title>DeFAb: A Verifiable Benchmark for Defeasible Abduction in Foundation Models</title>
-      <link>https://paperswithlean.com/paper/2606.18557.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2606.18557.html</guid>
-      <pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Patrick Cooper, Alvaro Velasquez</dc:creator>
-      <category>benchmark</category><category>dataset</category><category>logic</category>
-      <description>The CONJURE track uses Lean 4/Mathlib as a kernel verifier for 560 transformative-creativity instances whose gold answers are new definitions.
-
-A rule-based logic solver resolves every instance in our benchmark in under 50 microseconds with 100% accuracy; the best frontier language model reaches 65% at best and drops to 23.5% under rendering-robust evaluation (worst case over four surface renderings). We introduce DeFAb (Defeasible Abduction Benchmark), a dataset and generation pipeline that converts four decades of publicly funded knowledge bases into formally grounded instances for defeasible abduction: constructing hypotheses that explain anomalies by overriding defaults while preserving unrelated expectations. Because every hypothesis must pass polynomial-time checks for valid derivation, conservativity, and minimality, DeFAb makes logical rigor the instrument for measuring creativity and theoretical reasoning, scoring the disciplined construction of theory revisions rather than fluent but theory-destroying prose. The pipeline pairs taxonomic hierarchies (OpenCyc, YAGO, Wikidata) with behavioral property graphs (ConceptNet, UMLS) to produce 372,648+ instances across 33.75M materialized rules from 18 sources, in three levels with polynomial-time verifiable gold standards. Four frontier models do not reliably internalize defeasible reasoning: rendering-robust Level 2 accuracy is 7.8-23.5%; chain-of-thought variance (~36 pp) exceeds any inter-model gap; and a matched contamination control isolates a +19.4 pp Level 3 gap. We further release DeFAb-Hard (a 235-instance Level 3 difficulty variant; best model 53.3% vs 100% symbolic) and CONJURE (a kernel-verified transformative-creativity variant of 560 Lean 4/Mathlib instances whose gold answers are definitions the proof kernel did not previously contain, judge-free verifier; a pilot finds zero novel concepts). The same verifier doubles as an exact reward for preference optimization (DPO, RLVR/GRPO). Released under MIT at https://huggingface.co/datasets/PatrickAllenCooper/DeFAb.</description>
-    </item>
-    <item>
-      <title>Exact 6-cut rigidity and small-order superconnectivity for the 6-regular case of Dirac&#x27;s k=4 problem</title>
-      <link>https://paperswithlean.com/paper/2606.18462.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2606.18462.html</guid>
-      <pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Alper Ferudun</dc:creator>
-      <category>formalization</category><category>combinatorics</category>
-      <description>Machine-checks several supporting local-colouring lemmas in Lean 4/Mathlib for the 6-regular case of Dirac&#x27;s k=4 problem.
-
-Dirac asked in 1970 whether for every k &gt;= 4 there is a k-vertex-critical graph without critical edges; Jensen settled all k &gt;= 5, and only k=4 remains open. Following Skottova and Steiner, call a graph G a (4,1)-graph if chi(G)=4, chi(G-v)=3 for every vertex v, and chi(G-e)=4 for every edge e; they proved delta(G) &gt;= 6 and lambda(G) &gt;= 6 for every (4,1)-graph and asked whether a 6-regular (4,1)-graph exists. We prove three results about this 6-regular case. Theorem A (computational): there is no 6-regular 4-vertex-critical graph on n &lt;= 15 vertices, except for a unique graph (up to isomorphism) on n=13, whose 13 critical edges form a Hamilton cycle; hence any 6-regular (4,1)-graph has at least 16 vertices. Theorem B: in a 6-regular (4,1)-graph every 6-edge-cut is either the edge star of a vertex or has both shores of size at least 15; consequently every 6-regular (4,1)-graph on at most 29 vertices is super-6-edge-connected. Theorem C (all sizes): no shore of a nontrivial 6-edge-cut in a 6-regular (4,1)-graph induces a bipartite graph; more generally, a shore whose deficiency is concentrated on two vertices forces them to receive equal colours in every proper 3-colouring. The proof of Theorem B rests on an exact classification of the 3x3 cut matrices of 6-edge-cuts in (4,1)-graphs (exactly 21 matrices, five types up to row/column permutations) together with a boundary-shortfall lemma; the unique near-miss is K_{3,3,3} minus a rainbow 3-matching. Several supporting lemmas are machine-checked in Lean 4/Mathlib.</description>
-    </item>
-    <item>
-      <title>A Formalization of Austrian Economics. Praxeological Foundations: The Base System and Its Derived Theorems</title>
-      <link>https://paperswithlean.com/paper/2606.18292.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2606.18292.html</guid>
-      <pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Rafał Komendarczyk, Walter Block, John Levendis, Frank Tipler</dc:creator>
-      <category>formalization</category><category>logic</category><category>economics</category>
-      <description>A Lean companion encodes the praxeology axioms as type classes and constructs concrete models whose type-checking is a constructive consistency proof.
-
-This paper presents an axiomatization of Ludwig von Mises&#x27; praxeology in many-sorted first-order logic, isolating the foundational layer. We introduce a formal language with five sorts ({\sf Actors}, {\sf Actions}, {\sf Ends}, {\sf Things}, {\sf Times}) and six primitive relations ({\em Acts}, {\em Avail}, {\em EndOf}, {\em Use}, a preference order, and a time order), together with a base axiom system organised into three layers: the structure of action itself, the actor&#x27;s preference order together with its revelation in choice, and material scarcity. The base system captures purposeful action in its bare praxeological form. Working entirely within the base system we derive the core classical Misesian propositions as Hilbert-style theorems: the asymmetry of revealed preference, the existence of opportunity cost, the structural scarcity of time, the subjectivity of opportunity cost, the law of diminishing marginal utility, and the increasing marginal disutility of labour. Where a theorem requires structure beyond the praxeological core -- as with diminishing marginal utility -- the additional premises are made explicit; identifying these hidden premises is one of the methodological payoffs of the approach. A self-contained {\em Lean} companion encodes the language as {\em Lean} type classes and constructs concrete models -- a three-period Robinson Crusoe economy and its infinite-time extension -- whose acceptance by the type-checker is a constructive consistency proof of the full base theory.</description>
-    </item>
-    <item>
-      <title>Visored: A Controlled-Natural-Language Prover for LLM-Generated Mathematics</title>
-      <link>https://paperswithlean.com/paper/2606.17581.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2606.17581.html</guid>
-      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Xiyu Zhai, Xinyi Chen, Yiping Wang, Runlong Zhou, Liao Zhang, Simon S. Du</dc:creator>
-      <category>autoformalization</category><category>theorem-proving-ml</category><category>tooling</category>
-      <description>A controlled-natural-language prover whose accepted proofs are re-emitted as checked Lean files, driven by an LLM on miniF2F.
-
-We present a dependent-type-based prover designed around the way LLMs (and humans) tend to write mathematics, complementing existing systems such as Lean and Rocq. Its core design choices are a surface that imitates mathematical natural language and a rule-driven automation layer that closes the routine steps a textbook would omit, so that an accepted proof can be re-emitted as a checked Lean file. Early experiments suggest that, even without any prover-specific training data, LLMs can learn to use it effectively on the miniF2F benchmark. Lean output excerpts: https://github.com/xiyuzhai-husky-lang/visored/</description>
     </item>
   </channel>
 </rss>

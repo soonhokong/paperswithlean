@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beyond the Library: An Agentic Framework for Autoformalizing Research Mathematics · Papers With Lean</title>
+<meta name="description" content="While Large Language Models (LLMs) have demonstrated exceptional capabilities in mathematical reasoning, they frequently produce subtle errors that evade human detection. Formal mathematical languages like Lean 4 offer mechanical proof checking, strongly motivating the need for…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Beyond the Library: An Agentic Framework for Autoformalizing Research Mathematics">
+<meta property="og:description" content="While Large Language Models (LLMs) have demonstrated exceptional capabilities in mathematical reasoning, they frequently produce subtle errors that evade human detection. Formal mathematical languages like Lean 4 offer mechanical proof checking, strongly motivating the need for…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.31134.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.31134.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.31134v1" target="_blank" rel="noopener"><img src="../thumbs/2606.31134.jpg" alt="First page of Beyond the Library: An Agentic Framework for Autoformalizing Research Mathematics"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Beyond the Library: An Agentic Framework for Autoformalizing Research Mathematics</h1>
+        <p class="authors">Arshia Soltani Moakhar, Iman Gholami, Max Springer, Mahdi JafariRaviz, MohammadTaghi Hajiaghayi</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jun 30, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.31134v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.31134" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">An agentic multi-agent framework autoformalizes research-level mathematics into Lean 4, extending type definitions beyond Mathlib and machine-checking proofs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">While Large Language Models (LLMs) have demonstrated exceptional capabilities in mathematical reasoning, they frequently produce subtle errors that evade human detection. Formal mathematical languages like Lean 4 offer mechanical proof checking, strongly motivating the need for autoformalization: the automatic translation of natural language mathematics into verifiable code. Recent trends indicate that general-purpose LLMs, heavily optimized for standard programming, now outperform smaller models explicitly fine-tuned for Lean. Leveraging this shift, we introduce an agentic autoformalization framework powered by general coding LLMs. At the core of our system is an orchestrator that manages a multi-agent pipeline tailored for research-level mathematics. Because cutting-edge research frequently relies on concepts outside the scope of existing libraries like Mathlib, our system dynamically extends necessary type definitions and validates them via a novel Auxiliary Lemma technique before formalizing the primary theorems. We applied our approach to PutnamBench, producing machine-checked Lean proofs for a random sample of 32 problems. Furthermore, we evaluate our system on five papers from the ACM Symposium on Theory of Computing (STOC) spanning combinatorics, communication complexity, mechanism design, and learning theory, successfully formalizing their main theorems and validating the generated formalizations with human experts; for all five we also formalize the proofs alongside the statements, and notably two of them are proved with no axioms beyond Lean&#x27;s kernel. All of our formalizations are available at <a href="https://beyondthelibrary.github.io/formal_arxiv" target="_blank" rel="noopener">https://beyondthelibrary.github.io/formal_arxiv</a> .</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLMs produce subtle mathematical errors that are hard to detect, motivating autoformalization into verifiable languages like Lean 4. Research-level mathematics often relies on concepts absent from existing libraries like Mathlib, which fixed pipelines and single-agent systems struggle to handle.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An orchestrator (a Claude Code session) manages two pipelines: one formalizing paper statements and one formalizing proofs. A Type Planner identifies concepts missing from Mathlib, and Type Formalizer agents translate them into Lean, validating correctness via a novel Auxiliary Lemma technique. A Faithfulness Judge checks formalizations, including informalizing Lean code back to natural language. Subagents preserve the orchestrator&#x27;s context for high-level strategy.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.31134/x1.png" alt=""><figcaption>Figure 1 : Overview of our agentic system. The user interacts through the Claude Code interface (left), providing the paper in L a T e X and PDF form together with a prompt, and the system returns Lean code. The orchestrator drives two pipelines. The Formalization pipeline (top, Section 2.1 ) extracts the main theorem, then iterates over the required types, planning and formalizing each type toget</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2606.31134/x3.png" alt=""><figcaption>Figure 3 : Faithfulness Judge: As illustrated, when provided with an informal statement and its corresponding formalization, this agent verifies the input using two methods. First, it checks the Lean code directly. Second, it utilizes an “informalizer” to translate the Lean code back into natural language to confirm they match. Because a single model like Claude may struggle with self-evaluation, </figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On a random 32-problem sample of PutnamBench, the system solved all 32, giving a 91.3% lower-bound accuracy at 95% confidence, at under $5 per problem. It also formalized main theorems of five STOC papers validated by human experts, with two proved using no axioms beyond Lean&#x27;s kernel.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.31134/x4.png" alt=""><figcaption>Figure 4 : Lean formalization of the headline theorem of Pham [ 17 ] : the FractionalCover and IntegralCover structures, the IsPSmall predicate (the cover cost c_{{\mathrm{int}}} ), and the statement of main_theorem .</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Paper</th><th>Area</th><th>Axioms beyond kernel</th></tr></thead><tbody><tr><td>Mackenzie &amp; Saffidine</td><td>Communication complexity</td><td>None</td></tr><tr><td>Gravin &amp; Jia</td><td>Mechanism design</td><td>None</td></tr><tr><td>Pham</td><td>Combinatorics</td><td>1</td></tr><tr><td>Rivkin et al.</td><td>Information-theoretic LB</td><td>2</td></tr><tr><td>Kalai et al.</td><td>Learning theory</td><td>3</td></tr></tbody></table><div class="tbl-cap">Axioms beyond kernel for formalized STOC papers</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
