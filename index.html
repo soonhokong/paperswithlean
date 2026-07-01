@@ -70,6 +70,39 @@ function tagColor(t){
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const fmtDate = d => { const [y,m,day] = d.split("-"); return MONTHS[+m-1] + " " + (+day) + ", " + y; };
 const esc = s => (s||"").replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+// Strip text-mode LaTeX (\emph{}, \textbf{}, ~, --, ``''), preserving math
+// regions ($...$, \(...\), \[...\], $$...$$) so KaTeX can still render them.
+const TEX_CMD = /\\(?:emph|textbf|textit|texttt|textsc|textrm|textsf|textnormal|textsl|text|mbox|underline|uline|textup|textmd)\s*\{/;
+function detexSpan(s){
+  let out = "", i = 0;
+  while (i < s.length){
+    TEX_CMD.lastIndex = 0;
+    const m = TEX_CMD.exec(s.slice(i));
+    if (m && m.index === 0){
+      let j = i + m[0].length, depth = 1;
+      while (j < s.length && depth){
+        if (s[j] === "{") depth++;
+        else if (s[j] === "}") depth--;
+        j++;
+      }
+      out += detexSpan(s.slice(i + m[0].length, j - 1));
+      i = j;
+    } else { out += s[i]; i++; }
+  }
+  return out;
+}
+function detex(s){
+  if (!s) return s;
+  const parts = (s+"").split(/(\$\$[\s\S]*?\$\$|\$[\s\S]*?\$|\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\])/);
+  for (let k = 0; k < parts.length; k += 2){
+    let t = detexSpan(parts[k]);
+    t = t.replace(/---/g, "—").replace(/--/g, "–");
+    t = t.replace(/``/g, "“").replace(/''/g, "”");
+    t = t.replace(/~/g, " ").replace(/\\([&%_#{}])/g, "$1");
+    parts[k] = t;
+  }
+  return parts.join("");
+}
 function escLinkify(text){
   const re = /(https?:\/\/[^\s<>()\[\]]+)/g;
   let out = "", last = 0, m;
@@ -132,8 +165,8 @@ function matches(p) {
   if (p.published < windowStart[activeWindow]) return false;
   for (const t of activeTags) if (!(p.tags||[]).includes(t)) return false;
   if (query) {
-    const hay = (p.title+" "+(p.authors||[]).join(" ")+" "+p.abstract+" "+
-                 (p.tags||[]).join(" ")+" "+p.lean_note).toLowerCase();
+    const hay = (detex(p.title)+" "+(p.authors||[]).join(" ")+" "+detex(p.abstract)+" "+
+                 (p.tags||[]).join(" ")+" "+detex(p.lean_note)).toLowerCase();
     for (const term of query.toLowerCase().split(/\s+/)) if (term && !hay.includes(term)) return false;
   }
   return true;
@@ -141,8 +174,9 @@ function matches(p) {
 
 function card(p) {
   const href = "paper/" + p.id + ".html";
+  const title = detex(p.title);
   const thumbInner = p.thumb
-    ? '<img class="thumb" loading="lazy" decoding="async" src="'+esc(p.thumb)+'" alt="First page of '+esc(p.title)+'">'
+    ? '<img class="thumb" loading="lazy" decoding="async" src="'+esc(p.thumb)+'" alt="First page of '+esc(title)+'">'
     : '<div class="thumb-ph">'+esc(p.primary_category)+'</div>';
   const thumb = '<a class="thumb-link" href="'+href+'">'+thumbInner+'</a>';
   const tags = (p.tags||[]).map(t =>
@@ -151,10 +185,10 @@ function card(p) {
   <div class="card">
     ${thumb}
     <div class="body">
-      <p class="title"><a href="${href}">${esc(p.title)}</a></p>
+      <p class="title"><a href="${href}">${esc(title)}</a></p>
       <p class="authors">${esc(fmtAuthors(p.authors))}</p>
-      <p class="lean-note">${esc(p.lean_note)}</p>
-      <p class="abs">${escLinkify(p.abstract)}</p>
+      <p class="lean-note">${esc(detex(p.lean_note))}</p>
+      <p class="abs">${escLinkify(detex(p.abstract))}</p>
       <div class="row">
         <span class="badge">${esc(p.primary_category)}</span>
         <span class="date">${fmtDate(p.published)}</span>
