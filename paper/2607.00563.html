@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Certificate-Carrying Transformation of Event-Driven Block Programs · Papers With Lean</title>
+<meta name="description" content="Block-based end-user languages such as Scratch run tens of millions of programs. Existing tools establish behavior preservation through program analysis and testing without a checked guarantee. We turn optimization into certificate-carrying source-to-source rewriting. An…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Certificate-Carrying Transformation of Event-Driven Block Programs">
+<meta property="og:description" content="Block-based end-user languages such as Scratch run tens of millions of programs. Existing tools establish behavior preservation through program analysis and testing without a checked guarantee. We turn optimization into certificate-carrying source-to-source rewriting. An…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.00563.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.00563.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.00563v1" target="_blank" rel="noopener"><img src="../thumbs/2607.00563.jpg" alt="First page of Certificate-Carrying Transformation of Event-Driven Block Programs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Certificate-Carrying Transformation of Event-Driven Block Programs</h1>
+        <p class="authors">Yuan Si, Jialu Zhang</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Jul 1, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.00563v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.00563" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Mechanizes the cooperative-frame refinement theorem for dead-store elimination in Lean 4, with two decision procedures as verified-executable Lean functions.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Block-based end-user languages such as Scratch run tens of millions of programs. Existing tools establish behavior preservation through program analysis and testing without a checked guarantee. We turn optimization into certificate-carrying source-to-source rewriting. An untrusted optimizer proposes a rewrite; a trusted, fail-closed checker accepts it only after recomputing every side condition that the rewrite&#x27;s behavior preservation depends on under an explicit observation lens. The checker is the sole authority: given a correct checker and a small, explicitly stated set of model-to-VM assumptions, an optimizer bug cannot mint an unsound acceptance. The observation lens is a parameter, and the central soundness argument is a cooperative-frame refinement theorem: a write overwritten before any thread observes it, within a window in which no thread yields, can be removed. We mechanize this theorem in Lean and show that one parametric statement covers two concrete rewrite families instantiated to variable state and renderer state. We build a checker for six rewrite families and evaluate it on 300 real Scratch projects. The checker accepts a behavior-preserving rewrite on 94.3% of projects (283 of 300); certification costs under one tenth of a second per project; and a cross-family adversarial campaign of 4,278 perturbed rewrites produces zero false accepts. An audit found eight false accepts the per-family test suites missed; each is now rejected. An ablation that strips the semantic side conditions, leaving analysis and testing alone, ships rewrites the virtual machine confirms change behavior; the full checker rejects every one. The result shows how to provide behavior-preservation guarantees for a concurrent, event-driven, end-user language. The checker recomputes every required condition instead of trusting optimizer claims, keeping the trusted base small.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Block-based end-user languages like Scratch run on cooperative, event-driven schedulers, and existing optimization tools preserve behavior only through analysis and testing without a checked guarantee. Automatically rewriting these programs requires a soundness guarantee that a rewrite preserves what the player observes.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">CertiBlock separates an untrusted optimizer that proposes rewrites from a trusted, fail-closed checker that recomputes every side condition under an explicit observation lens before accepting. The central soundness argument is a cooperative-frame refinement theorem: a write overwritten before any observation within a no-yield window can be removed. This theorem is mechanized in Lean 4, and two core decision procedures are realized as compiled Lean functions proved sound. A checker for six rewrite families is implemented in Python and validated against a headless Scratch virtual machine.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 300 real Scratch projects the checker accepts a behavior-preserving rewrite on 94.3% (283 of 300), certifying under 0.1 seconds per project. A cross-family adversarial campaign of 4,278 perturbed rewrites produced zero false accepts, and an audit found eight false accepts missed by per-family suites, each now rejected.</p><div class="sum-table"><table><thead><tr><th>Family</th><th>Recomputed condition</th><th>Mech.</th><th>Oracle</th></tr></thead><tbody><tr><td>Comment cleanup</td><td>canonical core unchanged</td><td>yes</td><td>sanity</td></tr><tr><td>Unused-asset cleanup</td><td>no index-shift observer</td><td>no</td><td>sanity</td></tr><tr><td>Dead-broadcast removal</td><td>message reaches no receiver</td><td>no</td><td>sanity</td></tr><tr><td>Variable dead-store</td><td>overwritten in no-yield window</td><td>yes</td><td>seeded</td></tr><tr><td>Visual dead-store</td><td>no observable commit in segment</td><td>yes</td><td>VM</td></tr></tbody></table><div class="tbl-cap">Per-family recomputed conditions with mechanization and oracle status</div></div><div class="sum-table"><table><thead><tr><th>Family</th><th>Missed observation channel</th><th>Count</th></tr></thead><tbody><tr><td>Unused-asset cleanup</td><td>costume/backdrop index read</td><td>4</td></tr><tr><td>Dead-code elimination</td><td>closure reach; broadcast timing</td><td>2</td></tr><tr><td>Visual dead-store</td><td>relative selector; yielding sound</td><td>2</td></tr></tbody></table><div class="tbl-cap">False accepts found by audit per family</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

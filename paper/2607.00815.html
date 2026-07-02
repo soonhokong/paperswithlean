@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LRAT-Catcher: Importing SAT Solver Certificates into Lean4 by Reflection · Papers With Lean</title>
+<meta name="description" content="SAT solvers settle combinatorial problems beyond the reach of interactive theorem provers and produce LRAT certificates for independent verification. We present LRAT-Catcher, a standalone, general-purpose tool that imports a DIMACS formula together with an LRAT certificate into…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LRAT-Catcher: Importing SAT Solver Certificates into Lean4 by Reflection">
+<meta property="og:description" content="SAT solvers settle combinatorial problems beyond the reach of interactive theorem provers and produce LRAT certificates for independent verification. We present LRAT-Catcher, a standalone, general-purpose tool that imports a DIMACS formula together with an LRAT certificate into…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.00815.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.00815.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.00815v1" target="_blank" rel="noopener"><img src="../thumbs/2607.00815.jpg" alt="First page of LRAT-Catcher: Importing SAT Solver Certificates into Lean4 by Reflection"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">LRAT-Catcher: Importing SAT Solver Certificates into Lean4 by Reflection</h1>
+        <p class="authors">Stefan Szeider</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Jul 1, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-slate" href="../#tag=logic">logic</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.00815v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.00815" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/leansolving/lrat-catcher" target="_blank" rel="noopener" title="leansolving/lrat-catcher">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">LRAT-Catcher imports DIMACS formulas and LRAT SAT certificates into Lean 4 as theorems via native reflection using Lean core&#x27;s verified checker.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">SAT solvers settle combinatorial problems beyond the reach of interactive theorem provers and produce LRAT certificates for independent verification. We present LRAT-Catcher, a standalone, general-purpose tool that imports a DIMACS formula together with an LRAT certificate into Lean 4 as a theorem. LRAT-Catcher runs the formally verified LRAT checker from Lean core as compiled native code via reflection. This scales to instances where Mathlib&#x27;s explicit proof-term import exhausts memory. LRAT-Catcher also composes cube-and-conquer solving runs entirely inside Lean. Per-cube refutations are combined with a cover-completeness certificate, itself an LRAT proof, into a single unsatisfiability theorem. Verified encodings connect CNF-level results to the original combinatorial problems. We evaluate the tool against Mathlib&#x27;s proof-term import and the external checker cake_lpr on establishing the Schur number S(4) = 44 and the Ramsey number R(4,4) = 18 as Lean theorems.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">SAT solvers settle combinatorial problems beyond interactive theorem provers and emit LRAT certificates, but a solver verdict is not a reusable theorem inside a proof assistant. Existing Lean tools like Mathlib&#x27;s lrat_proof lack full RAT support and exhaust memory because proof terms embed the whole formula.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">LRAT-Catcher is a standalone tool that imports a DIMACS formula and an LRAT certificate into Lean 4 as a theorem, running the formally verified LRAT checker from Lean core as compiled native code via reflection (with an optional kernel-only mode). It composes cube-and-conquer solving runs entirely inside Lean, combining per-cube refutations with a cover-completeness LRAT certificate via a single reusable composition theorem. Verified encodings and soundness lemmas lift CNF unsatisfiability back to statements about the original combinatorial problems.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The tool establishes Schur number S(4)=44 and Ramsey number R(4,4)=18 as Lean theorems. Native reflection stays within ordinary memory bounds and scales to certificates where Mathlib&#x27;s proof-term import exhausts memory, e.g. handling the 628 MB Schur S(4) certificate in 77s versus lrat_proof&#x27;s 7944s.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.00815/x1.png" alt=""><figcaption>Figure 1: Peak memory against certificate size, across the pigeonhole and Schur benchmark instances of Table 1 , for the two in-Lean import paths: \blacksquare native reflection and \blacksquare Mathlib ’s lrat_proof . Native reflection stays within an ordinary Lean process, whereas the explicit-proof-term import of lrat_proof grows with the embedded formula; a cross ( \times ) marks a run that th</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Instance</th><th>Certificate</th><th>Native</th><th>cake_lpr</th><th>lrat_proof</th></tr></thead><tbody><tr><td>Schur S(3)</td><td>22 KB</td><td>13.8</td><td>0.3</td><td>9.6</td></tr><tr><td>PHP(10,9)</td><td>63 MB</td><td>13.2</td><td>3.1</td><td>1212</td></tr><tr><td>Schur S(4) mono.</td><td>628 MB</td><td>77</td><td>27.4</td><td>7944</td></tr></tbody></table><div class="tbl-cap">Import time (s) by workflow across benchmark instances</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
