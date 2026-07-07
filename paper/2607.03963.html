@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neuro-Symbolic Reasoning for Vulnerability Detection · Papers With Lean</title>
+<meta name="description" content="Ask a large language model (LLM) whether a pointer dereference is safe, and it can often produce a plausible justification for “yes”. The difficulty is that a fluent justification is not a proof. This gap is precisely where automated vulnerability detection lives: deciding, for…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Neuro-Symbolic Reasoning for Vulnerability Detection">
+<meta property="og:description" content="Ask a large language model (LLM) whether a pointer dereference is safe, and it can often produce a plausible justification for “yes”. The difficulty is that a fluent justification is not a proof. This gap is precisely where automated vulnerability detection lives: deciding, for…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.03963.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.03963.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.03963v1" target="_blank" rel="noopener"><img src="../thumbs/2607.03963.jpg" alt="First page of Neuro-Symbolic Reasoning for Vulnerability Detection"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Neuro-Symbolic Reasoning for Vulnerability Detection</h1>
+        <p class="authors">Yanjie Zhao, Hongjie Chen, Li Lu, Zhou Yang, Xiao Cheng, Haoyu Wang</p>
+        <div class="row">
+          <span class="badge">cs.SE</span>
+          <span class="date">Jul 4, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.03963v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.03963" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Extracted code facts are compiled into a Lean 4 verification model whose kernel checks whether safety obligations are provably discharged.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Ask a large language model (LLM) whether a pointer dereference is safe, and it can often produce a plausible justification for “yes”. The difficulty is that a fluent justification is not a proof. This gap is precisely where automated vulnerability detection lives: deciding, for a given operation in source code, whether a memory safety defect such as a null dereference, use-after-free, or double free can actually occur. We trace the unreliability of LLM-based vulnerability detection to a mechanism, the premature discharge of safety obligations, and argue that the remedy is not better prompting but a separation of roles: the component that interprets the code must not also be the one that decides a safety obligation is met. In this paper, we present LeanGuard, a neuro-symbolic framework that assigns each act to the side equipped for it. On the neural side, an LLM serves strictly as a semantic filter over candidate facts extracted from the abstract syntax tree (AST): it prunes spurious facts and keeps the real ones, but never discharges an obligation or decides the verdict on its own. On the symbolic side, the surviving facts are compiled into a verification model in Lean 4 (a formal proof assistant whose kernel accepts a conclusion only when it is formally proved), where every dangerous operation must be matched by a guard that provably covers it in scope; absent such a guard, the obligation stays open rather than being argued away. Because a function rarely arrives with full context, this symbolic model is necessarily partial: an unproved obligation is not yet a defect. An evidence-aware adjudicator therefore weighs the symbolic and neural verdicts by the quality of each. We instantiate the framework on five CWE classes to ask how far this division of labor can be pushed.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLMs prematurely discharge safety obligations when detecting memory-safety defects (null dereference, use-after-free, double free), producing fluent but unproved verdicts. Rule-based static analyzers are auditable but semantically limited. Judging a single function reliably without full program context is hard.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">LeanGuard is a neuro-symbolic framework separating roles: an LLM acts only as a semantic filter over candidate facts extracted from the AST, pruning spurious ones but never deciding verdicts. Surviving facts are compiled into a partial verification model in Lean 4, where each dangerous operation must be matched by a guard that provably covers it; unproved obligations stay open. An evidence-aware adjudicator weighs symbolic and neural verdicts by quality. The framework is instantiated on five CWE classes.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.03963/x1.png" alt=""><figcaption>Figure 1 : Overview of the LeanGuard framework.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Across five CWE classes and three backends (Claude Code, Codex, Pure LLM), LeanGuard improves F1 over baselines in all fifteen settings and shows lower variance across runs. Improvements are statistically significant in several configurations.</p><div class="sum-table"><table><thead><tr><th>Dataset</th><th>Backend</th><th>ΔF1</th><th>p</th><th>Sig.</th></tr></thead><tbody><tr><td>CWE-120</td><td>Pure LLM</td><td>+0.044±0.010</td><td>0.0162</td><td>Yes</td></tr><tr><td>CWE-416</td><td>Codex</td><td>+0.149±0.006</td><td>0.0006</td><td>Yes</td></tr><tr><td>CWE-416</td><td>Pure LLM</td><td>+0.167±0.028</td><td>0.0092</td><td>Yes</td></tr><tr><td>CWE-476</td><td>Codex</td><td>+0.049±0.013</td><td>0.0245</td><td>Yes</td></tr><tr><td>CWE-476</td><td>Pure LLM</td><td>+0.066±0.011</td><td>0.0089</td><td>Yes</td></tr></tbody></table><div class="tbl-cap">F1 improvement per backend and CWE (mean ± σ, significance)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
