@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harnessing Code Agents for Automatic Software Verification · Papers With Lean</title>
+<meta name="description" content="Formal verification offers the strongest guarantee of software correctness, but it does not scale: the proofs demanded by interactive theorem provers such as Coq require enormous expert effort. Large language models (LLMs) promise to generate these proofs automatically, yet…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Harnessing Code Agents for Automatic Software Verification">
+<meta property="og:description" content="Formal verification offers the strongest guarantee of software correctness, but it does not scale: the proofs demanded by interactive theorem provers such as Coq require enormous expert effort. Large language models (LLMs) promise to generate these proofs automatically, yet…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.06341.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.06341.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.06341v1" target="_blank" rel="noopener"><img src="../thumbs/2607.06341.jpg" alt="First page of Harnessing Code Agents for Automatic Software Verification"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Harnessing Code Agents for Automatic Software Verification</h1>
+        <p class="authors">Shuangxiang Kan, Shuanglong Kan, Sebastian Ertel</p>
+        <div class="row">
+          <span class="badge">cs.FL</span>
+          <span class="date">Jul 7, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.SE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.06341v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.06341" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/coq-community/reglang" target="_blank" rel="noopener" title="coq-community/reglang">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A code-agent verification harness (Aria) proves 72 not-yet-ported lemmas in iris-lean, the in-progress Lean 4 port of Iris, checked by the Lean kernel.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Formal verification offers the strongest guarantee of software correctness, but it does not scale: the proofs demanded by interactive theorem provers such as Coq require enormous expert effort. Large language models (LLMs) promise to generate these proofs automatically, yet existing approaches wire a fixed, human-designed proof strategy into the system and constrain the model to follow it (retrieving premises and predicting tactics one step at a time, or splitting goals by divide-and-conquer), and still prove only a fraction of their target theorems. We show that imposing such a strategy is unnecessary and limiting. Handing the whole lemma to a general LLM code agent (for example, Claude Code), free to choose its own approach, and wrapping it in a verification harness is both simpler and more effective, achieving full coverage: every targeted lemma proved, with no failures and no Coq expert intervention. The agent writes the proofs under feedback and hard constraints from the harness that keep each one sound (accepted only when the prover&#x27;s kernel closes it), complete (no obligation left unproved or silently dropped), and terminating (no divergent tactics). We evaluate this harness plus code agent along three dimensions. (1) Core logic: on Iris, the state-of-the-art separation logic for concurrent and memory-manipulating programs, Aria proves all 4,257 lemmas of the four core modules and the 217 lemmas verifying Rust&#x27;s standard libraries built on it, fully automatically. (2) Comparison with prior LLM provers: on reglang, where prior provers manage barely one in eight, Aria proves all 318. (3) Generality: on iris-lean, the unfinished Lean 4 port of Iris, it proves 72 not-yet-ported lemmas, showing the approach is not specific to Coq. A state-of-the-art model (Claude Opus 4.7) can write proofs for verified software development fully and automatically.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Formal verification proofs in interactive theorem provers require enormous expert effort and do not scale. Existing LLM-based provers hard-wire a fixed proof strategy and prove only a fraction of targeted theorems.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Aria hands a whole lemma to a general LLM code agent (Claude Opus 4.7) free to choose its own approach, wrapped in a verification harness. The harness enforces soundness (kernel-checked), completeness, and termination, providing feedback and retries. A declarative Harness Hook Language (HHL) governs allowed actions and required verification steps, with multi-agent roles (Extractor, Prover, Fixer, Polish). Proofs are accepted only when the prover&#x27;s kernel closes them.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On Iris (Coq) it proved all 4,257 core lemmas plus 217 Rust-library lemmas with no failures, and all 318 reglang lemmas where prior provers managed one in eight. On iris-lean, it proved 72 not-yet-ported Lean 4 lemmas, showing the approach is not specific to Coq.</p><div class="sum-table"><table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody><tr><td>Distinct lemmas proved</td><td>4,257</td></tr><tr><td>Source files covered</td><td>113</td></tr><tr><td>Failures</td><td>0</td></tr><tr><td>First-try success</td><td>3,373 (79.2%)</td></tr><tr><td>Mean retries per lemma</td><td>0.51</td></tr></tbody></table><div class="tbl-cap">Iris core campaign results</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Closed-form fractional radial links for elliptical Mahalanobis discriminant analysis · Papers With Lean</title>
+<meta name="description" content="We study binary classification under shared-generator elliptical class-conditional distributions. The log-likelihood ratio is an additive function of the two squared Mahalanobis radii, with radial link $\varphi=\log g$; QDA is recovered only when this link is affine. We derive…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Closed-form fractional radial links for elliptical Mahalanobis discriminant analysis">
+<meta property="og:description" content="We study binary classification under shared-generator elliptical class-conditional distributions. The log-likelihood ratio is an additive function of the two squared Mahalanobis radii, with radial link $\varphi=\log g$; QDA is recovered only when this link is affine. We derive…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.06089.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.06089.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.06089v1" target="_blank" rel="noopener"><img src="../thumbs/2607.06089.jpg" alt="First page of Closed-form fractional radial links for elliptical Mahalanobis discriminant analysis"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Closed-form fractional radial links for elliptical Mahalanobis discriminant analysis</h1>
+        <p class="authors">Serhii Zabolotnii</p>
+        <div class="row">
+          <span class="badge">math.ST</span>
+          <span class="date">Jul 7, 2026 · v1</span>
+          <span class="badge">stat.ME</span> <span class="badge">stat.ML</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.06089v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.06089" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/SZabolotnii/DSGE-MV_Elliptical_LLR-code-supplement" target="_blank" rel="noopener" title="SZabolotnii/DSGE-MV_Elliptical_LLR-code-supplement">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 certifies the structural algebra: the elliptical log-likelihood-ratio radial-link bridge, GAM membership, and the affine-link collapse to QDA.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We study binary classification under shared-generator elliptical class-conditional distributions. The log-likelihood ratio is an additive function of the two squared Mahalanobis radii, with radial link $\varphi=\log g$; QDA is recovered only when this link is affine. We derive the Bayes radial-link family from the within-class radius law and estimate it by a finite fractional-power stochastic-polynomial projection instead of tuning a generic spline. The link is identifiable from the radius law, the plug-in estimator is $\sqrt{n}$-consistent and asymptotically normal under finite-moment regularity conditions, and the induced classifier is asymptotically Bayes-optimal in an iterated sieve limit. The structural bridge, GAM membership, and identity-link/affine-generator dichotomy are verified in Lean 4 without unproven placeholders. Against the global Mahalanobis-GAM of Ghosh et al. (2025), reimplemented with mgcv REML splines at equal input budget, the derived link is never significantly worse on three UCI benchmarks and is decisively better on breast_cancer ($[+0.009,+0.021]$ global, $[+0.109,+0.136]$ global+local). Across six real financial series under temporal-dependence-robust validation, it is never significantly worse than the fitted GAM and is significantly better on three of five heavy-tailed series plus the light-tailed control. Relative to QDA, it improves the heaviest-tailed series (oil $[+0.024,+0.070]$, S&amp;P 500 $[+0.038,+0.126]$, JPY/USD $[+0.009,+0.047]$) and ties elsewhere. A closed-form rate simulation corroborates the $\sqrt{n}$ rate and the predicted excess-risk dichotomy between QDA&#x27;s approximation-limited floor and the derived link&#x27;s vanishing excess risk. The contribution is no significant loss relative to a tuned global GAM without spline smoothing-parameter selection, plus improved accuracy over QDA where generator curvature matters.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Binary classification under shared-generator elliptical class-conditional distributions, where QDA is Bayes-optimal only in the Gaussian case. The question is what function of the Mahalanobis radii is Bayes-optimal for non-Gaussian elliptical classes, and whether it should be fitted nonparametrically or derived.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The log-likelihood ratio is written as an additive function of the two squared Mahalanobis radii with radial link phi = log g. The link is derived from the within-class radius law and estimated via a finite fractional-power stochastic-polynomial (PATP) projection fed to ridge logistic regression, rather than a tuned spline GAM. Identifiability, sqrt(n)-consistency, asymptotic normality, and iterated-sieve Bayes-optimality are established. The structural algebra (LLR bridge, GAM membership, affine-link/QDA dichotomy) is verified in Lean 4 with a sorry-free development.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The derived closed-form link is never significantly worse than a REML-tuned Mahalanobis-GAM at equal input budget across UCI and financial benchmarks, and beats QDA on heavy-tailed series with the advantage tracking tail-heaviness. A closed-form rate simulation corroborates the sqrt(n) rate and the predicted excess-risk dichotomy.</p><div class="sum-table"><table><thead><tr><th>Lean theorem</th><th>Statement</th></tr></thead><tbody><tr><td>ellLLR_eq_radial_difference</td><td>the LLR bridge (any generator, any dimension)</td></tr><tr><td>ellLLR_mem_span_radial</td><td>Lambda in span{1, phi(D0^2), phi(D1^2)} (GAM with link phi)</td></tr><tr><td>affine_link_mem_identity_span</td><td>affine phi =&gt; Gaussian collapse to QDA</td></tr><tr><td>sq_not_mem_affine_span</td><td>quadratic radial link t-&gt;t^2 not in identity span</td></tr><tr><td>tGen_not_affine</td><td>Student-t generator is a concrete non-affine instance</td></tr></tbody></table><div class="tbl-cap">Lean 4 theorems certifying the structural algebra</div></div><div class="sum-table"><table><thead><tr><th>dataset (n,d,C)</th><th>qda</th><th>identity</th><th>kunchenko</th><th>ghosh</th></tr></thead><tbody><tr><td>wine (178,13,3)</td><td>0.992</td><td>0.965</td><td>0.975</td><td>0.970</td></tr><tr><td>breast_cancer (569,30,2)</td><td>0.964</td><td>0.901</td><td>0.959</td><td>0.960</td></tr></tbody></table><div class="tbl-cap">UCI accuracy: qda / identity / kunchenko (derived) / ghosh (fitted)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

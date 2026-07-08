@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Axioms for physical reasoning: codifying the Seiberg–Witten solution in Lean · Papers With Lean</title>
+<meta name="description" content="Mathematicians have embraced interactive theorem provers with growing enthusiasm – building large shared libraries and machine-checking a string of landmark results. Theoretical physics is different: most of its results are not theorems but justified by arguments the community…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Axioms for physical reasoning: codifying the Seiberg–Witten solution in Lean">
+<meta property="og:description" content="Mathematicians have embraced interactive theorem provers with growing enthusiasm – building large shared libraries and machine-checking a string of landmark results. Theoretical physics is different: most of its results are not theorems but justified by arguments the community…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.06379.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.06379.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.06379v1" target="_blank" rel="noopener"><img src="../thumbs/2607.06379.jpg" alt="First page of Axioms for physical reasoning: codifying the Seiberg–Witten solution in Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Axioms for physical reasoning: codifying the Seiberg–Witten solution in Lean</h1>
+        <p class="authors">Michael R. Douglas</p>
+        <div class="row">
+          <span class="badge">hep-th</span>
+          <span class="date">Jul 7, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=physics">physics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.06379v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.06379" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/mrdouglasny/seiberg-witten" target="_blank" rel="noopener" title="mrdouglasny/seiberg-witten">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes the Seiberg–Witten solution of N=2 SU(2) super-Yang–Mills in Lean 4 by isolating named physical postulates and machine-checking their consequences.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Mathematicians have embraced interactive theorem provers with growing enthusiasm – building large shared libraries and machine-checking a string of landmark results. Theoretical physics is different: most of its results are not theorems but justified by arguments the community trusts without a rigorous proof. For many – the one we treat here among them – no rigorous proof is within reach. For 4d Yang–Mills theory, deriving exact rigorous results from first principles would first require constructing the interacting theory nonperturbatively, which is a sizable piece of one of the Clay Millennium prize problems. We argue here that an interactive theorem prover can be used to verify some non-rigorous physics arguments. The method is to postulate a short list of explicit, named physical postulates, which imply the physical results by virtue of a machine-checkable proof. The trust that remains then rests on that short, inspectable list, and the prover can report, for any downstream result, exactly which assumptions it used. We carry this out for the Seiberg–Witten solution of ${N}=2$ $SU(2)$ super-Yang–Mills – the genus-one case – formalized in Lean 4; the higher-genus $SU(N)$ generalization is developed in the same repository as an axiomatized skeleton and left to future work. We describe what is proved, what is assumed, how the assumptions are checked – external review and an independent numerical oracle – and why this discipline is a sound standard for validating AI-generated results in theoretical physics. What we offer is a discipline, reviewable on its own terms: a reader may take the Seiberg–Witten mathematics on trust and still assess the formalization method.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Most theoretical physics results, like the Seiberg–Witten solution, are not rigorous theorems but justified by trusted physical arguments with no proof within reach. A method is needed to separate machine-checked consequences from unproven physical assumptions, especially to validate AI-generated derivations.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Physical concepts are translated into named Lean mathematical objects via an explicit dictionary, so physics enters only through named hypotheses H0–H7. The genus-one N=2 SU(2) case is formalized in full in Lean 4, with the trusted base reduced to five citable classical axioms. Assumptions are validated by external review and an independent numerical oracle (mpmath/numpy) sharing no code with the Lean formalization. The higher-genus SU(N) case is left as an axiomatized skeleton.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The complete analytic layer of the genus-one solution is machine-checked, including the effective coupling, special coordinates in closed form, and the special-geometry relation da_D/da=τ. Nine oracle suites totaling 278 checks at 30–40-digit precision confirmed the assumed identities and caught two errors in the checking apparatus.</p><div class="sum-table"><table><thead><tr><th>SW ingredient</th><th>status</th></tr></thead><tbody><tr><td>curve and genus (g=N-1)</td><td>proved (standard)</td></tr><tr><td>period-matrix positivity</td><td>proved, modulo inherited period-basis axiom</td></tr><tr><td>physical assumptions H0–H7</td><td>explicit predicates, not hidden</td></tr><tr><td>SU(2) existence &amp; uniqueness up to Γ(2)</td><td>duality theorems from classical axioms</td></tr><tr><td>SU(N) headline &amp; period variation</td><td>axiomatized skeleton; future work</td></tr></tbody></table><div class="tbl-cap">Status of Seiberg–Witten formalization ingredients</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

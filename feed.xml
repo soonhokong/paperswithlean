@@ -6,7 +6,84 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 08 Jul 2026 01:00:04 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jul 2026 02:03:04 +0000</lastBuildDate>
+    <item>
+      <title>Axioms for physical reasoning: codifying the Seiberg–Witten solution in Lean</title>
+      <link>https://paperswithlean.com/paper/2607.06379.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.06379.html</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Michael R. Douglas</dc:creator>
+      <category>formalization</category><category>verification</category><category>physics</category>
+      <description>Formalizes the Seiberg–Witten solution of N=2 SU(2) super-Yang–Mills in Lean 4 by isolating named physical postulates and machine-checking their consequences.
+
+Mathematicians have embraced interactive theorem provers with growing enthusiasm – building large shared libraries and machine-checking a string of landmark results. Theoretical physics is different: most of its results are not theorems but justified by arguments the community trusts without a rigorous proof. For many – the one we treat here among them – no rigorous proof is within reach. For 4d Yang–Mills theory, deriving exact rigorous results from first principles would first require constructing the interacting theory nonperturbatively, which is a sizable piece of one of the Clay Millennium prize problems. We argue here that an interactive theorem prover can be used to verify some non-rigorous physics arguments. The method is to postulate a short list of explicit, named physical postulates, which imply the physical results by virtue of a machine-checkable proof. The trust that remains then rests on that short, inspectable list, and the prover can report, for any downstream result, exactly which assumptions it used. We carry this out for the Seiberg–Witten solution of ${N}=2$ $SU(2)$ super-Yang–Mills – the genus-one case – formalized in Lean 4; the higher-genus $SU(N)$ generalization is developed in the same repository as an axiomatized skeleton and left to future work. We describe what is proved, what is assumed, how the assumptions are checked – external review and an independent numerical oracle – and why this discipline is a sound standard for validating AI-generated results in theoretical physics. What we offer is a discipline, reviewable on its own terms: a reader may take the Seiberg–Witten mathematics on trust and still assess the formalization method.</description>
+    </item>
+    <item>
+      <title>Harnessing Code Agents for Automatic Software Verification</title>
+      <link>https://paperswithlean.com/paper/2607.06341.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.06341.html</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Shuangxiang Kan, Shuanglong Kan, Sebastian Ertel</dc:creator>
+      <category>verification</category><category>ai-agents</category><category>logic</category>
+      <description>A code-agent verification harness (Aria) proves 72 not-yet-ported lemmas in iris-lean, the in-progress Lean 4 port of Iris, checked by the Lean kernel.
+
+Formal verification offers the strongest guarantee of software correctness, but it does not scale: the proofs demanded by interactive theorem provers such as Coq require enormous expert effort. Large language models (LLMs) promise to generate these proofs automatically, yet existing approaches wire a fixed, human-designed proof strategy into the system and constrain the model to follow it (retrieving premises and predicting tactics one step at a time, or splitting goals by divide-and-conquer), and still prove only a fraction of their target theorems. We show that imposing such a strategy is unnecessary and limiting. Handing the whole lemma to a general LLM code agent (for example, Claude Code), free to choose its own approach, and wrapping it in a verification harness is both simpler and more effective, achieving full coverage: every targeted lemma proved, with no failures and no Coq expert intervention. The agent writes the proofs under feedback and hard constraints from the harness that keep each one sound (accepted only when the prover&#x27;s kernel closes it), complete (no obligation left unproved or silently dropped), and terminating (no divergent tactics). We evaluate this harness plus code agent along three dimensions. (1) Core logic: on Iris, the state-of-the-art separation logic for concurrent and memory-manipulating programs, Aria proves all 4,257 lemmas of the four core modules and the 217 lemmas verifying Rust&#x27;s standard libraries built on it, fully automatically. (2) Comparison with prior LLM provers: on reglang, where prior provers manage barely one in eight, Aria proves all 318. (3) Generality: on iris-lean, the unfinished Lean 4 port of Iris, it proves 72 not-yet-ported lemmas, showing the approach is not specific to Coq. A state-of-the-art model (Claude Opus 4.7) can write proofs for verified software development fully and automatically.</description>
+    </item>
+    <item>
+      <title>Closed-form fractional radial links for elliptical Mahalanobis discriminant analysis</title>
+      <link>https://paperswithlean.com/paper/2607.06089.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.06089.html</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Serhii Zabolotnii</dc:creator>
+      <category>formalization</category><category>verification</category><category>ml-theory</category>
+      <description>Lean 4 certifies the structural algebra: the elliptical log-likelihood-ratio radial-link bridge, GAM membership, and the affine-link collapse to QDA.
+
+We study binary classification under shared-generator elliptical class-conditional distributions. The log-likelihood ratio is an additive function of the two squared Mahalanobis radii, with radial link $\varphi=\log g$; QDA is recovered only when this link is affine. We derive the Bayes radial-link family from the within-class radius law and estimate it by a finite fractional-power stochastic-polynomial projection instead of tuning a generic spline. The link is identifiable from the radius law, the plug-in estimator is $\sqrt{n}$-consistent and asymptotically normal under finite-moment regularity conditions, and the induced classifier is asymptotically Bayes-optimal in an iterated sieve limit. The structural bridge, GAM membership, and identity-link/affine-generator dichotomy are verified in Lean 4 without unproven placeholders. Against the global Mahalanobis-GAM of Ghosh et al. (2025), reimplemented with mgcv REML splines at equal input budget, the derived link is never significantly worse on three UCI benchmarks and is decisively better on breast_cancer ($[+0.009,+0.021]$ global, $[+0.109,+0.136]$ global+local). Across six real financial series under temporal-dependence-robust validation, it is never significantly worse than the fitted GAM and is significantly better on three of five heavy-tailed series plus the light-tailed control. Relative to QDA, it improves the heaviest-tailed series (oil $[+0.024,+0.070]$, S&amp;P 500 $[+0.038,+0.126]$, JPY/USD $[+0.009,+0.047]$) and ties elsewhere. A closed-form rate simulation corroborates the $\sqrt{n}$ rate and the predicted excess-risk dichotomy between QDA&#x27;s approximation-limited floor and the derived link&#x27;s vanishing excess risk. The contribution is no significant loss relative to a tuned global GAM without spline smoothing-parameter selection, plus improved accuracy over QDA where generator curvature matters.</description>
+    </item>
+    <item>
+      <title>Formalizing Scarf, Brouwer, and Nash in Lean</title>
+      <link>https://paperswithlean.com/paper/2607.05987.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.05987.html</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Yuwei Lyu, Kai Li</dc:creator>
+      <category>formalization</category><category>benchmark</category><category>logic</category><category>economics</category>
+      <description>Formalizes in Lean 4 a combinatorial route from Scarf&#x27;s theorem to Brouwer&#x27;s fixed point theorem and mixed Nash equilibrium existence, using Mathlib.
+
+We formalize in Lean 4 a complete combinatorial route from Scarf&#x27;s theorem to Brouwer&#x27;s fixed point theorem and to the existence of mixed Nash equilibria in finite games. The development follows Ivanov&#x27;s indexed-order formulation of Scarf&#x27;s theorem, formalizes the room–door incidence structure and parity argument, instantiates the theorem on finite grids of the standard simplex, and carries out the compactness and continuity argument needed to obtain a fixed point. We then extend the result to finite products of simplices by an explicit embedding–projection construction and use this product theorem to prove mixed Nash equilibrium existence via the Nash map. As a secondary by-product, we derive BrouwerBench, a preliminary 80-item Lean-grounded benchmark for probing proof-structure understanding within this single formal development.</description>
+    </item>
+    <item>
+      <title>A Unified Framework for Formalizing Matrix Decomposition Proofs</title>
+      <link>https://paperswithlean.com/paper/2607.05874.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.05874.html</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Wanli Ma, Zichen Wang, Zaiwen Wen</dc:creator>
+      <category>formalization</category><category>algebra</category><category>mathlib</category>
+      <description>A Lean 4 framework abstracts the recursive proof pattern shared by many matrix decompositions into reusable schema, transport, and subtype-induction machinery.
+
+Existence proofs for many matrix decompositions share a recursive routine: a local transformation prepares the matrix, a slice is selected, a recursive solution is obtained, and the result is lifted and transported back. Formalizing this routine uniformly in dependent type theory is difficult because recursive subproblems may change index types, and reconstruction must preserve structural predicates across block embeddings and reindexings. We develop a Lean 4 framework that separates decomposition schemas, transformations, reduction strategies, measures, lifting, transport, and subtype induction. The framework uses general index types, packages square and rectangular matrices in universe types, and provides a decomposition driver that assembles strategy data into subtype-induction instances. It has been instantiated across PLU, LU, LDL/Cholesky, QR variants, Gauss rank normal form, Hessenberg reductions, Schur variants, normal spectral decomposition, SVD, bidiagonalization, tridiagonalization, UTV, Smith normal form, rational canonical form, and Jordan-type forms at varying levels of statement strength. Across these instances, repeated decomposition proofs are best treated not as separate tasks but as instances of a more general inductive statement whose interface records a certified proof path compatible with the chosen decomposition statement.</description>
+    </item>
+    <item>
+      <title>Integer values of $\tan(\arctan 1+\arctan 2+\cdots+\arctan n)$ are rare</title>
+      <link>https://paperswithlean.com/paper/2607.05739.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.05739.html</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Ken Ono</dc:creator>
+      <category>formalization</category><category>autoformalization</category><category>number-theory</category>
+      <description>Number-theoretic results bounding integer values of arctangent sums were formalized in Lean/Mathlib and produced autonomously by AxiomProver from natural-language statements.
+
+For $n\ge1$, we let $$x_n:=\tan\bigl(\sum_{k=1}^{n}\arctan k\bigr).$$ In 2008, Amdeberhan, Medina, and Moll conjectured that $x_n\not \in \mathbb{Z}$ for every $n\ge5$. This was known for a set of positive integers of density $\tfrac{120}{817}\approx0.1469$. We prove that an integer value $x_n=m$ satisfies $|m|\ge e^{(1/2+o(1))\,n\log n}$, which we use to deduce that $$\#\{\,1\leq n\le N:x_n\in\mathbb{Z}\,\}=O(\log N). $$ In particular, the conjecture holds for a density-one set of $n$. The results in this note were formalized in Lean/Mathlib and produced autonomously by AxiomProver from natural-language statements.</description>
+    </item>
+    <item>
+      <title>Lean-Quantum: Toward AI-Assisted Formalization of Quantum Information</title>
+      <link>https://paperswithlean.com/paper/2607.05492.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.05492.html</guid>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Kazumi Kasaura, Kei Tsukamoto, Kento Mori, Risa Mizuno, Takahiro Namatame, Yuta Oriike, Masaya Taniguchi, Sho Sonoda, Hayata Yamasaki</dc:creator>
+      <category>formalization</category><category>verification</category><category>quantum</category><category>analysis</category>
+      <description>Presents a Lean 4 library for finite-dimensional quantum information and formalizes the data processing inequality for the sandwiched Rényi relative entropy.
+
+Quantum information theory is built on entropic quantities; among them, the sandwiched Rényi relative entropy is a fundamental divergence with various applications, and its data processing inequality (DPI) under quantum channels is a cornerstone result. In this work, we present a Lean 4 library for quantum information, designed as a reusable formal infrastructure for theoretical analysis. As a central demonstration of the library, we formalize the DPI for the sandwiched Rényi relative entropy for positive semidefinite operators on finite-dimensional quantum systems. The library provides a basis-independent operator-theoretic framework for finite-dimensional quantum mechanics compatible with the standard mathematical library Mathlib, including reusable interfaces for finite-dimensional systems, states, channels, tensor products, partial traces, Choi operators, Kraus representations, and Stinespring representations. It also builds infrastructure for noncommutative trace inequalities, including operator monotonicity and convexity via the real continuous functional calculus, block-operator positivity, Hilbert-Schmidt operator spaces, Jensen&#x27;s operator inequality, generalized perspectives, operator power means, and Lieb-Ando trace inequalities. On top of this framework, we formalize entropy-specific ingredients for the DPI: variational formulas for the sandwiched quasi-entropy via Young and reverse-Young inequalities, tensor-product compatibility of real powers, and Haar measures on unitary groups. Together, these components yield a Lean formalization of the DPI, give strong subadditivity as a corollary, and provide the last missing component needed to complete the Lean formalization of the generalized quantum Stein&#x27;s lemma. More broadly, the development provides machine-checkable foundations for future formalized and AI-assisted research in quantum information theory.</description>
+    </item>
     <item>
       <title>Mechanism-level routing failure in LLMs over Lean-verified algebraic structures</title>
       <link>https://paperswithlean.com/paper/2607.04534.html</link>
@@ -45,9 +122,9 @@ Ask a large language model (LLM) whether a pointer dereference is safe, and it c
       <link>https://paperswithlean.com/paper/2607.03406.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2607.03406.html</guid>
       <pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Simon Jeanteur, Lorenzo Veronese, Magdalena Soltiro, Matteo Maffei</dc:creator>
-      <category>verification</category><category>tooling</category><category>cryptography</category>
-      <description>LeanDY is a Lean library for symbolic cryptographic protocol verification, combining type-based and trace-based reasoning to verify stateful protocols.
+      <dc:creator>Simon Jeanteur, Lorenzo Veronese, Magdalena Solitro, Matteo Maffei</dc:creator>
+      <category>verification</category><category>cryptography</category><category>tooling</category>
+      <description>Presents LeanDY, a Lean library combining type-based and trace-based symbolic verification of cryptographic protocols, applied to blockchain payment channels.
 
 Computer-aided formal verification is a widely used approach for the symbolic analysis of cryptographic protocols. However, many modern protocols rely on features that remain challenging for existing techniques. In particular, reasoning about state, time-dependent behavior, inductively defined data structures, unbounded executions, and conditional secrecy requires a level of expressiveness that is difficult to reconcile with effective automation. As a result, protocol verification has largely followed two disjoint paths: fully automated methods with limited expressiveness, or interactive proofs in general-purpose theorem provers that offer flexibility but only limited, non-specialized automation. We present an orthogonal approach that bridges this gap by combining compositional type-based reasoning with trace-based reasoning, enabling modular verification of stateful and unbounded protocols. Guided by the language-and-automation co-design (LAC) principle, our approach delivers protocol-specific automation while retaining high expressiveness. We implement this framework as the LeanDY library for the Lean proof assistant, building on and extending the design of DY*, and combining protocol-specific automation with interactive proofs. Our framework supports, in a unified setting, a broad class of functional and security requirements, including secrecy and authentication for stateful protocols, as well as recursive conditional secrecy for protocols using XOR. We formalize SegWit-style blockchain primitives in LeanDY and demonstrate its expressiveness by carrying out an in-depth formalization of payment channels on top of this blockchain model, verifying punishment mechanisms and properties that depend on chain liveness.</description>
     </item>
@@ -589,83 +666,6 @@ LLM self-play algorithms are notable in that, in principle, nothing bounds their
       <description>Fine-tunes a 2B model for NL-to-Lean4 autoformalization with a GRPO cycle-consistency reward.
 
 Autoformalization - automatically translating natural language mathematical texts into formal proof language such as Lean4 - can help accelerate AI-assisted mathematical research, be it via proof verification or proof search. I fine-tune Qwen3.5-2B with LoRA for natural language to Lean4 formalization on FineLeanCorpus and consider three training regimes: supervised fine-tuning (SFT) with curriculum learning (difficulty 1 to 10), SFT without curriculum ordering, and reinforcement learning using group relative policy optimization (GRPO) with a cycle consistency reward. Cycle consistency measures how well the meaning of a statement is preserved through a NL to Lean4 to NL&#x27; loop, computed as cosine similarity of off-the-shelf sentence embeddings. On an unseen subset of FineLeanCorpus (FLC) and on PutnamBench, RL substantially outperforms both SFT variants (mean cycle consistency 0.669 vs. 0.513 on FLC; 0.561 vs. 0.422 on PutnamBench), while increasing cross-entropy loss by only 0.011 nats, with minimal impact on formalization quality. Curriculum ordering provides no measurable benefit over shuffled training.</description>
-    </item>
-    <item>
-      <title>LongCat-Flash-Prover: Advancing Native Formal Reasoning via Agentic Tool-Integrated Reinforcement Learning</title>
-      <link>https://paperswithlean.com/paper/2603.21065.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2603.21065.html</guid>
-      <pubDate>Thu, 18 Jun 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Jianing Wang, Jianfei Zhang, Qi Guo, Linsen Guo, Rumei Li, Chao Zhang, Chong Peng, Cunguang Wang, Dengchang Zhao, Jiarong Shi, Jingang Wang, Liulin Feng, Mengxia Shen, Qi Li, Shengnan An, Shun Wang, Wei Shi, Xiangyu Xi, Xiaoyu Li, Xuezhi Cao, Yi Lu, Yunke Zhao, Zhengyu Chen, Zhimin Lin, Wei Wang, Peng Pei, Xunliang Cai</dc:creator>
-      <category>theorem-proving-ml</category><category>autoformalization</category>
-      <description>LongCat-Flash-Prover, a 560B-parameter MoE, performs native formal reasoning in Lean4 via agentic tool-integrated RL.
-
-We introduce LongCat-Flash-Prover, a flagship 560-billion-parameter open-source Mixture-of- Experts (MoE) model that advances Native Formal Reasoning in Lean4 through agentic tool-integrated reasoning (TIR). We decompose the native formal reasoning task into three independent formal capabilities, i.e., auto-formalization, sketching, and proving. To facilitate these capabilities, we propose a Hybrid-Experts Iteration Framework to expand high-quality task trajectories, including generating a formal statement based on a given informal problem, producing a whole-proof directly from the statement, or a lemma-style sketch. During agentic RL, we present a Hierarchical Importance Sampling Policy Optimization (HisPO) algorithm, which aims to stabilize the MoE model training on such long-horizon tasks. It employs a gradient masking strategy that accounts for the policy staleness and the inherent train-inference engine discrepancies at both sequence and token levels. Additionally, we also incorporate theorem consistency and legality detection mechanisms to eliminate reward hacking issues. Extensive evaluations show that our LongCat-Flash-Prover sets a new state-of-the-art for open-weights models in both auto-formalization and theorem proving. Demonstrating remarkable sample efficiency, it achieves a 97.1% pass rate on MiniF2F-Test using only 72 inference budget per problem. On more challenging benchmarks, it solves 70.8% of ProverBench and 41.5% of PutnamBench with no more than 220 attempts per problem, significantly outperforming existing open-weights baselines.</description>
-    </item>
-    <item>
-      <title>A Symplectic Proof of the Quantum Singleton Bound</title>
-      <link>https://paperswithlean.com/paper/2602.20186.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2602.20186.html</guid>
-      <pubDate>Thu, 18 Jun 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Frederick Dehmel, Shilun Li</dc:creator>
-      <category>formalization</category><category>quantum</category>
-      <description>Gives a symplectic linear-algebraic proof of the Quantum Singleton Bound with a Lean4 formalization of the argument.
-
-We present a symplectic linear-algebraic proof of the Quantum Singleton Bound for stabiliser quantum error-correcting codes together with a Lean4 formalisation of the linear-algebraic argument. The proof is formulated in the language of finite-dimensional symplectic vector spaces modelling Pauli operators and relies on distance-based erasure correctability and the cleaning lemma. Using a dimension-counting argument within the symplectic stabiliser framework, we derive the bound $k + 2(d-1) \le n$ for any $[[n, k, d]]$ stabiliser code. This approach isolates the algebraic structure underlying the bound and avoids the heavier analytic machinery that appears in entropy-based proofs, while remaining well-suited to formal verification.</description>
-    </item>
-    <item>
-      <title>The Axiom of Consent: Friction Dynamics in Multi-Agent Coordination</title>
-      <link>https://paperswithlean.com/paper/2601.06692.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2601.06692.html</guid>
-      <pubDate>Thu, 18 Jun 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Murad Farzulla</dc:creator>
-      <category>formalization</category><category>economics</category>
-      <description>Provides machine-checked Lean 4 proofs of the core comparative-statics of a consent-based coordination-friction framework.
-
-Multi-agent systems must coordinate despite heterogeneous preferences, asymmetric stakes, and imperfect information. When coordination fails, friction emerges: measurable resistance such as deadlock, thrashing, or conflict. We derive a formal framework for coordination friction from a single axiom: actions affecting agents require their authorization in proportion to stakes. From this axiom of consent we establish the kernel triple $(α, σ, \varepsilon)$ – alignment, stake, and entropy – as sufficient statistics for any resource-allocation configuration, and propose a friction functional whose simplest candidate form $F = σ(1+\varepsilon)/(1+α)$ predicts that friction rises with stakes and entropy and falls with alignment. We stress that this form is a phenomenological ansatz, not a theorem – the simplest expression satisfying our desiderata – whose empirical adequacy, in particular whether the alignment dependence is monotone, remains open. A companion study tests it in a multi-agent reinforcement-learning environment, finds the linear alignment dependence falsified by a U-shaped relationship, and motivates a quadratic form $F = σ(1+\varepsilon)/(1+α^2)$ that we characterize axiomatically as a refinement for future confirmation. The Replicator-Optimization Mechanism governs selection over coordination strategies: lower-friction configurations persist longer, making consent-respecting arrangements dynamical attractors rather than normative ideals. We give formal definitions for resource consent, coordination legitimacy, and friction-aware allocation, a measurement apparatus, and machine-checked Lean 4 proofs of the core comparative-statics. Illustrative applications to cryptocurrency governance and political legitimacy show one architecture spanning domains, offered as candidate unification, not established identity.</description>
-    </item>
-    <item>
-      <title>The Replicator-Optimization Mechanism: A Scale-Relative Formalism for Persistence-Conditioned Dynamics with Application to Consent-Based Metaethics</title>
-      <link>https://paperswithlean.com/paper/2601.06363.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2601.06363.html</guid>
-      <pubDate>Thu, 18 Jun 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Murad Farzulla</dc:creator>
-      <category>formalization</category><category>economics</category>
-      <description>Includes machine-checked Lean proofs of core algebraic results for a scale-relative replicator-optimization formalism.
-
-This paper formalizes a widely used dynamical class–replicator-mutator dynamics and Price-style selection-and-transmission–and makes explicit the modeling choices (scale, atomic unit, interaction topology, transmission kernel) that determine how this class instantiates across domains. The backbone is known; we do not claim to have discovered selection. The novel contributions are threefold: (i) a scale-relative kernel parameterization where atomic units are themselves parameters, enabling systematic instantiation across physics, biology, economics, cognition, and social organization; (ii) a consent-friction instantiation for political philosophy, where friction is the primitive, legitimacy functions as survival probability, and belief-transfer functions as mutation kernel; and (iii) a derivation path from social contract theory rather than from biology or physics, arriving at the same formal structure via an independent route. We provide a bridge principle connecting descriptive dynamics to instrumental normativity: if agents prefer lower expected friction, then &quot;ought&quot; claims are shorthand for policies that reduce expected friction under the specified dynamics. This conditional structure avoids the is-ought fallacy while grounding normative discourse in empirically tractable dynamics. We address pathological cases (authoritarian stability, suppressed friction) through explicit modeling of latent versus observed friction. The framework generates testable predictions through operationalization of friction, legitimacy, and belief-transfer dynamics, and is falsifiable at the level of measurement apparatus rather than formal structure.</description>
-    </item>
-    <item>
-      <title>Lean4Physics: Comprehensive Reasoning Framework for College-level Physics in Lean4</title>
-      <link>https://paperswithlean.com/paper/2510.26094.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2510.26094.html</guid>
-      <pubDate>Thu, 18 Jun 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Yuxin Li, Minghao Liu, Ruida Wang, Wenzhao Ji, Zhitao He, Rui Pan, Junming Huang, Tong Zhang, Yi R. Fung</dc:creator>
-      <category>benchmark</category><category>physics</category>
-      <description>Introduces Lean4PHYS with PhysLib and the LeanPhysBench benchmark of 200 Lean4 college-physics statements.
-
-We present **Lean4PHYS**, a comprehensive reasoning framework for college-level physics problems in Lean4. **Lean4PHYS** includes *LeanPhysBench*, a college-level benchmark for formal physics reasoning in Lean4, which contains 200 hand-crafted and peer-reviewed statements derived from university textbooks and physics competition problems. To establish a solid foundation for formal reasoning in physics, we also introduce *PhysLib*, a community-driven repository containing fundamental unit systems and theorems essential for formal physics reasoning. Based on the benchmark and Lean4 repository we composed in **Lean4PHYS**, we report baseline results using major expert Math Lean4 provers and state-of-the-art closed-source models, with the best performance of DeepSeek-Prover-V2-7B achieving only 16% and Claude-Sonnet-4 achieving 35%. We also conduct a detailed analysis showing that our *PhysLib* can achieve an average improvement of 11.75% in model performance. This demonstrates the challenging nature of our *LeanPhysBench* and the effectiveness of *PhysLib*. To the best of our knowledge, this is the first study to provide a physics benchmark in Lean4.</description>
-    </item>
-    <item>
-      <title>Formalization of Auslander–Buchsbaum–Serre criterion in Lean4</title>
-      <link>https://paperswithlean.com/paper/2510.24818.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2510.24818.html</guid>
-      <pubDate>Thu, 18 Jun 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Naillin Guan, Yongle Hu</dc:creator>
-      <category>formalization</category><category>algebra</category><category>mathlib</category>
-      <description>Formalizes the Auslander-Buchsbaum-Serre criterion characterizing regular local rings in Lean4, with supporting homological algebra.
-
-We present a comprehensive formalization in the Lean4 theorem prover of the Auslander–Buchsbaum–Serre criterion, which characterizes regular local rings as those Noetherian local rings with finite global dimension. Rather than following the well-known proof that computes the projective dimension of the residue field via quotient by regular sequences and uses the Koszul complex to bound the cotangent space dimension by the global dimension, our approach is built systematically on the formalization of depth defined via the vanishing of Ext functors. We establish key homological results including Rees&#x27; theorem, the Auslander–Buchsbaum formula, and Ischebeck&#x27;s theorem, and further develop the theories of Cohen–Macaulay modules and rings, including a complete formalization of the unmixedness theorem for Cohen–Macaulay rings. To prove the Auslander–Buchsbaum–Serre criterion, we show that maximal Cohen–Macaulay modules over regular local rings are free and establish a weakened form of the Ferrand–Vasconcelos theorem specific for the unique maximal ideal. As corollaries, we deduce that regularity can be checked at maximal ideals and formalize Hilbert&#x27;s Syzygy Theorem. This work demonstrates how homological algebra can be effectively employed in the formalization of commutative algebra, providing extensive infrastructure for future developments in the field.</description>
-    </item>
-    <item>
-      <title>Dual-Regularized Riccati Recursions for Interior-Point Optimal Control</title>
-      <link>https://paperswithlean.com/paper/2509.16370.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2509.16370.html</guid>
-      <pubDate>Thu, 18 Jun 2026 00:00:00 +0000</pubDate>
-      <dc:creator>João Sousa-Pinto, Dominique Orban</dc:creator>
-      <category>formalization</category><category>verification</category>
-      <description>Provides a full Lean formalization of dual-regularized Riccati recursions and their inertia/descent results for interior-point optimal control.
-
-We derive closed-form extensions of the sequential and parallel Riccati recursions for solving dual-regularized linear-quadratic regulator (LQR) problems, with $O(N)$ sequential time and $O(\log(N))$ parallel time, respectively. We show that these subproblems arise when using regularized primal-dual interior-point methods to solve smooth, constrained, non-convex, discrete-time optimal control problems via multiple-shooting, even in the presence of stagewise equality or inequality constraints, and without imposing any rank requirements on constraint Jacobians. We prove that, when certain inertia conditions on the Newton-KKT matrix are met, each nonzero primal step is a descent direction of an augmented barrier-Lagrangian merit function. We characterize these inertia conditions in terms of the positive-definiteness of the dual-regularized Riccati pivots (a weaker condition than the standard LQR positive-definiteness requirements), thereby yielding inexpensive certificates of the required inertia. We provide MIT-licensed implementations of our methods in C++ and in JAX, as well as a full formalization of our results in Lean. We benchmark our algorithm against leading optimal control and nonlinear programming solvers on complex trajectory optimization problems, establishing competitive performance on moderate problems and substantial gains as the horizon length, problem dimension, and constraint count increase.</description>
     </item>
   </channel>
 </rss>
