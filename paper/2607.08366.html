@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minimum modulus for the unique multiset-sum problem · Papers With Lean</title>
+<meta name="description" content="Fix $n \ge 2$. A set $A = \{a_0 &lt; a_1 &lt; \dots &lt; a_{n-1}\}$ of $n$ residues in $\Z_N$ is valid mod$N$} if the all-ones multiset is the only size-$n$ multiset drawn from $A$ whose sum is $p := \sum_i a_i \pmod N$. For the super-increasing set $A = \{2^k - 1 : 0 \le k \le n-1\}$ we…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Minimum modulus for the unique multiset-sum problem">
+<meta property="og:description" content="Fix $n \ge 2$. A set $A = \{a_0 &lt; a_1 &lt; \dots &lt; a_{n-1}\}$ of $n$ residues in $\Z_N$ is valid mod$N$} if the all-ones multiset is the only size-$n$ multiset drawn from $A$ whose sum is $p := \sum_i a_i \pmod N$. For the super-increasing set $A = \{2^k - 1 : 0 \le k \le n-1\}$ we…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.08366.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.08366.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.08366v1" target="_blank" rel="noopener"><img src="../thumbs/2607.08366.jpg" alt="First page of Minimum modulus for the unique multiset-sum problem"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Minimum modulus for the unique multiset-sum problem</h1>
+        <p class="authors">José A. R. Fonollosa</p>
+        <div class="row">
+          <span class="badge">math.CO</span>
+          <span class="date">Jul 9, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.08366v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.08366" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/jarfo/min-modulus" target="_blank" rel="noopener" title="jarfo/min-modulus">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The main theorem (both bounds) determining the least valid modulus for the super-increasing set is formalized and kernel-checked in Lean 4/Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Fix $n \ge 2$. A set $A = \{a_0 &lt; a_1 &lt; \dots &lt; a_{n-1}\}$ of $n$ residues in $\Z_N$ is valid mod$N$} if the all-ones multiset is the only size-$n$ multiset drawn from $A$ whose sum is $p := \sum_i a_i \pmod N$. For the super-increasing set $A = \{2^k - 1 : 0 \le k \le n-1\}$ we determine the least valid modulus exactly: $\Nmin(n) = 2^{\,n} - 2^{\lfloor \log_2 n \rfloor}$ for all $n \ge 2$. Both directions of the proof are elementary, resting on a sharp minimal-digit-sum estimate for representations by binary coins, and the full theorem has been machine-checked in Lean 4/Mathlib for all $n$ (<a href="https://github.com/jarfo/min-modulus" target="_blank" rel="noopener">https://github.com/jarfo/min-modulus</a>). We conjecture that no size-$n$ residue set admits a smaller valid modulus. This validity condition is exactly what makes the permanent of an $n \times n$ matrix equal to a single coefficient of a row-product polynomial modulo $x^N - 1$, extractable by a size-$N$ discrete Fourier (or number-theoretic) transform; the theorem thus identifies the smallest transform, $N \approx 2^n$, for which this evaluation is exact. That application – and the resulting common framework for the classical formulas of Ryser and Glynn and this transform – is developed in a companion paper [2].</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">A set of n residues in Z_N is &#x27;valid&#x27; if the all-ones multiset is the only size-n multiset from it summing to the total mod N. The goal is to determine the least valid modulus for the super-increasing set A = {2^k - 1 : 0 ≤ k ≤ n-1}, which controls the transform size for an exact permanent evaluation.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The validity condition is reduced to a statement about representations by binary coins with fixed digit sum. A sharp minimal-digit-sum lemma (via greedy representations and popcount) yields an upper bound by an induction on multiples with no case analysis. A master achievability criterion and explicit witness construction give the matching lower bound. The full Main Theorem for all n ≥ 2 is formalized and kernel-checked in Lean 4 with Mathlib, using no unproven assumptions beyond Mathlib&#x27;s standard axioms.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For every n ≥ 2 the least valid modulus is N_min(n) = 2^n - 2^{⌊log₂ n⌋}. The Lean statement nmin_eq certifies this as the least element of the valid set, with the step lemma formalized as gmin_step and the four lower-bound witnesses constructed directly.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

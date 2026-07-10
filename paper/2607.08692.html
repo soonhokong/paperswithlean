@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Rules to Nash Equilibria: A Lean 4 Case Study in Game-Theoretic Analysis of a Competitive Trading Card Game · Papers With Lean</title>
+<meta name="description" content="We present a metagame analysis of the competitive Pokemon Trading Card Game, machine-checked in Lean 4 over real tournament data. The headline game-theoretic results, including Nash equilibrium, replicator dynamics, and the matrix-level type-bridge computation, rely on…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="From Rules to Nash Equilibria: A Lean 4 Case Study in Game-Theoretic Analysis of a Competitive Trading Card Game">
+<meta property="og:description" content="We present a metagame analysis of the competitive Pokemon Trading Card Game, machine-checked in Lean 4 over real tournament data. The headline game-theoretic results, including Nash equilibrium, replicator dynamics, and the matrix-level type-bridge computation, rely on…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.08692.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.08692.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.08692v1" target="_blank" rel="noopener"><img src="../thumbs/2607.08692.jpg" alt="First page of From Rules to Nash Equilibria: A Lean 4 Case Study in Game-Theoretic Analysis of a Competitive Trading Card Game"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">From Rules to Nash Equilibria: A Lean 4 Case Study in Game-Theoretic Analysis of a Competitive Trading Card Game</h1>
+        <p class="authors">Arthur F. Ramos, Tulio Soria</p>
+        <div class="row">
+          <span class="badge">cs.GT</span>
+          <span class="date">Jul 9, 2026 · v1</span>
+          <span class="badge">cs.FL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-lime" href="../#tag=economics">economics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.08692v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.08692" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Game-theoretic metagame analysis of the Pokemon TCG formalized in Lean 4, using native_decide over exact rationals to verify Nash equilibria and replicator dynamics.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present a metagame analysis of the competitive Pokemon Trading Card Game, machine-checked in Lean 4 over real tournament data. The headline game-theoretic results, including Nash equilibrium, replicator dynamics, and the matrix-level type-bridge computation, rely on native_decide, which trusts Lean&#x27;s compiler rather than its kernel; the trust boundary is made explicit. The artifact spans approximately 31,900 lines, 87 files, and 2,627 theorems, of which roughly 200 directly verify empirical claims, with no sorry, admit, or custom axioms. Analyzing Trainer Hill data from January to February 2026 for events with at least 50 players, over 14 archetypes and their full pairwise matchup matrix, we prove a popularity paradox: the most played deck, Dragapult, with 15.5% metagame share, has only 46.7% expected win rate, while Grimmsnarl, with 5.1% share, achieves 52.7%. A machine-checked Nash equilibrium of the raw game assigns Dragapult 0% weight; exhaustive enumeration over all nonempty support subsets confirms a unique symmetric Nash equilibrium of the constant-sum symmetrization with seven-deck support. Against this equilibrium mix, Dragapult falls 40.4 permil below the game value. Single-step replicator dynamics indicate downward fitness pressure on Dragapult, upward pressure on Grimmsnarl, and strongest extinction pressure on Alakazam. A 10,000-iteration sensitivity analysis confirms qualitative stability, with core support decks appearing in more than 96% of resampled equilibria. The primary contribution is methodological: a reproducible case study showing how formal verification can turn qualitative metagame narratives into machine-checkable, re-runnable strategic science.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Competitive trading card game deck selection is naturally modeled as a strategic game, but informal metagame narratives risk silent modeling errors and are not machine-checkable or reproducible against updated data.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Game semantics, tournament data, and matchup matrices for the Pokemon TCG are encoded in Lean 4 using exact rational arithmetic. Strategic claims (expected win rates, Nash equilibria, replicator dynamics, tournament transforms) are stated as typed propositions. An untrusted Python discovery layer proposes candidate equilibria; Lean certifies best-response and dynamics claims at compile time, mostly via native_decide over exact rationals, with the compiler-trust boundary made explicit.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The artifact spans  31,900 lines, 87 files, and 2,627 theorems with no sorry, admit, or custom axioms. It machine-checks a popularity paradox (Dragapult: 15.5% share, 46.7% expected WR vs Grimmsnarl: 5.1% share, 52.7% WR) and a unique seven-deck symmetric Nash equilibrium excluding Dragapult (40.4 permil below game value), with a 10,000-iteration sensitivity analysis confirming stability.</p><div class="sum-table"><table><thead><tr><th>Deck</th><th>Row wt.</th><th>Col wt.</th></tr></thead><tbody><tr><td>Gholdengo Lunatone</td><td>0.0%</td><td>3.7%</td></tr><tr><td>Grimmsnarl Froslass</td><td>37.8%</td><td>40.5%</td></tr><tr><td>Mega Absol Box</td><td>12.9%</td><td>7.2%</td></tr><tr><td>Charizard Noctowl</td><td>11.3%</td><td>5.0%</td></tr><tr><td>Raging Bolt Ogerpon</td><td>28.7%</td><td>35.9%</td></tr></tbody></table><div class="tbl-cap">Lean-verified Nash supports for row and column strategies</div></div><div class="sum-table"><table><thead><tr><th>Category</th><th>Count</th><th>Level</th></tr></thead><tbody><tr><td>Kernel subtotal</td><td>2,482</td><td>Kernel</td></tr><tr><td>Compiler subtotal</td><td>145</td><td>native_decide</td></tr><tr><td>Total</td><td>2,627</td><td>mixed</td></tr></tbody></table><div class="tbl-cap">Theorem counts by category and verification level</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
