@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentic Proof and Property-Based Testing via Property-Templates in Data-Intensive Computing · Papers With Lean</title>
+<meta name="description" content="As the cost of code generation becomes cheaper with AI, the new bottleneck in software engineering has shifted to intent specification and validation. Overcoming this durability crisis of AI-driven coding requires more than traditional fuzzing: each candidate property must be…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Agentic Proof and Property-Based Testing via Property-Templates in Data-Intensive Computing">
+<meta property="og:description" content="As the cost of code generation becomes cheaper with AI, the new bottleneck in software engineering has shifted to intent specification and validation. Overcoming this durability crisis of AI-driven coding requires more than traditional fuzzing: each candidate property must be…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.09072.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.09072.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.09072v1" target="_blank" rel="noopener"><img src="../thumbs/2607.09072.jpg" alt="First page of Agentic Proof and Property-Based Testing via Property-Templates in Data-Intensive Computing"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Agentic Proof and Property-Based Testing via Property-Templates in Data-Intensive Computing</h1>
+        <p class="authors">Seongmin Lee, Yaoxuan Wu, Miryung Kim</p>
+        <div class="row">
+          <span class="badge">cs.SE</span>
+          <span class="date">Jul 10, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.09072v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.09072" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/apache/datafusion-comet" target="_blank" rel="noopener" title="apache/datafusion-comet">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Agentic framework uses parameterized Lean 4 proof templates to machine-check correctness properties of Apache Spark operations.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">As the cost of code generation becomes cheaper with AI, the new bottleneck in software engineering has shifted to intent specification and validation. Overcoming this durability crisis of AI-driven coding requires more than traditional fuzzing: each candidate property must be proven correct over a model and shown to hold on the real implementation, making formal proof and systematic property-based testing (PBT) complementary. However, validating properties this way at scale requires solving two subproblems: verifying candidate properties and operationalizing PBT without AI hallucination. We hypothesize that recurring property patterns, cast as property templates–abstract, parameterized forms with holes–address both at once. This paper investigates recurring property patterns in Apache Spark. In data-intensive scalable computing systems, correctness properties arise from the principles of data partition, computation decomposition, and dataflow computation. For instance, aggregation decomposition relates a global function executed on the entire dataset to a local function followed by a recombiner. We design an agentic, dual-track validation framework that uses property templates to formally verify correctness in the Lean 4 theorem prover and instantiate PBT templates as executable PySpark tests. Our evaluation shows that property templates increase agentic proof engineering success by up to 2.6x (1.6x on average) and reduce proof hallucinations by 59%. Template-guided PBT synthesis reduces intent misalignments from 22 to 1 and cuts synthesis cost by up to 5.7x (3.8x on average). Template-guided synthesis further exceeds a state-of-the-art Spark fuzzer and approaches unguided LLM-based PBT on code coverage. Finally, comparing the two tracks is informative: when a proof succeeds yet a PBT finds a counterexample, the mismatch identifies a gap between the formal model and implementation.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Validating the many correctness properties of data-intensive systems like Apache Spark at scale requires both formally proving properties over a model and testing them on the real implementation. AI can propose candidate properties cheaply, but proofs may be hallucinated and generated tests may check weaker intents than desired.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">DualVeri organizes recurring property families (higher-order expression rewrites, UDF rewrites, aggregation decomposition, subsumption) into property templates with typed holes. A proof template is a parameterized Lean 4 theorem reducing each property to a single local law over a model of PySpark&#x27;s core API, which an agent fills. A paired PBT template instantiates executable PySpark property-based tests. Compiling Lean proofs are manually inspected to detect hallucinated (cheating) proofs.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.09072/x1.png" alt=""><figcaption>Figure 3 : Proof templates and their agentic use for the two proof-track families, AggDecomp (a) and UDF (b), and two concretizations per template. The agent fills the holes and proves only the local law (steps 1–3); the template’s pre-proved lift then yields the pipeline-level theorem automatically (step 4).</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Templates increased agentic proof synthesis success up to 2.6x (1.6x average) and reduced proof hallucinations by 59%, while lowering LLM cost per property. Template-guided PBT reduced intent misalignments from 22 to 1 and cut synthesis cost up to 5.7x. Comparing tracks revealed cases where a Lean proof succeeds but PBT finds a counterexample, exposing model-implementation gaps.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.09072/coverage_paper.png" alt=""><figcaption>Figure 7 : Line, branch, and method code coverage of Spark’s catalyst and execution modules as a function of cumulative test executions. Template families and LLM-PBT : 100 PBTs \times 5 executions; CometFuzz : 500 fuzz iterations.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Family</th><th>Config</th><th>Success</th><th>Hallucinated</th><th>Cost/prop</th></tr></thead><tbody><tr><td>HOE (37)</td><td>Template</td><td>28 (100%)</td><td>0</td><td>$0.78</td></tr><tr><td>HOE (37)</td><td>NoTemp</td><td>17 (100%)</td><td>0</td><td>$1.02</td></tr><tr><td>UDF (68)</td><td>Template</td><td>54 (100%)</td><td>0</td><td>$0.77</td></tr><tr><td>UDF (68)</td><td>NoTemp</td><td>21 (75%)</td><td>7</td><td>$1.02</td></tr><tr><td>Subsump (49)</td><td>Template</td><td>48 (100%)</td><td>0</td><td>$0.42</td></tr></tbody></table><div class="tbl-cap">Proof synthesis outcomes per property family (Template vs NoTemp): Compiles, Success, Hallucinated, Cost/prop.</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

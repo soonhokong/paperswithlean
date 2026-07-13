@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>New bounds for double covers of the discrete box {0,1,2}^d · Papers With Lean</title>
+<meta name="description" content="A proper sub-box of $A=\{0,1,2\}^d$ is a product $S_1\times\dots\times S_d$ with each $\varnothing\neq S_i\subsetneq\{0,1,2\}$. A double cover is a finite multiset of proper sub-boxes covering every point of $A$ exactly twice; write $f(d)$ for the minimum size of a double cover.…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="New bounds for double covers of the discrete box {0,1,2}^d">
+<meta property="og:description" content="A proper sub-box of $A=\{0,1,2\}^d$ is a product $S_1\times\dots\times S_d$ with each $\varnothing\neq S_i\subsetneq\{0,1,2\}$. A double cover is a finite multiset of proper sub-boxes covering every point of $A$ exactly twice; write $f(d)$ for the minimum size of a double cover.…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.09014.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.09014.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.09014v1" target="_blank" rel="noopener"><img src="../thumbs/2607.09014.jpg" alt="First page of New bounds for double covers of the discrete box {0,1,2}^d"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">New bounds for double covers of the discrete box {0,1,2}^d</h1>
+        <p class="authors">Patrick White</p>
+        <div class="row">
+          <span class="badge">math.CO</span>
+          <span class="date">Jul 10, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.09014v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.09014" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The lower bound f(6)&gt;=60 is machine-checked in Lean 4, relying only on the three standard Mathlib axioms.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A proper sub-box of $A=\{0,1,2\}^d$ is a product $S_1\times\dots\times S_d$ with each $\varnothing\neq S_i\subsetneq\{0,1,2\}$. A double cover is a finite multiset of proper sub-boxes covering every point of $A$ exactly twice; write $f(d)$ for the minimum size of a double cover. Leader, Milicevic and Tan asked whether $f(d)\ge 2^d$ for all $d$ (Question 4.1 of the PatternBoost paper of Charton-Ellenberg-Wagner-Williamson), analogous to the Alon-Bohman-Holzman-Kleitman partition bound $2^d$. No better than the trivial volume bound was previously known, for any $d\ge 2$. We prove the first nontrivial lower bounds. A modular refinement of the parity argument gives $f(d)\ge 2^{d+1}/(d+1)$; a slicing argument gives $f(4)\ge 19$, $f(5)\ge 33$, both above $2^d$, resolving the question for $d=4,5$ – the first cases beyond the trivially known $d\le 3$. A finer &quot;line rigidity&quot; argument yields $f(6)\ge 60$, breaking the profile-statistic barrier (capped at $57$, shown here). This is formally verified in Lean 4: $f(6)\ge 60$ is machine-checked on the three standard Mathlib axioms alone. On the upper-bound side, a dimension-lifting construction $f(r+3)\le 6\cdot 2^r+3f(r)$ gives $f(6)\le 81$ (improving the known $82$) and $f(d)\le(\tfrac65+o(1))2^d$ asymptotically; a refinement improves the constant to $\tfrac87$. This makes partial progress on PatternBoost&#x27;s problem of reducing their constant $1.28$, and refutes the closed-form guess $f(d)=5\cdot 2^{d-2}+1$ from $d=7$ on. Together, $60\le f(6)\le 81$. Finally we isolate the construction-side obstruction – an &quot;S+c=2^j+1&quot; phenomenon, every skeleton sitting exactly one box past the partition bound – and show it is of a piece with the Leader-Milicevic-Tan question itself.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">For A={0,1,2}^d, a double cover is a multiset of proper sub-boxes covering each point exactly twice; f(d) is the minimum size. Leader-Milicevic-Tan asked whether f(d)&gt;=2^d, with no nontrivial bounds previously known for d&gt;=2.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A modular refinement of the parity argument (mod 4) yields f(d)&gt;=2^{d+1}/(d+1). A slicing recursion bootstraps lower bounds across dimensions, and a finer line-rigidity argument controls axis-line structure to push f(6) past the profile barrier. The lower bound f(6)&gt;=60 is formally verified in Lean 4, checked against only the three standard Mathlib axioms. Upper bounds come from a dimension-lifting leapfrog construction f(r+3)&lt;=6*2^r+3f(r).</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The bounds f(4)&gt;=19 and f(5)&gt;=33 resolve Question 1.2 for d=4,5, and line rigidity gives f(6)&gt;=60, breaking the profile-statistic ceiling of 57. On the upper side f(6)&lt;=81 and asymptotically f(d)&lt;=(8/7+o(1))2^d, giving 60&lt;=f(6)&lt;=81 and refuting a conjectured closed form.</p><div class="sum-table"><table><thead><tr><th>d</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr></thead><tbody><tr><td>f(d)&gt;=</td><td>19</td><td>33</td><td>57</td><td>97</td><td>164</td></tr></tbody></table><div class="tbl-cap">Slicing lower bounds</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

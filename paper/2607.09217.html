@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenProver: Agentic and Interactive Theorem Proving with Lean 4 · Papers With Lean</title>
+<meta name="description" content="In this system paper, we present OpenProver, an open-source system for LLM-driven automated theorem proving (ATP) with integrated Lean 4 formal verification. OpenProver integrates a Planner-Worker-Verifier architecture inspired by recent ATP agentic systems such as Aletheia. A…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenProver: Agentic and Interactive Theorem Proving with Lean 4">
+<meta property="og:description" content="In this system paper, we present OpenProver, an open-source system for LLM-driven automated theorem proving (ATP) with integrated Lean 4 formal verification. OpenProver integrates a Planner-Worker-Verifier architecture inspired by recent ATP agentic systems such as Aletheia. A…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.09217.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.09217.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.09217v1" target="_blank" rel="noopener"><img src="../thumbs/2607.09217.jpg" alt="First page of OpenProver: Agentic and Interactive Theorem Proving with Lean 4"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">OpenProver: Agentic and Interactive Theorem Proving with Lean 4</h1>
+        <p class="authors">Matěj Kripner, Milan Straka</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jul 10, 2026 · v1</span>
+          <span class="badge">cs.MS</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.09217v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.09217" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/kripner/OpenProver" target="_blank" rel="noopener" title="kripner/OpenProver">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">OpenProver is an agentic LLM theorem-proving system integrating Lean 4 formal verification, evaluated on ProofNet formal theorems.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">In this system paper, we present OpenProver, an open-source system for LLM-driven automated theorem proving (ATP) with integrated Lean 4 formal verification. OpenProver integrates a Planner-Worker-Verifier architecture inspired by recent ATP agentic systems such as Aletheia. A Planner agent maintains a compact Whiteboard scratchpad and an unbounded Repository of intermediate findings, and decomposes mathematical work into parallel Workers. OpenProver is fully open-source, offers reproducible evaluation through automatic formal verification of generated proofs, and provides an interactive terminal interface for human-guided proof search. In interactive mode, OpenProver allows the human operator to monitor and steer the proof search process, motivated by the established human-AI synergy in interactive code generation. To showcase the potential for quantitative ablation experiments enabled by automatic formal verification, we evaluate OpenProver on ProofNet and compare it with a simple baseline. OpenProver is publicly available at <a href="https://github.com/kripner/OpenProver" target="_blank" rel="noopener">https://github.com/kripner/OpenProver</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Automated theorem proving systems are split between reproducible autonomous provers and interactive human-guided tools. There is a need for a system that bridges reproducible ATP research with interactive mathematical tooling and rigorous automatic evaluation.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">OpenProver uses a Planner-Worker-Verifier agentic architecture with a reasoning LLM. The Planner maintains a Whiteboard scratchpad and a Repository of findings, decomposing work into parallel Workers whose outputs are checked by Verifiers. Lean 4 formal verification is integrated for both proof submission and automatic evaluation, and an interactive terminal interface lets users monitor and steer the search.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.09217/x1.png" alt=""><figcaption>Figure 1: Overview of the OpenProver proof search loop. Planner iterates on the high-level plan, manages persistent state, and delegates mathematical work to Workers. A Verifier provides independent feedback to each Worker contribution.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 185 ProofNet formal theorems, OpenProver outperformed a linear chain-of-thought baseline, reaching 57.3% with Kimi-K2.5 (vs 36.8%) and 28.1% with Leanstral (vs 21.1%).</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Linear Rollout</th><th>OpenProver</th></tr></thead><tbody><tr><td>Kimi-K2.5</td><td>36.8%</td><td>57.3%</td></tr><tr><td>Leanstral</td><td>21.1%</td><td>28.1%</td></tr></tbody></table><div class="tbl-cap">Performance of OpenProver versus a baseline on ProofNet across models</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

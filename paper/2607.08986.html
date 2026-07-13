@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Formalization of the Mean-Field Derivation of the Vlasov Equation: AI-Assisted Lean Formalization as a Strategy Game · Papers With Lean</title>
+<meta name="description" content="We formalize a research result in the Lean 4 proof assistant by having a mathematician direct an AI system, and frame the activity as a formalization game. The objective is to turn a LaTeX document into Lean. The game is won when the development compiles, contains no sorry, and…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Formalization of the Mean-Field Derivation of the Vlasov Equation: AI-Assisted Lean Formalization as a Strategy Game">
+<meta property="og:description" content="We formalize a research result in the Lean 4 proof assistant by having a mathematician direct an AI system, and frame the activity as a formalization game. The objective is to turn a LaTeX document into Lean. The game is won when the development compiles, contains no sorry, and…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.08986.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.08986.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.08986v1" target="_blank" rel="noopener"><img src="../thumbs/2607.08986.jpg" alt="First page of A Formalization of the Mean-Field Derivation of the Vlasov Equation: AI-Assisted Lean Formalization as a Strategy Game"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Formalization of the Mean-Field Derivation of the Vlasov Equation: AI-Assisted Lean Formalization as a Strategy Game</h1>
+        <p class="authors">Joseph K. Miller</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jul 9, 2026 · v1</span>
+          <span class="badge">cs.LO</span> <span class="badge">math-ph</span> <span class="badge">math.AP</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.08986v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.08986" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Hydrodynamical/Vlasov_Meanfield_Formalization" target="_blank" rel="noopener" title="Hydrodynamical/Vlasov_Meanfield_Formalization">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes Dobrushin&#x27;s mean-field derivation of the Vlasov equation in Lean 4 via an AI-directed workflow, exporting a Mathlib-absorbable optimal-transport layer.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We formalize a research result in the Lean 4 proof assistant by having a mathematician direct an AI system, and frame the activity as a formalization game. The objective is to turn a LaTeX document into Lean. The game is won when the development compiles, contains no sorry, and a machine check shows the target theorems rest on Lean&#x27;s foundational axioms alone. Reuse is a second check, by a definition we introduce: whether the development yields a self-contained layer of general mathematics the wider library could absorb. The case study is a complete, axiom-clean formalization of well-posedness for the nonlinear Vlasov equation via Dobrushin&#x27;s mean-field route – existence, uniqueness, the stability estimate and mean-field limit, and a short-window superposition principle (weak solutions are Lagrangian). The human&#x27;s role was to direct, not to write proofs: to scope the definitions, steer the decompositions, and triage the library&#x27;s gaps; the AI agent executed. The formalization certifies the proof of each statement as written; whether the written statement is the intended theorem stays the mathematician&#x27;s judgment. The optimal-transport machinery that fell out of the build (in particular, properties of the Wasserstein-1 metric and the Kantorovich-Rubinstein duality theorem) separates into a self-contained layer that compiles against Mathlib alone: about a sixth of the development (49 of 299 declarations), behind a 22-declaration interface with no reverse dependency. The headline theorems ran in about a week, the full development in about a month. We report the quantitative claims as observations of one game, not as general laws. The game&#x27;s rules name no particular system, so the methodological framing is meant to outlast the tools of any one run.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Formalizing research-level mathematics in Lean has historically lagged far behind informal proofs due to the volume of intermediate steps and library gaps. The paper asks how to trust AI-generated Lean proofs and whether the resulting artifacts are reusable.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The activity is framed as a formalization game with a win condition: the development compiles, contains no sorry, and target theorems depend only on Lean&#x27;s foundational axioms (propext, Classical.choice, Quot.sound), checked via #print axioms. A mathematician directs an agentic AI system (Claude Code driving frontier Claude models, with specialized sub-agents) that executes the proofs, while the human scopes definitions and triages library gaps. A self-contained layer of general optimal-transport mathematics is isolated to build against Mathlib alone. A verification discipline requires certifying by axiom footprint and committing one unit at a time.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.08986/x1.png" alt=""><figcaption>Figure 1: A roadmap of the development: the project blueprint’s dependency graph, auto-extracted from the elaborated Lean proof terms — boxes are definitions, ellipses theorems, green fully formalized. The interactive version, with statements and proof sketches on every node, is at hydrodynamical.github.io/Vlasov_Meanfield_Formalization .</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2607.08986/commit_taxonomy.png" alt=""><figcaption>Figure 4: From the case study of Section 3 : all 362 commits classified by primary intent. Roughly one in seven is pure meta-knowledge capture (discipline / lessons) — a direct, if heuristic, measure of the meta-learning loop, distinct from the proof work itself.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">A complete axiom-clean formalization of well-posedness for the nonlinear Vlasov equation (existence, uniqueness, stability estimate, mean-field limit, short-window superposition principle) was produced over about a month, headline theorems in about a week. About a sixth of the development (49 of 299 declarations, behind a 22-declaration interface with no reverse dependency) forms a self-contained Wasserstein-1 / Kantorovich-Rubinstein layer compiling against Mathlib alone.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.08986/sorry_trajectory.png" alt=""><figcaption>Figure 2: From the case study of Section 3 ( 362 commits): live sorry count per production file, stacked so the leaves sum to the total (black line). The open-goal front is concentrated in one active leaf at a time and migrates across the development; the total peaks at 24 and returns to 0 . The two humps are two games — the well-posedness/stability marquee and the superposition-principle follow-o</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Check</th><th>Value</th></tr></thead><tbody><tr><td>Reverse edges (general→specific)</td><td>0</td></tr><tr><td>Modules build vs Mathlib alone</td><td>exit 0</td></tr><tr><td>Axiom footprint</td><td>[propext, Classical.choice, Quot.sound]</td></tr><tr><td>General / total declarations</td><td>49/299 ≈ 16%</td></tr><tr><td>Interface width w</td><td>22</td></tr></tbody></table><div class="tbl-cap">Self-contained layer checks and footprint</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

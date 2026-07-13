@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System Capybara: Tracking Capabilities for Separation and Freshness (Extended Version) · Papers With Lean</title>
+<meta name="description" content="Substructural type systems give strong static control over aliasing. Examples include uniqueness, separation, and borrowing. How can such control be brought to established languages whose programming models rely on higher-order abstraction, unrestricted aliasing, and pervasive…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="System Capybara: Tracking Capabilities for Separation and Freshness (Extended Version)">
+<meta property="og:description" content="Substructural type systems give strong static control over aliasing. Examples include uniqueness, separation, and borrowing. How can such control be brought to established languages whose programming models rely on higher-order abstraction, unrestricted aliasing, and pervasive…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.09383.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.09383.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.09383v1" target="_blank" rel="noopener"><img src="../thumbs/2607.09383.jpg" alt="First page of System Capybara: Tracking Capabilities for Separation and Freshness (Extended Version)"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">System Capybara: Tracking Capabilities for Separation and Freshness (Extended Version)</h1>
+        <p class="authors">Yichen Xu, Oliver Bračevac, Cao Nguyen Pham, Yaoyu Zhao, Martin Odersky</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Jul 10, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=type-theory">type-theory</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.09383v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.09383" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The core calculus CoreCapybara&#x27;s semantic soundness (type, memory safety, immutability) is mechanized in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Substructural type systems give strong static control over aliasing. Examples include uniqueness, separation, and borrowing. How can such control be brought to established languages whose programming models rely on higher-order abstraction, unrestricted aliasing, and pervasive sharing? We study this problem in the context of Scala. We show how to retrofit these guarantees selectively instead of globally: ordinary code keeps Scala&#x27;s usual aliasing discipline, while stronger guarantees can be enforced where they matter. Our starting point is Scala&#x27;s capture checking, whose treatment of capabilities is inspired by the object-capability tradition: capabilities are ordinary values, and capture sets record, in a value&#x27;s type, which capabilities the value may use. We develop System Capybara, which adds a selective alias-control layer to this mechanism. By tracking separation, consumption, freshness, and read-only access for capabilities, Capybara recovers key reasoning principles from substructural and ownership-based disciplines without global invariants. We give a type-preserving translation from the surface calculus Capybara to CoreCapybara, a core calculus extending System Capless, the earlier foundation for capture checking. The translation uses quantifiers for capture polymorphism and freshness, and constraint-indexed modal types for separation. We prove a semantic soundness result for the core calculus in Lean 4 and derive type safety, memory safety (no use-after-free or double-free), immutability of read-only computations, and data-race freedom for well-typed programs. Finally, we implement Scala 3&#x27;s new separation checker, which brings higher-order separation reasoning about effects, capabilities, and resources to ordinary Scala, including fearless concurrency.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Substructural type systems give strong static alias control, but retrofitting such guarantees into languages like Scala that rely on unrestricted aliasing and pervasive sharing is difficult. The goal is to add selective alias-control guarantees without imposing global invariants.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">System Capybara adds a selective alias-control layer to Scala&#x27;s capture checking, tracking separation, consumption, freshness, and read-only access for capabilities. A type-preserving translation maps the surface calculus to CoreCapybara, a core calculus extending System Capless with modal types, existential capture types, and reader values. A logical relation model of CoreCapybara is developed and its semantic soundness is mechanized in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Semantic soundness of CoreCapybara yields type safety, memory safety (no use-after-free or double-free), immutability of read-only computations, and, via confluence, data-race freedom for well-typed programs. A separation checker was implemented in Scala 3.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
