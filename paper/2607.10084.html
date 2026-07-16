@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>An Overlap Construction for Relative Linear Extension Ratios · Papers With Lean</title>
+<meta name="description" content="Chan and Pak introduced the relative linear extension ratio $ρ(P,x)=e(P)/e(P-x)$, where $e(P)$ is the number of linear extensions of a finite poset $P$, and let $ν(c,d)$ be the least number of elements of a poset that realizes $ρ(P,x)=d/c$. They proved that $ν(c,d)\le d/c+O(\log…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="An Overlap Construction for Relative Linear Extension Ratios">
+<meta property="og:description" content="Chan and Pak introduced the relative linear extension ratio $ρ(P,x)=e(P)/e(P-x)$, where $e(P)$ is the number of linear extensions of a finite poset $P$, and let $ν(c,d)$ be the least number of elements of a poset that realizes $ρ(P,x)=d/c$. They proved that $ν(c,d)\le d/c+O(\log…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.10084.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.10084.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.10084v1" target="_blank" rel="noopener"><img src="../thumbs/2607.10084.jpg" alt="First page of An Overlap Construction for Relative Linear Extension Ratios"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">An Overlap Construction for Relative Linear Extension Ratios</h1>
+        <p class="authors">Maseeh Ghodsi</p>
+        <div class="row">
+          <span class="badge">math.CO</span>
+          <span class="date">Jul 11, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.10084v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.10084" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The deductive core—continuant floor bound, residue-counting steps, and case analysis of the main theorem—is machine-checked in Lean 4 using its standard library.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Chan and Pak introduced the relative linear extension ratio $ρ(P,x)=e(P)/e(P-x)$, where $e(P)$ is the number of linear extensions of a finite poset $P$, and let $ν(c,d)$ be the least number of elements of a poset that realizes $ρ(P,x)=d/c$. They proved that $ν(c,d)\le d/c+O(\log d\log\log d)$ for $d\ge 3c$, and asked whether the hypothesis $d\ge 3c$ can be relaxed to $d\ge(1+\varepsilon)c$ or removed. We prove the fixed-gap form of this question: for every fixed $\varepsilon&gt;0$, $ν(c,d)\le \frac{d}{c}+O_{\varepsilon}(\log d\log\log d)$ whenever $d\ge(1+\varepsilon)c$, and the implied constant is absolute once $d\ge 2c$. The new ingredient is a one-element overlap construction: if $x$ is minimal in $P$ and $y$ is minimal in $Q$, then there is a poset $R$ with $|R|=|P|+|Q|-1$ and an element $z$ such that $ρ(R,z)=ρ(P,x)+ρ(Q,y)-1$. Together with the continued-fraction construction of Chan and Pak and Rukavishnikova&#x27;s tail bound for sums of partial quotients, this removes the factor $3$ in their range. We also show that the fixed-gap hypothesis is essentially optimal for this construction. In the range $1 &lt; d/c &lt; 2$, with $h=d-c$, the size bound the construction can certify is at least $\lfloor c/h\rfloor$, so the method reaches the stated error term only when $h$ is at least of order $c/(\log c\log\log c)$. The remaining obstruction to removing the hypothesis is a short-interval problem for sums of partial quotients, which we describe. The deductive part of the argument has been checked with the Lean proof assistant.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Chan and Pak defined the relative linear extension ratio ρ(P,x)=e(P)/e(P-x) and ν(c,d), the least size of a poset realizing ρ=d/c, proving ν(c,d)≤d/c+O(log d log log d) for d≥3c. They asked whether the hypothesis d≥3c can be relaxed to d≥(1+ε)c or removed.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A one-element overlap construction is introduced: for minimal x∈P and y∈Q, a poset R with |R|=|P|+|Q|-1 satisfies ρ(R,z)=ρ(P,x)+ρ(Q,y)-1, merging the two auxiliary elements of the earlier flip-flop construction. Combined with the continued-fraction construction and Rukavishnikova&#x27;s tail bound for sums of partial quotients, this removes the factor 3. The deductive part is checked in Lean 4: the continuant floor bound, the two residue-counting injections and pigeonhole choice are proved unconditionally, and the main theorem is formalized conditionally on three imported inputs, with the overlap identity verified by exhaustive enumeration.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For every fixed ε&gt;0, ν(c,d)≤d/c+O_ε(log d log log d) whenever d≥(1+ε)c, with an absolute implied constant once d≥2c. The fixed-gap hypothesis is shown essentially optimal for this construction, since for 1&lt;d/c&lt;2 with h=d-c the certifiable size is at least ⌊c/h⌋.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A counterexample to a subadditivity conjecture of Cohen for Sophie Germain cyclic numbers · Papers With Lean</title>
+<meta name="description" content="An integer $n \ge 1$ is cyclic if $\gcd(n,\varphi(n))=1$ (equivalently, if every group of order $n$ is cyclic), and Sophie Germain cyclic if both $n$ and $2n+1$ are cyclic. Let $C_σ(N)$ count the Sophie Germain cyclic integers in $[1,N]$. Cohen conjectured that $C_σ$ is…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A counterexample to a subadditivity conjecture of Cohen for Sophie Germain cyclic numbers">
+<meta property="og:description" content="An integer $n \ge 1$ is cyclic if $\gcd(n,\varphi(n))=1$ (equivalently, if every group of order $n$ is cyclic), and Sophie Germain cyclic if both $n$ and $2n+1$ are cyclic. Let $C_σ(N)$ count the Sophie Germain cyclic integers in $[1,N]$. Cohen conjectured that $C_σ$ is…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.09793.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.09793.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.09793v1" target="_blank" rel="noopener"><img src="../thumbs/2607.09793.jpg" alt="First page of A counterexample to a subadditivity conjecture of Cohen for Sophie Germain cyclic numbers"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A counterexample to a subadditivity conjecture of Cohen for Sophie Germain cyclic numbers</h1>
+        <p class="authors">Josué Alexander Ibarra</p>
+        <div class="row">
+          <span class="badge">math.NT</span>
+          <span class="date">Jul 9, 2026 · v1</span>
+          <span class="badge">math.CO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.09793v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.09793" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A counterexample to Cohen&#x27;s subadditivity conjecture for Sophie Germain cyclic numbers is formalized and kernel-verified in Lean 4 over Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">An integer $n \ge 1$ is cyclic if $\gcd(n,\varphi(n))=1$ (equivalently, if every group of order $n$ is cyclic), and Sophie Germain cyclic if both $n$ and $2n+1$ are cyclic. Let $C_σ(N)$ count the Sophie Germain cyclic integers in $[1,N]$. Cohen conjectured that $C_σ$ is subadditive, $C_σ(m+n) \le C_σ(m)+C_σ(n)$ for all $1 \le m \le n$ (his Conjecture 66), having checked $m,n \le 10^6$ without finding a counterexample. We give one: at $m=31$, $n=3928$, $C_σ(3959)=697 &gt; 696 = C_σ(31)+C_σ(3928)$. The argument is short, and is verified by the Lean 4 kernel.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Cohen conjectured (Conjecture 66) that the Sophie Germain cyclic counting function C_σ is subadditive, C_σ(m+n) ≤ C_σ(m)+C_σ(n), reporting no counterexample for m,n ≤ 10^6.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A window (3928,3959] of length 31 is shown to contain eleven Sophie Germain cyclic integers versus ten in [1,31]. Counts are computed with two independent totient implementations and cross-checked against Cohen&#x27;s tabulated value. The negation of the conjecture is formalized in Lean 4 over Mathlib, defining cyclic via Nat.Coprime n (Nat.totient n) and C_σ via Nat.count, splitting the count at 3928 to avoid evaluating the cumulative total.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">At m=31, n=3928, C_σ(3959)=697 &gt; 696 = C_σ(31)+C_σ(3928), disproving the conjecture. The Lean proof depends only on propext, Classical.choice, and Quot.sound, avoiding native_decide, so it is checked by the kernel.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

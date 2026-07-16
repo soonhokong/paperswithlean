@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evidence-Grounded Verified Agentic Reasoning: A Path Toward Eliminating LLM Hallucination in Empirical Inference via Tool-Attested Kernel Proofs · Papers With Lean</title>
+<meta name="description" content="Tool access alone does not make LLM empirical reasoning governable: accepted outputs need not descend from attested evidence, and accepted deductions need not hold up under formal scrutiny. We present EG-VAR (Evidence-Grounded Verified Agentic Reasoning), a Lean 4-based…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Evidence-Grounded Verified Agentic Reasoning: A Path Toward Eliminating LLM Hallucination in Empirical Inference via Tool-Attested Kernel Proofs">
+<meta property="og:description" content="Tool access alone does not make LLM empirical reasoning governable: accepted outputs need not descend from attested evidence, and accepted deductions need not hold up under formal scrutiny. We present EG-VAR (Evidence-Grounded Verified Agentic Reasoning), a Lean 4-based…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.12650.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.12650.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.12650v1" target="_blank" rel="noopener"><img src="../thumbs/2607.12650.jpg" alt="First page of Evidence-Grounded Verified Agentic Reasoning: A Path Toward Eliminating LLM Hallucination in Empirical Inference via Tool-Attested Kernel Proofs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Evidence-Grounded Verified Agentic Reasoning: A Path Toward Eliminating LLM Hallucination in Empirical Inference via Tool-Attested Kernel Proofs</h1>
+        <p class="authors">Junyu Ren</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Jul 14, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.CY</span> <span class="badge">cs.SE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.12650v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.12650" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/7pocheR/eg-var" target="_blank" rel="noopener" title="7pocheR/eg-var">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses the Lean 4 kernel as sole minter of Verified empirical claims, type-checking LLM-proposed proof tactics under tool-attestation axioms.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Tool access alone does not make LLM empirical reasoning governable: accepted outputs need not descend from attested evidence, and accepted deductions need not hold up under formal scrutiny. We present EG-VAR (Evidence-Grounded Verified Agentic Reasoning), a Lean 4-based tool-calling architecture in which the Lean kernel is the sole minter of Verified claims via tool-attestation axioms and declared source lifts. Every verified output structurally descends from an attested tool call (Thm. 3.1) and a kernel-checked chain of valid inference (Thm. 3.2); residual outputs are honest Abstain with a replayable audit trail. On a subcollection of TableBench numerical reasoning (n=120), EG-VAR attains 120/120 versus a 95% same-tool baseline; on counterfactual stress tests (5 domains x 2 models), EG-VAR stays 100% source-faithful while same-tool drops to 80-90% (no-tool 50-80%). With the LLM as deployment-time formalizer, residual semantic-formalization error is 3.3% on Sonnet and 1.7% on Opus. We position EG-VAR as a technical-governance interface for high-stakes empirical claims: a formal sidecar makes the target proposition, source scope, evidence boundary, proof obligation, and abstention condition auditable, eliminating unsupported Verified outputs today while turning formalization errors, lift and source-authority disputes, ambiguities, and abstentions into explicit audit targets. Over time, typed sidecars in datasets, APIs, public records, and AI-generated documents can amortize this formalization burden into reusable infrastructure.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLMs hallucinate empirical facts and, even with tool access, may accept outputs not derived from attested evidence or that fail formal scrutiny. Ensuring verifiable, auditable empirical claims requires structural rather than statistical guarantees.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">EG-VAR is a Lean 4-based tool-calling architecture with a four-layer stack: trusted deterministic tools attest storage facts, per-source lifts imported as Lean axioms map facts to world claims, the Lean kernel type-checks proofs and is the sole minter of Verified claims via a mkVerified rule requiring an attestation hypothesis, and an untrusted LLM proposes proof tactics. Every Verified output must structurally descend from an attested tool call and a kernel-checked inference chain; rejected outputs yield honest abstention with a replayable Lean proof artifact. The LLM also acts as a deployment-time formalizer proposing typed goals.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On TableBench numerical reasoning (n=120) EG-VAR attained 120/120 versus a 95% same-tool baseline. On counterfactual stress tests EG-VAR stayed 100% source-faithful while same-tool dropped to 80-90% and no-tool to 50-80%. With LLM formalization, residual semantic-formalization error was 3.3% (Sonnet) and 1.7% (Opus).</p><div class="sum-table"><table><thead><tr><th>Rung</th><th>Match</th></tr></thead><tbody><tr><td>Table-only</td><td>107/120 (89.2%)</td></tr><tr><td>Tools-open</td><td>113/120 (94.2%)</td></tr><tr><td>Tools-curated</td><td>114/120 (95.0%)</td></tr><tr><td>EG-VAR</td><td>120/120 (100.0%)</td></tr></tbody></table><div class="tbl-cap">TableBench Tier 1 match rate by rung</div></div><div class="sum-table"><table><thead><tr><th>Category</th><th>Sonnet</th><th>Opus</th></tr></thead><tbody><tr><td>Correct</td><td>84.2%</td><td>87.5%</td></tr><tr><td>Ambiguous claim (logged)</td><td>4.2%</td><td>4.2%</td></tr><tr><td>Semantic formalizer error</td><td>3.3%</td><td>1.7%</td></tr><tr><td>Honest abstain</td><td>2.5%</td><td>5.0%</td></tr><tr><td>Solver gave up</td><td>4.2%</td><td>0.0%</td></tr></tbody></table><div class="tbl-cap">Tier 2 end-to-end outcome categories</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

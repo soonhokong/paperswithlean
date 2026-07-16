@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mechanised operational semantics of Rowhammer · Papers With Lean</title>
+<meta name="description" content="Rowhammer is a hardware vulnerability in dynamic random-access memory (DRAM) in which repeated accesses to aggressor rows can induce bit-flips in victim rows. This phenomenon violates a core assumption of conventional programming language semantics: reading or writing one memory…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mechanised operational semantics of Rowhammer">
+<meta property="og:description" content="Rowhammer is a hardware vulnerability in dynamic random-access memory (DRAM) in which repeated accesses to aggressor rows can induce bit-flips in victim rows. This phenomenon violates a core assumption of conventional programming language semantics: reading or writing one memory…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.10314.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.10314.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.10314v1" target="_blank" rel="noopener"><img src="../thumbs/2607.10314.jpg" alt="First page of Mechanised operational semantics of Rowhammer"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Mechanised operational semantics of Rowhammer</h1>
+        <p class="authors">Martin Berger, Amir Naseredini</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Jul 11, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.10314v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.10314" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Fully mechanises a probabilistic small-step operational semantics of Rowhammer faults and information-flow security in Lean using Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Rowhammer is a hardware vulnerability in dynamic random-access memory (DRAM) in which repeated accesses to aggressor rows can induce bit-flips in victim rows. This phenomenon violates a core assumption of conventional programming language semantics: reading or writing one memory location does not modify others. Despite the security importance of this phenomenon, there is no formal framework connecting Rowhammer faults with program behaviour. We present a probabilistic small-step operational semantics for an idealised imperative language subject to Rowhammer-style faults. The semantics abstracts from DRAM internals and semiconductor physics. A general probabilistic fault model parameterises the semantics, representing Rowhammer-style faults by assigning probabilities to bit-flips during read or write operations. The resulting distributions are propagated through programs using the standard monadic structure of probabilistic computation. As a case study, we formalise a well-known defence that places program variables sufficiently far apart in physical memory that an access to one variable cannot disturb another. We prove a distribution-independent semantic collapse theorem: for every finite execution, including prefixes of terminating and non-terminating executions, the protected projection of the probabilistic Rowhammer semantics is the Dirac distribution of the corresponding Rowhammer-free execution. We develop an observation-parametric account of secure information flow. Non-interference is expressed as a hyperproperty comparing the distributions of low observations from low-equivalent initial memories. Consequently, physical separation preserves non-interference for every admissible fault model, while every Rowhammer non-interference violation reflects a violation already present in the Rowhammer-free semantics. The development is fully mechanised in Lean using mathlib.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Rowhammer faults violate the memory-locality assumption underlying programming language semantics, and no formal framework connects such hardware faults with program behaviour and security properties.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A probabilistic small-step operational semantics for an idealised WHILE language is defined, where read/write transitions sample from a general probabilistic fault model assigning bit-flip probabilities via a &#x27;blast radius&#x27; per location. Distributions are propagated using the probability monad (PMF). Physical separation is formalised as a defence, and non-interference is expressed as an observation-parametric hyperproperty over protected views. The entire development is mechanised in Lean with Mathlib.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.10314/blast.png" alt=""><figcaption>Figure 4. The idea behind the fault model is that each variable x has a ’blast radius’, a set of other memory locations that may get flipped when x is accessed. Locations outside the blast radius will not be flipped. The fault model formalises the shape of each blast radius, and the flip probabilities. Unlike Figures 2 and 3 , this image does not show row shapes, because our formal model does not </figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">A distribution-independent semantic collapse theorem is proved: on protected projections, the probabilistic Rowhammer semantics reduces to the Dirac distribution of the Rowhammer-free execution. Consequently physical separation preserves relative non-interference for every admissible fault model.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

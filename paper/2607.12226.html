@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foundational Constraint Solving for Expressive Refinement Typing · Papers With Lean</title>
+<meta name="description" content="SMT-based program verifiers are hamstrung by two problems: expressiveness, because predictable verification restricts to the boundaries of SMT decidability, and trust, because the solver is a large, unverified artifact whose soundness bugs may quietly compromise every tool built…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Foundational Constraint Solving for Expressive Refinement Typing">
+<meta property="og:description" content="SMT-based program verifiers are hamstrung by two problems: expressiveness, because predictable verification restricts to the boundaries of SMT decidability, and trust, because the solver is a large, unverified artifact whose soundness bugs may quietly compromise every tool built…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.12226.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.12226.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.12226v1" target="_blank" rel="noopener"><img src="../thumbs/2607.12226.jpg" alt="First page of Foundational Constraint Solving for Expressive Refinement Typing"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Foundational Constraint Solving for Expressive Refinement Typing</h1>
+        <p class="authors">Jam Kabeer Ali Khan, Petros Markopoulos, Nico Lehmann, Ranjit Jhala</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Jul 14, 2026 · v1</span>
+          <span class="badge">cs.LO</span> <span class="badge">cs.SE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.12226v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.12226" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/jam-khan/Flex" target="_blank" rel="noopener" title="jam-khan/Flex">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">FLEX implements a foundational Constrained Horn Clause solver in Lean, encoding CHCs as propositions and discharging them via certifying tactics with kernel-checked proofs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">SMT-based program verifiers are hamstrung by two problems: expressiveness, because predictable verification restricts to the boundaries of SMT decidability, and trust, because the solver is a large, unverified artifact whose soundness bugs may quietly compromise every tool built on it. We present FLEX, a foundational Constrained Horn Clause (CHC) solver implemented in LEAN, that reduces the trusted base to the kernel alone, and allows using LEAN&#x27;s entire proof ecosystem to verify low-level systems code, via three contributions. First, FLEX encodes CHCs as plain LEAN propositions where the Horn variables are existentially bound predicates, and shows how to implement CHC solvers as tactics (meta-programs) that compute kernel checkable proofs of the CHC propositions. Second, we show how to implement two verified CHC generators in LEAN: a Floyd-Hoare style generator for an imperative language, and a refinement-type-based generator for a functional calculus, which can be composed with the solving tactics to yield the first end-to-end foundational CHC-based verifiers. Finally, we show how FLEX allows us to leapfrog the expressiveness limitations of SMT by unleashing LEAN&#x27;s entire ecosystem of proof machinery to prove arbitrary functional correctness properties of various low-level Rust libraries using the FLUX refinement type checker, and demonstrate the viability of FLEX as a trustworthy CHC backend, by showing it automatically discharges 95.7% of the CHCs from FLUX&#x27;s benchmark suite.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">SMT-based program verifiers are limited by expressiveness (restricted to decidable theories) and trust (the solver is a large, unverified artifact whose soundness bugs compromise dependent tools).</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">FLEX encodes Constrained Horn Clauses as plain Lean propositions with existentially bound predicate variables, and implements CHC solvers as Lean tactics (zap and fix) that produce kernel-checkable proof terms. Two verified CHC generators are built in Lean: a Floyd-Hoare generator for an imperative language Imp, and a refinement-type generator for a functional calculus, composed with the solving tactics for end-to-end foundational verifiers. FLEX serves as a backend for the FLUX refinement type checker over Rust, tapping Lean automation like omega, grind, and bv_decide.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">FLEX (about 2700 lines of Lean, plus 1800 lines of Rust extending FLUX) automatically discharges 95.7% of the CHCs from FLUX&#x27;s benchmark suite, and verifies functional correctness and memory safety of Rust libraries (sorting, ring buffer, hash table) beyond SMT-decidable specifications.</p><div class="sum-table"><table><thead><tr><th>Case study</th><th>Flux LoC</th><th>#CHCs</th><th>Spec LoC</th><th>Proof LoC</th></tr></thead><tbody><tr><td>Sorting</td><td>316</td><td>15</td><td>96</td><td>620</td></tr><tr><td>RingBuffer</td><td>257</td><td>10</td><td>75</td><td>501</td></tr><tr><td>TickTock</td><td>15</td><td>5</td><td>—</td><td>302</td></tr><tr><td>HashTable</td><td>562</td><td>22</td><td>245</td><td>1361</td></tr><tr><td>All</td><td>1250</td><td>52</td><td>416</td><td>2784</td></tr></tbody></table><div class="tbl-cap">Case studies: verified Rust LoC, number of CHCs, spec LoC, proof LoC</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

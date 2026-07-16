@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TreeThink: A Modular Tree Search Library for Mathematical Reasoning with LLMs · Papers With Lean</title>
+<meta name="description" content="Tree search algorithms enable systematic exploration of the proof space in neural theorem proving. Existing LLM tree search libraries primarily target natural language reasoning and do not provide native integration with formal verifiers, while theorem proving systems often rely…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TreeThink: A Modular Tree Search Library for Mathematical Reasoning with LLMs">
+<meta property="og:description" content="Tree search algorithms enable systematic exploration of the proof space in neural theorem proving. Existing LLM tree search libraries primarily target natural language reasoning and do not provide native integration with formal verifiers, while theorem proving systems often rely…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.11258.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.11258.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.11258v1" target="_blank" rel="noopener"><img src="../thumbs/2607.11258.jpg" alt="First page of TreeThink: A Modular Tree Search Library for Mathematical Reasoning with LLMs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">TreeThink: A Modular Tree Search Library for Mathematical Reasoning with LLMs</h1>
+        <p class="authors">Burak S. Akbudak, Zeynel A. Uluşan, Can S. Erer, Gözde Gül Şahin</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Jul 13, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.11258v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.11258" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/GGLAB-KU/treethink" target="_blank" rel="noopener" title="GGLAB-KU/treethink">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Modular tree-search library integrating Lean 4 via REPL for neural theorem proving, evaluated on miniF2F alongside Rocq and Isabelle.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Tree search algorithms enable systematic exploration of the proof space in neural theorem proving. Existing LLM tree search libraries primarily target natural language reasoning and do not provide native integration with formal verifiers, while theorem proving systems often rely on task-specific search implementations. We introduce TreeThink, an open-source Python library for modular, fully asynchronous tree search in neural theorem proving. It integrates established tree search methods with vLLM-based inference pipelines and diverse node evaluation techniques, ranging from lightweight heuristics to neural evaluators. We support Lean 4, Rocq, and Isabelle/HOL alongside natural language. It connects directly to each language&#x27;s Read-Eval-Print Loop (REPL) server for real-time verification and proof state extraction. We evaluate TreeThink on miniF2F and MATH500, demonstrating cross-language formal proof search, natural language reasoning support, and up to 6.3$\times$ wall-clock speedup from asynchronous execution. Source code is released under the MIT license at <a href="https://github.com/GGLAB-KU/treethink" target="_blank" rel="noopener">https://github.com/GGLAB-KU/treethink</a> , and the library is accessible as a downloadable package at <a href="https://pypi.org/project/treethink/" target="_blank" rel="noopener">https://pypi.org/project/treethink/</a> .</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Existing LLM tree-search libraries target natural-language reasoning without native formal verifier integration, while formal theorem-proving systems rely on task-specific search implementations. There is no reusable, multi-language, asynchronous tree-search infrastructure for neural theorem proving.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">TreeThink is an open-source Python library providing modular, fully asynchronous tree search decoupled into interchangeable search algorithms (BFS, Beam, MCTS variants), heterogeneous node evaluators, and vLLM-backed policies. It connects to each language&#x27;s REPL server for real-time verification and proof-state extraction, supporting Lean 4, Rocq, and Isabelle/HOL as well as natural language. It includes proof caching, batched inference, and graph visualization.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.11258/ntp_process_v4_cropped.png" alt=""><figcaption>Figure 1: NTP tree search process. 1. Select: search method selects a node using a search algorithm. 2. Expand : the policy LLM generates child nodes. 3. Evaluate : evaluator strategy scores the generated nodes. W stands for the value assigned to a node. 4. Verify : external systems verify the correctness of the proof. Main operations in individual sections are in red while batched processes are i</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On miniF2F, tree search improved pass rates over pass@1 across all three languages (Lean 49.4% to 57.4% with RF-MCTS). Asynchronous execution yielded up to 6.3x wall-clock speedup, and on MATH500 RF-MCTS reached 40.0% versus 23.0% single-pass.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Lean (%)</th><th>Isab. (%)</th><th>Rocq (%)</th></tr></thead><tbody><tr><td>pass@1</td><td>49.4</td><td>42.2</td><td>0.8</td></tr><tr><td>BFTS</td><td>54.9</td><td>65.1</td><td>1.2</td></tr><tr><td>RF-MCTS</td><td>57.4</td><td>61.8</td><td>2.0</td></tr></tbody></table><div class="tbl-cap">Formal proof-search pass rates on miniF2F</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
