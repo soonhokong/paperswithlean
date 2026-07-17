@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Untrusted Authors, Trusted Answers: A Calculus of Fidelity-Graded Translations · Papers With Lean</title>
+<meta name="description" content="Verified translation has two well-studied extremes: prove the translator once (certified compilation), or validate each run of one translator (translation validation). Both treat a single translation in isolation. We study translations as a graph – many source languages, several…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Untrusted Authors, Trusted Answers: A Calculus of Fidelity-Graded Translations">
+<meta property="og:description" content="Verified translation has two well-studied extremes: prove the translator once (certified compilation), or validate each run of one translator (translation validation). Both treat a single translation in isolation. We study translations as a graph – many source languages, several…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.14137.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.14137.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.14137v1" target="_blank" rel="noopener"><img src="../thumbs/2607.14137.jpg" alt="First page of Untrusted Authors, Trusted Answers: A Calculus of Fidelity-Graded Translations"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Untrusted Authors, Trusted Answers: A Calculus of Fidelity-Graded Translations</h1>
+        <p class="authors">Christoph Kirsch</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Jul 10, 2026 · v1</span>
+          <span class="badge">cs.LO</span> <span class="badge">cs.SE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.14137v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.14137" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/cksystemsgroup/hurdy-gurdy" target="_blank" rel="noopener" title="cksystemsgroup/hurdy-gurdy">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The compositional core of the fidelity-graded translation calculus, including pasting and route telescope theorems, is mechanized in Lean 4 with an axiom audit.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Verified translation has two well-studied extremes: prove the translator once (certified compilation), or validate each run of one translator (translation validation). Both treat a single translation in isolation. We study translations as a graph – many source languages, several reasoning targets, multiple independently built routes – where the honest answer to &quot;is this translation correct?&quot; differs from edge to edge. We present a calculus of fidelity-graded translations: pairs of languages close commuting squares that are checkable per program and compose by pasting; declared fidelity grades compose by weakest link, are re-established per run by inline checking, and are exceeded by agreement between independently derived routes; and an end-to-end theorem isolates a fundamental asymmetry – witness-carrying answers are self-certifying at the source, while universal answers are where grades, branches, and certificates earn their cost. The compositional core is mechanized in Lean 4. The calculus is implemented in hurdy-gurdy, a platform of 13 languages and 13 pairs around two reasoning hubs, built as a two-directional experiment in LLM-generated correctness: independent LLM agents wrote every pair, largely unsupervised, with the architecture&#x27;s cross-checks as the only semantic gate, and the platform&#x27;s intended player is itself an LLM. All code, and most of this paper, is LLM-generated; the human contribution is the architecture. The same gate is the intended growth model: hurdy-gurdy scales in language support through pairs contributed by anyone – with LLMs, with agents, or by hand – admitted by architecture, not authorship. We report conjoined coverage, branch agreement, a compliance-derived benchmark with machine-derived ground truth, witness replay, certified unreachability, and escape-rate experiments for the gate.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Verified translation is typically studied for a single translator in isolation (certified compilation or per-run translation validation). Real reasoning pipelines form a graph of many source languages, several targets, and multiple independently built routes with honestly different trustworthiness.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A calculus of fidelity-graded translations is defined, where pairs of languages form commuting squares checkable per program and composed by pasting, with declared fidelity grades composing by weakest link and corroborated by agreement between independently derived routes. The compositional core, including the pasting theorem, localization, re-establishment, and the n-ary route telescope, is mechanized in Lean 4 with a clean axiom audit. The calculus is instantiated in hurdy-gurdy, a Python platform of 13 languages and 13 pairs around two reasoning hubs, with translators authored largely by LLM agents.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The Lean mechanization discharges the core theorems (pasting, re-establishment, corroboration, self-certification, and universal-answer results) with recorded axiom dependencies. The platform reports per-pair coverage, branch agreement, a 78-question compliance-derived reachability benchmark decided along both RISC-V routes, and certified-unreachability runs using a formally verified checker.</p><div class="sum-table"><table><thead><tr><th>Result</th><th>Lean theorem</th><th>Axioms</th></tr></thead><tbody><tr><td>Theorem 3.7 (pasting)</td><td>pasting</td><td>propext</td></tr><tr><td>Theorem 4.3</td><td>reestablishment</td><td>propext</td></tr><tr><td>Theorem 4.8</td><td>existential_self_certifying</td><td>—</td></tr><tr><td>Theorem 4.9</td><td>universal_needs_machinery</td><td>propext</td></tr><tr><td>route telescope (n-ary)</td><td>route_pasting, route_localization</td><td>propext, Quot.sound</td></tr></tbody></table><div class="tbl-cap">Lean theorems and their axiom dependencies for the mechanized compositional core.</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
