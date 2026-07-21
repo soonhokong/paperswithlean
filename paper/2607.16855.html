@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rtl2lean: Automated RTL-to-Lean Translation with Hierarchical Theorem Generation and Lemma Reuse · Papers With Lean</title>
+<meta name="description" content="Formal verification with interactive theorem provers can provide strong correctness guarantees for register transfer level designs, but applying it to existing SystemVerilog code requires substantial manual effort in semantic modeling and proof construction. This paper presents…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rtl2lean: Automated RTL-to-Lean Translation with Hierarchical Theorem Generation and Lemma Reuse">
+<meta property="og:description" content="Formal verification with interactive theorem provers can provide strong correctness guarantees for register transfer level designs, but applying it to existing SystemVerilog code requires substantial manual effort in semantic modeling and proof construction. This paper presents…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.16855.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.16855.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.16855v1" target="_blank" rel="noopener"><img src="../thumbs/2607.16855.jpg" alt="First page of Rtl2lean: Automated RTL-to-Lean Translation with Hierarchical Theorem Generation and Lemma Reuse"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Rtl2lean: Automated RTL-to-Lean Translation with Hierarchical Theorem Generation and Lemma Reuse</h1>
+        <p class="authors">Hongqin Lyu, Junxing Dong, Yonghao Wang, Zhiteng Chao, Tiancheng Wang, Huawei Li</p>
+        <div class="row">
+          <span class="badge">cs.AR</span>
+          <span class="date">Jul 18, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.16855v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.16855" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Translates SystemVerilog RTL into executable Lean 4 state-transition models and builds hierarchical theorem libraries with LLM-assisted, kernel-checked lemma reuse.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Formal verification with interactive theorem provers can provide strong correctness guarantees for register transfer level designs, but applying it to existing SystemVerilog code requires substantial manual effort in semantic modeling and proof construction. This paper presents Rtl2lean, a framework that automatically translates RTL designs into executable Lean 4 models and builds a hierarchical theorem library for subsequent verification. The generated model represents hardware execution as a pure state transition function, while a four layer theorem framework captures combinational semantics, sequential updates, single cycle behavior, and reachability and invariants. When a high level property cannot be discharged by the existing theorem base, an LLM based proving loop proposes intermediate lemmas from the current proof context and Lean feedback. Only lemmas accepted by the Lean kernel are added to the reusable lemma pool. Experiments on six SystemVerilog designs generate 403 theorems, all of which are successfully checked by Lean. Among 358 foundational lemmas, 287 are available for automatic reuse, yielding a reusable lemma ratio of 80.2 percent. The results demonstrate that Rtl2lean can construct machine checked RTL proof libraries with low checking overhead and substantial cross property lemma reuse.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Formal verification of RTL designs with interactive theorem provers gives strong correctness guarantees but requires substantial manual effort in semantic modeling and proof construction. Applying it to existing SystemVerilog code is costly due to the mismatch between event-driven Verilog semantics and Lean&#x27;s functional reasoning.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Rtl2lean parses SystemVerilog with PySlang, lowers it to an intermediate representation, and generates a pure functional Lean 4 state-transition model with State, Inputs, Outputs, and a step function. It builds a four-layer theorem framework covering combinational semantics, sequential updates, single-cycle behavior, and reachability/invariants. When a high-level property cannot be discharged by the existing theorem base, an LLM-based proving loop proposes intermediate lemmas from proof context and Lean feedback. Only lemmas accepted by the Lean kernel are added to a reusable lemma pool.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.16855/farmework.png" alt=""><figcaption>Figure 1: RTL2LEAN framework.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2607.16855/four_layer_examples.png" alt=""><figcaption>Figure 2: Representative examples generated by the four-layer.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Experiments on six OpenCores SystemVerilog designs generated 403 theorems, all successfully checked by Lean 4.26. Among 358 foundational lemmas, 287 were available for automatic reuse, giving an 80.2 percent reusable lemma ratio with a 100 percent proof success rate.</p><div class="sum-table"><table><thead><tr><th>Design</th><th>Main Function</th></tr></thead><tbody><tr><td>debounce_edge</td><td>Debouncing and edge detection</td></tr><tr><td>fir_filter</td><td>Finite impulse response filtering</td></tr><tr><td>pwm_generator</td><td>Pulse-width modulation</td></tr><tr><td>lfsr_crc</td><td>LFSR and CRC computation</td></tr><tr><td>sync_fifo</td><td>Synchronous FIFO buffering</td></tr></tbody></table><div class="tbl-cap">OpenCores RTL designs used in the experiments</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

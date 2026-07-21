@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Self-Modifying Lean Proof Agents with Verifier-Grounded Benchmark Coevolution · Papers With Lean</title>
+<meta name="description" content="Designing effective Lean proof agents is a central challenge in formal mathematical reasoning. Beyond building stronger provers, recent work emphasizes the workflow around Lean: how an agent decomposes proof obligations, uses tools and compiler feedback, diagnoses failures,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Self-Modifying Lean Proof Agents with Verifier-Grounded Benchmark Coevolution">
+<meta property="og:description" content="Designing effective Lean proof agents is a central challenge in formal mathematical reasoning. Beyond building stronger provers, recent work emphasizes the workflow around Lean: how an agent decomposes proof obligations, uses tools and compiler feedback, diagnoses failures,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.17352.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.17352.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.17352v1" target="_blank" rel="noopener"><img src="../thumbs/2607.17352.jpg" alt="First page of Self-Modifying Lean Proof Agents with Verifier-Grounded Benchmark Coevolution"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Self-Modifying Lean Proof Agents with Verifier-Grounded Benchmark Coevolution</h1>
+        <p class="authors">Yuqing Li, Zeguan Wu, Yu Gan, Junyu Liu</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jul 19, 2026 · v1</span>
+          <span class="badge">cs.LG</span> <span class="badge">quant-ph</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.17352v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.17352" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A self-evolving proof agent rewrites its workflow while a fixed Lean verifier grounds solve verdicts, evaluated on miniF2F and PutnamBench.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Designing effective Lean proof agents is a central challenge in formal mathematical reasoning. Beyond building stronger provers, recent work emphasizes the workflow around Lean: how an agent decomposes proof obligations, uses tools and compiler feedback, diagnoses failures, repairs proofs, and maintains structured proof context. Motivated by code-level self-evolving agents, we study whether such workflows can be evolved rather than hand-designed. We present a self-evolving Lean proof agent in which a small fixed, trusted runtime wraps a fully mutable workspace: the proof workflow, prompts, and tools. Unlike most self-evolving systems, which optimize against a fixed external benchmark, our system coevolves the agent and its benchmark. Between generations, the highest-scoring agent (the champion) revises the active task distribution through a mastery-throttled curriculum update that introduces harder proof obligations only after the current level is mastered, and a single-anchor recalibration re-runs the champion on the updated benchmark to keep scores comparable as difficulty rises. All evolution stays inside a Lean-grounded verification loop: however the agent rewrites itself, a success counts only when its behavior yields Lean-verified proofs under a trusted snapshot, and each attempt must emit a machine-readable, Lean-grounded proof context whose representation may evolve but whose groundedness is enforced. We run the coevolving trajectory and a fixed-benchmark baseline for 15 active generations and compare them on a held-out miniF2F test split. The best coevolving agent reaches a 45.1% held-out solve rate, versus 12.7% for the seed and 32.0% for the best fixed-benchmark agent, showing that verifier-grounded self-evolution can improve Lean proof workflows under a coevolving benchmark.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Effective Lean proof agents rely on hand-designed workflows for decomposition, tool use, compiler feedback, and proof repair. The paper asks whether such workflows can be evolved automatically rather than manually engineered.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A small fixed, trusted runtime wraps a fully mutable workspace containing the proof workflow, prompts, and tools. Agents rewrite this workspace across generations, but a proof counts as solved only when re-verified under a trusted Lean snapshot. The system coevolves the agent with its benchmark: the champion updates a difficulty-stratified task distribution (single-tactic lemmas, miniF2F valid, PutnamBench) via mastery-throttled curriculum updates and single-anchor recalibration.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.17352/x1.png" alt=""><figcaption>Figure 1: Champion-driven agent–benchmark coevolution. A seed agent produces first-generation ( G1 ) children that stream into a shared archive as they are evaluated, so a strong early child can already parent later siblings in the same generation; the strongest child becomes the champion , seeds the next generation ( G2 ), and also drives the benchmark update. Evaluation records from all agents a</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Over 15 generations, the best coevolving agent reaches 45.1% held-out miniF2F test solve rate, versus 12.7% for the seed and 32.0% for the best fixed-benchmark agent. The benchmark difficulty coefficient rose from 1.00 to 3.17, though performance remains below hand-designed provers.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.17352/x2.png" alt=""><figcaption>Figure 2: Evolution tree for the accepted lineage. Bold nodes mark agents with decomposition-based workflows. Darker node colors indicate agents evolved in later generations.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Gen</th><th>0</th><th>2</th><th>10</th><th>13</th><th>15</th></tr></thead><tbody><tr><td>Solve rate</td><td>12.7%</td><td>38.9%</td><td>25.4%</td><td>40.6%</td><td>45.1%</td></tr><tr><td>Agent</td><td>seed</td><td>c12</td><td>c86</td><td>c99</td><td>c144</td></tr></tbody></table><div class="tbl-cap">Held-out miniF2F test solve rates for evaluated coevolving agents</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
