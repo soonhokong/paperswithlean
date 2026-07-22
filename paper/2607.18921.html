@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Circuit Claims Depend on What Is Extracted and How It Is Compared · Papers With Lean</title>
+<meta name="description" content="Circuit extraction identifies a small set of model components whose presence preserves a target behavior under ablation, and the resulting circuit is often read as the mechanism behind that behavior. We argue that this reading is under-determined: preserving behavior does not…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Circuit Claims Depend on What Is Extracted and How It Is Compared">
+<meta property="og:description" content="Circuit extraction identifies a small set of model components whose presence preserves a target behavior under ablation, and the resulting circuit is often read as the mechanism behind that behavior. We argue that this reading is under-determined: preserving behavior does not…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.18921.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.18921.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.18921v1" target="_blank" rel="noopener"><img src="../thumbs/2607.18921.jpg" alt="First page of Circuit Claims Depend on What Is Extracted and How It Is Compared"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Circuit Claims Depend on What Is Extracted and How It Is Compared</h1>
+        <p class="authors">Yang Sheng, Jie Fu</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Jul 21, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.18921v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.18921" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Stepuuu/circuit-extraction-stability" target="_blank" rel="noopener" title="Stepuuu/circuit-extraction-stability">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses a synthetic Lean tactic-prediction benchmark (predicting next proof tactic) to study circuit-extraction stability in transformers.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Circuit extraction identifies a small set of model components whose presence preserves a target behavior under ablation, and the resulting circuit is often read as the mechanism behind that behavior. We argue that this reading is under-determined: preserving behavior does not single out one circuit, because the claim it supports depends on which circuit is reported and how two circuits are compared. We make this concrete in a synthetic Lean tactic-prediction benchmark – predicting the next step of a proof – where fixed proof rules with randomized surface form let differences between extracted circuits be attributed to these choices rather than to the task. Across dense and weight-sparse checkpoints (most weights constrained to zero) of the same transformer, evaluated on atomic (single-rule) and compositional (multi-rule) proofs, we vary which extracted object is reported (a compact prediction-preserving circuit, a broader graph that also keeps surrounding read, write, and routing structure, or the smallest subgraph meeting a post-ablation loss threshold), and whether each attention head&#x27;s query and key are represented jointly or separately. Exact component-to-component edge overlap is low and sensitive to these choices, at times dropping to a random baseline, while two coarser summaries stay stable: the set of selected attention heads, and the circuit-size ranking of conditions that differ in which supervised checkpoint initializes reinforcement learning (RL). The largest accuracy gains from RL on compositional proofs come with the most structure beyond the atomic circuits. A circuit-level claim is therefore well defined only once one states which circuit is reported, the pruning threshold used to extract it, and the level at which circuits are compared. We distill these requirements into a reporting practice for circuit-extraction studies.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Circuit extraction in mechanistic interpretability identifies components preserving a target behavior, but the resulting circuit is under-determined: what claim it supports depends on which circuit is reported and how circuits are compared. This ambiguity is hard to isolate in natural-language tasks where atomic subskills are not specified.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A synthetic benchmark of nine Lean tactic-prediction tasks (four atomic, five compositional) is built from fixed propositional proof rules with randomized surface form, so extraction differences reflect methodological choices rather than the task. Dense and weight-sparse transformer checkpoints, evaluated on atomic and compositional proofs, are compared while varying which extracted object is reported (core circuit, extended support graph, or fixed-loss pruning subgraph), whether attention query/key are merged or separated, and the comparison level. Overlap is measured via exact component-to-component edges versus coarser attention-head sets.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.18921/x1.png" alt=""><figcaption>Figure 1 : Overview of the three findings. A : at the primary dense-versus- 75\% -sparse comparison point, the set of selected attention heads overlaps much more across the dense and 75\% weight-sparse RL checkpoints than the exact component-to-component edge lists do; the head-level overlap is also far above a random top- k baseline, while the exact-edge overlap is not consistently above it (Tabl</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Exact edge overlap is low and unstable, sometimes at random baseline (Jaccard@10 around 0.16), while routing-head-set overlap stays high (0.67, 0.55) and above random. Object-level node-fraction summaries and RL-condition size rankings are stable across query/key and pruning-threshold choices. The largest compositional RL accuracy gains (+24.64 and +31.27 points) coincide with the largest bridge fractions beyond atomic circuits.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.18921/x4.png" alt=""><figcaption>Figure 3 : Routing-head sets are more reproducible than exact edge lists under the same extraction method for dense and 75\% weight-sparse RL checkpoints. The head-level summary groups top routing edges by attention-head identity before computing Jaccard@10. Intervals are 95% bootstrap intervals over matched task-object entries; semantic Jaccard@10 matches structural Jaccard@10 in this comparison </figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Family</th><th>Condition</th><th>Δ comp.</th></tr></thead><tbody><tr><td>Moderately expanded</td><td>Curriculum</td><td>24.64</td></tr><tr><td>Moderately expanded</td><td>Composition-only</td><td>14.20</td></tr><tr><td>Extensively expanded</td><td>Curriculum</td><td>31.27</td></tr><tr><td>Extensively expanded</td><td>Composition-only</td><td>18.11</td></tr></tbody></table><div class="tbl-cap">Curriculum RL compositional gains and bridge fraction across families</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

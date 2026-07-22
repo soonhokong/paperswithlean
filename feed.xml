@@ -6,7 +6,51 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 22 Jul 2026 04:00:37 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jul 2026 05:01:39 +0000</lastBuildDate>
+    <item>
+      <title>The Limits of Quantum Computers for Power Flow</title>
+      <link>https://paperswithlean.com/paper/2607.19263.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.19263.html</guid>
+      <pubDate>Tue, 21 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cameron Khanpour, Samuel Talkington</dc:creator>
+      <category>formalization</category><category>verification</category><category>quantum</category>
+      <description>All numbered theorems and lemmas bounding the pseudo condition number of DC power flow matrices are formally verified in Lean 4.
+
+This letter proves realistic grid properties limit the applicability of quantum computers for power flow. Grids that split into two large regions meeting at only a few buses, common in transmission networks, force the pseudo condition number of the DC susceptance matrix to grow polynomially in the network size, and long chains of lines bridging such regions force quadratic growth, making recent empirical observations rigorous. The bounds also hold with overwhelming probability for arbitrary bounded random line susceptances. Combined with query and tomography lower bounds, this precludes end-to-end quantum advantage for DC power flow at every readout level, and these obstructions persist through AC power flow, optimal power flow, and unit commitment. All proofs are formally verified with accompanying Lean 4 source code.</description>
+    </item>
+    <item>
+      <title>Circuit Claims Depend on What Is Extracted and How It Is Compared</title>
+      <link>https://paperswithlean.com/paper/2607.18921.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.18921.html</guid>
+      <pubDate>Tue, 21 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Yang Sheng, Jie Fu</dc:creator>
+      <category>theorem-proving-ml</category><category>benchmark</category><category>ml-theory</category><category>logic</category>
+      <description>Uses a synthetic Lean tactic-prediction benchmark (predicting next proof tactic) to study circuit-extraction stability in transformers.
+
+Circuit extraction identifies a small set of model components whose presence preserves a target behavior under ablation, and the resulting circuit is often read as the mechanism behind that behavior. We argue that this reading is under-determined: preserving behavior does not single out one circuit, because the claim it supports depends on which circuit is reported and how two circuits are compared. We make this concrete in a synthetic Lean tactic-prediction benchmark – predicting the next step of a proof – where fixed proof rules with randomized surface form let differences between extracted circuits be attributed to these choices rather than to the task. Across dense and weight-sparse checkpoints (most weights constrained to zero) of the same transformer, evaluated on atomic (single-rule) and compositional (multi-rule) proofs, we vary which extracted object is reported (a compact prediction-preserving circuit, a broader graph that also keeps surrounding read, write, and routing structure, or the smallest subgraph meeting a post-ablation loss threshold), and whether each attention head&#x27;s query and key are represented jointly or separately. Exact component-to-component edge overlap is low and sensitive to these choices, at times dropping to a random baseline, while two coarser summaries stay stable: the set of selected attention heads, and the circuit-size ranking of conditions that differ in which supervised checkpoint initializes reinforcement learning (RL). The largest accuracy gains from RL on compositional proofs come with the most structure beyond the atomic circuits. A circuit-level claim is therefore well defined only once one states which circuit is reported, the pruning threshold used to extract it, and the level at which circuits are compared. We distill these requirements into a reporting practice for circuit-extraction studies.</description>
+    </item>
+    <item>
+      <title>Extended Abstract: From Pattern Unification Towards Pattern Matching Unification</title>
+      <link>https://paperswithlean.com/paper/2607.18455.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.18455.html</guid>
+      <pubDate>Tue, 21 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>David Richter, Timon Böhler</dc:creator>
+      <category>tooling</category><category>type-theory</category>
+      <description>A prototype dependently typed language integrating pattern matching into unification was implemented in under 3000 lines of Lean.
+
+We revisit the role of higher-order unification in dependently typed languages and identify a fundamental limitation of existing pattern-based fragments: their inability to synthesize functions defined by case analysis. Even simple and ubiquitous constraints arising from type inference, particularly from use of induction principles, fall outside the expressive power of Miller patterns and their modern extensions. We observe that such constraints naturally correspond to definitions by dependent pattern matching. Motivated by this correspondence, we propose integrating dependent pattern matching into the unification process. We present a prototype implementation of a small dependently typed language that collects delayed unification constraints and resolves them via a pattern matching compiler. Our approach successfully infers solutions that are rejected by current systems such as Rocq and Lean, suggesting a new direction for unification that unifies type inference and pattern matching compilation.</description>
+    </item>
+    <item>
+      <title>A Proof of Bala&#x27;s Congruence Conjecture for A028342</title>
+      <link>https://paperswithlean.com/paper/2607.18313.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.18313.html</guid>
+      <pubDate>Tue, 21 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Ahaan Kallat</dc:creator>
+      <category>formalization</category><category>number-theory</category><category>combinatorics</category>
+      <description>Theorem 1.1 and all supporting propositions and lemmas about congruences for OEIS sequence A028342 were formally verified in Lean 4 with Mathlib.
+
+Let $a(n)$ be the sequence A028342 in the On-Line Encyclopedia of Integer Sequences (OEIS), defined by the exponential generating function $\sum_{n\ge0} a(n)x^n/n! = \prod_{i\ge1}(1-x^i)^{-1/i}$. Equivalently, $a(n)$ counts permutations of an $n$-element labeled set in which every cycle is assigned one divisor of its length, where a cycle of length $m$ has $d(m)$ choices, $d(m)$ being the number of positive divisors of $m$. We prove a family of congruences for $a$, conjectured by Peter Bala. They state that $k \mid a(n+k)+a(n)$ for odd $k$, that $k \mid a(n+k)-a(n)$ for $k\equiv 0,2,6 \pmod 8$, and that $k \mid 2(a(n+k)-a(n))$ for $k\equiv 4\pmod 8$. The proof first establishes a product congruence $a(n+k)\equiv a(n)a(k)\pmod k$, and then computes $a(p^r)\bmod p^r$ for each prime power by counting the colored permutations fixed by a subgroup of order $p$.</description>
+    </item>
     <item>
       <title>1-out-of-5 Maximin-Share Allocations Always Exist for Four Agents</title>
       <link>https://paperswithlean.com/paper/2607.18139.html</link>
@@ -622,50 +666,6 @@ Ask a large language model (LLM) whether a pointer dereference is safe, and it c
       <description>Presents LeanDY, a Lean library combining type-based and trace-based symbolic verification of cryptographic protocols, applied to blockchain payment channels.
 
 Computer-aided formal verification is a widely used approach for the symbolic analysis of cryptographic protocols. However, many modern protocols rely on features that remain challenging for existing techniques. In particular, reasoning about state, time-dependent behavior, inductively defined data structures, unbounded executions, and conditional secrecy requires a level of expressiveness that is difficult to reconcile with effective automation. As a result, protocol verification has largely followed two disjoint paths: fully automated methods with limited expressiveness, or interactive proofs in general-purpose theorem provers that offer flexibility but only limited, non-specialized automation. We present an orthogonal approach that bridges this gap by combining compositional type-based reasoning with trace-based reasoning, enabling modular verification of stateful and unbounded protocols. Guided by the language-and-automation co-design (LAC) principle, our approach delivers protocol-specific automation while retaining high expressiveness. We implement this framework as the LeanDY library for the Lean proof assistant, building on and extending the design of DY*, and combining protocol-specific automation with interactive proofs. Our framework supports, in a unified setting, a broad class of functional and security requirements, including secrecy and authentication for stateful protocols, as well as recursive conditional secrecy for protocols using XOR. We formalize SegWit-style blockchain primitives in LeanDY and demonstrate its expressiveness by carrying out an in-depth formalization of payment channels on top of this blockchain model, verifying punishment mechanisms and properties that depend on chain liveness.</description>
-    </item>
-    <item>
-      <title>Reformalization of the Jordan Curve Theorem</title>
-      <link>https://paperswithlean.com/paper/2607.01734.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.01734.html</guid>
-      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Simon Guilloud, Sankalp Gambhir, Samuel Chassot</dc:creator>
-      <category>autoformalization</category><category>ai-agents</category><category>formalization</category><category>topology</category>
-      <description>LLM-based agentic reformalization ports the Jordan Curve Theorem into Lean from Mizar and HOL Light sources, using Lean&#x27;s checker as arbiter.
-
-We present a case study in reformalization, a variant of autoformalization in which the input proof is not natural language but a formal development in a different proof assistant. Concretely, we report three reformalizations of the Jordan Curve Theorem: from Mizar to Lean, from HOL Light to Lean, and from HOL Light to Agda. We analyse the results and identify pipeline design choices that matter for practical reformalization tasks.</description>
-    </item>
-    <item>
-      <title>Formalized $q$-series: The Rogers-Ramanujan Identities and Beyond</title>
-      <link>https://paperswithlean.com/paper/2607.01544.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.01544.html</guid>
-      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Kenny Lau, Seewoo Lee, Ken Ono</dc:creator>
-      <category>formalization</category><category>number-theory</category><category>combinatorics</category><category>mathlib</category>
-      <description>Formalizes q-series theory in Lean/Mathlib, verifying the Jacobi Triple Product, Bailey&#x27;s Lemma, and the Rogers-Ramanujan identities.
-
-The theory of $q$-series and basic hypergeometric series plays a crucial role at the intersection of combinatorics, number theory, and representation theory. From the classical partition identities of Euler and Jacobi to modern developments in class field theory, vertex operator algebras, and the Monstrous Moonshine conjecture, $q$-series provide the analytic framework for a wide range of profound applications. In this paper, we discuss the formalization of this theory in the Lean proof assistant, a process that requires careful design of scalable and versatile structures to reconcile formal algebraic identities with analytic convergence properties. We address these foundational challenges by focusing on the construction of $q$-Pochhammer symbols, $q$-binomial coefficients, Bailey&#x27;s Lemma and similar primitives. To demonstrate the utility of this work, we provide fully verified proofs of the Jacobi Triple Product formula and the celebrated Rogers-Ramanujan identities, which serve as both historical and technical benchmarks for the field. This work establishes a rigorous computational foundation for the future formalization of mock theta functions, modular forms, and the diverse algebraic structures that underpin their applications across mathematics and physics.</description>
-    </item>
-    <item>
-      <title>LRAT-Catcher: Importing SAT Solver Certificates into Lean4 by Reflection</title>
-      <link>https://paperswithlean.com/paper/2607.00815.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.00815.html</guid>
-      <pubDate>Wed, 01 Jul 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Stefan Szeider</dc:creator>
-      <category>tooling</category><category>verification</category><category>logic</category><category>combinatorics</category>
-      <description>LRAT-Catcher imports DIMACS formulas and LRAT SAT certificates into Lean 4 as theorems via native reflection using Lean core&#x27;s verified checker.
-
-SAT solvers settle combinatorial problems beyond the reach of interactive theorem provers and produce LRAT certificates for independent verification. We present LRAT-Catcher, a standalone, general-purpose tool that imports a DIMACS formula together with an LRAT certificate into Lean 4 as a theorem. LRAT-Catcher runs the formally verified LRAT checker from Lean core as compiled native code via reflection. This scales to instances where Mathlib&#x27;s explicit proof-term import exhausts memory. LRAT-Catcher also composes cube-and-conquer solving runs entirely inside Lean. Per-cube refutations are combined with a cover-completeness certificate, itself an LRAT proof, into a single unsatisfiability theorem. Verified encodings connect CNF-level results to the original combinatorial problems. We evaluate the tool against Mathlib&#x27;s proof-term import and the external checker cake_lpr on establishing the Schur number S(4) = 44 and the Ramsey number R(4,4) = 18 as Lean theorems.</description>
-    </item>
-    <item>
-      <title>Certificate-Carrying Transformation of Event-Driven Block Programs</title>
-      <link>https://paperswithlean.com/paper/2607.00563.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.00563.html</guid>
-      <pubDate>Wed, 01 Jul 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Yuan Si, Jialu Zhang</dc:creator>
-      <category>verification</category><category>formalization</category><category>logic</category>
-      <description>Mechanizes the cooperative-frame refinement theorem for dead-store elimination in Lean 4, with two decision procedures as verified-executable Lean functions.
-
-Block-based end-user languages such as Scratch run tens of millions of programs. Existing tools establish behavior preservation through program analysis and testing without a checked guarantee. We turn optimization into certificate-carrying source-to-source rewriting. An untrusted optimizer proposes a rewrite; a trusted, fail-closed checker accepts it only after recomputing every side condition that the rewrite&#x27;s behavior preservation depends on under an explicit observation lens. The checker is the sole authority: given a correct checker and a small, explicitly stated set of model-to-VM assumptions, an optimizer bug cannot mint an unsound acceptance. The observation lens is a parameter, and the central soundness argument is a cooperative-frame refinement theorem: a write overwritten before any thread observes it, within a window in which no thread yields, can be removed. We mechanize this theorem in Lean and show that one parametric statement covers two concrete rewrite families instantiated to variable state and renderer state. We build a checker for six rewrite families and evaluate it on 300 real Scratch projects. The checker accepts a behavior-preserving rewrite on 94.3% of projects (283 of 300); certification costs under one tenth of a second per project; and a cross-family adversarial campaign of 4,278 perturbed rewrites produces zero false accepts. An audit found eight false accepts the per-family test suites missed; each is now rejected. An ablation that strips the semantic side conditions, leaving analysis and testing alone, ships rewrites the virtual machine confirms change behavior; the full checker rejects every one. The result shows how to provide behavior-preservation guarantees for a concurrent, event-driven, end-user language. The checker recomputes every required condition instead of trusting optimizer claims, keeping the trusted base small.</description>
     </item>
   </channel>
 </rss>
