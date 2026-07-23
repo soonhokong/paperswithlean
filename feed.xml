@@ -6,7 +6,18 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 23 Jul 2026 03:00:01 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jul 2026 04:00:55 +0000</lastBuildDate>
+    <item>
+      <title>Pure-DP Statistical Query Release at the Conjectured Square-Root Rate</title>
+      <link>https://paperswithlean.com/paper/2607.20418.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.20418.html</guid>
+      <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Jack Fitzsimons</dc:creator>
+      <category>verification</category><category>cryptography</category>
+      <description>A Lean 4 development machine-checks the finite mechanism construction, its pure differential privacy after deterministic decoding, and the claimed error upper bound.
+
+Nikolov and Ullman asked whether k statistical queries on a universe of size T can be released under pure differential privacy with expected worst-coordinate error at the square-root rate suggested by known lower bounds. We prove their conjectured upper bound. For every database size n and privacy parameter $\varepsilon&gt;0$, there is an $\varepsilon$-differentially private mechanism with expected error $O(\min\{1,\sqrt{\log(2T)\log(2k)/(\varepsilon n)}\})$. This matches the lower-bound dependence in the standard high-dimensional regimes where those bounds apply; the shifted logarithms and outer minimum make the upper bound valid without additional parameter assumptions. The construction starts from a selection-only private multiplicative weights transcript, then replaces its probability mass function by a distance-penalized likelihood envelope. To prove that the modification preserves accuracy, a likelihood-level Maurey argument upper-bounds each Hamming-ball maximum by a small family of auxiliary PMW laws. Renyi moment bounds control nearby balls, a direct mixture bound controls distant balls, and grouping radii at the privacy scale prevents an additional $1/\varepsilon$ factor in the error. The mechanism is information-theoretic. A companion Lean 4 development machine-checks the finite construction, pure privacy after deterministic decoding, and the displayed all-regimes upper bound.</description>
+    </item>
     <item>
       <title>From Dag-Like Proofs to Boolean Circuits in Lean</title>
       <link>https://paperswithlean.com/paper/2607.20186.html</link>
@@ -655,17 +666,6 @@ Quantum information theory is built on entropic quantities; among them, the sand
       <description>Evaluates LLM mechanism-classification routing over the FiberRing Lean 4 algebraic corpus, using Lean-verified artifacts as anchored ground-truth labels.
 
 We present an empirical study of structural routing failure in large language models (LLMs) over a formally verified algebraic corpus. The task requires selecting the correct proof-mechanism label from a fixed closed template set for compact mathematical objects drawn from the FiberRing formalization in Lean 4, where each item is anchored to a Lean-verified artifact and assigned a label from the corresponding certificate family. Our central finding is a mechanism-level routing ceiling: under blind conditions, gpt-oss-120b achieves 80.3% template accuracy on 22 FiberRing items (n=66; temperature=0, seed=0), while Llama 3.3 70B reaches 68.2%. Exposing a mechanism-bearing Lean verdict/witness cue (Condition A2) raises accuracy to 90.9% and 81.8% – gaps of +10.6 and +13.6 pp termed cue-induced routing uplift. The dominant failure is a CRT-to-ring-equivalence misroute: gpt-oss-120b misroutes 7 of 12 CRT items (58.3%) blind, zero under A2. A cross-model dissociation in Llama is notable: verdict accuracy is identical in both conditions (95.5%), while template accuracy improves 13.6 pp – confirming that truth inference and proof-mechanism classification are separable capacities. A cross-corpus extension (Set B; 6 POM/CollisionKernel items, 72 evaluations) provides a small cross-module check: CRT-granularity compression reappears with different labels, and an inverse cross-model dissociation emerges. These findings extend the router hypothesis (Cazares 2026) to formal algebraic structures. The full pipeline, manifest, and results are at https://github.com/bytepro-ai/fiber-routing-eval.</description>
-    </item>
-    <item>
-      <title>Anomalous Partial Quotients in the Continued Fraction of $\sqrt{ζ(3)-S_N}$</title>
-      <link>https://paperswithlean.com/paper/2607.04077.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.04077.html</guid>
-      <pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
-      <dc:creator>David Victor Feldman</dc:creator>
-      <category>formalization</category><category>number-theory</category>
-      <description>All claimed results on continued-fraction partial quotients of √(ζ(3)−S_N) at Pell indices were formalized in Lean with the aid of Aristotle.
-
-Let $S_N = \sum_{j=1}^N j^{-3}$ and $R_N = ζ(3) - S_N$. The simple continued fraction of $\sqrt{R_N}$ has partial quotients of generic size $O(N)$. We prove that at the sequence of indices $N_k = (Q_{2k+1}-1)/2$, where $Q_{2k+1}$ are companion Pell numbers, the continued fraction begins \[ \sqrt{R_{N_k}} = \bigl[0;\; M_k-1,\; 1,\; 6M_k^3+12M_k-2,\; 1,\; \ldots\,\bigr], \] with $M_k = P_{2k+1}$ (Pell numbers), and the third partial quotient grows cubically while generic ones are linear. We determine all partial quotients through the fifth: \begin{align*} \PQ_0 &amp;= M_k - 1, &amp; \PQ_2 &amp;= 6M_k^3 + 12M_k - 2, &amp; \PQ_4 &amp;= \Bigl\lfloor\frac{10M_k - 261}{261}\Bigr\rfloor, \PQ_1 &amp;= 1, &amp; \PQ_3 &amp;= 1, &amp; \PQ_5 &amp;= \Bigl\lfloor\frac{261}{r_k}\Bigr\rfloor + ε_k, \end{align*} where $r_k = (10M_k) \bmod 261$ satisfies the recurrence $r_{k+1} \equiv 6r_k - r_{k-1} \pmod{261}$, and $ε_k = -1$ at the $k$ with $r_k \mid 261$ (the two residue classes $k \equiv 57, 62 \pmod{60}$), and $ε_k = 0$ otherwise. All six formulas follow from the Euler–Maclaurin expansion of $1/\sqrt{R_{N_k}}$, carried to sufficient precision, combined with the Pell identity $Q_{2k+1}^2 - 2M_k^2 = -1$. The delicate first step, $\PQ_0 = M_k - 1$, is proved by rationalizing the irrational factor $\sqrt{2}$ in the Euler–Maclaurin expansion; we complement this proof with a heuristic derivation via Gosper&#x27;s bihomographic continued-fraction algorithm that exposes the underlying mechanism. All claimed results have been formalized in LEAN with the aid of Aristotle.</description>
     </item>
   </channel>
 </rss>
