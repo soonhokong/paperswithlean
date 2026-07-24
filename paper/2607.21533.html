@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Benchmarking Agents for Proving Theorems in Quantum Algorithms and Quantum Information · Papers With Lean</title>
+<meta name="description" content="Formal verification is becoming increasingly practical for quantum computing, yet the ability of AI agents to construct machine-checkable proofs in this domain remains unmeasured. We introduce Lean-QuantumAlg-Bench and Lean-QIT-Bench, two Lean 4 benchmarks containing 36 and 40…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Benchmarking Agents for Proving Theorems in Quantum Algorithms and Quantum Information">
+<meta property="og:description" content="Formal verification is becoming increasingly practical for quantum computing, yet the ability of AI agents to construct machine-checkable proofs in this domain remains unmeasured. We introduce Lean-QuantumAlg-Bench and Lean-QIT-Bench, two Lean 4 benchmarks containing 36 and 40…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.21533.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.21533.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.21533v1" target="_blank" rel="noopener"><img src="../thumbs/2607.21533.jpg" alt="First page of Benchmarking Agents for Proving Theorems in Quantum Algorithms and Quantum Information"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Benchmarking Agents for Proving Theorems in Quantum Algorithms and Quantum Information</h1>
+        <p class="authors">Lei Zhang, Yusheng Zhao, Yimeng Cao, Ranyiliu Chen, Mingrui Jing, Jizhe Lai, Ziao Tang, Jingu Xie, Hongshun Yao, Xuanqiang Zhao, Guocheng Zhen, Chengkai Zhu, Xin Wang</p>
+        <div class="row">
+          <span class="badge">quant-ph</span>
+          <span class="date">Jul 23, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-purple" href="../#tag=quantum">quantum</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.21533v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.21533" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/QudeLeap/Lean-QuantumAlg-Bench" target="_blank" rel="noopener" title="QudeLeap/Lean-QuantumAlg-Bench">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces two Lean 4 benchmarks (36 and 40 theorem-completion tasks) for quantum algorithms and quantum information, evaluating AI proof agents via Lean compilation.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Formal verification is becoming increasingly practical for quantum computing, yet the ability of AI agents to construct machine-checkable proofs in this domain remains unmeasured. We introduce Lean-QuantumAlg-Bench and Lean-QIT-Bench, two Lean 4 benchmarks containing 36 and 40 theorem-completion tasks for quantum algorithms and quantum information theory, respectively. Every task compiles in a fixed environment and is evaluated by deterministic proof checking and targeted semantic review, with difficulty weights assigned before model execution. We evaluate four models-GPT-5.5, Kimi K3, DeepSeek V4-Pro, and MiniMax M3-within a common theorem-proving framework under two settings: a task-only baseline and library-augmented deduction (LAD), which additionally provides access to a verified domain library. The highest difficulty-weighted scores are 60.4 out of 100 on the quantum-algorithm benchmark and 59.6 out of 100 on the quantum-information benchmark. LAD improves both score and completion rate in all eight model-benchmark comparisons, with gains of up to 15.9 points, providing evidence that verified libraries can strengthen domain-specific proof agents. The results reveal recurring weaknesses of agentic proving in areas such as quantum simulation, quantum learning, quantum information measures, and entanglement theory. Monetary and wall-clock costs per score point also vary substantially across models, highlighting important capability-efficiency trade-offs. We expect these benchmarks to establish a reproducible baseline for developing more capable and reliable proof agents, and to pave the way toward self-evolving AI scientists for advancing quantum information science.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The ability of AI agents to construct machine-checkable proofs for quantum computing in Lean remains unmeasured. There is no reproducible baseline for domain-specific proof agents in quantum algorithms and quantum information theory.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Two Lean 4 benchmarks, Lean-QuantumAlg-Bench (36 tasks) and Lean-QIT-Bench (40 tasks), are constructed with theorem-completion tasks that compile in a fixed environment and are checked deterministically. Tasks are organized into six fields with pre-assigned difficulty weights. Four models (GPT-5.5, Kimi K3, DeepSeek V4-Pro, MiniMax M3) are evaluated under a task-only baseline and library-augmented deduction (LAD) providing access to verified domain libraries (Lean-QuantumAlg, Lean-QIT). Success is determined by whether the submitted theorem body compiles.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.21533/x1.png" alt=""><figcaption>Figure 1: Benchmark construction workflow. Candidate problems are selected and written, translated into Lean, and checked before they enter the QAlg-Bench and QIT-Bench suites.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Highest difficulty-weighted scores were 60.4/100 on the quantum-algorithm benchmark and 59.6/100 on the quantum-information benchmark. LAD improved score and completion in all eight model-benchmark comparisons, with gains up to 15.9 points. Recurring weaknesses appeared in quantum simulation, learning, information measures, and entanglement theory.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.21533/x2.png" alt=""><figcaption>Figure 2: Verified performance and per-score costs across QAlg-Bench and QIT-Bench. Panels (a,b) show the difficulty-weighted score and completion, respectively. Panels (c,d) show economic cost in USD per score point and time cost in seconds per score point, respectively; lower values indicate lower cost. Blue and orange identify QAlg-Bench and QIT-Bench. Solid, unhatched bars indicate the baselin</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2607.21533/x4.png" alt=""><figcaption>Figure 4: Within-suite score leaderboards for QAlg-Bench and QIT-Bench. Each model has adjacent baseline and LAD bars, with exact difficulty-weighted scores printed at the bar ends. Models are ordered within each suite by the larger of their two condition scores; ties are ordered as GPT-5.5, Kimi K3, DeepSeek V4-Pro, and MiniMax M3. Blue and orange identify QAlg-Bench and QIT-Bench, while solid ou</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Suite</th><th>Model</th><th>Score</th><th>Completion</th></tr></thead><tbody><tr><td>QAlg</td><td>GPT-5.5</td><td>+9.6%</td><td>+13.6%</td></tr><tr><td>QAlg</td><td>DeepSeek V4-Pro</td><td>+42.5%</td><td>+26.7%</td></tr><tr><td>QIT</td><td>GPT-5.5</td><td>+36.4%</td><td>+23.8%</td></tr><tr><td>QIT</td><td>MiniMax M3</td><td>+26.1%</td><td>+20.0%</td></tr></tbody></table><div class="tbl-cap">LAD relative improvements over baseline across suites and models</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
