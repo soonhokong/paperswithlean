@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Machine-Checked Arithmetic Bit Complexity of the Kannan-Bachem Smith Normal Form in Lean 4 · Papers With Lean</title>
+<meta name="description" content="We formalize in Lean 4 the Kannan-Bachem Smith normal form algorithm for nonsingular square integer matrices. The program returns $S,U,U^{-1},V,V^{-1}$ and proves $UAV=S$, $U^{-1}SV^{-1}=A$, four inverse identities, the Smith divisibility conditions, and equality of $S$ with a…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine-Checked Arithmetic Bit Complexity of the Kannan-Bachem Smith Normal Form in Lean 4">
+<meta property="og:description" content="We formalize in Lean 4 the Kannan-Bachem Smith normal form algorithm for nonsingular square integer matrices. The program returns $S,U,U^{-1},V,V^{-1}$ and proves $UAV=S$, $U^{-1}SV^{-1}=A$, four inverse identities, the Smith divisibility conditions, and equality of $S$ with a…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.22524.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.22524.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.22524v1" target="_blank" rel="noopener"><img src="../thumbs/2607.22524.jpg" alt="First page of Machine-Checked Arithmetic Bit Complexity of the Kannan-Bachem Smith Normal Form in Lean 4"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Machine-Checked Arithmetic Bit Complexity of the Kannan-Bachem Smith Normal Form in Lean 4</h1>
+        <p class="authors">Junye Ji</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Jul 24, 2026 · v1</span>
+          <span class="badge">cs.DS</span> <span class="badge">cs.SC</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.22524v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.22524" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes the Kannan-Bachem Smith normal form algorithm in Lean 4 over Mathlib, proving correctness and polynomial arithmetic bit-complexity bounds.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We formalize in Lean 4 the Kannan-Bachem Smith normal form algorithm for nonsingular square integer matrices. The program returns $S,U,U^{-1},V,V^{-1}$ and proves $UAV=S$, $U^{-1}SV^{-1}=A$, four inverse identities, the Smith divisibility conditions, and equality of $S$ with a canonical reference matrix. Stabilization terminates because each recursive pass strictly decreases the binary size of the active pivot; the outer algorithm recurses on the lower-right block. The computation also emits a flat trace of designated sign-magnitude arithmetic leaves. Branch conditions, quotients, Bezout data, and matrix entries are taken from the recorded primitive runs. Composite phases form their traces by concatenating the charge lists returned by the executed children. Verified self-delimiting codecs define the input and output sizes. Coefficient and work recurrences, closed by a kernel-checked polynomial-envelope calculus, give fixed polynomial bounds for both trace cost and the encoded length of the five output matrices. The theorem concerns these arithmetic primitives; structural operations and compiled Lean runtime are outside the model.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Computing the Smith normal form of nonsingular square integer matrices suffers from intermediate coefficient growth. Verifying both correctness and the polynomial arithmetic bit complexity of such algorithms in a proof assistant is challenging.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The Kannan-Bachem Smith normal form algorithm is implemented in Lean 4 over Mathlib, returning S, U, U^{-1}, V, V^{-1} with proofs of transformation and inverse identities, the Smith divisibility predicate, and equality with a canonical reference matrix. Termination is established via well-founded recursion on the binary size (Nat.size) of the active pivot plus structural recursion on dimension. Executions emit a flat trace of sign-magnitude arithmetic primitives with exact costs, and a polynomial-envelope calculus closes coefficient and work recurrences to yield fixed polynomial bounds. Verified prefix-free codecs define input and output sizes.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The formalization proves correctness of the five-matrix certificate and yields kernel-checked polynomial bounds, with degree 2,150,687 for arithmetic cost and 98,990 for output encoding length. Termination uses exactly two descents, and the polynomial-envelope degree ledger is computed explicitly through all algorithm stages.</p><div class="sum-table"><table><thead><tr><th>Leaf</th><th>Verified upper bound</th></tr></thead><tbody><tr><td>zero test</td><td>1</td></tr><tr><td>addition</td><td>1+2(ℓx+ℓy+1)²</td></tr><tr><td>multiplication</td><td>1+ℓy(1+(2ℓx+ℓy+2)²)</td></tr><tr><td>quotient/remainder</td><td>8+ℓx(3+2ℓy)+3ℓx+3ℓy</td></tr></tbody></table><div class="tbl-cap">Designated arithmetic leaves and their verified upper bounds</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CausalForge: A Formally Grounded, Self-Improving Agentic Framework for Automated Research in Causal Inference · Papers With Lean</title>
+<meta name="description" content="Automating theoretical research is constrained not only by the generation of candidate results, but also by their reliable evaluation. A common approach is to close the research loop with a large language model (LLM) reviewer. However, such reviewers remain empirically…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CausalForge: A Formally Grounded, Self-Improving Agentic Framework for Automated Research in Causal Inference">
+<meta property="og:description" content="Automating theoretical research is constrained not only by the generation of candidate results, but also by their reliable evaluation. A common approach is to close the research loop with a large language model (LLM) reviewer. However, such reviewers remain empirically…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.22511.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.22511.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.22511v1" target="_blank" rel="noopener"><img src="../thumbs/2607.22511.jpg" alt="First page of CausalForge: A Formally Grounded, Self-Improving Agentic Framework for Automated Research in Causal Inference"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">CausalForge: A Formally Grounded, Self-Improving Agentic Framework for Automated Research in Causal Inference</h1>
+        <p class="authors">Jiyuan Tan, Vasilis Syrgkanis</p>
+        <div class="row">
+          <span class="badge">stat.ML</span>
+          <span class="date">Jul 24, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.LG</span> <span class="badge">econ.EM</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-lime" href="../#tag=economics">economics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.22511v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.22511" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Jiyuan-Tan/CausalForge" target="_blank" rel="noopener" title="Jiyuan-Tan/CausalForge">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces Causalean, a Lean 4 library of 7,035 machine-checked causal-inference declarations, plus an agentic pipeline that formalizes and proves self-proposed results in Lean.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Automating theoretical research is constrained not only by the generation of candidate results, but also by their reliable evaluation. A common approach is to close the research loop with a large language model (LLM) reviewer. However, such reviewers remain empirically unreliable: they may accept fabricated papers and detect them at rates close to chance (Bad Scientist, 2025). We present CausalForge, a framework for automated theoretical research in causal inference grounded in the Lean proof assistant. CausalForge combines Causalean, a foundational Lean library for causal inference containing 7,035 machine-checked declarations developed with language-model assistance under human design and review, with CausalSmith, a self-improving agentic pipeline that selects research topics, proposes results, formalizes statements, constructs proofs, and presents the resulting artifacts for human inspection. Because a machine-checked proof establishes only that a formal statement follows from its assumptions, not that the statement faithfully captures the intended scientific claim, the pipeline augments kernel verification with a statement audit that compares each formal theorem against the informal claim it is intended to express. We evaluate the system using artifacts produced by completed autonomous research runs. The source code, formal library, and run records are available at <a href="https://github.com/Jiyuan-Tan/CausalForge" target="_blank" rel="noopener">https://github.com/Jiyuan-Tan/CausalForge</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Automating theoretical research is bottlenecked by unreliable evaluation, since LLM reviewers accept fabricated papers at high rates. Machine-checked proofs establish soundness but not that a formal statement faithfully captures the intended claim.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">CausalForge combines Causalean, a foundational Lean 4 library of causal inference (7,035 declarations built with LLM assistance under human review), with CausalSmith, a self-improving agentic pipeline. The pipeline selects topics, proposes results, formalizes statements, constructs kernel-checked Lean proofs, and presents artifacts. It augments kernel verification with a statement audit comparing each formal theorem against its intended informal claim, and a library feedback loop promotes reusable lemmas.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The run record holds 123 runs: 9 accepted (sound, novel, proved in Lean 4), 44 downgraded, and 70 failed. Accepted results span causal discovery, estimation, panel methods, and experimentation, while identification and SCM results appeared only in lower tiers.</p><div class="sum-table"><table><thead><tr><th>Disposition</th><th>Runs</th><th>Gate that determined it</th></tr></thead><tbody><tr><td>Accepted</td><td>9</td><td>sound, novel at tier, proved in Lean 4</td></tr><tr><td>Downgraded</td><td>44</td><td>sound, below novelty target</td></tr><tr><td>Failed</td><td>70</td><td>rejected at proposal or mathematics</td></tr><tr><td>Total</td><td>123</td><td></td></tr></tbody></table><div class="tbl-cap">Run catalogue: 123 recorded CausalSmith runs by disposition.</div></div><div class="sum-table"><table><thead><tr><th>Cluster</th><th>Files</th><th>Lines</th><th>Defs</th><th>Thms/Lem</th></tr></thead><tbody><tr><td>Estimation</td><td>168</td><td>54,246</td><td>298</td><td>621</td></tr><tr><td>Stat</td><td>202</td><td>47,165</td><td>213</td><td>894</td></tr><tr><td>PO</td><td>138</td><td>41,415</td><td>592</td><td>947</td></tr><tr><td>SCM</td><td>88</td><td>36,342</td><td>208</td><td>523</td></tr><tr><td>Total</td><td>973</td><td>261,940</td><td>7,035 declarations</td><td></td></tr></tbody></table><div class="tbl-cap">Library clusters and declaration counts.</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

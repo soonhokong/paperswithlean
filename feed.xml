@@ -6,7 +6,29 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 27 Jul 2026 03:16:33 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 27 Jul 2026 04:15:12 +0000</lastBuildDate>
+    <item>
+      <title>Machine-Checked Arithmetic Bit Complexity of the Kannan-Bachem Smith Normal Form in Lean 4</title>
+      <link>https://paperswithlean.com/paper/2607.22524.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.22524.html</guid>
+      <pubDate>Sun, 26 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Junye Ji</dc:creator>
+      <category>formalization</category><category>verification</category><category>algebra</category><category>number-theory</category>
+      <description>Formalizes the Kannan-Bachem Smith normal form algorithm in Lean 4 over Mathlib, proving correctness and polynomial arithmetic bit-complexity bounds.
+
+We formalize in Lean 4 the Kannan-Bachem Smith normal form algorithm for nonsingular square integer matrices. The program returns $S,U,U^{-1},V,V^{-1}$ and proves $UAV=S$, $U^{-1}SV^{-1}=A$, four inverse identities, the Smith divisibility conditions, and equality of $S$ with a canonical reference matrix. Stabilization terminates because each recursive pass strictly decreases the binary size of the active pivot; the outer algorithm recurses on the lower-right block. The computation also emits a flat trace of designated sign-magnitude arithmetic leaves. Branch conditions, quotients, Bezout data, and matrix entries are taken from the recorded primitive runs. Composite phases form their traces by concatenating the charge lists returned by the executed children. Verified self-delimiting codecs define the input and output sizes. Coefficient and work recurrences, closed by a kernel-checked polynomial-envelope calculus, give fixed polynomial bounds for both trace cost and the encoded length of the five output matrices. The theorem concerns these arithmetic primitives; structural operations and compiled Lean runtime are outside the model.</description>
+    </item>
+    <item>
+      <title>CausalForge: A Formally Grounded, Self-Improving Agentic Framework for Automated Research in Causal Inference</title>
+      <link>https://paperswithlean.com/paper/2607.22511.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.22511.html</guid>
+      <pubDate>Sun, 26 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Jiyuan Tan, Vasilis Syrgkanis</dc:creator>
+      <category>formalization</category><category>ai-agents</category><category>autoformalization</category><category>economics</category>
+      <description>Introduces Causalean, a Lean 4 library of 7,035 machine-checked causal-inference declarations, plus an agentic pipeline that formalizes and proves self-proposed results in Lean.
+
+Automating theoretical research is constrained not only by the generation of candidate results, but also by their reliable evaluation. A common approach is to close the research loop with a large language model (LLM) reviewer. However, such reviewers remain empirically unreliable: they may accept fabricated papers and detect them at rates close to chance (Bad Scientist, 2025). We present CausalForge, a framework for automated theoretical research in causal inference grounded in the Lean proof assistant. CausalForge combines Causalean, a foundational Lean library for causal inference containing 7,035 machine-checked declarations developed with language-model assistance under human design and review, with CausalSmith, a self-improving agentic pipeline that selects research topics, proposes results, formalizes statements, constructs proofs, and presents the resulting artifacts for human inspection. Because a machine-checked proof establishes only that a formal statement follows from its assumptions, not that the statement faithfully captures the intended scientific claim, the pipeline augments kernel verification with a statement audit that compares each formal theorem against the informal claim it is intended to express. We evaluate the system using artifacts produced by completed autonomous research runs. The source code, formal library, and run records are available at https://github.com/Jiyuan-Tan/CausalForge.</description>
+    </item>
     <item>
       <title>Benchmarking Agents for Proving Theorems in Quantum Algorithms and Quantum Information</title>
       <link>https://paperswithlean.com/paper/2607.21533.html</link>
@@ -644,28 +666,6 @@ We study binary classification under shared-generator elliptical class-condition
       <description>Formalizes in Lean 4 a combinatorial route from Scarf&#x27;s theorem to Brouwer&#x27;s fixed point theorem and mixed Nash equilibrium existence, using Mathlib.
 
 We formalize in Lean 4 a complete combinatorial route from Scarf&#x27;s theorem to Brouwer&#x27;s fixed point theorem and to the existence of mixed Nash equilibria in finite games. The development follows Ivanov&#x27;s indexed-order formulation of Scarf&#x27;s theorem, formalizes the room–door incidence structure and parity argument, instantiates the theorem on finite grids of the standard simplex, and carries out the compactness and continuity argument needed to obtain a fixed point. We then extend the result to finite products of simplices by an explicit embedding–projection construction and use this product theorem to prove mixed Nash equilibrium existence via the Nash map. As a secondary by-product, we derive BrouwerBench, a preliminary 80-item Lean-grounded benchmark for probing proof-structure understanding within this single formal development.</description>
-    </item>
-    <item>
-      <title>A Unified Framework for Formalizing Matrix Decomposition Proofs</title>
-      <link>https://paperswithlean.com/paper/2607.05874.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.05874.html</guid>
-      <pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Wanli Ma, Zichen Wang, Zaiwen Wen</dc:creator>
-      <category>formalization</category><category>algebra</category><category>mathlib</category>
-      <description>A Lean 4 framework abstracts the recursive proof pattern shared by many matrix decompositions into reusable schema, transport, and subtype-induction machinery.
-
-Existence proofs for many matrix decompositions share a recursive routine: a local transformation prepares the matrix, a slice is selected, a recursive solution is obtained, and the result is lifted and transported back. Formalizing this routine uniformly in dependent type theory is difficult because recursive subproblems may change index types, and reconstruction must preserve structural predicates across block embeddings and reindexings. We develop a Lean 4 framework that separates decomposition schemas, transformations, reduction strategies, measures, lifting, transport, and subtype induction. The framework uses general index types, packages square and rectangular matrices in universe types, and provides a decomposition driver that assembles strategy data into subtype-induction instances. It has been instantiated across PLU, LU, LDL/Cholesky, QR variants, Gauss rank normal form, Hessenberg reductions, Schur variants, normal spectral decomposition, SVD, bidiagonalization, tridiagonalization, UTV, Smith normal form, rational canonical form, and Jordan-type forms at varying levels of statement strength. Across these instances, repeated decomposition proofs are best treated not as separate tasks but as instances of a more general inductive statement whose interface records a certified proof path compatible with the chosen decomposition statement.</description>
-    </item>
-    <item>
-      <title>Integer values of $\tan(\arctan 1+\arctan 2+\cdots+\arctan n)$ are rare</title>
-      <link>https://paperswithlean.com/paper/2607.05739.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.05739.html</guid>
-      <pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Ken Ono</dc:creator>
-      <category>formalization</category><category>autoformalization</category><category>number-theory</category>
-      <description>Number-theoretic results bounding integer values of arctangent sums were formalized in Lean/Mathlib and produced autonomously by AxiomProver from natural-language statements.
-
-For $n\ge1$, we let $$x_n:=\tan\bigl(\sum_{k=1}^{n}\arctan k\bigr).$$ In 2008, Amdeberhan, Medina, and Moll conjectured that $x_n\not \in \mathbb{Z}$ for every $n\ge5$. This was known for a set of positive integers of density $\tfrac{120}{817}\approx0.1469$. We prove that an integer value $x_n=m$ satisfies $|m|\ge e^{(1/2+o(1))\,n\log n}$, which we use to deduce that $$\#\{\,1\leq n\le N:x_n\in\mathbb{Z}\,\}=O(\log N). $$ In particular, the conjecture holds for a density-one set of $n$. The results in this note were formalized in Lean/Mathlib and produced autonomously by AxiomProver from natural-language statements.</description>
     </item>
   </channel>
 </rss>
