@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When Can Depth Replace Precision? A Resource Theory of Quantized Neural Computation · Papers With Lean</title>
+<meta name="description" content="When can additional low-bit residual computation replace missing numerical precision for a fixed input-output map? We model a quantized residual system over a fixed horizon as a pure schedule selecting fields from a declared low-bit operation library, and use relaxed controls to…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="When Can Depth Replace Precision? A Resource Theory of Quantized Neural Computation">
+<meta property="og:description" content="When can additional low-bit residual computation replace missing numerical precision for a fixed input-output map? We model a quantized residual system over a fixed horizon as a pure schedule selecting fields from a declared low-bit operation library, and use relaxed controls to…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.23390.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.23390.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.23390v1" target="_blank" rel="noopener"><img src="../thumbs/2607.23390.jpg" alt="First page of When Can Depth Replace Precision? A Resource Theory of Quantized Neural Computation"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">When Can Depth Replace Precision? A Resource Theory of Quantized Neural Computation</h1>
+        <p class="authors">Mojtaba Soltanalian</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Jul 25, 2026 · v1</span>
+          <span class="badge">math.OC</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.23390v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.23390" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 machine-checks the exact discrete core of the quantized residual reachability and depth-precision framework.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">When can additional low-bit residual computation replace missing numerical precision for a fixed input-output map? We model a quantized residual system over a fixed horizon as a pure schedule selecting fields from a declared low-bit operation library, and use relaxed controls to characterize its infinite-depth limit. The distance from the target to the closed relaxed reachable set is the exact structural floor: no increase in depth can remove it for that library. Pure schedules approach the relaxed class at rate $O(D^{-1})$ under bounded-variation time dependence and $O(D^{-\vartheta}+D^{-1})$ under Holder dependence of exponent $\vartheta$. Execution arithmetic can reverse this conclusion: full-state write-back introduces a $Dρ_z$ penalty and can freeze residual updates, whereas increment error feedback replaces this growth by a bounded carry term and obeys an exact common-lattice conservation law. A fixed-teacher converse makes this rate sharp: for coherent depth-$L$ first-order high-precision comparators, accuracy matching requires $D=Θ(L)$. Learned codebooks add a metadata resource, while state-dependent routing introduces hybrid event conditions. Verified primal and dual bounds yield feasible, impossible, or unresolved decisions before training. Companion software implements the workflow, and Lean 4 machine-checks the exact discrete core. Depth replaces precision only relative to a declared library, horizon, execution semantics, and routing model.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">When can additional low-bit residual computation (depth) replace missing numerical precision for a fixed input-output map? The goal is to characterize the infinite-depth limit, its approach rate, and which resources must scale for that limit to survive real execution.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A depth-D quantized residual system is modeled as a pure schedule selecting fields from a declared low-bit operation library, with relaxed controls characterizing the infinite-depth limit. The distance from target to the closed relaxed reachable set defines an exact structural floor. Execution arithmetic (write-back versus increment error feedback) and routing are analyzed for their effect on depth scaling, and a primal-dual certification hierarchy decides feasibility before training. Companion software implements the workflow and Lean 4 machine-checks the exact discrete core.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.23390/x2.png" alt=""><figcaption>Figure 3: Reachability is a geometric property of the declared operation library. Pure depth- D schedules form a discrete cloud. Balanced switching drives that cloud toward the relaxed reachable set. A compatible target has zero structural floor and only a finite-depth remainder; an incompatible target remains separated even as D\to\infty .</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Pure schedules approach the relaxed class at rate O(D^-1) under bounded variation and O(D^-θ + D^-1) under Hölder dependence. A fixed teacher forces a first-order depth price, with coherent depth-L comparators requiring D=Θ(L) for accuracy matching. Full-state write-back introduces a Dρ_z penalty that can freeze updates, while increment error feedback replaces it with a bounded carry obeying a common-lattice conservation law.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.23390/x3.png" alt=""><figcaption>Figure 4: A fixed target can require a first-order depth price. (a) The exact optimum in Theorem 10 tracks its a/(2eD) asymptote and remains inside the proved nonasymptotic envelope. (b) Multiplication by D exposes the nonzero limiting constant a/(2e) ; the lower law is not generated by changing the target with D . All curves are analytic consequences of the theorem, not fitted slopes.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2607.23390/x1.png" alt=""><figcaption>Figure 2: Execution arithmetic creates a genuine phase diagram. (a) Ideal synthesis approaches the structural floor, whereas fixed-grid state write-back has a U-shaped envelope and a finite optimal depth. Increment error feedback preserves the first-order law when its physical residual unit scales with the microstep. (b) In an exact scalar diagnostic, a fixed activation grid eventually erases ever</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
