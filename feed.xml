@@ -6,7 +6,40 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 28 Jul 2026 03:00:02 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 28 Jul 2026 04:01:21 +0000</lastBuildDate>
+    <item>
+      <title>Classifying Capabilities (Extended Version)</title>
+      <link>https://paperswithlean.com/paper/2607.24504.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.24504.html</guid>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cao Nguyen Pham, Oliver Bračevac, Yichen Xu, Yaoyu Zhao, Martin Odersky</dc:creator>
+      <category>verification</category><category>type-theory</category><category>formalization</category>
+      <description>Type safety, effect safety, and handler coverage for capability classifiers proven via a mechanized big-step proof in Lean 4.
+
+Capture checking in Scala 3 enables lightweight and practical effect and resource tracking by recording capabilities in types. However, the system offers no way to reason about kinds of capabilities. Natural constraints such as &quot;retaining only the control-flow capabilities of this closure&quot; or &quot;excluding all thread-local capabilities from this argument&quot; become inexpressible. Both arise in the Scala 3 standard library: &quot;Try&quot; re-throws caught exceptions, so it retains only the control-flow capabilities of its body, and &quot;Future&quot; must not capture thread-local resources. The inability to state these constraints has kept parts of the library outside capture checking. We introduce capability classifiers: a tree-structured, user-extensible hierarchy of tags that classify capabilities by their semantic role. Projections filter capture sets by classifier, supporting both inclusion (&quot;c.only[C]&quot;) and exclusion (&quot;c.except[C]&quot;). The tree structure enables decidable disjointness reasoning: classifiers on separate branches are guaranteed to be disjoint regardless of unknown extensions elsewhere in the hierarchy. We formalize classifiers as an extension of System Capless, a core calculus for capture checking, introducing a classifier kind algebra based on intersection, union, and subtraction of classifier subtrees. We extend the operational semantics to model exception interception and establish type safety, effect safety, and handler coverage via a big-step proof, fully mechanized in Lean 4. Classifiers are implemented in the Scala 3 capture checker, and we demonstrate their use on standard library types and real-world effect exclusion patterns.</description>
+    </item>
+    <item>
+      <title>The exact solution of Bellman&#x27;s lost-in-a-forest problem for the golden gnomon</title>
+      <link>https://paperswithlean.com/paper/2607.24483.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.24483.html</guid>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Alexander Temerev, Alessio Doria</dc:creator>
+      <category>formalization</category><category>verification</category><category>geometry</category>
+      <description>Lean 4 verifies the two finite algebraic certificate families and the reusable discrete ledger identities and bounds underlying the exact optimum.
+
+We solve Bellman&#x27;s lost-in-a-forest problem for the golden gnomon $G$, the isosceles triangle with equal sides $1$ and apex angle $108^\circ$: the shortest curve guaranteed to reach the boundary of $G$ from an unknown starting position and heading is a symmetric seven-piece path of segments, circular shoulders, and tangents, of exactly determined length $C=1.282676025459\ldots$. To our knowledge, this is the first proved exact optimum for an isosceles triangle whose base angle is below $45^\circ$. The curve&#x27;s parameters come from one isolated quartic root, and $C$ is transcendental. Equivalently, $C^{-1}G$ is the smallest homothetic golden-gnomon cover of all unit arcs. The proof introduces a balanced support calibration: one weighted family of escape inequalities, built on the linear relation among the triangle&#x27;s three normals, exactly saturated by the candidate, through eighteen exact support windows, and confronting every shorter competitor at once. Aggregation along the normal fan compresses the calibration to a finite zero-sum family of supported vectors; summation by parts then bounds its total by path length whenever the running suffix balance, the ledger, stays in the unit disk. A local two-gap surgery and cyclic bitonicity force a shortest hypothetical counterexample into exactly the temporal order the ledger tolerates. Lean 4 verifies the two finite algebraic certificate families and the reusable discrete ledger identities and bounds.</description>
+    </item>
+    <item>
+      <title>Powers of the Vandermonde determinant are eventually non-SNP</title>
+      <link>https://paperswithlean.com/paper/2607.23828.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.23828.html</guid>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Thien Le, Melanie Weber</dc:creator>
+      <category>formalization</category><category>combinatorics</category>
+      <description>An accompanying Lean formalization verifies the combinatorial proof that fixed powers of the Vandermonde determinant are eventually non-SNP.
+
+We prove a conjecture of Monical, Tokcan, and Yong that every fixed positive power of the Vandermonde determinant is non-SNP in all sufficiently many variables, where a polynomial is non-SNP if there is a lattice point in its Newton polytope that does not appear with nonzero coefficient. This means our result proves that for every even power $k\geq4$, there is always such a missing lattice monomial in large enough dimensions. The odd case follows from alternation, and the quadratic case was previously known. For every even power $k\geq4$, we exhibit an explicit lattice point in the Newton polytope of $a_{δ_k}^k$ whose coefficient vanishes. The vanishing is obtained from a Dyson constant-term identity, proved using the finite-variable Jack scalar product and Macdonald&#x27;s specialization formula. The key even-power construction and proof strategy arose from prompting with OpenAI Codex (GPT Sol 5.6 Extra High), a large language model; the complete transcript appears in the appendix. The authors subsequently checked and organized the argument. The accompanying Lean formalization is available at https://github.com/steven-le-thien/vandermonde-snp.</description>
+    </item>
     <item>
       <title>Formally Verified Synthesizable Floating-Point Data Types in ARCH HDL</title>
       <link>https://paperswithlean.com/paper/2607.23715.html</link>
@@ -633,39 +666,6 @@ We prove that the Cantor measure with base $b$ does not admit a Fourier frame wh
       <description>The full Main Theorem determining the least valid modulus for the unique multiset-sum problem is formalized and kernel-checked in Lean 4/Mathlib.
 
 Fix n &gt;= 2. A set A = {a_0 &lt; a_1 &lt; ... &lt; a_{n-1}} of n residues in Z_N is &quot;valid mod N&quot; if the all-ones multiset is the only size-n multiset drawn from A whose sum is p := sum_i a_i (mod N). For the super-increasing set A = {2^k - 1 : 0 &lt;= k &lt;= n-1} we determine the least valid modulus exactly: N_min(n) = 2^n - 2^floor(log_2 n) for all n &gt;= 2. Both directions of the proof are elementary, resting on a sharp minimal-digit-sum estimate for representations by binary coins, and the full theorem has been machine-checked in Lean 4/Mathlib for all n (https://github.com/jarfo/min-modulus). We conjecture that no size-n residue set admits a smaller valid modulus. This validity condition is exactly what makes the permanent of an n x n matrix equal to a single coefficient of a row-product polynomial modulo x^N - 1, extractable by a size-N discrete Fourier (or number-theoretic) transform; the theorem thus identifies the smallest transform, N   2^n, for which this evaluation is exact. That application – and the resulting common framework for the classical formulas of Ryser and Glynn and this transform – is developed in a companion paper (arXiv:2607.09949).</description>
-    </item>
-    <item>
-      <title>Multi-agent Autoformalization of Tensor Network Theory</title>
-      <link>https://paperswithlean.com/paper/2607.07857.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.07857.html</guid>
-      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Sirui Lu, Erickson Tjoa, J. Ignacio Cirac</dc:creator>
-      <category>autoformalization</category><category>ai-agents</category><category>formalization</category><category>quantum</category>
-      <description>Multi-agent LLM workflow autoformalizes the fundamental theorem of matrix-product states in Lean 4, producing new tensor-network and quantum-information Mathlib libraries.
-
-We build a team of specialized large language-model agents and present an agent-driven workflow for research-level formalization in theoretical physics, with the autoformalization of the fundamental theorem of matrix-product states as a demonstration. The agents, coordinated through a structured mathematical blueprint and periodic human review, orchestrated and executed the full formalization autonomously. For some statements, the agents were able to explore new proof routes that are not part of the standard literature. Along the way the agents produced extensive tensor-network and quantum-information libraries not previously available in Mathlib, Lean&#x27;s mathematical library. As a physical application, the formalization also extends towards symmetry-protected topological phases in one dimension. We find that the main bottleneck in large-scale autoformalization is enforcing mathematical intent and we provide a detailed study of the full process and various subtleties involved. We release the codebase as the library \href{https://github.com/LionSR/TNLean}{TNLean}, together with a \nChapters{}-chapter \href{https://lionsr.github.io/TNLean/blueprint/}{blueprint} of the formalization effort.</description>
-    </item>
-    <item>
-      <title>$p$-adic Hahn series with sparse support</title>
-      <link>https://paperswithlean.com/paper/2607.06944.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.06944.html</guid>
-      <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Shanwen Wang, Yijun Yuan</dc:creator>
-      <category>formalization</category><category>number-theory</category>
-      <description>Fully formalizes transcendence results for sparse-support p-adic Hahn series in Lean 4 over Mathlib.
-
-Let $p$ be a prime number. We introduce a sparseness condition on the supports of $p$-adic Hahn series, and prove that this condition implies transcendence over $\breve{\mathbf Q}_p$, the completed maximal unramified extension of $\mathbf{Q}_p$. As an application, we prove the order-type conjecture of $\mathbf{Q}_p$-algebraic $p$-adic Hahn series with bounded support under the condition that the support has only finitely many accumulation points. All results in this paper have been fully formalized in the Lean theorem prover (v 4.31.0), building over Mathlib.</description>
-    </item>
-    <item>
-      <title>Stable Phase Retrieval for Spans of Independent Random Variables</title>
-      <link>https://paperswithlean.com/paper/2607.06693.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.06693.html</guid>
-      <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Pedro Abdalla, Jaume de Dios Pont, João P. G. Ramos, Mitchell A. Taylor</dc:creator>
-      <category>formalization</category><category>autoformalization</category><category>analysis</category><category>probability</category>
-      <description>The main stable phase retrieval characterization is autoformalized and machine-checked in Lean 4 using Mathlib, with the proof partly translated by LLMs.
-
-We prove that, after $L^2$ normalization, stable phase retrieval holds over the $L^2$-spans of independent real-valued centered random variables if and only if all but possibly one coordinate satisfies a uniform two-sided $L^1$ bound. This provides a complete characterization of stable phase retrieval for such subspaces, building upon the pioneering work of Calderbank–Daubechies–Freeman–Freeman and confirming the conjectured characterization communicated to us by those authors. We provide two different proofs of this fact, both based on a decomposition of the $\ell^2$-coefficients of each random variable. The first is a compactness proof, which makes use of the infinite divisibility of limit laws of tail sums. The second is a quantitative proof, which substitutes the compactness step with an explicit dichotomy based on anticoncentration estimates of Sperner type. This latter proof was partially LLM generated based on the ideas in the first proof and a considerable amount of guidance by the authors. An autoformalization of our main result in Lean 4 is also provided, following the ideas in the quantitative proof.</description>
     </item>
   </channel>
 </rss>
