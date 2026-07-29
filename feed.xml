@@ -6,7 +6,29 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 29 Jul 2026 02:00:43 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 29 Jul 2026 03:01:36 +0000</lastBuildDate>
+    <item>
+      <title>Kernel-Checked Exclusions for the Erdős-Selfridge Odd Covering Problem: Any Odd Covering of $\mathbb{Z}$ Has lcm Exceeding 10000</title>
+      <link>https://paperswithlean.com/paper/2607.25628.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.25628.html</guid>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Ibrahim Mian, Shayaan Siddique</dc:creator>
+      <category>formalization</category><category>verification</category><category>number-theory</category>
+      <description>Lean 4 over Mathlib formalizes, with kernel-checked proofs, that any odd covering system of Z has lcm exceeding 10000.
+
+The Erdős-Selfridge odd covering problem (Erdős problem #7) asks whether a covering system of $\mathbb{Z}$ exists whose moduli are all odd, distinct, and greater than 1. The problem is open. We present a Lean 4 formalization, checked end to end by the proof kernel, of the exclusion: any covering of $\mathbb{Z}$ by finitely many congruence classes with distinct odd moduli &gt; 1 has lcm of the moduli exceeding 10000. The proof composes a formalized density argument (a covering by divisors of $N$ exceeding 1 forces $2N \le σ_1(N)$, so the lcm is abundant or perfect), a kernel-checked abundancy floor (no odd $N &lt; 945$ qualifies), a family of Chinese-Remainder capacity certificates – decidable per-$N$ arithmetic inequalities each refuting every covering with distinct moduli &gt; 1 dividing that $N$ – for all 23 odd abundant numbers below $10^4$, and a kernel-checked enumeration establishing that those 23 are the only odd non-deficient candidates. The result is transported to the official StrictCoveringSystem $\mathbb{Z}$ formulation of Erdős #7 in google-deepmind/formal-conjectures, with a bidirectional periodicity bridge between coverings of $\mathbb{Z}$ and finite checks over $\mathbb{Z}/N\mathbb{Z}$ suitable for consuming future SAT-style search output. All 63 published theorems depend on exactly propext, Classical.choice, and Quot.sound: no sorry, no native_decide, no solver in the trusted base. The mathematical content is known – the density argument is folklore, and far larger uncertified classifications of covering numbers exist – so the contribution is epistemic rather than mathematical: these exclusions are theorems of the Lean kernel, with an axiom gate enforced mechanically in continuous integration.</description>
+    </item>
+    <item>
+      <title>Type Safety via Hoare Logic with Separation and Pure Types</title>
+      <link>https://paperswithlean.com/paper/2607.25262.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.25262.html</guid>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Wenhua Li, Darius Foo, Quang Trung Ta, Wei-Ngan Chin</dc:creator>
+      <category>verification</category><category>formalization</category><category>logic</category><category>type-theory</category>
+      <description>Meta-theory of the TypeHL type-safety framework is mechanised in Lean 4, yielding a self-certifying reflective type-checker.
+
+Type safety has traditionally rested on carefully crafted type systems, under the motto &quot;well-typed programs cannot go wrong&quot;. Modern demands push type systems past this basic guarantee: toward memory safety (e.g., Rust), stronger data-structure invariants (e.g., GADTs), and broader typability (e.g., MLstruct). The motto absorbs each such property by enlarging the set of states deemed &quot;wrong&quot;, but collapses them into one binary verdict: heap ownership, flow-sensitive changes to a variable&#x27;s type, and the gap between a recoverable and a fatal error are relational, stateful facts about intermediate states that one verdict cannot tell apart. Worse, each demand typically brings its own extension, making it hard to say what each guarantees or how they combine. Floyd-Hoare logic supplies a unified foundation. We present a framework for type-safety verification built from four ingredients: (i) case specifications for path-sensitive typing; (ii) separation types, inspired by separation logic, for flow-sensitive type mutation and must-aliasing; (iii) a disciplined distinction between Err (runtime error values our types track) and Abrt (compile-time errors), yielding the refined motto well-typed programs must never abort; and (iv) type predicates for data-structure invariants. Since all four are ordinary types in one Boolean algebra rather than separate extensions, the framework subsumes both GADTs and liquid types within one type logic, spanning weak specifications that tolerate Err to strong ones that eliminate it. Subtyping reduces to one decidable emptiness test, so a single lightweight procedure serves the whole framework with no SMT oracle in its trusted base. We formalise the Hoare rules and prove soundness in a machine-checked Lean mechanisation; by proof reflection it yields a self-certifying type-checker, evaluated on a benchmark suite.</description>
+    </item>
     <item>
       <title>Classifying Capabilities (Extended Version)</title>
       <link>https://paperswithlean.com/paper/2607.24504.html</link>
@@ -91,9 +113,9 @@ When can additional low-bit residual computation replace missing numerical preci
       <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
       <dc:creator>Evan Wang, Simon Chess, Sophie Szeto, Theodore Meek</dc:creator>
       <category>tactic-automation</category><category>theorem-proving-ml</category><category>tooling</category>
-      <description>Integrates learned interventions into Lean 4&#x27;s grind tactic via a failure-triggered cascade with a cost-aware e-match filter and split lookahead.
+      <description>Learned interventions are integrated into Lean 4&#x27;s grind tactic to filter e-matching instances and select case splits via failure-triggered lookahead.
 
-Lean 4&#x27;s \grind{} tactic combines congruence closure, \ematch{}ing, and case-splitting into a single automated solver, and like any such solver, it relies on hand-tuned heuristics to decide what to instantiate and where to case-split. These heuristics are tempting targets for learning, but there is a catch: because \grind{}&#x27;s search is non-monotone, a learned heuristic that helps one proof can break another, and an always-on replacement usually nets out near zero. We avoid this by invoking a learned intervention only after stock \grind{} has already failed: a failure-triggered cascade that, by construction, cannot lose a proof \grind{} already had. We apply it to two of \grind{}&#x27;s internal decisions. A cost-aware \ematch{} filter solves slightly more problems and runs about 5% faster. A lookahead step, proves five theorems it otherwise times out on. We also report the negative result that motivated the design: across four feature-based models, statically predicting the correct case split is no better than random, because whether a split explodes is a runtime property that the features do not capture. Our results suggest that learning within theorem-proving tactics is most effective as a mechanism for deciding when and how to spend bounded search, backed by a reliable symbolic fallback.</description>
+Lean 4&#x27;s grind tactic combines congruence closure, E-matching, and case-splitting into a single automated solver, and like any such solver, it relies on hand-tuned heuristics to decide what to instantiate and where to case-split. These heuristics are tempting targets for learning, but there is a catch: because grind&#x27;s search is non-monotone, a learned heuristic that helps one proof can break another, and an always-on replacement usually nets out near zero. We avoid this by invoking a learned intervention only after stock grind has already failed: a failure-triggered cascade that, by construction, cannot lose a proof grind already had. We apply it to two of grind&#x27;s internal decisions. A cost-aware E-matching filter solves slightly more problems and runs about 5% faster. A lookahead step proves five theorems it otherwise times out on. We also report the negative result that motivated the design: across four feature-based models, statically predicting the correct case split is no better than random, because whether a split explodes is a runtime property that the features do not capture. Our results suggest that learning within theorem-proving tactics is most effective as a mechanism for deciding when and how to spend bounded search, backed by a reliable symbolic fallback.</description>
     </item>
     <item>
       <title>Machine-Checked Arithmetic Bit Complexity of the Kannan-Bachem Smith Normal Form in Lean 4</title>
@@ -644,28 +666,6 @@ We formalize a research result in the Lean 4 proof assistant by having a mathema
       <description>Game-theoretic metagame analysis of the Pokemon TCG formalized in Lean 4, using native_decide over exact rationals to verify Nash equilibria and replicator dynamics.
 
 We present a metagame analysis of the competitive Pokemon Trading Card Game, machine-checked in Lean 4 over real tournament data. The headline game-theoretic results, including Nash equilibrium, replicator dynamics, and the matrix-level type-bridge computation, rely on native_decide, which trusts Lean&#x27;s compiler rather than its kernel; the trust boundary is made explicit. The artifact spans approximately 31,900 lines, 87 files, and 2,627 theorems, of which roughly 200 directly verify empirical claims, with no sorry, admit, or custom axioms. Analyzing Trainer Hill data from January to February 2026 for events with at least 50 players, over 14 archetypes and their full pairwise matchup matrix, we prove a popularity paradox: the most played deck, Dragapult, with 15.5% metagame share, has only 46.7% expected win rate, while Grimmsnarl, with 5.1% share, achieves 52.7%. A machine-checked Nash equilibrium of the raw game assigns Dragapult 0% weight; exhaustive enumeration over all nonempty support subsets confirms a unique symmetric Nash equilibrium of the constant-sum symmetrization with seven-deck support. Against this equilibrium mix, Dragapult falls 40.4 permil below the game value. Single-step replicator dynamics indicate downward fitness pressure on Dragapult, upward pressure on Grimmsnarl, and strongest extinction pressure on Alakazam. A 10,000-iteration sensitivity analysis confirms qualitative stability, with core support decks appearing in more than 96% of resampled equilibria. The primary contribution is methodological: a reproducible case study showing how formal verification can turn qualitative metagame narratives into machine-checkable, re-runnable strategic science.</description>
-    </item>
-    <item>
-      <title>Cantor measures with odd base do not admit Fourier frames</title>
-      <link>https://paperswithlean.com/paper/2607.08656.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.08656.html</guid>
-      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Jaume de Dios Pont, Lukas Liehr, Mitchell A. Taylor</dc:creator>
-      <category>formalization</category><category>analysis</category>
-      <description>The main theorem that odd-base Cantor measures admit no Fourier frame is formalized and verified in Lean 4 using Mathlib.
-
-We prove that the Cantor measure with base $b$ does not admit a Fourier frame whenever $b &gt; 1$ is an odd integer. In particular, this answers a question of Strichartz on the existence of a Fourier frame for the middle third Cantor measure. A formalization of our main result in Lean 4 is also provided.</description>
-    </item>
-    <item>
-      <title>Minimum modulus for the unique multiset-sum problem</title>
-      <link>https://paperswithlean.com/paper/2607.08366.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.08366.html</guid>
-      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
-      <dc:creator>José A. R. Fonollosa</dc:creator>
-      <category>formalization</category><category>combinatorics</category><category>number-theory</category>
-      <description>The full Main Theorem determining the least valid modulus for the unique multiset-sum problem is formalized and kernel-checked in Lean 4/Mathlib.
-
-Fix n &gt;= 2. A set A = {a_0 &lt; a_1 &lt; ... &lt; a_{n-1}} of n residues in Z_N is &quot;valid mod N&quot; if the all-ones multiset is the only size-n multiset drawn from A whose sum is p := sum_i a_i (mod N). For the super-increasing set A = {2^k - 1 : 0 &lt;= k &lt;= n-1} we determine the least valid modulus exactly: N_min(n) = 2^n - 2^floor(log_2 n) for all n &gt;= 2. Both directions of the proof are elementary, resting on a sharp minimal-digit-sum estimate for representations by binary coins, and the full theorem has been machine-checked in Lean 4/Mathlib for all n (https://github.com/jarfo/min-modulus). We conjecture that no size-n residue set admits a smaller valid modulus. This validity condition is exactly what makes the permanent of an n x n matrix equal to a single coefficient of a row-product polynomial modulo x^N - 1, extractable by a size-N discrete Fourier (or number-theoretic) transform; the theorem thus identifies the smallest transform, N   2^n, for which this evaluation is exact. That application – and the resulting common framework for the classical formulas of Ryser and Glynn and this transform – is developed in a companion paper (arXiv:2607.09949).</description>
     </item>
   </channel>
 </rss>
