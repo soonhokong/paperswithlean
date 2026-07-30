@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automorphism-Induced Non-Canonicity in Top-k Explanations of Graph Neural Networks · Papers With Lean</title>
+<meta name="description" content="A gradient-based GNN explainer given a molecule with two chemically equivalent nitro groups assigns them attribution scores that are equal to the last bit. It cannot do otherwise: message passing is exactly permutation equivariant, so any automorphism of the input leaves every…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Automorphism-Induced Non-Canonicity in Top-k Explanations of Graph Neural Networks">
+<meta property="og:description" content="A gradient-based GNN explainer given a molecule with two chemically equivalent nitro groups assigns them attribution scores that are equal to the last bit. It cannot do otherwise: message passing is exactly permutation equivariant, so any automorphism of the input leaves every…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.26344.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.26344.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.26344v1" target="_blank" rel="noopener"><img src="../thumbs/2607.26344.jpg" alt="First page of Automorphism-Induced Non-Canonicity in Top-k Explanations of Graph Neural Networks"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Automorphism-Induced Non-Canonicity in Top-k Explanations of Graph Neural Networks</h1>
+        <p class="authors">Xin Xu, Siru Tao, Kaizhen Tan</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Jul 28, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.26344v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.26344" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A parameter-free criterion deciding whether score-optimal top-k GNN explanations must split an automorphism orbit is mechanised in Lean 4 with no axiom dependencies.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A gradient-based GNN explainer given a molecule with two chemically equivalent nitro groups assigns them attribution scores that are equal to the last bit. It cannot do otherwise: message passing is exactly permutation equivariant, so any automorphism of the input leaves every attribution invariant. Yet the standard report, the top-k edges, names one of the two, and which one is settled by the order of an array. We show this is a structural obstruction rather than an implementation slip. When no minimal valid explanation is fixed by the input&#x27;s automorphism group, no rule can be single-valued, minimal and symmetry-respecting at once. For the exact-k reports used in practice we give a parameter-free criterion, mechanised in Lean 4 with no axiom dependencies, that decides from the graph alone whether every score-optimal report of that size must split an orbit. Across 21298 instance-budget decisions the criterion agrees with a mechanical model-equivalence check without exception, and no severing case we found admitted a neutral alternative. The obstruction is common. Nontrivial automorphisms occur in 93.4% of Mutagenicity, the dataset the seminal explainability papers use, so the measure-zero dismissal of symmetric inputs, sound on the continuous domains it was made for, collapses here. At the sparsity budget those papers report, 24.0% of molecules with two interchangeable nitro groups (6 of 25) surface exactly one of them, every one arbitrary under mechanical verification. A model&#x27;s blindness also manufactures symmetry: every MUTAG molecule contains atoms chemistry separates and the network provably cannot, and a matched control shows the resolution is set by what the model reads rather than how it is parameterised. Reporting orbits removes the arbitrariness at 0.11 ms and 0.43 extra edges per graph.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Gradient-based GNN explainers assign identical attribution scores to chemically equivalent substructures because message passing is permutation equivariant. Yet the standard top-k edge report names only one of two tied substructures, with the choice settled by array ordering, producing arbitrary explanations.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors formalize exact equivariance of message-passing GNNs and prove that when no minimal valid explanation is fixed by the input&#x27;s automorphism group, no rule can be single-valued, minimal, and symmetry-respecting simultaneously. For exact-k reports they give a parameter-free criterion, mechanised in Lean 4 with no axiom dependencies, that decides from the graph alone whether every score-optimal report must split an orbit. Automorphism groups are computed exactly with nauty, and predictions checked against a mechanical model-equivalence test. They propose an orbit-aware reporting algorithm selecting whole orbits.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.26344/x2.png" alt=""><figcaption>Figure 2: The three relations of Proposition ˜ 2 , coarsest outside, with a top- k report sitting strictly inside all of them. Gap 1 is resolution the model provably lacks: it is present in 100.0% of MUTAG molecules and places 16.2% of their edges in an orbit the domain splits. Gap 2 is resolution the forward pass lacks but a coordinate-level attribution can still supply, which is why only the fir</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The Lean-verified criterion agreed with a mechanical model-equivalence check on all 14530 decisions with no false positives or negatives. Nontrivial automorphisms occur in 93.4% of Mutagenicity molecules, and 24.0% of molecules with two interchangeable nitro groups surface only one at k=10. Orbit-aware reporting eliminates the arbitrariness at 0.11 ms and 0.43 extra edges per graph.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.26344/x3.png" alt=""><figcaption>Figure 3: The criterion’s signature on Tree-Grid, computed from the graph alone before any model is consulted. Shaded budgets are those whose cut consumes whole edge orbits. For Integrated Gradients the rate of severing falls to zero at every one of them and rises to the maximum in between. Saliency alternates in the same phase but less sharply, because it ranks different orbits into the report. G</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Dataset</th><th>Kind</th><th>Symmetric</th></tr></thead><tbody><tr><td>Mutagenicity</td><td>molecules</td><td>93.4%</td></tr><tr><td>MUTAG</td><td>molecules</td><td>100.0%</td></tr><tr><td>PROTEINS</td><td>non-molecular</td><td>88.4%</td></tr><tr><td>BBBP</td><td>molecules</td><td>70.0%</td></tr><tr><td>Tree-Grid</td><td>synthetic</td><td>44.0%</td></tr></tbody></table><div class="tbl-cap">Incidence of relevant symmetry across datasets</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
