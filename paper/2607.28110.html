@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BlueprintRepair: Typed Local Edits for Failed Lean Proof Blueprints · Papers With Lean</title>
+<meta name="description" content="LLM-based Lean proving systems increasingly organize a proof as a blueprint: a dependency graph of formal statements. We introduce BlueprintRepair, a repair interface that lets a model change this graph through ten schema-checked local operations. An operation names the node it…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BlueprintRepair: Typed Local Edits for Failed Lean Proof Blueprints">
+<meta property="og:description" content="LLM-based Lean proving systems increasingly organize a proof as a blueprint: a dependency graph of formal statements. We introduce BlueprintRepair, a repair interface that lets a model change this graph through ten schema-checked local operations. An operation names the node it…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.28110.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.28110.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.28110v1" target="_blank" rel="noopener"><img src="../thumbs/2607.28110.jpg" alt="First page of BlueprintRepair: Typed Local Edits for Failed Lean Proof Blueprints"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">BlueprintRepair: Typed Local Edits for Failed Lean Proof Blueprints</h1>
+        <p class="authors">Ruslan Khrulev</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jul 30, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.28110v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.28110" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces a schema-checked typed local-edit interface for repairing failed Lean proof blueprints, plus BlueprintTrace, a benchmark of 142 controlled failures.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">LLM-based Lean proving systems increasingly organize a proof as a blueprint: a dependency graph of formal statements. We introduce BlueprintRepair, a repair interface that lets a model change this graph through ten schema-checked local operations. An operation names the node it edits, so the target theorem cannot be changed. Lean checks every applied change, and an accepted repair must declare every blueprint lemma its proof uses. We also construct BlueprintTrace, a benchmark of 142 controlled failures with complete accepted and rejected repair trajectories. We compare typed edits, exact source patches, and complete module rewrites under matched source, feedback, model, and budget, one episode per state and interface. With DeepSeek-V4-Flash, the three interfaces solve almost the same number of the benchmark&#x27;s localized failures. Typed repair is the cheapest per solved state (patching is 1.30x as expensive, rewriting 2.06x), and within 10,000 completion tokens per task it reaches almost all of its final coverage, while both free-form interfaces are well behind. A second model, Qwen3.6-Flash, solves fewer states but keeps typed repair cheapest, puts it ahead on the proof-authoring states, and repeats the localized pattern.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-based Lean proving systems organize proofs as blueprints (dependency graphs of formal statements), and failed blueprints require repair. It is unclear when typed local edits to the graph suffice versus when freer Lean code generation is more useful.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">BlueprintRepair exposes ten schema-checked local operations that edit named nodes in a directed acyclic blueprint graph over a Lean module, preventing target-statement changes. Lean checks every applied change, and an accepted repair must declare every blueprint lemma its compiled proof uses. The authors build BlueprintTrace, a benchmark of 142 controlled failures with full accepted and rejected trajectories, and compare typed edits, exact source patches, and full module rewrites under matched source, feedback, model, and budget.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With DeepSeek-V4-Flash, typed repair solved 104 of 142 states versus 109 for patching and 104 for rewriting, with no pairwise coverage difference clearly nonzero. Typed repair was cheapest per solved state (patching 1.30x, rewriting 2.06x) and reached near-final coverage within a 10,000-token budget. Qwen3.6-Flash solved fewer states but preserved the cost ordering.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.28110/x1.png" alt=""><figcaption>Figure 3: Cumulative solved states as the per-task budget increases, for both models. Panels (a) and (c) use completion tokens; panels (b) and (d) use provider price. All four use the same 142 initial states, count solved as in Table 5 , and stop charging a task when it is first solved. The token axes are identical, so the two models’ left-hand panels can be read against each other; the price axes</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Model / type</th><th>n</th><th>Typed</th><th>Patch</th><th>Rewrite</th></tr></thead><tbody><tr><td>DeepSeek edit-shaped</td><td>91</td><td>79</td><td>81</td><td>81</td></tr><tr><td>DeepSeek total</td><td>142</td><td>104</td><td>109</td><td>104</td></tr><tr><td>Qwen edit-shaped</td><td>91</td><td>70</td><td>71</td><td>72</td></tr><tr><td>Qwen total</td><td>142</td><td>84</td><td>88</td><td>84</td></tr></tbody></table><div class="tbl-cap">Solved controlled states by interface and model</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
