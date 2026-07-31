@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeanCSP: A Framework for Certifying Constraint Reformulation and Solving in Lean · Papers With Lean</title>
+<meta name="description" content="Constraint programming is a core technology for solving complex combinatorial problems in scheduling, planning, configuration, and verification. Trusting its results therefore demands guarantees at two levels: that reformulations applied beforehand are semantics-preserving, and…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeanCSP: A Framework for Certifying Constraint Reformulation and Solving in Lean">
+<meta property="og:description" content="Constraint programming is a core technology for solving complex combinatorial problems in scheduling, planning, configuration, and verification. Trusting its results therefore demands guarantees at two levels: that reformulations applied beforehand are semantics-preserving, and…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.28459.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.28459.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.28459v1" target="_blank" rel="noopener"><img src="../thumbs/2607.28459.jpg" alt="First page of LeanCSP: A Framework for Certifying Constraint Reformulation and Solving in Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">LeanCSP: A Framework for Certifying Constraint Reformulation and Solving in Lean</h1>
+        <p class="authors">Pablo Manrique, Stefan Szeider</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jul 30, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.28459v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.28459" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/leansolving/leancsp" target="_blank" rel="noopener" title="leansolving/leancsp">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">LeanCSP formalizes constraint satisfaction problems in Lean, proving reformulation soundness and checking external solver certificates back inside Lean.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Constraint programming is a core technology for solving complex combinatorial problems in scheduling, planning, configuration, and verification. Trusting its results therefore demands guarantees at two levels: that reformulations applied beforehand are semantics-preserving, and that solvers produce correct answers. In this work, we introduce a framework that addresses both verification levels in the Lean theorem prover: it can be used to prove formulation-level properties, such as equivalence, equisatisfiability, and the correctness of symmetry-breaking constraints, parametrically for entire problem families; and to check solver-produced certificates for individual instances via translation backends to external formats such as MiniZinc, SMT-LIB, and OPB. Combining both levels yields an end-to-end workflow that establishes the satisfiability or unsatisfiability of a constraint problem without trusting the external solver. Experimental results show that our framework&#x27;s verified symmetry breaking also pays off in practice: a single parametric proof per problem family, reused across all instance sizes, reduces solver search effort by a factor of up to 2x10^7, while the entire in-Lean certification stays affordable, taking at most a few minutes for our largest instances.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Trusting constraint programming results requires guarantees that reformulations (e.g., symmetry-breaking) are semantics-preserving and that solver answers are correct. Errors in reformulations can silently flip satisfiability, and solvers themselves may contain bugs.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">CSPs are formalized in Lean using dependent types, with reformulation properties (equivalence, equisatisfiability, symmetry-breaking soundness) provable parametrically for entire problem families. Instances are translated to external formats (MiniZinc, SMT-LIB, OPB), and solver certificates are re-imported and checked in Lean via decide (SAT) or PBLean checking VeriPB proofs (UNSAT). A verified CSP-to-pseudo-Boolean translation grounds the unsatisfiability path, keeping external solvers outside the trusted base.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Verified symmetry-breaking reduces solver search effort by up to 2x10^7, with a single parametric proof reused across instance sizes. End-to-end in-Lean certification stays affordable, at most a few minutes for the largest instances.</p><div class="sum-table"><table><thead><tr><th>Family</th><th>w/o SBC (det)</th><th>w/ SBC (det)</th><th>Speedup (det)</th></tr></thead><tbody><tr><td>Clique</td><td>1.1e10</td><td>5.5e2</td><td>19,863,281</td></tr><tr><td>Myciel.</td><td>4.4e9</td><td>1.4e7</td><td>303</td></tr><tr><td>Schur</td><td>t/o</td><td>1.0e9</td><td>—</td></tr><tr><td>Odd cyc.</td><td>4.6e2</td><td>5.2e1</td><td>8.8</td></tr><tr><td>vdW</td><td>4.3e6</td><td>3.0e6</td><td>1.4</td></tr></tbody></table><div class="tbl-cap">Effect of verified symmetry-breaking constraint (SBC) per family: deterministic step counts and speedup</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

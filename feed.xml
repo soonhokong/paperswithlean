@@ -6,7 +6,18 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 31 Jul 2026 03:02:29 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jul 2026 04:01:51 +0000</lastBuildDate>
+    <item>
+      <title>LeanCSP: A Framework for Certifying Constraint Reformulation and Solving in Lean</title>
+      <link>https://paperswithlean.com/paper/2607.28459.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.28459.html</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Pablo Manrique, Stefan Szeider</dc:creator>
+      <category>verification</category><category>tooling</category><category>logic</category>
+      <description>LeanCSP formalizes constraint satisfaction problems in Lean, proving reformulation soundness and checking external solver certificates back inside Lean.
+
+Constraint programming is a core technology for solving complex combinatorial problems in scheduling, planning, configuration, and verification. Trusting its results therefore demands guarantees at two levels: that reformulations applied beforehand are semantics-preserving, and that solvers produce correct answers. In this work, we introduce a framework that addresses both verification levels in the Lean theorem prover: it can be used to prove formulation-level properties, such as equivalence, equisatisfiability, and the correctness of symmetry-breaking constraints, parametrically for entire problem families; and to check solver-produced certificates for individual instances via translation backends to external formats such as MiniZinc, SMT-LIB, and OPB. Combining both levels yields an end-to-end workflow that establishes the satisfiability or unsatisfiability of a constraint problem without trusting the external solver. Experimental results show that our framework&#x27;s verified symmetry breaking also pays off in practice: a single parametric proof per problem family, reused across all instance sizes, reduces solver search effort by a factor of up to 2x10^7, while the entire in-Lean certification stays affordable, taking at most a few minutes for our largest instances.</description>
+    </item>
     <item>
       <title>BlueprintRepair: Typed Local Edits for Failed Lean Proof Blueprints</title>
       <link>https://paperswithlean.com/paper/2607.28110.html</link>
@@ -17,6 +28,50 @@
       <description>Introduces a schema-checked typed local-edit interface for repairing failed Lean proof blueprints, plus BlueprintTrace, a benchmark of 142 controlled failures.
 
 LLM-based Lean proving systems increasingly organize a proof as a blueprint: a dependency graph of formal statements. We introduce BlueprintRepair, a repair interface that lets a model change this graph through ten schema-checked local operations. An operation names the node it edits, so the target theorem cannot be changed. Lean checks every applied change, and an accepted repair must declare every blueprint lemma its proof uses. We also construct BlueprintTrace, a benchmark of 142 controlled failures with complete accepted and rejected repair trajectories. We compare typed edits, exact source patches, and complete module rewrites under matched source, feedback, model, and budget, one episode per state and interface. With DeepSeek-V4-Flash, the three interfaces solve almost the same number of the benchmark&#x27;s localized failures. Typed repair is the cheapest per solved state (patching is 1.30x as expensive, rewriting 2.06x), and within 10,000 completion tokens per task it reaches almost all of its final coverage, while both free-form interfaces are well behind. A second model, Qwen3.6-Flash, solves fewer states but keeps typed repair cheapest, puts it ahead on the proof-authoring states, and repeats the localized pattern.</description>
+    </item>
+    <item>
+      <title>Counterexamples, Spectral Obstructions, and Deletion Stability for WOW-284</title>
+      <link>https://paperswithlean.com/paper/2607.27452.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.27452.html</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Samuil Petkov</dc:creator>
+      <category>formalization</category><category>combinatorics</category>
+      <description>Lean 4.31 kernel-checks the 50-vertex Hoffman–Singleton counterexample, finite spectral certificates at orders 38–42, and the analytic LP optimum for all k≥4.
+
+WOW-284 asserts that the minimum dual degree of every connected graph of order at least three and girth at least five does not exceed the negative of its least distance eigenvalue. We refute it with exact counterexamples of orders $38,39,40,42$, and $50$, and develop a structural theory of the failure. For a connected $k$-regular graph of girth at least five and diameter three, we prove $δ^*(G)+λ_{\min}(D(G))=2k-2-\max_{θ\ne k}(θ+1)^2$. Here $θ$ ranges over the nonprincipal adjacency eigenvalues. We further prove that every regular strict counterexample has degree at least six and diameter at most four, while diameter four forces degree at least ten. We solve the associated one-variable nonbacktracking linear program exactly, including optimizer rigidity. For regular strict counterexamples of diameter three, the optimizer yields a positive-semidefinite slack matrix whose integral excess gives the stronger bound $|V(G)|\le\left\lfloor 3(k+2)^2(k^2+3)/(18k+41)\right\rfloor$; this follows from a three-to-one quantization theorem for the integral excess. The slack matrix&#x27;s principal minors also recover local cycle constraints. In particular, regular degree-six counterexamples have order at most $50$, and at the degree-six, order-$50$ boundary the associated signed complement is necessarily disconnected. We determine the distance spectra of one- and two-vertex punctures of Moore graphs and establish a uniform deletion-stability bound: every deletion of at most five vertices from the Hoffman–Singleton graph remains a strict counterexample, whereas an explicit six-vertex deletion does not. All theorem-level computations use exact arithmetic. Lean 4.31 kernel-checks the explicit $50$-vertex Hoffman–Singleton counterexample at graph level, finite spectral certificates at orders $38,39,40,42$, and the analytic LP optimum and rigidity for every integer $k\ge4$.</description>
+    </item>
+    <item>
+      <title>From Lecture Notes to Lean: Formalizing a Textbook on Probability Theory</title>
+      <link>https://paperswithlean.com/paper/2607.27298.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.27298.html</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Shuo Deng, Kenneth W. Shum</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>ai-agents</category><category>probability</category>
+      <description>Formalizes a fourteen-chapter measure-theoretic probability textbook in Lean, building bridge lemmas connecting textbook statements to Mathlib&#x27;s general measure-theory interfaces via an agentic workflow.
+
+As large language models become increasingly capable of generating mathematical arguments, mathematics is likely to face not a scarcity of proofs but an abundance of plausible ones. In such an environment, verification, exposition, and incorporation into reusable mathematical infrastructure become central tasks. We report on an ongoing Lean formalization of &quot;Measure-Theoretic Probability: With Applications to Statistics, Finance, and Engineering&quot;, a fourteen-chapter upper-level undergraduate textbook covering topics from Riemann–Stieltjes integration to martingales and limit theorems. The project produces a machine-checked companion to the textbook and contributes reusable infrastructure for future formalizations involving probability theory. A Lean formalization provides computer-checked statements and proofs, makes hypotheses explicit, and allows readers to inspect the precise logical content of textbook results. A central challenge is to bridge textbook-facing statements with Mathlib&#x27;s more general measure-theoretic interfaces. We reuse Mathlib results when possible and introduce reviewable interface lemmas when the textbook formulation and library abstraction differ. The project illustrates how formalized textbooks can support teaching, clarify mathematical assumptions, and help build the formal foundations needed for reliable AI-assisted mathematics.</description>
+    </item>
+    <item>
+      <title>CircuitProver: Agentic Lean 4 Theorem Proving with Reusable Circuit Proof Library for Hardware Verification</title>
+      <link>https://paperswithlean.com/paper/2607.27259.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.27259.html</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Ziyi Yang, Wenji Fang, Chen Chen, Zhiyao Xie, Hongce Zhang</dc:creator>
+      <category>verification</category><category>ai-agents</category><category>theorem-proving-ml</category><category>autoformalization</category>
+      <description>CircuitProver is an agentic Lean 4 framework that translates parameterized Chisel hardware designs into Lean models and proves correctness theorems.
+
+Modern integrated circuits (ICs) are becoming increasingly complex, making functional verification a major bottleneck. The dominant hardware formal verification methodology, model checking, verifies each design instance separately and exposes only pass/fail results, so the reasoning behind a proof stays locked inside solver heuristics and is repeatedly reconstructed across related designs. Interactive theorem proving instead yields explicit, reusable proof artifacts, but applying it to hardware remains largely manual, demanding expert effort for formalization, invariant discovery, and proof development. In this paper, we present CircuitProver, an agentic Lean 4-based verification framework supporting proof-accumulation and parameterized verification. CircuitProver automatically translates parameterized hardware designs and their natural language specifications into executable Lean 4 models. It then iteratively constructs machine-checked proofs through Lean feedback to establish that the hardware code complies with the specification. The proving traces and verified theorems are distilled into reusable libraries, where proving strategies guide future agent reasoning and verified lemmas support formal proof reuse across related hardware verification tasks. We further introduce the first benchmark suite for evaluating agentic hardware theorem proving, covering diverse parameterized hardware designs, specifications, proof tasks, and evaluation metrics. Across 63 tasks, CircuitProver successfully proves all benchmarks, while a vanilla agent solves 92.1% of them and requires twice as many proof rounds on average. Ablation studies show that accumulated proof knowledge reduces redundant proof construction across related verification tasks, reducing proof length by 16.3% and verification time by 23.2%.</description>
+    </item>
+    <item>
+      <title>The 2-Domination Number and the Upper Median Degree: A Proof of Graffiti.pc Conjecture 387</title>
+      <link>https://paperswithlean.com/paper/2607.27246.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.27246.html</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Jun Qing</dc:creator>
+      <category>formalization</category><category>combinatorics</category>
+      <description>Graffiti.pc Conjecture 387 on the 2-domination number bound was formalized and machine-checked in Lean 4 using Mathlib.
+
+Let G be a nonempty finite simple graph of order n, and let m(G) be the upper median of its degree sequence. We prove that the 2-domination number satisfies gamma_2(G) &lt;= n - m(G) + 1. This proves Graffiti.pc Conjecture 387. In fact, the argument establishes the inequality for every nonempty finite simple graph, so the connectedness hypothesis in the original formulation is unnecessary. The proof uses the complement graph and a minimally linearly dependent family of polynomials encoding selected nonneighborhoods.</description>
     </item>
     <item>
       <title>Estimating Size of the Union of Sets in Streaming Model</title>
@@ -611,61 +666,6 @@ Write $(3/2)^n = m_n + \eps_n$ with $m_n$ the nearest integer and $\eps_n\in[-\t
       <description>Proofs of the type D ASEP long-time asymptotics were formalized in Lean using Aristotle by Harmonic AI.
 
 The type D ASEP is an asymmetric two–species interacting particle system on $\Z$, in which two separately conserved species hop, bind into a composite “bound pair”, and split. The model, along with its reversible measures and orthogonal polynomial duality, was constructed using the representation theory of $U_q(\so_{2n})$. The reversible measures and orthogonal polynomial duality are each a product of two copies of the single-species ASEP reversible measures and orthogonal polynomial duality. In this paper, we study the long-time asymptotics of the type D ASEP. In the fixed–$q$ regime, using an exact current–decoupling identity, we prove that the asymptotic hydrodynamic limit and Tracy–Widom fluctuations decouple, as predicted from the duality. In the weak–asymmetry (Edwards–Wilkinson) regime, when $q=1-c/N^2$, we prove that the two density fluctuation fields decouple: each converges to a linear stochastic heat equation, with no cross–coupling in either the drift or the noise, the limiting noises having vanishing cross–correlation. More surprisingly, we then prove that the two limiting normal random variables are correlated with a seemingly new correlation function. The correlation is exactly equal to $(1-e^{-4c})/(4c)$, with the positive parts of the normal random variables having correlations expressed by the Bessel–Struve function. This paper, with the exception of the abstract and introduction, was written entirely by Claude Opus 4.8 and Fable 5. The proofs were then formalized in Lean, using Aristotle by Harmonic AI. The human author of this paper verified the proofs manually.</description>
-    </item>
-    <item>
-      <title>TreeThink: A Modular Tree Search Library for Mathematical Reasoning with LLMs</title>
-      <link>https://paperswithlean.com/paper/2607.11258.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.11258.html</guid>
-      <pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Burak S. Akbudak, Zeynel A. Uluşan, Can S. Erer, Gözde Gül Şahin</dc:creator>
-      <category>tooling</category><category>theorem-proving-ml</category><category>benchmark</category>
-      <description>Modular tree-search library integrating Lean 4 via REPL for neural theorem proving, evaluated on miniF2F alongside Rocq and Isabelle.
-
-Tree search algorithms enable systematic exploration of the proof space in neural theorem proving. Existing LLM tree search libraries primarily target natural language reasoning and do not provide native integration with formal verifiers, while theorem proving systems often rely on task-specific search implementations. We introduce TreeThink, an open-source Python library for modular, fully asynchronous tree search in neural theorem proving. It integrates established tree search methods with vLLM-based inference pipelines and diverse node evaluation techniques, ranging from lightweight heuristics to neural evaluators. We support Lean 4, Rocq, and Isabelle/HOL alongside natural language. It connects directly to each language&#x27;s Read-Eval-Print Loop (REPL) server for real-time verification and proof state extraction. We evaluate TreeThink on miniF2F and MATH500, demonstrating cross-language formal proof search, natural language reasoning support, and up to 6.3$\times$ wall-clock speedup from asynchronous execution. Source code is released under the MIT license at https://github.com/GGLAB-KU/treethink , and the library is accessible as a downloadable package at https://pypi.org/project/treethink/ .</description>
-    </item>
-    <item>
-      <title>Mechanised operational semantics of Rowhammer</title>
-      <link>https://paperswithlean.com/paper/2607.10314.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.10314.html</guid>
-      <pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Martin Berger, Amir Naseredini</dc:creator>
-      <category>formalization</category><category>verification</category><category>logic</category>
-      <description>Fully mechanises a probabilistic small-step operational semantics of Rowhammer faults and information-flow security in Lean using Mathlib.
-
-Rowhammer is a hardware vulnerability in dynamic random-access memory (DRAM) in which repeated accesses to aggressor rows can induce bit-flips in victim rows. This phenomenon violates a core assumption of conventional programming language semantics: reading or writing one memory location does not modify others. Despite the security importance of this phenomenon, there is no formal framework connecting Rowhammer faults with program behaviour. We present a probabilistic small-step operational semantics for an idealised imperative language subject to Rowhammer-style faults. The semantics abstracts from DRAM internals and semiconductor physics. A general probabilistic fault model parameterises the semantics, representing Rowhammer-style faults by assigning probabilities to bit-flips during read or write operations. The resulting distributions are propagated through programs using the standard monadic structure of probabilistic computation. As a case study, we formalise a well-known defence that places program variables sufficiently far apart in physical memory that an access to one variable cannot disturb another. We prove a distribution-independent semantic collapse theorem: for every finite execution, including prefixes of terminating and non-terminating executions, the protected projection of the probabilistic Rowhammer semantics is the Dirac distribution of the corresponding Rowhammer-free execution. We develop an observation-parametric account of secure information flow. Non-interference is expressed as a hyperproperty comparing the distributions of low observations from low-equivalent initial memories. Consequently, physical separation preserves non-interference for every admissible fault model, while every Rowhammer non-interference violation reflects a violation already present in the Rowhammer-free semantics. The development is fully mechanised in Lean using mathlib.</description>
-    </item>
-    <item>
-      <title>Formalizing Abstract Simplicial Complexes &amp; Stellar Subdivisions in Lean</title>
-      <link>https://paperswithlean.com/paper/2607.10216.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.10216.html</guid>
-      <pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Garett Cunningham, Daniel Zach, Stefan Friedl</dc:creator>
-      <category>formalization</category><category>topology</category><category>combinatorics</category>
-      <description>Formalizes abstract simplicial complexes, links, joins, and stellar subdivisions in Lean, proving identities used in combinatorial topology.
-
-The theory of simplicial complexes is a cornerstone of topology, offering a sophisticated tool for computing invariants. We present a formalization of abstract simplicial complexes and stellar subdivisions in the Lean proof assistant. We adopt a purely combinatorial framework in order to provide a cohesive foundation for studying the theory of stellar subdivisions as seen in many contexts of combinatorial topology. In particular, we provide formalizations of morphisms between abstract simplicial complexes; several crucial constructions and operations on complexes, such as links and joins; and perform a comprehensive study of how stellar subdivisions interact with these operations. We state and prove a number of identities commonly used in the study of triangulated manifolds, such as deriving equivalences between links in an abstract simplicial complex $K$ and in a stellar subdivision $σ_s K$, including results with no references in the standard literature. To our knowledge, this is the first formalization of stellar subdivisions in any proof assistant.</description>
-    </item>
-    <item>
-      <title>An Overlap Construction for Relative Linear Extension Ratios</title>
-      <link>https://paperswithlean.com/paper/2607.10084.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.10084.html</guid>
-      <pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Maseeh Ghodsi</dc:creator>
-      <category>formalization</category><category>combinatorics</category>
-      <description>The deductive core—continuant floor bound, residue-counting steps, and case analysis of the main theorem—is machine-checked in Lean 4 using its standard library.
-
-Chan and Pak introduced the relative linear extension ratio $ρ(P,x)=e(P)/e(P-x)$, where $e(P)$ is the number of linear extensions of a finite poset $P$, and let $ν(c,d)$ be the least number of elements of a poset that realizes $ρ(P,x)=d/c$. They proved that $ν(c,d)\le d/c+O(\log d\log\log d)$ for $d\ge 3c$, and asked whether the hypothesis $d\ge 3c$ can be relaxed to $d\ge(1+\varepsilon)c$ or removed. We prove the fixed-gap form of this question: for every fixed $\varepsilon&gt;0$, $ν(c,d)\le \frac{d}{c}+O_{\varepsilon}(\log d\log\log d)$ whenever $d\ge(1+\varepsilon)c$, and the implied constant is absolute once $d\ge 2c$. The new ingredient is a one-element overlap construction: if $x$ is minimal in $P$ and $y$ is minimal in $Q$, then there is a poset $R$ with $|R|=|P|+|Q|-1$ and an element $z$ such that $ρ(R,z)=ρ(P,x)+ρ(Q,y)-1$. Together with the continued-fraction construction of Chan and Pak and Rukavishnikova&#x27;s tail bound for sums of partial quotients, this removes the factor $3$ in their range. We also show that the fixed-gap hypothesis is essentially optimal for this construction. In the range $1 &lt; d/c &lt; 2$, with $h=d-c$, the size bound the construction can certify is at least $\lfloor c/h\rfloor$, so the method reaches the stated error term only when $h$ is at least of order $c/(\log c\log\log c)$. The remaining obstruction to removing the hypothesis is a short-interval problem for sums of partial quotients, which we describe. The deductive part of the argument has been checked with the Lean proof assistant.</description>
-    </item>
-    <item>
-      <title>A counterexample to a subadditivity conjecture of Cohen for Sophie Germain cyclic numbers</title>
-      <link>https://paperswithlean.com/paper/2607.09793.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.09793.html</guid>
-      <pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Josué Alexander Ibarra</dc:creator>
-      <category>formalization</category><category>number-theory</category>
-      <description>A counterexample to Cohen&#x27;s subadditivity conjecture for Sophie Germain cyclic numbers is formalized and kernel-verified in Lean 4 over Mathlib.
-
-An integer $n \ge 1$ is cyclic if $\gcd(n,\varphi(n))=1$ (equivalently, if every group of order $n$ is cyclic), and Sophie Germain cyclic if both $n$ and $2n+1$ are cyclic. Let $C_σ(N)$ count the Sophie Germain cyclic integers in $[1,N]$. Cohen conjectured that $C_σ$ is subadditive, $C_σ(m+n) \le C_σ(m)+C_σ(n)$ for all $1 \le m \le n$ (his Conjecture 66), having checked $m,n \le 10^6$ without finding a counterexample. We give one: at $m=31$, $n=3928$, $C_σ(3959)=697 &gt; 696 = C_σ(31)+C_σ(3928)$. The argument is short, and is verified by the Lean 4 kernel.</description>
     </item>
   </channel>
 </rss>

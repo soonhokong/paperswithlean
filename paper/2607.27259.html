@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CircuitProver: Agentic Lean 4 Theorem Proving with Reusable Circuit Proof Library for Hardware Verification · Papers With Lean</title>
+<meta name="description" content="Modern integrated circuits (ICs) are becoming increasingly complex, making functional verification a major bottleneck. The dominant hardware formal verification methodology, model checking, verifies each design instance separately and exposes only pass/fail results, so the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CircuitProver: Agentic Lean 4 Theorem Proving with Reusable Circuit Proof Library for Hardware Verification">
+<meta property="og:description" content="Modern integrated circuits (ICs) are becoming increasingly complex, making functional verification a major bottleneck. The dominant hardware formal verification methodology, model checking, verifies each design instance separately and exposes only pass/fail results, so the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.27259.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.27259.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.27259v1" target="_blank" rel="noopener"><img src="../thumbs/2607.27259.jpg" alt="First page of CircuitProver: Agentic Lean 4 Theorem Proving with Reusable Circuit Proof Library for Hardware Verification"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">CircuitProver: Agentic Lean 4 Theorem Proving with Reusable Circuit Proof Library for Hardware Verification</h1>
+        <p class="authors">Ziyi Yang, Wenji Fang, Chen Chen, Zhiyao Xie, Hongce Zhang</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Jul 29, 2026 · v1</span>
+          <span class="badge">cs.AR</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.27259v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.27259" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">CircuitProver is an agentic Lean 4 framework that translates parameterized Chisel hardware designs into Lean models and proves correctness theorems.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Modern integrated circuits (ICs) are becoming increasingly complex, making functional verification a major bottleneck. The dominant hardware formal verification methodology, model checking, verifies each design instance separately and exposes only pass/fail results, so the reasoning behind a proof stays locked inside solver heuristics and is repeatedly reconstructed across related designs. Interactive theorem proving instead yields explicit, reusable proof artifacts, but applying it to hardware remains largely manual, demanding expert effort for formalization, invariant discovery, and proof development. In this paper, we present CircuitProver, an agentic Lean 4-based verification framework supporting proof-accumulation and parameterized verification. CircuitProver automatically translates parameterized hardware designs and their natural language specifications into executable Lean 4 models. It then iteratively constructs machine-checked proofs through Lean feedback to establish that the hardware code complies with the specification. The proving traces and verified theorems are distilled into reusable libraries, where proving strategies guide future agent reasoning and verified lemmas support formal proof reuse across related hardware verification tasks. We further introduce the first benchmark suite for evaluating agentic hardware theorem proving, covering diverse parameterized hardware designs, specifications, proof tasks, and evaluation metrics. Across 63 tasks, CircuitProver successfully proves all benchmarks, while a vanilla agent solves 92.1% of them and requires twice as many proof rounds on average. Ablation studies show that accumulated proof knowledge reduces redundant proof construction across related verification tasks, reducing proof length by 16.3% and verification time by 23.2%.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Model checking verifies hardware instances separately and hides reasoning as pass/fail results, preventing reuse across related designs. Interactive theorem proving yields reusable proof artifacts but remains largely manual for hardware, requiring expert formalization, invariant discovery, and proof development.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">CircuitProver automatically translates parameterized Chisel hardware designs and natural-language specifications into executable Lean 4 semantic models and Lean theorems. A reasoning agent iteratively constructs machine-checked proofs by decomposing goals, generating lemmas and invariants, and repairing scripts using Lean feedback. Successful proof trajectories are distilled into reusable proof-guidance strategies and Lean-checked theorem libraries for future related tasks. The authors also introduce a benchmark suite of 63 parameterized Chisel verification tasks defined at the Lean level.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.27259/x2.png" alt=""><figcaption>Figure 2: Workflow of CircuitProver for agentic hardware theorem proving. The framework translates hardware designs into Lean 4 models, performs specification formulation, hardware-aware proof planning, and iterative theorem proving, and accumulates reusable proof knowledge.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2607.27259/x4.png" alt=""><figcaption>Figure 4: Detailed proof strategy for the carry-skip adder</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Across 63 tasks CircuitProver proved all benchmarks, while a vanilla agent solved 92.1% and required about twice as many proof rounds. Accumulated proof knowledge reduced proof length by 16.3% and verification time by 23.2%.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.27259/x5.png" alt=""><figcaption>Figure 5: Ablation study of CircuitProver, evaluating the impact of proof guidance and Lean-checked theorem libraries.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Model</th><th>Solved</th><th>Time (s)</th><th>LoC</th><th>Rnd.</th></tr></thead><tbody><tr><td>Haiku 4.5</td><td>31/63</td><td>845.2</td><td>174.3</td><td>17.5</td></tr><tr><td>Sonnet 4.6</td><td>47/63</td><td>834.5</td><td>139.0</td><td>11.5</td></tr><tr><td>Sonnet 5</td><td>60/63</td><td>642.1</td><td>113.4</td><td>11.7</td></tr><tr><td>Opus 4.8</td><td>63/63</td><td>506.2</td><td>108.6</td><td>4.6</td></tr></tbody></table><div class="tbl-cap">Model scaling: proof success and cost metrics</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
