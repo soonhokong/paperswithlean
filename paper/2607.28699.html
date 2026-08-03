@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WitCert: Sound Runtime Risk Observability and Gating for KV-Cache Quantization · Papers With Lean</title>
+<meta name="description" content="KV-cache quantization is validated today by offline benchmark averages; a deployed system cannot tell whether compression is damaging the request it is serving right now. We give it a provably sound runtime meter, a &quot;DTrace for KV quantization&quot;: a per-(layer, head, step) upper…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WitCert: Sound Runtime Risk Observability and Gating for KV-Cache Quantization">
+<meta property="og:description" content="KV-cache quantization is validated today by offline benchmark averages; a deployed system cannot tell whether compression is damaging the request it is serving right now. We give it a provably sound runtime meter, a &quot;DTrace for KV quantization&quot;: a per-(layer, head, step) upper…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.28699.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.28699.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.28699v1" target="_blank" rel="noopener"><img src="../thumbs/2607.28699.jpg" alt="First page of WitCert: Sound Runtime Risk Observability and Gating for KV-Cache Quantization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">WitCert: Sound Runtime Risk Observability and Gating for KV-Cache Quantization</h1>
+        <p class="authors">Fanzhe Wei, Li Liu</p>
+        <div class="row">
+          <span class="badge">cs.AR</span>
+          <span class="date">Jul 30, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.28699v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.28699" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/wayfind/witcert" target="_blank" rel="noopener" title="wayfind/witcert">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Core soundness theorems for the KV-cache quantization total-variation bound are machine-checked in Lean 4 using Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">KV-cache quantization is validated today by offline benchmark averages; a deployed system cannot tell whether compression is damaging the request it is serving right now. We give it a provably sound runtime meter, a &quot;DTrace for KV quantization&quot;: a per-(layer, head, step) upper bound on the total variation between exact and compressed attention. The meter has two tiers: a deterministic band-norm-witness bound, sound for any cache-preserving black-box quantizer and for any query (adaptive-safe, worst-case Cauchy-Schwarz plus RoPE band-unitarity), and a tighter probabilistic certificate for a controlled subtractively-dithered INT8 quantizer under an explicit request-level failure budget (stated for non-adaptive queries; core theorems machine-checked in Lean 4). Three results. Observability: the meter enters SGLang through an environment-guarded patch, and any scheme registered as one tensor function is measured in live serving. Repair: meter-driven gating, risk-ranked where the witness is saturated and certified where it is informative, empirically restores the quality floor at benchmark scale. For example, raw-cast FP8 improves from 22.8 back to 79.7 on hard RULER tasks, with the difference from uncompressed bounded at [+0.0, +0.8] by a paired test. Analysis: aggressive schemes survive on cross-layer error cancellation, not per-step fidelity. In a 28-layer sweep, no single layer&#x27;s pollution alone loses anything (0/28), and the certified INT8 cache serves 1.88 times more KV tokens at the same memory in SGLang.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">KV-cache quantization for LLM inference is validated only by offline benchmark averages, giving deployed systems no way to observe whether compression is damaging the request currently being served. A prior worst-case runtime certificate is too conservative to authorize any practical compression.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A two-tier runtime meter provides a sound per-(layer, head, step) upper bound on the total variation between exact and compressed attention. Tier A is a deterministic band-norm-witness bound valid for any cache-preserving black-box quantizer, using RoPE band-unitarity and Cauchy-Schwarz. Tier B is a tighter probabilistic sub-Gaussian certificate for a subtractively-dithered INT8 quantizer under a request-level failure budget. The meter drives gating that pages in exact keys where risk is high, and the core theorems are machine-checked in Lean 4 with Mathlib.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.28699/x2.png" alt=""><figcaption>Figure 2: The WitCert observatory. Any scheme’s residual leaves a witness at write time; the decode kernel computes output and meter in one fused data pass (LSE-merged across KV splits); the gate repairs at block granularity from the exact backing store and zeroes the repaired witnesses; SGLang integration is a bit-identical-when-off env-guarded patch.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Meter-driven gating restores quality (raw-cast FP8 improved from 22.8 to 79.7 on hard RULER tasks, difference from uncompressed bounded at [+0.0,+0.8]). The certified INT8 cache serves 1.88x more KV tokens at the same memory in SGLang, and the certificate reduces page-in rate by 28.7-77.0% relative to the deterministic tanh bound.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.28699/x5.png" alt=""><figcaption>Figure 5: Meter gating at benchmark scale (labels per Sec. 4.3 : risk-ranked at \tau{\geq}1 , certified at \tau{&lt;}1 ): quality floor empirically restored (left; a benchmark outcome, not a corollary of the TV bound); one-time page-in traffic under incremental persistent repair (right)—the safe scheme pays 3.4\times less than the broken one.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Model</th><th>Domain</th><th>δ=1e-2</th><th>tanh (δ=0)</th></tr></thead><tbody><tr><td>Qwen2.5-7B</td><td>natural</td><td>0.809</td><td>0.167</td></tr><tr><td>Qwen2.5-7B</td><td>needle</td><td>0.810</td><td>0.485</td></tr><tr><td>Mistral-7B</td><td>needle</td><td>0.653</td><td>0.513</td></tr><tr><td>Yi-1.5-6B</td><td>needle</td><td>0.648</td><td>0.417</td></tr></tbody></table><div class="tbl-cap">Risk-coverage curve: joint K+V step coverage vs. request-level budget (tanh is delta=0 reference)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
