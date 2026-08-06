@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Towards Datalog on Quantum Annealers: Compiling Recursive Logic Programs with Bottom-up Semantics to 2-local Ising Models · Papers With Lean</title>
+<meta name="description" content="Quantum annealers solve problems by finding the lowest-energy (ground) state of a programmable physical system, a 2-local Ising model, whose energy function is the Hamiltonian. We compile recursive Datalog programs into such models so that the ground state projects onto the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Towards Datalog on Quantum Annealers: Compiling Recursive Logic Programs with Bottom-up Semantics to 2-local Ising Models">
+<meta property="og:description" content="Quantum annealers solve problems by finding the lowest-energy (ground) state of a programmable physical system, a 2-local Ising model, whose energy function is the Hamiltonian. We compile recursive Datalog programs into such models so that the ground state projects onto the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.04645.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.04645.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.04645v1" target="_blank" rel="noopener"><img src="../thumbs/2608.04645.jpg" alt="First page of Towards Datalog on Quantum Annealers: Compiling Recursive Logic Programs with Bottom-up Semantics to 2-local Ising Models"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Towards Datalog on Quantum Annealers: Compiling Recursive Logic Programs with Bottom-up Semantics to 2-local Ising Models</h1>
+        <p class="authors">Bruno Rucy Carneiro Alves de Lima, Victor Henrique Cabral Pinheiro, Evgenii Dolzhkov, Joseph Haske</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Aug 5, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.04645v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.04645" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/brurucy/quantum-datalog" target="_blank" rel="noopener" title="brurucy/quantum-datalog">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Per-stage correctness lemmas and a correspondence theorem for compiling Datalog to 2-local Ising models are verified in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Quantum annealers solve problems by finding the lowest-energy (ground) state of a programmable physical system, a 2-local Ising model, whose energy function is the Hamiltonian. We compile recursive Datalog programs into such models so that the ground state projects onto the program&#x27;s minimal Herbrand model. The compiler has four stages: binarization, grounding, reduction to a Min-Ones SAT formula, and Ising encoding. Each rule becomes an energy penalty on the one assignment that violates it, and a small uniform cost on every true atom selects the minimal model. We contribute both in theory and in practice with per-stage correctness lemmas and a correspondence theorem, verified in Lean 4, establishing that the ground state of the compiled model projects onto the program&#x27;s minimal Herbrand model. We map the compiled models onto the topologies of commercial annealers and characterize, under classical and simulated-quantum annealing, whether and when that certified ground state is attained.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Quantum annealers minimize energy functions expressed as 2-local Ising models, but recursive bottom-up Datalog programs have not been compiled to such models with certified correctness. The challenge is ensuring the annealer&#x27;s ground state corresponds exactly to a program&#x27;s minimal Herbrand model.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A four-stage compiler transforms Datalog programs through binarization, grounding, reduction to a Min-Ones SAT formula, and Ising encoding. Each rule becomes an energy penalty on the assignment that violates it, with a small uniform cost per true atom selecting the minimal model. Per-stage preservation lemmas and a correspondence theorem are proved in Lean 4, and a Python reference implementation compiles and exactly solves small instances.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.04645/x1.png" alt=""><figcaption>Figure 1: Energy along a one-atom-per-step walk for \mathit{nonlinear\_tc\_path}(4) : from the EDB \mathcal{D} through the fixpoint iterates T^{1},T^{2} (grey) to the minimal model (green), the global minimum of all 2^{19} assignments by exhaustive enumeration. Adding the six-atom unfounded set (purple) costs one \varepsilon per atom, and leaving that local minimum costs at least 79 ( W\Delta_{\mi</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The Lean 4 proofs establish that the compiled model&#x27;s ground state projects onto the program&#x27;s minimal Herbrand model. Compiled instances are mapped onto D-Wave Pegasus and Zephyr topologies, and solver recovery is characterized under classical and simulated-quantum annealing.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.04645/x2.png" alt=""><figcaption>Figure 2: Two independently compiled reachability programs at the shipped machine’s scale. Left: each instance’s EDB, the Zephyr Z1 hardware graph ( 48 nodes, 280 edges). Right: both compiled programs, 1{,}778 logical spins, minor-embedded together into the ideal Zephyr Z12 generator ( 4{,}800 sites), occupying 3{,}489 physical qubits with longest chain 36 . One instance is green, the other purple</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
