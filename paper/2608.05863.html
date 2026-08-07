@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Runtime Observability for Heterogeneous Attention Memory · Papers With Lean</title>
+<meta name="description" content="Modern models no longer keep a plain KV cache: latent caches, learned sparse selectors and recurrent states each carry the model&#x27;s memory in a different form, and each fails differently under compression. We give a runtime observability contract that covers all four memory…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Runtime Observability for Heterogeneous Attention Memory">
+<meta property="og:description" content="Modern models no longer keep a plain KV cache: latent caches, learned sparse selectors and recurrent states each carry the model&#x27;s memory in a different form, and each fails differently under compression. We give a runtime observability contract that covers all four memory…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.05863.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.05863.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.05863v1" target="_blank" rel="noopener"><img src="../thumbs/2608.05863.jpg" alt="First page of Runtime Observability for Heterogeneous Attention Memory"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Runtime Observability for Heterogeneous Attention Memory</h1>
+        <p class="authors">Fanzhe Wei, Li Liu, Ziyang Wang, Chenyu Wang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Aug 6, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.05863v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.05863" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/metask-ai/witprobe-attention-memory" target="_blank" rel="noopener" title="metask-ai/witprobe-attention-memory">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The composed error-bound chain, telescoping budget, and concentration/supermartingale certificates are machine-checked in Lean/Mathlib over a finite product space.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Modern models no longer keep a plain KV cache: latent caches, learned sparse selectors and recurrent states each carry the model&#x27;s memory in a different form, and each fails differently under compression. We give a runtime observability contract that covers all four memory classes with three operators, instantiate it on six model configurations across five architecture families, and compose the per-stage bounds into an executable request-level risk ledger. Contracts carry their error metric as a type – composition is only defined when metrics match, and this check rejected our own first composed chain; the repaired chain crosses metrics through two proved bridges, and whatever no formal system can certify is measured instead, dropping the composed tier to empirical automatically: every claim is certified, partially certified, or empirical, composition inherits the weakest tier, and the tier is decided by the machine. Replayed over $12.4$M entry reads and run under eight-way concurrency with per-request budgets and fail-closed identity attribution, the ledger quantifies the honest trade-off on today&#x27;s witness and holds its risk budget with zero violations. A fused always-on probe observes a declared one-layer subset under CUDA graphs inside the serving noise floor. Applied to a served DeepSeek-V4 stack with a packed compressed-KV prototype, the same machinery localizes a silent corruption to a precise structural boundary – exact in the eviction-free, identity-isolated regime, with every observed failure in an eviction or slot-reuse regime – through a machine-adjudicated discrimination campaign whose calculus rejected two of our own confounded inferences along the way. All artifacts, guards, and the Lean development are released at <a href="https://github.com/metask-ai/witprobe-attention-memory" target="_blank" rel="noopener">https://github.com/metask-ai/witprobe-attention-memory</a>; every number in this paper regenerates from the shipped artifacts by one command.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Modern attention memory (dense KV, latent caches, learned sparse selectors, recurrent states) each fail differently under compression, and serving systems trust this state without verifying its fidelity, leaving silent corruptions undetected.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Attention memory is written as three operators (update, select, read), each given a local affine error contract with a failure budget. Contracts carry their error metric as a type so that composition is only defined when metrics match, and each composed claim is labeled certified, partially certified, or empirical, inheriting the weakest tier. The measurement mathematics—the composed bounds, a telescoping request budget, per-entry concentration radii, and a drift-detecting e-process—is machine-checked in Lean/Mathlib over a finite product space with no extra measure-theoretic axioms. Runtime probes injected into unmodified serving code produce the witnesses that instantiate the bounds.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.05863/x1.png" alt=""><figcaption>Figure 2: The telescoping request budget. Per-event spends \delta_{i}=\delta_{req}/((i{+}1)(i{+}2)) (orange) and their cumulative sum (teal) never reach \delta_{req} (dashed): sound at unknown request length—the analytic content of telescope_sum , drawn at the implementation’s \delta_{req}=0.01 .</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Instantiated on six models across five architecture families over 12.4M entry reads under eight-way concurrency, the risk ledger held its budget with zero violations. A fused always-on probe on one declared layer under CUDA graphs cost -0.94% throughput (inside the noise floor), and on a served DeepSeek-V4 stack the machinery localized a silent corruption to a precise structural boundary tied to eviction/slot-reuse regimes.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.05863/x2.png" alt=""><figcaption>Figure 4: The certified object, quantitatively. Left: the finite-product radius lifts pre-authorization coverage from 7.8\% to 67.5\% at the same threshold ( 0 of 1{,}276{,}631 authorized entries violate). Right: the ledger’s two working points—retention-first keeps 80.1\% but its per-step bound ( 1.54 ) is vacuous; bound-first certifies TV \leq 0.86 at 29.3\% retention. Max request spend 0.009984</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2608.05863/x4.png" alt=""><figcaption>Figure 7: Resident probe cost. Under CUDA graphs the fused meter at one of 28 layers costs -0.94\% throughput ( -0.14\% TTFT P99), inside the noise floor; full coverage ( -10.16\% ) remains a diagnostic mode. Graphs-off sampling points shown for caliber.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Model</th><th>Family</th><th>Probe class</th><th>Key reading</th></tr></thead><tbody><tr><td>Qwen2.5-7B</td><td>GQA</td><td>KV</td><td>residual 0.80%</td></tr><tr><td>DeepSeek-V2-Lite</td><td>MLA</td><td>LatentKV</td><td>residual 0.877%</td></tr><tr><td>V4-Flash-FP8</td><td>MLA+entry</td><td>SparseSelector</td><td>top-1 certified 99.40%</td></tr><tr><td>Kimi-Linear-48B</td><td>KDA+MLA</td><td>RecurrentState</td><td>a in [0.530,0.936]</td></tr></tbody></table><div class="tbl-cap">Per-family probe readings across architectures</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

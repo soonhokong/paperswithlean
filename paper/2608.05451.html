@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Let it Flow: A Formally Verified Compilation Framework for Asynchronous Dataflow · Papers With Lean</title>
+<meta name="description" content="Dataflow architectures have gained renewed interest due to their balance between power efficiency and performance. In (spatial) dataflow architectures, a program is represented as a set of entirely distributed and dynamically scheduled dataflow operators that communicate through…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Let it Flow: A Formally Verified Compilation Framework for Asynchronous Dataflow">
+<meta property="og:description" content="Dataflow architectures have gained renewed interest due to their balance between power efficiency and performance. In (spatial) dataflow architectures, a program is represented as a set of entirely distributed and dynamically scheduled dataflow operators that communicate through…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.05451.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.05451.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.05451v1" target="_blank" rel="noopener"><img src="../thumbs/2608.05451.jpg" alt="First page of Let it Flow: A Formally Verified Compilation Framework for Asynchronous Dataflow"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Let it Flow: A Formally Verified Compilation Framework for Asynchronous Dataflow</h1>
+        <p class="authors">Zhengyao Lin, Yi Cai, Milijana Surbatovich</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Aug 5, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.05451v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.05451" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/plum-umd/wavelet" target="_blank" rel="noopener" title="plum-umd/wavelet">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Two core compiler passes (control flow conversion and linking) for asynchronous dataflow are formalized in Lean with forward simulation and determinacy proofs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Dataflow architectures have gained renewed interest due to their balance between power efficiency and performance. In (spatial) dataflow architectures, a program is represented as a set of entirely distributed and dynamically scheduled dataflow operators that communicate through asynchronous channels, which greatly improves data locality and parallelism. However, compiling to dataflow architectures remains an error-prone process, in order to maintain determinacy while enabling pipelining. Determinacy means that the result of a dataflow program is deterministic and independent of the schedule of operator execution, and pipelining is an important optimization in spatial dataflow that enables parallelism across loop iterations. In this work, we present Wavelet, the first effort to formally verify a compiler for asynchronous dataflow. We use a mix of techniques to achieve this goal. Our frontend uses a novel capability type system with fences to synchronize conflicting memory accesses and enable pipelining. We then verify a Lean formalization of two core passes of our compiler that translates elaborated programs from the type checker to dataflow graphs, proving important properties of forward simulation and determinacy. Notably, our formalization semantically propagates the soundness guarantees of the frontend type system, ensuring modularity between simulation and determinacy proofs. In evaluation, we show that dataflow graphs compiled by Wavelet have comparable sizes to those produced by an unverified optimizing compiler for the RipTide spatial dataflow architecture.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Compiling sequential programs to asynchronous spatial dataflow architectures is error-prone: it must maintain determinacy (schedule-independent results) while enabling pipelining. Existing dataflow compilers are unverified or rely only on translation validation.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Wavelet uses a capability type system with fences to synchronize conflicting memory accesses and enable pipelining, elaborated into explicit permission tokens. The core control flow conversion and linking passes, translating elaborated programs to dataflow graphs, are formally verified in Lean. The proofs establish forward simulation and determinacy, semantically propagating frontend type-system soundness to keep simulation and determinacy proofs modular.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.05451/x2.png" alt=""><figcaption>Figure 2. Compiler pipeline of Wavelet. The compilation transforms the frontend language \mathbb{L}^{*}_{\mathit{let}} through the elaborated IR \mathbb{L}_{\mathit{let}} to the dataflow calculus \mathbb{L}_{\mathit{flow}} .</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2608.05451/x3.png" alt=""><figcaption>Figure 3. Proof structure overview of Wavelet. \lesssim denotes simulation; \mathsf{cfc} is control flow conversion ( Section ˜ 5.2 ); \mathsf{link}_{\mathit{sem}} is the semantic linking of LTSs ( Section ˜ 5.3 ); \mathsf{link}_{\mathit{syn}} is the syntactic linking of dataflow graphs ( Section ˜ 5.3 ); \mathsf{guard} imposes permission checking on the base semantics ( Section ˜ 5.4 ).</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Wavelet&#x27;s compiled dataflow graphs are 2.62x slower and 3.04x larger (geometric mean) than the unverified RipTide compiler, narrowing to 1.69x slower and 2.26x larger when RipTide&#x27;s streamification is disabled. Graphs are comparable in size to unverified optimizing compilers.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.05451/x5.png" alt=""><figcaption>Figure 11. Compilation quality: the first row compares simulation performance and graph size of Wavelet and RipTide; the second row compares execution time and resource usage of Wavelet and CIRCT in dynamic HLS.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
