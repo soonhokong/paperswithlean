@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From the Dirichlet Integral to Lobachevsky&#x27;s Formula: A Formalization in Lean 4 · Papers With Lean</title>
+<meta name="description" content="We formalize the Dirichlet integral and several of its classical applications in the Lean 4 proof assistant. Since the sinc function is not Lebesgue integrable on the positive half-line, the Dirichlet integral must be represented as the limit of integrals over bounded intervals.…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="From the Dirichlet Integral to Lobachevsky&#x27;s Formula: A Formalization in Lean 4">
+<meta property="og:description" content="We formalize the Dirichlet integral and several of its classical applications in the Lean 4 proof assistant. Since the sinc function is not Lebesgue integrable on the positive half-line, the Dirichlet integral must be represented as the limit of integrals over bounded intervals.…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.07366.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.07366.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.07366v1" target="_blank" rel="noopener"><img src="../thumbs/2608.07366.jpg" alt="First page of From the Dirichlet Integral to Lobachevsky&#x27;s Formula: A Formalization in Lean 4"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">From the Dirichlet Integral to Lobachevsky&#x27;s Formula: A Formalization in Lean 4</h1>
+        <p class="authors">Daniel Goldberg, Antoine Vinciguerra</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Aug 7, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.07366v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.07366" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/antoine-vinciguerra/lean_project" target="_blank" rel="noopener" title="antoine-vinciguerra/lean_project">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes the Dirichlet integral, the sinc-to-Heaviside cutoff, and Lobachevsky&#x27;s integral formula in Lean 4 using Mathlib&#x27;s Fourier analysis.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We formalize the Dirichlet integral and several of its classical applications in the Lean 4 proof assistant. Since the sinc function is not Lebesgue integrable on the positive half-line, the Dirichlet integral must be represented as the limit of integrals over bounded intervals. To avoid the difficulty of removing an exponential factor from a conditionally convergent integral, we instead pass through the absolutely integrable function \(\operatorname{sinc}^2\). We evaluate its integral by differentiation under the integral sign and dominated convergence, and then recover the Dirichlet integral from an identity between truncated integrals. Using these results, we formalize the convergence of the Dirichlet cutoff to the Heaviside function and derive several quadratic and bilinear trigonometric integral identities. Finally, we formalize Lobachevsky&#x27;s integral formula for continuous periodic functions satisfying a reflection symmetry, using the density of cosine polynomials obtained from Mathlib&#x27;s Fourier analysis on the additive circle.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The Dirichlet integral of sinc is conditionally convergent and its sinc function is not Lebesgue integrable on the positive half-line, complicating formalization. Classical evaluation methods hide uniform tail estimates that are hard to formalize directly.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The Dirichlet integral is represented as a limit of integrals over bounded intervals rather than a Lebesgue integral. Instead of the Feynman exponential-factor argument, the proof passes through the absolutely integrable sinc-squared function, evaluated via differentiation under the integral sign and dominated convergence. An identity between truncated integrals transfers the value back to the Dirichlet integral. Lobachevsky&#x27;s formula is obtained using density of cosine polynomials from Mathlib&#x27;s Fourier analysis on AddCircle.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Formalizes the Dirichlet integral value pi/2, convergence of the Dirichlet cutoff to the Heaviside function, several quadratic and bilinear trigonometric integral identities, and Lobachevsky&#x27;s integral formula for continuous periodic functions with reflection symmetry.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
