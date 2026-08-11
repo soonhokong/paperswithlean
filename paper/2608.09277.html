@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P$^{3}$: Joint Program-and-Proof Planning for Verified Code Generation · Papers With Lean</title>
+<meta name="description" content="Verified code generation asks a large language model (LLM) to generate both an executable program and a machine-checkable proof that the program meets a formal specification, promising software that is correct by construction. The de facto workflow decouples the two halves of…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P$^{3}$: Joint Program-and-Proof Planning for Verified Code Generation">
+<meta property="og:description" content="Verified code generation asks a large language model (LLM) to generate both an executable program and a machine-checkable proof that the program meets a formal specification, promising software that is correct by construction. The de facto workflow decouples the two halves of…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.09277.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.09277.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.09277v1" target="_blank" rel="noopener"><img src="../thumbs/2608.09277.jpg" alt="First page of P$^{3}$: Joint Program-and-Proof Planning for Verified Code Generation"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">P$^{3}$: Joint Program-and-Proof Planning for Verified Code Generation</h1>
+        <p class="authors">Zenan Li, Ziran Yang, Peiyang Song, Zhaoyu Li, Kaiyu Yang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Aug 10, 2026 · v1</span>
+          <span class="badge">cs.PL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.09277v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.09277" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/oOo0oOo/lean-lsp-mcp" target="_blank" rel="noopener" title="oOo0oOo/lean-lsp-mcp">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">An agentic LLM workflow jointly plans program and proof for verified code generation in Lean 4, with a repository-derived Lean benchmark.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Verified code generation asks a large language model (LLM) to generate both an executable program and a machine-checkable proof that the program meets a formal specification, promising software that is correct by construction. The de facto workflow decouples the two halves of the problem: first synthesize a program, then attempt to prove it correct. We observe that this sequential pipeline can be both ineffective and inefficient in practice. A program generated without anticipating its proof can be subtly incorrect or structurally difficult to verify, forcing the LLM into brittle repair loops that alternate between patching the code and patching the proof. Inspired by Dijkstra&#x27;s view that a program and its correctness argument should be developed hand in hand, we propose $P^3$, an LLM-based agentic workflow that first derives a unified program-and-proof plan from the specification, then elaborates the implementation and proof scaffold under this shared plan. To evaluate verified code generation in realistic settings, we further introduce Lean4Commit0, a repository-derived, library-level benchmark built by extracting core APIs from real-world software repositories and translating their requirements, including relational specifications across APIs, into Lean tasks. Using four frontier LLM backends, we evaluate $P^3$ on Verina, AlgoVeri, and our Lean4Commit0 benchmark, where it achieves the highest solve rate in every benchmark–model setting. Compared with the stronger baseline, it improves solve rates by 4.6–11.2 percentage points and reduces per-task API cost by up to roughly 40% and wall-clock time by up to roughly 37% on the difficult subset of each benchmark. A targeted ablation further shows gains of 3.3–8.3 points over implementation-only planning, isolating the benefit of planning the program and proof jointly.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Verified code generation asks an LLM to produce a program plus a machine-checkable proof that it meets a formal specification. The de facto sequential program-then-proof pipeline often yields structurally hard-to-verify programs, forcing brittle repair loops that waste token and time budget.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">P3 is an LLM agentic workflow that first derives a unified program-and-proof plan from the specification, recording contract, program decomposition, library functions/lemmas, and proof obligations. It then elaborates the implementation and a matching proof scaffold (induction principles, case splits, lemmas) under that shared plan, using Lean 4 feedback to repair at elaboration or plan level. The authors also build Lean4Commit0, a benchmark extracting Lean 4 verified-generation tasks (function signatures, postconditions, correctness theorems with sorry) from 108 real-world open-source libraries, including relational specifications across APIs.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Across Verina, AlgoVeri, and Lean4Commit0 with four frontier LLM backends, P3 achieves the highest solve rate in every setting, improving 4.6-11.2 points over the stronger baseline while cutting per-task API cost up to  40% and wall-clock time up to  37% on hard subsets. An ablation shows 3.3-8.3 point gains from joint program-and-proof planning over implementation-only planning.</p><div class="sum-table"><table><thead><tr><th>Benchmark</th><th>Model</th><th>Plain</th><th>Seq</th><th>P3</th><th>Δ</th></tr></thead><tbody><tr><td>Verina</td><td>Gemini-3-Pro</td><td>59.3</td><td>60.8</td><td>72.0</td><td>+11.2</td></tr><tr><td>AlgoVeri</td><td>Claude-Opus-4.7</td><td>39.0</td><td>40.3</td><td>48.1</td><td>+7.8</td></tr><tr><td>Lean4Commit0</td><td>Claude-Opus-4.7</td><td>13.9</td><td>17.6</td><td>22.2</td><td>+4.6</td></tr></tbody></table><div class="tbl-cap">Solve rates (%) across benchmarks and models: Plain, Seq (program-then-proof), and P3</div></div><div class="sum-table"><table><thead><tr><th>Benchmark</th><th>Plain</th><th>Seq</th><th>Plan-Seq</th><th>P3</th><th>Δ</th></tr></thead><tbody><tr><td>Verina</td><td>68.8</td><td>68.3</td><td>69.8</td><td>74.6</td><td>+4.8</td></tr><tr><td>AlgoVeri</td><td>39.0</td><td>40.3</td><td>44.8</td><td>48.1</td><td>+3.3</td></tr><tr><td>Lean4Commit0</td><td>13.9</td><td>17.6</td><td>13.9</td><td>22.2</td><td>+8.3</td></tr></tbody></table><div class="tbl-cap">Planning ablation: Plan-Seq vs P3 solve rates (%)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

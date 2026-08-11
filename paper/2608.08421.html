@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A SAT Attack on Tarski&#x27;s High School Algebra Problem · Papers With Lean</title>
+<meta name="description" content="Tarski&#x27;s high school algebra problem asks whether every true identity concerning addition, multiplication, and exponentiation of positive integers follows from a list of 11 elementary identities. Surprisingly, Wilkie showed that the following identity is valid over the positive…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A SAT Attack on Tarski&#x27;s High School Algebra Problem">
+<meta property="og:description" content="Tarski&#x27;s high school algebra problem asks whether every true identity concerning addition, multiplication, and exponentiation of positive integers follows from a list of 11 elementary identities. Surprisingly, Wilkie showed that the following identity is valid over the positive…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.08421.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.08421.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.08421v1" target="_blank" rel="noopener"><img src="../thumbs/2608.08421.jpg" alt="First page of A SAT Attack on Tarski&#x27;s High School Algebra Problem"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A SAT Attack on Tarski&#x27;s High School Algebra Problem</h1>
+        <p class="authors">Bernardo Subercaseaux, Benjamin Przybocki</p>
+        <div class="row">
+          <span class="badge">math.LO</span>
+          <span class="date">Aug 9, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.08421v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.08421" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/bsubercaseaux/HighSchoolAlgebraSAT" target="_blank" rel="noopener" title="bsubercaseaux/HighSchoolAlgebraSAT">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean is used to verify that the SAT-derived unsatisfiability result correctly proves the size-12 lower bound for Wilkie-identity countermodels.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Tarski&#x27;s high school algebra problem asks whether every true identity concerning addition, multiplication, and exponentiation of positive integers follows from a list of 11 elementary identities. Surprisingly, Wilkie showed that the following identity is valid over the positive integers and yet does not follow from Tarski&#x27;s axioms: \begin{align*} &amp;\left((1+x)^y + (1+x+x^2)^y\right)^x \cdot \left((1+x^3)^x + (1+x^2+x^4)^x\right)^y = \\ &amp;\left((1+x)^x + (1+x+x^2)^x\right)^y \cdot \left((1+x^3)^y + (1+x^2+x^4)^y\right)^x. \end{align*} Gurevič gave an algebra on 59 elements that satisfies Tarski&#x27;s axioms but not Wilkie&#x27;s identity, and over the years several authors whittled down the size of such a countermodel, culminating in a countermodel of size 12 due to Burris and Yeats. On the other hand, Zhang proved that there is no countermodel with fewer than 11 elements. Using SAT, we prove that the smallest countermodels are of size 12, as conjectured by Burris and Yeats. Moreover, we show that there are exactly 8,957,952 countermodels on 12 elements up to isomorphism and provide a simple classification of them. Our SAT approach outperforms dedicated tools for finding countermodels in equational theories, namely Mace4 and SEM. Furthermore, using autoformalization, we prove the correctness of our main result in Lean.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Tarski&#x27;s high school algebra problem asks whether 11 elementary identities axiomatize all valid identities over positive integers; Wilkie found an independent identity. The question of the minimum size of an HSI-algebra countermodel to Wilkie&#x27;s identity remained open, conjectured to be 12.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Models of Tarski&#x27;s axioms and the negation of Wilkie&#x27;s identity are encoded as SAT instances, using auxiliary variables and lex-leader symmetry-breaking constraints. The solver Kissat determines satisfiability for each size n, and allsat-CaDiCaL enumerates all countermodels of size 12. The correctness of the main lower-bound result, that unsatisfiability of the order-11 formula proves size-12 minimality, is verified in Lean via autoformalization.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The smallest countermodels are proven to be of size 12, confirming the Burris–Yeats conjecture. Exactly 8,957,952 non-isomorphic countermodels of size 12 exist, admitting a simple template classification. The SAT approach outperforms Mace4 and SEM.</p><div class="sum-table"><table><thead><tr><th>n</th><th>#variables</th><th>#clauses</th><th>outcome</th><th>runtime [s]</th></tr></thead><tbody><tr><td>10</td><td>49,110</td><td>2,726,169</td><td>UNSAT</td><td>65.84</td></tr><tr><td>11</td><td>74,845</td><td>4,589,476</td><td>UNSAT</td><td>626.52</td></tr><tr><td>12</td><td>110,061</td><td>7,409,052</td><td>SAT</td><td>3,053.55</td></tr></tbody></table><div class="tbl-cap">Runtimes for the full formula Ω_n</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
