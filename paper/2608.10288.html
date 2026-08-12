@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Power law graph attention: exact generalization of scaled dot-product attention, empirical collapse at inference · Papers With Lean</title>
+<meta name="description" content="The Large Language Model from Power Law Decoder Representations (PLDR-LLM) and its attention, Power Law Graph Attention (PLGA), replace the fixed bilinear form of scaled dot-product attention (SDPA) with a learned, input-generated bilinear operator $G_{LM}$, built from a…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Power law graph attention: exact generalization of scaled dot-product attention, empirical collapse at inference">
+<meta property="og:description" content="The Large Language Model from Power Law Decoder Representations (PLDR-LLM) and its attention, Power Law Graph Attention (PLGA), replace the fixed bilinear form of scaled dot-product attention (SDPA) with a learned, input-generated bilinear operator $G_{LM}$, built from a…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.10288.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.10288.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.10288v1" target="_blank" rel="noopener"><img src="../thumbs/2608.10288.jpg" alt="First page of Power law graph attention: exact generalization of scaled dot-product attention, empirical collapse at inference"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Power law graph attention: exact generalization of scaled dot-product attention, empirical collapse at inference</h1>
+        <p class="authors">Burc Gokden</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Aug 10, 2026 · v1</span>
+          <span class="badge">cs.CL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.10288v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.10288" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/burcgokden/Power-Law-Graph-Transformer" target="_blank" rel="noopener" title="burcgokden/Power-Law-Graph-Transformer">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Selected proof cores, including the theorem that SDPA equals PLGA at G_LM=I, are machine-checked in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The Large Language Model from Power Law Decoder Representations (PLDR-LLM) and its attention, Power Law Graph Attention (PLGA), replace the fixed bilinear form of scaled dot-product attention (SDPA) with a learned, input-generated bilinear operator $G_{LM}$, built from a positive tensor $A_{LM}$ by elementwise power laws. The architecture is fully specified, verified against pinned reference releases; claims are labeled theorem, conditional theorem, measurement, or conjecture. Unconditionally: PLGA contains SDPA exactly at $G_{LM}=I$; $A_{LM}$ and $A_P$ are strictly entrywise positive, with Perron-Frobenius structure on $A_{LM}$; the DAG regularizer has the NOTEARS walk-counting form and positivity obstructs exact acyclicity; and, under nonresonance (satisfied by standard rotary frequencies), a commutant criterion identifies which operators preserve relative-position dependence. An inference-collapse theorem: exact input invariance of deductive outputs collapses inference to generalized SDPA with a constant operator. Measured invariance: relative fluctuations of $10^{-6}$ and below; perturbation bounds quantify but do not certify cached inference; the assembled proxy misses the decoding margin. A conditional three-stage mechanism (rotary twirl, concentration, row-map contraction) is measured on a released checkpoint. Blockwise training and scoring under the global Gram are stated with explicit target exposure; on tested samples, block and sequential scoring select identical answers and agree on the published TruthfulQA probability-mass metric within $5\times 10^{-5}$ per item. Self-organized criticality enters as a phenomenological framework with an intrinsic order parameter; open claims become falsifiable conjectures. Selected proof cores are machine-checked in Lean 4.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Scaled dot-product attention (SDPA) uses a fixed bilinear form for query-key comparison. The paper studies Power Law Graph Attention (PLGA), which replaces this with a learned input-generated bilinear operator, and asks how PLGA relates to SDPA and whether its deductive outputs collapse at inference.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The architecture and its tensor chain are fully specified, with claims labeled as theorem, conditional theorem, measurement, or conjecture. Structural results are proved: PLGA contains SDPA exactly at G_LM=I, entrywise positivity with Perron-Frobenius structure, a commutant criterion for relative-position invariance under RoPE nonresonance, and a conditional inference-collapse theorem. Selected proof cores are formalized and machine-checked in Lean 4. Empirical invariance and cache-fidelity bounds are measured on released checkpoints.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Deductive outputs are measured to be invariant across inputs with relative fluctuations of order 10^-6 and below. Block and sequential scoring select identical answers and agree on the TruthfulQA probability-mass metric within 5x10^-5 per item. The SDPA-containment and exact-cacheability results are machine-checked, while collapse remains conditional on measured invariance.</p><div class="sum-table"><table><thead><tr><th>Claim</th><th>Rests on</th><th>Status</th></tr></thead><tbody><tr><td>SDPA = PLGA at G_LM=I</td><td>Thm. 5.4(i)</td><td>proved, machine-checked</td></tr><tr><td>Exact cache under invariance</td><td>Prop. 5.2(i), Thm. 5.4(ii)</td><td>proved (sufficiency only)</td></tr><tr><td>Observed invariance</td><td>experiments + App. D</td><td>empirical</td></tr><tr><td>Positional codimension</td><td>Prop. 4.1, Cor. 7.1</td><td>conditional theorem</td></tr></tbody></table><div class="tbl-cap">Status of key claims and their formal basis</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
