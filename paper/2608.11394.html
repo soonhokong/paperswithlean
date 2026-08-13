@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GraphAlignCoder: Aligning Program and Proof Graphs for Code Generation · Papers With Lean</title>
+<meta name="description" content="Code large language models (LLMs) can generate syntactically plausible programs that nevertheless violate hidden semantic constraints. Existing execution-feedback training methods identify whether a completed program fails, but provide limited supervision about how a correct…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GraphAlignCoder: Aligning Program and Proof Graphs for Code Generation">
+<meta property="og:description" content="Code large language models (LLMs) can generate syntactically plausible programs that nevertheless violate hidden semantic constraints. Existing execution-feedback training methods identify whether a completed program fails, but provide limited supervision about how a correct…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.11394.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.11394.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.11394v1" target="_blank" rel="noopener"><img src="../thumbs/2608.11394.jpg" alt="First page of GraphAlignCoder: Aligning Program and Proof Graphs for Code Generation"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">GraphAlignCoder: Aligning Program and Proof Graphs for Code Generation</h1>
+        <p class="authors">Yueke Zhang, Zihan Fang, Kevin Leach, Yu Huang</p>
+        <div class="row">
+          <span class="badge">cs.SE</span>
+          <span class="date">Aug 11, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-amber" href="../#tag=verification">verification</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.11394v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.11394" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A template-constrained Lean pipeline produces kernel-checked proof traces yielding formal proof-flow graphs used as supervision for code generation.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Code large language models (LLMs) can generate syntactically plausible programs that nevertheless violate hidden semantic constraints. Existing execution-feedback training methods identify whether a completed program fails, but provide limited supervision about how a correct solution should be organized. We introduce GraphAlignCoder, a training framework that transfers explicit correctness structure into code generation. GraphAlignCoder constructs an implementation graph that captures control and dependence among program regions. In parallel, a constrained Lean pipeline produces proof traces, from which we extract a formal proof-flow graph. The model first learns executable code together with graph-derived descriptions of why individual program regions are correct, and then consolidates this knowledge into code generation. GraphAlignCoder consistently outperforms the base model, code-only SFT, and CodeRL across all benchmarks. Compared with CodeRL, it increases the solved count from 38 to 50 on LiveCodeBench v6 and from 16 to 23 on BigCodeBench Hard, corresponding to relative gains of 31.6% and 43.8%, while also improving BigCodeBench Full from 359 to 363 tasks. The ablation study further shows that verification-graph injection produces the initial reasoning gain, while verification to code consolidation is essential for robust cross-benchmark transfer.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Code LLMs generate syntactically plausible programs that violate hidden semantic constraints. Execution-feedback training tells whether a program fails but gives limited supervision about how a correct solution should be organized.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">GraphAlignCoder parses solutions into implementation graphs capturing control and dependence among program regions. A constrained Lean pipeline instantiates templates into kernel-checked goal transitions, producing a formal proof-flow graph. Region-proof correspondences yield training targets combining executable code, verification roles, and region-grounded conditions to update a shared code model. A consolidation stage then continues training on Python code alone, removing auxiliary outputs before deployment.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.11394/pipeline_v3.png" alt=""><figcaption>Figure 3: Overview of GraphAlignCoder . (A) We parse a solution into an implementation graph whose regions expose boundaries, updates, and return relations. (B) Template-constrained Lean construction turns formal hints into kernel-checked goal transitions and a formal proof-flow graph. (C) Region–proof correspondences produce three complementary training targets—executable code, verification roles</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2608.11394/hook.png" alt=""><figcaption>Figure 1: Shared Algorithmic Skeleton Between Lean Proof and Python Control Flow. A Lean proof plan exposes case splits, branch obligations, and final conclusions that align with the branch and return structure of an executable Python program.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">GraphAlignCoder outperforms base model, code-only SFT, and CodeRL across benchmarks, solving 50/175 LiveCodeBench v6, 23/148 BigCodeBench Hard, and 363/1140 BigCodeBench Full. Relative gains over CodeRL reach 31.6% and 43.8% on the two harder benchmarks.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>LCB v6</th><th>BCB Hard</th><th>BCB Full</th></tr></thead><tbody><tr><td>Base</td><td>15</td><td>9</td><td>209</td></tr><tr><td>Code-only SFT</td><td>33</td><td>15</td><td>354</td></tr><tr><td>CodeRL</td><td>38</td><td>16</td><td>359</td></tr><tr><td>GraphAlignCoder</td><td>50</td><td>23</td><td>363</td></tr></tbody></table><div class="tbl-cap">Pass@1 solved-task counts across methods and benchmarks</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
