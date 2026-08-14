@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moose: Latent concept learning with reasoning-shortcut awareness in $\mathcal{EL}^{++}$ · Papers With Lean</title>
+<meta name="description" content="The OWL 2 EL profile is used in some of the largest production ontologies, including the Gene Ontology and SNOMED CT. Existing neuro-symbolic (NeSy) learning methods accept propositional theories or Datalog, and reasoning-shortcut (RS) awareness has not been investigated in…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Moose: Latent concept learning with reasoning-shortcut awareness in $\mathcal{EL}^{++}$">
+<meta property="og:description" content="The OWL 2 EL profile is used in some of the largest production ontologies, including the Gene Ontology and SNOMED CT. Existing neuro-symbolic (NeSy) learning methods accept propositional theories or Datalog, and reasoning-shortcut (RS) awareness has not been investigated in…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.12961.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.12961.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.12961v1" target="_blank" rel="noopener"><img src="../thumbs/2608.12961.jpg" alt="First page of Moose: Latent concept learning with reasoning-shortcut awareness in $\mathcal{EL}^{++}$"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Moose: Latent concept learning with reasoning-shortcut awareness in $\mathcal{EL}^{++}$</h1>
+        <p class="authors">Olga Mashkova, Asaad Mohammedsaleh, Fernando Zhapa-Camacho, Robert Hoehndorf</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Aug 13, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.12961v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.12961" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/bio-ontology-research-group/moose-iswc" target="_blank" rel="noopener" title="bio-ontology-research-group/moose-iswc">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Termination, soundness, completeness, and polynomial-size proofs for the EL++-to-SDD compilation are mechanized and verified in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The OWL 2 EL profile is used in some of the largest production ontologies, including the Gene Ontology and SNOMED CT. Existing neuro-symbolic (NeSy) learning methods accept propositional theories or Datalog, and reasoning-shortcut (RS) awareness has not been investigated in ontology settings. We present Moose, a method that compiles an $\mathcal{EL}^{++}$ TBox and finite ABox to a Sentential Decision Diagram (SDD). The SDD acts as a differentiable weighted-model-counting layer, and we add closure clauses outside the $\mathcal{EL}^{++}$ profile on declared exhaustive families to overcome the limited expressivity of $\mathcal{EL}^{++}$ under partial supervision. We show termination, soundness, completeness, and polynomial intermediate sizes, and validate the proofs in Lean. We then define the first formal partial-supervision latent-concept-learning task over an OWL EL ontology, i.e., learning per-individual classifiers for latent concepts from observed ABox literals, and evaluate Moose on MNIST-with-ontology and Pizzaïolo. Moose improves over propositional-NeSy, fuzzy-logic, and ontology embedding baselines, and presents the first reasoning-shortcut analysis in an OWL EL setting.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Neuro-symbolic knowledge-compilation methods accept propositional or Datalog theories but not OWL 2 EL ontologies directly, and reasoning-shortcut awareness has not been studied in ontology settings. There is no formally verified differentiable weighted-model-counting layer for an OWL profile.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Moose compiles an EL++ TBox and finite ABox to a Sentential Decision Diagram via ELK saturation, using it as a differentiable weighted-model-counting layer. Closure clauses outside EL++ are added on declared exhaustive families to handle limited expressivity under partial supervision. Correctness properties (verified SDD encoding, DISPONTE correspondence, SCC-compositional factorizations, polynomial intermediate sizes) are stated as theorems and mechanized in Lean 4, reusing a re-mechanized ELK soundness/completeness library.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.12961/workflow.png" alt=""><figcaption>Figure 1: End-to-end Moose workflow on \mathcal{O}_{\textsf{MNIST}} at \Delta{=}\{a,b\} . The TBox is compiled once via ELK saturation \to shape-aware extractors \to\Gamma_{\mathrm{EL}} ( +\Phi_{\mathrm{clos}} when supplied) \to SDD \alpha . The differentiable WMC layer evaluates \mathsf{WMC}(\alpha;p_{\theta}(\mathbf{x}),\mathbf{e}) for the training loss, the conditional posterior, and the entail</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Moose improves over propositional-NeSy, fuzzy-logic, and ontology-embedding baselines on MNIST-with-ontology and Pizzaïolo benchmarks, reaching up to 96.1% on the role-chain regime versus lower baseline scores. It provides the first end-to-end formally verified circuit for an OWL profile and the first reasoning-shortcut analysis in OWL EL.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Exp 1</th><th>Exp 2</th><th>Exp 3</th></tr></thead><tbody><tr><td>Independent</td><td>13.2</td><td>8.8</td><td>12.2</td></tr><tr><td>DeepProbLog</td><td>42.1</td><td>38.9</td><td>59.6</td></tr><tr><td>LTN</td><td>25.9</td><td>14.5</td><td>11.0</td></tr><tr><td>Moose</td><td>48.1</td><td>74.6</td><td>96.1</td></tr></tbody></table><div class="tbl-cap">Latent-concept recovery accuracy on MNIST and Pizzaïolo benchmarks</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vero: Can AI Agents Build Formally Verified Software Repositories? · Papers With Lean</title>
+<meta name="description" content="AI agents are increasingly used for programming, but do not provide any guarantee on the correctness of generated code. Verified code generation, in which an agent produces both an implementation and a machine-checked proof of its specification, offers a stronger path toward…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vero: Can AI Agents Build Formally Verified Software Repositories?">
+<meta property="og:description" content="AI agents are increasingly used for programming, but do not provide any guarantee on the correctness of generated code. Verified code generation, in which an agent produces both an implementation and a machine-checked proof of its specification, offers a stronger path toward…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.13522.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.13522.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.13522v1" target="_blank" rel="noopener"><img src="../thumbs/2608.13522.jpg" alt="First page of Vero: Can AI Agents Build Formally Verified Software Repositories?"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Vero: Can AI Agents Build Formally Verified Software Repositories?</h1>
+        <p class="authors">Zhe Ye, Hantao Lou, Yuechun Sun, Peiyang Song, Zhengxu Yan, Timothe Kasriel, Qingyang Zhang, Kaiyu Yang, Soonho Kong, Jingxuan He, Dawn Song</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Aug 13, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.LO</span> <span class="badge">cs.PL</span> <span class="badge">cs.SE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-amber" href="../#tag=verification">verification</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.13522v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.13522" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/sunblaze-ucb/vero" target="_blank" rel="noopener" title="sunblaze-ucb/vero">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces Vero, a repository-level benchmark of 43 multi-module Lean 4 projects for evaluating AI agents on joint implementation and proof synthesis.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">AI agents are increasingly used for programming, but do not provide any guarantee on the correctness of generated code. Verified code generation, in which an agent produces both an implementation and a machine-checked proof of its specification, offers a stronger path toward trustworthy AI-generated software. Existing benchmarks in this direction either focus on individual functions or only evaluate proof generation with provided implementations. It is still an open question whether agents can make coherent implementation and proof choices across real multi-module codebases. To bridge this gap, we introduce Vero, the first benchmark to evaluate joint implementation and proof synthesis at the repository level. Vero contains 43 multi-module instances sourced from real-world repositories spanning Python, Dafny, Verus, and Coq, and covering diverse domains from cryptographic protocols to distributed systems. Each instance consists of a multi-module Lean 4 repository with predetermined API interfaces, manually curated formal specifications, and reference implementations, supporting both proof-only and code-and-proof evaluation modes. To improve benchmark reliability, Vero also includes an audit mechanism where agents are allowed to formally prove unsatisfiability of provided specification or incorrectness of reference code, which surfaces and corrects latent code and specification errors during curation. We evaluate frontier coding-agent configurations with Lean toolchain access. The strongest agent fully solves only 27 of 43 instances and closes no specifications on the hardest repositories. Vero provides a concrete testbed for measuring progress toward repository-scale verified software synthesis, where current agents still fall short. We release the benchmark, curation pipeline, and evaluation harness at <a href="https://github.com/sunblaze-ucb/vero" target="_blank" rel="noopener">https://github.com/sunblaze-ucb/vero</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">AI coding agents provide no correctness guarantees, and existing verified-code-generation benchmarks target only individual functions or proof generation with fixed implementations. It is open whether agents can make coherent implementation and proof choices across real multi-module codebases.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Vero provides 43 multi-module Lean 4 benchmark instances curated from real-world repositories in Python, Dafny, Verus, and Coq. Each instance has fixed data-type definitions, API signatures, manually curated formal specifications, and reference implementations, supporting proof-only and code-and-proof evaluation modes. Agents run with full Lean toolchain access, and a formal audit mechanism lets agents prove specification unsatisfiability or reference-code incorrectness to surface defects during curation. Frontier coding agents (Codex with GPT-5.5, Claude Code with Opus/Sonnet) are evaluated by full-solve counts.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.13522/pipeline.png" alt=""><figcaption>Figure 1: Vero’s end-to-end construction and evaluation workflow. Human-gated curation converts real-world Python and formal-language repositories into Lean 4 benchmark instances with fixed definitions, API signatures, specifications, and reference implementations. Agents are evaluated in proof-only or code-and-proof mode and scored by an independent grader, while the formal audit route returns ma</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The strongest configuration (GPT-5.5 xhigh) fully solves only 27 of 43 instances in code-and-proof mode, and 10 instances resist every configuration in both modes. Agents pass over 80% of individual specifications yet fail to build reusable lemma libraries and keep repositories consistent.</p><div class="sum-table"><table><thead><tr><th>Agent</th><th>Mode</th><th>Full</th><th>$/full solve</th></tr></thead><tbody><tr><td>GPT-5.5 (xhigh)</td><td>code+proof</td><td>27</td><td>$106</td></tr><tr><td>GPT-5.5 (xhigh)</td><td>proof only</td><td>25</td><td>$119</td></tr><tr><td>Claude Opus 4.8</td><td>proof only</td><td>10</td><td>$228</td></tr><tr><td>Claude Opus 4.8</td><td>code+proof</td><td>8</td><td>$248</td></tr><tr><td>GPT-5.5 (medium)</td><td>proof only</td><td>6</td><td>$182</td></tr></tbody></table><div class="tbl-cap">Total cost, full solves, and per-spec metrics by agent and mode.</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
