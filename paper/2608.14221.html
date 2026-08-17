@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MathForm: Scaling Mathematical Autoformalization with Knowledge Retrieval and Verification-Guided Refinement · Papers With Lean</title>
+<meta name="description" content="Autoformalization is commonly framed as translating natural-language mathematical statements into machine-verifiable formal languages such as Lean 4. However, faithful formalization requires more than translation. Models must map mathematical concepts to the complex hierarchy of…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MathForm: Scaling Mathematical Autoformalization with Knowledge Retrieval and Verification-Guided Refinement">
+<meta property="og:description" content="Autoformalization is commonly framed as translating natural-language mathematical statements into machine-verifiable formal languages such as Lean 4. However, faithful formalization requires more than translation. Models must map mathematical concepts to the complex hierarchy of…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.14221.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.14221.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.14221v1" target="_blank" rel="noopener"><img src="../thumbs/2608.14221.jpg" alt="First page of MathForm: Scaling Mathematical Autoformalization with Knowledge Retrieval and Verification-Guided Refinement"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">MathForm: Scaling Mathematical Autoformalization with Knowledge Retrieval and Verification-Guided Refinement</h1>
+        <p class="authors">Lushi Pu, Weiming Zhang, Xinheng Xie, Zixuan Fu, Bingxiang He, Hengyu Zhao, Hongya Lyu, Xin Li, Jie Zhou, Yudong Wang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Aug 14, 2026 · v1</span>
+          <span class="badge">cs.CL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.14221v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.14221" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a 367K-example Lean 4 autoformalization dataset via Mathlib retrieval and verification-guided refinement, training MathForm-8B evaluated on six Lean benchmarks.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Autoformalization is commonly framed as translating natural-language mathematical statements into machine-verifiable formal languages such as Lean 4. However, faithful formalization requires more than translation. Models must map mathematical concepts to the complex hierarchy of types and definitions in formal libraries such as Mathlib, while ensuring that generated statements preserve the meaning of the source propositions. Existing approaches struggle because they rely heavily on the model&#x27;s parametric memory for library-specific knowledge, while common data construction pipelines often resort to filtering single-pass outputs and lack mechanisms for feedback-driven revision. To address these challenges, we introduce MathForm, an autoformalization framework for constructing verified training data through Mathlib knowledge retrieval and verification-guided iterative refinement. Before generation, a retrieval planner gathers relevant definitions and existing formalizations from Mathlib to guide the formalization generator. Generated statements are then revised using compiler diagnostics and semantic-consistency feedback. Using this framework, we construct FormalVerse, a Lean 4 dataset containing approximately 367K verified examples across diverse mathematical domains and sources. We then train MathForm-8B through supervised fine-tuning followed by reinforcement learning. Across six benchmarks, MathForm-8B achieves average Pass@8 rates of 88.06% under Syntax Check (SC) and 72.37% under Consistency Check (CC), outperforming multiple specialized 32B autoformalizers. On the challenging FATE-H and FATE-X subsets, it attains CC pass rates of 63% and 37%, exceeding the strongest specialized baselines in both cases.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Autoformalization requires mapping natural-language mathematics into Lean 4 while respecting Mathlib&#x27;s type hierarchy and definitions. Existing methods rely on parametric memory for library-specific knowledge and use best-of-N filtering that lacks feedback-driven revision.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">MathForm is a data-construction framework where a retrieval planner gathers relevant Mathlib definitions and existing formalizations to guide a generator. Generated Lean 4 statements are then revised iteratively using compiler diagnostics and semantic-consistency feedback. The resulting FormalVerse dataset ( 367K verified examples) is used to train MathForm-8B via supervised fine-tuning followed by DAPO reinforcement learning.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.14221/data-pipeline.png" alt=""><figcaption>Figure 2: Overview of the MathForm data construction and training pipeline. The system combines Mathlib knowledge retrieval, compilation and semantic verification, and iterative refinement to generate reliable formal data, followed by trajectory reconstruction and training of MathForm -8B.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">MathForm-8B achieves average Pass@8 rates of 88.06% (Syntax Check) and 72.37% (Consistency Check) across six benchmarks, outperforming multiple specialized 32B autoformalizers. On FATE-H and FATE-X it reaches CC pass rates of 63% and 37%.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>AVG SC</th><th>AVG CC</th><th>FATE-H CC</th><th>FATE-X CC</th></tr></thead><tbody><tr><td>ReForm-32B</td><td>81.61</td><td>68.41</td><td>52.00</td><td>25.00</td></tr><tr><td>Goedel-Formalizer-V2-32B</td><td>78.28</td><td>63.74</td><td>48.00</td><td>13.00</td></tr><tr><td>MathForm-8B-SFT</td><td>84.38</td><td>66.53</td><td>58.00</td><td>25.00</td></tr><tr><td>MathForm-8B</td><td>88.06</td><td>72.37</td><td>63.00</td><td>37.00</td></tr></tbody></table><div class="tbl-cap">Pass@8 pass rates (%) under Syntax Check (SC) and Consistency Check (CC), macro-average and challenging FATE subsets</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -6,7 +6,40 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 17 Aug 2026 01:00:20 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 17 Aug 2026 02:01:50 +0000</lastBuildDate>
+    <item>
+      <title>MathForm: Scaling Mathematical Autoformalization with Knowledge Retrieval and Verification-Guided Refinement</title>
+      <link>https://paperswithlean.com/paper/2608.14221.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.14221.html</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Lushi Pu, Weiming Zhang, Xinheng Xie, Zixuan Fu, Bingxiang He, Hengyu Zhao, Hongya Lyu, Xin Li, Jie Zhou, Yudong Wang</dc:creator>
+      <category>autoformalization</category><category>dataset</category><category>theorem-proving-ml</category><category>mathlib</category>
+      <description>Builds a 367K-example Lean 4 autoformalization dataset via Mathlib retrieval and verification-guided refinement, training MathForm-8B evaluated on six Lean benchmarks.
+
+Autoformalization is commonly framed as translating natural-language mathematical statements into machine-verifiable formal languages such as Lean 4. However, faithful formalization requires more than translation. Models must map mathematical concepts to the complex hierarchy of types and definitions in formal libraries such as Mathlib, while ensuring that generated statements preserve the meaning of the source propositions. Existing approaches struggle because they rely heavily on the model&#x27;s parametric memory for library-specific knowledge, while common data construction pipelines often resort to filtering single-pass outputs and lack mechanisms for feedback-driven revision. To address these challenges, we introduce MathForm, an autoformalization framework for constructing verified training data through Mathlib knowledge retrieval and verification-guided iterative refinement. Before generation, a retrieval planner gathers relevant definitions and existing formalizations from Mathlib to guide the formalization generator. Generated statements are then revised using compiler diagnostics and semantic-consistency feedback. Using this framework, we construct FormalVerse, a Lean 4 dataset containing approximately 367K verified examples across diverse mathematical domains and sources. We then train MathForm-8B through supervised fine-tuning followed by reinforcement learning. Across six benchmarks, MathForm-8B achieves average Pass@8 rates of 88.06% under Syntax Check (SC) and 72.37% under Consistency Check (CC), outperforming multiple specialized 32B autoformalizers. On the challenging FATE-H and FATE-X subsets, it attains CC pass rates of 63% and 37%, exceeding the strongest specialized baselines in both cases.</description>
+    </item>
+    <item>
+      <title>A Barrier-Free Synchronization Algorithm for Multi-Engine AI Accelerators</title>
+      <link>https://paperswithlean.com/paper/2608.13757.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.13757.html</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Chungha Sung, Nikil V. Shyamsunder, Hanliang Zhang, Daniel Kroening, Joonwon Choi</dc:creator>
+      <category>verification</category><category>logic</category>
+      <description>Bisimulation proof that a barrier-free synchronization algorithm for AI accelerators meets minimum-synchronization correctness, mechanized in Lean ( 15K lines, zero admits).
+
+Multi-engine AI accelerators such as AWS Trainium comprise specialized compute engines that execute in parallel, and the compiler must synchronize the data dependencies between them. For straight-line code this is simple: each dependency reduces to waiting for a threshold count of instruction completions, which the compiler computes statically. Loops admit no such static threshold; a simple solution inserts all-engine barriers at iteration boundaries, resetting synchronization state so each loop body can be treated as straight-line, at the cost of parallelism. We present a barrier-free synchronization algorithm that instead enforces each dependency precisely across structured control flow with arbitrarily nested, dynamically bounded loops. The key idea is to compute dynamic thresholds at runtime from tracked loop iteration counts. We implemented it as a compiler backend pass at the AWS Neuron ISA level. On a suite of ML kernels, it reduces latency 10-45% relative to the barrier-based baseline, achieves a 3.3x speedup on a synchronization-bound microbenchmark, and often matches or exceeds hand-tuned manual allocation. Issuing a consumer too early violates its dependency, while issuing too late unnecessarily stalls execution. We formally characterize the minimum synchronization required for correctness and verify in the Lean proof assistant, via bisimulation, that our algorithm meets this criterion.</description>
+    </item>
+    <item>
+      <title>More than two thirds of the zeta zeros are simple and on the critical line</title>
+      <link>https://paperswithlean.com/paper/2608.13637.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.13637.html</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Levent Alpöge, Ralph Furman</dc:creator>
+      <category>formalization</category><category>number-theory</category>
+      <description>An unconditional theorem that at least two thirds of zeta zeros are simple and on the critical line is formally verified in Lean 4.
+
+We prove unconditionally that at least two thirds of the nontrivial zeros of the Riemann zeta function, counted with multiplicity, are simple and lie on the critical line, and that at least five sixths are distinct; the previous unconditional records are $\frac{5}{12}$ and $0.6603$. With the Montgomery–Taylor window the constants become $0.6725$ and $0.8362$. The argument makes Montgomery&#x27;s 1973 deduction unconditional: the Riemann hypothesis, classically needed to read the zero side as a positive sum over real ordinates, is replaced by a rank-trace inequality applied to a finite compression of Weil&#x27;s Hermitian form, with Sylvester&#x27;s law of inertia handling off-line pairs. The analytic inputs are those of Aryan and of Baluyot, Goldston, Suriajaya and Turnage-Butterbaugh. The results extend to primitive Dirichlet $L$-functions and are formally verified in Lean 4.</description>
+    </item>
     <item>
       <title>Vero: Can AI Agents Build Formally Verified Software Repositories?</title>
       <link>https://paperswithlean.com/paper/2608.13522.html</link>
@@ -633,39 +666,6 @@ Let $δ$ denote the primitive act of distinction, formally realized as the one-s
       <description>An exact rational sum-of-squares certificate for the Dittert conjecture in dimension 4 is formally verified in Lean 4 with Mathlib.
 
 The Dittert conjecture states that the Dittert functional on nonnegative $n\times n$ matrices whose entries sum to $n$ is uniquely maximized by the uniform matrix. We prove the conjecture in dimension $4$. More precisely, let $K_4$ be the simplex of nonnegative $4\times4$ real matrices whose entries sum to $4$, let $U_4$ be the uniform matrix, and let $φ$ denote the Dittert functional. We establish $\frac{61}{32}-φ(A)\geq \frac{1}{52}\lVert A-U_4\rVert_F^2$ for every $A\in K_4$. Consequently, $U_4$ is the unique maximizer of $φ$ on $K_4$. The proof reduces to certifying the nonnegativity of a structured quartic polynomial in sixteen variables on a simplex. We construct an exact rational constrained sum-of-squares certificate using an agent-guided symbolic-numeric procedure that combines template selection with sequential rational recovery. The main SOS consists of $152$ positively weighted rational squares, while each of the $136$ smaller SOS blocks consists of $16$ such squares. Exact $LDL^{\mathsf{T}}$ decompositions certify positivity, and exact coefficient comparison over $\mathbb{Q}$ verifies the complete polynomial identity. The resulting exact certificate is formally verified using the Lean proof assistant.</description>
-    </item>
-    <item>
-      <title>Fitting&#x27;s Theorem and Semirings of Normal Subgroups</title>
-      <link>https://paperswithlean.com/paper/2607.29111.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.29111.html</guid>
-      <pubDate>Mon, 03 Aug 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Damiano Testa</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>algebra</category>
-      <description>Fitting&#x27;s theorem is reproved via a semiring structure on normal subgroups and fully formalized in Lean 4 using Mathlib.
-
-We define a non-unital, generally non-associative, commutative semiring structure on the collection of normal subgroups of a group $G$. This viewpoint allows us to recast in ring-theoretic terms Fitting&#x27;s classical theorem that the join of two nilpotent normal subgroups is nilpotent. From this perspective, the two key inputs are a binomial expansion in a non-associative setting and the fact that the commutator subgroup of two normal subgroups lies in each factor. The development is formalized in Lean, making essential use of Mathlib for the core definitions and results.</description>
-    </item>
-    <item>
-      <title>WitCert: Sound Runtime Risk Observability and Gating for KV-Cache Quantization</title>
-      <link>https://paperswithlean.com/paper/2607.28699.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.28699.html</guid>
-      <pubDate>Mon, 03 Aug 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Fanzhe Wei, Li Liu</dc:creator>
-      <category>verification</category>
-      <description>Core soundness theorems for the KV-cache quantization total-variation bound are machine-checked in Lean 4 using Mathlib.
-
-KV-cache quantization is validated today by offline benchmark averages; a deployed system cannot tell whether compression is damaging the request it is serving right now. We give it a provably sound runtime meter, a &quot;DTrace for KV quantization&quot;: a per-(layer, head, step) upper bound on the total variation between exact and compressed attention. The meter has two tiers: a deterministic band-norm-witness bound, sound for any cache-preserving black-box quantizer and for any query (adaptive-safe, worst-case Cauchy-Schwarz plus RoPE band-unitarity), and a tighter probabilistic certificate for a controlled subtractively-dithered INT8 quantizer under an explicit request-level failure budget (stated for non-adaptive queries; core theorems machine-checked in Lean 4). Three results. Observability: the meter enters SGLang through an environment-guarded patch, and any scheme registered as one tensor function is measured in live serving. Repair: meter-driven gating, risk-ranked where the witness is saturated and certified where it is informative, empirically restores the quality floor at benchmark scale. For example, raw-cast FP8 improves from 22.8 back to 79.7 on hard RULER tasks, with the difference from uncompressed bounded at [+0.0, +0.8] by a paired test. Analysis: aggressive schemes survive on cross-layer error cancellation, not per-step fidelity. In a 28-layer sweep, no single layer&#x27;s pollution alone loses anything (0/28), and the certified INT8 cache serves 1.88 times more KV tokens at the same memory in SGLang.</description>
-    </item>
-    <item>
-      <title>LeanCSP: A Framework for Certifying Constraint Reformulation and Solving in Lean</title>
-      <link>https://paperswithlean.com/paper/2607.28459.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2607.28459.html</guid>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Pablo Manrique, Stefan Szeider</dc:creator>
-      <category>verification</category><category>tooling</category><category>logic</category>
-      <description>LeanCSP formalizes constraint satisfaction problems in Lean, proving reformulation soundness and checking external solver certificates back inside Lean.
-
-Constraint programming is a core technology for solving complex combinatorial problems in scheduling, planning, configuration, and verification. Trusting its results therefore demands guarantees at two levels: that reformulations applied beforehand are semantics-preserving, and that solvers produce correct answers. In this work, we introduce a framework that addresses both verification levels in the Lean theorem prover: it can be used to prove formulation-level properties, such as equivalence, equisatisfiability, and the correctness of symmetry-breaking constraints, parametrically for entire problem families; and to check solver-produced certificates for individual instances via translation backends to external formats such as MiniZinc, SMT-LIB, and OPB. Combining both levels yields an end-to-end workflow that establishes the satisfiability or unsatisfiability of a constraint problem without trusting the external solver. Experimental results show that our framework&#x27;s verified symmetry breaking also pays off in practice: a single parametric proof per problem family, reused across all instance sizes, reduces solver search effort by a factor of up to 2x10^7, while the entire in-Lean certification stays affordable, taking at most a few minutes for our largest instances.</description>
     </item>
   </channel>
 </rss>
