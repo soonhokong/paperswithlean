@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricing the Risk of Runtime Compression: Anytime-Valid Admission and a Served-Output Law for Compressed Serving State · Papers With Lean</title>
+<meta name="description" content="Runtime compression of serving state trades quality for capacity with no priced guarantee: systems adapt precision on load signals with no soundness statement, and certified approaches budget request-level risk by a union bound over a pre-declared event count. We show the union…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pricing the Risk of Runtime Compression: Anytime-Valid Admission and a Served-Output Law for Compressed Serving State">
+<meta property="og:description" content="Runtime compression of serving state trades quality for capacity with no priced guarantee: systems adapt precision on load signals with no soundness statement, and certified approaches budget request-level risk by a union bound over a pre-declared event count. We show the union…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.15810.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.15810.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.15810v1" target="_blank" rel="noopener"><img src="../thumbs/2608.15810.jpg" alt="First page of Pricing the Risk of Runtime Compression: Anytime-Valid Admission and a Served-Output Law for Compressed Serving State"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Pricing the Risk of Runtime Compression: Anytime-Valid Admission and a Served-Output Law for Compressed Serving State</h1>
+        <p class="authors">Fanzhe Wei, Li Liu</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Aug 16, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.15810v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.15810" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Probabilistic kernels for anytime-valid admission and served-TV bounds are machine-checked in Lean 4 with 228 exported theorems and no sorry.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Runtime compression of serving state trades quality for capacity with no priced guarantee: systems adapt precision on load signals with no soundness statement, and certified approaches budget request-level risk by a union bound over a pre-declared event count. We show the union budget exhausts on every long request in a production serving stack (100% of requests), and replace it with an anytime-valid, physically accounted ledger whose bound holds at every one of 352,333 admission calls on live traffic and which, in a pre-registered held-out confirmatory round, halves the exact-fallback rate at matched risk (0.30 -&gt; 0.14) – coverage is bought at a price the account states. We then price the remaining distance from the certified witness to what a user experiences: a machine-checked design law (TV &lt;= tanh(a_q w_thr)) turns the served-TV target into a threshold knob, and a three-layer audit of its instantiation – an operator-norm query envelope measured 1.5x from tight, a measured-ellipsoid replacement for the Cauchy-Schwarz ball that buys nothing (0.89x, held-out sound), and the gate&#x27;s operating point ( 700x) – localizes the entire 1064x gap to the operating point, a price the law now states rather than an unknown. A priced bound is worth nothing on a request one has not seen, so the third link is the quantifier: exchangeable extrapolation across 80 serving histories replaces binary conformal prediction&#x27;s vacuous certificates with order-statistic bounds that discriminate (0.41 against 0.51 calibration risk). All probabilistic kernels are Lean 4-checked (228 exported theorems, no sorry); which object deserves this machinery at all is settled empirically in a companion paper that adjudicates – and rejects – the natural alternative of certifying routing. What ships is an account: risk you can spend, a gap you can read off a law, and a bound that survives the request you have not seen.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Runtime compression of large-model serving state trades quality for capacity without a sound per-request accounting of the risk each precision decision incurs. Certified approaches budget request-level risk by a union bound that exhausts on every long request.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An anytime-valid ledger bounds cumulative realized loss instead of using a per-event union budget, with admission rules proven conservative. A machine-checked served-TV design law (TV &lt;= tanh(a_q w_thr)) ties the controller threshold to a served-output quantity, replacing an earlier vacuous exponential-tilt softmax bound. Exchangeable extrapolation across serving histories provides order-statistic transfer bounds. All probabilistic kernels are verified in Lean 4 (228 exported theorems, no sorry).</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The anytime-valid bound held at all 352,333 admission calls on live traffic with zero violations, and halved the exact-fallback rate at matched risk (0.30 -&gt; 0.14) in a held-out round. A five-arm serving-stack replication showed equal quality (1.000) across arms with the cumulative-loss gate holding a bounded account (99.97% peak) versus the union gate exhausting its budget.</p><div class="sum-table"><table><thead><tr><th>metric</th><th>union</th><th>cumloss 5e3</th><th>cumloss 2e4</th><th>cumloss 5e4</th></tr></thead><tbody><tr><td>budget exhaustion</td><td>100%</td><td>—</td><td>—</td><td>—</td></tr><tr><td>fallback-to-exact (median)</td><td>0.315</td><td>0.842</td><td>0.339</td><td>0.0079</td></tr><tr><td>violations</td><td>0</td><td>0</td><td>0</td><td>0</td></tr></tbody></table><div class="tbl-cap">Dual-accounted admission by budget (union vs. cumulative loss)</div></div><div class="sum-table"><table><thead><tr><th>Arm</th><th>acc</th><th>risk ledger</th><th>fallback</th></tr></thead><tbody><tr><td>FP8 safe</td><td>1.000</td><td>none</td><td>—</td></tr><tr><td>aggressive, no gate</td><td>1.000</td><td>none</td><td>—</td></tr><tr><td>gated, union budget</td><td>1.000</td><td>exhausts (99.4%)</td><td>59.3%</td></tr><tr><td>gated, cumulative</td><td>1.000</td><td>bounded (99.97%)</td><td>56.3%</td></tr></tbody></table><div class="tbl-cap">Five-arm equal-quality serving stack table</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
