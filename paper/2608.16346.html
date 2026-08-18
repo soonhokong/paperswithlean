@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mechanizing Choreographic Programs and Hoare Logic with State Transformers · Papers With Lean</title>
+<meta name="description" content="Choreographic programming is a programming model for developing distributed applications where an entire communication protocol is written as a single program, which a compiler then projects to one process per participant. Choreographic programming abstracts over low-level…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mechanizing Choreographic Programs and Hoare Logic with State Transformers">
+<meta property="og:description" content="Choreographic programming is a programming model for developing distributed applications where an entire communication protocol is written as a single program, which a compiler then projects to one process per participant. Choreographic programming abstracts over low-level…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.16346.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.16346.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.16346v1" target="_blank" rel="noopener"><img src="../thumbs/2608.16346.jpg" alt="First page of Mechanizing Choreographic Programs and Hoare Logic with State Transformers"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Mechanizing Choreographic Programs and Hoare Logic with State Transformers</h1>
+        <p class="authors">Timon Böhler, Simon Daniel, David Richter, Pascal Weisenburger, Mira Mezini</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Aug 17, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=type-theory">type-theory</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.16346v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.16346" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.21488659" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A choreographic language with state transformers is mechanized in Lean, proving endpoint projection soundness, deadlock freedom, confluence, and a Hoare logic.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Choreographic programming is a programming model for developing distributed applications where an entire communication protocol is written as a single program, which a compiler then projects to one process per participant. Choreographic programming abstracts over low-level network communication primitives such as sockets, and provides a high degree of safety guarantees with deadlock freedom ensured by construction. Mechanizing choreographies necessarily deals with both operations specific to distributed programming and standard (local) operations that also occur in non-distributed programs, as well as the typical issues of binding and substitution. We aim to sidestep the latter issues, thereby obtaining a more concise mechanization that focuses on the essential distributed aspects of choreographies. To this end, we use a method recently proposed by Thiemann to elegantly model deadlock-free processes in a dependently typed language: Using state transformers to represent the computations performed by each process. We bring the state transformer model to choreographies, allowing us to reduce the usual mechanization effort around binding and substitution, and to abstract over the details of the &quot;local&quot; aspects of the language. We mechanize in Lean a choreographic language that supports point-to-point communication, broadcasting, recursive procedures, and local stateful methods, allowing each participant to be assigned a different set of methods. We prove soundness and completeness of endpoint projection, establish deadlock freedom for the projected processes, prove confluence, and verify a Hoare logic for choreographies.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Mechanizing choreographic programming languages is complex, largely due to handling variable binding, substitution, and renaming for distributed programs. Existing mechanizations require intricate proof developments dominated by binder management.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Choreographies are encoded in Lean using state transformers, where each process holds a state of arbitrary type and communication operations are meta-language functions reading/updating state. This avoids variable contexts, binding, and explicit local expression languages by delegating local computation to Lean functions. The language is parametrized via a type class over roles, local states, methods, and procedure identifiers. Hoare logic is defined semantically, representing rules as Lean theorems rather than a deep embedding.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The language supports point-to-point communication, broadcasting, recursive procedures, and role-specific local methods. Soundness and completeness of endpoint projection, deadlock freedom of projected networks, confluence, and a Hoare logic for choreographies were proved in Lean.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
