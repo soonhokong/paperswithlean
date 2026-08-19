@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Kernel-Checked Exclusion Certificate for Erdős Problem 647 · Papers With Lean</title>
+<meta name="description" content="Erdős problem 647 asks whether any $n &gt; 24$ satisfies $\max_{m&lt;n}(m + τ(m)) \le n + 2$, where $τ$ is the divisor-count function. Computational searches have excluded solutions up to $10^{12}$ by direct sieve and up to roughly $9.17 \times 10^{18}$ within a modular reduction…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Kernel-Checked Exclusion Certificate for Erdős Problem 647">
+<meta property="og:description" content="Erdős problem 647 asks whether any $n &gt; 24$ satisfies $\max_{m&lt;n}(m + τ(m)) \le n + 2$, where $τ$ is the divisor-count function. Computational searches have excluded solutions up to $10^{12}$ by direct sieve and up to roughly $9.17 \times 10^{18}$ within a modular reduction…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.17880.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.17880.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.17880v1" target="_blank" rel="noopener"><img src="../thumbs/2608.17880.jpg" alt="First page of A Kernel-Checked Exclusion Certificate for Erdős Problem 647"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Kernel-Checked Exclusion Certificate for Erdős Problem 647</h1>
+        <p class="authors">Ibrahim Mian, Shayaan Siddique</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Aug 18, 2026 · v1</span>
+          <span class="badge">math.NT</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.17880v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.17880" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ibrahimmian36/decanus" target="_blank" rel="noopener" title="ibrahimmian36/decanus">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes in Lean 4 with Mathlib an exclusion certificate replaying 6.6M factorization witnesses to rule out Erdős problem 647 solutions in (24,10^9], using only standard axioms.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Erdős problem 647 asks whether any $n &gt; 24$ satisfies $\max_{m&lt;n}(m + τ(m)) \le n + 2$, where $τ$ is the divisor-count function. Computational searches have excluded solutions up to $10^{12}$ by direct sieve and up to roughly $9.17 \times 10^{18}$ within a modular reduction whose Lean component relies on native_decide; those computations sit outside any proof kernel. We give the first exclusion checked end to end by one: no solution exists with $24 &lt; n \le 10^9$, proved in Lean 4 with axiom closure exactly {propext, Classical.choice, Quot.sound} – no sorry, no native_decide, no problem-specific axiom. The proof replays a chain of 6,685,922 factorization witnesses whose excluded intervals concatenate across $(24, 10^9]$; it needs no primality facts beyond primes below 1024, and it is the finite, fully proved form of a domination-interval argument whose asymptotic step was the identified gap in a withdrawn January 2026 claim on this problem. The generation pipeline is cross-checked by two further independent implementations, the compiled development replays through the standalone lean4checker, and two from-source verification legs – Lean toolchains compiled from source by gcc and by clang, mathlib rebuilt with no cache – reproduce the committed certificates byte for byte, with olean digests identical across three builds on two architectures. Our range is three to ten orders of magnitude below the computational frontiers we cite; the contribution is the trust base, not the range.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Erdős problem 647 asks whether any n&gt;24 satisfies max_{m&lt;n}(m+τ(m)) ≤ n+2. Prior computational exclusions relied on untrusted code or Lean&#x27;s native_decide plus problem-specific axioms, outside any proof kernel.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A witness-chain certificate stores, for each kill witness m, the maximal prime powers below 1024 dividing it, from which the kernel recomputes a divisor-count lower bound with a doubling rule licensed by maximality. A small trusted soundness layer proves that a passing Boolean checker (chainOk) yields, for every covered n, a witness refuting the inequality, bridged to the pinned formal-conjectures predicate. Bulk certificate data is checked by structural recursion via decide, with no native_decide, sorry, or extra axioms. Generation is cross-validated by two independent replay implementations and reproduced byte-for-byte from source-built toolchains.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Proved in Lean 4 that no n with 24&lt;n≤10^9 satisfies the inequality, with axiom closure exactly {propext, Classical.choice, Quot.sound}. The 10^7 and 10^8 rungs run in CI and reproduce on two machines; the 10^9 rung was kernel-checked once. The certified range sits within a factor of a thousand of the uncertified sieve frontier.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

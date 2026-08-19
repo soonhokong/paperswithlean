@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neuro-symbolic learning over OWL 2 DL via consequence-based compilation to differentiable circuits · Papers With Lean</title>
+<meta name="description" content="OWL 2 DL ontologies, grounded in the description logic $\mathcal{SROIQ}$, express large knowledge bases in biomedicine and the Semantic Web. Neuro-symbolic (NeSy) learners over description logics either embed the ontology in a continuous space, abandoning classical entailment,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Neuro-symbolic learning over OWL 2 DL via consequence-based compilation to differentiable circuits">
+<meta property="og:description" content="OWL 2 DL ontologies, grounded in the description logic $\mathcal{SROIQ}$, express large knowledge bases in biomedicine and the Semantic Web. Neuro-symbolic (NeSy) learners over description logics either embed the ontology in a continuous space, abandoning classical entailment,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.17741.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.17741.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.17741v1" target="_blank" rel="noopener"><img src="../thumbs/2608.17741.jpg" alt="First page of Neuro-symbolic learning over OWL 2 DL via consequence-based compilation to differentiable circuits"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Neuro-symbolic learning over OWL 2 DL via consequence-based compilation to differentiable circuits</h1>
+        <p class="authors">Olga Mashkova, Asaad Mohammedsaleh, Fernando Zhapa-Camacho, Robert Hoehndorf</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Aug 18, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.17741v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.17741" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/phillord/horned-owl" target="_blank" rel="noopener" title="phillord/horned-owl">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Soundness of the SROIQ-to-SDD compiler and the mixture representation result are machine-checked in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">OWL 2 DL ontologies, grounded in the description logic $\mathcal{SROIQ}$, express large knowledge bases in biomedicine and the Semantic Web. Neuro-symbolic (NeSy) learners over description logics either embed the ontology in a continuous space, abandoning classical entailment, or restrict to the Horn fragment $\mathcal{EL}^{++}$, which has a single canonical model. We present Baobab, which compiles a $\mathcal{SROIQ}$ ontology with a finite ABox into a Sentential Decision Diagram (SDD): it saturates a propositional core under a consequence-based calculus and instantiates the remaining $\mathcal{SROIQ}$ features (nominals, number restrictions, and the role axioms) over the active domain. The SDD&#x27;s evidence-conditioned weighted model count then trains a perception network to recognize real images under partial ABox supervision: on an ontology that exercises every distinctive $\mathcal{SROIQ}$ feature, a CNN learns to read MNIST digits coupled by a successor relation and recovers latent ontology concepts that an independent perception leaves at chance. When the supervision admits several ontology-consistent completions, an independent perception collapses onto one, a reasoning shortcut: we show that a mixture indexed by the query&#x27;s justifications can represent the calibrated posterior no independent perception can, and that seeding it from the circuit&#x27;s enumerated completions attains the Bayes-optimal posterior on a real-image MNIST task where single-WMC and learned mixtures (the BEARS-ensemble hypothesis class) do not: to our knowledge the first to characterize and mitigate reasoning shortcuts in a non-Horn description logic. Soundness of the compiler and the representation result are machine-checked in Lean 4. Code is available at <a href="https://github.com/bio-ontology-research-group/baobab" target="_blank" rel="noopener">https://github.com/bio-ontology-research-group/baobab</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Neuro-symbolic learners over OWL 2 DL either abandon classical entailment via embeddings or restrict to the Horn fragment. A method is needed that keeps classical SROIQ semantics end-to-end while training perception under partial supervision, and that handles reasoning shortcuts in non-Horn description logics.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Baobab compiles a SROIQ knowledge base with a finite ABox into a Sentential Decision Diagram by saturating a propositional core under a consequence-based calculus and grounding the remaining SROIQ features over the active domain. The SDD&#x27;s evidence-conditioned weighted model count serves as a differentiable training loss for a CNN perception network. A mixture indexed by a query&#x27;s justifications is used to recover the calibrated posterior. Soundness of the compiler and the representation result are formally verified in Lean 4.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.17741/mnist_2.png" alt=""><figcaption>Figure 1: The Baobab workflow. Compile time (once per ontology): the five stages above produce an SDD. Training loop : a shared CNN reads the coupled individuals a,b (real MNIST digits) into per-atom posteriors that weight the SDD leaves; the evidence-conditioned WMC is the differentiable loss.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On an ontology exercising all distinctive SROIQ features, the WMC-trained CNN reaches near-perfect digit and latent-atom accuracy (0.99/1.00) versus chance for independent perception. The justification-anchored mixture attains the Bayes-optimal posterior on an underdetermined MNIST task where single-WMC and learned mixtures do not.</p><div class="sum-table"><table><thead><tr><th>regime</th><th>method</th><th>digit</th><th>latent</th><th>viol</th></tr></thead><tbody><tr><td>grounded (#RS=1)</td><td>Independent</td><td>0.25</td><td>0.49</td><td>0.80</td></tr><tr><td>grounded (#RS=1)</td><td>WMC</td><td>0.99</td><td>1.00</td><td>0.02</td></tr><tr><td>under-det (#RS=5)</td><td>Independent</td><td>0.20</td><td>0.46</td><td>0.93</td></tr><tr><td>under-det (#RS=5)</td><td>WMC</td><td>0.18</td><td>0.67</td><td>0.78</td></tr></tbody></table><div class="tbl-cap">Grounded and under-determined regime results (digit, latent, violation, ECE).</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
