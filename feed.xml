@@ -6,7 +6,40 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 24 Aug 2026 01:14:47 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 24 Aug 2026 02:01:37 +0000</lastBuildDate>
+    <item>
+      <title>AI with Authority, from Application to Silicon</title>
+      <link>https://paperswithlean.com/paper/2608.21356.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.21356.html</guid>
+      <pubDate>Sun, 23 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Jason Hickey</dc:creator>
+      <category>verification</category><category>ai-agents</category><category>tooling</category>
+      <description>AI agents produce Lean 4 / Mathlib kernel-checked proofs verifying a stack from application code through a compiler to RISC-V silicon.
+
+For sixty years, machine verification has been a major cost overhead, affordable only for exceptional artifacts. Here we report that generative AI inverts this relationship: at AI speed, machine verification is not only economical but essential to productivity — it is the incorruptible referee that lets one person safely direct autonomous machine work at scale. In five weeks, one researcher on consumer AI subscriptions directed a small fleet of AI agents from application code, through a verified compiler and executive, to a RISC-V processor taped out on a community silicon shuttle; no proof passed through human review, and no RTL was written by a human. The working discipline — the Salt method — rests on a proof kernel no hallucinated proof can pass: mathematical claims travel between agents as kernel-checked artifacts, and human attention is reserved for statements, designs, and rulings. Verification is stated link by link, from the Lean 4 kernel to SAT-checked equivalence at the silicon boundary. We publish the complete accounting: theorem provenance, a pre-registered token meter, floor-bounded human time, and an error ledger whose catch numbering runs to #256 — a monotone counter over the mathematics campaign&#x27;s append-only flags ledger, maintained 2026-07-07 to 2026-07-20 (one number, #79, was never assigned; later catches are recorded un-numbered) — against zero incorrect proofs reaching the record.</description>
+    </item>
+    <item>
+      <title>A Lean 4 Verification Report for Subregular Affine Cells and the Level $-1$ Vertex Algebra of Type $D$</title>
+      <link>https://paperswithlean.com/paper/2608.20793.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.20793.html</guid>
+      <pubDate>Sun, 23 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Sihai Jin</dc:creator>
+      <category>formalization</category><category>verification</category><category>algebra</category>
+      <description>Lean 4 kernel-checks internal deductions of the subregular affine cell classification for the level -1 type-D vertex algebra from explicit representation-theoretic interfaces.
+
+We report a Lean 4 formal verification accompanying the paper &quot;Subregular Affine Cells and the Level -1 Vertex Algebra of Type D&quot; (arXiv:2608.11997). The formalization kernel-checks substantial internal parts of the proof architecture, including the Section 4 membership/descent chain, the type-D norm-gap argument, zero-orbit energy and signed-permutation rigidity, node-weight and numerical rigidity calculations, the exhaustion logic, the passage to the candidate quotient classification, the simple-object count, the final additive Grothendieck-group comparison, and the coefficient-substitution layer of the uniform character formula. Higher representation-theoretic results whose foundational infrastructure is not presently constructed in the file are isolated as explicit semantic interfaces rather than introduced as Lean axioms. Thus the precise claim is a kernel-checked internal deduction from explicit representation-theoretic boundary inputs, not a from-scratch formalization of vertex algebras, BRST reduction, finite W-algebras, or affine Hecke theory inside Mathlib.</description>
+    </item>
+    <item>
+      <title>ProofJudge: Tool-Grounded LLM Evaluation of Formal Proof Quality in Mathlib</title>
+      <link>https://paperswithlean.com/paper/2608.20432.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.20432.html</guid>
+      <pubDate>Sun, 23 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Shane Caldwell</dc:creator>
+      <category>theorem-proving-ml</category><category>ai-agents</category><category>mathlib</category><category>benchmark</category>
+      <description>Introduces an agentic LLM-as-judge system scoring Lean 4 Mathlib proof quality beyond correctness, grounded by tool access to library state.
+
+Formal proofs in Lean 4 that pass the kernel&#x27;s type checker can nonetheless vary widely in quality. We introduce ProofJudge, an agentic LLM-as-judge system that scores formal proof quality along five dimensions beyond correctness: library leverage, automation fit, structural clarity, statement quality, and Mathlib conventions. We evaluate ProofJudge on a novel dataset of 218 declarations drawn from distinct Mathlib PRs. The judge agent is grounded by tool access to the commit the PR is applied to, enabling it to query the library state when scoring. A judge is considered aligned with human preferences when it rates the version of the PR Mathlib accepted above the initial version that was sent back for revision. All six judge models evaluated recover the reviewers&#x27; preference well above chance, from 80.8% to 63.5%, and two open-weight judges reach roughly 70% at a tenth of the best judge&#x27;s cost. We release the judge harness, evaluation dataset, and evaluation traces as open-source artifacts to support further research.</description>
+    </item>
     <item>
       <title>FormalTCS: Benchmarking End-to-End Frontier Formal Theoretical Computer Science Research of Large Language Models</title>
       <link>https://paperswithlean.com/paper/2608.20153.html</link>
@@ -633,39 +666,6 @@ For coprime $1&lt;a&lt;b$, let $M_n^{a,b}(\mathbb{F}_q)$ be the set of commuting
       <description>Two core compiler passes (control flow conversion and linking) for asynchronous dataflow are formalized in Lean with forward simulation and determinacy proofs.
 
 Dataflow architectures have gained renewed interest due to their balance between power efficiency and performance. In (spatial) dataflow architectures, a program is represented as a set of entirely distributed and dynamically scheduled dataflow operators that communicate through asynchronous channels, which greatly improves data locality and parallelism. However, compiling to dataflow architectures remains an error-prone process, in order to maintain determinacy while enabling pipelining. Determinacy means that the result of a dataflow program is deterministic and independent of the schedule of operator execution, and pipelining is an important optimization in spatial dataflow that enables parallelism across loop iterations. In this work, we present Wavelet, the first effort to formally verify a compiler for asynchronous dataflow. We use a mix of techniques to achieve this goal. Our frontend uses a novel capability type system with fences to synchronize conflicting memory accesses and enable pipelining. We then verify a Lean formalization of two core passes of our compiler that translates elaborated programs from the type checker to dataflow graphs, proving important properties of forward simulation and determinacy. Notably, our formalization semantically propagates the soundness guarantees of the frontend type system, ensuring modularity between simulation and determinacy proofs. In evaluation, we show that dataflow graphs compiled by Wavelet have comparable sizes to those produced by an unverified optimizing compiler for the RipTide spatial dataflow architecture.</description>
-    </item>
-    <item>
-      <title>A bijective proof of a partition theorem of Berkovich and Uncu</title>
-      <link>https://paperswithlean.com/paper/2608.05142.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.05142.html</guid>
-      <pubDate>Wed, 05 Aug 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Michal Mogielnicki, Ken Ono, Niels Voss, Jujian Zhang</dc:creator>
-      <category>formalization</category><category>ai-agents</category><category>combinatorics</category>
-      <description>AxiomProver autonomously formalized and machine-verified the main bijective partition theorem in Lean 4.31.0, with problem and solution files.
-
-In 2016, Berkovich and Uncu proved that, for all nonnegative integers $i$, $j$, and $n$, the number of strict partitions of $n$ with $i$ odd-indexed odd parts and $j$ even-indexed odd parts equals the number of strict partitions of $n$ with $i$ parts congruent to $1$ modulo $4$ and $j$ parts congruent to $3$ modulo $4$. Their proof used generating functions, and they asked for a combinatorial proof. We answer their question with an explicit bijection, assembled from three classical ingredients: $2$-modular diagrams, an insertion algorithm of Chen, Gao, Ji, and Li, and Glaisher&#x27;s bijection. AxiomProver autonomously formalized and verified the proof of the main theorem in Lean.</description>
-    </item>
-    <item>
-      <title>Gabor Frames of Totally Positive Functions: A Complete Characterization</title>
-      <link>https://paperswithlean.com/paper/2608.04992.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.04992.html</guid>
-      <pubDate>Wed, 05 Aug 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Jaume de Dios Pont, Karlheinz Gröchenig, Lukas Liehr, Irina Shafkulovska, Mitchell A. Taylor</dc:creator>
-      <category>formalization</category><category>analysis</category><category>mathlib</category>
-      <description>Provides a Lean 4 formalization, built on Mathlib, of the sufficiency direction of the Gabor frame set theorem for totally positive functions.
-
-We prove that the set of time-frequency shifts $\{e^{2πi βl t} g(t-αk) : k,l \in \mathbb{Z}\}$ with a continuous, integrable totally positive function $g$ and lattice parameters $α,β&gt;0$ generates a frame for $L^2(\mathbb{R})$ if and only if $αβ&lt;1$. This fully settles the so-called frame set problem for the class of totally positive functions. As a closely related result we prove a sharp Kadets-type theorem for every shift-invariant space generated by a continuous totally positive function. The proofs are based on Fredholm theory and limit-operator theory. A formalization of our main result in Lean 4 is also provided.</description>
-    </item>
-    <item>
-      <title>Towards Datalog on Quantum Annealers: Compiling Recursive Logic Programs with Bottom-up Semantics to 2-local Ising Models</title>
-      <link>https://paperswithlean.com/paper/2608.04645.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.04645.html</guid>
-      <pubDate>Wed, 05 Aug 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Bruno Rucy Carneiro Alves de Lima, Victor Henrique Cabral Pinheiro, Evgenii Dolzhkov, Joseph Haske</dc:creator>
-      <category>verification</category><category>logic</category>
-      <description>Per-stage correctness lemmas and a correspondence theorem for compiling Datalog to 2-local Ising models are verified in Lean 4.
-
-Quantum annealers solve problems by finding the lowest-energy (ground) state of a programmable physical system, a 2-local Ising model, whose energy function is the Hamiltonian. We compile recursive Datalog programs into such models so that the ground state projects onto the program&#x27;s minimal Herbrand model. The compiler has four stages: binarization, grounding, reduction to a Min-Ones SAT formula, and Ising encoding. Each rule becomes an energy penalty on the one assignment that violates it, and a small uniform cost on every true atom selects the minimal model. We contribute both in theory and in practice with per-stage correctness lemmas and a correspondence theorem, verified in Lean 4, establishing that the ground state of the compiled model projects onto the program&#x27;s minimal Herbrand model. We map the compiled models onto the topologies of commercial annealers and characterize, under classical and simulated-quantum annealing, whether and when that certified ground state is attained.</description>
     </item>
   </channel>
 </rss>

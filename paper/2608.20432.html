@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ProofJudge: Tool-Grounded LLM Evaluation of Formal Proof Quality in Mathlib · Papers With Lean</title>
+<meta name="description" content="Formal proofs in Lean 4 that pass the kernel&#x27;s type checker can nonetheless vary widely in quality. We introduce ProofJudge, an agentic LLM-as-judge system that scores formal proof quality along five dimensions beyond correctness: library leverage, automation fit, structural…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ProofJudge: Tool-Grounded LLM Evaluation of Formal Proof Quality in Mathlib">
+<meta property="og:description" content="Formal proofs in Lean 4 that pass the kernel&#x27;s type checker can nonetheless vary widely in quality. We introduce ProofJudge, an agentic LLM-as-judge system that scores formal proof quality along five dimensions beyond correctness: library leverage, automation fit, structural…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.20432.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.20432.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.20432v1" target="_blank" rel="noopener"><img src="../thumbs/2608.20432.jpg" alt="First page of ProofJudge: Tool-Grounded LLM Evaluation of Formal Proof Quality in Mathlib"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">ProofJudge: Tool-Grounded LLM Evaluation of Formal Proof Quality in Mathlib</h1>
+        <p class="authors">Shane Caldwell</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Aug 20, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.CL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.20432v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.20432" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/SJCaldwell/ProofJudge" target="_blank" rel="noopener" title="SJCaldwell/ProofJudge">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces an agentic LLM-as-judge system scoring Lean 4 Mathlib proof quality beyond correctness, grounded by tool access to library state.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Formal proofs in Lean 4 that pass the kernel&#x27;s type checker can nonetheless vary widely in quality. We introduce ProofJudge, an agentic LLM-as-judge system that scores formal proof quality along five dimensions beyond correctness: library leverage, automation fit, structural clarity, statement quality, and Mathlib conventions. We evaluate ProofJudge on a novel dataset of 218 declarations drawn from distinct Mathlib PRs. The judge agent is grounded by tool access to the commit the PR is applied to, enabling it to query the library state when scoring. A judge is considered aligned with human preferences when it rates the version of the PR Mathlib accepted above the initial version that was sent back for revision. All six judge models evaluated recover the reviewers&#x27; preference well above chance, from 80.8% to 63.5%, and two open-weight judges reach roughly 70% at a tenth of the best judge&#x27;s cost. We release the judge harness, evaluation dataset, and evaluation traces as open-source artifacts to support further research.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Formal proofs in Lean 4 that pass the type checker can vary widely in quality along dimensions valued by human mathematicians. As automated proof generation scales, evaluating these qualitative standards places a heavy burden on Mathlib reviewers.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ProofJudge is an agentic LLM-as-judge system that scores formal proof quality along five dimensions beyond correctness: library leverage, automation fit, structural clarity, statement quality, and Mathlib conventions. The judge is grounded via tool access (querying Mathlib through bash) to the commit a PR is applied to. Alignment with human reviewers is measured by whether the judge rates the accepted post-revision version above the rejected pre-revision version.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Evaluated on 218 declaration pairs from distinct Mathlib PRs, all six judge models recovered reviewer preferences above chance, from 80.8% (claude-sonnet-5) to 63.5% (deepseek-v4-flash). Two open-weight judges reached roughly 70% at a tenth of the best judge&#x27;s cost. Judges were noisy, with verdicts flipping across replicates.</p><div class="sum-table"><table><thead><tr><th>Judge</th><th>Weights</th><th>Alignment % (95% CI)</th><th>USD/pair</th></tr></thead><tbody><tr><td>claude-sonnet-5</td><td>closed</td><td>80.8 (73.6–88.2)</td><td>1.392</td></tr><tr><td>gemini-3.7-flash</td><td>closed</td><td>75.2 (69.3–81.2)</td><td>0.186</td></tr><tr><td>muse-glimmer-30b</td><td>open</td><td>70.2 (63.4–77.3)</td><td>0.140</td></tr><tr><td>gpt-5.4-mini</td><td>closed</td><td>68.7 (60.6–77.1)</td><td>0.136</td></tr><tr><td>deepseek-v4-flash</td><td>open</td><td>63.5 (56.0–71.6)</td><td>0.029</td></tr></tbody></table><div class="tbl-cap">Six judges on the 218-pair test split, three replicates each</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
