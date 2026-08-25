@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAGA: A Comparison Theorem for Local-to-Global Software Architecture - From Semantic Repair Cohomology to Algebraic-Geometric Descent · Papers With Lean</title>
+<meta name="description" content="In a software architecture, each service can obey its own conventions and each handoff between adjacent services can hold, and yet a semantic inconsistency may remain that appears only on a full traversal of the system. This paper independently constructs two cohomologies…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SAGA: A Comparison Theorem for Local-to-Global Software Architecture - From Semantic Repair Cohomology to Algebraic-Geometric Descent">
+<meta property="og:description" content="In a software architecture, each service can obey its own conventions and each handoff between adjacent services can hold, and yet a semantic inconsistency may remain that appears only on a full traversal of the system. This paper independently constructs two cohomologies…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.21458.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.21458.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.21458v1" target="_blank" rel="noopener"><img src="../thumbs/2608.21458.jpg" alt="First page of SAGA: A Comparison Theorem for Local-to-Global Software Architecture - From Semantic Repair Cohomology to Algebraic-Geometric Descent"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">SAGA: A Comparison Theorem for Local-to-Global Software Architecture - From Semantic Repair Cohomology to Algebraic-Geometric Descent</h1>
+        <p class="authors">Hiroyuki Nakahata</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Aug 20, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=category-theory">category-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.21458v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.21458" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.21603761" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The SAGA comparison theorem chain, including coefficient/cochain isomorphisms and finite witnesses, is machine-checked in Lean with a Mathlib axiom audit.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">In a software architecture, each service can obey its own conventions and each handoff between adjacent services can hold, and yet a semantic inconsistency may remain that appears only on a full traversal of the system. This paper independently constructs two cohomologies measuring this gap between local and global correctness, and proves that they agree. The first construction speaks the language of repair: from the semantic repair options admitted in each local context and their equivalence relation, it generates the coefficient $M_{\mathrm{sem}}$. The second speaks the language of equations: it organizes the constraints of the architecture as a simultaneous equation system and generates the quotient coefficient $Q_E$ by its obstruction ideal. Over a selected finite cover $U$ in Algebraic Architecture Theory (AAT), which constructs software architecture as algebraic geometry, and under finitely many selection conditions matching the local data, the comparison map induces the isomorphism $H^1_{\mathrm{sem}}(U) \cong \check{H}^1(U, Q_E)$ together with a correspondence of residual classes. We call this the SAGA comparison theorem. The obstructions measured in the two languages are the same cohomology class, so semantic diagnosis and geometric computation translate into each other. Moreover, when the family of repair states satisfies the sheaf condition, a global repair exists if and only if the obstruction class vanishes on both sides. The paper presents this result in three layers: the mathematical proof; the Lean formalization status at release time; and a diagnosis in which the measurement tool ArchSig, on a real open-source microservice system, reproducibly walks the full circle from a measured nonzero obstruction to its disappearance after repair. The three layers refer to the same release identity, and each claim is connected to primary evidence.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">In software architectures, each service and each pairwise handoff can be locally consistent while a semantic inconsistency remains that appears only on a full traversal. The goal is to measure this local-to-global gap and show two different formulations of the obstruction coincide.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Two Čech cohomologies are constructed independently over a finite AAT cover: one from semantic repair options (coefficient M_sem) and one from an architectural equation system&#x27;s obstruction ideal (coefficient Q_E). A comparison map is shown to induce an isomorphism H^1_sem(U) ≅ Ȟ^1(U, Q_E) with residual-class correspondence. The theorem chain, its inputs, coefficient/cochain isomorphisms, sheaf descent, and finite witnesses are formalized as Lean structures, checked against the standard Mathlib axiom allowlist (propext, Classical.choice, Quot.sound). A Rust tool ArchSig computes the same residuals and obstruction classes on real code.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.21458/zenodo_saga_figure1_comparison.png" alt=""><figcaption>Figure 1: The structure of the SAGA comparison theorem (Theorem 5.1 ). The semantic side (upper left) and the equation side (upper right), constructed independently in Section 4 , pass through the coefficient isomorphism \Phi (i) and the cochain isomorphism \kappa commuting with the differentials (ii) to the H^{1} isomorphism \kappa_{*} and the residual class correspondence \kappa_{*}([r_{\mathrm{</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The comparison isomorphism and residual correspondence are proven and Lean-formalized, including finite counterexamples for failure of each condition. On the train-ticket microservice benchmark, ArchSig reproducibly measures a nonzero obstruction (the one-cent refund inconsistency) and its vanishing after repair.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.21458/zenodo_saga_figure2_one_cent.png" alt=""><figcaption>Figure 2: The diagnosis staircase of the one-cent obstruction. In head (left), derived residuals stand on the 3 triangle edges and the 2 preserve-family edges, and the odd parity on the closed loop of the triangle is not solvable by \delta^{0} ( inB1: false ). No triple overlap is declared; the absence of the face is shown hatched. In the repaired variant (right), replacing the 3 charts of the tri</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

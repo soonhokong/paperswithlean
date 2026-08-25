@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>On Eliminating the Impossible with Dependent Types: Choreographic Libraries with Proof-Carrying Located Values · Papers With Lean</title>
+<meta name="description" content="With growing complexity, distributed software systems become increasingly challenging to maintain and reason about. When implementing a distributed protocol, developers must ensure manually that the different components fit together. Choreographic programming addresses this…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="On Eliminating the Impossible with Dependent Types: Choreographic Libraries with Proof-Carrying Located Values">
+<meta property="og:description" content="With growing complexity, distributed software systems become increasingly challenging to maintain and reason about. When implementing a distributed protocol, developers must ensure manually that the different components fit together. Choreographic programming addresses this…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.23237.html">
+
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.23237v1" target="_blank" rel="noopener"><div class="thumb-ph">cs.PL</div></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">On Eliminating the Impossible with Dependent Types: Choreographic Libraries with Proof-Carrying Located Values</h1>
+        <p class="authors">Simon Daniel, Timon Böhler, David Richter, Pascal Weisenburger, Mira Mezini</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Aug 20, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.23237v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.23237" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ShapeOfMatter/MultiChor" target="_blank" rel="noopener" title="ShapeOfMatter/MultiChor">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">ChorLean implements a dependently typed choreographic programming library in Lean, using proof-carrying located values to make endpoint projection total.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">With growing complexity, distributed software systems become increasingly challenging to maintain and reason about. When implementing a distributed protocol, developers must ensure manually that the different components fit together. Choreographic programming addresses this challenge by specifying global protocols in a single program and projecting them into communicating processes, so-called endpoints. Recent choreographic approaches are designed as programming libraries that embed this paradigm into a host language like Haskell or Rust. In these designs, we observe common cases of partiality: unreachable branches in endpoint projection (EPP) and located-value access can trigger runtime errors or undefined behavior, relying on manual discipline of library maintainers rather than being statically type-checked. Also, some programs require users to write down dummy branches that should not be reachable, for example when branching on sum types. To close this gap, we use the dependently typed Lean programming language to implement a similar choreographic library. We show how we are able to move from a partial EPP to a total EPP function, and also eliminate cases of partiality in user-written code with pattern matching on sum types. ChorLean ensures total EPP and safe value access via proof-carrying located values, passing Lean&#x27;s totality checker without undefined cases, while supporting the same feature set as libraries like MultiChor.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Library-based choreographic programming embeds distributed protocol specifications in host languages, but existing libraries (in Haskell, Rust) implement endpoint projection and located-value access as partial functions with unreachable branches and runtime errors, relying on manual developer discipline rather than static checks.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ChorLean is a choreographic programming library embedded in the dependently typed Lean language. Located values carry proofs that the accessing role owns the value, making access operations total. Endpoint projection is defined as a total function accepted by Lean&#x27;s totality checker, and dependent pattern matching eliminates dead branches on sum types in user code.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">ChorLean achieves total endpoint projection and safe value access via proof-carrying located values, passing Lean&#x27;s totality checker without undefined cases, while supporting the same feature set as libraries like MultiChor.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

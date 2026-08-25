@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When Can Agents Safely Checkpoint, Fork, Restore, and Merge? Exact Checking for Execution Edits · Papers With Lean</title>
+<meta name="description" content="Agent runtimes can Checkpoint an execution, Fork it, Restore a checkpoint, or Merge branches without restarting a task. We call these operations execution edits, with Checkpoint recording the current execution for later use and Fork, Restore, and Merge changing what the Agent…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="When Can Agents Safely Checkpoint, Fork, Restore, and Merge? Exact Checking for Execution Edits">
+<meta property="og:description" content="Agent runtimes can Checkpoint an execution, Fork it, Restore a checkpoint, or Merge branches without restarting a task. We call these operations execution edits, with Checkpoint recording the current execution for later use and Fork, Restore, and Merge changing what the Agent…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.22928.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.22928.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.22928v1" target="_blank" rel="noopener"><img src="../thumbs/2608.22928.jpg" alt="First page of When Can Agents Safely Checkpoint, Fork, Restore, and Merge? Exact Checking for Execution Edits"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">When Can Agents Safely Checkpoint, Fork, Restore, and Merge? Exact Checking for Execution Edits</h1>
+        <p class="authors">Yusheng Zheng, Xiaoyu Song, Yanpeng Hu, Lebin Cheng, Yuxi Huang, Wei Zhang</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Aug 24, 2026 · v1</span>
+          <span class="badge">cs.CR</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.22928v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.22928" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/eunomia-bpf/agent-check-restore-safety" target="_blank" rel="noopener" title="eunomia-bpf/agent-check-restore-safety">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean mechanizes the finite checker and runtime invariant for deciding safety of agent execution edits.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Agent runtimes can Checkpoint an execution, Fork it, Restore a checkpoint, or Merge branches without restarting a task. We call these operations execution edits, with Checkpoint recording the current execution for later use and Fork, Restore, and Merge changing what the Agent will do next. An execution edit cannot undo an earlier authorization or a tool request already sent. An unsafe edit can therefore authorize the same tool action twice, discard a result the task still requires, or conflict with a call that began before the edit. The Agent is untrusted, so the runtime uses its execution record to determine which past actions an edit must account for and which required results it must preserve to keep the subsequent execution safe. Yet existing Agent systems support such operations without deriving what each edit must preserve from the running execution, whereas prior methods for computing safe behavior take that requirement as input. We give an algorithm that decides exactly whether an edit is safe. It returns all safe ways to continue, or proves that none exists. To make this decision, the algorithm lists every way the task can finish without violating policy. It removes any way that could make a still-required result impossible to finish later. If none remain, it returns a checkable proof that no safe implementation exists. Otherwise, the remaining ways describe exactly what the runtime may allow. Our formal results cover Checkpoint and the six forms of Fork, Restore, and Merge, together with extensions, atomic enforcement, and the information every exact checker needs. Lean mechanizes the finite checker and runtime invariant, and tests validate all six edit forms. The source code, Lean proofs, and executable tests are available in the public GitHub repository at <a href="https://github.com/eunomia-bpf/agent-check-restore-safety" target="_blank" rel="noopener">https://github.com/eunomia-bpf/agent-check-restore-safety</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Agent runtimes support execution edits (Checkpoint, Fork, Restore, Merge) that can create unsafe states, such as authorizing a tool action twice or discarding a still-required result. Existing systems perform these operations without deriving what each edit must preserve from the running execution.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An algorithm decides exactly whether an execution edit is safe, returning all safe ways to continue or a checkable proof that none exists. It enumerates every way the task can finish without violating policy, removes options that could make a still-required result impossible, and reports the remaining safe continuations. Formal results cover Checkpoint and the six forms of Fork, Restore, and Merge, plus extensions and atomic enforcement.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Lean mechanizes the finite checker and the runtime invariant, and executable tests validate all six edit forms. Source code, Lean proofs, and tests are publicly available.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

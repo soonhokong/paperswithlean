@@ -6,7 +6,84 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 25 Aug 2026 01:17:38 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 25 Aug 2026 02:08:20 +0000</lastBuildDate>
+    <item>
+      <title>A deterministic sin^2-type algorithm for complex cubic irrationalities with exact periodicity certificates</title>
+      <link>https://paperswithlean.com/paper/2608.23281.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.23281.html</guid>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Ludovic Tagnon</dc:creator>
+      <category>formalization</category><category>verification</category><category>number-theory</category>
+      <description>The plastic-case transition graph of the sin^2-type algorithm for complex cubic irrationalities is machine-checked in Lean 4, kernel-only.
+
+Hermite asked in 1848 for a representation of real numbers whose eventual periodicity characterizes cubic irrationals. The totally real case was solved by Karpenkov&#x27;s $\sin^2$-algorithm; the complex case, signature (1,1), is his Problem 4. We study a deterministic algorithm implementing his suggested analytic extension: the score expression is strictly negative on (1,1) data (closed form proved), the most negative score is selected, and exact score ties are resolved by a declared ordering. On a sample of 205 complex cubic polynomials, every run closes projectively with an exact unit certificate, each transition certified by exact comparisons in $\mathbb{Q}(α)$. An exhaustive campaign over the full box $[-3,3]^3$ closes 194/194. Across 457 deformed bases, the terminal cycle is an invariant of the marked lattice. Certified finite transition graphs are computed for four fields; the plastic case is machine-checked in Lean 4, kernel-only. All data ship in a public archive with a portable verifier.</description>
+    </item>
+    <item>
+      <title>Multi-Winner Voting with Argumentative Ballots</title>
+      <link>https://paperswithlean.com/paper/2608.23247.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.23247.html</guid>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Ryuta Arisaka, Hirotaka Ono</dc:creator>
+      <category>formalization</category><category>logic</category>
+      <description>All definitions, propositions, lemmas and theorems of multi-winner voting with argumentative ballots are formalised and mechanically checked in Lean 4.
+
+We introduce multi-winner voting with argumentative ballots (MVArg) and investigate theoretical properties. As our conceptual contribution, we generalise approval ballots to argumentative ballots, thereby allowing voters to express defeasible preferences over candidates. We accordingly generalise voter cohesion and justified representation axioms JR, PJR and EJR. As our theoretical contribution, we establish several key results. First, MVArg is strictly more expressive than multi-winner voting with approval ballots (MV). Second, our notions of cohesion and justified representation are conservative generalisations of their counterparts in MV. Third, the MVArg counterpart of JR can always be satisfied, whereas the counterparts of PJR and EJR cannot always be. Fourth, although verifying whether a winner set satisfies the MVArg counterpart of JR is already coNP-hard, such a winner set can be constructed in polynomial time. All definitions, propositions, auxiliary lemmas and theorems have been formalised and mechanically checked in Lean 4.</description>
+    </item>
+    <item>
+      <title>On Eliminating the Impossible with Dependent Types: Choreographic Libraries with Proof-Carrying Located Values</title>
+      <link>https://paperswithlean.com/paper/2608.23237.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.23237.html</guid>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Simon Daniel, Timon Böhler, David Richter, Pascal Weisenburger, Mira Mezini</dc:creator>
+      <category>verification</category><category>tooling</category>
+      <description>ChorLean implements a dependently typed choreographic programming library in Lean, using proof-carrying located values to make endpoint projection total.
+
+With growing complexity, distributed software systems become increasingly challenging to maintain and reason about. When implementing a distributed protocol, developers must ensure manually that the different components fit together. Choreographic programming addresses this challenge by specifying global protocols in a single program and projecting them into communicating processes, so-called endpoints. Recent choreographic approaches are designed as programming libraries that embed this paradigm into a host language like Haskell or Rust. In these designs, we observe common cases of partiality: unreachable branches in endpoint projection (EPP) and located-value access can trigger runtime errors or undefined behavior, relying on manual discipline of library maintainers rather than being statically type-checked. Also, some programs require users to write down dummy branches that should not be reachable, for example when branching on sum types. To close this gap, we use the dependently typed Lean programming language to implement a similar choreographic library. We show how we are able to move from a partial EPP to a total EPP function, and also eliminate cases of partiality in user-written code with pattern matching on sum types. ChorLean ensures total EPP and safe value access via proof-carrying located values, passing Lean&#x27;s totality checker without undefined cases, while supporting the same feature set as libraries like MultiChor.</description>
+    </item>
+    <item>
+      <title>When Can Agents Safely Checkpoint, Fork, Restore, and Merge? Exact Checking for Execution Edits</title>
+      <link>https://paperswithlean.com/paper/2608.22928.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.22928.html</guid>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Yusheng Zheng, Xiaoyu Song, Yanpeng Hu, Lebin Cheng, Yuxi Huang, Wei Zhang</dc:creator>
+      <category>verification</category>
+      <description>Lean mechanizes the finite checker and runtime invariant for deciding safety of agent execution edits.
+
+Agent runtimes can Checkpoint an execution, Fork it, Restore a checkpoint, or Merge branches without restarting a task. We call these operations execution edits, with Checkpoint recording the current execution for later use and Fork, Restore, and Merge changing what the Agent will do next. An execution edit cannot undo an earlier authorization or a tool request already sent. An unsafe edit can therefore authorize the same tool action twice, discard a result the task still requires, or conflict with a call that began before the edit. The Agent is untrusted, so the runtime uses its execution record to determine which past actions an edit must account for and which required results it must preserve to keep the subsequent execution safe. Yet existing Agent systems support such operations without deriving what each edit must preserve from the running execution, whereas prior methods for computing safe behavior take that requirement as input. We give an algorithm that decides exactly whether an edit is safe. It returns all safe ways to continue, or proves that none exists. To make this decision, the algorithm lists every way the task can finish without violating policy. It removes any way that could make a still-required result impossible to finish later. If none remain, it returns a checkable proof that no safe implementation exists. Otherwise, the remaining ways describe exactly what the runtime may allow. Our formal results cover Checkpoint and the six forms of Fork, Restore, and Merge, together with extensions, atomic enforcement, and the information every exact checker needs. Lean mechanizes the finite checker and runtime invariant, and tests validate all six edit forms. The source code, Lean proofs, and executable tests are available in the public GitHub repository at https://github.com/eunomia-bpf/agent-check-restore-safety.</description>
+    </item>
+    <item>
+      <title>On the directions occurring in lattice-line coverings of the integer plane</title>
+      <link>https://paperswithlean.com/paper/2608.22550.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.22550.html</guid>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Jan Snellman</dc:creator>
+      <category>formalization</category><category>number-theory</category><category>combinatorics</category>
+      <description>A machine-checked Lean/Mathlib formalization of the recursive lattice-line covering construction was completed as a complementary verification effort.
+
+We consider families of lines that cover every point of the integer lattice $\mathbf{Z}^2$ in the plane, subject to the constraint that no two lines of different direction in the family meet at a lattice point. Restricting to lattice lines (lines containing at least two, hence infinitely many, lattice points, equivalently of rational direction), we show that the set of directions occurring in such a covering can be made dense in the space of line directions. The construction is a recursive splitting of $\mathbf{Z}^2$ into nested rank-2 sublattice cosets, each handed off to a freshly chosen direction; the key technical point is a steering lemma showing that at every stage of the recursion a new direction arbitrarily close to any prescribed target can still be realized, via an elementary sieve bound.</description>
+    </item>
+    <item>
+      <title>A Lean Formalization of Hamilton&#x27;s Three-Manifold Theorem</title>
+      <link>https://paperswithlean.com/paper/2608.21502.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.21502.html</guid>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Bennett Chow, Yuan Liao, Ziyang Qin</dc:creator>
+      <category>formalization</category><category>geometry</category><category>analysis</category><category>mathlib</category>
+      <description>Formalizes Hamilton&#x27;s 1982 three-manifold theorem in Lean/Mathlib, building Ricci-flow, tensor calculus, maximum principles, and pinching infrastructure.
+
+We describe a Lean formalization of Hamilton&#x27;s 1982 theorem on closed, connected three-manifolds with positive Ricci curvature. The development contains a short-time existence theorem for Ricci flow and substantial geometric-analysis infrastructure: Riemannian tensor calculus, the Levi–Civita connection, Ricci-flow evolution equations, scalar and tensor maximum principles, three-dimensional curvature algebra, preservation of Ricci pinching, and Hamilton&#x27;s improved pinching estimate. The formalization follows an alternative blow-up route, rather than Hamilton&#x27;s original normalized-flow proof. Its time-uniform short-time existence, maximal continuation, no-local-collapsing, and Cheeger–Gromov–Hamilton compactness pipelines have been formalized and are included in the artifact, while we give only a brief account of these companion developments and record the interfaces and consequences used by the Hamilton argument; a detailed exposition of their full constructions is deferred to the second author&#x27;s forthcoming thesis. We interweave representative Lean declarations with their mathematical meaning and record the status and provenance of every major component. All source-level status claims are tied to the source release identified below.</description>
+    </item>
+    <item>
+      <title>SAGA: A Comparison Theorem for Local-to-Global Software Architecture - From Semantic Repair Cohomology to Algebraic-Geometric Descent</title>
+      <link>https://paperswithlean.com/paper/2608.21458.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.21458.html</guid>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Hiroyuki Nakahata</dc:creator>
+      <category>formalization</category><category>verification</category><category>category-theory</category>
+      <description>The SAGA comparison theorem chain, including coefficient/cochain isomorphisms and finite witnesses, is machine-checked in Lean with a Mathlib axiom audit.
+
+In a software architecture, each service can obey its own conventions and each handoff between adjacent services can hold, and yet a semantic inconsistency may remain that appears only on a full traversal of the system. This paper independently constructs two cohomologies measuring this gap between local and global correctness, and proves that they agree. The first construction speaks the language of repair: from the semantic repair options admitted in each local context and their equivalence relation, it generates the coefficient $M_{\mathrm{sem}}$. The second speaks the language of equations: it organizes the constraints of the architecture as a simultaneous equation system and generates the quotient coefficient $Q_E$ by its obstruction ideal. Over a selected finite cover $U$ in Algebraic Architecture Theory (AAT), which constructs software architecture as algebraic geometry, and under finitely many selection conditions matching the local data, the comparison map induces the isomorphism $H^1_{\mathrm{sem}}(U) \cong \check{H}^1(U, Q_E)$ together with a correspondence of residual classes. We call this the SAGA comparison theorem. The obstructions measured in the two languages are the same cohomology class, so semantic diagnosis and geometric computation translate into each other. Moreover, when the family of repair states satisfies the sheaf condition, a global repair exists if and only if the obstruction class vanishes on both sides. The paper presents this result in three layers: the mathematical proof; the Lean formalization status at release time; and a diagnosis in which the measurement tool ArchSig, on a real open-source microservice system, reproducibly walks the full circle from a measured nonzero obstruction to its disappearance after repair. The three layers refer to the same release identity, and each claim is connected to primary evidence.</description>
+    </item>
     <item>
       <title>AI with Authority, from Application to Silicon</title>
       <link>https://paperswithlean.com/paper/2608.21356.html</link>
@@ -589,83 +666,6 @@ For an odd prime $p$, let $m(p)$ be the minimum cardinality of a set $A\subseteq
       <description>Formalizes in Lean 4 an explicit bound on squarefree numbers in short intervals, with largely automated formalization.
 
 We make explicit and formalize a result of the author on squarefree numbers in short intervals, showing that for $0 &lt; \varepsilon\le 1/90935 $, $X\ge \exp(10^{27}/\varepsilon^2)$, $H = X^{1/5 - 2/90935 + \varepsilon}$, we have that \[ \biggl|\sum_{X\le n\le X + H } μ(n)^2 - \frac{6}{π^2}H\biggr| \le \frac{10^{450}}{\varepsilon} H X^{-\varepsilon/10^{25}}. \] This article gives an account of what went into making the exponent explicit. The Github repository linked contains the formalization in Lean 4 as well as an account of what went into the largely automated formalization.</description>
-    </item>
-    <item>
-      <title>A constructive two-parameter Ramsey increment</title>
-      <link>https://paperswithlean.com/paper/2608.06531.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.06531.html</guid>
-      <pubDate>Sun, 09 Aug 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Milos Tatarevic</dc:creator>
-      <category>formalization</category><category>combinatorics</category><category>mathlib</category>
-      <description>Formalizes in Lean 4 with Mathlib a constructive Ramsey increment inequality yielding the new lower bound R(12,12) &gt;= 1641.
-
-We prove the inequality $R(k+1,s+1) \ge R(k,s) + 2k + 2s$ for classical Ramsey numbers, valid for all $5 \le k \le s$, and formalize the proof in Lean 4. As a consequence, we obtain the new lower bound $R(12,12) \ge 1641$.</description>
-    </item>
-    <item>
-      <title>An infinite family of doubly saturated $R(3,t)$-good graphs</title>
-      <link>https://paperswithlean.com/paper/2608.06440.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.06440.html</guid>
-      <pubDate>Sun, 09 Aug 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Abhishek Saigal, Akaash R. Parthasarathy</dc:creator>
-      <category>formalization</category><category>combinatorics</category>
-      <description>A complete proof that an explicit circulant graph family is doubly saturated R(3,t)-good, including executable checkers, is formalized in Lean 4 with Mathlib.
-
-For every odd integer $t\ge17$, we prove that an explicit circulant graph on $5t-10$ vertices is doubly saturated $R(3,t)$-good. The graph is triangle-free and has independence number $t-1$. Adding any nonedge creates a triangle, whereas deleting any edge creates an independent set of order $t$. This settles Conjecture 2 of Przybocki, Mackey, Heule, and Subercaseaux. A cyclic sumset identity and explicit witnesses prove the local saturation properties. Writing $t=2m+1$, a five-layer reduction proves the independence bound via a uniform affine certificate for $m\ge30$ and an exhaustive checker for $8\le m\le29$. The checker soundness and the complete argument are formalized in Lean 4.32.2. Consequently, $2t-1\le \operatorname{DS}(3,t)\le 5t-10$ for odd $t\ge17$.</description>
-    </item>
-    <item>
-      <title>Game Hopping in Lean</title>
-      <link>https://paperswithlean.com/paper/2608.06261.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.06261.html</guid>
-      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Stefan Dziembowski, Grzegorz Fabiański, Daniele Micciancio, Rafał Stefański</dc:creator>
-      <category>verification</category><category>tooling</category><category>cryptography</category>
-      <description>HOPSCOTCH is a Lean 4 framework using a shallow embedding and Mathlib to mechanize computationally sound game-based cryptographic proofs.
-
-We present HOPSCOTCH, a Lean 4 framework for mechanizing computationally sound, game-based cryptographic proofs. Security definitions are expressed as indistinguishability between stateful probabilistic oracles, and proofs follow the standard game-hopping paradigm. HOPSCOTCH uses a shallow embedding: oracles and reductions are ordinary Lean definitions, enabling direct integration with the full Lean ecosystem, including general mathematical theories from Mathlib, such as finite-group theory. A game-hopping proof in HOPSCOTCH is represented as an explicit formal object whose constructors correspond to the standard steps of a game-hopping argument, making proofs easier to construct, automate, and inspect. We prove a general computational soundness theorem that interprets these proof objects by constructing reductions against the assumptions they use and deriving a concrete bound on the advantage of any distinguisher. Observational equivalence between oracles is established using a state-abstraction methodology: a simple yet powerful approach that supports transformations such as adding or forgetting state and replacing eager sampling with lazy sampling. We illustrate the framework with formalized proofs of the IND-CCA security of encrypt-then-MAC, the security of ElGamal encryption from DDH, the implication from one-time secrecy to public-key IND-CPA security, and the GGM pseudorandom-function construction. To the best of our knowledge, the last is the first mechanized proof of GGM for non-constant depth.</description>
-    </item>
-    <item>
-      <title>Global vs. Product Observables in Bipartite Quantum Systems: The Sharp Bound</title>
-      <link>https://paperswithlean.com/paper/2608.06235.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.06235.html</guid>
-      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Zhi Li, Xiaofei Shi</dc:creator>
-      <category>formalization</category><category>verification</category><category>quantum</category>
-      <description>The main upper bound comparing trace norm and injective tensor norm is formalized and machine-checked in Lean.
-
-To probe a bipartite quantum system, one may use arbitrary global operators or restrict to product operators acting separately on the two subsystems. We determine the sharp universal comparison between the resulting norms. For every $z\in M_n\otimes M_m$, we prove $\|z\|_1\leq\sqrt{2}\min\{n,m\}\|z\|_\varepsilon$, where $\|\cdot\|_1$ is the trace norm and $\|\cdot\|_\varepsilon$ is the injective tensor norm associated with the trace norms on $M_n$ and $M_m$. To prove the upper bound, we establish an $L_1$ noncommutative Khintchine inequality whose random coefficients are the entries of a Haar unitary. We also show that the coefficient $\sqrt{2}$ is sharp. As applications, we show that the same sharp constant governs the gap between bipartite correlation measured in trace norm and that measured by a correlation function, and obtain an improved universal upper bound for quantum data hiding. The upper bound has also been formalized and machine-checked in Lean.</description>
-    </item>
-    <item>
-      <title>Runtime Observability for Heterogeneous Attention Memory</title>
-      <link>https://paperswithlean.com/paper/2608.05863.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.05863.html</guid>
-      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Fanzhe Wei, Li Liu, Ziyang Wang, Chenyu Wang</dc:creator>
-      <category>verification</category><category>tactic-automation</category><category>probability</category>
-      <description>The composed error-bound chain, telescoping budget, and concentration/supermartingale certificates are machine-checked in Lean/Mathlib over a finite product space.
-
-Modern models no longer keep a plain KV cache: latent caches, learned sparse selectors and recurrent states each carry the model&#x27;s memory in a different form, and each fails differently under compression. We give a runtime observability contract that covers all four memory classes with three operators, instantiate it on six model configurations across five architecture families, and compose the per-stage bounds into an executable request-level risk ledger. Contracts carry their error metric as a type – composition is only defined when metrics match, and this check rejected our own first composed chain; the repaired chain crosses metrics through two proved bridges, and whatever no formal system can certify is measured instead, dropping the composed tier to empirical automatically: every claim is certified, partially certified, or empirical, composition inherits the weakest tier, and the tier is decided by the machine. Replayed over $12.4$M entry reads and run under eight-way concurrency with per-request budgets and fail-closed identity attribution, the ledger quantifies the honest trade-off on today&#x27;s witness and holds its risk budget with zero violations. A fused always-on probe observes a declared one-layer subset under CUDA graphs inside the serving noise floor. Applied to a served DeepSeek-V4 stack with a packed compressed-KV prototype, the same machinery localizes a silent corruption to a precise structural boundary – exact in the eviction-free, identity-isolated regime, with every observed failure in an eviction or slot-reuse regime – through a machine-adjudicated discrimination campaign whose calculus rejected two of our own confounded inferences along the way. All artifacts, guards, and the Lean development are released at https://github.com/metask-ai/witprobe-attention-memory; every number in this paper regenerates from the shipped artifacts by one command.</description>
-    </item>
-    <item>
-      <title>Modularity of Point Counts for the Curves $X^a=Y^b$: New Rogers–Ramanujan Identities</title>
-      <link>https://paperswithlean.com/paper/2608.05480.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.05480.html</guid>
-      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Kenny Lau, Ken Ono</dc:creator>
-      <category>theorem-proving-ml</category><category>number-theory</category><category>combinatorics</category>
-      <description>AxiomProver verified the newly derived a=3 Rogers–Ramanujan identities in Lean, assuming results from existing literature.
-
-For coprime $1&lt;a&lt;b$, let $M_n^{a,b}(\mathbb{F}_q)$ be the set of commuting pairs of nilpotent $n\times n$ matrices over $\mathbb{F}_q$ with $X^a=Y^b$. Huang, Jiang, and Oblomkov assembled their orders as an Eulerian $q$-series $Z_{a,b}(q)$. They conjectured that it is an explicit product $P_{a,b}(q)$ involving Jacobi&#x27;s theta function and Dedekind&#x27;s eta-function, implying the threefold equality $$\underbrace{\prod_{n\ge1}(1-q^n)\cdot\Biggl(\sum_{n=0}^{\infty}\frac{|M_n^{a,b}(\mathbb{F}_q)|}{|\mathrm{GL}_n(\mathbb{F}_q)|}\Biggr)\Biggr|_{q\mapsto q^{-1}}}_{\text{point count}}\;=\;\underbrace{Z_{a,b}(q)}_{q\text{-series}}\;=\;\underbrace{P_{a,b}(q)}_{\text{theta quotient}}$$ If true, the point count on $X^a=Y^b$ is essentially a modular function on $Γ(a+b)$. The conjecture is layered in $a$, with an identity for each $b$. The $a=2$ layer is classical, including identities of Rogers–Ramanujan and Andrews–Gordon. For $a\geq3,$ nothing was known. We prove the $a=3$ layer in full: a new infinite family of Rogers–Ramanujan identities, and a geometric origin for Warnaar&#x27;s products. AxiomProver verified these new identities in Lean assuming existing literature.</description>
-    </item>
-    <item>
-      <title>Let it Flow: A Formally Verified Compilation Framework for Asynchronous Dataflow</title>
-      <link>https://paperswithlean.com/paper/2608.05451.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.05451.html</guid>
-      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Zhengyao Lin, Yi Cai, Milijana Surbatovich</dc:creator>
-      <category>verification</category><category>logic</category>
-      <description>Two core compiler passes (control flow conversion and linking) for asynchronous dataflow are formalized in Lean with forward simulation and determinacy proofs.
-
-Dataflow architectures have gained renewed interest due to their balance between power efficiency and performance. In (spatial) dataflow architectures, a program is represented as a set of entirely distributed and dynamically scheduled dataflow operators that communicate through asynchronous channels, which greatly improves data locality and parallelism. However, compiling to dataflow architectures remains an error-prone process, in order to maintain determinacy while enabling pipelining. Determinacy means that the result of a dataflow program is deterministic and independent of the schedule of operator execution, and pipelining is an important optimization in spatial dataflow that enables parallelism across loop iterations. In this work, we present Wavelet, the first effort to formally verify a compiler for asynchronous dataflow. We use a mix of techniques to achieve this goal. Our frontend uses a novel capability type system with fences to synchronize conflicting memory accesses and enable pipelining. We then verify a Lean formalization of two core passes of our compiler that translates elaborated programs from the type checker to dataflow graphs, proving important properties of forward simulation and determinacy. Notably, our formalization semantically propagates the soundness guarantees of the frontend type system, ensuring modularity between simulation and determinacy proofs. In evaluation, we show that dataflow graphs compiled by Wavelet have comparable sizes to those produced by an unverified optimizing compiler for the RipTide spatial dataflow architecture.</description>
     </item>
   </channel>
 </rss>
