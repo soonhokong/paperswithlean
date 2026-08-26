@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Improved bounds for the smallest 4-chromatic graph of girth six · Papers With Lean</title>
+<meta name="description" content="For integers $k,g \ge 3$ let $n_g(k)$ denote the minimum order of a graph with chromatic number $k$ and girth at least $g$. Exoo and Goedgebeur (DMTCS 2019) proved $26 \le n_6(4) \le 66$; their 66-vertex witness has remained the smallest known 4-chromatic graph of girth 6. We…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Improved bounds for the smallest 4-chromatic graph of girth six">
+<meta property="og:description" content="For integers $k,g \ge 3$ let $n_g(k)$ denote the minimum order of a graph with chromatic number $k$ and girth at least $g$. Exoo and Goedgebeur (DMTCS 2019) proved $26 \le n_6(4) \le 66$; their 66-vertex witness has remained the smallest known 4-chromatic graph of girth 6. We…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.23652.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.23652.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.23652v1" target="_blank" rel="noopener"><img src="../thumbs/2608.23652.jpg" alt="First page of Improved bounds for the smallest 4-chromatic graph of girth six"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Improved bounds for the smallest 4-chromatic graph of girth six</h1>
+        <p class="authors">Glauco Rampone</p>
+        <div class="row">
+          <span class="badge">math.CO</span>
+          <span class="date">Aug 24, 2026 · v1</span>
+          <span class="badge">cs.DM</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.23652v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.23652" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/glaucorampone/G64" target="_blank" rel="noopener" title="glaucorampone/G64">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Non-3-colourability of an explicit 64-vertex graph is formally certified in Lean 4 via a verified checker re-validating a 219,532-node refutation certificate with a machine-checked soundness theorem.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">For integers $k,g \ge 3$ let $n_g(k)$ denote the minimum order of a graph with chromatic number $k$ and girth at least $g$. Exoo and Goedgebeur (DMTCS 2019) proved $26 \le n_6(4) \le 66$; their 66-vertex witness has remained the smallest known 4-chromatic graph of girth 6. We improve both bounds to $29 \le n_6(4) \le 64$. The upper bound is witnessed by an explicit 4-chromatic graph of girth 6 on 64 vertices with 152 edges; it is vertex- and edge-critical, and its automorphism group is cyclic of order 8 and acts semiregularly. The lower bound is an exhaustive isomorph-free computation in the SAT modulo symmetries framework with co-certificate learning, driven by the Liu-Postle edge-density bound for 4-critical graphs of girth five; it re-derives $n_6(4) \ge 26$ by a disjoint method and is validated on the known values $n_4(4)=11$ and $n_5(4)=21$. We complement the bounds with structural obstructions: no smaller witness arises from either known witness by local modifications; no 4-chromatic Cayley graph of girth 6 exists on 54-63 vertices (for orders 59 and 61 no vertex-transitive witness exists at all); and no witness on at most 63 vertices admits a semiregular automorphism group with two or three vertex orbits, for any finite group. Since every known witness of an $n_g(4)$ record with $g \ge 6$ is a lift of a small base graph along a semiregular action, these results close the most symmetric part of that regime below 64 vertices. All properties of the new graph are verified by independent programs and formally certified in the Lean 4 proof assistant: the non-3-colourability is established inside Lean by a formally verified checker that re-validates a 219,532-node refutation certificate, with a machine-checked soundness theorem.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Determine the minimum order n_6(4) of a graph with chromatic number 4 and girth at least 6. Prior bounds were 26 ≤ n_6(4) ≤ 66, with a 66-vertex witness the smallest known.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An explicit 64-vertex 4-chromatic graph G_64 of girth 6 was found by randomized search over semiregular cyclic factorizations. The lower bound was raised to 29 via an exhaustive isomorph-free SAT-modulo-symmetries search with co-certificate learning. Properties of G_64 were checked by multiple independent programs, and Theorem 1 was formally certified in the Lean 4 proof assistant using a self-contained checker (native_decide) that re-validates a refutation certificate, backed by a structural-induction soundness theorem.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Improved bounds to 29 ≤ n_6(4) ≤ 64, witnessed by a vertex- and edge-critical 64-vertex graph with 152 edges and cyclic automorphism group of order 8. Structural obstructions rule out smaller symmetric witnesses below 64 vertices.</p><div class="sum-table"><table><thead><tr><th>n</th><th>24</th><th>25</th><th>26</th><th>27</th><th>28</th></tr></thead><tbody><tr><td>solver time (s)</td><td>286</td><td>1,598</td><td>6,485</td><td>37,533</td><td>361,682</td></tr></tbody></table><div class="tbl-cap">SMS solver times for the lower-bound exhaustion</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
