@@ -6,7 +6,40 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 28 Aug 2026 01:00:12 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 28 Aug 2026 02:01:42 +0000</lastBuildDate>
+    <item>
+      <title>A complex-analytic proof of square-restricted stable phase retrieval in Fock space</title>
+      <link>https://paperswithlean.com/paper/2608.26365.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.26365.html</guid>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cynthia Bortolotto, João P. G. Ramos</dc:creator>
+      <category>formalization</category><category>analysis</category>
+      <description>Every result, including the coercivity inequality and stable phase retrieval theorem in Fock space, was formalized and kernel-checked in Lean 4 against Mathlib.
+
+We give a short complex-analytic proof of a square-restricted form of local stable phase retrieval at the Gaussian in one-dimensional Fock space. The main estimate is a coercivity inequality for the map $F\mapsto F^2$: \[ \|F^2-F(0)^2|_{\mathcal{F}^2(\mathbb{C})} \lesssim \inf_{c\in\mathbb{R}}\||F|^2-c\|_{L^2(d γ)}. \] The proof uses a weighted derivative norm, two integrations by parts, and a weighted Cauchy inequality. The proof has been completely verified in Lean with the aid of Large Language Models.</description>
+    </item>
+    <item>
+      <title>ProofEvolve: Neuro-Symbolic Evolution for Formal Automated Theorem Proving</title>
+      <link>https://paperswithlean.com/paper/2608.26334.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.26334.html</guid>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Wenqian Ye, Ziwei Guan, Eric Xie, Bohan Liu, Shivani Modi, Buyun Zhang, Ellie Dingqiao Wen, Henry Kautz, Aidong Zhang</dc:creator>
+      <category>theorem-proving-ml</category><category>ai-agents</category><category>autoformalization</category>
+      <description>A neuro-symbolic evolutionary prover uses the Lean 4 kernel with Mathlib to verify proof-DAG transitions and reusable schemas on competition benchmarks.
+
+Automated theorem proving offers a natural foundation for recursive self-improvement in scientific discovery. However, existing neural provers do not fully preserve this recursive structure, where the learning process should be self-improving over time. Existing methods either embed proof experience into model parameters through expensive weight updates, or keep verified intermediate deductions only within the current problem. In addition, these methods also heavily rely on sparse whole-proof feedback, even when unsuccessful partial attempts contain useful discoveries. To close the gap, we propose ProofEvolve, a neuro-symbolic framework that evolves explicit, formally verified symbolic proof structures with neural models to decisively expand the knowledge boundary. In this framework, the neural model proposes variation operators, including decompositions, repairs, and schema recombinations. The symbolic Lean kernel verifies every proof transition. Over the evolution loops, ProofEvolve computes verified closure over the resulting proof directed acyclic graphs (DAGs). Within each problem, ProofEvolve evolves partial AND-OR proof DAGs in a behaviorally indexed archive. Across problems, kernel-checked schema extraction adds newly proved sub-DAGs to a persistent schema library. Proof DAGs inherit the solved results through typed schema recombination, with every residual premise exposed as a new subgoal. This evolutionary process preserves verified results from incomplete attempts and makes them available for later proofs without weakening formal soundness. Across three competition-level Lean benchmarks, ProofEvolve achieves the highest average solve rate among the evaluated proof systems.</description>
+    </item>
+    <item>
+      <title>FaithSieve: Fine-Grained Evaluation of Math Proofs with Faithful Formal Evidence</title>
+      <link>https://paperswithlean.com/paper/2608.26310.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.26310.html</guid>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Ziyu Wang, Qiming Dai, Yishan Wu, Zaiwen Wen</dc:creator>
+      <category>theorem-proving-ml</category><category>autoformalization</category><category>ai-agents</category><category>verification</category>
+      <description>Uses Lean to verify typed proof obligations extracted from natural-language math proofs, gating formal evidence by semantic faithfulness for first-error localization.
+
+Large language models can now generate complex, multi-step mathematical proofs, but reliably determining their correctness and localizing early logical errors remains a critical challenge. Existing evaluation approaches largely depend on model-based natural-language judgments, which often overlook local reasoning gaps. While formal theorem provers like Lean offer a path to rigorous verification, using them to evaluate informal text requires solving locality and semantic mismatches: a prover might bypass a local flaw by proving an overly broad target, or validate an auto-formalized statement that drifts from the original mathematical intent. To address this, we introduce FaithSieve, a Lean-assisted framework for fine-grained evaluation of natural-language mathematical proofs. FaithSieve decomposes coarse proof steps into local reasoning units, extracts typed proof obligations, and verifies them through a formal evaluation agent. Formal validation is gated by semantic alignment scoring, so Lean evidence is incorporated only when the formal statement faithfully preserves the context, objects, and logical form of the original claim. We construct two expert-verified datasets, ProofLoc-Olympiad and ProofLoc-University, to benchmark first-error localization. On the 350-problem Olympiad dataset, FaithSieve using a GPT-5.4 backbone achieves 81.43% exact first-error accuracy, outperforming the direct-judging baseline of 72.29%. Furthermore, on the 200-problem ProofLoc-University benchmark spanning six advanced domains, FaithSieve reaches 84.5% exact accuracy, compared to 75.0% for the direct judge. Our work demonstrates that decomposing proofs into fine-grained units and grounding them with faithful formal evidence significantly improves reliable evaluation of natural-language reasoning.</description>
+    </item>
     <item>
       <title>MathAdv: What Theorem Provers Know, Reason, Formalize, and Generalize</title>
       <link>https://paperswithlean.com/paper/2608.25449.html</link>
@@ -633,39 +666,6 @@ A common problem in social choice is to determine whether there is a social choi
       <description>Provides a complete, sorry-free Lean 4 formalization over Mathlib of the statement and supporting theory of the primes-are-supernatural conjecture.
 
 The paper Conjecture: the set of prime numbers is supernatural conjectures that no non-constant function built from the identity and constants by finitely many pointwise additions, multiplications, and exponentiations maps every positive integer to a prime. We give a complete Lean 4 formalization of that paper over Mathlib: every definition, example, remark, numbered result, and experimental table row has a machine-checked counterpart, with no \lcode{sorry}. The conjecture and similar generalizations are stated exactly, as named open problems. So stated, the conjecture becomes a precise target: an automated reasoning system can now attempt a kernel-checked proof.</description>
-    </item>
-    <item>
-      <title>A SAT Attack on Tarski&#x27;s High School Algebra Problem</title>
-      <link>https://paperswithlean.com/paper/2608.08421.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.08421.html</guid>
-      <pubDate>Mon, 10 Aug 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Bernardo Subercaseaux, Benjamin Przybocki</dc:creator>
-      <category>verification</category><category>algebra</category><category>logic</category>
-      <description>Lean is used to verify that the SAT-derived unsatisfiability result correctly proves the size-12 lower bound for Wilkie-identity countermodels.
-
-Tarski&#x27;s high school algebra problem asks whether every true identity concerning addition, multiplication, and exponentiation of positive integers follows from a list of 11 elementary identities. Surprisingly, Wilkie showed that the following identity is valid over the positive integers and yet does not follow from Tarski&#x27;s axioms: \begin{align*} &amp;\left((1+x)^y + (1+x+x^2)^y\right)^x \cdot \left((1+x^3)^x + (1+x^2+x^4)^x\right)^y = \\ &amp;\left((1+x)^x + (1+x+x^2)^x\right)^y \cdot \left((1+x^3)^y + (1+x^2+x^4)^y\right)^x. \end{align*} Gurevič gave an algebra on 59 elements that satisfies Tarski&#x27;s axioms but not Wilkie&#x27;s identity, and over the years several authors whittled down the size of such a countermodel, culminating in a countermodel of size 12 due to Burris and Yeats. On the other hand, Zhang proved that there is no countermodel with fewer than 11 elements. Using SAT, we prove that the smallest countermodels are of size 12, as conjectured by Burris and Yeats. Moreover, we show that there are exactly 8,957,952 countermodels on 12 elements up to isomorphism and provide a simple classification of them. Our SAT approach outperforms dedicated tools for finding countermodels in equational theories, namely Mace4 and SEM. Furthermore, using autoformalization, we prove the correctness of our main result in Lean.</description>
-    </item>
-    <item>
-      <title>A Domain-Specific Harness for End-to-End Automation of Optimization Research</title>
-      <link>https://paperswithlean.com/paper/2608.07407.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.07407.html</guid>
-      <pubDate>Sun, 09 Aug 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Heechang Kim, Ernest K. Ryu, Shuvomoy Das Gupta</dc:creator>
-      <category>verification</category><category>ai-agents</category><category>formalization</category>
-      <description>Convergence theorems of two newly discovered first-order optimization methods are formalized and machine-checked in Lean 4 as part of an automated research pipeline.
-
-We present AutoOPT, a domain-specific harness for end-to-end automation of optimization research. AutoOPT organizes the discovery of optimal first-order methods into four stages: numerical design through the BnB-PEP methodology; symbolic discovery of the analytic description and a convergence proof through frontier large language models (LLMs); formal verification in the Lean 4 proof assistant; and human interpretation and write-up. We demonstrate the framework on two case studies, each of independent interest. The first, lemniscate acceleration, is a new accelerated gradient method for minimizing the gradient norm of a smooth convex function: after $N$ gradient steps it reduces the squared gradient norm at the optimal $O(1/N^{4})$ rate, with a constant governed by the lemniscate constant $\varpi$, a classical elliptic-integral constant. The second is the analytic description of ITEM-f, a method previously known only numerically: for $L$-smooth, $μ$-strongly convex minimization it contracts the function-value gap at an accelerated linear rate with a per-step factor $(1-\sqrt{μ/L})^{2}$. The convergence theorems of both case studies are formalized and machine-checked in Lean 4.</description>
-    </item>
-    <item>
-      <title>Banach lattices and phase retrieval: A case study for the use of AI in mathematics</title>
-      <link>https://paperswithlean.com/paper/2608.07396.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.07396.html</guid>
-      <pubDate>Sun, 09 Aug 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Jaume de Dios Pont, Lukas Liehr, David Muñoz-Lahoz, Mitchell A. Taylor, Pedro Tradacete</dc:creator>
-      <category>formalization</category><category>analysis</category><category>theorem-proving-ml</category>
-      <description>Banach lattice results including Kakutani&#x27;s C(K)-representation theorem were formalized and verified in Lean alongside LLM-assisted research in phase retrieval.
-
-The ability of large language models to assist professional mathematicians has been progressing rapidly. Earlier this year, a group of researchers in Banach lattice theory and phase retrieval began incorporating this technology into their research workflows. Facing challenges about the reliability of these models, they also decided to couple the discovery process with Lean verification. Here, we present a case study of how this has led to a more united community and a deeper understanding of our field.</description>
     </item>
   </channel>
 </rss>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FaithSieve: Fine-Grained Evaluation of Math Proofs with Faithful Formal Evidence · Papers With Lean</title>
+<meta name="description" content="Large language models can now generate complex, multi-step mathematical proofs, but reliably determining their correctness and localizing early logical errors remains a critical challenge. Existing evaluation approaches largely depend on model-based natural-language judgments,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FaithSieve: Fine-Grained Evaluation of Math Proofs with Faithful Formal Evidence">
+<meta property="og:description" content="Large language models can now generate complex, multi-step mathematical proofs, but reliably determining their correctness and localizing early logical errors remains a critical challenge. Existing evaluation approaches largely depend on model-based natural-language judgments,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.26310.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.26310.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.26310v1" target="_blank" rel="noopener"><img src="../thumbs/2608.26310.jpg" alt="First page of FaithSieve: Fine-Grained Evaluation of Math Proofs with Faithful Formal Evidence"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">FaithSieve: Fine-Grained Evaluation of Math Proofs with Faithful Formal Evidence</h1>
+        <p class="authors">Ziyu Wang, Qiming Dai, Yishan Wu, Zaiwen Wen</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Aug 26, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-amber" href="../#tag=verification">verification</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.26310v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.26310" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/optsuite/lean-tools-mcp" target="_blank" rel="noopener" title="optsuite/lean-tools-mcp">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses Lean to verify typed proof obligations extracted from natural-language math proofs, gating formal evidence by semantic faithfulness for first-error localization.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language models can now generate complex, multi-step mathematical proofs, but reliably determining their correctness and localizing early logical errors remains a critical challenge. Existing evaluation approaches largely depend on model-based natural-language judgments, which often overlook local reasoning gaps. While formal theorem provers like Lean offer a path to rigorous verification, using them to evaluate informal text requires solving locality and semantic mismatches: a prover might bypass a local flaw by proving an overly broad target, or validate an auto-formalized statement that drifts from the original mathematical intent. To address this, we introduce FaithSieve, a Lean-assisted framework for fine-grained evaluation of natural-language mathematical proofs. FaithSieve decomposes coarse proof steps into local reasoning units, extracts typed proof obligations, and verifies them through a formal evaluation agent. Formal validation is gated by semantic alignment scoring, so Lean evidence is incorporated only when the formal statement faithfully preserves the context, objects, and logical form of the original claim. We construct two expert-verified datasets, ProofLoc-Olympiad and ProofLoc-University, to benchmark first-error localization. On the 350-problem Olympiad dataset, FaithSieve using a GPT-5.4 backbone achieves 81.43% exact first-error accuracy, outperforming the direct-judging baseline of 72.29%. Furthermore, on the 200-problem ProofLoc-University benchmark spanning six advanced domains, FaithSieve reaches 84.5% exact accuracy, compared to 75.0% for the direct judge. Our work demonstrates that decomposing proofs into fine-grained units and grounding them with faithful formal evidence significantly improves reliable evaluation of natural-language reasoning.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLMs generate multi-step mathematical proofs, but reliably judging their correctness and locating the first logical error is difficult. Natural-language judges miss local reasoning gaps, while directly using Lean risks locality and semantic mismatches where a provable formal statement drifts from the original claim.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">FaithSieve decomposes coarse proof steps into fine-grained local reasoning units (EdgeUnits) and extracts typed proof obligations from suspicious transitions. Selected obligations are auto-formalized and verified via a Lean-assisted formal evaluation agent. A statement faithfulness score combining premise, conclusion, and holistic semantic checks gates whether Lean evidence is admitted, and evidence is fused into a benchmark-aligned first-error prediction.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.26310/LeanEvaluation.png" alt=""><figcaption>Figure 1: Overview of the FaithSieve workflow for Lean-assisted first-error localization.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On the 350-problem ProofLoc-Olympiad, FaithSieve with a GPT-5.4 backbone reaches 81.43% exact first-error accuracy versus 72.29% for direct judging. On the 200-problem ProofLoc-University, it reaches 84.5% versus 75.0% for the direct judge.</p><div class="sum-table"><table><thead><tr><th>Domain</th><th>N</th><th>FaithSieve Exact (%)</th><th>Direct Exact (%)</th></tr></thead><tbody><tr><td>Overall</td><td>200</td><td>84.50</td><td>75.00</td></tr><tr><td>Topology</td><td>20</td><td>80.00</td><td>65.00</td></tr><tr><td>Linear algebra</td><td>40</td><td>100.00</td><td>87.50</td></tr><tr><td>Real analysis</td><td>50</td><td>80.00</td><td>68.00</td></tr><tr><td>Convex analysis</td><td>30</td><td>60.00</td><td>50.00</td></tr></tbody></table><div class="tbl-cap">ProofLoc-University domain results (FaithSieve vs GPT-5.4 direct)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

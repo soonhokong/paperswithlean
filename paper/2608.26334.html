@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ProofEvolve: Neuro-Symbolic Evolution for Formal Automated Theorem Proving · Papers With Lean</title>
+<meta name="description" content="Automated theorem proving offers a natural foundation for recursive self-improvement in scientific discovery. However, existing neural provers do not fully preserve this recursive structure, where the learning process should be self-improving over time. Existing methods either…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ProofEvolve: Neuro-Symbolic Evolution for Formal Automated Theorem Proving">
+<meta property="og:description" content="Automated theorem proving offers a natural foundation for recursive self-improvement in scientific discovery. However, existing neural provers do not fully preserve this recursive structure, where the learning process should be self-improving over time. Existing methods either…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.26334.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.26334.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.26334v1" target="_blank" rel="noopener"><img src="../thumbs/2608.26334.jpg" alt="First page of ProofEvolve: Neuro-Symbolic Evolution for Formal Automated Theorem Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">ProofEvolve: Neuro-Symbolic Evolution for Formal Automated Theorem Proving</h1>
+        <p class="authors">Wenqian Ye, Ziwei Guan, Eric Xie, Bohan Liu, Shivani Modi, Buyun Zhang, Ellie Dingqiao Wen, Henry Kautz, Aidong Zhang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Aug 26, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.26334v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.26334" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A neuro-symbolic evolutionary prover uses the Lean 4 kernel with Mathlib to verify proof-DAG transitions and reusable schemas on competition benchmarks.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Automated theorem proving offers a natural foundation for recursive self-improvement in scientific discovery. However, existing neural provers do not fully preserve this recursive structure, where the learning process should be self-improving over time. Existing methods either embed proof experience into model parameters through expensive weight updates, or keep verified intermediate deductions only within the current problem. In addition, these methods also heavily rely on sparse whole-proof feedback, even when unsuccessful partial attempts contain useful discoveries. To close the gap, we propose ProofEvolve, a neuro-symbolic framework that evolves explicit, formally verified symbolic proof structures with neural models to decisively expand the knowledge boundary. In this framework, the neural model proposes variation operators, including decompositions, repairs, and schema recombinations. The symbolic Lean kernel verifies every proof transition. Over the evolution loops, ProofEvolve computes verified closure over the resulting proof directed acyclic graphs (DAGs). Within each problem, ProofEvolve evolves partial AND-OR proof DAGs in a behaviorally indexed archive. Across problems, kernel-checked schema extraction adds newly proved sub-DAGs to a persistent schema library. Proof DAGs inherit the solved results through typed schema recombination, with every residual premise exposed as a new subgoal. This evolutionary process preserves verified results from incomplete attempts and makes them available for later proofs without weakening formal soundness. Across three competition-level Lean benchmarks, ProofEvolve achieves the highest average solve rate among the evaluated proof systems.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Neural theorem provers embed proof experience into model weights or discard verified partial results within a single problem, relying on sparse whole-proof feedback. This limits recursive self-improvement and reuse of verified intermediate deductions across problems.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ProofEvolve keeps the neural model fixed and evolves explicit, formally verified symbolic proof structures. The model proposes variation operators (decompositions, repairs, schema recombinations), while the Lean 4 kernel with Mathlib verifies every proof transition and schema application. Partial proofs are represented as AND-OR proof DAGs ranked by a graded verified-closure fitness, stored in a behaviorally indexed archive per target, and closed sub-DAGs are extracted into a persistent schema library reused across targets via typed recombination.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Across three competition-level Lean benchmarks (PutnamBench, IMO-LeanProofBench, CombiBench), ProofEvolve achieves the highest average solve rate among evaluated systems. On Lean Workbook theorems disjoint from its library, using its own verified schema library adds about four points over zero-shot, while random retrieval adds nothing.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.26334/qwen_mark.png" alt=""><figcaption>Figure 6: Test-time budget scaling (a) Kernel-verified transitions per target across seeds; (b) Union of distinct targets solved across seeds and configuration. In (a) : Qwen3.5 think \circ / instant \square ; Qwen3.6 instant \Diamond / think \triangle ; GLM-5.1 + ; Kimi-K2.6 \times ; gpt-oss med \triangledown / low \times .</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
