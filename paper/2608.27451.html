@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tacet: A Language and Type System for Automatic Statistical Validity Accounting · Papers With Lean</title>
+<meta name="description" content="Empirical comparisons between systems are a standard form of evidence in computer science research, but few are checked for statistical validity: most are never framed as statistical tests at all. Existing multiple-comparison procedures could control the resulting error, but…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tacet: A Language and Type System for Automatic Statistical Validity Accounting">
+<meta property="og:description" content="Empirical comparisons between systems are a standard form of evidence in computer science research, but few are checked for statistical validity: most are never framed as statistical tests at all. Existing multiple-comparison procedures could control the resulting error, but…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.27451.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.27451.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.27451v1" target="_blank" rel="noopener"><img src="../thumbs/2608.27451.jpg" alt="First page of Tacet: A Language and Type System for Automatic Statistical Validity Accounting"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Tacet: A Language and Type System for Automatic Statistical Validity Accounting</h1>
+        <p class="authors">Chiké Abuah</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Aug 27, 2026 · v1</span>
+          <span class="badge">cs.SE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-slate" href="../#tag=logic">logic</a> <a class="tag c-pink" href="../#tag=type-theory">type-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.27451v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.27451" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/abuach/tacet-mech" target="_blank" rel="noopener" title="abuach/tacet-mech">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Metatheory of the Tacet type system and core calculus, including wealth-transformer properties, is machine-checked in Lean 4 with no admitted gaps.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Empirical comparisons between systems are a standard form of evidence in computer science research, but few are checked for statistical validity: most are never framed as statistical tests at all. Existing multiple-comparison procedures could control the resulting error, but need inputs (what an analysis examined, and how its observations are arranged) that are not recoverable from a list of p-values. We introduce Tacet, a language in which an analysis declares what it generated, states what it expects to find, and is refused any claim it cannot afford or cannot properly test. Its core calculus T pairs a free estimation sublanguage, carrying a reported footprint and a purity bit that records whether any outcome was consulted in building a value, with a priced claim sublanguage, carrying a wealth transformer, connected only by a mechanism that prices a comparison. A sample selected by reading outcomes sets the purity bit and is recorded as having examined everything it read, permanently, so it can never be granted a one-sided or confirmatory price, without the system ever asking whether the analyst intended to cherry-pick. Whether a comparison is paired or clustered is computed statically from the artifact schema, from declared functional dependencies between key fields alone and before any data is read, and a mechanism that assumes that structure away is refused rather than priced. Because the wealth transformer is antitone in the realized p-value, affordability can be checked before the analysis runs too, turning pre-registration into a typing rule. We prove the metatheory machine-checked in Lean 4 with no admitted gaps, and demonstrate the approach on a reference implementation and two case studies on published artifacts, the SWE-bench Verified leaderboard and BIG-Bench Hard.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Empirical system comparisons in CS are rarely checked for statistical validity, and standard multiple-comparison procedures require inputs (what an analysis examined, how observations are arranged) that cannot be recovered from a list of p-values alone.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Tacet is a language whose core calculus T pairs a free estimation sublanguage (tracking a footprint and a purity bit recording whether outcomes were consulted) with a priced claim sublanguage carrying a wealth transformer, linked only by a comparison-pricing mechanism. Paired versus clustered structure is computed statically from the artifact schema and declared functional dependencies before data is read. Because the wealth transformer is antitone in the realized p-value, affordability can be checked before running, turning pre-registration into a typing rule. The metatheory is proved machine-checked in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Three theorems are established, with the static under-approximation theorem and the wealth-transformer laws (monotone in W, antitone in p, no-refund lower bound) machine-checked in Lean 4 with no admitted gaps. A 1,994-line reference implementation is demonstrated on the SWE-bench Verified leaderboard and BIG-Bench Hard case studies.</p><div class="sum-table"><table><thead><tr><th>ordering</th><th>leaderboard</th><th>BIG-Bench Hard</th></tr></thead><tbody><tr><td>best first (oracle, invalid)</td><td>6,545 of 8,911</td><td>19 of 26</td></tr><tr><td>chronological/alphabetical</td><td>0 of 8,911</td><td>19 of 26</td></tr><tr><td>random, median [min–max]</td><td>28 [0–302]</td><td>17 [14–19]</td></tr><tr><td>as a reader meets them</td><td>0 of 8,911</td><td>19 of 26</td></tr><tr><td>worst first (oracle, invalid)</td><td>0 of 8,911</td><td>14 of 26</td></tr></tbody></table><div class="tbl-cap">Affordable comparisons under different orderings</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
