@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prove2Me: An Open Collaborative Platform for Scaling Math Formalization · Papers With Lean</title>
+<meta name="description" content="Proof assistants such as Lean 4 promise the paradigm of formally verified mathematics, but large-scale formalization projects have faced major barriers to entry, including the need for expertise in formal verification (as well as the underlying mathematics) and the significant…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Prove2Me: An Open Collaborative Platform for Scaling Math Formalization">
+<meta property="og:description" content="Proof assistants such as Lean 4 promise the paradigm of formally verified mathematics, but large-scale formalization projects have faced major barriers to entry, including the need for expertise in formal verification (as well as the underlying mathematics) and the significant…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.28433.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.28433.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.28433v1" target="_blank" rel="noopener"><img src="../thumbs/2608.28433.jpg" alt="First page of Prove2Me: An Open Collaborative Platform for Scaling Math Formalization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Prove2Me: An Open Collaborative Platform for Scaling Math Formalization</h1>
+        <p class="authors">Shuze Chen, Kunal Marwaha, Xiaoyang Lu, Henry Yuen, Tianyi Peng</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Aug 28, 2026 · v1</span>
+          <span class="badge">cs.LO</span> <span class="badge">cs.MA</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.28433v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.28433" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/prove2me/prove2me_workspace" target="_blank" rel="noopener" title="prove2me/prove2me_workspace">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces Prove2Me, a collaborative platform where humans and AI agents formalize mathematics as immutable Lean 4 theorems verified against pinned Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Proof assistants such as Lean 4 promise the paradigm of formally verified mathematics, but large-scale formalization projects have faced major barriers to entry, including the need for expertise in formal verification (as well as the underlying mathematics) and the significant time required for writing formal proofs. AI coding agents have dramatically reduced these barriers; human users can now use natural language to prompt agents to write complex proofs in Lean. This opens up the intriguing possibility of internet-scale mathematical collaboration involving both humans and AI agents, where correctness is machine-checked. To realize this possibility, we introduce Prove2Me (<a href="https://prove2.me" target="_blank" rel="noopener">https://prove2.me</a>), an open collaborative platform for formalizing mathematics. Users launch formalization &quot;missions&quot;, to which AI agents contribute formal proofs toward completion. We designed mechanisms and a specialized harness in Prove2Me that enable large-scale collaboration so that agents can build on one another&#x27;s work and freely reuse existing results. In doing so, Prove2Me aims to turn math formalization into a scalable, crowd-sourced effort open to anyone with an agent.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Large-scale mathematics formalization in Lean faces barriers of auditing correctness, reusing prior results, and scaling beyond a single organization&#x27;s compute. Existing agent-based efforts remain siloed with no shared venue for humans and AI agents to collaboratively formalize.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Prove2Me separates immutable theorem statements from their (possibly multiple) proofs, each stored as a standalone Lean 4 object with natural-language description, Mathlib/platform imports, and a formal statement. Proof-sketches decompose hard theorems into independently solvable sub-problems, and milestones align sub-problems with source material through human-audited canonical statements. A specialized harness lets decentralized agents build on and reuse one another&#x27;s proved theorems, all verified server-side against pinned Lean and Mathlib revisions.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.28433/Decomposition_graph.png" alt=""><figcaption>Figure 5: Decomposition graph for the Sensitivity Conjecture proved in Huang (2019) . Each dependent theorem node represents a child lemma, with an extra assisting lemma showing that A corresponds to the adjacency matrix. They are connected by a proof-sketch (purple box).</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2608.28433/milestone.png" alt=""><figcaption>Figure 6: The milestone list for the Sensitivity Conjecture mission. Each milestone pairs an authoritative statement, transcribed from the source proof, with the platform theorem the captain has attested as its canonical formalization. The two milestones shown are precisely Cauchy’s interlace theorem and the spectrum of A_{n} from Section 4.2 , here linked to the proved theorems cauchy_interlacing</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Contributors completed several missions, including formalizations of the exact matrix completion result, the Sipser–Gács–Lautemann theorem, and textbook material, producing up to 151K lines of Lean. The largest mission was closed by 6 agents on two consumer subscriptions, comparable in size to a centralized 30,000-agent swarm.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.28433/Discussion.png" alt=""><figcaption>Figure 7: A snapshot of discussion under the exact matrix completion mission. Two different agents are sharing their latest progress.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Mission</th><th>Type</th><th>LOC</th><th>Agents</th><th>Days</th></tr></thead><tbody><tr><td>Algebraic Combinatorics (swarm)</td><td>Textbook</td><td>130K</td><td>30,000</td><td>7</td></tr><tr><td>Exact Matrix Completion</td><td>Paper</td><td>81K</td><td>9</td><td>16</td></tr><tr><td>Sipser–Gács–Lautemann</td><td>Paper</td><td>55K</td><td>3</td><td>8</td></tr><tr><td>Bandit Algorithms</td><td>Textbook</td><td>151K</td><td>6</td><td>13</td></tr><tr><td>Intro to Linear Optimization</td><td>Textbook</td><td>17K</td><td>4</td><td>7</td></tr></tbody></table><div class="tbl-cap">Missions completed on Prove2Me, with a centralized swarm for context.</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
