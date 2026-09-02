@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RePro: Proof-Verified Benchmark Rewriting for Reliable Evaluation of LLM Mathematical Problem Solving · Papers With Lean</title>
+<meta name="description" content="Data contamination undermines the reliable evaluation of large language models (LLMs) on mathematical problem solving. While rewriting-based evaluation mitigates memorization, existing methods lack guarantees of problem validity and answer correctness. We propose Proof-Verified…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RePro: Proof-Verified Benchmark Rewriting for Reliable Evaluation of LLM Mathematical Problem Solving">
+<meta property="og:description" content="Data contamination undermines the reliable evaluation of large language models (LLMs) on mathematical problem solving. While rewriting-based evaluation mitigates memorization, existing methods lack guarantees of problem validity and answer correctness. We propose Proof-Verified…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.00062.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.00062.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.00062v1" target="_blank" rel="noopener"><img src="../thumbs/2609.00062.jpg" alt="First page of RePro: Proof-Verified Benchmark Rewriting for Reliable Evaluation of LLM Mathematical Problem Solving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">RePro: Proof-Verified Benchmark Rewriting for Reliable Evaluation of LLM Mathematical Problem Solving</h1>
+        <p class="authors">Xiyuan Zhou, Zhuoqi Li, Xinlei Wang, Yirui He, Yuhao Wu, Yuheng Cheng, Yan Xu, Junhua Zhao, Jinjin Gu</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Aug 30, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.00062v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.00062" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/AI4Engi/RePro" target="_blank" rel="noopener" title="AI4Engi/RePro">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Rewritten benchmark problems are formalized in Lean and verified by neural ATPs with kernel-level proof checking to ensure answer correctness.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Data contamination undermines the reliable evaluation of large language models (LLMs) on mathematical problem solving. While rewriting-based evaluation mitigates memorization, existing methods lack guarantees of problem validity and answer correctness. We propose Proof-Verified Benchmark Rewriting (RePro), the first framework to integrate Lean-oriented neural automated theorem provers (ATPs) into benchmark rewriting, which rewrites problems and regenerates answers with correctness ensured by Lean-verified proofs. Experiments on GSM8K and MATH show that RePro&#x27;s retained rewritten instances achieve 100% well-definedness, feasibility, and answer correctness, while existing methods still produce invalid or incorrect instances. Moreover, several models exhibit accuracy drops on proof-verified rewritten benchmarks, suggesting that their performance is sensitive to surface-level and structural variations and may partly reflect memorization effects. Our source code and data are available at <a href="https://github.com/AI4Engi/RePro" target="_blank" rel="noopener">https://github.com/AI4Engi/RePro</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Data contamination undermines reliable evaluation of LLM mathematical reasoning, and existing benchmark-rewriting methods rely on heuristic validation that cannot guarantee problem validity or answer correctness.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">RePro integrates Lean-oriented neural automated theorem provers (e.g., Goedel-Prover, DeepSeek-Prover) into the benchmark rewriting pipeline. Candidate rewrites generated by an LLM are filtered for basic validity, then translated into executable Lean formal specifications. An ATP performs proof search and Lean&#x27;s kernel checks correctness, retaining only well-defined, feasible instances with formally verified reference answers.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2609.00062/framework_v3.png" alt=""><figcaption>Figure 2: Framework of the proposed verification pipeline for rewriting-based evaluation. The pipeline progressively filters rewritten instances to obtain valid questions with verified answers.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2609.00062/failure_mode_v5.png" alt=""><figcaption>Figure 3: Failure modes of rewriting-based evaluation and our solution. Rewriting may introduce three types of reliability issues: (1) ill-defined problems caused by ambiguous or missing information, (2) infeasible problems due to conflicting constraints, and (3) incorrect answers where the reference answer is wrong. A rewritten instance is valid only if the problem is well-defined, feasible, and </figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On GSM8K and MATH, RePro&#x27;s retained rewritten instances reach 100% well-definedness, feasibility, and answer correctness, whereas AutoDataset, ITD, and VarBench still produce invalid or incorrect instances. Several models show accuracy drops on proof-verified rewritten benchmarks, indicating memorization sensitivity.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2609.00062/four_panel_heatmap_redblue.png" alt=""><figcaption>Figure 8: Impact of problem rewriting on model performance across five difficulty levels. (a) Original accuracy. (b) Accuracy after rewriting. (c) Absolute accuracy change (percentage points). (d) Relative accuracy change (percentage). Positive values indicate improvements, while negative values indicate performance drops.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Method</th><th>GSM8K Correct</th><th>MATH Correct</th></tr></thead><tbody><tr><td>Auto-Dataset</td><td>87.10</td><td>79.99</td></tr><tr><td>ITD</td><td>89.11</td><td>81.15</td></tr><tr><td>VarBench</td><td>95.14</td><td>87.36</td></tr><tr><td>RePro (Ours)</td><td>100.00</td><td>100.00</td></tr></tbody></table><div class="tbl-cap">Rewriting quality on full datasets (Well-defined / Feasible / Correct, %)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
