@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AutoGraphForge: Towards Automated Graph Theory Discovery · Papers With Lean</title>
+<meta name="description" content="We report on our ongoing project to develop a computational pipeline, AutoGraphForge, for an automated graph-theoretic conjecturing-refuting-formalizing-proving system. Conjecture generation is counterexample-guided and runs in rounds: a Graffiti3 generator proposes conjectures…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AutoGraphForge: Towards Automated Graph Theory Discovery">
+<meta property="og:description" content="We report on our ongoing project to develop a computational pipeline, AutoGraphForge, for an automated graph-theoretic conjecturing-refuting-formalizing-proving system. Conjecture generation is counterexample-guided and runs in rounds: a Graffiti3 generator proposes conjectures…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.03478.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.03478.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.03478v1" target="_blank" rel="noopener"><img src="../thumbs/2609.03478.jpg" alt="First page of AutoGraphForge: Towards Automated Graph Theory Discovery"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">AutoGraphForge: Towards Automated Graph Theory Discovery</h1>
+        <p class="authors">Ján Pastorek</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Sep 3, 2026 · v1</span>
+          <span class="badge">cs.LO</span> <span class="badge">math.CO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.03478v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.03478" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/JanPastorek/AutoGraphForge" target="_blank" rel="noopener" title="JanPastorek/AutoGraphForge">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Surviving graph-theory conjectures are deterministically translated into Lean 4 statement skeletons, with candidate proofs kernel-verified against pinned mathlib4 using neural provers.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We report on our ongoing project to develop a computational pipeline, AutoGraphForge, for an automated graph-theoretic conjecturing-refuting-formalizing-proving system. Conjecture generation is counterexample-guided and runs in rounds: a Graffiti3 generator proposes conjectures over a small, evolving snapshot table $T$ (initially a few hundred graphs with their computed invariants) that grows only by counterexamples to its own conjectures. A novelty filter of $559$ classical and folklore relations, closed under transitive composition and linear identity substitution, decides via a linear program whether a candidate is already implied by known results. Surviving candidates are tested against a dataset of about $348,000$ graphs, unioning the complete House of Graphs invariant export, the exhaustive census of all connected graphs on at most nine vertices, several extremal families (strongly regular, minimal Ramsey, Cayley, cages, barbells, lollipops, spiders), and random models. Counterexample-search algorithms then attack the remainder. Run for several rounds on an HPC cluster, the loop yields $6,522$ conjectures that survived the refutation dataset, the novelty filter and every active-search run – among them nontrivial relations between the annihilation number and the edge-cover number for bipartite and regular graphs, which we prove by hand. A subsequent formalization and proving stage deterministically translates each surviving conjecture into a Lean 4 statement skeleton; every candidate proof is kernel-verified against a pinned mathlib4 and our custom invariant preamble. This stage integrates two neural provers – DeepSeek-Prover-V2-671B (served with vLLM) and the Lean-specialised OProver-32B – behind the independent kernel check. It is implemented end-to-end and passes initial sanity checks, with the full pipeline currently running on the cluster.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Automated mathematical discovery in graph theory requires generating conjectures, refuting spurious ones, and rigorously formalizing and proving the survivors. Closing the full conjecture-to-proof loop with formal verification remains an open challenge.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">AutoGraphForge couples a Graffiti3 conjecture generator over an evolving graph invariant table with a novelty filter of 559 known relations and counterexample-search testing against  348,000 graphs. Surviving conjectures are deterministically translated into Lean 4 statement skeletons using a custom invariant preamble. Two neural provers, DeepSeek-Prover-V2-671B and OProver-32B, produce candidate proofs that are kernel-verified against a pinned mathlib4.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2609.03478/flowchart.png" alt=""><figcaption>Figure 1: The complete AutoGraphForge pipeline. The orchestrator loop (LLM and Human) interacts with the AutoGraphForge and conjecture engine. Surviving conjectures enter a refutation loop managed by a round counter ( l=1\dots L_{\max} ), eventually proceeding to the formalization-and-proving stage if they survive L_{\max} rounds. Conjectures are generated, immediately filtered and sorted with heu</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The loop yielded 6,522 conjectures surviving refutation and novelty filtering, including relations between annihilation number and edge-cover number for bipartite and regular graphs proved by hand. The formalization-and-proving stage is implemented and passes sanity checks but has not yet been run on the candidate conjectures.</p><div class="sum-table"><table><thead><tr><th>Partition</th><th>R1</th><th>R2</th><th>Total</th><th>Surv.</th></tr></thead><tbody><tr><td>0 (alg. conn.–diameter)</td><td>793</td><td>164</td><td>990</td><td>1762</td></tr><tr><td>1 (domination–max degree)</td><td>499</td><td>56</td><td>615</td><td>1438</td></tr><tr><td>2 (min. maximal matching–residue)</td><td>494</td><td>39</td><td>543</td><td>1815</td></tr><tr><td>3 (Roman dom.–total dom.)</td><td>562</td><td>66</td><td>645</td><td>1345</td></tr><tr><td>4 (total zero forcing–zero forcing)</td><td>580</td><td>48</td><td>632</td><td>1921</td></tr></tbody></table><div class="tbl-cap">Per-partition iterative dynamics (surviving conjectures)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

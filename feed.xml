@@ -6,7 +6,29 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 04 Sep 2026 01:00:21 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 04 Sep 2026 02:09:12 +0000</lastBuildDate>
+    <item>
+      <title>AutoGraphForge: Towards Automated Graph Theory Discovery</title>
+      <link>https://paperswithlean.com/paper/2609.03478.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.03478.html</guid>
+      <pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Ján Pastorek</dc:creator>
+      <category>autoformalization</category><category>theorem-proving-ml</category><category>combinatorics</category>
+      <description>Surviving graph-theory conjectures are deterministically translated into Lean 4 statement skeletons, with candidate proofs kernel-verified against pinned mathlib4 using neural provers.
+
+We report on our ongoing project to develop a computational pipeline, AutoGraphForge, for an automated graph-theoretic conjecturing-refuting-formalizing-proving system. Conjecture generation is counterexample-guided and runs in rounds: a Graffiti3 generator proposes conjectures over a small, evolving snapshot table $T$ (initially a few hundred graphs with their computed invariants) that grows only by counterexamples to its own conjectures. A novelty filter of $559$ classical and folklore relations, closed under transitive composition and linear identity substitution, decides via a linear program whether a candidate is already implied by known results. Surviving candidates are tested against a dataset of about $348,000$ graphs, unioning the complete House of Graphs invariant export, the exhaustive census of all connected graphs on at most nine vertices, several extremal families (strongly regular, minimal Ramsey, Cayley, cages, barbells, lollipops, spiders), and random models. Counterexample-search algorithms then attack the remainder. Run for several rounds on an HPC cluster, the loop yields $6,522$ conjectures that survived the refutation dataset, the novelty filter and every active-search run – among them nontrivial relations between the annihilation number and the edge-cover number for bipartite and regular graphs, which we prove by hand. A subsequent formalization and proving stage deterministically translates each surviving conjecture into a Lean 4 statement skeleton; every candidate proof is kernel-verified against a pinned mathlib4 and our custom invariant preamble. This stage integrates two neural provers – DeepSeek-Prover-V2-671B (served with vLLM) and the Lean-specialised OProver-32B – behind the independent kernel check. It is implemented end-to-end and passes initial sanity checks, with the full pipeline currently running on the cluster.</description>
+    </item>
+    <item>
+      <title>SparseStack Is an Optimal Oblivious Subspace Embedding</title>
+      <link>https://paperswithlean.com/paper/2609.02978.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.02978.html</guid>
+      <pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Diar Heidary</dc:creator>
+      <category>formalization</category><category>probability</category>
+      <description>The main optimal-embedding theorem for the SparseStack sketch was formally verified in Lean 4.
+
+The fully independent SparseStack sketch is a vertical stack of $s$ independent CountSketch matrices, scaled by $s^{-1/2}$, so that every column has exactly $s$ nonzero entries. We prove that it is an oblivious subspace embedding for $d$-dimensional subspaces with distortion $ε$ and failure probability $δ$ when $m = O((d+\log(1/δ))/ε^2)$ and $s = O(\log(d/δ)/ε)$, with explicit constants. These are the parameters conjectured by Nelson and Nguyen (FOCS 2013) for this construction; the row count is optimal by their lower bound. The proof bounds the even moments of the Gram error. A conditional-expectation coupling replaces each signed one-hot column selector by a vector with independent three-point entries, at the cost of a constant factor per moment order. The three-point law has a three-dimensional $L_2$ space, so multiplication by an entry is a $3 \times 3$ Jacobi matrix, and the $2q$-th moment becomes a vacuum matrix element of a deterministic operator on a finite tensor product, graded by total occupation. The operator has three grade bands, and we bound each band on the grade-$ν$ sector by $C(\sqrt{(d+ν+1)/m} + (d+ν+1)/m + (ν+1)/s)$ with $C = 3+\sqrt{2}$. The key step is a shared-factor inequality: each row block of the positive operator attached to one tensor slot is rank one with trace $d$, and the sum over $\ell$ slots sharing the same external factor has norm at most $d+\ell-1$. A $2q$-step expansion and Markov&#x27;s inequality complete the argument, which is finite-dimensional and does not use Gaussian comparison. The theorem has been formally verified in Lean 4. The proof was developed with AI systems under the author&#x27;s direction, as disclosed in the paper.</description>
+    </item>
     <item>
       <title>A Certificate-Producing Cascade for Equational Implication: The SAIR EQT2 Stage 2 Solver</title>
       <link>https://paperswithlean.com/paper/2609.00706.html</link>
@@ -644,28 +666,6 @@ Multi-engine AI accelerators such as AWS Trainium comprise specialized compute e
       <description>An unconditional theorem that at least two thirds of zeta zeros are simple and on the critical line is formally verified in Lean 4.
 
 We prove unconditionally that at least two thirds of the nontrivial zeros of the Riemann zeta function, counted with multiplicity, are simple and lie on the critical line, and that at least five sixths are distinct; the previous unconditional records are $\frac{5}{12}$ and $0.6603$. With the Montgomery–Taylor window the constants become $0.6725$ and $0.8362$. The argument makes Montgomery&#x27;s 1973 deduction unconditional: the Riemann hypothesis, classically needed to read the zero side as a positive sum over real ordinates, is replaced by a rank-trace inequality applied to a finite compression of Weil&#x27;s Hermitian form, with Sylvester&#x27;s law of inertia handling off-line pairs. The analytic inputs are those of Aryan and of Baluyot, Goldston, Suriajaya and Turnage-Butterbaugh. The results extend to primitive Dirichlet $L$-functions and are formally verified in Lean 4.</description>
-    </item>
-    <item>
-      <title>Vero: Can AI Agents Build Formally Verified Software Repositories?</title>
-      <link>https://paperswithlean.com/paper/2608.13522.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.13522.html</guid>
-      <pubDate>Thu, 13 Aug 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Zhe Ye, Hantao Lou, Yuechun Sun, Peiyang Song, Zhengxu Yan, Timothe Kasriel, Qingyang Zhang, Kaiyu Yang, Soonho Kong, Jingxuan He, Dawn Song</dc:creator>
-      <category>benchmark</category><category>ai-agents</category><category>verification</category>
-      <description>Introduces Vero, a repository-level benchmark of 43 multi-module Lean 4 projects for evaluating AI agents on joint implementation and proof synthesis.
-
-AI agents are increasingly used for programming, but do not provide any guarantee on the correctness of generated code. Verified code generation, in which an agent produces both an implementation and a machine-checked proof of its specification, offers a stronger path toward trustworthy AI-generated software. Existing benchmarks in this direction either focus on individual functions or only evaluate proof generation with provided implementations. It is still an open question whether agents can make coherent implementation and proof choices across real multi-module codebases. To bridge this gap, we introduce Vero, the first benchmark to evaluate joint implementation and proof synthesis at the repository level. Vero contains 43 multi-module instances sourced from real-world repositories spanning Python, Dafny, Verus, and Coq, and covering diverse domains from cryptographic protocols to distributed systems. Each instance consists of a multi-module Lean 4 repository with predetermined API interfaces, manually curated formal specifications, and reference implementations, supporting both proof-only and code-and-proof evaluation modes. To improve benchmark reliability, Vero also includes an audit mechanism where agents are allowed to formally prove unsatisfiability of provided specification or incorrectness of reference code, which surfaces and corrects latent code and specification errors during curation. We evaluate frontier coding-agent configurations with Lean toolchain access. The strongest agent fully solves only 27 of 43 instances and closes no specifications on the hardest repositories. Vero provides a concrete testbed for measuring progress toward repository-scale verified software synthesis, where current agents still fall short. We release the benchmark, curation pipeline, and evaluation harness at https://github.com/sunblaze-ucb/vero.</description>
-    </item>
-    <item>
-      <title>The transversal achievement game on a square grid</title>
-      <link>https://paperswithlean.com/paper/2608.13501.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.13501.html</guid>
-      <pubDate>Thu, 13 Aug 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Kevin Guan</dc:creator>
-      <category>formalization</category><category>combinatorics</category>
-      <description>The main theorem that Player 1 wins the transversal achievement game for n≥4 is formalized and machine-checked in Lean 4.
-
-In the transversal achievement game on the $n\times n$ board, two players alternately claim cells, and the first to own a transversal—a set of $n$ cells of which no two share a row or column—wins. Ranđelović showed that the first player wins for every $n\ge4$, while the game is a draw for $n=2,3$. We give an independent proof that the first player wins for $n\ge4$ that additionally establishes a bound on the length of the win: the given strategy forces a win by ply $2n+3$, i.e.\ on the first player&#x27;s $(n+2)$-nd move, for every $n\ge4$. The proof yields a strategy that is fully determined by a fixed rule on the current position and can thus be implemented directly. We isolate the use of the hypothesis $n\ge4$ to two steps in the analysis, explaining why the argument fails at $n=3$. An exhaustive computational search implementing the strategy verifies it against every legal defense for $n=4,5,6$, confirming both the strategy&#x27;s validity and that the $2n+3$ bound is attained in these cases. The main theorem has also been formalized and machine-checked in Lean 4.</description>
     </item>
   </channel>
 </rss>
