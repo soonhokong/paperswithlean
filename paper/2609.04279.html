@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Counterexample to a Problem of Pommerenke on Convex Functions in the Class $Σ$ · Papers With Lean</title>
+<meta name="description" content="Let $Σ$ denote the class of functions $f(z) = z + b_0 + b_1 z^{-1} + \cdots$ that are analytic and univalent in the exterior unit disk $Δ^* = \{z \in \mathbb{C} : |z| &gt; 1\}$. In 1962, Ch. Pommerenke proved that if $F$ and $G$ are convex functions in $Σ$, then every convex linear…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Counterexample to a Problem of Pommerenke on Convex Functions in the Class $Σ$">
+<meta property="og:description" content="Let $Σ$ denote the class of functions $f(z) = z + b_0 + b_1 z^{-1} + \cdots$ that are analytic and univalent in the exterior unit disk $Δ^* = \{z \in \mathbb{C} : |z| &gt; 1\}$. In 1962, Ch. Pommerenke proved that if $F$ and $G$ are convex functions in $Σ$, then every convex linear…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.04279.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.04279.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.04279v1" target="_blank" rel="noopener"><img src="../thumbs/2609.04279.jpg" alt="First page of A Counterexample to a Problem of Pommerenke on Convex Functions in the Class $Σ$"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Counterexample to a Problem of Pommerenke on Convex Functions in the Class $Σ$</h1>
+        <p class="authors">Yuankai Guo, Xiaozhe Hu</p>
+        <div class="row">
+          <span class="badge">math.CV</span>
+          <span class="date">Sep 3, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.04279v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.04279" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Theophilus1030/Pommerenke" target="_blank" rel="noopener" title="Theophilus1030/Pommerenke">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A counterexample to Pommerenke&#x27;s convexity problem in class Σ is formally certified in Lean 4 using Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Let $Σ$ denote the class of functions $f(z) = z + b_0 + b_1 z^{-1} + \cdots$ that are analytic and univalent in the exterior unit disk $Δ^* = \{z \in \mathbb{C} : |z| &gt; 1\}$. In 1962, Ch. Pommerenke proved that if $F$ and $G$ are convex functions in $Σ$, then every convex linear combination $H = λF + (1-λ)G$ ($0 &lt; λ&lt; 1$) remains univalent and belongs to $Σ$. In Hayman&#x27;s problem collection (Research Problems in Function Theory, Problem 6.10), Pommerenke raised the question of whether $H$ is necessarily also a convex function. We resolve this question in the negative by constructing an explicit counterexample in $Σ$ with parameters in $\mathbb{Q}(i)$. The argument is self-contained and has been formally certified in the Lean 4 proof assistant.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Pommerenke&#x27;s Problem 6.10 asks whether a convex linear combination H = λF + (1-λ)G of convex functions F, G in the class Σ (univalent functions on the exterior unit disk) is necessarily convex. The problem had remained open with no reported progress.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Explicit convex functions F and G in Σ are constructed with parameters in the Gaussian rational field Q(i). A weighted Laurent-tail criterion establishes univalence of the combination H = (3/5)F + (2/5)G. The exterior convexity criterion is then evaluated at the rational test point z0 = 400/399 to show its failure. The complete argument—algebraic curvature certificate, branch-choice verification, residue vanishing, and univalence—is formalized in Lean 4 with Mathlib across 32 files ( 6,885 lines), with no extra axioms and no sorry/admit.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The combination H is univalent and belongs to Σ but is not convex, resolving Pommerenke&#x27;s question in the negative. The counterexample is fully machine-verified over Q(i) in Lean 4.</p><div class="sum-table"><table><thead><tr><th>Paper Statement</th><th>Lean 4 Theorem</th><th>Source File</th></tr></thead><tbody><tr><td>Lemma 2.1</td><td>alpha_normSq_lt_one, beta_normSq_lt_one</td><td>Problem610Counterexample.lean</td></tr><tr><td>Prop 2.2</td><td>smoothExteriorConvexMap_F</td><td>Problem610FGlobal.lean</td></tr><tr><td>Lemma 3.1</td><td>injOn_of_hasInversePowerSeries_...</td><td>ExteriorUnivalenceCriterion.lean</td></tr><tr><td>Theorem 1.2</td><td>pommerenke_combination_not_convex</td><td>MainTheorem.lean</td></tr></tbody></table><div class="tbl-cap">Correspondence between paper results and formal Lean 4 theorems.</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
