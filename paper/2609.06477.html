@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Solution to Iima–Yoshino Problem 2.3 · Papers With Lean</title>
+<meta name="description" content="Iima and Yoshino asked for an ideal $I$ in $S=k[x_1,x_2,\ldots]$, with $\operatorname{deg} x_i=i$, and a monomial order such that $S/I\cong k[x_i:i\equiv\pm1\pmod5], \operatorname{in}(I)=(x_i^2,x_ix_{i+1}:i\geq1).$ We construct such an ideal and monomial order over every field…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Solution to Iima–Yoshino Problem 2.3">
+<meta property="og:description" content="Iima and Yoshino asked for an ideal $I$ in $S=k[x_1,x_2,\ldots]$, with $\operatorname{deg} x_i=i$, and a monomial order such that $S/I\cong k[x_i:i\equiv\pm1\pmod5], \operatorname{in}(I)=(x_i^2,x_ix_{i+1}:i\geq1).$ We construct such an ideal and monomial order over every field…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.06477.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.06477.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.06477v1" target="_blank" rel="noopener"><img src="../thumbs/2609.06477.jpg" alt="First page of A Solution to Iima–Yoshino Problem 2.3"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Solution to Iima–Yoshino Problem 2.3</h1>
+        <p class="authors">Junyu Guo, Hao Shen, Junqi Liu, Lihong Zhi</p>
+        <div class="row">
+          <span class="badge">math.AC</span>
+          <span class="date">Sep 6, 2026 · v1</span>
+          <span class="badge">math.RA</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.06477v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.06477" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/WuProver/IimaYoshinoProblem23" target="_blank" rel="noopener" title="WuProver/IimaYoshinoProblem23">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes in Lean 4 with Mathlib the complex specialization of a solution to the Iima–Yoshino Gröbner-basis problem, including reduced basis and partition bijection.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Iima and Yoshino asked for an ideal $I$ in $S=k[x_1,x_2,\ldots]$, with $\operatorname{deg} x_i=i$, and a monomial order such that $S/I\cong k[x_i:i\equiv\pm1\pmod5], \operatorname{in}(I)=(x_i^2,x_ix_{i+1}:i\geq1).$ We construct such an ideal and monomial order over every field $k$ of characteristic different from $5$ containing an element $c$ with $c^2+c=1$. The ideal has an explicit infinite homogeneous reduced Gröbner basis. A five-periodic syzygy derived from a pentagon identity proves that all basis relations belong to $I$ and supplies standard representations for the non-coprime critical pairs. Triangular elimination establishes the graded quotient isomorphism. Together, the quotient and initial ideal descriptions yield the partition form of the first Rogers-Ramanujan identity. In each weighted degree, a perfect matching in the support of the normal-form matrix gives a bijection between the two partition classes. We formalize the complex specialization in Lean 4 using Mathlib and our set-based theory of infinite Gröbner bases, including the reduced basis, the graded quotient isomorphism, and the partition-matching theorem.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Iima and Yoshino asked for an ideal I in a graded polynomial ring with infinitely many variables and a monomial order such that the quotient is a polynomial algebra on parts congruent to ±1 mod 5 and the initial ideal equals a specified monomial ideal. Solving it gives an algebraic realization of the first Rogers–Ramanujan identity.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An explicit homogeneous ideal is constructed from coefficients of a single quadratic generating-function relation, valid over any field of characteristic ≠5 containing c with c²+c=1. A five-periodic syzygy derived from a pentagon identity proves the basis relations lie in the ideal and supplies standard representations for critical pairs, while triangular elimination establishes the graded quotient isomorphism. The complex specialization and the partition-matching theorem are formalized in Lean 4 using Mathlib and an earlier set-based theory of infinite Gröbner bases, reusing the infinite Buchberger criterion, polynomial division, and normal-form theory.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The construction yields an explicit infinite homogeneous reduced Gröbner basis and the required quotient and initial ideal descriptions, giving an algebraic proof of the first Rogers–Ramanujan identity via perfect matchings between the two partition classes. The main theorem and the partition bijection are formally verified in Lean 4 for the complex case.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

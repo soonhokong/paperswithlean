@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A global spectral gap for Metropolis-adjusted Langevin algorithm with a uniformly randomized step size · Papers With Lean</title>
+<meta name="description" content="Let $π(\mathrm{d} x)\propto e^{-U(x)}\,\mathrm{d} x$ on $\mathbb R^d$, where $0&lt;m\leq L&lt;\infty$, $mI_d\preceq\nabla^2U(x)\preceq LI_d$, and $κ=L/m$. It is known that, under warm-start assumptions, fixed-step Metropolis-adjusted Langevin algorithm (MALA) with properly tuned step…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A global spectral gap for Metropolis-adjusted Langevin algorithm with a uniformly randomized step size">
+<meta property="og:description" content="Let $π(\mathrm{d} x)\propto e^{-U(x)}\,\mathrm{d} x$ on $\mathbb R^d$, where $0&lt;m\leq L&lt;\infty$, $mI_d\preceq\nabla^2U(x)\preceq LI_d$, and $κ=L/m$. It is known that, under warm-start assumptions, fixed-step Metropolis-adjusted Langevin algorithm (MALA) with properly tuned step…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.05847.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.05847.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.05847v1" target="_blank" rel="noopener"><img src="../thumbs/2609.05847.jpg" alt="First page of A global spectral gap for Metropolis-adjusted Langevin algorithm with a uniformly randomized step size"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A global spectral gap for Metropolis-adjusted Langevin algorithm with a uniformly randomized step size</h1>
+        <p class="authors">Qian Qin</p>
+        <div class="row">
+          <span class="badge">math.ST</span>
+          <span class="date">Sep 5, 2026 · v1</span>
+          <span class="badge">math.PR</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.05847v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.05847" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/qianqin11/spectral-gap-randomized-step-MALA" target="_blank" rel="noopener" title="qianqin11/spectral-gap-randomized-step-MALA">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A Lean 4 development formalizes the main spectral-gap theorem for randomized-step MALA, including close-coupling, isoperimetry, and Cheeger-type aggregation lemmas.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Let $π(\mathrm{d} x)\propto e^{-U(x)}\,\mathrm{d} x$ on $\mathbb R^d$, where $0&lt;m\leq L&lt;\infty$, $mI_d\preceq\nabla^2U(x)\preceq LI_d$, and $κ=L/m$. It is known that, under warm-start assumptions, fixed-step Metropolis-adjusted Langevin algorithm (MALA) with properly tuned step size has mixing time of order $κ\sqrt{d}$ up to logarithmic factors. By contrast, when the condition number is bounded away from one, no single fixed step size yields a matching spectral-gap lower bound of order $(κ\sqrt{d})^{-1}$ uniformly over this target class. We show that MALA with a uniformly randomized step size admits a spectral-gap lower bound of this size. At each iteration, the randomized-step MALA considered here draws $h$ uniformly from $(0,H)$ and performs one ordinary MALA transition with step size $h$. We show that, when $H$ is of order $(L\sqrt{d})^{-1}$, the right spectral gap of randomized-step MALA admits a lower bound of order \[ \frac{1}{κ\sqrt{d}\,[1+\log(d+1)+\logκ]}. \] The main new ingredient in the proof is a Cheeger-type inequality for aggregating estimates of the one-step flow of MALA out of measurable sets at various step-size scales. It allows the scale used to control the flow to depend on the set and avoids the additional loss that would result from first summing the flows and then applying the standard Cheeger inequality. This work was developed with substantial assistance from ChatGPT, which suggested the uniformly randomized-step approach, developed the principal proof arguments, and generated the simulation and Lean 4 code. The human author checked and verified the mathematical content and take full responsibility for the results.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Fixed-step Metropolis-adjusted Langevin algorithm (MALA) with tuned step size mixes in order κ√d steps, but no single fixed step size yields a matching global spectral-gap lower bound of order (κ√d)^{-1} uniformly over strongly convex, smooth targets when κ is bounded away from one.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">MALA is run with a step size h drawn uniformly from (0,H) at each iteration, and the resulting mixture kernel&#x27;s Dirichlet form is bounded below by contributions from disjoint dyadic scale components. A Cheeger-type aggregation inequality lets the scale controlling the one-step flow out of a set depend on the set, avoiding losses from summing flows before applying the standard Cheeger inequality. Close-coupling, Gaussian isoperimetry, and one-step flow estimates are combined to prove the gap bound. The principal results, including auxiliary lemmas and a contrasting fixed-step obstruction, are formalized in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">When H is of order (L√d)^{-1}, the right spectral gap of randomized-step MALA is bounded below by order 1/(κ√d[1+log(d+1)+log κ]). The Lean 4 formalization verifies the main theorem, corollary, and supporting lemmas, using an alternative discrete-time proof for the stationary rejection/overlap estimates.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
