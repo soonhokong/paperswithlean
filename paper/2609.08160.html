@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generalized DBLog: A Verified Contract for Interleaving Database Rows with a Change Log · Papers With Lean</title>
+<meta name="description" content="Change-data capture (CDC) feeds downstream systems like caches, search indexes, and data warehouses from a database&#x27;s log of committed row changes. When bootstrapping, adding a table, or repairing downstream data, a pipeline must also copy existing rows. Merging this copy with…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Generalized DBLog: A Verified Contract for Interleaving Database Rows with a Change Log">
+<meta property="og:description" content="Change-data capture (CDC) feeds downstream systems like caches, search indexes, and data warehouses from a database&#x27;s log of committed row changes. When bootstrapping, adding a table, or repairing downstream data, a pipeline must also copy existing rows. Merging this copy with…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.08160.html">
+
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.08160v1" target="_blank" rel="noopener"><div class="thumb-ph">cs.DB</div></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Generalized DBLog: A Verified Contract for Interleaving Database Rows with a Change Log</h1>
+        <p class="authors">Andreas Andreakis</p>
+        <div class="row">
+          <span class="badge">cs.DB</span>
+          <span class="date">Sep 8, 2026 · v1</span>
+          <span class="badge">cs.DC</span> <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.08160v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.08160" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.22643866" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The core of a change-data-capture correctness theory is independently verified in Lean 4 (main theory in Isabelle/HOL).</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Change-data capture (CDC) feeds downstream systems like caches, search indexes, and data warehouses from a database&#x27;s log of committed row changes. When bootstrapping, adding a table, or repairing downstream data, a pipeline must also copy existing rows. Merging this copy with the active log introduces the copy-to-log handoff problem. Changes must not fall through a gap, and older copied state must not overwrite a newer logged update or resurrect a deleted row. DBLog, developed at Netflix, addressed this problem by reading tables in chunks and interleaving those reads with the live log. Watermarks identify the changes that overlap each read, and the log wins when a copied row is stale. Debezium and Flink CDC have since adapted this design. Earlier work proved that applying the original algorithm&#x27;s copied rows and logged changes in their emitted order reconstructs the source&#x27;s rows, including the effect of every logged insert, update, and delete processed. Generalized DBLog asks when the same result holds for variants of that design. We state the conditions the source and capture implementation must satisfy. Once copying and reconciliation are complete, we prove that the result holds across all selected tables and key ranges even when their rows were read at different times. A single database snapshot is not required for the copy. Further logged changes advance the reconstructed state one event at a time. We establish these guarantees for classic watermarking, Debezium&#x27;s signal-table and read-only modes, Flink CDC&#x27;s parallel chunks, reads and dumps tied to exact log positions, and engine-consistent backups whose log position lies within known bounds. The complete theory is machine-checked in Isabelle/HOL, its core independently verified in Lean 4, and the protocols are also examined by bounded model checking in TLA+.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Change-data-capture pipelines must merge a copy of existing database rows with the live change log without losing updates, dropping events through gaps, or resurrecting deleted rows. Generalized DBLog asks under what conditions variants of the DBLog interleaving design still reconstruct the source state.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors model a capture source as a keyed store with a commit-ordered log and define a capture plan of units, each with a log bracket and refresh reads. They state source-side and merge obligations and prove a cut theorem showing that a conforming plan&#x27;s canonical replay equals the source&#x27;s row-event replay at a frontier. The theory covers classic watermarking, Debezium signal-table/read-only modes, Flink CDC parallel chunks, and coordinate-bound reads. The complete theory is machine-checked in Isabelle/HOL, its core independently verified in Lean 4, and protocols examined by bounded model checking in TLA+.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The cut theorem and corollaries establish that replaying the combined copy-and-log output reconstructs the exact source state at the observation frontier, even when rows are read at different times without a single snapshot, and that plans from different capture methods compose.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
