@@ -84,6 +84,7 @@ h1 .leanlogo { height: 30px; width: auto; display: block; position: relative; to
 .chip:hover { filter: brightness(.97); }
 .chip.active { outline: 2px solid var(--ink); outline-offset: 1px; }
 .chip .n { opacity: .6; margin-left: 4px; }
+.chips-toggle { display: none; }
 /* colored chips share the pastel tag palette */
 .chip.c-amber  { background:#fdf2d6; color:#a06a1e; }
 .chip.c-blue   { background:#e6f0fb; color:#3f72b5; }
@@ -234,6 +235,23 @@ figure.sum-fig figcaption { font-size: 12.5px; color: var(--ink-faint); margin-t
 
 @media (max-width: 720px) {
   .wrap { padding: 0 16px; }
+  /* Topics: one horizontally scrollable row so the first paper stays above the
+     fold; "All topics" expands to the full wrapped list. Active tags pin first. */
+  .controls { margin-top: 10px; }
+  .chiprow { display: flex; align-items: center; gap: 8px; }
+  .chips { flex: 1 1 auto; min-width: 0; flex-wrap: nowrap; overflow-x: auto; margin: 10px 0 0;
+    padding: 2px 0 6px; scrollbar-width: none; overscroll-behavior-x: contain;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent); }
+  .chips::-webkit-scrollbar { display: none; }
+  .chips-toggle { display: inline-flex; align-items: center; gap: 4px; flex: 0 0 auto; margin-top: 6px;
+    font-family: var(--sans); font-size: 12.5px; font-weight: 600; color: var(--ink-soft);
+    background: transparent; border: 1px solid var(--hairline-strong); border-radius: 999px;
+    padding: 4px 10px; cursor: pointer; white-space: nowrap; }
+  .chips-toggle .chev { font-size: 11px; }
+  .controls.expanded .chiprow { flex-wrap: wrap; align-items: flex-start; }
+  .controls.expanded .chips { flex-wrap: wrap; overflow: visible; -webkit-mask-image: none; mask-image: none; padding-bottom: 0; }
+  .controls.expanded .chips-toggle { order: 2; }
   .card .thumb-link, .card .thumb, .card .thumb-ph { display: none; }
   .links { margin-left: 0; }
   h1 { font-size: 28px; }
