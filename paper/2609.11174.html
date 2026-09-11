@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Four-Valued Graph Model for Conflict Resolution: Core Framework and a Machine-Checked Formalization in Lean 4 · Papers With Lean</title>
+<meta name="description" content="This note consolidates the core of the Quasi-Closed World Graph Model for Conflict Resolution (QCW-GMCR), which extends the standard Graph Model for Conflict Resolution with Belnap&#x27;s four-valued logic to represent option-level epistemic ambiguity, and pairs the framework with a…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Four-Valued Graph Model for Conflict Resolution: Core Framework and a Machine-Checked Formalization in Lean 4">
+<meta property="og:description" content="This note consolidates the core of the Quasi-Closed World Graph Model for Conflict Resolution (QCW-GMCR), which extends the standard Graph Model for Conflict Resolution with Belnap&#x27;s four-valued logic to represent option-level epistemic ambiguity, and pairs the framework with a…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.11174.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.11174.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.11174v1" target="_blank" rel="noopener"><img src="../thumbs/2609.11174.jpg" alt="First page of A Four-Valued Graph Model for Conflict Resolution: Core Framework and a Machine-Checked Formalization in Lean 4"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Four-Valued Graph Model for Conflict Resolution: Core Framework and a Machine-Checked Formalization in Lean 4</h1>
+        <p class="authors">Yukiko Kato</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Sep 10, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.11174v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.11174" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ykato0623/qcw-gmcr-lean" target="_blank" rel="noopener" title="ykato0623/qcw-gmcr-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 with Mathlib formalizes the QCW-GMCR conflict-resolution framework, including GMCR stability hierarchy, four-valued operators, and graded reachability results.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">This note consolidates the core of the Quasi-Closed World Graph Model for Conflict Resolution (QCW-GMCR), which extends the standard Graph Model for Conflict Resolution with Belnap&#x27;s four-valued logic to represent option-level epistemic ambiguity, and pairs the framework with a machine-checked Lean 4 formalization. QCW-GMCR combines: (1) FOUR-valued option assignments with compositional propagation to state-level feasibility; (2) graded reachability (definite, credible, possible) based on an FDE-inspired transition-warrant semantics, with definite reachability related to FDE consequence in the Boolean fragment; (3) axiomatized deterministic reductions from four-valued assessments to binary decisions, including four canonical operators reflecting distinct risk attitudes; and (4) catastrophe-avoiding equilibrium concepts with a quasi-closed-world safety invariant. A four-valued hypergame extension captures heterogeneous subjective assessments across decision makers. We state the core definitions and results and report the parts verified in Lean 4 with mathlib, including the classical GMCR stability hierarchy, algebraic and compositional properties of FOUR-valued conjunction, properties of the canonical reductions, and the graded reachability hierarchy. The formalization also helped identify and correct earlier claims, including a knowledge-monotonicity axiom replaced by truth monotonicity. This preprint provides a stable, citable record of the framework and its current formal verification status.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Standard Graph Models for Conflict Resolution (GMCR) assume a binary, closed-world epistemology that cannot distinguish definite absence from ignorance or contradiction, which matters for grave decisions under deep uncertainty.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The Quasi-Closed World GMCR extends GMCR with Belnap&#x27;s four-valued logic for option-level epistemic assignments, adds compositional feasibility propagation, an FDE-inspired transition-warrant semantics for graded (definite/credible/possible) reachability, axiomatized deterministic reductions to binary decisions, and catastrophe-avoiding equilibria with a safety invariant. A four-valued hypergame extension captures heterogeneous subjective assessments. Core definitions and results are paired with a machine-checked Lean 4 formalization using Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Lean 4 verified the classical GMCR stability hierarchy (Nash ⊆ SMR ⊆ GMR, Nash ⊆ SEQ ⊆ GMR) without preference axioms, algebraic and compositional properties of four-valued conjunction, canonical reduction properties, coalitional stability inclusions, and the graded reachability hierarchy. Formalization also revealed and corrected an earlier faulty knowledge-monotonicity axiom, replaced by truth monotonicity.</p><div class="sum-table"><table><thead><tr><th>Paper statement</th><th>Lean identifier(s)</th></tr></thead><tbody><tr><td>Def. 2.1, Def. 2.2</td><td>GraphModel, UI, CMove, NashStable</td></tr><tr><td>Nash ⊆ SMR ⊆ GMR</td><td>NashStable.smrStable, SMRStable.gmrStable</td></tr><tr><td>Nash ⊆ SEQ ⊆ GMR</td><td>NashStable.seqStable, SEQStable.gmrStable</td></tr><tr><td>CNash ⊆ CSMR ⊆ CGMR</td><td>cnash_implies_csmr, csmr_implies_cgmr</td></tr></tbody></table><div class="tbl-cap">Selected Lean identifiers for formalized statements</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

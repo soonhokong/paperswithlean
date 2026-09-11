@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Magenta: Closing the Loop Between Mathematical Reasoning and Lean Verification · Papers With Lean</title>
+<meta name="description" content="Most of mathematical knowledge has been communicated through so-called informal use of mathematics and natural language. With large language models (LLMs) being highly adept in using natural language, they achieve strong performance, yet not perfect, in informal mathematical…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Magenta: Closing the Loop Between Mathematical Reasoning and Lean Verification">
+<meta property="og:description" content="Most of mathematical knowledge has been communicated through so-called informal use of mathematics and natural language. With large language models (LLMs) being highly adept in using natural language, they achieve strong performance, yet not perfect, in informal mathematical…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.11319.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.11319.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.11319v1" target="_blank" rel="noopener"><img src="../thumbs/2609.11319.jpg" alt="First page of Magenta: Closing the Loop Between Mathematical Reasoning and Lean Verification"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Magenta: Closing the Loop Between Mathematical Reasoning and Lean Verification</h1>
+        <p class="authors">Joshua Ong Jun Leang, Haonan Li, Zheng Zhao, Xinyi Shang, Wenda Li, Zhengzhong Liu, Erix Xing, Shay Cohen, Eleonora Giunchiglia</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Sep 10, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.11319v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.11319" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Presents Magenta, a training-free agentic pipeline that formalizes natural-language math problems into Lean 4 statements and constructs machine-checked proofs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Most of mathematical knowledge has been communicated through so-called informal use of mathematics and natural language. With large language models (LLMs) being highly adept in using natural language, they achieve strong performance, yet not perfect, in informal mathematical reasoning. Restraining LLMs to informal reasoning misses out on the opportunity to use the discrete verification abilities that machines offer through machine-checkable proofs. In this paper, we bridge the gap between informal and formal reasoning by integrating Lean signals into the informal reasoning process. We introduce Magenta, a training-free agentic pipeline that, given only a natural-language problem, produces an answer, expresses it as a Lean 4 statement, and constructs a machine-checked proof. A statement judge verifies whether the formalisation preserves the original problem, while an error-attribution judge routes failed attempts either to mathematical re-derivation or local Lean repair. Magenta achieves 100% accuracy across all evaluated olympiad benchmarks, including AIME 2025, AIME 2026, and HMMT February 2026. When paired with the open-weight K2-Horizon-7B reasoner, it solves all six IMO 2026 problems. Our analysis shows that statement adjudication is essential for preventing false certificates and that feedback-guided correction outperforms independent resampling on difficult problems.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLMs excel at informal mathematical reasoning but their chains-of-thought contain errors, and learned judges are unreliable proxies for correctness. Existing formal-verification systems assume a human-written formal statement, ignoring the task of determining what a natural-language problem actually asks.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Magenta is a training-free agentic pipeline that, given a natural-language problem, produces a reasoning chain and candidate answer, formalizes it as a Lean 4 statement, and generates a machine-checked proof. A statement judge verifies that the formalization preserves the original problem, while an error-attribution judge routes failed proofs either to mathematical re-derivation or local Lean repair. Proofs are checked with Lean v4.29.1 and Mathlib under SafeVerify, using components like Goedel-Formaliser, DeepSeek judges, and Leanstral or Codex provers.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2609.11319/x1.png" alt=""><figcaption>Figure 1: Overview of Magenta . The pipeline maps a natural-language problem to an informal solution and candidate answer, a faithfully adjudicated Lean 4 statement, and a machine-checked proof. The illustrated example is taken from AIME 2026, where the initial reasoning incorrectly derives \pi^{7} instead of the correct expression \pi^{6} . Rejected formal statements are resampled, while failed p</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Magenta achieves 100% accuracy across AIME 2025, AIME 2026, and HMMT February 2026 with four different reasoners, and with the open-weight K2-Horizon-7B reasoner solves all six IMO 2026 problems. Statement adjudication eliminates false certificates (FCR 0% with judge vs 45.5% without), and feedback-guided correction outperforms independent resampling.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>AIME 2025</th><th>AIME 2026</th><th>HMMT Feb. 2026</th><th>Overall</th></tr></thead><tbody><tr><td>K2-Horizon-7B</td><td>83.33</td><td>80.00</td><td>60.61</td><td>74.19</td></tr><tr><td>+ Magenta</td><td>100.00</td><td>100.00</td><td>100.00</td><td>100.00</td></tr><tr><td>Qwen3.8-27B</td><td>100.00</td><td>86.67</td><td>87.88</td><td>91.40</td></tr><tr><td>+ Magenta</td><td>100.00</td><td>100.00</td><td>100.00</td><td>100.00</td></tr></tbody></table><div class="tbl-cap">Accuracy across olympiad benchmarks with and without Magenta</div></div><div class="sum-table"><table><thead><tr><th>Setting</th><th>Ver</th><th>VerCor</th><th>FCR</th></tr></thead><tbody><tr><td>With Js</td><td>63.3%</td><td>63.3%</td><td>0.0%</td></tr><tr><td>Without Js</td><td>36.7%</td><td>20.0%</td><td>45.5%</td></tr></tbody></table><div class="tbl-cap">Statement judge ablation</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
