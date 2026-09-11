@@ -142,6 +142,7 @@ main { margin-top: 4px; margin-bottom: 60px; }
   border-radius: 0 8px 8px 0; font-size: 15.5px; margin: 0 0 10px; color: var(--note-text);
 }
 .abs { font-family: var(--serif); font-size: 15px; color: var(--ink-soft); margin: 0 0 10px; line-height: 1.6; }
+.abs-more { display: none; }
 .row { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; font-size: 12.5px; }
 .badge {
   font-family: var(--mono); background: var(--bg-subtle); color: var(--ink-soft);
@@ -252,6 +253,12 @@ figure.sum-fig figcaption { font-size: 12.5px; color: var(--ink-faint); margin-t
   .controls.expanded .chiprow { flex-wrap: wrap; align-items: flex-start; }
   .controls.expanded .chips { flex-wrap: wrap; overflow: visible; -webkit-mask-image: none; mask-image: none; padding-bottom: 0; }
   .controls.expanded .chips-toggle { order: 2; }
+  /* Abstract: 3 lines by default on phones; "More" unfolds (JS adds .folds only
+     when the text actually overflows, so short abstracts get no button). */
+  .card .abs { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; margin-bottom: 6px; }
+  .card.open .abs { display: block; -webkit-line-clamp: unset; overflow: visible; }
+  .card.folds .abs-more { display: inline-block; margin: 0 0 10px; padding: 0; border: 0; background: none;
+    font-family: var(--sans); font-size: 12.5px; font-weight: 600; color: var(--accent-text); cursor: pointer; }
   .card .thumb-link, .card .thumb, .card .thumb-ph { display: none; }
   .links { margin-left: 0; }
   h1 { font-size: 28px; }

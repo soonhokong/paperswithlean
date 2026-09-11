@@ -10,7 +10,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="vendor/fonts/fonts.css">
 <link rel="stylesheet" href="vendor/katex/katex.min.css">
-<link rel="stylesheet" href="assets/site.css?v=7383e558e2">
+<link rel="stylesheet" href="assets/site.css?v=d87ab40ca3">
 <script defer src="vendor/katex/katex.min.js"></script>
 <script defer src="vendor/katex/auto-render.min.js"></script>
 </head>
@@ -200,6 +200,7 @@ function card(p) {
       <p class="authors">${esc(fmtAuthors(p.authors))}</p>
       <p class="lean-note">${esc(detex(p.lean_note))}</p>
       <p class="abs">${escLinkify(detex(p.abstract))}</p>
+      <button class="abs-more" type="button" aria-expanded="false">More ▾</button>
       <div class="row">
         <span class="badge">${esc(p.primary_category)}</span>
         <span class="date">${fmtDate(p.published)}</span>
@@ -239,10 +240,28 @@ function renderBatch() {
     activeTags.has(t) ? activeTags.delete(t) : activeTags.add(t); render();
     window.scrollTo({top:0, behavior:"smooth"});
   });
+  wrapper.querySelectorAll(".abs-more").forEach(b => b.onclick = () => {
+    const c = b.closest(".card");
+    const open = c.classList.toggle("open");
+    b.setAttribute("aria-expanded", String(open));
+    b.textContent = open ? "Less ▴" : "More ▾";
+  });
   wrapper.querySelectorAll(".card").forEach(el => renderMath(el));
+  const newCards = [...wrapper.querySelectorAll(".card")];
   while (wrapper.firstChild) list.appendChild(wrapper.firstChild);
   renderedCount = end;
+  foldAbstracts(newCards);
 }
+
+// Phones only: mark cards whose 3-line abstract clamp actually hides text.
+function foldAbstracts(cards) {
+  cards.forEach(c => {
+    if (c.classList.contains("open")) return;
+    const a = c.querySelector(".abs");
+    c.classList.toggle("folds", phoneMQ.matches && a.scrollHeight > a.clientHeight + 1);
+  });
+}
+phoneMQ.addEventListener("change", () => foldAbstracts([...document.querySelectorAll("#list .card")]));
 
 function render() {
   renderChips();
