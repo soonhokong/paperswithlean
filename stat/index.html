@@ -11,29 +11,58 @@
 <link rel="stylesheet" href="../assets/site.css">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
+<script src="../vendor/d3/d3.min.js"></script>
 <style>
-  .chart { display: flex; align-items: flex-end; gap: 6px; height: 320px;
-    padding: 12px 0 0; border-bottom: 2px solid var(--hairline-strong); margin: 8px 0 0; overflow-x: auto; }
-  .bar-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
-    flex: 1 0 26px; min-width: 22px; height: 100%; }
-  .bar-n { font-size: 11px; color: var(--ink-soft); margin-bottom: 3px; font-family: var(--mono); }
-  .bar { width: 70%; min-height: 1px; background: var(--accent); border-radius: 3px 3px 0 0; }
-  .bar.y2025 { background: #4a90c2; }
-  .bar.y2026 { background: var(--accent); }
-  .xlabels { display: flex; gap: 6px; margin-top: 6px; }
-  .xlab { flex: 1 0 26px; min-width: 22px; text-align: center; font-size: 10px; color: var(--ink-faint);
-    font-family: var(--mono); writing-mode: vertical-rl; transform: rotate(180deg); height: 56px; }
-  .legend { display: flex; gap: 18px; margin: 18px 0 0; font-size: 13px; color: var(--ink-soft); }
+  h2.sec { font-family: var(--serif); font-size: 22px; font-weight: 600; margin: 38px 0 6px; }
+  .chartwrap { position: relative; margin: 8px 0 0; }
+  .chartwrap svg { display: block; width: 100%; height: auto; overflow: visible; font-family: var(--sans); }
+  /* recessive chrome */
+  .grid line { stroke: var(--hairline); stroke-width: 1; shape-rendering: crispEdges; }
+  .baseline { stroke: var(--hairline-strong); stroke-width: 1; shape-rendering: crispEdges; }
+  .ytick { font-family: var(--mono); font-size: 11px; fill: var(--ink-faint); }
+  .xlab { font-family: var(--mono); font-size: 10.5px; fill: var(--ink-faint); text-anchor: middle; }
+  .ylab { font-family: var(--sans); font-size: 11px; font-weight: 600; fill: var(--ink-soft); text-anchor: middle; }
+  .yearsep { stroke: var(--hairline-strong); stroke-width: 1; shape-rendering: crispEdges; }
+  /* marks */
+  .bar.y2025 { fill: #4a90c2; }
+  .bar.y2026 { fill: var(--accent); }
+  .bar.hot { filter: brightness(1.12); }
+  .val { font-family: var(--mono); font-size: 11px; fill: var(--ink-soft); text-anchor: middle; }
+  .hit { fill: transparent; cursor: default; outline: none; }
+  .hit:focus-visible { fill: rgba(26,24,20,.06); }
+  /* top topics: every row is a link */
+  .tagrow { cursor: pointer; outline: none; }
+  .tagrow .name { font-size: 13px; fill: var(--accent-text); text-anchor: end; }
+  .tagrow .tbar { fill: var(--accent-soft); }
+  .tagrow .tn { font-family: var(--mono); font-size: 12px; fill: var(--ink-faint); }
+  .tagrow .rowhit { fill: transparent; }
+  .tagrow:hover .tbar, .tagrow:focus-visible .tbar { fill: var(--accent); }
+  .tagrow:hover .name, .tagrow:focus-visible .name { text-decoration: underline; }
+  .tagrow:hover .rowhit, .tagrow:focus-visible .rowhit { fill: var(--accent-bg); }
+  /* tooltip */
+  .tip { position: absolute; pointer-events: none; z-index: 5; display: none;
+    background: var(--card); border: 1px solid var(--hairline-strong); border-radius: 7px;
+    box-shadow: 0 2px 8px rgba(26,24,20,.10); padding: 6px 10px; font-size: 12.5px; color: var(--ink-soft);
+    white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); }
+  .tip b { color: var(--ink); font-size: 14px; font-weight: 600; }
+  .legend { display: flex; gap: 18px; margin: 14px 0 0; font-size: 13px; color: var(--ink-soft); }
   .legend .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: middle; }
+  .hint { font-size: 12.5px; color: var(--ink-faint); margin: 4px 0 0; }
   .statgrid { display: flex; gap: 40px; flex-wrap: wrap; margin: 26px 0 0; }
   .bigstat { font-family: var(--serif); font-size: 40px; font-weight: 600; color: var(--ink); line-height: 1; }
   .bigstat .lbl { display: block; font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--ink-faint); margin-top: 6px; }
-  .tagbars { margin: 10px 0 0; }
-  .tagrow2 { display: flex; align-items: center; gap: 10px; margin: 5px 0; font-size: 13px; }
-  .tagrow2 .name { flex: 0 0 150px; text-align: right; color: var(--ink-soft); }
-  .tagrow2 .tbar { height: 14px; border-radius: 3px; background: var(--accent-soft); }
-  .tagrow2 .tn { color: var(--ink-faint); font-family: var(--mono); font-size: 12px; }
-  h2.sec { font-family: var(--serif); font-size: 22px; font-weight: 600; margin: 38px 0 6px; }
+  /* table view (also the no-JS fallback) */
+  details.tblview { margin: 10px 0 0; font-size: 13px; }
+  details.tblview summary { cursor: pointer; color: var(--ink-faint); font-size: 12.5px; user-select: none; }
+  details.tblview table { border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+  details.tblview th, details.tblview td { border: 1px solid var(--hairline); padding: 4px 10px; text-align: left; }
+  details.tblview th { background: var(--bg-subtle); font-weight: 600; }
+  details.tblview td.n { font-family: var(--mono); text-align: right; font-variant-numeric: tabular-nums; }
+  @media (max-width: 720px) {
+    h2.sec { font-size: 20px; }
+    .statgrid { gap: 24px 32px; }
+    .bigstat { font-size: 34px; }
+  }
 </style>
 </head>
 <body>
@@ -50,12 +79,14 @@
     <a class="backlink" href="../">← All papers</a>
 
     <h2 class="sec">Papers per month</h2>
-    <div class="chart"><div class="bar-col"><span class="bar-n">13</span><div class="bar y2025" style="height:12%"></div></div><div class="bar-col"><span class="bar-n">15</span><div class="bar y2025" style="height:14%"></div></div><div class="bar-col"><span class="bar-n">11</span><div class="bar y2025" style="height:10%"></div></div><div class="bar-col"><span class="bar-n">8</span><div class="bar y2025" style="height:7%"></div></div><div class="bar-col"><span class="bar-n">16</span><div class="bar y2025" style="height:15%"></div></div><div class="bar-col"><span class="bar-n">11</span><div class="bar y2025" style="height:10%"></div></div><div class="bar-col"><span class="bar-n">13</span><div class="bar y2025" style="height:12%"></div></div><div class="bar-col"><span class="bar-n">9</span><div class="bar y2025" style="height:8%"></div></div><div class="bar-col"><span class="bar-n">17</span><div class="bar y2025" style="height:16%"></div></div><div class="bar-col"><span class="bar-n">25</span><div class="bar y2025" style="height:23%"></div></div><div class="bar-col"><span class="bar-n">20</span><div class="bar y2025" style="height:19%"></div></div><div class="bar-col"><span class="bar-n">16</span><div class="bar y2025" style="height:15%"></div></div><div class="bar-col"><span class="bar-n">21</span><div class="bar y2026" style="height:19%"></div></div><div class="bar-col"><span class="bar-n">28</span><div class="bar y2026" style="height:26%"></div></div><div class="bar-col"><span class="bar-n">46</span><div class="bar y2026" style="height:43%"></div></div><div class="bar-col"><span class="bar-n">67</span><div class="bar y2026" style="height:62%"></div></div><div class="bar-col"><span class="bar-n">63</span><div class="bar y2026" style="height:58%"></div></div><div class="bar-col"><span class="bar-n">84</span><div class="bar y2026" style="height:78%"></div></div><div class="bar-col"><span class="bar-n">101</span><div class="bar y2026" style="height:94%"></div></div><div class="bar-col"><span class="bar-n">108</span><div class="bar y2026" style="height:100%"></div></div><div class="bar-col"><span class="bar-n">36</span><div class="bar y2026" style="height:33%"></div></div></div>
-    <div class="xlabels"><div class="xlab">Jan 25</div><div class="xlab">Feb 25</div><div class="xlab">Mar 25</div><div class="xlab">Apr 25</div><div class="xlab">May 25</div><div class="xlab">Jun 25</div><div class="xlab">Jul 25</div><div class="xlab">Aug 25</div><div class="xlab">Sep 25</div><div class="xlab">Oct 25</div><div class="xlab">Nov 25</div><div class="xlab">Dec 25</div><div class="xlab">Jan 26</div><div class="xlab">Feb 26</div><div class="xlab">Mar 26</div><div class="xlab">Apr 26</div><div class="xlab">May 26</div><div class="xlab">Jun 26</div><div class="xlab">Jul 26</div><div class="xlab">Aug 26</div><div class="xlab">Sep 26</div></div>
+    <div class="chartwrap" id="monthChart"><div class="tip" id="monthTip"></div></div>
     <div class="legend">
       <span><span class="sw" style="background:#4a90c2"></span>2025</span>
       <span><span class="sw" style="background:#c26e12"></span>2026</span>
     </div>
+    <details class="tblview"><summary>View as table</summary>
+      <table><thead><tr><th>Month</th><th>Papers</th></tr></thead><tbody><tr><td>Jan 2025</td><td class="n">13</td></tr><tr><td>Feb 2025</td><td class="n">15</td></tr><tr><td>Mar 2025</td><td class="n">11</td></tr><tr><td>Apr 2025</td><td class="n">8</td></tr><tr><td>May 2025</td><td class="n">16</td></tr><tr><td>Jun 2025</td><td class="n">11</td></tr><tr><td>Jul 2025</td><td class="n">13</td></tr><tr><td>Aug 2025</td><td class="n">9</td></tr><tr><td>Sep 2025</td><td class="n">17</td></tr><tr><td>Oct 2025</td><td class="n">25</td></tr><tr><td>Nov 2025</td><td class="n">20</td></tr><tr><td>Dec 2025</td><td class="n">16</td></tr><tr><td>Jan 2026</td><td class="n">21</td></tr><tr><td>Feb 2026</td><td class="n">28</td></tr><tr><td>Mar 2026</td><td class="n">46</td></tr><tr><td>Apr 2026</td><td class="n">67</td></tr><tr><td>May 2026</td><td class="n">63</td></tr><tr><td>Jun 2026</td><td class="n">84</td></tr><tr><td>Jul 2026</td><td class="n">101</td></tr><tr><td>Aug 2026</td><td class="n">108</td></tr><tr><td>Sep 2026</td><td class="n">36</td></tr></tbody></table>
+    </details>
 
     <div class="statgrid">
       <div class="bigstat">728<span class="lbl">papers indexed</span></div>
@@ -64,7 +95,11 @@
     </div>
 
     <h2 class="sec">Top topics</h2>
-    <div class="tagbars"><div class="tagrow2"><span class="name">formalization</span><span class="tbar" style="width:340px"></span><span class="tn">385</span></div><div class="tagrow2"><span class="name">verification</span><span class="tbar" style="width:200px"></span><span class="tn">226</span></div><div class="tagrow2"><span class="name">theorem-proving-ml</span><span class="tbar" style="width:180px"></span><span class="tn">204</span></div><div class="tagrow2"><span class="name">benchmark</span><span class="tbar" style="width:107px"></span><span class="tn">121</span></div><div class="tagrow2"><span class="name">ai-agents</span><span class="tbar" style="width:106px"></span><span class="tn">120</span></div><div class="tagrow2"><span class="name">autoformalization</span><span class="tbar" style="width:94px"></span><span class="tn">107</span></div><div class="tagrow2"><span class="name">mathlib</span><span class="tbar" style="width:92px"></span><span class="tn">104</span></div><div class="tagrow2"><span class="name">combinatorics</span><span class="tbar" style="width:90px"></span><span class="tn">102</span></div><div class="tagrow2"><span class="name">logic</span><span class="tbar" style="width:75px"></span><span class="tn">85</span></div><div class="tagrow2"><span class="name">tooling</span><span class="tbar" style="width:64px"></span><span class="tn">73</span></div><div class="tagrow2"><span class="name">number-theory</span><span class="tbar" style="width:54px"></span><span class="tn">61</span></div><div class="tagrow2"><span class="name">algebra</span><span class="tbar" style="width:49px"></span><span class="tn">55</span></div><div class="tagrow2"><span class="name">analysis</span><span class="tbar" style="width:47px"></span><span class="tn">53</span></div><div class="tagrow2"><span class="name">dataset</span><span class="tbar" style="width:45px"></span><span class="tn">51</span></div><div class="tagrow2"><span class="name">probability</span><span class="tbar" style="width:36px"></span><span class="tn">41</span></div></div>
+    <p class="hint">Click a topic to list its papers.</p>
+    <div class="chartwrap" id="tagChart"></div>
+    <details class="tblview"><summary>View as table</summary>
+      <table><thead><tr><th>Topic</th><th>Papers</th></tr></thead><tbody><tr><td><a href="../#tag=formalization">formalization</a></td><td class="n">385</td></tr><tr><td><a href="../#tag=verification">verification</a></td><td class="n">226</td></tr><tr><td><a href="../#tag=theorem-proving-ml">theorem-proving-ml</a></td><td class="n">204</td></tr><tr><td><a href="../#tag=benchmark">benchmark</a></td><td class="n">121</td></tr><tr><td><a href="../#tag=ai-agents">ai-agents</a></td><td class="n">120</td></tr><tr><td><a href="../#tag=autoformalization">autoformalization</a></td><td class="n">107</td></tr><tr><td><a href="../#tag=mathlib">mathlib</a></td><td class="n">104</td></tr><tr><td><a href="../#tag=combinatorics">combinatorics</a></td><td class="n">102</td></tr><tr><td><a href="../#tag=logic">logic</a></td><td class="n">85</td></tr><tr><td><a href="../#tag=tooling">tooling</a></td><td class="n">73</td></tr><tr><td><a href="../#tag=number-theory">number-theory</a></td><td class="n">61</td></tr><tr><td><a href="../#tag=algebra">algebra</a></td><td class="n">55</td></tr><tr><td><a href="../#tag=analysis">analysis</a></td><td class="n">53</td></tr><tr><td><a href="../#tag=dataset">dataset</a></td><td class="n">51</td></tr><tr><td><a href="../#tag=probability">probability</a></td><td class="n">41</td></tr></tbody></table>
+    </details>
   </div>
 </main>
 <footer>
@@ -72,5 +107,170 @@
     Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
   </div>
 </footer>
+<script type="application/json" id="statData">{"months": [{"ym": "2025-01", "n": 13}, {"ym": "2025-02", "n": 15}, {"ym": "2025-03", "n": 11}, {"ym": "2025-04", "n": 8}, {"ym": "2025-05", "n": 16}, {"ym": "2025-06", "n": 11}, {"ym": "2025-07", "n": 13}, {"ym": "2025-08", "n": 9}, {"ym": "2025-09", "n": 17}, {"ym": "2025-10", "n": 25}, {"ym": "2025-11", "n": 20}, {"ym": "2025-12", "n": 16}, {"ym": "2026-01", "n": 21}, {"ym": "2026-02", "n": 28}, {"ym": "2026-03", "n": 46}, {"ym": "2026-04", "n": 67}, {"ym": "2026-05", "n": 63}, {"ym": "2026-06", "n": 84}, {"ym": "2026-07", "n": 101}, {"ym": "2026-08", "n": 108}, {"ym": "2026-09", "n": 36}], "tags": [{"tag": "formalization", "n": 385, "href": "../#tag=formalization"}, {"tag": "verification", "n": 226, "href": "../#tag=verification"}, {"tag": "theorem-proving-ml", "n": 204, "href": "../#tag=theorem-proving-ml"}, {"tag": "benchmark", "n": 121, "href": "../#tag=benchmark"}, {"tag": "ai-agents", "n": 120, "href": "../#tag=ai-agents"}, {"tag": "autoformalization", "n": 107, "href": "../#tag=autoformalization"}, {"tag": "mathlib", "n": 104, "href": "../#tag=mathlib"}, {"tag": "combinatorics", "n": 102, "href": "../#tag=combinatorics"}, {"tag": "logic", "n": 85, "href": "../#tag=logic"}, {"tag": "tooling", "n": 73, "href": "../#tag=tooling"}, {"tag": "number-theory", "n": 61, "href": "../#tag=number-theory"}, {"tag": "algebra", "n": 55, "href": "../#tag=algebra"}, {"tag": "analysis", "n": 53, "href": "../#tag=analysis"}, {"tag": "dataset", "n": 51, "href": "../#tag=dataset"}, {"tag": "probability", "n": 41, "href": "../#tag=probability"}]}</script>
+<script>
+(function () {
+  if (!window.d3) return;  // table views above remain as the fallback
+  var DATA = JSON.parse(document.getElementById("statData").textContent);
+  var MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var fmt = d3.format(",");
+  function monthLabel(ym) { return MON[+ym.slice(5, 7) - 1] + " " + ym.slice(0, 4); }
+  // Column with a 4px rounded cap, square at the baseline (r shrinks for tiny bars).
+  function capPath(x, y, w, h) {
+    var r = Math.min(4, w / 2, h);
+    var b = y + h;
+    return "M" + x + "," + b + "V" + (y + r) + "Q" + x + "," + y + " " + (x + r) + "," + y +
+           "H" + (x + w - r) + "Q" + (x + w) + "," + y + " " + (x + w) + "," + (y + r) + "V" + b + "Z";
+  }
+  function barPath(x, y, w, h) {  // horizontal: rounded right end, square at the left baseline
+    var r = Math.min(4, h / 2, w);
+    return "M" + x + "," + y + "H" + (x + w - r) + "Q" + (x + w) + "," + y + " " + (x + w) + "," + (y + r) +
+           "V" + (y + h - r) + "Q" + (x + w) + "," + (y + h) + " " + (x + w - r) + "," + (y + h) + "H" + x + "Z";
+  }
+
+  /* ---------- Papers per month ---------- */
+  function drawMonths() {
+    var host = document.getElementById("monthChart");
+    var tip = document.getElementById("monthTip");
+    var W = host.clientWidth;
+    if (W < 120) return;
+    d3.select(host).selectAll("svg").remove();
+    var months = DATA.months;
+    var m = { top: 20, right: 6, bottom: 42, left: 30 };
+    var plotH = Math.max(180, Math.min(300, Math.round(W * 0.38)));
+    var H = m.top + plotH + m.bottom;
+    var x = d3.scaleBand().domain(months.map(function (d) { return d.ym; }))
+      .range([m.left, W - m.right]).paddingInner(0.28).paddingOuter(0.15);
+    var barW = Math.min(24, Math.max(2, x.bandwidth()));
+    var yMax = d3.max(months, function (d) { return d.n; }) || 1;
+    var y = d3.scaleLinear().domain([0, yMax]).nice(4).range([m.top + plotH, m.top]);
+    var peak = months.reduce(function (a, b) { return b.n > a.n ? b : a; }, months[0]);
+    var last = months[months.length - 1];
+    var labelAll = x.bandwidth() >= 24;         // every cap on wide screens, else peak + latest only
+    var step = Math.max(1, Math.ceil(26 / x.bandwidth()));  // month labels that fit ("Jan" ≈ 22px)
+
+    var svg = d3.select(host).append("svg")
+      .attr("viewBox", "0 0 " + W + " " + H).attr("width", W).attr("height", H)
+      .attr("role", "img")
+      .attr("aria-label", "Papers per month from " + monthLabel(months[0].ym) + " to " + monthLabel(last.ym) +
+            ". Peak " + fmt(peak.n) + " in " + monthLabel(peak.ym) + ".");
+
+    // gridlines + y ticks (recessive)
+    var ticks = y.ticks(4);
+    var grid = svg.append("g").attr("class", "grid");
+    grid.selectAll("line").data(ticks.filter(function (t) { return t > 0; })).join("line")
+      .attr("x1", m.left).attr("x2", W - m.right)
+      .attr("y1", function (t) { return y(t); }).attr("y2", function (t) { return y(t); });
+    svg.append("g").selectAll("text").data(ticks).join("text").attr("class", "ytick")
+      .attr("x", m.left - 6).attr("y", function (t) { return y(t) + 3.5; }).attr("text-anchor", "end")
+      .text(function (t) { return fmt(t); });
+    svg.append("line").attr("class", "baseline")
+      .attr("x1", m.left).attr("x2", W - m.right).attr("y1", y(0) + 0.5).attr("y2", y(0) + 0.5);
+
+    // year boundary separator + year labels
+    var years = d3.groups(months, function (d) { return d.ym.slice(0, 4); });
+    years.forEach(function (g, i) {
+      var first = g[1][0].ym, lastYm = g[1][g[1].length - 1].ym;
+      var x0 = x(first), x1 = x(lastYm) + x.bandwidth();
+      svg.append("text").attr("class", "ylab").attr("x", (x0 + x1) / 2).attr("y", y(0) + 36).text(g[0]);
+      if (i > 0) {
+        var sx = Math.round(x0 - x.step() * x.paddingInner() / 2) + 0.5;
+        svg.append("line").attr("class", "yearsep").attr("x1", sx).attr("x2", sx).attr("y1", y(0) + 4).attr("y2", y(0) + 40);
+      }
+    });
+
+    // month labels (adaptive density)
+    svg.append("g").selectAll("text").data(months.filter(function (d, i) { return i % step === 0; })).join("text")
+      .attr("class", "xlab").attr("x", function (d) { return x(d.ym) + x.bandwidth() / 2; }).attr("y", y(0) + 16)
+      .text(function (d) { return MON[+d.ym.slice(5, 7) - 1]; });
+
+    // bars
+    svg.append("g").selectAll("path").data(months.filter(function (d) { return d.n > 0; })).join("path")
+      .attr("class", function (d) { return "bar y" + d.ym.slice(0, 4); })
+      .attr("data-ym", function (d) { return d.ym; })
+      .attr("d", function (d) {
+        var bx = x(d.ym) + (x.bandwidth() - barW) / 2, by = y(d.n);
+        return capPath(bx, by, barW, y(0) - by);
+      });
+
+    // selective value labels
+    svg.append("g").selectAll("text").data(months.filter(function (d) {
+        return d.n > 0 && (labelAll || d === peak || d === last);
+      })).join("text").attr("class", "val")
+      .attr("x", function (d) { return x(d.ym) + x.bandwidth() / 2; }).attr("y", function (d) { return y(d.n) - 5; })
+      .text(function (d) { return fmt(d.n); });
+
+    // hit targets: whole band, full plot height; tooltip on hover + keyboard focus
+    function show(d) {
+      tip.textContent = "";
+      var b = document.createElement("b"); b.textContent = fmt(d.n);
+      tip.appendChild(b);
+      tip.appendChild(document.createTextNode(" paper" + (d.n === 1 ? "" : "s") + " · " + monthLabel(d.ym)));
+      tip.style.display = "block";
+      var cx = x(d.ym) + x.bandwidth() / 2, half = tip.offsetWidth / 2 + 4;
+      tip.style.left = Math.max(half, Math.min(W - half, cx)) + "px";
+      tip.style.top = (y(d.n) - (d.n > 0 && (labelAll || d === peak || d === last) ? 14 : 0)) + "px";
+      svg.selectAll(".bar").classed("hot", function (e) { return e === d; });
+    }
+    function hide() { tip.style.display = "none"; svg.selectAll(".bar").classed("hot", false); }
+    svg.append("g").selectAll("rect").data(months).join("rect").attr("class", "hit")
+      .attr("x", function (d) { return x(d.ym) - x.step() * x.paddingInner() / 2; }).attr("y", m.top - 6)
+      .attr("width", x.step()).attr("height", plotH + 6)
+      .attr("tabindex", 0).attr("role", "img")
+      .attr("aria-label", function (d) { return monthLabel(d.ym) + ": " + fmt(d.n) + " papers"; })
+      .on("pointerenter focus", function (ev, d) { show(d); })
+      .on("pointerleave blur", hide);
+  }
+
+  /* ---------- Top topics (each row is a link to the filtered list) ---------- */
+  function drawTags() {
+    var host = document.getElementById("tagChart");
+    var W = host.clientWidth;
+    if (W < 120) return;
+    d3.select(host).selectAll("svg").remove();
+    var tags = DATA.tags;
+    var rowH = 27, barH = 14, countW = 40, gap = 10;
+    var H = tags.length * rowH + 4;
+    var svg = d3.select(host).append("svg")
+      .attr("viewBox", "0 0 " + W + " " + H).attr("width", W).attr("height", H);
+    // measure the longest label so the name column is exactly as wide as needed
+    var probe = svg.append("text").attr("class", "name").style("visibility", "hidden");
+    var labelW = 0;
+    tags.forEach(function (t) { probe.text(t.tag); labelW = Math.max(labelW, probe.node().getComputedTextLength()); });
+    probe.remove();
+    labelW = Math.min(Math.ceil(labelW) + 4, Math.floor(W * 0.45));
+    var x0 = labelW + gap;
+    var x = d3.scaleLinear().domain([0, d3.max(tags, function (t) { return t.n; }) || 1])
+      .range([0, Math.max(20, W - x0 - countW)]);
+
+    var rows = svg.selectAll("a").data(tags).join("a")
+      .attr("class", "tagrow").attr("href", function (t) { return t.href; })
+      .attr("transform", function (t, i) { return "translate(0," + (i * rowH + 2) + ")"; });
+    rows.append("title").text(function (t) { return "Show " + fmt(t.n) + " papers tagged " + t.tag; });
+    rows.append("rect").attr("class", "rowhit").attr("x", 0).attr("y", 0).attr("width", W).attr("height", rowH).attr("rx", 4);
+    rows.append("text").attr("class", "name").attr("x", labelW).attr("y", rowH / 2 + 4.5)
+      .text(function (t) { return t.tag; })
+      .each(function (t) {  // ellipsize a name that does not fit its column
+        var el = this, s = t.tag;
+        while (el.getComputedTextLength() > labelW && s.length > 3) { s = s.slice(0, -2); el.textContent = s + "…"; }
+      });
+    rows.append("path").attr("class", "tbar")
+      .attr("d", function (t) { return barPath(x0, (rowH - barH) / 2, Math.max(2, x(t.n)), barH); });
+    rows.append("text").attr("class", "tn").attr("x", function (t) { return x0 + Math.max(2, x(t.n)) + 6; })
+      .attr("y", rowH / 2 + 4).text(function (t) { return fmt(t.n); });
+  }
+
+  function drawAll() { drawMonths(); drawTags(); }
+  drawAll();
+  var raf = 0, lastW = document.getElementById("monthChart").clientWidth;
+  new ResizeObserver(function () {
+    var w = document.getElementById("monthChart").clientWidth;
+    if (w === lastW) return;
+    lastW = w;
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(drawAll);
+  }).observe(document.getElementById("monthChart"));
+})();
+</script>
 </body>
 </html>
