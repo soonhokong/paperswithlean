@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Protected tails and polynomial-time enumeration of permutations avoiding a direct sum of an increasing pattern and 231 · Papers With Lean</title>
+<meta name="description" content="We give an exact algorithm counting the permutations that avoid a fixed pattern from the following family: the direct sum of an increasing pattern and the pattern 231. The first members of the family are 1342 and 12453. For each member, the algorithm computes the number of…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Protected tails and polynomial-time enumeration of permutations avoiding a direct sum of an increasing pattern and 231">
+<meta property="og:description" content="We give an exact algorithm counting the permutations that avoid a fixed pattern from the following family: the direct sum of an increasing pattern and the pattern 231. The first members of the family are 1342 and 12453. For each member, the algorithm computes the number of…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.15642.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.15642.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.15642v1" target="_blank" rel="noopener"><img src="../thumbs/2609.15642.jpg" alt="First page of Protected tails and polynomial-time enumeration of permutations avoiding a direct sum of an increasing pattern and 231"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Protected tails and polynomial-time enumeration of permutations avoiding a direct sum of an increasing pattern and 231</h1>
+        <p class="authors">Henning Ulfarsson</p>
+        <div class="row">
+          <span class="badge">math.CO</span>
+          <span class="date">Sep 14, 2026 · v1</span>
+          <span class="badge">cs.DM</span> <span class="badge">cs.DS</span> <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.15642v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.15642" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ulfarsson/public-12453" target="_blank" rel="noopener" title="ulfarsson/public-12453">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The counting recurrences for the patterns 1342 and 12453 are verified in the Lean 4 proof assistant.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We give an exact algorithm counting the permutations that avoid a fixed pattern from the following family: the direct sum of an increasing pattern and the pattern 231. The first members of the family are 1342 and 12453. For each member, the algorithm computes the number of avoiding permutations of every length up to a given bound using polynomially many arithmetic operations and polynomially many stored integers, with degrees that grow linearly in the length of the pattern. We first obtain an exact recurrence by reading a permutation from left to right and recording, at each step, the constraints that the letters read so far impose on those still unread. Its state space grows exponentially, so evaluating it directly takes exponential time. We then show that part of the state is protected: later steps carry it along unchanged and do not depend on it. Factoring the protected part out turns the recurrence into a dynamic program with polynomially many stored transfer entries, and this gives the polynomial bounds for every member of the family. For the pattern 12453, a translation symmetry sharpens the bounds to degree seven for the operations and degree four for the storage. Separately written implementations and exact Chinese-remainder certification determine the number of 12453-avoiding permutations of every length up to 150. The previously published series reached length 38. The same tables also generate uniformly random avoiders in polynomial time. We illustrate this with a heatmap of one million 12453-avoiding permutations of length 300 sampled with floating-point tables. The counting recurrences for 1342 and 12453 are verified in the Lean 4 proof assistant.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Counting permutations that avoid a fixed pattern from the family β_d = ι_d ⊕ 231 (e.g., 1342, 12453) requires polynomial-time exact enumeration, whereas direct evaluation of the natural recurrence takes exponential time due to an exponentially large state space.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A recurrence is obtained by scanning a permutation left to right, recording constraints via patience-sorting thresholds and an interval-stack representation of 231-avoidance obligations. Part of the state is shown to be &#x27;protected&#x27; (carried unchanged), allowing it to be factored out into transfer kernels, turning the recurrence into a polynomial-size dynamic program. The counting recurrences for the patterns 1342 and 12453 are verified in the Lean 4 proof assistant, and computations are certified via Chinese-remainder reconstruction.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The algorithm computes exact counts with polynomially many arithmetic operations and stored integers. For 12453 the bounds sharpen to degree seven operations and degree four storage, and exact values of |Av_n(12453)| are computed for all n up to 150 (previous series reached 38); uniform random avoiders are sampled and visualized.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2609.15642/heatmap_n300_1M_permpal.png" alt=""><figcaption>Figure 2. Left: position–value heatmap of one million elements of \operatorname{Av}_{300}(12453) drawn by the floating-point implementation of the uniform sampler of section 8.1 . The cell at position i (left to right) and value v (bottom to top) is shaded by the square root of the number of samples with \pi_{i}=v , from white (no sample) to black (the largest cell count, 70\,204 ). Right: one of </figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

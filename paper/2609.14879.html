@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fast Stencil Computations on a Single Arbitrarily Moving Interval · Papers With Lean</title>
+<meta name="description" content="A stencil computation repeatedly updates every cell of a grid from its neighbours&#x27; values at the previous timestep. Simulating T steps on N cells directly costs Theta(NT), and a line of work beginning with Ahmad et al. reduces this by composing many timesteps into one linear…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fast Stencil Computations on a Single Arbitrarily Moving Interval">
+<meta property="og:description" content="A stencil computation repeatedly updates every cell of a grid from its neighbours&#x27; values at the previous timestep. Simulating T steps on N cells directly costs Theta(NT), and a line of work beginning with Ahmad et al. reduces this by composing many timesteps into one linear…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.14879.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.14879.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.14879v1" target="_blank" rel="noopener"><img src="../thumbs/2609.14879.jpg" alt="First page of Fast Stencil Computations on a Single Arbitrarily Moving Interval"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Fast Stencil Computations on a Single Arbitrarily Moving Interval</h1>
+        <p class="authors">Aaron Gregory</p>
+        <div class="row">
+          <span class="badge">cs.DS</span>
+          <span class="date">Sep 14, 2026 · v1</span>
+          <span class="badge">cs.DC</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.14879v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.14879" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">An algorithm for stencil computations on a moving interval, with correctness and cost bounds machine-checked in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A stencil computation repeatedly updates every cell of a grid from its neighbours&#x27; values at the previous timestep. Simulating T steps on N cells directly costs Theta(NT), and a line of work beginning with Ahmad et al. reduces this by composing many timesteps into one linear operator and applying it with a Fast Fourier Transform. That technique needs to know which cells will still obey the same operator when the composed step ends, and in a free-boundary problem they do not: the region governed by a given rule is determined by the solution and moves as it evolves. We study one spatial dimension, a three-point stencil with time-varying coefficients, and a computed region that is a single interval whose two endpoints move by arbitrary amounts at every step, revealed online. Let B be the horizon plus the total variation of the boundary trajectory. We give a schedule whose work is O((B+N) log T log(N+B)) and whose span is O(T log T log(N+B)), and we prove that the values it computes are exact. The best existing bound for a region that moves requires its boundary to travel at most one cell per timestep. We drop that requirement and lose nothing by it: a boundary obeying it has B &lt;= 3T, so our bound stays near-linear on every trajectory the earlier result covers. Elsewhere, B grows only by the distance the boundary actually travels – one jump of width N costs T + 2N. The reason total variation suffices is that everything the two endpoints touch over a time window of any length lies in two intervals, one per endpoint. This cannot be relaxed: with p regions the bound degrades by a factor p, and at p = sqrt(T) there is an instance on which the work is Theta(T^{3/2}) while B + N = Theta(T). All results are machine-checked in Lean 4, apart from the classical convolution bound, which is imported as an interface.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Stencil computations updating N cells over T steps cost Theta(NT); FFT-based supersteps speed this up but require knowing which cells obey the same operator, which fails for free-boundary problems where the computed region moves. Prior FFT-based bounds require the boundary to move at most one cell per timestep.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors study one spatial dimension with a three-point stencil and time-varying coefficients, where the region is a single interval whose endpoints move arbitrarily and are revealed online. They define a cursor giving cells solvable from an earlier slice, decompose work into shells indexed by 2-adic valuation, and charge each shell to a backward window whose activity is shown to lie in two intervals. Correctness (exactness) and the work/span bounds are proved formally.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">They give a schedule with work O((B+N) log T log(N+B)) and span O(T log T log(N+B)), where B is the horizon plus total variation of the boundary trajectory, and prove the computed values are exact. They show a single interval is necessary: with p components the bound degrades by factor p, giving a Theta(T^{3/2}) instance. All results are machine-checked in Lean 4 except the imported classical convolution bound.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Work</th><th>Span</th><th>Boundary may move</th></tr></thead><tbody><tr><td>Direct simulation</td><td>Θ(NT)</td><td>Θ(T)</td><td>freely</td></tr><tr><td>Bentley et al.</td><td>O(N log N log T)</td><td>O(T log N log log N)</td><td>one cell per step</td></tr><tr><td>This paper</td><td>O((B+N) log T log(N+B))</td><td>O(T log T log(N+B))</td><td>freely</td></tr></tbody></table><div class="tbl-cap">Comparison of work, span, and allowed boundary motion</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

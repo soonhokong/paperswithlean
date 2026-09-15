@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scaling Verification of Cryptographic Software with Aeneas, Rust, and Lean · Papers With Lean</title>
+<meta name="description" content="We develop a new methodology for verifying cryptographic software. We target production code written in Rust for performance and system integration, rather than verification convenience. Rust&#x27;s ownership discipline enables Aeneas to extract a pure model of this code in Lean,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scaling Verification of Cryptographic Software with Aeneas, Rust, and Lean">
+<meta property="og:description" content="We develop a new methodology for verifying cryptographic software. We target production code written in Rust for performance and system integration, rather than verification convenience. Rust&#x27;s ownership discipline enables Aeneas to extract a pure model of this code in Lean,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.15648.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.15648.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.15648v1" target="_blank" rel="noopener"><img src="../thumbs/2609.15648.jpg" alt="First page of Scaling Verification of Cryptographic Software with Aeneas, Rust, and Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Scaling Verification of Cryptographic Software with Aeneas, Rust, and Lean</h1>
+        <p class="authors">Son Ho, Cédric Fournet, Jonathan Protzenko, Michael Naehrig, Joshua Clune, Patrick Longa, Guillaume Boisseau, Fernando Leal Sánchez, Aymeric Fromherz, Antoine Delignat-Lavaud</p>
+        <div class="row">
+          <span class="badge">cs.CR</span>
+          <span class="date">Sep 14, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-amber" href="../#tag=cryptography">cryptography</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.15648v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.15648" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/celabshq/libcrux" target="_blank" rel="noopener" title="celabshq/libcrux">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Aeneas extracts pure Lean models of Rust cryptographic code, and AI agents write Lean-kernel-checked proofs of functional correctness and panic-freedom.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We develop a new methodology for verifying cryptographic software. We target production code written in Rust for performance and system integration, rather than verification convenience. Rust&#x27;s ownership discipline enables Aeneas to extract a pure model of this code in Lean, relieving us from low-level reasoning about pointer liveness and aliasing. Lean&#x27;s extensibility lets us develop tactics and libraries that greatly simplify reasoning about extracted Rust code. We design and tune our toolchain to facilitate the use of AI. Agents autonomously write formal proofs, which are independently verified by the Lean kernel. Agents also assist in the formalization of cryptographic standards and platform-specific intrinsics, which still requires expert design and review. We apply our methodology to SymCrypt, Microsoft&#x27;s cryptographic provider. We verify its implementations of algorithms such as SHA-3 and ML-KEM, which were ported from C to Rust. We also extend SymCrypt with experimental optimizations and implementations of algorithms such as FrodoKEM, ML-DSA, and HPKE to explore the scalability of writing, adapting, and verifying cryptographic code. Our 237 KLOC Lean development establishes safety, panic-freedom, and functional correctness of 16.7 KLOC of Rust code supporting post-quantum cipher suites for x86-64 and ARM platforms. Our evaluation shows that verified Rust can meet SymCrypt&#x27;s performance, portability, deployment, and maintainability requirements.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Verified cryptographic libraries remain hard to integrate and maintain because existing toolchains generate special-purpose low-level code and require intense manual proof effort. The goal is to verify production Rust cryptographic code as actually written for performance and deployment.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Aeneas translates Rust MIR (via Charon/LLBC) into pure, side-effect-free Lean functions, removing pointer and aliasing reasoning. Cryptographic standards (NIST/IETF) are formalized in Lean using monadic do-notation and Mathlib libraries. Custom Lean tactics and libraries simplify reasoning about extracted Rust, and target-specific CPU intrinsics are modelled. AI agents autonomously write Lean proofs that are independently checked by the Lean kernel.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2609.15648/arch1.png" alt=""><figcaption>Figure 1: Overview of our verification methodology. Green arrows: automated tools; blue arrows: agentic (best effort).</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The 237 KLOC Lean development establishes safety, panic-freedom, and functional correctness of 16.7 KLOC of Rust in SymCrypt, covering SHA-3, ML-KEM, AES-GCM, ML-DSA, FrodoKEM, and HPKE for x86-64 and ARM. Agents generated  5.1k theorems and 125 KLOC of proofs; Opus 5 closed all 7 hard benchmark proofs, about 2.8x faster and 2.5x cheaper than Opus 4.8.</p><div class="sum-table"><table><thead><tr><th>Component</th><th>Standard</th><th>Rust</th><th>Proofs</th></tr></thead><tbody><tr><td>SHA-3 / SHAKE</td><td>FIPS 202</td><td>2,276</td><td>10,823</td></tr><tr><td>ML-KEM</td><td>FIPS 203</td><td>1,352</td><td>25,389</td></tr><tr><td>AES / AES-GCM</td><td>FIPS 197 / SP 800-38D</td><td>2,020</td><td>21,815</td></tr><tr><td>ML-DSA</td><td>FIPS 204</td><td>4,076</td><td>35,006</td></tr><tr><td>FrodoKEM</td><td>draft-frodokem-02</td><td>3,250</td><td>15,532</td></tr></tbody></table><div class="tbl-cap">Verification effort by cryptographic component (specification and proof sizes)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
