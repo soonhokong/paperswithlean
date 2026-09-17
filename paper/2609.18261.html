@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Descriptive Complexity in Lean: Completeness by First-Order Reductions · Papers With Lean</title>
+<meta name="description" content="We show that descriptive complexity can serve as a foundation for formalizing computational complexity results in a proof assistant, by constructing a Lean library centered around the following concepts: decision problems are isomorphism-invariant predicates on finite…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Descriptive Complexity in Lean: Completeness by First-Order Reductions">
+<meta property="og:description" content="We show that descriptive complexity can serve as a foundation for formalizing computational complexity results in a proof assistant, by constructing a Lean library centered around the following concepts: decision problems are isomorphism-invariant predicates on finite…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.18261.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.18261.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.18261v1" target="_blank" rel="noopener"><img src="../thumbs/2609.18261.jpg" alt="First page of Descriptive Complexity in Lean: Completeness by First-Order Reductions"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Descriptive Complexity in Lean: Completeness by First-Order Reductions</h1>
+        <p class="authors">Pierre Senellart, Anton Gnatenko</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Sep 16, 2026 · v1</span>
+          <span class="badge">cs.CC</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.18261v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.18261" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/PierreSenellart/descriptive-complexity" target="_blank" rel="noopener" title="PierreSenellart/descriptive-complexity">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A Lean library formalizes descriptive complexity, proving 73 completeness results across 14 complexity classes via first-order reductions on finite structures.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We show that descriptive complexity can serve as a foundation for formalizing computational complexity results in a proof assistant, by constructing a Lean library centered around the following concepts: decision problems are isomorphism-invariant predicates on finite structures; complexity classes are defined by their logical characterization; membership is shown by definability witnesses; hardness is shown by first-order reductions from a known hard problem. We also establish bridges to traditional machine models such as (non)deterministic Turing machines. The library proves 73 completeness results, on 68 problems or problem families, over 14 different classes; relations between the classes established inside the logic and not by machine simulation, among them NL = coNL and the Abiteboul-Vianu theorem; and unconditional lower bounds, among them $\mathrm{FO}(\leq) \subsetneq \mathrm{FO}(\leq, \mathrm{TC})$ and the failure of order-free FO(IFP) to capture PTIME.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Computational complexity hardness and completeness results are almost never formalized in proof assistants because standard proofs are anchored to machine models under resource constraints that resist mechanization. Existing developments stop at a handful of completeness theorems.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A Lean library is built around descriptive complexity: decision problems are isomorphism-invariant predicates on finite structures, complexity classes are defined by their logical characterization, membership is shown by definability witnesses, and hardness by first-order reductions from known hard problems. Classes are closed under first-order reductions via per-logic pullback lemmas built on Mathlib&#x27;s FirstOrder.Language and BoundedFormula. Machine bridges link the logically defined classes to Turing-machine definitions by encoding acceptance as a decision problem over a finite structure.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The library proves 73 completeness results on 68 problems or problem families over 14 classes, including all 21 Karp problems as NP-complete. It establishes class relations inside the logic (NL = coNL, the Abiteboul-Vianu theorem) and unconditional lower bounds (FO(≤) ⊊ FO(≤,TC) and failure of order-free FO(IFP) to capture PTIME). The SAT completeness theorem&#x27;s dependency closure is far smaller than machine-model developments.</p><div class="sum-table"><table><thead><tr><th>Library</th><th>Prover</th><th>Defined over</th><th>Thms</th></tr></thead><tbody><tr><td>coq-library-complexity</td><td>Rocq</td><td>cbv λ-calculus</td><td>3</td></tr><tr><td>AFP Cook_Levin</td><td>Isabelle/HOL</td><td>multi-tape TMs</td><td>1</td></tr><tr><td>poly-reductions</td><td>Isabelle/HOL</td><td>IMP- while-language</td><td>0</td></tr><tr><td>Complexitylib</td><td>Lean</td><td>multi-tape TMs</td><td>NP,coNP</td></tr><tr><td>Our library</td><td>Lean</td><td>finite structures</td><td>73</td></tr></tbody></table><div class="tbl-cap">Mechanized complexity libraries by definitional foundation and completeness theorems proved</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
