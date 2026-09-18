@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FloatLib: Verified Floating-Point Arithmetic in Lean · Papers With Lean</title>
+<meta name="description" content="We present FloatLib, a verified arbitrary-precision floating-point arithmetic library in Lean 4 that combines broad format coverage, machine-checked correctness, and efficient certified execution. To our knowledge, FloatLib is the first Lean library to unify IEEE binary and…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FloatLib: Verified Floating-Point Arithmetic in Lean">
+<meta property="og:description" content="We present FloatLib, a verified arbitrary-precision floating-point arithmetic library in Lean 4 that combines broad format coverage, machine-checked correctness, and efficient certified execution. To our knowledge, FloatLib is the first Lean library to unify IEEE binary and…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.19352.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.19352.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.19352v1" target="_blank" rel="noopener"><img src="../thumbs/2609.19352.jpg" alt="First page of FloatLib: Verified Floating-Point Arithmetic in Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">FloatLib: Verified Floating-Point Arithmetic in Lean</h1>
+        <p class="authors">Robert Joseph George, Will Adkisson, Anima Anandkumar</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Sep 16, 2026 · v1</span>
+          <span class="badge">cs.PL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.19352v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.19352" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/lean-dojo/FloatLib" target="_blank" rel="noopener" title="lean-dojo/FloatLib">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Presents FloatLib, a Lean 4 library providing verified arbitrary-precision floating-point arithmetic with machine-checked correctness and certified efficient execution.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present FloatLib, a verified arbitrary-precision floating-point arithmetic library in Lean 4 that combines broad format coverage, machine-checked correctness, and efficient certified execution. To our knowledge, FloatLib is the first Lean library to unify IEEE binary and decimal arithmetic, arbitrary-width posits, P3109, and user-defined formats and rounding rules behind interchangeable certified software backends. Every certified backend is proved equal to a complete encoded specification, preserving signed zeros and exceptional values, while numerical theorems connect execution to real rounding, error bounds, and exactness. FloatLib combines exhaustive certified tables for small formats with verified word and limb kernels based on guard-and-sticky invariants and independently checked quotient candidates. Its posit development additionally proves standard rounding thresholds and exact quire accumulation within capacity for arbitrary widths. Across matched workloads, FloatLib achieves speedups of up to 1.46x over FLoPS and 116x over Universal, while remaining slower in some regimes such as binary arithmetic against MPFR. Independent conformance testing includes more than 102 million TestFloat evaluations with zero differences under the tested relation. We release the library, proofs, benchmarks, evaluation data, and guide as open source.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Verified numerical programs require arithmetic specifications and theorems connecting executed floating-point operations to their real-valued meaning, including rounding, error bounds, and exceptional-value behavior. Existing verified libraries lack unified coverage of diverse formats behind interchangeable certified backends.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">FloatLib is structured in four layers: exact numerical representations, word and limb kernels, format models, and certified execution. It unifies IEEE binary and decimal arithmetic, arbitrary-width posits, P3109, and user-defined formats behind interchangeable certified software backends. Each certified backend is proved equal to a complete encoded specification via a run_eq_spec equality, preserving signed zeros and exceptional values, while numerical theorems connect execution to real rounding and exactness. It combines exhaustive certified tables for small formats with verified kernels using guard-and-sticky invariants and independently checked quotient candidates.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">FloatLib achieves speedups up to 1.46x over FLoPS and 116x over Universal, though remaining slower than MPFR in some binary regimes. Independent conformance testing included over 102 million TestFloat evaluations with zero differences under the tested relation.</p><div class="sum-table"><table><thead><tr><th>Family</th><th>Representation</th><th>Representative contract</th></tr></thead><tbody><tr><td>Binary</td><td>Parameterized fields, bias, exceptional encodings</td><td>IEEE-style real rounding and exactness</td></tr><tr><td>Decimal</td><td>Coefficient and quantum; BID/DPD</td><td>Datum-level arithmetic, rounding error, status</td></tr><tr><td>Posit</td><td>Regime, two exponent bits; n≥2</td><td>Standard rounding; exact accumulation in 16n-bit quire</td></tr><tr><td>P3109</td><td>Width, precision, signedness</td><td>Destination projection, saturation, mixed-format</td></tr><tr><td>MX</td><td>32 lanes with common E8M0 scale</td><td>Quantization; one-round exact dot product</td></tr></tbody></table><div class="tbl-cap">Numerical families in FloatLib and representative guarantees</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

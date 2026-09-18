@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LLVM Translation Validation Automated with Large Language Models and Lean · Papers With Lean</title>
+<meta name="description" content="LLVM is the cornerstone of modern compilers, but its subtle intermediate representation (IR) semantics make transformations error-prone and necessitate formal verification. Alive2, a state-of-the-art translation validator based on satisfiability modulo theories, has achieved…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LLVM Translation Validation Automated with Large Language Models and Lean">
+<meta property="og:description" content="LLVM is the cornerstone of modern compilers, but its subtle intermediate representation (IR) semantics make transformations error-prone and necessitate formal verification. Alive2, a state-of-the-art translation validator based on satisfiability modulo theories, has achieved…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.19583.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.19583.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.19583v1" target="_blank" rel="noopener"><img src="../thumbs/2609.19583.jpg" alt="First page of LLVM Translation Validation Automated with Large Language Models and Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">LLVM Translation Validation Automated with Large Language Models and Lean</h1>
+        <p class="authors">Chunhao Liao, Hongxu Xu, Xintong Zhou, Yizhou Zhang, Chengnian Sun</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Sep 17, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.19583v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.19583" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/llvm/llvm-project" target="_blank" rel="noopener" title="llvm/llvm-project">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Trivet combines LLMs with Lean, generating scaffolded refinement or counterexample proofs for LLVM transformations that are checked by the Lean kernel.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">LLVM is the cornerstone of modern compilers, but its subtle intermediate representation (IR) semantics make transformations error-prone and necessitate formal verification. Alive2, a state-of-the-art translation validator based on satisfiability modulo theories, has achieved substantial success in automating the validation of LLVM transformations. However, it still faces scalability limitations, does not support symbolic bitwidths, and offers only bounded guarantees for loops. In contrast, interactive theorem provers such as Lean can address these cases but require substantial proof engineering. In this paper, we present Trivet, a framework combining large language models (LLMs) and Lean for automated translation validation of LLVM transformations. Trivet generates structured proof scaffolds based on source and target functions, automatically discharges obligations amenable to deterministic reasoning, and delegates transformationspecific obligations to LLMs. It produces refinement proofs or counterexample-based refutations, with every successful verdict checked by the Lean kernel. On 148 LLVM transformations, Trivet verifies or refutes 147, leaving one invalid case unresolved. Successful cases include 60 loop-free transformations with symbolic bitwidths, 27 cases from a restricted class of loop-containing transformations, and 10 complex valid fixed-bitwidth cases on which Alive2 times out. Compared with an unscaffolded baseline, scaffolding enables 26 additional proofs. On cases solved by both configurations, it reduces mean proof time by 75.9% and mean monetary cost by 88%.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLVM IR transformations are error-prone and require formal verification. Alive2, the state-of-the-art SMT-based translation validator, times out on large formulas, lacks symbolic-bitwidth support, and gives only bounded loop guarantees. Interactive provers like Lean can handle such cases but require heavy proof engineering.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Trivet integrates an LLM with Lean to automate LLVM translation validation. For each transformation it runs a refinement branch and a counterexample branch in parallel. The refinement branch emits a structured scaffold that discharges deterministic obligations and leaves typed holes for the LLM to fill, while the counterexample branch has the LLM propose a candidate that a refutation scaffold turns into a proof of non-refinement. Every successful proof is checked by the Lean kernel, and Lean diagnostics guide LLM revisions.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2609.19583/overall-v0.png" alt=""><figcaption>Figure 1 . The workflow of Trivet . Cx denotes counterexample.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2609.19583/scaffold19.png" alt=""><figcaption>Figure 2 . An illustrative example of refinement proof generation in Trivet .</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 148 real-world LLVM transformations, Trivet verified or refuted 147, leaving one invalid case unresolved, including 60 loop-free symbolic-bitwidth cases and 10 fixed-bitwidth cases where Alive2 times out. Scaffolding enabled 26 additional proofs and, on cases solved by both configurations, cut mean proof time by 75.9% and mean cost by 88%.</p><div class="sum-table"><table><thead><tr><th>Stratum</th><th>N</th><th>Trivet Proved</th><th>Trivet Mean (s)</th><th>Alive2 Proved</th></tr></thead><tbody><tr><td>Symbolic bitwidth</td><td>30</td><td>30</td><td>722</td><td>n/a</td></tr><tr><td>Fixed bitwidth</td><td>30</td><td>30</td><td>647</td><td>20</td></tr><tr><td>Total</td><td>60</td><td>60</td><td>684</td><td>20</td></tr></tbody></table><div class="tbl-cap">Loop-free valid transformations: Trivet vs Alive2</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
