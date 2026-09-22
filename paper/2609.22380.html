@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Machine-Checked Proof that Gardam&#x27;s $\tilde{A}_2$ Lattice Does Not Have Unique Products · Papers With Lean</title>
+<meta name="description" content="Kaplansky&#x27;s zero-divisor conjecture asserts that the group ring of a torsion-free group over a field has no zero divisors. It holds for every group with the unique-product property, so a counterexample can only come from a torsion-free group without unique products. In lectures…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Machine-Checked Proof that Gardam&#x27;s $\tilde{A}_2$ Lattice Does Not Have Unique Products">
+<meta property="og:description" content="Kaplansky&#x27;s zero-divisor conjecture asserts that the group ring of a torsion-free group over a field has no zero divisors. It holds for every group with the unique-product property, so a counterexample can only come from a torsion-free group without unique products. In lectures…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.22380.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.22380.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.22380v1" target="_blank" rel="noopener"><img src="../thumbs/2609.22380.jpg" alt="First page of A Machine-Checked Proof that Gardam&#x27;s $\tilde{A}_2$ Lattice Does Not Have Unique Products"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Machine-Checked Proof that Gardam&#x27;s $\tilde{A}_2$ Lattice Does Not Have Unique Products</h1>
+        <p class="authors">Ibrahim Mian, Shayaan Siddique</p>
+        <div class="row">
+          <span class="badge">math.GR</span>
+          <span class="date">Sep 17, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.22380v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.22380" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ibrahimmian36/Karanos" target="_blank" rel="noopener" title="ibrahimmian36/Karanos">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Provides a Lean 4 kernel-checked proof, stated against Mathlib&#x27;s UniqueProds class, that Gardam&#x27;s Ã₂ lattice lacks the unique-product property.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Kaplansky&#x27;s zero-divisor conjecture asserts that the group ring of a torsion-free group over a field has no zero divisors. It holds for every group with the unique-product property, so a counterexample can only come from a torsion-free group without unique products. In lectures in 2021, Gardam announced that the torsion-free $\tilde{A}_2$ lattice $Γ= \langle a, b \mid a b a^2 b^{-1} a^2 b^{-2}, a b^3 a b^4 a^{-1} b \rangle$ does not have unique products and presented it as a new candidate group: it has property (T), and the known methods for proving the conjecture do not apply to it. To our knowledge, no proof of the announcement has been published. We give a proof checked by the Lean 4 kernel and stated against Mathlib&#x27;s UniqueProds class. The witness is an explicit pair of finite subsets with $|A| = 32$ and $|B| = 28$ in which each of the 896 products coincides with another product. For 658 products the certificate is an identity in the free group; the other 238 certificates are explicit products of conjugated relators, 970 conjugates in all, checked by free reduction. A homomorphism onto $\mathbb{Z}/42$ shows that each pair $(u,v)$ differs from its partner $(u&#x27;,v&#x27;)$ as a pair of group elements, which is all the theorem requires. Together with a homomorphism onto the alternating group $A_4$ it also shows that the listed words are pairwise distinct, so the sets have exactly 32 and 28 elements. The witness and certificates come from an untrusted search program and are re-checked by Lean. The development uses only the axioms propext, Classical.choice and Quot.sound, with no sorry and no native_decide. The mathematical statement is Gardam&#x27;s. To our knowledge this is the first verification in a proof assistant of a unique-product failure in a torsion-free group; torsion-freeness of $Γ$ is taken from Gardam and is not formalized here.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Kaplansky&#x27;s zero-divisor conjecture is only open for torsion-free groups lacking the unique-product property. Gardam announced in 2021 that the Ã₂ lattice group Γ lacks unique products, but no proof or witness was published.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An untrusted search program (proof-producing Todd–Coxeter coset enumeration) finds explicit finite sets A (|A|=32) and B (|B|=28) plus certificates. Each of the 896 products is matched to a partner via an identity in the free group or a product of conjugated relators. The witness and certificates are re-checked by the Lean 4 kernel against Mathlib&#x27;s UniqueProds class, with Γ defined as a Mathlib PresentedGroup; homomorphisms onto Z/42 and A₄ separate the pairs. The development uses no sorry and no native_decide, relying only on propext, Classical.choice, and Quot.sound.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Yields a machine-checked theorem gamma_not_uniqueProds establishing that Γ lacks unique products, the first proof-assistant verification of a unique-product failure in a torsion-free group. 658 products are certified by free-group identities and 238 via 970 conjugated relators; an independent Python checker reproduces the certificate figures.</p><div class="sum-table"><table><thead><tr><th>Quantity</th><th>Value</th></tr></thead><tbody><tr><td>witness sizes \</td><td>A\</td><td>, \</td><td>B\</td><td></td><td>32, 28</td></tr><tr><td>product coincidences certified</td><td>896</td></tr><tr><td>certified by free-group identity</td><td>658</td></tr><tr><td>certified with relators</td><td>238</td></tr><tr><td>sorry / native_decide</td><td>0 / 0</td></tr></tbody></table><div class="tbl-cap">Summary of the development</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CIC + EM $\vdash$ Con(ZF): the consistency of ZF in type theory with excluded middle and no choice · Papers With Lean</title>
+<meta name="description" content="The sets-as-trees interpretation of set theory in a dependent type theory with an impredicative universe of propositions validates Zermelo set theory, and it validates Replacement if the type theory has a choice or description operator, which turns a functional relation into a…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CIC + EM $\vdash$ Con(ZF): the consistency of ZF in type theory with excluded middle and no choice">
+<meta property="og:description" content="The sets-as-trees interpretation of set theory in a dependent type theory with an impredicative universe of propositions validates Zermelo set theory, and it validates Replacement if the type theory has a choice or description operator, which turns a functional relation into a…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.23143.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.23143.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.23143v1" target="_blank" rel="noopener"><img src="../thumbs/2609.23143.jpg" alt="First page of CIC + EM $\vdash$ Con(ZF): the consistency of ZF in type theory with excluded middle and no choice"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">CIC + EM $\vdash$ Con(ZF): the consistency of ZF in type theory with excluded middle and no choice</h1>
+        <p class="authors">Mario Carneiro</p>
+        <div class="row">
+          <span class="badge">math.LO</span>
+          <span class="date">Sep 19, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-slate" href="../#tag=logic">logic</a> <a class="tag c-pink" href="../#tag=type-theory">type-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.23143v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.23143" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/digama0/lean-type-theory" target="_blank" rel="noopener" title="digama0/lean-type-theory">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes in Lean 4 (without Mathlib) a proof that ZF&#x27;s consistency follows from CIC plus excluded middle with no choice.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The sets-as-trees interpretation of set theory in a dependent type theory with an impredicative universe of propositions validates Zermelo set theory, and it validates Replacement if the type theory has a choice or description operator, which turns a functional relation into a function. It has been natural to expect that without such an operator the strength of the type theory drops well below that of $\mathrm{ZF}$. We show that it does not. In the type theory of Lean with two predicative universes, from excluded middle as the only assumption and with no axiom (no choice, no propositional extensionality, no quotients), we prove the consistency of $\mathrm{ZF}$, stated outright for a first-order proof system. The proof is formalized. The mechanism is the large elimination of the accessibility predicate over a type as large as the type of sets: a recursion on accessibility whose recursive calls are guarded by propositions, and whose later calls are indexed by the value of an earlier call, computes as a term any ordinal that is specified by a proposition through a well-founded tree of a certain shape. We give a rule that produces such a tree for every ordinal, unless some $V_ρ$ is already a model of $\mathrm{ZF}$; the rule does not choose a cofinal map into a limit ordinal but takes all definable ones at once. In the first case the sets-as-trees satisfy Replacement for arbitrary propositional relations. Either way $\mathrm{ZF}$ has a model. Finally, the double negation of excluded middle suffices, and what remains of it is exactly that membership is not not well-founded in the stable reading of sets; this in turn implies the double negation of Markov&#x27;s principle.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">It was expected that a dependent type theory with an impredicative Prop but no choice or description operator would be much weaker than ZF, since sets-as-trees validates Zermelo set theory but seemingly not Replacement. The question is the exact proof-theoretic strength of Lean&#x27;s type theory with excluded middle but no choice.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Using Aczel&#x27;s sets-as-trees interpretation, the authors introduce a &#x27;materializing recursion&#x27; via large elimination of the accessibility predicate that computes any ordinal specified by a proposition through a well-founded tree. A definability rule collects all definable cofinal maps at once rather than choosing one, avoiding the axiom of choice. The full construction, including first-order syntax, a proof system, satisfaction, soundness, and consistency, is formalized in a Lean 4 package with no dependencies and no Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The consistency of ZF is proved from excluded middle as the only assumption, with no choice, propositional extensionality, or quotients; Lean reports con_ZF depends on no axioms (excluded middle enters only as a hypothesis). The double negation of excluded middle suffices, which reduces to not-not well-foundedness of membership and implies the double negation of Markov&#x27;s principle.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
