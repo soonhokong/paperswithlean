@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hydrozoan: Latency-Adaptive DAG Consensus under Mixed Byzantine and Crash Faults · Papers With Lean</title>
+<meta name="description" content="DAG-based consensus protocols can achieve great throughput and the optimal three-message-delay limit for n = 3f+1 consensus. While two-delay protocols exist, they pay with reduced resilience (requiring 5f+1-style committees) or rely on fallbacks that sacrifice the DAG&#x27;s high…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hydrozoan: Latency-Adaptive DAG Consensus under Mixed Byzantine and Crash Faults">
+<meta property="og:description" content="DAG-based consensus protocols can achieve great throughput and the optimal three-message-delay limit for n = 3f+1 consensus. While two-delay protocols exist, they pay with reduced resilience (requiring 5f+1-style committees) or rely on fallbacks that sacrifice the DAG&#x27;s high…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.25918.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.25918.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.25918v1" target="_blank" rel="noopener"><img src="../thumbs/2609.25918.jpg" alt="First page of Hydrozoan: Latency-Adaptive DAG Consensus under Mixed Byzantine and Crash Faults"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Hydrozoan: Latency-Adaptive DAG Consensus under Mixed Byzantine and Crash Faults</h1>
+        <p class="authors">Qianyu Yu, Lefteris Kokoris-Kogias, Alberto Sonnino</p>
+        <div class="row">
+          <span class="badge">cs.DC</span>
+          <span class="date">Sep 22, 2026 · v1</span>
+          <span class="badge">cs.CR</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.25918v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.25918" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/gdanezis/lean-dag" target="_blank" rel="noopener" title="gdanezis/lean-dag">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Safety and liveness of the Hydrozoan and Optimal-Hydrozoan DAG consensus protocols are machine-checked in Lean 4 on top of Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">DAG-based consensus protocols can achieve great throughput and the optimal three-message-delay limit for n = 3f+1 consensus. While two-delay protocols exist, they pay with reduced resilience (requiring 5f+1-style committees) or rely on fallbacks that sacrifice the DAG&#x27;s high throughput. This paper introduces Hydrozoan, the first DAG protocol with a dual commit path under a hybrid fault model of f Byzantine and c crashed validators, on n = 3f+c+2p+1 validators. Leaders commit in two message delays whenever at most p validators are faulty, and in three otherwise, with no extra messages, no view changes, and multiple leaders per round. Both paths are evaluated on the same DAG, using a novel graded indirect rule to reconcile them so that every honest validator reaches the same decision. We show that under geo-distributed conditions, which path is faster is a property of geography rather than the protocol, as rounds reaching a remote region cost far more than those that do not. The (f, c, p) knobs place the fast quorum where the deployment requires it, allowing a commit in two message delays. If misconfigured, Hydrozoan can still commit in three message delays: Hydrozoan commits on whichever path fires first. We also present Optimal-Hydrozoan, a variant that tolerates one more fault on the fast path, the first construction to match the known lower bound. The safety and liveness of both protocols are machine-checked in Lean 4. Our geo-distributed evaluation shows that Hydrozoan matches Mysticeti&#x27;s throughput, commits  25% faster when the fast quorum fits fast regions, and falls back to three message delays when it does not or past p faults, where existing two-delay protocols stall.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">DAG-based Byzantine consensus protocols either achieve three-message-delay commits at n=3f+1 or pay with larger committees or fallbacks to reach two-delay commits. A tunable dual-path protocol handling mixed Byzantine and crash faults with proven correctness is lacking.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Hydrozoan runs on an uncertified DAG (like Mysticeti) with a hybrid fault model of f Byzantine and c crash faults on n=3f+c+2p+1 validators. Votes are edges, so both a fast quorum path and a direct certificate path are read off the same blocks. A graded indirect rule reconciles paths so all honest validators decide identically. All lemmas for both Hydrozoan and Optimal-Hydrozoan are machine-checked in Lean 4 on Mathlib, with no sorry and only Lean&#x27;s three standard axioms.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Hydrozoan matches Mysticeti&#x27;s throughput, commits about 25% faster when the fast quorum fits fast regions, and falls back to three message delays otherwise instead of stalling. Optimal-Hydrozoan is the first construction to match the known lower bound, tolerating one more fault on the fast path.</p><div class="sum-table"><table><thead><tr><th>Protocol</th><th>n</th><th>Delays</th><th>Multi-leader</th><th>DAG</th><th>Machine-checked</th></tr></thead><tbody><tr><td>Mysticeti</td><td>3f+1</td><td>3</td><td>yes</td><td>uncertified</td><td>yes</td></tr><tr><td>Hydrangea</td><td>3f+c+2p+1</td><td>2/3</td><td>no</td><td>no</td><td>no</td></tr><tr><td>Hydrozoan</td><td>3f+c+2p+1</td><td>2/3</td><td>yes</td><td>uncertified</td><td>yes</td></tr><tr><td>Optimal-Hydrozoan</td><td>3f+c+2p-1</td><td>2/3</td><td>yes</td><td>uncertified</td><td>yes</td></tr></tbody></table><div class="tbl-cap">Protocol comparison (delays, faults, machine-checked)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

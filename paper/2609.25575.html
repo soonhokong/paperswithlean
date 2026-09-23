@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direct Optimization of Generators for Search in Automated Theorem Proving · Papers With Lean</title>
+<meta name="description" content="Fine-tuned Large Language Models (LLMs) significantly advance Automated Theorem Proving (ATP), but are often deployed as guiding policies within tree search rather than for single-attempt generation. Recent work shows cross entropy is suboptimal for an LLM used in flat search…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Direct Optimization of Generators for Search in Automated Theorem Proving">
+<meta property="og:description" content="Fine-tuned Large Language Models (LLMs) significantly advance Automated Theorem Proving (ATP), but are often deployed as guiding policies within tree search rather than for single-attempt generation. Recent work shows cross entropy is suboptimal for an LLM used in flat search…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.25575.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.25575.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.25575v1" target="_blank" rel="noopener"><img src="../thumbs/2609.25575.jpg" alt="First page of Direct Optimization of Generators for Search in Automated Theorem Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Direct Optimization of Generators for Search in Automated Theorem Proving</h1>
+        <p class="authors">Adam Ousherovitch, Ambuj Tewari</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Sep 22, 2026 · v1</span>
+          <span class="badge">stat.ML</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.25575v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.25575" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Trains and evaluates LLM proof-step generators on Lean 4 via LeanDojo using the leandojo-benchmark-4 split from mathlib4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Fine-tuned Large Language Models (LLMs) significantly advance Automated Theorem Proving (ATP), but are often deployed as guiding policies within tree search rather than for single-attempt generation. Recent work shows cross entropy is suboptimal for an LLM used in flat search strategies such as aggregation or filtering and that work has developed new loss functions to correct this misalignment. Extending this alignment to tree search is more challenging: proof discovery depends on exploration and recovery through off-trace states that supervised demonstrations do not reveal. We extend Compute-Aligned Training (CAT) to this setting through an abstraction of policy-guided search, deriving tractable, trace-supported losses. Alongside these search-aware losses, we introduce a search-agnostic uniform-allocation (UA) loss that accounts for the budget without specifying the specific search. Both induce scalar weights on per-tactic cross-entropy gradients. We characterize how off-trace behavior affects the search-aware weights, including conditions for vanishing approximation error at large budgets. On a Lean benchmark, both approaches achieve higher observed proof-success rates than cross-entropy across six search strategies, with strong results from a single shared UA adapter. Budget sweeps show larger gains over cross-entropy at 16 than at 256 expansions, implying CAT scales with test time compute.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Fine-tuned LLMs guiding tree search for automated theorem proving are trained with cross-entropy, which is misaligned with search-based deployment under finite compute budgets. Extending alignment to tree search is hard because proof discovery relies on off-trace exploration and recovery not present in demonstrations.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors formalize policy-guided search and derive Compute-Aligned Training (CAT) objectives restricted to demonstrated trace states, collapsing deviations into a trace-miss event. They introduce a search-agnostic uniform-allocation (UA) loss that budgets repeated sampling per step without specifying a search rule. Both objectives reduce to scalar weights on per-tactic cross-entropy gradients. They also analyze approximation error via bypass and trap channels.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2609.25575/fig1_main_UA.png" alt=""><figcaption>Figure 1: Both training families improve accuracy over CE. Proofs found (%) on 458 held-out theorems with a budget of N=256 tactic expansions. Search-aware CAT uses strategy-matched training objectives. UA uses one adapter across all strategies. UA has the highest accuracy under branching strategies; search-aware CAT leads under Pass@ N . Error bars show 95\% intervals.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On a Lean 4 benchmark (leandojo-benchmark-4-random from mathlib4, 458 held-out theorems), both search-aware CAT and UA achieve higher proof-success rates than cross-entropy across six search strategies. A single shared UA adapter performs strongly, and gains over cross-entropy scale with test-time compute budget.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2609.25575/fig1_main_UA.png" alt=""><figcaption>Figure 1: Both training families improve accuracy over CE. Proofs found (%) on 458 held-out theorems with a budget of N=256 tactic expansions. Search-aware CAT uses strategy-matched training objectives. UA uses one adapter across all strategies. UA has the highest accuracy under branching strategies; search-aware CAT leads under Pass@ N . Error bars show 95\% intervals.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2609.25575/fig4_sweep_gain.png" alt=""><figcaption>Figure 9: Complete budget sweep, including the compute-limited N=1024 evaluation. Error bars show 95\% intervals; filled markers denote p&lt;0.05 and hollow markers denote p\geq 0.05 . Dashed segments connect to the N=1024 estimates, annotated with their paired subset sizes. The completed subsets differ across budgets, so connecting lines are descriptive rather than a common-cohort comparison.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

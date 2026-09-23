@@ -6,7 +6,73 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 23 Sep 2026 01:00:11 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 23 Sep 2026 02:05:22 +0000</lastBuildDate>
+    <item>
+      <title>Birnbaum&#x27;s principles in Venn diagrams: Extended version with Lean verification</title>
+      <link>https://paperswithlean.com/paper/2609.26776.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.26776.html</guid>
+      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Jaime Enrique Lincovil Curivil, Alexandre Galvão Patriota</dc:creator>
+      <category>formalization</category><category>logic</category><category>probability</category>
+      <description>Birnbaum&#x27;s theorem relating likelihood, sufficiency, and conditionality principles is formalized and certified in Lean using a finite-sample statistical-relations framework.
+
+Birnbaum&#x27;s theorem states that the sufficiency and conditionality principles jointly imply, and are implied by, the likelihood principle. To enable formal certification of the results in Lean, we make the conditionality relation explicit through a finite-sample formulation based on \cite{Evans2013}. We reformulate the theorem as a statement about classes of statistical procedures that preserve statistical relations, and show that the proof reduces to the propagation of evidential equality along chains of conditionality-related inference bases (experiment–observation pairs). The main results are illustrated by Venn diagrams, and a worked finite example exhibits two pairs of inference bases: one related by conditionality but not by sufficiency, and the other related by sufficiency but not by conditionality. For finite parameter spaces with at least two points, the class of likelihood-invariant procedures with codomain $[0,1]$ is strictly contained in the class of sufficiency-invariant procedures.</description>
+    </item>
+    <item>
+      <title>Hydrozoan: Latency-Adaptive DAG Consensus under Mixed Byzantine and Crash Faults</title>
+      <link>https://paperswithlean.com/paper/2609.25918.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.25918.html</guid>
+      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Qianyu Yu, Lefteris Kokoris-Kogias, Alberto Sonnino</dc:creator>
+      <category>verification</category><category>mathlib</category>
+      <description>Safety and liveness of the Hydrozoan and Optimal-Hydrozoan DAG consensus protocols are machine-checked in Lean 4 on top of Mathlib.
+
+DAG-based consensus protocols can achieve great throughput and the optimal three-message-delay limit for n = 3f+1 consensus. While two-delay protocols exist, they pay with reduced resilience (requiring 5f+1-style committees) or rely on fallbacks that sacrifice the DAG&#x27;s high throughput. This paper introduces Hydrozoan, the first DAG protocol with a dual commit path under a hybrid fault model of f Byzantine and c crashed validators, on n = 3f+c+2p+1 validators. Leaders commit in two message delays whenever at most p validators are faulty, and in three otherwise, with no extra messages, no view changes, and multiple leaders per round. Both paths are evaluated on the same DAG, using a novel graded indirect rule to reconcile them so that every honest validator reaches the same decision. We show that under geo-distributed conditions, which path is faster is a property of geography rather than the protocol, as rounds reaching a remote region cost far more than those that do not. The (f, c, p) knobs place the fast quorum where the deployment requires it, allowing a commit in two message delays. If misconfigured, Hydrozoan can still commit in three message delays: Hydrozoan commits on whichever path fires first. We also present Optimal-Hydrozoan, a variant that tolerates one more fault on the fast path, the first construction to match the known lower bound. The safety and liveness of both protocols are machine-checked in Lean 4. Our geo-distributed evaluation shows that Hydrozoan matches Mysticeti&#x27;s throughput, commits  25% faster when the fast quorum fits fast regions, and falls back to three message delays when it does not or past p faults, where existing two-delay protocols stall.</description>
+    </item>
+    <item>
+      <title>Direct Optimization of Generators for Search in Automated Theorem Proving</title>
+      <link>https://paperswithlean.com/paper/2609.25575.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.25575.html</guid>
+      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Adam Ousherovitch, Ambuj Tewari</dc:creator>
+      <category>theorem-proving-ml</category><category>benchmark</category>
+      <description>Trains and evaluates LLM proof-step generators on Lean 4 via LeanDojo using the leandojo-benchmark-4 split from mathlib4.
+
+Fine-tuned Large Language Models (LLMs) significantly advance Automated Theorem Proving (ATP), but are often deployed as guiding policies within tree search rather than for single-attempt generation. Recent work shows cross entropy is suboptimal for an LLM used in flat search strategies such as aggregation or filtering and that work has developed new loss functions to correct this misalignment. Extending this alignment to tree search is more challenging: proof discovery depends on exploration and recovery through off-trace states that supervised demonstrations do not reveal. We extend Compute-Aligned Training (CAT) to this setting through an abstraction of policy-guided search, deriving tractable, trace-supported losses. Alongside these search-aware losses, we introduce a search-agnostic uniform-allocation (UA) loss that accounts for the budget without specifying the specific search. Both induce scalar weights on per-tactic cross-entropy gradients. We characterize how off-trace behavior affects the search-aware weights, including conditions for vanishing approximation error at large budgets. On a Lean benchmark, both approaches achieve higher observed proof-success rates than cross-entropy across six search strategies, with strong results from a single shared UA adapter. Budget sweeps show larger gains over cross-entropy at 16 than at 256 expansions, implying CAT scales with test time compute.</description>
+    </item>
+    <item>
+      <title>Modular Composition of Inductive Types Using Lean Meta-programming</title>
+      <link>https://paperswithlean.com/paper/2609.25427.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.25427.html</guid>
+      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Ramy Shahin</dc:creator>
+      <category>tooling</category><category>type-theory</category>
+      <description>Presents Lean meta-programming algorithms and syntactic extensions for modular composition, reuse, and extension of inductive type and function definitions.
+
+Inductive types are ubiquitous building blocks in many programming and theorem proving languages. An inductive type is a closed set of constructors from which values of the type can be created. That set cannot be extended though once a type is defined. This limits extensibility, reuse, and modular separation of concerns when defining types and functions operating over their values. This limitation is manifested in the expression problem, where extending an expression language with new syntactic constructors without having to modify or re-compile existing ones is a challenge in almost all programming languages. This paper presents inductive type and function implementation composition algorithms based on meta-programming. In addition, a set of syntactic extensions to the Lean proof assistant implementing those algorithms are presented. This framework allows for modular reuse, composition, and extension of a subset of Lean type and function definitions. In addition, semantic subtyping relations between component and composite types are discussed both at the type theoretic and implementation levels. The framework is demonstrated on a case study, involving the composition of syntactic and semantic artifacts of three sublanguages into one language. The case study highlights both the features and limitations of the composition framework.</description>
+    </item>
+    <item>
+      <title>Beyond Natural Language: An Agent-Native Language for Autonomous Science</title>
+      <link>https://paperswithlean.com/paper/2609.25421.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.25421.html</guid>
+      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Yifeng He, Jiachen Liu</dc:creator>
+      <category>formalization</category><category>logic</category><category>verification</category>
+      <description>Semantic guarantees of the Lara claim-support language and metatheory are mechanized in Lean 4 ( 117,000 lines, sorry-free using standard axioms).
+
+As autonomous AI agents take on every stage of scientific inquiry, research output is expanding far beyond human review capacity. Yet scientific communication still relies on natural-language prose: an informal medium prone to ambiguity, hidden assumptions, and untracked limitations that machines cannot reliably audit. We introduce Lara, a machine-checkable language and protocol for checking and revising support for research claims. By turning research arguments into executable artifacts, Lara provides an epistemic kernel for autonomous science: it enables automated validation pipelines for research agents, lets declared bridges connect arguments across papers into an auditable network, and allows both humans and machines to recheck the standing of an encoded claim in milliseconds. In a Lara program, authors explicitly declare their claims, supporting evidence and assumptions, and known objections or limitations. A lightweight, deterministic checker adjudicates these interactions, assigning each claim a reproducible status: &quot;justified&quot;, &quot;defeated&quot;, &quot;contested&quot;, or &quot;gap&quot;, which marks a claim whose support is incomplete and locates the unanswered question. Case studies cover empirical review, a philosophical debate without measurements, and the loss of support when an assumed axiom is withdrawn. We establish the metatheory of claim checking and cross-context argument transport, and mechanize the semantic guarantees in Lean 4 (roughly 117,000 lines), leaving three arguments on paper. The audited public metatheory is &quot;sorry&quot;-free and uses only Lean&#x27;s three standard axioms; some executable examples additionally trust native evaluation.</description>
+    </item>
+    <item>
+      <title>Lean Pool: An AI-Maintained Archive of Formalized Mathematics</title>
+      <link>https://paperswithlean.com/paper/2609.25199.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.25199.html</guid>
+      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Vasily Ilin</dc:creator>
+      <category>tooling</category><category>mathlib</category><category>ai-agents</category><category>formalization</category>
+      <description>Presents Lean Pool, an AI-agent-maintained archive of 211 completed Lean/Mathlib formalization projects with automated linting, review, dependency updates, and optimization.
+
+Lean Pool is a repository of formalized mathematics. It is grown, maintained and optimized by AI agents.</description>
+    </item>
     <item>
       <title>The spherical cap conjecture for immersed disks</title>
       <link>https://paperswithlean.com/paper/2609.24766.html</link>
@@ -600,72 +666,6 @@ For a finite set $S$ with $\lvert S\rvert = N$, the number of families $\mathcal
       <description>A Lean 4 formalization of the prescribed-width subspace embedding theorem and supporting results is provided in a companion repository.
 
 This work studies subspace embeddings obtained by two normalized real Walsh transforms, two independent sign diagonals, and uniform coordinate sampling without replacement. The main result shows that the prescribed sample size $k=\min\{n,\lceil Cr/\varepsilon^2\rceil\}$, for a universal constant $C$, suffices to preserve all squared norms on each fixed $r$-dimensional subspace within $1\pm\varepsilon$ with probability at least $0.99$. The result holds for every ambient Walsh dimension and all ranks, and answers Problem TR-01 in the Open Problems in Numerical Linear Algebra repository. The proof controls joint entry cumulants of the transformed projection through connected graph contractions and Walsh character identities. These estimates then bound the expected trace of even powers of a product of centered projections. A two-projection decomposition converts this estimate into control of both spectral edges. Bernoulli sampling at arbitrary densities and a deterministic upper bound near full sampling yield the prescribed number of coordinates.</description>
-    </item>
-    <item>
-      <title>Mechanizing Gödel&#x27;s Incompleteness Theorems and Provability Logic</title>
-      <link>https://paperswithlean.com/paper/2609.13780.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.13780.html</guid>
-      <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Shogo Saitou, Mashu Noguchi</dc:creator>
-      <category>formalization</category><category>logic</category>
-      <description>Mechanizes Gödel&#x27;s first and second incompleteness theorems and Solovay&#x27;s arithmetical completeness of GL in Lean 4.
-
-We mechanized proof of Gödel&#x27;s first and second incompleteness theorems, Solovay&#x27;s arithmetical completeness theorem of \mathbf{GL}, and related results in the Lean 4 theorem prover.</description>
-    </item>
-    <item>
-      <title>Gap Entropy and Almost Instance-Wise Optimal Best-Arm Identification</title>
-      <link>https://paperswithlean.com/paper/2609.13703.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.13703.html</guid>
-      <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Jiarui Yao, Jiaxi Zhao, Xiangxin Zhou</dc:creator>
-      <category>formalization</category><category>probability</category><category>ml-theory</category>
-      <description>The main theorems on gap-entropy lower and upper bounds for best-arm identification were formalized and machine-verified in Lean 4.
-
-In the best-arm identification problem, we are given $n$ stochastic arms with unknown means and wish to identify the arm with the largest mean with probability at least $1-δ$, using as few samples as possible. We consider independent Gaussian rewards with unit variance and means in $[0,1]$. Chen and Li [2016] conjectured that the instance-wise sample complexity of this problem is characterized by the gap entropy, up to an additive term arising from the two-arm problem. In this paper, we resolve their gap-entropy and almost instance-wise optimality conjectures. For an instance $I$, let $Δ_{[i]}$ be the gap between the largest and the $i$-th largest mean, let $H(I)=\sum_{i=2}^{n}Δ_{[i]}^{-2}$, and let Ent$(I)$ denote the entropy of the normalized complexities of its dyadic gap groups. For every $0&lt;δ&lt;0.1$, we show that the order-oblivious instance-wise lower bound is $ Θ (H(I)[\log(1/δ)+Ent(I)]). $ We also give a single $δ$-correct algorithm with expected sample complexity $ O ( H(I)[\log(1/δ)+Ent(I)] +D\log(e+\log(e+D))),D=Δ_{[2]}^{-2}, $ without prior knowledge of the gaps. Our lower bound removes the dyadic-gap and monotonicity restrictions of previous work, and our upper bound removes the additional polylogarithmic factor multiplying the two-arm term. Thus, a single algorithm attains the instance-wise lower bound up to an additive two-arm term. The main theorems have been formalized and proved in Lean 4.</description>
-    </item>
-    <item>
-      <title>Four-arm polyominoes in Golomb&#x27;s hierarchy: A complete classification with Lean verification</title>
-      <link>https://paperswithlean.com/paper/2609.13641.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.13641.html</guid>
-      <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Angel Ivanov Raychev</dc:creator>
-      <category>formalization</category><category>combinatorics</category>
-      <description>A Lean 4 development verifies the complete tiling classification of four-arm polyominoes, including interpreting finite symbolic certificates as statements about infinite tilings.
-
-We classify the polyominoes obtained by adjoining four straight arms to a single square, allowing zero arm lengths, according to their ability to tile rectangles, half-strips, bent strips, quadrants, strips, half-planes, and the plane. We also classify their ability to tile an integer enlargement of themselves. Tiles occupy whole square-grid cells; translations, rotations, and reflections are permitted. Exactly five capability profiles occur. For the family $P(n,1,1,0)$, the rectangle profile holds for $n\le3$ and the bent-strip profile, with no half-strip or rep-tiling, for every $n\ge4$. A cross with four positive arms tiles the plane precisely when two opposite arms have length one; it never tiles a half-plane. Explicit periodic constructions and geometric obstructions are combined with finite symbolic case certificates. A Lean 4 development verifies the full classification for every natural four-tuple, including the interpretation of the certificates as statements about arbitrary infinite tilings. The account incorporates the author&#x27;s 2020–2021 L- and T-polyomino work, reconstructs Dahlke&#x27;s gun argument, and documents the subsequent AI-assisted proof development and formalization.</description>
-    </item>
-    <item>
-      <title>Spherical statistics and phase transitions in high-dimensional lattices</title>
-      <link>https://paperswithlean.com/paper/2609.13635.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.13635.html</guid>
-      <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Thijs Laarhoven</dc:creator>
-      <category>formalization</category><category>number-theory</category><category>probability</category>
-      <description>A Lean formalization verifies the paper&#x27;s main results on high-dimensional lattice shell statistics, assuming the classical formulas and probability model stated in code.
-
-We study the spherical statistics of all the points in a thin shell of a high-dimensional random lattice. The exact relations between lattice points make it unclear when predictions based only on spherical geometry should hold. We answer this question for several statistics, including the number of shell points, the balance of their directions, and the occurrence, repetition, and distribution of differences between them. We identify sharp thresholds as the shell radius grows and show that these statistics undergo several distinct phase transitions. A shell can already agree with one geometric prediction while still differing strongly from another. Our results hold for a single sampled lattice, with probability tending to one as the dimension grows. They include estimates that hold across a complete shell, bounds close to the transition thresholds, and extensions to randomly shifted lattices. A Lean formalization verifies the main results, assuming the classical formulas and probability model stated in the code.</description>
-    </item>
-    <item>
-      <title>Lieb&#x27;s Permanental Dominance Conjecture for Ordinary Immanants through Order Fifteen</title>
-      <link>https://paperswithlean.com/paper/2609.13412.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.13412.html</guid>
-      <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Yinjie Li</dc:creator>
-      <category>formalization</category><category>combinatorics</category><category>algebra</category>
-      <description>The order-14 bridge inequality for immanant (4,4,3,3) is formalized and kernel-checked in Lean 4 over Hermitian PSD matrices.
-
-Pate proved ordinary irreducible-immanant permanental dominance through order $13$ and identified $(4,4,3,3)$ as the sole remaining order-$14$ case, with $(5,4,3,3)$ and $(3^5)$ forming the order-$15$ frontier. These three cases are settled here; consequently $d_λ(A)/f^λ\le \operatorname{per}(A)$ for every partition $λ\vdash n$ with $n\le15$ and every complex Hermitian positive-semidefinite matrix $A$. The argument also yields results beyond this finite frontier: an exact four-term bridge for $(4,4,3,3)$, the uniform family $(m,4,3,3)$, a two-parameter family $(a,b,3,3)$ for $a\ge b\ge4$ and $5a\ge8b$, and a long-first-row criterion for arbitrary fixed tails. These results arise from explicit specializations of Pate&#x27;s $W$-function positivity framework using partial swaps, Young projectors, Pieri–content identities, and branching data. For $(3^5)$, an exact Farkas certificate shows that the central-projector partial-swap cone is insufficient; a branching-refined one-swap construction escapes this obstruction and yields a positive $106+19$-witness certificate. Boundary-compression and node-moving results further describe the reach and limitations of the local-filter method. All finite certificates are checked by exact integer or rational arithmetic and are supplied as ancillary material. The order-$14$ bridge is additionally formalized and kernel-checked in Lean 4 for all complex Hermitian positive-semidefinite matrices, including the exact coefficient normalization and the deduction of $(4,4,3,3)$ permanental dominance from four explicitly stated Pate inequalities.</description>
-    </item>
-    <item>
-      <title>Medvedev logic is undecidable</title>
-      <link>https://paperswithlean.com/paper/2609.13359.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.13359.html</guid>
-      <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Rodrigo Nicolau Almeida, Søren Brinck Knudstorp</dc:creator>
-      <category>formalization</category><category>logic</category>
-      <description>The central argument of the undecidability proof was formally verified in Lean by an LLM (Claude Opus 5).
-
-We show that Medvedev&#x27;s logic of finite problems, a well-known superintuitionistic logic, is undecidable. The key method is a reduction from the periodic tiling problem to non-theoremhood in Medvedev&#x27;s logic. This settles a longstanding open problem. Using similar techniques, but reducing instead to the ordinary tiling problem, we likewise obtain undecidability of Skvortsov&#x27;s logic of infinite problems, and the fact that the two logics are distinct – in fact, they are separated by any aperiodic tiling of the plane. Due to the fact that Medvedev&#x27;s logic figures in so many different areas, these results have implications for several fields – for example, the study of schematic fragments of logics such as propositional dependence logic, or the study of internal logics of toposes. The core idea and technical work of the undecidability proof were obtained using ChatGPT Sol 5.6, and formally verified in Lean by Claude Opus 5. A detailed methodology section outlines how such results were obtained.</description>
     </item>
   </channel>
 </rss>
