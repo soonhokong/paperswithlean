@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biplanar graphs with independence number two are 9-colorable · Papers With Lean</title>
+<meta name="description" content="A graph is biplanar if it is the union of two planar graphs on the same vertex set. The largest chromatic number of a biplanar graph is known to lie between 9 and 12. The lower bound comes from Sulanke&#x27;s graph, which has independence number 2, and a biplanar graph on 19 vertices…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Biplanar graphs with independence number two are 9-colorable">
+<meta property="og:description" content="A graph is biplanar if it is the union of two planar graphs on the same vertex set. The largest chromatic number of a biplanar graph is known to lie between 9 and 12. The lower bound comes from Sulanke&#x27;s graph, which has independence number 2, and a biplanar graph on 19 vertices…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.28102.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.28102.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.28102v1" target="_blank" rel="noopener"><img src="../thumbs/2609.28102.jpg" alt="First page of Biplanar graphs with independence number two are 9-colorable"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Biplanar graphs with independence number two are 9-colorable</h1>
+        <p class="authors">Stefan Szeider</p>
+        <div class="row">
+          <span class="badge">math.CO</span>
+          <span class="date">Sep 23, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.28102v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.28102" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.22913639" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 with Mathlib checks the computational proof: completeness of a SAT-modulo-symmetries enumeration and every LRAT refutation, assuming three planarity facts.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A graph is biplanar if it is the union of two planar graphs on the same vertex set. The largest chromatic number of a biplanar graph is known to lie between 9 and 12. The lower bound comes from Sulanke&#x27;s graph, which has independence number 2, and a biplanar graph on 19 vertices with independence number 2 would have chromatic number at least 10. Gethner and Sulanke asked in 2009 whether such a graph exists. We show that it does not, and more generally that every biplanar graph with independence number at most 2 is 9-colorable. The proof embeds a hypothetical counterexample in the union of two sphere triangulations, enumerates with SAT modulo symmetries the 3271 graphs that pass a necessary filter for the complement of such a union, and shows with a SAT solver that none of them is such a complement; a matching argument reduces the general statement to this computation and one further case on 18 vertices. The computational part of the proof, including the completeness of the enumeration and every refutation, is checked in Lean 4, assuming three classical facts about planar graphs. The Lean development, the SAT instances, and the enumeration certificates are available on Zenodo.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Determining the largest chromatic number of biplanar graphs (union of two planar graphs), known to lie in {9,...,12}. Gethner and Sulanke asked whether a 19-vertex biplanar graph with independence number 2 (triangle-free complement) exists, which would force chromatic number at least 10.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A hypothetical counterexample is embedded in the union of two sphere triangulations. SAT modulo symmetries enumerates 3271 candidate graphs passing a necessary filter for the complement of such a union, and a SAT solver refutes each via an exact-union encoding with lazily added link and separator cuts. A Gallai–Edmonds matching argument reduces the general statement to this computation plus one 18-vertex case. The entire computational part—enumeration completeness via symmetry-breaking clauses, every LRAT refutation, the encoding soundness, and reduction arithmetic—is verified in Lean 4 using Mathlib, assuming three classical planarity facts.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Every biplanar graph with independence number at most 2 is 9-colorable, so no such 19-vertex (or 18-vertex) graph exists, closing the independence-number-2 route to a 10-chromatic example. A 10-chromatic biplanar graph must have independence number at least 3.</p><div class="sum-table"><table><thead><tr><th>k</th><th>1</th><th>1</th><th>2</th><th>2</th><th>3</th></tr></thead><tbody><tr><td>r</td><td>1</td><td>6</td><td>0</td><td>4</td><td>1</td></tr><tr><td>n</td><td>18</td><td>13</td><td>18</td><td>14</td><td>16</td></tr><tr><td>L(n)</td><td>57</td><td>12</td><td>57</td><td>19</td><td>36</td></tr><tr><td>M</td><td>59</td><td>7</td><td>54</td><td>10</td><td>21</td></tr></tbody></table><div class="tbl-cap">Component cases: edge lower bound L(n) versus computed upper bound M</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
