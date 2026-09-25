@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning to Discover Interesting Mathematics · Papers With Lean</title>
+<meta name="description" content="Recently, Large Language Models (LLMs) have been increasingly able to solve advanced mathematical problems, including many that have been open for decades. This opens the door to expansion of mathematical knowledge at unprecedented scale. Yet, while LLMs may be able to…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning to Discover Interesting Mathematics">
+<meta property="og:description" content="Recently, Large Language Models (LLMs) have been increasingly able to solve advanced mathematical problems, including many that have been open for decades. This opens the door to expansion of mathematical knowledge at unprecedented scale. Yet, while LLMs may be able to…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.28603.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.28603.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.28603v1" target="_blank" rel="noopener"><img src="../thumbs/2609.28603.jpg" alt="First page of Learning to Discover Interesting Mathematics"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Learning to Discover Interesting Mathematics</h1>
+        <p class="authors">Niket Patel, Ahmad Rammal, Amaury Hayat, Remi Munos, Julia Kempe</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Sep 23, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.28603v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.28603" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/radixark/miles" target="_blank" rel="noopener" title="radixark/miles">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses Lean 4/Mathlib as ground-truth library to define proof-difficulty and interestingness metrics, training a model to generate out-of-distribution formal theorems.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Recently, Large Language Models (LLMs) have been increasingly able to solve advanced mathematical problems, including many that have been open for decades. This opens the door to expansion of mathematical knowledge at unprecedented scale. Yet, while LLMs may be able to conjecture and prove more and more theorems, it remains open whether this new mathematical knowledge is interesting or useful. We define intrinsic interestingness of a theorem as the ratio between the length of its proof and the length of its statement. We show that this correlates strongly with an extrinsic measure of the downstream utility of a theorem. We identify the difficulty of a proof conditioned on a set of premises as a useful primitive for computing these metrics, and train a 27B model that predicts proof difficulty more accurately than frontier general-purpose models. Optimizing for our metric creates a model capable of producing more interesting theorems, while also reducing substantial or full overlap with Mathlib from 91.9% to 30.6%, showcasing the creation of more out-of-distribution math. We show that our system can generate candidate theorems, select the most interesting among them, and iteratively build on a self-expanding mathematical library. These metrics provide a practical and quantifiable signal for ranking conjectures and guiding proof search within formal mathematical libraries. Our framework provides a path towards self-expanding, machine-verified mathematical libraries that can choose worthwhile statements without relying on human-supplied targets.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLMs can prove increasingly many theorems, but it is unclear whether the generated mathematical knowledge is interesting or useful. The challenge is quantifying interestingness to guide autonomous mathematical discovery without human-supplied targets.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An intrinsic interestingness metric is defined as the ratio of a theorem&#x27;s proof length to its statement length, using Lean 4/Mathlib as a ground-truth codebase to measure conditional proof difficulty V(T|P). A 27B model is trained to predict this premise-conditioned proof difficulty via a reward combining grounding, Bellman-composition, and monotonicity constraints. Optimizing the interestingness metric steers the model to generate novel theorems, which are iteratively added as premises to build a self-expanding library.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2609.28603/forward_dependency_graph.png" alt=""><figcaption>Figure 6: Iterative forward discovery builds a reusable theorem graph. Here we showcase a result from our iterative forward discovery algorithm introduced in Section 3.4 . Green shade encodes \log_{10} total interestingness relative to P_{0} on a per-figure scale. The red lines trace the ancestry of the most interesting theorem introduced in P_{6} . More such graphs can be found in Figure 12 in Ap</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The intrinsic interestingness metric correlates strongly with an extrinsic utility measure. The trained 27B difficulty predictor outperforms frontier general-purpose models, and optimizing for interestingness reduces substantial/full Mathlib overlap from 91.9% to 30.6%, indicating more out-of-distribution mathematics.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2609.28603/u0_utility_vs_i0_interestingness.png" alt=""><figcaption>Figure 3: Utility and interestingness are correlated. Each point is a mathlib theorem. Utility U_{0} , defined in Section 3.2 , is the number of lines of code saved across the library when the theorem is admitted as a premise, while interestingness I_{0} , defined in Section 3.1 , is the ratio between a theorem’s proof length and description length. Excluding the declarations with U_{0}=0 gives a </figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2609.28603/area_matrix.png" alt=""><figcaption>Figure 8: Full cross-area interestingness matrix. Each cell is the median target-wise ratio for the row area under premises from the column area versus the same-area premise condition. All premise frontiers are synchronously expanded through three rounds before new predictions are obtained. We select ten targets per area (120 total); four row areas contribute nine ratios after each excludes one no</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

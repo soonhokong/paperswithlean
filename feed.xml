@@ -6,7 +6,40 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 25 Sep 2026 01:00:04 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 25 Sep 2026 02:01:39 +0000</lastBuildDate>
+    <item>
+      <title>Packing Tails of Reciprocal Rectangles into Squares of Equal Area</title>
+      <link>https://paperswithlean.com/paper/2609.28791.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.28791.html</guid>
+      <pubDate>Thu, 24 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Yu Jiang</dc:creator>
+      <category>formalization</category><category>combinatorics</category><category>geometry</category>
+      <description>The final packing statements of the tail rectangle-packing theorem were checked in Lean 4.
+
+The Meir–Moser rectangle-packing problem asks whether all rectangles with side lengths \(1/n\) and \(1/(n+1)\), for \(n\ge1\), can be packed into the unit square with pairwise disjoint interiors. We establish a tail version of this problem. Let \(R_n\) denote the rectangle with these side lengths. We prove that there exists an integer \(m_0\) such that, for every \(m\ge m_0\), the family \(\{R_n:n\ge m\}\) admits a packing, by translations and right-angle rotations, into a square of side length \(m^{-1/2}\), with pairwise disjoint interiors. The area of the square equals the sum of the areas of all the rectangles. The geometric construction recursively decomposes rectangular gaps, while local randomized quotas and random permutations assign subsequent integer indices. We separately control the total area of waiting gaps and the assignment load at each index. The proof is organized in six steps: a finite-prefix reduction, geometric row decompositions, an area bootstrap, a sharp source-load estimate, control of the actual adaptive construction, and a compactness limit. For every finite time horizon, the probability of failure has a bound that is independent of the horizon and can be made arbitrarily small. The adaptive step uses a permanent load ledger, actual fresh height queries, and a one-sided comparison with a frozen source experiment. Compactness then yields an infinite packing. The final packing statements have been checked in Lean 4. A sufficient threshold is \(m_0=10^{1000}\). This result applies only to sufficiently late tails and does not resolve the original Meir–Moser rectangle-packing problem for the full sequence starting at \(n=1\), which remains open.</description>
+    </item>
+    <item>
+      <title>Learning to Discover Interesting Mathematics</title>
+      <link>https://paperswithlean.com/paper/2609.28603.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.28603.html</guid>
+      <pubDate>Thu, 24 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Niket Patel, Ahmad Rammal, Amaury Hayat, Remi Munos, Julia Kempe</dc:creator>
+      <category>theorem-proving-ml</category><category>mathlib</category><category>ai-agents</category>
+      <description>Uses Lean 4/Mathlib as ground-truth library to define proof-difficulty and interestingness metrics, training a model to generate out-of-distribution formal theorems.
+
+Recently, Large Language Models (LLMs) have been increasingly able to solve advanced mathematical problems, including many that have been open for decades. This opens the door to expansion of mathematical knowledge at unprecedented scale. Yet, while LLMs may be able to conjecture and prove more and more theorems, it remains open whether this new mathematical knowledge is interesting or useful. We define intrinsic interestingness of a theorem as the ratio between the length of its proof and the length of its statement. We show that this correlates strongly with an extrinsic measure of the downstream utility of a theorem. We identify the difficulty of a proof conditioned on a set of premises as a useful primitive for computing these metrics, and train a 27B model that predicts proof difficulty more accurately than frontier general-purpose models. Optimizing for our metric creates a model capable of producing more interesting theorems, while also reducing substantial or full overlap with Mathlib from 91.9% to 30.6%, showcasing the creation of more out-of-distribution math. We show that our system can generate candidate theorems, select the most interesting among them, and iteratively build on a self-expanding mathematical library. These metrics provide a practical and quantifiable signal for ranking conjectures and guiding proof search within formal mathematical libraries. Our framework provides a path towards self-expanding, machine-verified mathematical libraries that can choose worthwhile statements without relying on human-supplied targets.</description>
+    </item>
+    <item>
+      <title>A weak Hellinger inequality for noisy Boolean channels</title>
+      <link>https://paperswithlean.com/paper/2609.28534.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.28534.html</guid>
+      <pubDate>Thu, 24 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Polona Durcik, Marco Fraccaroli, Joris Roos</dc:creator>
+      <category>formalization</category><category>verification</category><category>combinatorics</category>
+      <description>The three-parameter inequality underlying the weak Hellinger bound is formally verified in Lean 4 using computer-assisted positivity checks.
+
+A weak form of the Hellinger conjecture of Anantharam, Bogdanov, Chakrabarti, Jayram, and Nair for the binary symmetric channel is proved: dictator functions maximize Hellinger $Φ$-entropy among all Boolean functions of the input and all one-bit statistics of the output of a noisy channel. The technical heart of the matter is an explicit inequality in three real parameters, which is proved using explicit polynomial approximations and computer-assisted positivity checks. The results are also formally verified in Lean 4.</description>
+    </item>
     <item>
       <title>Constructing Rational Curves via Jets on Projective Varieties with Non-Nef Canonical Bundle</title>
       <link>https://paperswithlean.com/paper/2609.28465.html</link>
@@ -633,39 +666,6 @@ We develop a certified continuation framework for inference and training in deep
       <description>A revised core calculus for Typed Racket&#x27;s occurrence typing is given a semantic type soundness proof via step-indexed logical relations, formalized in Lean.
 
 Over the past two decades, numerous systems have brought some of the benefits of dependent typing to a wide variety of new programming languages, often by restricting which terms can appear inside types. Such techniques are known as refinement types, occurrence typing, liquid types, and path dependent types, among others. However, the restrictions adopted by these systems often break the substitution property, because they explicitly disallow the ability to substitute arbitrary terms for variables inside types. This leads to significant complexity in the design and metatheory of these systems, increasing the possibility of significant errors. We consider a specific line of work on occurrence typing, namely, the calculus underlying Typed Racket due to Tobin-Hochstadt and Felleisen 2010. We show that the fundamental challenge of substitution into types resulted in multiple flaws in the formalism and the syntactic type soundness theorem of this work. These flaws are replicated in several other papers building on this work, and also surface as a soundness bug in Typed Racket itself. We identify and repair these problems, revising the core calculus of Typed Racket and giving a semantic type soundness proof using step-indexed logical relations, formalized in Lean. We argue that this approach is simpler than it may seem, and easily scales to handle the complexity of the occurrence typing in Typed Racket.</description>
-    </item>
-    <item>
-      <title>Formalization of Sullivan&#x27;s No Wandering Domains Theorem in Lean</title>
-      <link>https://paperswithlean.com/paper/2609.16027.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.16027.html</guid>
-      <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Ziang Li, Yusheng Luo</dc:creator>
-      <category>formalization</category><category>autoformalization</category><category>analysis</category>
-      <description>Lean 4 formalization of Sullivan&#x27;s No Wandering Domains theorem, building normal families, quasiconformal, and measurable Riemann mapping infrastructure on Mathlib.
-
-We report on a Lean 4 formalization of Sullivan&#x27;s No Wandering Domains theorem: every Fatou component of a rational self-map of the Riemann sphere of degree at least two is eventually periodic. The project formalizes the relevant background in normal families, the Montel-Carathéodory theorem, Julia and Fatou sets, local Sobolev regularity and Wirtinger derivatives, the Cauchy and Beurling transforms, the equivalence of analytic and geometric quasiconformality, and the measurable Riemann mapping theorem. This paper describes the translation of this mathematics into Lean, the proof architecture, the reusable components, and the autoformalization workflow.</description>
-    </item>
-    <item>
-      <title>Cyclic Haagerup-Izumi fusion categories at every odd order</title>
-      <link>https://paperswithlean.com/paper/2609.15986.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.15986.html</guid>
-      <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Tzu-Chen Huang</dc:creator>
-      <category>formalization</category><category>category-theory</category><category>mathlib</category>
-      <description>A Lean 4 development with Mathlib constructs the hyperbolic gamma function and verifies the linear, quadratic, cubic, and quartic coefficient identities.
-
-We construct a complex spherical fusion category with cyclic Haagerup-Izumi fusion rules for every odd n &gt;= 3, and deduce pseudo-unitary existence. The proof has four parts: explicit real coefficients and their quadratic identities; a contour calculation for a range of cubic Fourier coefficients; algebraic completion of all cubics; and categorical reconstruction. Matrix inversion supplies reflection, and an extension of the dimension-field automorphism supplies the positive-dimensional category.</description>
-    </item>
-    <item>
-      <title>Optimal entanglement-assisted source coding under a balanced-difference promise</title>
-      <link>https://paperswithlean.com/paper/2609.15757.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.15757.html</guid>
-      <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Julius A. Zeiss</dc:creator>
-      <category>formalization</category><category>combinatorics</category><category>quantum</category>
-      <description>All lemmas, theorems, and corollaries on the balanced-difference source-coding bounds and quantum chromatic number are formalized and verified in Lean.
-
-Entanglement can reduce the communication required for coding tasks, but establishing the minimum achievable cost is essential to understanding its limits. We address this question in a zero-error source-coding task where Alice receives a word and Bob knows an unordered pair of candidates containing it. Alice does not know the pair and must enable Bob to identify her word without error using shared entanglement and one classical message. The candidates satisfy a balanced-difference promise: for words in $\mathbb{Z}_q^n$ with $n=q\ell$, each residue modulo $q$ occurs exactly $\ell$ times in their coordinatewise difference. For all integers $q\geq2$ and $\ell\geq1$, we prove that the task requires exactly $n$ messages when $(q-1)\ell$ is even and two messages when it is odd. These minima allow arbitrary finite-dimensional shared states independent of the inputs and arbitrary local measurements. In even parity, this establishes optimality of an existing entanglement-assisted protocol. In odd parity, an explicit deterministic protocol achieves the optimum of one bit without entanglement. Our proof combines Fourier analysis with a combinatorial counting argument to determine the smallest eigenvalue of the associated graphs. In even parity, this resolves the spectral assertion of Cao et al.&#x27;s Conjecture 6.3 for balanced cyclic generalized Hadamard graphs. Together with an explicit odd-parity bipartition, this determines the quantum chromatic number as $n$ in even parity and $2$ in odd parity, where the classical chromatic number is also $2$. All lemmas, theorems, and corollaries are formalized and verified in Lean.</description>
     </item>
   </channel>
 </rss>
