@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zero-Storage Procedural Neural Synthesis via Boundary Dynamics: Formal Verification in Lean 4 and Bare-Metal Gauntlet Validation · Papers With Lean</title>
+<meta name="description" content="Contemporary neural inference architectures rely on dense floating-point weight matrices stored in high-bandwidth memory (VRAM), incurring severe memory-wall bottlenecks and preventing native execution inside deterministic virtual machines like the Ethereum Virtual Machine…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zero-Storage Procedural Neural Synthesis via Boundary Dynamics: Formal Verification in Lean 4 and Bare-Metal Gauntlet Validation">
+<meta property="og:description" content="Contemporary neural inference architectures rely on dense floating-point weight matrices stored in high-bandwidth memory (VRAM), incurring severe memory-wall bottlenecks and preventing native execution inside deterministic virtual machines like the Ethereum Virtual Machine…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.33066.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.33066.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.33066v1" target="_blank" rel="noopener"><img src="../thumbs/2609.33066.jpg" alt="First page of Zero-Storage Procedural Neural Synthesis via Boundary Dynamics: Formal Verification in Lean 4 and Bare-Metal Gauntlet Validation"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Zero-Storage Procedural Neural Synthesis via Boundary Dynamics: Formal Verification in Lean 4 and Bare-Metal Gauntlet Validation</h1>
+        <p class="authors">Volkan Dağlı, Zerrin Dağlı, Dağhan Dağlı</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Sep 27, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.CR</span> <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.33066v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.33066" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/pCwOrM/mandelbrot-fractal-neural-synthesis" target="_blank" rel="noopener" title="pCwOrM/mandelbrot-fractal-neural-synthesis">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Ten theorems about a procedural neural decision kernel—modular ring invariants, fixed-point overflow safety, fuel-bounded halting, and EVM gas bounds—are proven in Lean 4 with Mathlib4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Contemporary neural inference architectures rely on dense floating-point weight matrices stored in high-bandwidth memory (VRAM), incurring severe memory-wall bottlenecks and preventing native execution inside deterministic virtual machines like the Ethereum Virtual Machine (EVM). Verifying termination and arithmetic invariants for recursive dynamical systems over continuous domains is generally undecidable in the Blum-Shub-Smale model. Here, we present the formal verification and bare-metal empirical validation of WERR (Waves &amp; Errors) and Phase III Orbital Error Dynamics (OED), a non-tensor decision paradigm that procedurally synthesizes non-linear decision boundaries on demand from a 24-byte coordinate seed $Θ= (c_x, c_y, \text{zoom})$ along the boundary of the Mandelbrot set ($\partial\mathcal{M}$). By projecting the recurrence $z_{n+1} = z_n^2 + c$ onto the modular residue ring $\mathbb{Z}/9\mathbb{Z}$ and the fixed-point domain $\mathbb{Q}_{16.16}$, we establish ten machine-verified theorems in Lean 4 (v4.34.1) with Mathlib4 and zero unproven conjectures (sorry): proving $\mathcal{I}_3 = \{0,3,6\} \subset \mathbb{Z}/9\mathbb{Z}$ ideal closure, universal fuel-bounded halting ($\le 9$ and $\le 12$ steps), absence of $\mathbb{Q}_{16.16}$ square overflow below $2^{63}-1$, non-constant boundary escape sensitivity, and a parametric EVM gas bound ($\le 22,557 \le 24,000$ gas). Evaluated on a 40-core Dual Intel Xeon server, the vectorized 36-iteration CPU kernel processes 100,000 decisions in 6.49 s (15,397 decisions/s, 0 Bytes VRAM, 15.15x speedup), while a sigmoidal outlier gate suppresses 100.00% of adversarial spikes while preserving 89.60% of clean baseline signals.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Deploying learned decision policies inside deterministic virtual machines like the EVM is blocked by weight storage costs, absence of native floating-point, and slow ZK-ML proving. Verifying termination and arithmetic invariants for recursive dynamical kernels over continuous domains is generally undecidable.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A non-tensor decision paradigm (WERR/OED) procedurally synthesizes decision boundaries from a 24-byte coordinate seed via the recurrence z_{n+1}=z_n^2+c near the Mandelbrot boundary. The recurrence is projected onto the modular residue ring Z/9Z and a Q16.16 fixed-point domain. Ten theorems are machine-verified in Lean 4 (v4.34.1) with Mathlib4, covering ideal closure of {0,3,6} in Z/9Z, fuel-bounded halting (&lt;=9 and &lt;=12 steps), absence of Q16.16 square overflow below 2^63-1, non-constant boundary sensitivity, and a parametric EVM gas bound (&lt;=22,557 &lt;=24,000).</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The Lean module compiles cleanly in 2.9 s across 3,093 build targets with zero sorry and no custom axioms. The vectorized CPU kernel processes 100,000 decisions in 6.49 s with 0 bytes VRAM; the on-chain hook executes below 22,557 gas, matching the proven bound.</p><div class="sum-table"><table><thead><tr><th>Architecture / Verifier</th><th>Verification Engine</th><th>Persistent Weights</th><th>Native EVM Execution</th></tr></thead><tbody><tr><td>Reluplex / Marabou</td><td>SMT Solver</td><td>O(W) Float Tensors</td><td>Infeasible (&gt;10^8 gas)</td></tr><tr><td>α,β-CROWN</td><td>Linear Bound Propagation</td><td>O(W) Float Tensors</td><td>Infeasible (&gt;10^8 gas)</td></tr><tr><td>EZKL / ZK-ML</td><td>Halo2 Arithmetic Circuit</td><td>Off-chain Prover RAM</td><td>250k–500k gas (verif.)</td></tr><tr><td>Werracle / WERR (Ours)</td><td>Lean 4 + Mathlib4 (0 sorry)</td><td>24-Byte Seed O(1)</td><td>21,438–22,557 gas (native)</td></tr></tbody></table><div class="tbl-cap">Comparison of formal neural verification frameworks and on-chain inference paradigms</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

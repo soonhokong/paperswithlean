@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Padovan-automatic description of a nested recurrence · Papers With Lean</title>
+<meta name="description" content="We study the sequence $a(0)=0$, $a(1)=1$ and $a(n)=n-a(n-a(n-a(n-1)))$ for $n\ge 2$, listed as A076502 in the On-Line Encyclopedia of Integer Sequences. We identify $a(n)$ as a two-position shift in the greedy Padovan numeration system, with a finite-state correction. The proof…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Padovan-automatic description of a nested recurrence">
+<meta property="og:description" content="We study the sequence $a(0)=0$, $a(1)=1$ and $a(n)=n-a(n-a(n-a(n-1)))$ for $n\ge 2$, listed as A076502 in the On-Line Encyclopedia of Integer Sequences. We identify $a(n)$ as a two-position shift in the greedy Padovan numeration system, with a finite-state correction. The proof…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.33421.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.33421.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.33421v1" target="_blank" rel="noopener"><img src="../thumbs/2609.33421.jpg" alt="First page of A Padovan-automatic description of a nested recurrence"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Padovan-automatic description of a nested recurrence</h1>
+        <p class="authors">Benoit Cloitre, Haobo Ma, Wenlin Zhang</p>
+        <div class="row">
+          <span class="badge">math.NT</span>
+          <span class="date">Sep 27, 2026 · v1</span>
+          <span class="badge">math.CO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.33421v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.33421" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/the-omega-institute/a076502-padovan" target="_blank" rel="noopener" title="the-omega-institute/a076502-padovan">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean formalizes the recurrence identification, six-decimal discrepancy bound, exact offset set, morphic identity, least balance constant, and an effective extrema algorithm.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We study the sequence $a(0)=0$, $a(1)=1$ and $a(n)=n-a(n-a(n-a(n-1)))$ for $n\ge 2$, listed as A076502 in the On-Line Encyclopedia of Integer Sequences. We identify $a(n)$ as a two-position shift in the greedy Padovan numeration system, with a finite-state correction. The proof constructs an addition automaton from an exact integer-carry invariant and certifies its completeness by finite-language inclusion; a synchronized automaton then verifies the nested recurrence. We establish bounded discrepancy from the line of slope $c$, where $c^3-c^2+2c-1=0$, and show that the exact set of offsets from $\lfloor cn\rfloor$ is $\{-1,0,1,2\}$. We construct an explicit 26-letter non-erasing morphic presentation of the first-difference word, prove that its least balance constant is 4, and give an effective procedure for enclosing the global discrepancy extrema to arbitrary accuracy. We formalize the recurrence identification, six-decimal discrepancy bound, exact offset set, concrete morphic identity, least balance constant, and an effective extrema algorithm in Lean. Separate exact computations refine the numerical enclosures.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The nested recurrence a(n)=n-a(n-a(n-a(n-1))) (OEIS A076502) lacked a proven closed description; an earlier conjectural offset set {0,1,2} relative to floor(cn) was incorrect.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The sequence is identified as a two-position shift in the greedy Padovan numeration system with a finite-state correction encoded by DFAOs. An addition automaton is built from an exact integer-carry invariant and certified complete by finite-language inclusion; a synchronized automaton verifies the recurrence. Bounded discrepancy is proved via a contracting quadratic form, and the difference word is given an explicit 26-letter non-erasing morphic presentation. The identification chain, discrepancy bound, offset set, morphic identity, least balance constant, and an effective extrema algorithm are formalized in Lean.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Proves a(n)=shift_2(n)+E(rep(n)), the discrepancy bound -1.049234&lt;a(n)-cn&lt;1.155081, the exact offset set {-1,0,1,2}, and least balance constant 4. Lean&#x27;s final axiom closure uses only propext, Classical.choice, and Quot.sound.</p><div class="sum-table"><table><thead><tr><th>Represented relation</th><th>States</th></tr></thead><tbody><tr><td>x+y=z</td><td>411</td></tr><tr><td>v=b(n)</td><td>72</td></tr><tr><td>p=b(n-1), n&gt;=1</td><td>79</td></tr><tr><td>v=b(n-b(n-1))</td><td>144</td></tr><tr><td>Good(n)</td><td>7</td></tr></tbody></table><div class="tbl-cap">Selected partial DFAs used in the recurrence verification.</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
