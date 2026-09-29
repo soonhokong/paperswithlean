@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,7 +52,6 @@
         <div class="tldr-box">Implements a transfer tactic family for Lean 4 over a tagged rule database, benchmarked against Mathlib&#x27;s gcongr and grw test suites.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">Rewriting in proof assistants spans a strict hierarchy. Equational rewriting substitutes based on extensional equality; subequational rewriting substitutes based on homogeneous relations such as $\leq$ or $\subseteq$, justified by monotonicity lemmas; and generalized rewriting relates different operations across different types, justified by transfer rules. All three are specializations of one schema, the function relator $(R \Rightarrow S)\,f\,g$. Lean 4&#x27;s rw and Mathlib&#x27;s grw/gcongr implement the first two levels, but the third has had no Lean implementation. We present one: a transfer tactic family over a tagged rule database, benchmarked using Mathlib&#x27;s own test suites, of which 112 of 178 ported tests close through the transfer engine. An evaluation of the design&#x27;s three motivating hypotheses returns a mixed result: generality holds, authoring effort wins in its amortized form (averaged per use), but on dependency footprint, transfer only ties a mature library and loses on coercions. This shows that transfer&#x27;s value is concentrated on transferring into domains where few theorems exist.</div>
-        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Rewriting in proof assistants spans equational, subequational, and generalized levels, all specializations of the function relator schema. Lean 4&#x27;s rw and Mathlib&#x27;s grw/gcongr implement the first two levels, but the generalized level (relating different operations across different types via transfer rules) had no Lean implementation.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A transfer tactic family is implemented over a tagged rule database, using attributes such as transfer_rule, transfer_back_rule, transfer_respects, and btransfer_rule, built on Mathlib&#x27;s Relator.LiftFun. Rules carry numerical priorities and cluster into ground facts, structural rules, uniqueness/totality facts, and one-way equality lemmas. The engine consumes Mathlib&#x27;s @[gcongr] database directly and reuses grw&#x27;s occurrence abstraction. The design is inspired by Isabelle&#x27;s Transfer package.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">112 of 178 ported Mathlib gcongr/grw tests close through the transfer engine. Generality holds, authoring effort wins in amortized form, but dependency footprint only ties a mature library and loses on bi-unique coercions where norm_cast is already complete.</p><div class="sum-table"><table><thead><tr><th>File</th><th>Tests</th><th>Via transfer</th><th>Def. (UX)</th><th>Def. (partial)</th><th>Fail</th></tr></thead><tbody><tr><td>GCongrInequalities</td><td>74</td><td>42</td><td>20</td><td>12</td><td>0</td></tr><tr><td>GRewrite</td><td>53</td><td>42</td><td>11</td><td>0</td><td>0</td></tr><tr><td>Total</td><td>178</td><td>112</td><td>54</td><td>12</td><td>0</td></tr></tbody></table><div class="tbl-cap">Parity suite results ported from Mathlib gcongr/grw tests</div></div></div></div>
       </div>
     </div>
@@ -61,8 +60,7 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
-    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
     Relevance note and tags by Claude.
   </div>
 </footer>

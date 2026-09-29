@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,7 +52,6 @@
         <div class="tldr-box">Verifies in Lean 4 that StarkWare&#x27;s S-two AIR encoding of the Cairo VM is sound.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">StarkWare&#x27;s S-two prover provides an efficient means for establishing, on blockchain, that a program written in the Cairo virtual machine language runs to completion. The latter claim is encoded by an algebraic intermediate representation (AIR) that captures the semantics of the Cairo language. The AIR asserts the existence of tables of values from a finite field satisfying certain algebraic constraints. A cryptographic interactive proof system, circle STARK, provides an efficiently-checked certificate that the AIR is satisfied. We describe our verification, using the Lean 4 proof assistant, that the AIR encoding is sound, which is to say, the satisfiability of the AIR implies the computational claim.</div>
-        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">StarkWare&#x27;s S-two prover encodes Cairo virtual machine execution as an algebraic intermediate representation (AIR) over a finite field. Trust in blockchain certificates requires that the AIR encoding is sound, meaning its satisfiability implies the claimed computation actually ran to completion.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors formally verify soundness of the S-two AIR using Lean 4 and Mathlib. The formalization models the constraint-generating code and logup communication constraints between AIR components in Lean, proving that satisfying the AIR implies the existence of a valid Cairo execution trace. A key challenge addressed is that the AIR uses constraints over a 31-bit Felt prime to establish claims about 252-bit Felt252 computations, representing each Felt252 as a tuple of 28 range-checked 9-bit values. The logup mechanism is formalized via a lemma on rational function sums that establishes subset or equal-counts relations between component tuples.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The verification uncovered an instance where additional range checks were needed for soundness, and insufficient security bounds in the logup protocol led StarkWare to increase the number of security bits. The soundness theorem is proved against the same Cairo virtual machine semantics previously used for the Stone AIR verification.</p></div></div>
       </div>
     </div>
@@ -61,8 +60,7 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
-    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
     Relevance note and tags by Claude.
   </div>
 </footer>

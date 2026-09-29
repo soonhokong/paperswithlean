@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,7 +52,6 @@
         <div class="tldr-box">Meta-theory of the TypeHL type-safety framework is mechanised in Lean 4, yielding a self-certifying reflective type-checker.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">Type safety has traditionally rested on carefully crafted type systems, under the motto &quot;well-typed programs cannot go wrong&quot;. Modern demands push type systems past this basic guarantee: toward memory safety (e.g., Rust), stronger data-structure invariants (e.g., GADTs), and broader typability (e.g., MLstruct). The motto absorbs each such property by enlarging the set of states deemed &quot;wrong&quot;, but collapses them into one binary verdict: heap ownership, flow-sensitive changes to a variable&#x27;s type, and the gap between a recoverable and a fatal error are relational, stateful facts about intermediate states that one verdict cannot tell apart. Worse, each demand typically brings its own extension, making it hard to say what each guarantees or how they combine. Floyd-Hoare logic supplies a unified foundation. We present a framework for type-safety verification built from four ingredients: (i) case specifications for path-sensitive typing; (ii) separation types, inspired by separation logic, for flow-sensitive type mutation and must-aliasing; (iii) a disciplined distinction between Err (runtime error values our types track) and Abrt (compile-time errors), yielding the refined motto well-typed programs must never abort; and (iv) type predicates for data-structure invariants. Since all four are ordinary types in one Boolean algebra rather than separate extensions, the framework subsumes both GADTs and liquid types within one type logic, spanning weak specifications that tolerate Err to strong ones that eliminate it. Subtyping reduces to one decidable emptiness test, so a single lightweight procedure serves the whole framework with no SMT oracle in its trusted base. We formalise the Hoare rules and prove soundness in a machine-checked Lean mechanisation; by proof reflection it yields a self-certifying type-checker, evaluated on a benchmark suite.</div>
-        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Modern type systems fold many properties (memory safety, data-structure invariants, broader typability) into a single binary &#x27;go wrong&#x27; verdict, obscuring stateful, relational facts about intermediate states. Each demand arrives as a separate extension, making guarantees hard to relate or compose.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A framework recasts type safety as Floyd-Hoare logic with four ingredients: case specifications for path-sensitivity, separation types for flow-sensitive mutation and must-aliasing, an Err/Abrt error hierarchy, and type predicates for data-structure invariants. All are ordinary types in one Boolean algebra, with subtyping reduced to a single decidable emptiness test, avoiding an SMT oracle in the trusted base. The Hoare rules and soundness are mechanised in Lean 4 across three layers (pure, separation, higher-order), with no dependence on Mathlib and no sorry/admit.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The framework subsumes GADTs and liquid types within one type logic. The Lean development comprises roughly 78,400 lines, with symbolic certificates (including red-black insert) axiom-clean, and produces an executable self-certifying type-checker evaluated on a benchmark suite.</p><div class="sum-table"><table><thead><tr><th>Feature</th><th>TypeHL</th><th>OCaml</th><th>Rust</th><th>Liquid Haskell</th></tr></thead><tbody><tr><td>GADTs</td><td>yes</td><td>yes</td><td>no</td><td>yes</td></tr><tr><td>Type Predicates</td><td>yes</td><td>no</td><td>no</td><td>yes</td></tr><tr><td>Separation types</td><td>yes</td><td>no</td><td>partial</td><td>no</td></tr><tr><td>Flow-sensitive types</td><td>yes</td><td>no</td><td>yes</td><td>no</td></tr><tr><td>Err/Exc/Abrt as types</td><td>yes</td><td>no</td><td>no</td><td>no</td></tr></tbody></table><div class="tbl-cap">Feature comparison: full/partial/no support across type-system features</div></div></div></div>
       </div>
     </div>
@@ -61,8 +60,7 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
-    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
     Relevance note and tags by Claude.
   </div>
 </footer>

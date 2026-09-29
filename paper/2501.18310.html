@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,7 +52,6 @@
         <div class="tldr-box">ProofAug augments LLM proofs with automation tools at multiple granularities; a Lean 4 version improves a prover&#x27;s miniF2F pass@1.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">The synergy between deep learning models and traditional automation tools, such as built-in tactics of the proof assistant and off-the-shelf automated theorem provers, plays a crucial role in developing robust and efficient neural theorem provers(NTPs). However, for proof synthesis with LLMs, previous work applies automation tools either only when explicitly invoked by the model or at a single granularity level, failing to fully exploit their power. To solve this issue, we propose ProofAug, a procedure that equips LLMs with automation methods at various granularities through fine-grained structure analysis of model-generated proof proposals. ProofAug also serves as a versatile plug-and-play module that seamlessly integrates with any tree-search algorithm, enabling our construction of an efficient recursive proving (ERP) module to further enhance performance. The superiority of our method is validated on the miniF2F benchmark using the open-source deepseek-math-7b-base model and the Isabelle proof assistant. Notably, by additionally employing a mixed prompting strategy, we achieve a cumulative pass rate of 66.0% after curation of the dataset (61.9% for the original version) with 2100 queries to the model per problem (In contrast, the previous SOTA in Isabelle, Subgoal-XL, only achieves 56.1% using 16384 queries per problem). We also implement a Lean 4 version of ProofAug that can improve the pass@1 performance of Kimina-Prover-Preview-Distill-1.5B from 44.3% to 50.4% on miniF2F-test. Our code is available at <a href="https://github.com/haoxiongliu/ProofAug" target="_blank" rel="noopener">https://github.com/haoxiongliu/ProofAug</a>.</div>
-        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Previous neural theorem provers apply automation tools either only when explicitly invoked or at a single granularity, failing to fully exploit their power for proof synthesis.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ProofAug equips LLMs with automation methods at multiple granularities through fine-grained structure analysis of model-generated proof proposals. It finds the Maximal Compatible Semi-Proof from a failed attempt, then applies automation tools to fill gaps at different levels. It includes an Efficient Recursive Proving (ERP) module and integrates as a plug-and-play module with any tree-search algorithm. Both Isabelle and Lean 4 versions are implemented.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On miniF2F-test using deepseek-math-7b-base with Isabelle, ProofAug achieves 66.0% (curated) with 2100 queries per problem, compared to the previous SOTA of 56.1% using 16384 queries. The Lean 4 version improves Kimina-Prover-Preview-Distill-1.5B pass@1 from 44.3% to 50.4%.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Model</th><th>Budget</th><th>Score</th></tr></thead><tbody><tr><td>Subgoal-XL</td><td>Llama-8B</td><td>16384</td><td>56.1%</td></tr><tr><td>LEGO-Prover</td><td>mixed GPTs</td><td>100</td><td>50.0%</td></tr><tr><td>ProofAug</td><td>dsmath-7b</td><td>100</td><td>52.5%</td></tr><tr><td>ProofAug+Mixed+ERP</td><td>dsmath-7b</td><td>2100</td><td>66.0%</td></tr></tbody></table><div class="tbl-cap">ProofAug results on miniF2F-test (Isabelle)</div></div></div></div>
       </div>
     </div>
@@ -61,8 +60,7 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
-    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
     Relevance note and tags by Claude.
   </div>
 </footer>

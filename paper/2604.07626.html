@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,7 +52,6 @@
         <div class="tldr-box">Mechanizes token-sensitive enclosure semantics in Lean 4 (no sorry/admit).</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">Token identity is semantic information for measurement-bearing expressions. Intervals, dimension tags, and token-erased syntax can say what values a measured leaf may take, but they cannot say whether two occurrences name the same observation or two fresh observations. We give a small formal semantics in which each measured leaf carries an interval of possible exact values and an opaque observation-event token. Here &quot;token&quot; means an identity for a measurement event, not a lexical token of the source syntax. The denotation of an expression is its warranted enclosure: the set of exact values still justified by hidden-value environments that assign one value to each observation token and respect the declared intervals. Over this semantics, e -&gt; e&#x27; is a claim-tightening judgment, equivalently enclosure containment Encl(e&#x27;) subseteq Encl(e), while interchangeability is equality of enclosures. The distinction is visible in cancellation, background subtraction, and self-division: reusing one token gives interchangeability with the expected simplified expression, while using distinct tokens gives only one-way containment. We prove that provenance-blind summaries of the kind studied here, preserving intervals, dimension tags, and token-erased syntax, are insufficient to recover the correct rewrite class. The formal results are mechanized in Lean 4 with no sorry or admit placeholders.</div>
-        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Intervals and dimension tags cannot distinguish whether two occurrences of a measured quantity name the same observation or two independent observations. Standard interval arithmetic silently drops this identity information, leading to over-wide enclosures.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The paper gives a formal semantics in which each measured leaf carries an interval of possible exact values and an opaque observation-event token. The denotation of an expression is its warranted enclosure: the set of exact values still compatible with the token constraints. Token-aware rewrites (e.g., x - x = 0 when both tokens are identical) are classified as sound or unsound based on whether they preserve or shrink the warranted enclosure. The semantics is formalized in Lean using rationals as the value carrier.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The Lean formalization establishes soundness of token-aware rewrite rules, unsoundness of token-erasing rewrites for self-cancellation patterns, and a containment lattice over warranted enclosures. The framework provides a formal basis for distinguishing correlated from independent measurement occurrences in expression evaluation.</p></div></div>
       </div>
     </div>
@@ -61,8 +60,7 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
-    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
     Relevance note and tags by Claude.
   </div>
 </footer>

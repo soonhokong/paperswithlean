@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,7 +52,6 @@
         <div class="tldr-box">Builds a 367K-example Lean 4 autoformalization dataset via Mathlib retrieval and verification-guided refinement, training MathForm-8B evaluated on six Lean benchmarks.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">Autoformalization is commonly framed as translating natural-language mathematical statements into machine-verifiable formal languages such as Lean 4. However, faithful formalization requires more than translation. Models must map mathematical concepts to the complex hierarchy of types and definitions in formal libraries such as Mathlib, while ensuring that generated statements preserve the meaning of the source propositions. Existing approaches struggle because they rely heavily on the model&#x27;s parametric memory for library-specific knowledge, while common data construction pipelines often resort to filtering single-pass outputs and lack mechanisms for feedback-driven revision. To address these challenges, we introduce MathForm, an autoformalization framework for constructing verified training data through Mathlib knowledge retrieval and verification-guided iterative refinement. Before generation, a retrieval planner gathers relevant definitions and existing formalizations from Mathlib to guide the formalization generator. Generated statements are then revised using compiler diagnostics and semantic-consistency feedback. Using this framework, we construct FormalVerse, a Lean 4 dataset containing approximately 367K verified examples across diverse mathematical domains and sources. We then train MathForm-8B through supervised fine-tuning followed by reinforcement learning. Across six benchmarks, MathForm-8B achieves average Pass@8 rates of 88.06% under Syntax Check (SC) and 72.37% under Consistency Check (CC), outperforming multiple specialized 32B autoformalizers. On the challenging FATE-H and FATE-X subsets, it attains CC pass rates of 63% and 37%, exceeding the strongest specialized baselines in both cases.</div>
-        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Autoformalization requires mapping natural-language mathematics into Lean 4 while respecting Mathlib&#x27;s type hierarchy and definitions. Existing methods rely on parametric memory for library-specific knowledge and use best-of-N filtering that lacks feedback-driven revision.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">MathForm is a data-construction framework where a retrieval planner gathers relevant Mathlib definitions and existing formalizations to guide a generator. Generated Lean 4 statements are then revised iteratively using compiler diagnostics and semantic-consistency feedback. The resulting FormalVerse dataset ( 367K verified examples) is used to train MathForm-8B via supervised fine-tuning followed by DAPO reinforcement learning.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.14221/data-pipeline.png" alt=""><figcaption>Figure 2: Overview of the MathForm data construction and training pipeline. The system combines Mathlib knowledge retrieval, compilation and semantic verification, and iterative refinement to generate reliable formal data, followed by trajectory reconstruction and training of MathForm -8B.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">MathForm-8B achieves average Pass@8 rates of 88.06% (Syntax Check) and 72.37% (Consistency Check) across six benchmarks, outperforming multiple specialized 32B autoformalizers. On FATE-H and FATE-X it reaches CC pass rates of 63% and 37%.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>AVG SC</th><th>AVG CC</th><th>FATE-H CC</th><th>FATE-X CC</th></tr></thead><tbody><tr><td>ReForm-32B</td><td>81.61</td><td>68.41</td><td>52.00</td><td>25.00</td></tr><tr><td>Goedel-Formalizer-V2-32B</td><td>78.28</td><td>63.74</td><td>48.00</td><td>13.00</td></tr><tr><td>MathForm-8B-SFT</td><td>84.38</td><td>66.53</td><td>58.00</td><td>25.00</td></tr><tr><td>MathForm-8B</td><td>88.06</td><td>72.37</td><td>63.00</td><td>37.00</td></tr></tbody></table><div class="tbl-cap">Pass@8 pass rates (%) under Syntax Check (SC) and Consistency Check (CC), macro-average and challenging FATE subsets</div></div></div></div>
       </div>
     </div>
@@ -61,8 +60,7 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
-    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
     Relevance note and tags by Claude.
   </div>
 </footer>

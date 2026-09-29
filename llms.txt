@@ -1,24 +1,18 @@
 # Papers With Lean
 
-> A daily-updated index of papers that use Lean, the interactive theorem
-> prover (and Mathlib): arXiv papers screened by an LLM relevance gate (so the
-> list is Lean-specific, not colloquial "lean"), plus Lean-verified results from
-> the Palomar registry (https://palomar-registry.org). A Palomar result that is
-> the same work as a listed arXiv paper is not listed twice; the arXiv entry
-> links to it instead. 1046 entries as of 2026-09-29.
+> A daily-updated index of arXiv papers that use Lean, the interactive theorem
+> prover (and Mathlib). Each entry is screened by an LLM relevance gate so the
+> list is Lean-specific, not colloquial "lean". 926 papers as of 2026-09-29.
 
 ## Structured data (start here)
 
 - [Full dataset (JSON)](https://paperswithlean.com/site_papers.json): every paper as a JSON
   object. Shape: `{"generated": "YYYY-MM-DD", "papers": [{...}]}`. Each paper
-  has: `id` (arXiv id, or a Palomar id `PALOMAR-YYYY-MM-DD-NNNNNN`), `title`,
-  `authors` (list), `abstract`, `abs_url` (arXiv abstract or Palomar entry
-  page), `pdf_url` (arXiv only), `primary_category`, `published` (YYYY-MM-DD),
-  `tags` (list), `lean_note` (one-line description of how the paper uses Lean),
-  `repo` (code repo URL if any; for Palomar, the verified pinned commit),
-  `thumb` (first-page thumbnail path). Palomar records have `source: "palomar"`
-  and `palomar: {trust, theorems}`; arXiv papers verified on Palomar have
-  `palomar: [{id, url}]`. Prefer this over scraping the HTML.
+  has: `id` (arXiv id), `title`, `authors` (list), `abstract`, `abs_url`,
+  `pdf_url`, `primary_category`, `published` (YYYY-MM-DD), `tags` (list),
+  `lean_note` (one-line description of how the paper uses Lean), `repo` (code
+  repo URL if any), `thumb` (first-page thumbnail path). Prefer this over
+  scraping the HTML.
 - [RSS feed](https://paperswithlean.com/feed.xml): the most recently added papers (recent
   window only, not the full archive).
 - [Sitemap](https://paperswithlean.com/sitemap.xml): every page on the site.
@@ -26,12 +20,12 @@
 ## Pages
 
 - [Home / searchable list](https://paperswithlean.com/): client-side search and time filters.
-- Per-paper detail pages: `https://paperswithlean.com/paper/<id>.html` (arXiv or Palomar id).
+- Per-paper detail pages: `https://paperswithlean.com/paper/<arxiv-id>.html`.
 - [Stats](https://paperswithlean.com/stat/): dataset statistics.
 
 ## Notes
 
 - Source of truth is `site_papers.json`; the site is rebuilt daily from the
-  arXiv API and the Palomar registry plus an LLM relevance/summary pass.
-- arXiv and Palomar ids are the stable keys; a paper's detail page is always
+  arXiv API plus an LLM relevance/summary pass.
+- arXiv ids are the stable key; a paper's detail page is always
   `https://paperswithlean.com/paper/<id>.html`.

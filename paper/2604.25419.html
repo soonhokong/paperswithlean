@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,7 +52,6 @@
         <div class="tldr-box">Rewards only majority-voted answers that a Lean formal verifier confirms, using Lean verification to gate label-free RLVR training.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">Reinforcement learning with verifiable rewards (RLVR) enhances the reasoning of large language models (LLMs), but standard RLVR often depends on human-annotated answers or carefully curated reward specifications. In machine-checkable domains, label-free alternatives such as majority voting or LLM-as-a-judge remove annotation cost but can introduce false positives that destabilize training. We introduce JURY-RL, a label-free RLVR framework that decouples answer proposal from reward disposal: votes from model rollouts propose a candidate answer, and a formal verifier determines whether that candidate can receive positive reward. Concretely, only rollouts matching the plurality-voted answer are rewarded when that answer is successfully verified in Lean. When verification is inconclusive, we invoke ResZero (Residual-Zero), a fallback reward that discards the unverified plurality proposal and redistributes a zero-mean, variance-preserving signal over the residual answers. This design maintains a stable optimization gradient without reinforcing unverifiable consensus. Across three backbone models trained on mathematical data, JURY-RL consistently outperforms other label-free baselines on mathematical reasoning benchmarks and transfers competitively to code generation and general benchmarks. It attains pass@1 performance comparable to supervised ground-truth training, with superior generalization demonstrated by higher pass@k and response diversity.</div>
-        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Standard RLVR for LLM reasoning depends on human-annotated answers or carefully curated reward specifications. Label-free alternatives such as majority voting or LLM-as-a-judge can introduce false positives that destabilize training.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">JURY-RL decouples answer proposal from reward disposal: majority votes from model rollouts propose a candidate answer, and a Lean formal verifier determines whether that candidate is correct. Verified correctness provides a positive reward to supporting rollouts; when verification is inconclusive, a residual zero-reward fallback is used. The system integrates an autoformalization pipeline to translate informal mathematical answers into Lean statements for machine-checked verification.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.25419/x1.png" alt=""><figcaption>Figure 1 : The JURY-RL workflow: Votes Propose, Proofs Dispose. For each problem, a majority vote from multiple rollouts ( Jury ) proposes a candidate answer. A Lean verifier ( Judge ) then disposes the reward. If the answer is Verified ( \delta=1 ) , supporting rollouts receive a positive reward, directly linking the update to successful formal verification. Conversely, when verification is Incon</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">JURY-RL matches or outperforms ground-truth reward baselines on math reasoning benchmarks across three model scales (1.7B, 3B, 7B) without requiring any labeled data. On Qwen3-1.7B-Base, it achieves an average score of 36.54 across nine benchmarks compared to 35.56 for ground-truth reward, and scales to test-time training settings on Qwen2.5-7B and Qwen2.5-14B.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.25419/x3.png" alt=""><figcaption>Figure 3 : Accuracy on MATH5000 Validation set over training steps.</figcaption></figure></div></div></div>
       </div>
     </div>
@@ -61,8 +60,7 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
-    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
     Relevance note and tags by Claude.
   </div>
 </footer>

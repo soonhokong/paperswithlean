@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,7 +52,6 @@
         <div class="tldr-box">WZ-LLM turns Wilf-Zeilberger plans into Lean 4 proof sketches discharged by an LLM prover.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">Automating formal proofs of combinatorial identities is challenging for LLM-based provers, as long-horizon proof planning is required and unconstrained search quickly explodes. Symbolic methods such as the Wilf-Zeilberger (WZ) method can achieve a mechanized proof of combinatorial identities by constructing special auxiliary functions and demonstrating that they satisfy specific recurrence relations. We propose WZ-LLM, a neuro-symbolic framework that turns WZ proof plans into executable proof sketches in Lean 4 and uses an LLM-based prover to discharge the resulting machine-checkable subgoals. We also train a dedicated WZ-Prover via a Lean-kernel-verified bootstrapping loop with expert-verified iteration, followed by DAPO-based refinement. Experiments show that WZ-LLM achieves a 34% proof success rate on LCI-Test (100 classic combinatorial identities), outperforming strong baselines such as DeepSeek-V3 and Goedel-Prover-V2, and delivering consistent gains on CombiBench and PutnamBench-Comb. These results indicate that our framework provides two complementary strengths: improved direct proving for identities beyond the scope of WZ, and substantially higher end-to-end success when WZ sketches guide a specialized prover.</div>
-        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Automating formal proofs of combinatorial identities in Lean 4 is difficult for LLM-based provers because long-horizon proof planning is required and unconstrained search quickly explodes. Data scarcity and the complexity of boundary conditions further limit existing methods.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors propose WZ-LLM, a neuro-symbolic framework that translates Wilf-Zeilberger (WZ) proof plans into executable proof sketches in Lean 4 and uses an LLM-based prover to discharge the resulting machine-checkable subgoals. The system constructs WZ certificates, decomposes identities into structured obligations (recurrence verification, boundary conditions, initial values), and compiles them into Lean proof sketches. A dedicated WZ-Prover is trained via a Lean-kernel-verified bootstrapping loop with expert-verified iteration, followed by DAPO-based reinforcement learning refinement.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.04472/x1.png" alt=""><figcaption>Figure 1 : Overview of WZ-LLM. (A) Symbolic decomposition. Given combinatorial-identity statements, the symbolic engine checks WZ applicability and, when applicable, constructs a WZ proof sketch that is decomposed into sub-goals. Statements that are not amenable to the WZ method are labeled as WZ-uncovered targets. All sub-goals and uncovered targets form a shared pool of proving tasks. (B) Model </figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">WZ-LLM achieves a 34% proof success rate on LCI-Test (100 classic combinatorial identities) at pass@32, outperforming DeepSeek-V3 (1/100), Goedel-Prover-V2 (9/100), DeepSeek-Prover-V2 (6/100), and Kimina-Prover-Distill (6/100). The WZ-Prover alone solves 29/46 WZ-applicable identities via sketch guidance, and 5 additional WZ-uncovered identities are proved directly.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Model size</th><th>Sample budget</th><th>LCI-Test</th></tr></thead><tbody><tr><td>DeepSeek-V3</td><td>685B</td><td>pass@32</td><td>1/100</td></tr><tr><td>Goedel-Prover-V2</td><td>8B</td><td>pass@32</td><td>9/100</td></tr><tr><td>DeepSeek-Prover-V2</td><td>7B</td><td>pass@32</td><td>6/100</td></tr><tr><td>WZ-Prover</td><td>8B</td><td>pass@32</td><td>12/100</td></tr><tr><td>WZ-Sketch + WZ-Prover</td><td>8B</td><td>pass@32</td><td>29/100</td></tr><tr><td>WZ-LLM</td><td>8B</td><td>pass@32</td><td>34/100</td></tr></tbody></table><div class="tbl-cap">Main results on LCI-Test</div></div></div></div>
       </div>
     </div>
@@ -61,8 +60,7 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
-    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
     Relevance note and tags by Claude.
   </div>
 </footer>

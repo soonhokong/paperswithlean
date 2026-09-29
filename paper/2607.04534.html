@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,7 +52,6 @@
         <div class="tldr-box">Evaluates LLM mechanism-classification routing over the FiberRing Lean 4 algebraic corpus, using Lean-verified artifacts as anchored ground-truth labels.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">We present an empirical study of structural routing failure in large language models (LLMs) over a formally verified algebraic corpus. The task requires selecting the correct proof-mechanism label from a fixed closed template set for compact mathematical objects drawn from the FiberRing formalization in Lean 4, where each item is anchored to a Lean-verified artifact and assigned a label from the corresponding certificate family. Our central finding is a mechanism-level routing ceiling: under blind conditions, gpt-oss-120b achieves 80.3% template accuracy on 22 FiberRing items (n=66; temperature=0, seed=0), while Llama 3.3 70B reaches 68.2%. Exposing a mechanism-bearing Lean verdict/witness cue (Condition A2) raises accuracy to 90.9% and 81.8% – gaps of +10.6 and +13.6 pp termed cue-induced routing uplift. The dominant failure is a CRT-to-ring-equivalence misroute: gpt-oss-120b misroutes 7 of 12 CRT items (58.3%) blind, zero under A2. A cross-model dissociation in Llama is notable: verdict accuracy is identical in both conditions (95.5%), while template accuracy improves 13.6 pp – confirming that truth inference and proof-mechanism classification are separable capacities. A cross-corpus extension (Set B; 6 POM/CollisionKernel items, 72 evaluations) provides a small cross-module check: CRT-granularity compression reappears with different labels, and an inverse cross-model dissociation emerges. These findings extend the router hypothesis (Cazares 2026) to formal algebraic structures. The full pipeline, manifest, and results are at <a href="https://github.com/bytepro-ai/fiber-routing-eval" target="_blank" rel="noopener">https://github.com/bytepro-ai/fiber-routing-eval</a>.</div>
-        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLMs often fail formal reasoning tasks not from missing sub-skills but from misrouting problems to the wrong structural interpretation. It is unclear whether this routing ceiling persists on formally verified mathematical objects with machine-checked labels.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A benchmark (FiberRing Set A, 22 items; plus 6 POM/CollisionKernel Set B items) is extracted from an Automath/Omega Lean 4 formalization derived from x^2=x+1, each item anchored to a named Lean declaration and a fixed proof-mechanism label. Models must select the mechanism label under two conditions: blind routing (A1) and routing with a mechanism-bearing Lean verdict/witness cue (A2). gpt-oss-120b and Llama 3.3 70B are evaluated at temperature 0, seed 0, three runs each (336 total evaluations).</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Blind template accuracy reaches 80.3% (gpt-oss-120b) and 68.2% (Llama), rising to 90.9% and 81.8% with the Lean cue. The dominant failure is a CRT-to-ring-equivalence misroute (7 of 12 CRT items blind for gpt-oss-120b, zero under A2). Truth (verdict) inference and mechanism classification are separable: Llama verdict accuracy stays 95.5% in both conditions while template accuracy improves 13.6 pp.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Cond.</th><th>Tmpl acc.</th><th>Verd. acc.</th><th>ΔTmpl</th></tr></thead><tbody><tr><td>gpt-oss-120b</td><td>A1</td><td>80.3%</td><td>84.8%</td><td>+10.6 pp</td></tr><tr><td>gpt-oss-120b</td><td>A2</td><td>90.9%</td><td>95.5%</td><td></td></tr><tr><td>Llama 3.3 70B</td><td>A1</td><td>68.2%</td><td>95.5%</td><td>+13.6 pp</td></tr><tr><td>Llama 3.3 70B</td><td>A2</td><td>81.8%</td><td>95.5%</td><td></td></tr></tbody></table><div class="tbl-cap">Template accuracy, verdict accuracy, and caveat hit rate by model and condition</div></div></div></div>
       </div>
     </div>
@@ -61,8 +60,7 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
-    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
     Relevance note and tags by Claude.
   </div>
 </footer>
