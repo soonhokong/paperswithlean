@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>md-lean: exact height span, dart mass, and adjugate scaling for Mazur&#x27;s greedy construction · Papers With Lean</title>
+<meta name="description" content="Exact height-span of Mazur&#x27;s scheme grammar, a local dart-mass bound, and an adjugate identity for the Dirichlet matrix of that construction; not a proof of the strong Papadimitriou–Ratajczak conjecture and not a theorem that every 3-connected plane graph attains the scheme…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="md-lean: exact height span, dart mass, and adjugate scaling for Mazur&#x27;s greedy construction">
+<meta property="og:description" content="Exact height-span of Mazur&#x27;s scheme grammar, a local dart-mass bound, and an adjugate identity for the Dirichlet matrix of that construction; not a proof of the strong Papadimitriou–Ratajczak conjecture and not a theorem that every 3-connected plane graph attains the scheme…">
+<meta property="og:url" content="https://paperswithlean.com/paper/PALOMAR-2026-09-14-000001.html">
+
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://palomar-registry.org/entry?id=PALOMAR-2026-09-14-000001&amp;version=1" target="_blank" rel="noopener"><div class="thumb-ph">Palomar</div></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">md-lean: exact height span, dart mass, and adjugate scaling for Mazur&#x27;s greedy construction</h1>
+        <p class="authors">JD Jones</p>
+        <div class="row">
+          <span class="badge src">Palomar</span> <span class="badge">math.CO</span>
+          <span class="date">Sep 14, 2026 · v1</span>
+          <span class="badge">math.MG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-teal" href="../#tag=geometry">geometry</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://palomar-registry.org/entry?id=PALOMAR-2026-09-14-000001&amp;version=1" target="_blank" rel="noopener">View on Palomar</a>
+          <a class="btn repo-btn" href="https://github.com/JD-Jones-ASES/md-lean/tree/b7f9f9deb5f5e520c99fd0d48893808d6ad082d6" target="_blank" rel="noopener" title="JD-Jones-ASES/md-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean formalization, machine-checked by the Palomar registry, of height-span, dart-mass and adjugate identities for Mazur&#x27;s greedy-drawing scheme construction.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Exact height-span of Mazur&#x27;s scheme grammar, a local dart-mass bound, and an adjugate identity for the Dirichlet matrix of that construction; not a proof of the strong Papadimitriou–Ratajczak conjecture and not a theorem that every 3-connected plane graph attains the scheme maximum. Mazur builds injective integer heights by inductive recurrences on rooted pieces (edge, cycle, binary series, two-range join) and then forms a weighted Dirichlet matrix for the horizontal coordinate; the paper does not bound the height span or the bit length of the coordinates. For a well-formed scheme on n &gt;= 2 vertices with j nontrivial joins, T+1 &lt;= 2^j (n-2j), attained at every admissible pair (n,j)=(2,0) or 2j+3 &lt;= n. The one-parameter maximum is F(n) = 2^{n/2}-1 (n even) or 3 * 2^{(n-3)/2}-1 (n odd). The coarser bound T &lt;= 2^{n-2} remains. An integer matrix has |det| at most the product of its row ell_1-norms. Heights in {0,...,T} force Mazur&#x27;s interior dart weights to be at most (n-1)T, so every Dirichlet row has ell_1-norm at most 2(n-1)^2 T when T &gt;= 1, and |det M| &lt;= (2(n-1)^2 T)^n; locally the interior outgoing dart-weight sum is at most a_s b_s T. Combining the coarser span bound with the row-sum bound sizes T^2 |det M| and T^2 |det M| T. Independently of invertibility, under the height bound h i &lt;= T, z = adj(M) u satisfies Mz = Delta u and z_s = Delta h_s (T-h_s) on the boundary as ordinary integer subtraction. Polynomial-area Euclidean planar greedy drawings of all 3-connected planar graphs remain open (Da Lozzo–D&#x27;Angelo–Frati, COCOON 2020).</div>
+        <div class="section-label">Palomar verification</div><p class="pal-meta">Trust level: high · pinned commit <a href="https://github.com/JD-Jones-ASES/md-lean/tree/b7f9f9deb5f5e520c99fd0d48893808d6ad082d6" target="_blank" rel="noopener"><code>b7f9f9d</code></a></p><ul class="thm-list"><li>MazurSpan.span_le_two_pow</li><li>MazurSpan.span_succ_le_join_budget</li><li>MazurSpan.exists_span_eq_join_budget</li><li>MazurSpan.span_le_exact</li><li>MazurSpan.exists_span_eq_exact</li><li>MazurSpan.natAbs_det_le_prod_rowSum</li><li>MazurSpan.natAbs_det_le_of_rowSum_le</li><li>MazurSpan.dirichlet_rowSum_le</li><li>MazurSpan.dirichlet_det_le</li><li>MazurSpan.coord_denom</li></ul>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Mazur&#x27;s greedy-drawing construction for 3-connected plane graphs builds injective integer heights via inductive scheme recurrences and a weighted Dirichlet matrix. It gives no bound on the height span or on the bit length of the resulting coordinates.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Heights are analyzed over a scheme grammar of rooted pieces: edge, cycle, binary series and two-range join. The span is bounded in terms of the number of vertices and nontrivial joins. Dart weights and Dirichlet row ℓ1-norms are bounded from the height range, and a determinant bound follows from a row-norm product inequality. An adjugate identity is established without assuming invertibility.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For n ≥ 2 vertices and j nontrivial joins, T+1 ≤ 2^j(n−2j), attained at every admissible (n,j). The one-parameter maximum F(n) is determined exactly, and |det M| ≤ (2(n−1)^2 T)^n. The adjugate solution z = adj(M)u satisfies Mz = Δu with explicit boundary values. The strong Papadimitriou–Ratajczak conjecture and polynomial-area greedy drawings are not resolved.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

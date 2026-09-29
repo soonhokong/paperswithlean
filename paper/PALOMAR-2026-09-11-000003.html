@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ry-lean: sets avoiding {x, x+y, x+y²} — Younis&#x27;s two-set construction and the exponent 0.77028 · Papers With Lean</title>
+<meta name="description" content="A Lean 4 proof of Younis&#x27;s lower-bound construction for subsets of {1,...,N} with no configuration {x, x+y, x+y^2} (y nonzero), in its two-set form: for every square-free modulus m and residue sets R1, R2 modulo m with R1 square-difference-free and no nonzero difference of R2…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ry-lean: sets avoiding {x, x+y, x+y²} — Younis&#x27;s two-set construction and the exponent 0.77028">
+<meta property="og:description" content="A Lean 4 proof of Younis&#x27;s lower-bound construction for subsets of {1,...,N} with no configuration {x, x+y, x+y^2} (y nonzero), in its two-set form: for every square-free modulus m and residue sets R1, R2 modulo m with R1 square-difference-free and no nonzero difference of R2…">
+<meta property="og:url" content="https://paperswithlean.com/paper/PALOMAR-2026-09-11-000003.html">
+
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://palomar-registry.org/entry?id=PALOMAR-2026-09-11-000003&amp;version=1" target="_blank" rel="noopener"><div class="thumb-ph">Palomar</div></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">ry-lean: sets avoiding {x, x+y, x+y²} — Younis&#x27;s two-set construction and the exponent 0.77028</h1>
+        <p class="authors">JD Jones</p>
+        <div class="row">
+          <span class="badge src">Palomar</span> <span class="badge">math.NT</span>
+          <span class="date">Sep 11, 2026 · v1</span>
+          <span class="badge">math.CO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://palomar-registry.org/entry?id=PALOMAR-2026-09-11-000003&amp;version=1" target="_blank" rel="noopener">View on Palomar</a>
+          <a class="btn repo-btn" href="https://github.com/JD-Jones-ASES/ry-lean/tree/a4edb0ea61422813cfd23b319cb28c62f09129bf" target="_blank" rel="noopener" title="JD-Jones-ASES/ry-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes in Lean 4 Younis&#x27;s two-set lower-bound construction for sets avoiding {x, x+y, x+y²}, instantiated to prove exponent 0.77028.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A Lean 4 proof of Younis&#x27;s lower-bound construction for subsets of {1,...,N} with no configuration {x, x+y, x+y^2} (y nonzero), in its two-set form: for every square-free modulus m and residue sets R1, R2 modulo m with R1 square-difference-free and no nonzero difference of R2 equal to the square of a difference of R1, the interval {1,...,N} contains a configuration-free set of size at least C(rho) N^rho for every rho below 1/2 + log|R1|/(3 log m) + log|R2|/(6 log m). The theorem is instantiated at m = 145 with |R1| = 10 and |R2| = 32, giving the exponent 0.770287..., which is proved to exceed Younis&#x27;s exponent 0.768503... (m = 65, sizes 7 and 17) by exact comparisons of integer powers; decimal bounds 0.7702 &lt; gamma &lt; 0.77029 are also proved, and the bound is stated in liminf form for the counting function D(N).</div>
+        <div class="section-label">Palomar verification</div><p class="pal-meta">Trust level: high · pinned commit <a href="https://github.com/JD-Jones-ASES/ry-lean/tree/a4edb0ea61422813cfd23b319cb28c62f09129bf" target="_blank" rel="noopener"><code>a4edb0e</code></a></p><ul class="thm-list"><li>NonlinearRoth.younis_period_two</li><li>NonlinearRoth.record_pointwise</li><li>NonlinearRoth.record_liminf</li><li>NonlinearRoth.younis_lt_record</li><li>NonlinearRoth.record_exponent_bounds</li></ul>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The goal is a lower bound on the size of subsets of {1,...,N} with no configuration {x, x+y, x+y²} with y nonzero. Younis gave a construction from residue sets modulo a square-free modulus, reaching exponent 0.768503... with m = 65.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The two-set form of Younis&#x27;s construction is proved in Lean 4. For a square-free modulus m and residue sets R1, R2 satisfying square-difference conditions, {1,...,N} contains a configuration-free set of size at least C(rho) N^rho for every rho below 1/2 + log|R1|/(3 log m) + log|R2|/(6 log m). The theorem is then instantiated at m = 145 with |R1| = 10 and |R2| = 32.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The instantiation gives exponent 0.770287..., proved to exceed Younis&#x27;s 0.768503... by exact comparisons of integer powers. Decimal bounds 0.7702 &lt; gamma &lt; 0.77029 are also proved, and the bound is stated in liminf form for the counting function D(N).</p><div class="sum-table"><table><thead><tr><th>m</th><th>abs(R1)</th><th>abs(R2)</th><th>exponent</th></tr></thead><tbody><tr><td>65 (Younis)</td><td>7</td><td>17</td><td>0.768503...</td></tr><tr><td>145</td><td>10</td><td>32</td><td>0.770287...</td></tr></tbody></table><div class="tbl-cap">Exponents from the two instantiations</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

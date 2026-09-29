@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Kolmogorov-Arnold representation theorem · Papers With Lean</title>
+<meta name="description" content="Every continuous real function on the closed unit n-cube is a superposition of continuous functions of one variable and addition, with the inner functions universal for the dimension. Three forms, each implying the next, named for who is credited with the statement.…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Kolmogorov-Arnold representation theorem">
+<meta property="og:description" content="Every continuous real function on the closed unit n-cube is a superposition of continuous functions of one variable and addition, with the inner functions universal for the dimension. Three forms, each implying the next, named for who is credited with the statement.…">
+<meta property="og:url" content="https://paperswithlean.com/paper/PALOMAR-2026-09-11-000002.html">
+
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://palomar-registry.org/entry?id=PALOMAR-2026-09-11-000002&amp;version=1" target="_blank" rel="noopener"><div class="thumb-ph">Palomar</div></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">The Kolmogorov-Arnold representation theorem</h1>
+        <p class="authors">George A. Constantinides</p>
+        <div class="row">
+          <span class="badge src">Palomar</span> <span class="badge">math.CA</span>
+          <span class="date">Sep 11, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://palomar-registry.org/entry?id=PALOMAR-2026-09-11-000002&amp;version=1" target="_blank" rel="noopener">View on Palomar</a>
+          <a class="btn repo-btn" href="https://github.com/geoconuk/lean-misc-math/tree/7a3052cdb08bba42d782957568e06ae08d52d8d8" target="_blank" rel="noopener" title="geoconuk/lean-misc-math">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes three forms of the Kolmogorov-Arnold representation theorem in Lean, with statements expressed purely in Mathlib vocabulary and machine-checked proofs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Every continuous real function on the closed unit n-cube is a superposition of continuous functions of one variable and addition, with the inner functions universal for the dimension. Three forms, each implying the next, named for who is credited with the statement. Lorentz-Sprecher form: there are positive constants lam_1, ..., lam_n and continuous strictly increasing psi_0, ..., psi_2n : R -&gt; R, all depending only on n, such that every f continuous on [0,1]^n is f(x) = sum_{q=0}^{2n} g(sum_{p=1}^{n} lam_p psi_q(x_p)) on the cube for some continuous g : R -&gt; R depending on f. Lorentz&#x27;s form: continuous monotone (non-decreasing) inner functions phi_{q,p} : R -&gt; R indexed by both q and p, and a single continuous outer function Phi. Kolmogorov&#x27;s form: continuous phi_{q,p} and 2n+1 continuous outer functions Phi_q – the theorem as proved in 1957 and as usually cited. In every form the inner functions are quantified before f, so one family serves every f; that is the content of the theorem. The statements are made for every n, the trivial cases n = 0 and n = 1 included, and are written in Mathlib&#x27;s vocabulary alone – Continuous, ContinuousOn, StrictMono, Monotone, Set.Icc on Fin n -&gt; R and finite sums – with no definition of their own, so that each can be audited against the informal statement without first accepting a definition.</div>
+        <div class="section-label">Palomar verification</div><p class="pal-meta">Trust level: high · pinned commit <a href="https://github.com/geoconuk/lean-misc-math/tree/7a3052cdb08bba42d782957568e06ae08d52d8d8" target="_blank" rel="noopener"><code>7a3052c</code></a></p><ul class="thm-list"><li>MiscMath.Analysis.kolmogorov_arnold_lorentz_sprecher</li><li>MiscMath.Analysis.kolmogorov_arnold_lorentz</li><li>MiscMath.Analysis.kolmogorov_arnold</li></ul>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The Kolmogorov-Arnold representation theorem says every continuous real function on the closed unit n-cube is a superposition of continuous one-variable functions and addition. The inner functions are universal: one family chosen for the dimension works for every f.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Three forms are stated and proved, each implying the next. The Lorentz-Sprecher form uses positive constants and strictly increasing inner functions with a single outer g. Lorentz&#x27;s form uses monotone inner functions phi_{q,p} and a single outer Phi. Kolmogorov&#x27;s form uses continuous phi_{q,p} and 2n+1 outer functions Phi_q. All statements use only Mathlib notions (Continuous, ContinuousOn, StrictMono, Monotone, Set.Icc on Fin n -&gt; R, finite sums) and introduce no custom definitions, so they can be audited directly against the informal statement.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The statements cover every n, including the trivial cases n = 0 and n = 1. In each form the inner functions are quantified before f, and the registry machine-checked the proofs.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

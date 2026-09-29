@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Erdős Problem 190: every canonical N exceeds (Ck)^k for large k, and H(k)^{1/k}/k → ∞ under the existence hypothesis — a Lean 4 formalization of the qualitative statement of arXiv:2604.20588 · Papers With Lean</title>
+<meta name="description" content="A Lean 4 formalization, against Mathlib, of the qualitative statement of J. H. Bae, &quot;A resolution of Erdős Problem #190: the canonical van der Waerden number satisfies H(k)^{1/k}/k → ∞&quot; (arXiv:2604.20588, v2), Corollary 1.2, via the elementary argument of its Section 4.3. Let…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Erdős Problem 190: every canonical N exceeds (Ck)^k for large k, and H(k)^{1/k}/k → ∞ under the existence hypothesis — a Lean 4 formalization of the qualitative statement of arXiv:2604.20588">
+<meta property="og:description" content="A Lean 4 formalization, against Mathlib, of the qualitative statement of J. H. Bae, &quot;A resolution of Erdős Problem #190: the canonical van der Waerden number satisfies H(k)^{1/k}/k → ∞&quot; (arXiv:2604.20588, v2), Corollary 1.2, via the elementary argument of its Section 4.3. Let…">
+<meta property="og:url" content="https://paperswithlean.com/paper/PALOMAR-2026-09-15-000003.html">
+
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://palomar-registry.org/entry?id=PALOMAR-2026-09-15-000003&amp;version=1" target="_blank" rel="noopener"><div class="thumb-ph">Palomar</div></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Erdős Problem 190: every canonical N exceeds (Ck)^k for large k, and H(k)^{1/k}/k → ∞ under the existence hypothesis — a Lean 4 formalization of the qualitative statement of arXiv:2604.20588</h1>
+        <p class="authors">Ji Ho Bae</p>
+        <div class="row">
+          <span class="badge src">Palomar</span> <span class="badge">math.CO</span>
+          <span class="date">Sep 15, 2026 · v1</span>
+          <span class="badge">math.NT</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://palomar-registry.org/entry?id=PALOMAR-2026-09-15-000003&amp;version=1" target="_blank" rel="noopener">View on Palomar</a>
+          <a class="btn repo-btn" href="https://github.com/jbaelaw/erdos190-lean/tree/be43a3ead08a9d9af352cf296d284dd3468ca805" target="_blank" rel="noopener" title="jbaelaw/erdos190-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes in Lean 4 with Mathlib the qualitative divergence H(k)^{1/k}/k → ∞ for canonical van der Waerden numbers, conditional on existence.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A Lean 4 formalization, against Mathlib, of the qualitative statement of J. H. Bae, &quot;A resolution of Erdős Problem #190: the canonical van der Waerden number satisfies H(k)^{1/k}/k → ∞&quot; (arXiv:2604.20588, v2), Corollary 1.2, via the elementary argument of its Section 4.3. Let H(k) be the least N such that every finite colouring of {1,…,N} contains a monochromatic or a rainbow k-term arithmetic progression; Erdős and Graham (1979) asked whether H(k)^{1/k}/k → ∞ (Problem 190 in Bloom&#x27;s database). The compared theorems state that for every C there is K such that for all k ≥ K every N for which [N] is canonical for k satisfies (Ck)^k &lt; N (divergence, and its Filter.Eventually form); this is a statement about canonical N only and by itself says nothing about H(k) (it holds vacuously for a k with no canonical N, where H(k) = sInf ∅ = 0). Combined with the existence of a canonical N for every k — the Erdős–Graham theorem, via Szemerédi&#x27;s theorem, which is not formalized — it gives H(k) &gt; (Ck)^k for all large k, i.e. H(k)^{1/k}/k → ∞; that conditional conclusion is stated as H_divergence, with the existence as an explicit hypothesis on H(k) = sInf {N | canonical}. The fourth compared theorem is the explicit bound behind the argument: for k ≥ 12 there is a prime p with (k−1)/2 &lt; p ≤ k−1 such that every canonical N exceeds p^(p − ⌊k/3⌋)·⌊⌊k/3⌋^(k−1)/(16k²)⌋ (integer divisions, as in the Lean statement). The proof composes the Erdős–Lovász lower bound W(r,k) − 1 ≥ r^(k−1)/(16k²) for van der Waerden numbers (obtained from the symmetric Lovász local lemma, applied with a number of colours r₀ = ⌊k/3⌋ growing with k), the restricted Blankenship–Cummings–Taranchuk recurrence W(r,k) − 1 ≥ p·(W(r−1,k) − 1) for primes r ≤ p ≤ k, Bertrand&#x27;s postulate, and elementary asymptotics. The paper&#x27;s main theorem, the explicit rate H(k)^{1/k}/k ≥ (1/e − ε(k))·k/log k obtained with the Baker–Harman–Pintz prime-gap theorem, is not formalized (that theorem is not available in Mathlib); the formalized argument gives the weaker rate k^{1/6−o(1)}, which suffices for the qualitative statement. The compared theorems depend only on propext, Classical.choice and Quot.sound.</div>
+        <div class="section-label">Palomar verification</div><p class="pal-meta">Trust level: high · pinned commit <a href="https://github.com/jbaelaw/erdos190-lean/tree/be43a3ead08a9d9af352cf296d284dd3468ca805" target="_blank" rel="noopener"><code>be43a3e</code></a></p><ul class="thm-list"><li>Erdos190.Palomar.divergence</li><li>Erdos190.Palomar.divergence_eventually</li><li>Erdos190.Palomar.H_divergence</li><li>Erdos190.Palomar.explicit_bound</li></ul>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Erdős Problem 190 asks whether the canonical van der Waerden number H(k) satisfies H(k)^{1/k}/k → ∞. Here H(k) is the least N such that every finite colouring of {1,…,N} contains a monochromatic or rainbow k-term arithmetic progression. Bae&#x27;s arXiv:2604.20588 resolves the problem, and the goal is to machine-check its qualitative Corollary 1.2.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The formalization follows the elementary argument of Section 4.3 of the paper. It combines three ingredients: the Erdős–Lovász lower bound W(r,k) − 1 ≥ r^(k−1)/(16k²), proved via the symmetric Lovász local lemma with r₀ = ⌊k/3⌋ colours; a restricted Blankenship–Cummings–Taranchuk recurrence for primes r ≤ p ≤ k; and Bertrand&#x27;s postulate. Elementary asymptotics then yield that every canonical N eventually exceeds (Ck)^k. The existence of canonical N, which relies on Szemerédi&#x27;s theorem, is not formalized and is taken as an explicit hypothesis.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Four compared theorems are proved:
+- a divergence statement for canonical N, together with its Filter.Eventually form;
+- the conditional H_divergence;
+- an explicit prime-based bound for k ≥ 12.
+These depend only on the standard axioms propext, Classical.choice and Quot.sound. The paper&#x27;s sharper rate (1/e − ε)·k/log k, which needs the Baker–Harman–Pintz theorem, is not formalized; the formalized argument gives the weaker rate k^{1/6−o(1)}.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
