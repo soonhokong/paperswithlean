@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weighted support criteria for reciprocal Mersenne subseries · Papers With Lean</title>
+<meta name="description" content="For an infinite set A of positive integers and an integer base b at least 2, consider the reciprocal Mersenne subseries X_A(b) = sum over a in A of 1/(b^a - 1). For a finite nonempty set P of primes, write h_P(a) for the P-part of a. The principal theorem proves irrationality…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Weighted support criteria for reciprocal Mersenne subseries">
+<meta property="og:description" content="For an infinite set A of positive integers and an integer base b at least 2, consider the reciprocal Mersenne subseries X_A(b) = sum over a in A of 1/(b^a - 1). For a finite nonempty set P of primes, write h_P(a) for the P-part of a. The principal theorem proves irrationality…">
+<meta property="og:url" content="https://paperswithlean.com/paper/PALOMAR-2026-09-25-000009.html">
+
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://palomar-registry.org/entry?id=PALOMAR-2026-09-25-000009&amp;version=1" target="_blank" rel="noopener"><div class="thumb-ph">Palomar</div></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Weighted support criteria for reciprocal Mersenne subseries</h1>
+        <p class="authors">Will Cook</p>
+        <div class="row">
+          <span class="badge src">Palomar</span> <span class="badge">math.NT</span>
+          <span class="date">Sep 25, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://palomar-registry.org/entry?id=PALOMAR-2026-09-25-000009&amp;version=1" target="_blank" rel="noopener">View on Palomar</a>
+          <a class="btn repo-btn" href="https://github.com/wcook04/plectis-erdos-lean/tree/b85ed30805188eb4390a686b111294b24363418e" target="_blank" rel="noopener" title="wcook04/plectis-erdos-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Provides Lean statements and machine-checked Lean proofs of irrationality criteria for reciprocal Mersenne subseries sum 1/(b^a - 1).</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">For an infinite set A of positive integers and an integer base b at least 2, consider the reciprocal Mersenne subseries X_A(b) = sum over a in A of 1/(b^a - 1). For a finite nonempty set P of primes, write h_P(a) for the P-part of a. The principal theorem proves irrationality when sum over a in A of h_P(a)/(a*(b^h_P(a) - 1)) converges. The base-two condition implies irrationality at every integer base at least 2 for every infinite subset of the host support. This is a sufficient support criterion, not a solution of the universal Erdős problem. It includes reciprocal-summable supports; the paper credits Erdős for that earlier stated all-base criterion and makes no identification with his suggested weakenings. The five selected statements also give cofinally arbitrarily small positive weighted displacements, a strengthened positive divisor-cover criterion, and two common-average mixed-support extensions, one using an arbitrary positive weight budget. The proof averages displacements along multiples of a finite divisibility modulus, with another average controlling incomplete periods. Rationality would instead separate every positive displacement from zero. These extensions retain their explicit cover, summability, positivity and infinite-subset assumptions. Full support and all odd exponents are outside the weighted criterion; failure of the criterion is not a rationality assertion. The paper&#x27;s achievement-set geometry, rational-membership tests and finite-denominator results are outside this registration. This entry supplies independently stated Challenge declarations and matching Lean proofs, with links to the complete paper and reasoning record; it makes no claim of independent human peer review or a novelty verdict.</div>
+        <div class="section-label">Palomar verification</div><p class="pal-meta">Trust level: high · pinned commit <a href="https://github.com/wcook04/plectis-erdos-lean/tree/b85ed30805188eb4390a686b111294b24363418e" target="_blank" rel="noopener"><code>b85ed30</code></a></p><ul class="thm-list"><li>PalomarCorpus.E257.DivisibilityWeightedSupport.divisibilityWeightedClaim</li><li>PalomarCorpus.E257.MixedWeightedCover.mixedSupportClaim</li><li>PalomarCorpus.E257.PaperStructuresBO.arbitraryWeightMixedSupport_allBase_hereditary</li><li>PalomarCorpus.E257.VariableExponentCover.strengthenedPositiveCoverClaim</li><li>PalomarCorpus.E257.WeightedCloseReturn.weighted_displacement_cofinal_close_return</li></ul>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">For an infinite set A of positive integers and base b ≥ 2, the question is when X_A(b) = Σ_{a∈A} 1/(b^a − 1) is irrational. This relates to an Erdős problem, which the entry does not resolve in general.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">For a finite set P of primes, h_P(a) denotes the P-part of a. The main theorem proves irrationality when Σ h_P(a)/(a(b^{h_P(a)} − 1)) converges. The proof averages displacements along multiples of a finite divisibility modulus, with a second average controlling incomplete periods; rationality would force every positive displacement to be separated from zero. The five selected statements are recorded as Challenge declarations with matching Lean proofs.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Irrationality is established under the weighted criterion. The base-two condition gives irrationality at every base ≥ 2 for every infinite subset of the host support. The formalized extensions cover arbitrarily small weighted displacements, a divisor-cover criterion, and two mixed-support extensions. Full support, odd exponents, and the paper&#x27;s achievement-set results are outside the formalization.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

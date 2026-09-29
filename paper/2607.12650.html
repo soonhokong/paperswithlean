@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,6 +52,7 @@
         <div class="tldr-box">Uses the Lean 4 kernel as sole minter of Verified empirical claims, type-checking LLM-proposed proof tactics under tool-attestation axioms.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">Tool access alone does not make LLM empirical reasoning governable: accepted outputs need not descend from attested evidence, and accepted deductions need not hold up under formal scrutiny. We present EG-VAR (Evidence-Grounded Verified Agentic Reasoning), a Lean 4-based tool-calling architecture in which the Lean kernel is the sole minter of Verified claims via tool-attestation axioms and declared source lifts. Every verified output structurally descends from an attested tool call (Thm. 3.1) and a kernel-checked chain of valid inference (Thm. 3.2); residual outputs are honest Abstain with a replayable audit trail. On a subcollection of TableBench numerical reasoning (n=120), EG-VAR attains 120/120 versus a 95% same-tool baseline; on counterfactual stress tests (5 domains x 2 models), EG-VAR stays 100% source-faithful while same-tool drops to 80-90% (no-tool 50-80%). With the LLM as deployment-time formalizer, residual semantic-formalization error is 3.3% on Sonnet and 1.7% on Opus. We position EG-VAR as a technical-governance interface for high-stakes empirical claims: a formal sidecar makes the target proposition, source scope, evidence boundary, proof obligation, and abstention condition auditable, eliminating unsupported Verified outputs today while turning formalization errors, lift and source-authority disputes, ambiguities, and abstentions into explicit audit targets. Over time, typed sidecars in datasets, APIs, public records, and AI-generated documents can amortize this formalization burden into reusable infrastructure.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLMs hallucinate empirical facts and, even with tool access, may accept outputs not derived from attested evidence or that fail formal scrutiny. Ensuring verifiable, auditable empirical claims requires structural rather than statistical guarantees.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">EG-VAR is a Lean 4-based tool-calling architecture with a four-layer stack: trusted deterministic tools attest storage facts, per-source lifts imported as Lean axioms map facts to world claims, the Lean kernel type-checks proofs and is the sole minter of Verified claims via a mkVerified rule requiring an attestation hypothesis, and an untrusted LLM proposes proof tactics. Every Verified output must structurally descend from an attested tool call and a kernel-checked inference chain; rejected outputs yield honest abstention with a replayable Lean proof artifact. The LLM also acts as a deployment-time formalizer proposing typed goals.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On TableBench numerical reasoning (n=120) EG-VAR attained 120/120 versus a 95% same-tool baseline. On counterfactual stress tests EG-VAR stayed 100% source-faithful while same-tool dropped to 80-90% and no-tool to 50-80%. With LLM formalization, residual semantic-formalization error was 3.3% (Sonnet) and 1.7% (Opus).</p><div class="sum-table"><table><thead><tr><th>Rung</th><th>Match</th></tr></thead><tbody><tr><td>Table-only</td><td>107/120 (89.2%)</td></tr><tr><td>Tools-open</td><td>113/120 (94.2%)</td></tr><tr><td>Tools-curated</td><td>114/120 (95.0%)</td></tr><tr><td>EG-VAR</td><td>120/120 (100.0%)</td></tr></tbody></table><div class="tbl-cap">TableBench Tier 1 match rate by rung</div></div><div class="sum-table"><table><thead><tr><th>Category</th><th>Sonnet</th><th>Opus</th></tr></thead><tbody><tr><td>Correct</td><td>84.2%</td><td>87.5%</td></tr><tr><td>Ambiguous claim (logged)</td><td>4.2%</td><td>4.2%</td></tr><tr><td>Semantic formalizer error</td><td>3.3%</td><td>1.7%</td></tr><tr><td>Honest abstain</td><td>2.5%</td><td>5.0%</td></tr><tr><td>Solver gave up</td><td>4.2%</td><td>0.0%</td></tr></tbody></table><div class="tbl-cap">Tier 2 end-to-end outcome categories</div></div></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

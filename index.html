@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Papers With Lean</title>
-<meta name="description" content="arXiv papers that use Lean, the interactive theorem prover. Updated daily.">
+<meta name="description" content="Papers that use Lean, the interactive theorem prover, from arXiv and the Palomar registry. Updated daily.">
 <link rel="alternate" type="application/rss+xml" title="Papers With Lean" href="feed.xml">
 <link rel="alternate" type="application/json" title="Papers With Lean — full dataset" href="site_papers.json">
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="vendor/fonts/fonts.css">
 <link rel="stylesheet" href="vendor/katex/katex.min.css">
-<link rel="stylesheet" href="assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="assets/site.css?v=3852c82e39">
 <script defer src="vendor/katex/katex.min.js"></script>
 <script defer src="vendor/katex/auto-render.min.js"></script>
 </head>
@@ -51,8 +51,9 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
-    Relevance filtering, one-line notes, and tags by Claude. Source list updated 2026-09-28.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry of Lean-verified results.
+    Relevance filtering, one-line notes, and tags by Claude. Source list updated 2026-09-29.
   </div>
 </footer>
 
@@ -177,7 +178,8 @@ function matches(p) {
   for (const t of activeTags) if (!(p.tags||[]).includes(t)) return false;
   if (query) {
     const hay = (detex(p.title)+" "+(p.authors||[]).join(" ")+" "+detex(p.abstract)+" "+
-                 (p.tags||[]).join(" ")+" "+detex(p.lean_note)).toLowerCase();
+                 (p.tags||[]).join(" ")+" "+detex(p.lean_note)+" "+
+                 (p.source === "palomar" && p.palomar ? (p.palomar.theorems||[]).join(" ")+" palomar" : "")).toLowerCase();
     for (const term of query.toLowerCase().split(/\s+/)) if (term && !hay.includes(term)) return false;
   }
   return true;
@@ -186,9 +188,16 @@ function matches(p) {
 function card(p) {
   const href = "paper/" + p.id + ".html";
   const title = detex(p.title);
+  const isPal = p.source === "palomar";
   const thumbInner = p.thumb
     ? '<img class="thumb" loading="lazy" decoding="async" src="'+esc(p.thumb)+'" alt="First page of '+esc(title)+'">'
-    : '<div class="thumb-ph">'+esc(p.primary_category)+'</div>';
+    : '<div class="thumb-ph">'+esc(isPal ? "Palomar" : p.primary_category)+'</div>';
+  const srcLinks = isPal
+    ? '<a href="'+esc(p.abs_url)+'" target="_blank" rel="noopener">Palomar</a>'
+    : '<a href="'+esc(p.abs_url)+'" target="_blank" rel="noopener">arXiv</a>' +
+      '<a href="'+esc(p.pdf_url)+'" target="_blank" rel="noopener">PDF</a>' +
+      (Array.isArray(p.palomar) && p.palomar.length
+        ? '<a href="'+esc(p.palomar[0].url)+'" target="_blank" rel="noopener">Verified on Palomar</a>' : '');
   const thumb = '<a class="thumb-link" href="'+href+'">'+thumbInner+'</a>';
   const tags = (p.tags||[]).map(t =>
     '<span class="tag c-'+tagColor(t)+'" data-tag="'+esc(t)+'">'+esc(t)+'</span>').join("");
@@ -202,13 +211,13 @@ function card(p) {
       <p class="abs">${escLinkify(detex(p.abstract))}</p>
       <button class="abs-more" type="button" aria-expanded="false">More ▾</button>
       <div class="row">
-        <span class="badge">${esc(p.primary_category)}</span>
+        ${isPal ? '<span class="badge src">Palomar</span>' : ''}
+        ${p.primary_category ? '<span class="badge">'+esc(p.primary_category)+'</span>' : ''}
         <span class="date">${fmtDate(p.published)}</span>
         ${tags}
         <span class="links">
           <a href="${href}">Details</a>
-          <a href="${esc(p.abs_url)}" target="_blank" rel="noopener">arXiv</a>
-          <a href="${esc(p.pdf_url)}" target="_blank" rel="noopener">PDF</a>
+          ${srcLinks}
           ${p.repo ? '<a class="repo" href="'+esc(p.repo)+'" target="_blank" rel="noopener">Code</a>' : ''}
         </span>
       </div>

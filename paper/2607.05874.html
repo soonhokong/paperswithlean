@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,6 +52,7 @@
         <div class="tldr-box">A Lean 4 framework abstracts the recursive proof pattern shared by many matrix decompositions into reusable schema, transport, and subtype-induction machinery.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">Existence proofs for many matrix decompositions share a recursive routine: a local transformation prepares the matrix, a slice is selected, a recursive solution is obtained, and the result is lifted and transported back. Formalizing this routine uniformly in dependent type theory is difficult because recursive subproblems may change index types, and reconstruction must preserve structural predicates across block embeddings and reindexings. We develop a Lean 4 framework that separates decomposition schemas, transformations, reduction strategies, measures, lifting, transport, and subtype induction. The framework uses general index types, packages square and rectangular matrices in universe types, and provides a decomposition driver that assembles strategy data into subtype-induction instances. It has been instantiated across PLU, LU, LDL/Cholesky, QR variants, Gauss rank normal form, Hessenberg reductions, Schur variants, normal spectral decomposition, SVD, bidiagonalization, tridiagonalization, UTV, Smith normal form, rational canonical form, and Jordan-type forms at varying levels of statement strength. Across these instances, repeated decomposition proofs are best treated not as separate tasks but as instances of a more general inductive statement whose interface records a certified proof path compatible with the chosen decomposition statement.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Existence proofs for many matrix decompositions share a recursive routine, but formalizing it uniformly in dependent type theory is hard because recursive subproblems change index types and reconstruction must preserve structural predicates across block embeddings and reindexings.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A Lean 4 framework separates decomposition schemas, local transformations, reduction strategies, measures, lifting, transport, and subtype induction. It introduces matrix universes packaging index types with finite/order structure to place differently indexed matrices in a common measured domain. A decomposition driver assembles universe, target, strategy, and proof data into subtype-induction instances that yield matrix-level theorems.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.05874/x1.png" alt=""><figcaption>Figure 2: Subtype-Induction Framework . Universe, target, strategy, and proof data are assembled through the driver into a subtype-induction instance. The resulting universe proof is converted into matrix-level theorems, with applications including elimination, orthogonal reductions, rank forms, and canonical bridges</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The framework is instantiated across 17 decomposition families including PLU, LU, LDL/Cholesky, QR, Hessenberg, Schur, spectral, SVD, bidiagonalization, UTV, Smith normal form, rational canonical form, and Jordan forms, totaling about 37,337 lines of Lean 4 across 118 files with 1,162 proofs.</p><div class="sum-table"><table><thead><tr><th>Instance</th><th>LOC</th><th>Proof route</th><th>Target form</th><th>Imports</th></tr></thead><tbody><tr><td>PLU</td><td>982</td><td>Explicit recursive</td><td>Unconditional</td><td>11</td></tr><tr><td>QR (+Householder,Givens)</td><td>2,946</td><td>Explicit recursive</td><td>Structured variants</td><td>10</td></tr><tr><td>SVD</td><td>1,688</td><td>Spectral existence</td><td>Unconditional</td><td>3</td></tr><tr><td>Smith normal form</td><td>2,728</td><td>Bridge-derived</td><td>Unconditional</td><td>3</td></tr><tr><td>Jordan-type forms</td><td>5,638</td><td>Bridge-derived</td><td>Conditional/unconditional</td><td>4</td></tr></tbody></table><div class="tbl-cap">Instance landscape: LOC, proof route, target form, and shared imports (excerpt)</div></div></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

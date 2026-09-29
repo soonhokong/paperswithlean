@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,6 +52,7 @@
         <div class="tldr-box">MathAgent augments LLM provers with a knowledge graph of Mathlib theorems, evaluated on miniF2F, PutnamBench, and MathOlympiadBench in Lean 4.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">Does structured mathematical knowledge help LLMs prove theorems in Lean 4? If so, for which models, and does the answer vary by problem? Formal libraries such as Mathlib encode 285,000+ verified theorems with syntactic dependencies, but the semantic layer mathematicians rely on for discovery (analogies, generalizations, cross-domain bridges) remains implicit. We introduce MathAgent, which builds this layer as a knowledge graph, MathKG, and uses it to augment LLM theorem provers. MathKG connects 364 Mathlib theorems and definitions by 9,434 typed semantic edges inferred via LLM-based relation extraction anchored to verified Mathlib declarations. We run a controlled ablation across four augmentation modes (no context, knowledge-graph context, Mathlib retrieval, both) and five models: Qwen3-8B/32B, their Lean-specialized derivatives Goedel-Prover-V2-8B/32B, and Claude Sonnet 4.6, on miniF2F, plus PutnamBench and MathOlympiadBench for Sonnet. Three findings emerge. (i) Specialization dominates augmentation: Lean fine-tuning adds 33-38 percentage points of solve rate in every mode, and a specialized 8B model beats a $4\times$ larger general one by 29-35 points, while no augmentation mode improves solve rate by more than 3 points. (ii) Augmentation is capability-conditioned: knowledge-graph context helps small models but hurts large ones, with the specialized model gaining more relative to its general base at every scale. (iii) Yet the augmentation modes solve different problems: an oracle selecting the best mode per problem solves 6% to 58% more than the unaugmented prover, a complementarity effect that strengthens on harder problems (32% more on PutnamBench). These results motivate adaptive strategies that select augmentation by model capability and problem. Code, data, and artifacts are available at <a href="https://github.com/sarehnabi/mathagent" target="_blank" rel="noopener">https://github.com/sarehnabi/mathagent</a></div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Formal libraries like Mathlib encode syntactic dependencies but leave implicit the semantic layer (analogies, generalizations, cross-domain bridges) mathematicians use for discovery. It is unclear whether structured mathematical knowledge helps LLMs prove theorems in Lean 4, and for which models and problems.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">MathKG, a knowledge graph connecting 364 Mathlib theorems and definitions via 9,434 typed semantic edges inferred through LLM-based relation extraction anchored to verified Mathlib declarations, is constructed. MathAgent uses this graph to augment LLM theorem provers. A controlled ablation compares four augmentation modes (no context, knowledge-graph context, Mathlib retrieval, both) across five models including Qwen3-8B/32B, Goedel-Prover-V2-8B/32B, and Claude Sonnet 4.6. Evaluation uses miniF2F, plus PutnamBench and MathOlympiadBench for Sonnet.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Lean fine-tuning added 33-38 percentage points of solve rate, dominating augmentation which never improved solve rate by more than 3 points. Knowledge-graph context helped small models but hurt large ones. An oracle selecting the best augmentation mode per problem solved 6% to 58% more than the unaugmented prover, with the complementarity effect strengthening on harder problems (32% more on PutnamBench).</p></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

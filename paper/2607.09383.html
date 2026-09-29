@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,6 +52,7 @@
         <div class="tldr-box">The core calculus CoreCapybara&#x27;s semantic soundness (type, memory safety, immutability) is mechanized in Lean 4.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">Substructural type systems give strong static control over aliasing. Examples include uniqueness, separation, and borrowing. How can such control be brought to established languages whose programming models rely on higher-order abstraction, unrestricted aliasing, and pervasive sharing? We study this problem in the context of Scala. We show how to retrofit these guarantees selectively instead of globally: ordinary code keeps Scala&#x27;s usual aliasing discipline, while stronger guarantees can be enforced where they matter. Our starting point is Scala&#x27;s capture checking, whose treatment of capabilities is inspired by the object-capability tradition: capabilities are ordinary values, and capture sets record, in a value&#x27;s type, which capabilities the value may use. We develop System Capybara, which adds a selective alias-control layer to this mechanism. By tracking separation, consumption, freshness, and read-only access for capabilities, Capybara recovers key reasoning principles from substructural and ownership-based disciplines without global invariants. We give a type-preserving translation from the surface calculus Capybara to CoreCapybara, a core calculus extending System Capless, the earlier foundation for capture checking. The translation uses quantifiers for capture polymorphism and freshness, and constraint-indexed modal types for separation. We prove a semantic soundness result for the core calculus in Lean 4 and derive type safety, memory safety (no use-after-free or double-free), immutability of read-only computations, and data-race freedom for well-typed programs. Finally, we implement Scala 3&#x27;s new separation checker, which brings higher-order separation reasoning about effects, capabilities, and resources to ordinary Scala, including fearless concurrency.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Substructural type systems give strong static alias control, but retrofitting such guarantees into languages like Scala that rely on unrestricted aliasing and pervasive sharing is difficult. The goal is to add selective alias-control guarantees without imposing global invariants.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">System Capybara adds a selective alias-control layer to Scala&#x27;s capture checking, tracking separation, consumption, freshness, and read-only access for capabilities. A type-preserving translation maps the surface calculus to CoreCapybara, a core calculus extending System Capless with modal types, existential capture types, and reader values. A logical relation model of CoreCapybara is developed and its semantic soundness is mechanized in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Semantic soundness of CoreCapybara yields type safety, memory safety (no use-after-free or double-free), immutability of read-only computations, and, via confluence, data-race freedom for well-typed programs. A separation checker was implemented in Scala 3.</p></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

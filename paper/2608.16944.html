@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,6 +52,7 @@
         <div class="tldr-box">Lean 4 with Mathlib machine-checks the model, causality argument, comparator schedules, and quantifier order for the KV-cache scheduling competitive-ratio bounds.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">Jaillet et al. introduced a fully online model for batching nonpreemptive LLM requests under a growing KV-cache memory constraint. For total end-to-end latency they proved that every deterministic algorithm has competitive ratio Omega(sqrt(n)), while the elementary sequential upper bound is n. We close this gap. Let R_det(n,M) be the optimal deterministic ratio for exactly n requests at memory M, and let R_det(n)=sup_M R_det(n,M). For every n &gt;= 2 we prove (n-1)/12 &lt;= R_det(n) &lt;= n, so R_det(n)=Theta(n). The lower bound releases one memory-filling long request, observes its deterministic start time, and then releases n-1 wide one-token requests halfway through the long run. No short request can overlap the long one, whereas a hindsight schedule runs the two groups in the opposite order when useful. The hard instance uses the explicit fixed memory M=2(n-1)n. The upper bound is achieved by a uniform causal serial policy. The exact model, causality argument, both comparator branches, and quantifier order are machine-checked in Lean 4. Exact finite controls and replay commands accompany the proof.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Jaillet et al. proved that every deterministic algorithm for fully online nonpreemptive KV-cache batching under a growing memory constraint has competitive ratio Omega(sqrt(n)) for total end-to-end latency, while the trivial serial upper bound is n, leaving a polynomial gap.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The optimal deterministic ratio R_det(n) is bounded from above by a uniform causal serial policy and from below by a hard instance using fixed memory M=2(n-1)n. The lower bound releases one memory-filling long request, observes its deterministic start, then releases n-1 wide one-token requests halfway through, so no short request can overlap the long one while a hindsight schedule reorders them. The exact model, causality argument, both comparator branches, and quantifier order are machine-checked in Lean 4 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For every n &gt;= 2, (n-1)/12 &lt;= R_det(n) &lt;= n, establishing R_det(n)=Theta(n) and closing the gap. The audited Lean declaration relies only on the standard axioms propext, Classical.choice, and Quot.sound, and 30 focused tests plus exact finite controls replay successfully.</p></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

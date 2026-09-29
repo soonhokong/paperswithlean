@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,6 +52,7 @@
         <div class="tldr-box">The core of a change-data-capture correctness theory (the cut theorem) is independently verified in Lean 4, alongside Isabelle/HOL and TLA+.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">Change-data capture (CDC) feeds downstream systems like caches, search indexes, and data warehouses from a database&#x27;s log of committed row changes. When bootstrapping, adding a table, or repairing downstream data, a pipeline must also copy existing rows. Merging this copy with the active log introduces the copy-to-log handoff problem. Changes must not fall through a gap, and older copied state must not overwrite a newer logged update or resurrect a deleted row. DBLog, developed at Netflix, addressed this problem by reading tables in chunks and interleaving those reads with the live log. Watermarks identify the changes that overlap each read, and the log wins when a copied row is stale. Debezium and Flink CDC have since adapted this design. Earlier work proved that applying the original algorithm&#x27;s copied rows and logged changes in their emitted order reconstructs the source&#x27;s rows, including the effect of every logged insert, update, and delete processed. Generalized DBLog asks when the same result holds for variants of that design. We state the conditions the source and capture implementation must satisfy. Once copying and reconciliation are complete, we prove that the result holds across all selected tables and key ranges even when their rows were read at different times. A single database snapshot is not required for the copy. Further logged changes advance the reconstructed state one event at a time. We establish these guarantees for classic watermarking, Debezium&#x27;s signal-table and read-only modes, Flink CDC&#x27;s parallel chunks, reads and dumps tied to exact log positions, and engine-consistent backups whose log position lies within known bounds. The complete theory is machine-checked in Isabelle/HOL, its core independently verified in Lean 4, and the protocols are also examined by bounded model checking in TLA+.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Change-data-capture pipelines must combine a copy of existing database rows with the active change log without losing updates, dropping changes, or resurrecting deleted rows (the copy-to-log handoff problem). The question is under what conditions variants of the DBLog design still correctly reconstruct source state.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The work models a capture source as a keyed store with a commit-ordered log and defines a capture plan with units, brackets, read results, and a frontier. A contract specifying source and implementation obligations is stated, and a cut theorem proves canonical replay equals source row-event replay at the frontier. The theory is machine-checked in Isabelle/HOL, its core independently verified in Lean 4, and protocols examined by bounded model checking in TLA+.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The guarantees hold across selected tables and key ranges even when rows are read at different times, without requiring a single snapshot, and are established for classic watermarking, Debezium signal-table and read-only modes, Flink CDC parallel chunks, exact-position reads, and engine-consistent backups.</p></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

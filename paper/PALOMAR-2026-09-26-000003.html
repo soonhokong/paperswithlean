@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hamilton cycles in Cayley graphs of polylogarithmic degree · Papers With Lean</title>
+<meta name="description" content="A complete Lean 4 / Mathlib formalization of the following theorem: there are absolute constants C, n0 &gt; 0 such that every connected Cayley graph Cay(G, S) on n &gt;= n0 vertices whose degree d = |S| is at least C (log n)^13 / log log n contains a Hamilton cycle…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hamilton cycles in Cayley graphs of polylogarithmic degree">
+<meta property="og:description" content="A complete Lean 4 / Mathlib formalization of the following theorem: there are absolute constants C, n0 &gt; 0 such that every connected Cayley graph Cay(G, S) on n &gt;= n0 vertices whose degree d = |S| is at least C (log n)^13 / log log n contains a Hamilton cycle…">
+<meta property="og:url" content="https://paperswithlean.com/paper/PALOMAR-2026-09-26-000003.html">
+
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://palomar-registry.org/entry?id=PALOMAR-2026-09-26-000003&amp;version=1" target="_blank" rel="noopener"><div class="thumb-ph">Palomar</div></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Hamilton cycles in Cayley graphs of polylogarithmic degree</h1>
+        <p class="authors">Shengtong Zhang</p>
+        <div class="row">
+          <span class="badge src">Palomar</span> <span class="badge">math.CO</span>
+          <span class="date">Sep 26, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://palomar-registry.org/entry?id=PALOMAR-2026-09-26-000003&amp;version=1" target="_blank" rel="noopener">View on Palomar</a>
+          <a class="btn repo-btn" href="https://github.com/ShengtongZhang-alt/lovasz-opus/tree/ee0085ddec79996279c7b52044659032e5cf8431" target="_blank" rel="noopener" title="ShengtongZhang-alt/lovasz-opus">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Complete Lean 4/Mathlib formalization, with no sorry, of a polylogarithmic-degree Hamiltonicity theorem for connected Cayley graphs, including all supporting classical results.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A complete Lean 4 / Mathlib formalization of the following theorem: there are absolute constants C, n0 &gt; 0 such that every connected Cayley graph Cay(G, S) on n &gt;= n0 vertices whose degree d = |S| is at least C (log n)^13 / log log n contains a Hamilton cycle (Lovasz.hamiltonian_of_polylog_degree). Here G is a finite group, S is a connection set (S = S^-1 and 1 not in S, so the graph is |S|-regular), log is the natural logarithm, and connectivity is equivalent to S generating G. The theorem is a case of the Lovász conjecture (every connected vertex-transitive graph has a Hamilton path) in its Cayley-graph form (every connected Cayley graph on at least three vertices is Hamiltonian). For arbitrary connected Cayley graphs the previously published degree thresholds were linear degree (Christofides, Hladký and Máthé, 2014) and degree at least n^(1-c) (Bedert, Draganić, Müyesser and Pavez-Signé, 2026). The proof follows the source manuscript: it extracts a connected bipartite template with spectral gap of order (log n)^-2, allocates the vertices to weighted translates of the template by signed rounding (a robust signed integrality theorem derived from the capacitated b-matching polytope, swap rounding, and a trace-exponential matrix concentration bound), connects the pieces by a sparse matching chosen by mutual nominations and a signed circulation, absorbs the outside matching inside every piece with Hamilton routers built from even-cycle comparators, and merges cycles. Every lemma of the manuscript is proved in the repository, as are the classical results it uses without proof (normalized Cheeger inequality, Haxell&#x27;s hypergraph matching theorem, the b-matching polytope, Watkins&#x27;s connectivity bound, the Nash-Williams–Tutte tree-packing theorem, Hoffman&#x27;s circulation criterion, scalar Chernoff bounds); Hall&#x27;s theorem is taken from Mathlib, and matrix Bernstein is avoided by deriving the one lemma that used it from the manuscript&#x27;s own concentration bound. The source manuscript is an unpublished research draft that describes its own proof as not independently verified; this formalization is, to the maintainer&#x27;s knowledge, the first verification of the theorem. The proved theorem has no sorry and depends only on propext, Classical.choice and Quot.sound.</div>
+        <div class="section-label">Palomar verification</div><p class="pal-meta">Trust level: high · pinned commit <a href="https://github.com/ShengtongZhang-alt/lovasz-opus/tree/ee0085ddec79996279c7b52044659032e5cf8431" target="_blank" rel="noopener"><code>ee0085d</code></a></p><ul class="thm-list"><li>Lovasz.hamiltonian_of_polylog_degree</li></ul>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The Lovász conjecture in Cayley-graph form asks whether every connected Cayley graph on at least three vertices is Hamiltonian. Previously published thresholds for arbitrary connected Cayley graphs required linear degree or degree at least n^(1-c). An unpublished draft claims Hamiltonicity once the degree is at least C (log n)^13 / log log n, but describes its own proof as not independently verified.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The draft&#x27;s proof is formalized in Lean 4 with Mathlib. It extracts a bipartite template with spectral gap and allocates vertices to weighted translates of it by signed rounding, using b-matching polytopes, swap rounding and matrix concentration. The pieces are then connected by a sparse matching, the outside matching is absorbed with Hamilton routers built from even-cycle comparators, and the cycles are merged. Classical results the draft uses without proof are also proved in the repository, including the Cheeger inequality, Haxell&#x27;s theorem, Nash-Williams–Tutte tree packing and Hoffman&#x27;s circulation criterion; Hall&#x27;s theorem comes from Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The main theorem, Lovasz.hamiltonian_of_polylog_degree, is proved with no sorry and depends only on propext, Classical.choice and Quot.sound. To the maintainer&#x27;s knowledge, it is the first verification of the result.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

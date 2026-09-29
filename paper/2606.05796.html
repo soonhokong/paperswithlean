@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -46,12 +46,13 @@
         <div class="btns">
           <a class="btn primary" href="https://arxiv.org/pdf/2606.05796v2" target="_blank" rel="noopener">Read PDF</a>
           <a class="btn" href="https://arxiv.org/abs/2606.05796" target="_blank" rel="noopener">arXiv abstract</a>
-          <a class="btn repo-btn" href="https://github.com/arquintl/go-gcd" target="_blank" rel="noopener" title="arquintl/go-gcd">Code</a>
+          <a class="btn repo-btn" href="https://github.com/ArquintL/go-gcd" target="_blank" rel="noopener" title="ArquintL/go-gcd">Code</a>
         </div>
         <div class="section-label first">TL;DR</div>
         <div class="tldr-box">Lean proves key non-linear arithmetic lemmas that are imported into the Gobra verifier for Go&#x27;s extended-GCD code.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">We verify the &#x27;extendedGCD&#x27; implementation in Go&#x27;s standard library (&#x27;crypto/internal/fips140/bigmod&#x27;), which plays a crucial role in the generation of RSA key pairs. Even though the Go implementation is supposedly a direct port from BoringSSL&#x27;s implementation, we uncovered two deviations that each break the algorithm&#x27;s invariants: (1) the Go implementation deviates in the way coefficients are updated, and (2) it permits a larger input domain. We address both deviations; the first by fixing the Go implementation, which results in an on average 24% speedup, and the second deviation by porting an existing proof for BoringSSL and extending it to cover the larger input domain. We prove correctness and termination of the fixed Go implementation using Gobra, a deductive program verifier for Go. Where necessary, we used Lean to prove key lemmata on non-linear arithmetic, which we import into Gobra. Our verification effort reveals three key insights: subtle bugs can slip into even well-reviewed code with surprising ease; formal verification is a powerful tool for uncovering them; and AI agents can facilitate the verification process by iteratively refining invariants and lemmata based on Gobra&#x27;s error messages.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Go&#x27;s standard library extended GCD implementation (crypto/internal/fips140/bigmod), critical for RSA key generation, claims to be a direct port of BoringSSL&#x27;s implementation. Despite review by three developers, subtle deviations from the original algorithm went undetected.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors verify Go&#x27;s extendedGCD using Gobra, a deductive program verifier for Go. They uncovered two deviations that each break the algorithm&#x27;s invariants: unsynchronized coefficient reductions and a larger input domain than BoringSSL permits. They fix the first deviation in the Go code and extend an existing Rocq proof for BoringSSL to cover the larger domain. Lean is used to prove key lemmata on non-linear arithmetic, which are imported into Gobra.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The fix to the unsynchronized subtraction deviation yields an average 24% speedup. The full verified implementation comprises 149 lines of Go code and 838 lines of Gobra specifications/proofs. AI agents were used to iteratively refine invariants and lemmata based on Gobra error messages.</p><div class="sum-table"><table><thead><tr><th>Function</th><th>LOC</th><th>LOS</th></tr></thead><tbody><tr><td>extendedGCD</td><td>53</td><td>99</td></tr><tr><td>InverseVarTime</td><td>10</td><td>18</td></tr><tr><td>GCDVarTime</td><td>7</td><td>12</td></tr><tr><td>syncAdd</td><td>8</td><td>60</td></tr><tr><td>Other Go functions</td><td>71</td><td>314</td></tr><tr><td>Lemmata</td><td>-</td><td>349</td></tr><tr><td>Total</td><td>149</td><td>838</td></tr></tbody></table><div class="tbl-cap">Verification effort breakdown</div></div></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

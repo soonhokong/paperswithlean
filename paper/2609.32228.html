@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,6 +52,7 @@
         <div class="tldr-box">Applies gradient-alignment proposer rewards to Lean 4 theorem-proving self-play with DeepSeek-Prover-V2, verifying proofs against mathlib4.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">In self-play, a proposer generates verifiable tasks to train a solver. Proposer rewards often depend on the solver&#x27;s success rate, but equally difficult tasks can differ in their training value. We introduce CompassPlay, a self-play method that rewards the proposer through gradient alignment. The reward favors tasks whose solver loss gradients align with those of reference tasks representing the target capabilities. It draws on a first-order approximation to learning progress and scores each eligible task without additional solver training. Our experiments show gains in performance and training efficiency. In coding self-play with Qwen2.5-Coder-7B, a small external reference set guides task generation. CompassPlay improves average accuracy over AZR&#x27;s difficulty reward by 1.5 percentage points on in-domain coding and 2.7 on out-of-domain mathematics. In Lean4 theorem proving, CompassPlay matches the difficulty baseline&#x27;s 150-iteration cumulative coverage with 40% fewer GPU-hours.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">In self-play, a proposer generates verifiable tasks to train a solver, but rewards based only on solver success rate cannot distinguish tasks of equal difficulty that differ in training value.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">CompassPlay rewards the proposer through gradient alignment, favoring tasks whose solver loss gradients align (cosine similarity) with gradients of reference tasks representing target capabilities. This is a first-order proxy for learning progress that scores each candidate without extra solver training. It is evaluated in coding self-play (Qwen2.5-Coder-7B, Python execution verifier) and in Lean 4 theorem proving using separate DeepSeek-Prover-V2-7B proposer and solver models, checking proofs with the Lean 4 compiler against mathlib4. A novelty weighting is added to reduce seed-copying.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">In coding, CompassPlay improves average accuracy over AZR&#x27;s difficulty reward by 1.5 points in-domain and 2.7 points on out-of-domain mathematics. In Lean, with novelty weighting it matches the difficulty baseline&#x27;s 150-iteration cumulative coverage using 40% fewer GPU-hours and reduces the copy rate to zero.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Alignment</th><th>Novelty</th><th>Copy rate ↓</th><th>Gain (targets) ↑</th></tr></thead><tbody><tr><td>CompassPlay (cos)</td><td>✓</td><td>✗</td><td>0.712</td><td>+3.1</td></tr><tr><td>novelty-only</td><td>✗</td><td>✓</td><td>0.000</td><td>-7.9</td></tr><tr><td>CompassPlay (cos×novelty)</td><td>✓</td><td>✓</td><td>0.000</td><td>+13.6</td></tr></tbody></table><div class="tbl-cap">Lean self-play: alignment and novelty ablation (copy rate and coverage gain on targets)</div></div></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

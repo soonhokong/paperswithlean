@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,6 +52,7 @@
         <div class="tldr-box">Constructs a semantic-correctness benchmark from 5 real-world Lean 4 repositories.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">Recent advances in large language models (LLMs) have shown promise in formal theorem proving, yet evaluating semantic correctness remains challenging. Existing evaluations rely on indirect proxies such as lexical overlap with human-annotated proof, or expensive manual inspection. Inspired by the shift from lexical comparison to test-based evaluation in code generation, we propose T , a framework that evaluates the semantic correctness of formal theorems: a generated theorem is considered correct only if all dependent successor theorems compile successfully, analogous to integration testing. We construct a benchmark from 5 real-world Lean 4 repositories, comprising 2,206 problems paired with 41 successor theorems on average, automatically extracted without human effort. Experiments demonstrate that while state-of-the-art models achieve high compilation success, they perform significantly worse under our semantic metric. The best model, Claude-Sonnet-4.5, achieves only 38.9% Testing Accuracy on the full set, given both natural language proof and successor theorems as context, revealing a critical gap in current theorem generation capabilities.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Evaluating the semantic correctness of generated formal theorems is challenging. Existing evaluations rely on compilation (which accepts tautologies) or expensive manual inspection, failing to detect statements that are logically valid but semantically unfaithful to the intended theorem.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors propose T2, a testing-based evaluation framework for formal theorems in Lean. A generated theorem is considered correct only if all dependent successor theorems compile successfully when using it, analogous to integration testing in software engineering. The framework extracts dependency graphs from Lean repositories, identifies successor theorems for each target, and evaluates whether a candidate theorem supports its downstream dependents. The benchmark is constructed via a fully automated, dependency-aware extraction pipeline.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.23698/x1.png" alt=""><figcaption>Figure 1: Two candidate theorems for proving commutativity of addition: one correct ( a+b=b+a ) and one tautology ( a+b=a+b ).(a) Under compilation-based evaluation, both candidates pass, as each is logically valid in isolation.(b) Under testing-based evaluation, the tautology is exposed: the successor theorem ( cancel_eq ) fails when it depends on the incorrect candidate, while it compiles succes</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On T2 Hard, even the best models show large performance drops: Claude-4-Sonnet achieves 81.1% compilation but only 36.0% testing accuracy (TA) on T2, dropping to 47.5% compilation and 4.5% TA on T2 Hard. GPT-5 reaches 85.7% compilation but only 37.7% TA on T2 and 3.4% on T2 Hard. Prover/formalizer models show compilation gains that do not translate to TA improvements.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.23698/x2.png" alt=""><figcaption>Figure 3: Relative performance drop from existing benchmarks to T 2 Hard, in compilation accuracy (x-axis) vs. TA(y-axis).Prover/Formalizer models ( red stars) in the lower-right quadrant, where compilation gains do not translate to TAimprovements.</figcaption></figure></div></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

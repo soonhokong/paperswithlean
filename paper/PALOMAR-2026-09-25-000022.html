@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heights, Siegel&#x27;s lemma, Roth&#x27;s theorem and the Subspace Theorems in Lean · Papers With Lean</title>
+<meta name="description" content="A Lean 4 / Mathlib development of Schmidt&#x27;s Subspace Theorem and the theory beneath it, following Bombieri–Gubler, Heights in Diophantine Geometry (Chapters 1–7), and Schmidt&#x27;s route in general. Two libraries, sorry-free and within Lean&#x27;s three standard axioms. ArithmeticHeights…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Heights, Siegel&#x27;s lemma, Roth&#x27;s theorem and the Subspace Theorems in Lean">
+<meta property="og:description" content="A Lean 4 / Mathlib development of Schmidt&#x27;s Subspace Theorem and the theory beneath it, following Bombieri–Gubler, Heights in Diophantine Geometry (Chapters 1–7), and Schmidt&#x27;s route in general. Two libraries, sorry-free and within Lean&#x27;s three standard axioms. ArithmeticHeights…">
+<meta property="og:url" content="https://paperswithlean.com/paper/PALOMAR-2026-09-25-000022.html">
+
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://palomar-registry.org/entry?id=PALOMAR-2026-09-25-000022&amp;version=1" target="_blank" rel="noopener"><div class="thumb-ph">Palomar</div></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Heights, Siegel&#x27;s lemma, Roth&#x27;s theorem and the Subspace Theorems in Lean</h1>
+        <p class="authors">Ralf Stephan</p>
+        <div class="row">
+          <span class="badge src">Palomar</span> <span class="badge">math.NT</span>
+          <span class="date">Sep 25, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://palomar-registry.org/entry?id=PALOMAR-2026-09-25-000022&amp;version=1" target="_blank" rel="noopener">View on Palomar</a>
+          <a class="btn repo-btn" href="https://github.com/rwst/Subspace-Theorems/tree/d12aa25a9725e8d28c1bfc018c664b7ceb8d35c5" target="_blank" rel="noopener" title="rwst/Subspace-Theorems">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes heights, Siegel&#x27;s lemma, Roth&#x27;s theorem and Schmidt&#x27;s Subspace Theorem with applications in Lean 4 using Mathlib, sorry-free.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A Lean 4 / Mathlib development of Schmidt&#x27;s Subspace Theorem and the theory beneath it, following Bombieri–Gubler, Heights in Diophantine Geometry (Chapters 1–7), and Schmidt&#x27;s route in general. Two libraries, sorry-free and within Lean&#x27;s three standard axioms. ArithmeticHeights builds heights of points, polynomials, matrices and linear subspaces, Northcott and Kronecker, Minkowski&#x27;s second theorem, Siegel&#x27;s lemma and the Bombieri–Vaaler theorems. DiophantineApproximation builds on it Roth&#x27;s theorem over a number field with several places (and Ridout, the p-adic form, targets at infinity, moving targets), the geometry of numbers of approximation domains, and the Subspace Theorem: parametric, with coefficients in K, with algebraic coefficients, for S-integral points, and in Vojta&#x27;s general-position form. It then proves the applications — Schmidt&#x27;s simultaneous approximation, a transcendence criterion, unit equations, decomposable-form, Thue–Mahler, hyperelliptic and norm-form equations, the Corvaja–Zannier gcd bound — and Evertse&#x27;s quantitative steps: systems of inequalities, the gap principles, the count of small solutions, and the passage from height intervals to subspaces. Twenty-six headline statements are compared: seven forms of Siegel&#x27;s lemma and Bombieri–Vaaler, seven of Roth&#x27;s theorem, seven of the Subspace Theorem, and five of Evertse&#x27;s counting of the subspaces.</div>
+        <div class="section-label">Palomar verification</div><p class="pal-meta">Trust level: high · pinned commit <a href="https://github.com/rwst/Subspace-Theorems/tree/d12aa25a9725e8d28c1bfc018c664b7ceb8d35c5" target="_blank" rel="noopener"><code>d12aa25</code></a></p><ul class="thm-list"><li>Int.Matrix.exists_ne_zero_mulVec_eq_zero_iSup_abs_le</li><li>NumberField.exists_forall_exists_ne_zero_mulVec_eq_zero_absMulHeight_le</li><li>Int.Matrix.exists_linearIndependent_mulVec_eq_zero_prod_iSup_abs_le</li><li>Int.Matrix.exists_ne_zero_mulVec_eq_zero_iSup_abs_le_det_rpow</li><li>NumberField.exists_ne_zero_mem_ker_absMulHeight_le</li><li>NumberField.exists_linearIndependent_mem_ker_prod_absMulHeight_le</li><li>MvPolynomial.exists_ne_zero_mem_ker_mulHeight_rpow_le</li><li>NumberField.finite_setOf_prod_min_one_le</li><li>Real.irrationalityExponent_eq_two</li><li>Rat.finite_setOf_ridout</li></ul>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Schmidt&#x27;s Subspace Theorem and the height theory beneath it, as presented in Bombieri–Gubler Chapters 1–7, had not been formalized. Its many variants and Diophantine applications rest on a large body of prerequisite theory.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Two Lean 4 / Mathlib libraries were built, sorry-free and using only Lean&#x27;s three standard axioms. ArithmeticHeights develops heights of points, polynomials, matrices and subspaces, Northcott and Kronecker, Minkowski&#x27;s second theorem, Siegel&#x27;s lemma and the Bombieri–Vaaler theorems. DiophantineApproximation builds on it with Roth&#x27;s theorem over number fields and its variants, the geometry of numbers of approximation domains, and several forms of the Subspace Theorem. It then proves applications and Evertse&#x27;s quantitative steps.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The development covers the parametric, K-coefficient, algebraic-coefficient, S-integral and Vojta general-position forms of the Subspace Theorem. Applications include unit equations, Thue–Mahler, norm-form equations and the Corvaja–Zannier gcd bound. Twenty-six headline statements are compared: seven forms of Siegel/Bombieri–Vaaler, seven of Roth, seven of the Subspace Theorem, and five of Evertse&#x27;s subspace counting.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

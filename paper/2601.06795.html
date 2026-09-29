@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,6 +52,7 @@
         <div class="tldr-box">Trains an LLM theorem prover with RL using the Lean verifier&#x27;s binary correctness signal to gate sampling and decouple advantage sign from auxiliary rewards.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">Automated Theorem Proving (ATP) represents a fundamental challenge in Artificial Intelligence (AI), requiring the construction of machine-verifiable proofs in formal languages such as Lean to evaluate AI reasoning capabilities. Reinforcement learning (RL), particularly the high-performance Group Relative Policy Optimization (GRPO) algorithm, has emerged as a mainstream approach for this task. However, in ATP scenarios, GRPO faces two critical issues: when composite rewards are used, its relative advantage estimation may conflict with the binary feedback from the formal verifier; meanwhile, its static sampling strategy may discard entire batches of data if no valid proof is found, resulting in zero contribution to model updates and significant data waste. To address these limitations, we propose Group Dual-dynamic and Equal-right-advantage Policy Optimization (GDEPO), a method incorporating three core mechanisms: 1) dynamic additional sampling, which resamples invalid batches until a valid proof is discovered; 2) equal-right advantage, decoupling the sign of the advantage function (based on correctness) from its magnitude (modulated by auxiliary rewards) to ensure stable and correct policy updates; and 3) dynamic additional iterations, applying extra gradient steps to initially failed but eventually successful samples to accelerate learning on challenging cases. Experiments conducted on three datasets of varying difficulty (MinF2F-test, MathOlympiadBench, PutnamBench) confirm the effectiveness of GDEPO, while ablation studies validate the necessity of its synergistic components. The proposed method enhances data utilization and optimization efficiency, offering a novel training paradigm for ATP.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">In automated theorem proving with reinforcement learning, GRPO faces two issues: its relative advantage estimation may conflict with binary verifier feedback when composite rewards are used, and its static sampling strategy discards entire batches when no valid proof is found, wasting data.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">GDEPO introduces three mechanisms: (1) dynamic additional sampling, which resamples invalid batches until a valid proof is discovered; (2) equal-right advantage, decoupling the sign of the advantage (based on correctness) from its magnitude (modulated by auxiliary rewards); and (3) dynamic additional iterations, applying extra gradient steps to initially failed but eventually successful samples. The system uses Lean 4 as the formal verifier.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Experiments on MiniF2F-test, MathOlympiadBench, and PutnamBench confirm the effectiveness of GDEPO over GRPO. Ablation studies validate that all three mechanisms contribute synergistically to improved data utilization and optimization efficiency.</p></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

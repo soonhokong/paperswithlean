@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -46,12 +46,13 @@
         <div class="btns">
           <a class="btn primary" href="https://arxiv.org/pdf/2607.09793v1" target="_blank" rel="noopener">Read PDF</a>
           <a class="btn" href="https://arxiv.org/abs/2607.09793" target="_blank" rel="noopener">arXiv abstract</a>
-          
+          <a class="btn repo-btn" href="https://arxiv.org/src/2607.09793v1/anc" target="_blank" rel="noopener" title="arXiv ancillary files">Code</a>
         </div>
         <div class="section-label first">TL;DR</div>
         <div class="tldr-box">A counterexample to Cohen&#x27;s subadditivity conjecture for Sophie Germain cyclic numbers is formalized and kernel-verified in Lean 4 over Mathlib.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">An integer $n \ge 1$ is cyclic if $\gcd(n,\varphi(n))=1$ (equivalently, if every group of order $n$ is cyclic), and Sophie Germain cyclic if both $n$ and $2n+1$ are cyclic. Let $C_σ(N)$ count the Sophie Germain cyclic integers in $[1,N]$. Cohen conjectured that $C_σ$ is subadditive, $C_σ(m+n) \le C_σ(m)+C_σ(n)$ for all $1 \le m \le n$ (his Conjecture 66), having checked $m,n \le 10^6$ without finding a counterexample. We give one: at $m=31$, $n=3928$, $C_σ(3959)=697 &gt; 696 = C_σ(31)+C_σ(3928)$. The argument is short, and is verified by the Lean 4 kernel.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Cohen conjectured (Conjecture 66) that the Sophie Germain cyclic counting function C_σ is subadditive, C_σ(m+n) ≤ C_σ(m)+C_σ(n), reporting no counterexample for m,n ≤ 10^6.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A window (3928,3959] of length 31 is shown to contain eleven Sophie Germain cyclic integers versus ten in [1,31]. Counts are computed with two independent totient implementations and cross-checked against Cohen&#x27;s tabulated value. The negation of the conjecture is formalized in Lean 4 over Mathlib, defining cyclic via Nat.Coprime n (Nat.totient n) and C_σ via Nat.count, splitting the count at 3928 to avoid evaluating the cumulative total.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">At m=31, n=3928, C_σ(3959)=697 &gt; 696 = C_σ(31)+C_σ(3928), disproving the conjecture. The Lean proof depends only on propext, Classical.choice, and Quot.sound, avoiding native_decide, so it is checked by the kernel.</p></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

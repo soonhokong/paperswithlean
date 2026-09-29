@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,6 +52,7 @@
         <div class="tldr-box">Trains LLMs to autoformalize problems into Lean 4 and generate Lean proofs, releasing large Lean statement and proof datasets.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">We introduce Goedel-Prover, an open-source language model that achieves state-of-the-art (as of April 5 2025) performance in automated formal proof generation for mathematical problems. A key challenge in this field is the scarcity of formalized mathematical statements and proofs, which we address through the following approaches. First, we train LLMs to convert natural language math problems from the Numina dataset to equivalent formal statements in Lean 4. This process creates the dataset Goedel-Pset-v1, which includes 1.64 million formal statements. Next, we develop a large dataset of formal proofs by training a series of provers. Each new prover can prove many statements that previous ones could not, and these new proofs are added to the training set for the next prover. Finally, we obtain the dataset Goedel-Pset-v1-solved, which contains proofs for over 800K statements from Goedel-Pset-v1. Supervised fine-tuning (SFT) of DeepSeek-Prover-V1.5-Base on Goedel-Pset-v1-solved (i.e., no RL) yields a Goedel-Prover-SFT that achieves a success rate of 57.6% (Pass@32) on miniF2F, surpassing the previous leader DeepSeek-Prover-V1.5-RL (trained using SFT + RL on a proprietary dataset) by 7.6%. On PutnamBench, Goedel-Prover-SFT successfully solves 7 problems (Pass@512), ranking first on the leaderboard. We provide extensive discussion of our training methodology, highlighting the key design choices that contribute to Goedel-Prover&#x27;s strong performance. Further RL training (including DPO) improves Goedel-Prover-SFT&#x27;s success rate to over 60% (Pass@32) on miniF2F. To aid future research, we provide extensive discussion of our training methodology and design choices. We also fully open-source our codes, models, and datasets. Additionally, we open-source formal proofs for 29.7K problems in Lean Workbook, nearly doubling the 15.7K solved by prior provers.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Automated formal proof generation for mathematical problems is limited by the scarcity of formalized mathematical statements and proofs, making it difficult to train strong theorem provers.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Goedel-Prover trains LLMs to convert natural language math problems from the Numina dataset to equivalent formal Lean 4 statements, creating Goedel-Pset-v1 with 1.64 million formal statements. Two formalizers (A and B) are trained on formal-informal statement pairs from various sources. A large proof dataset is then developed through expert iteration: each iteration uses the current prover to collect new proofs verified by the Lean compiler, which are added to training data for the next round of supervised fine-tuning starting from DeepSeek-Prover-V1.5-Base.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Goedel-Prover-SFT achieves 57.6% on miniF2F (Pass@32), surpassing DeepSeek-Prover-V1.5-RL (50.0%). At Pass@3200, it reaches 62.7%. It solves 29.7K problems in the Lean Workbook, nearly doubling the prior collective record of 15.7K. Scaling up the number of formal statements consistently improves performance. Using both formalizers (A and B) outperforms either alone.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Pass</th><th>Performance</th></tr></thead><tbody><tr><td>DeepSeek-Prover-V1.5-RL</td><td>32</td><td>50.0%</td></tr><tr><td>Goedel-Prover-SFT</td><td>32</td><td>57.6%</td></tr><tr><td>DeepSeek-Prover-V1.5-RL</td><td>3200</td><td>55.5%</td></tr><tr><td>Goedel-Prover-SFT</td><td>3200</td><td>62.7%</td></tr></tbody></table><div class="tbl-cap">miniF2F whole-proof generation results</div></div></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

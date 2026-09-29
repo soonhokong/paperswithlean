@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,6 +52,7 @@
         <div class="tldr-box">Introduces an agentic LLM-as-judge system scoring Lean 4 Mathlib proof quality beyond correctness, grounded by tool access to library state.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">Formal proofs in Lean 4 that pass the kernel&#x27;s type checker can nonetheless vary widely in quality. We introduce ProofJudge, an agentic LLM-as-judge system that scores formal proof quality along five dimensions beyond correctness: library leverage, automation fit, structural clarity, statement quality, and Mathlib conventions. We evaluate ProofJudge on a novel dataset of 218 declarations drawn from distinct Mathlib PRs. The judge agent is grounded by tool access to the commit the PR is applied to, enabling it to query the library state when scoring. A judge is considered aligned with human preferences when it rates the version of the PR Mathlib accepted above the initial version that was sent back for revision. All six judge models evaluated recover the reviewers&#x27; preference well above chance, from 80.8% to 63.5%, and two open-weight judges reach roughly 70% at a tenth of the best judge&#x27;s cost. We release the judge harness, evaluation dataset, and evaluation traces as open-source artifacts to support further research.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Formal proofs in Lean 4 that pass the type checker can vary widely in quality along dimensions valued by human mathematicians. As automated proof generation scales, evaluating these qualitative standards places a heavy burden on Mathlib reviewers.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ProofJudge is an agentic LLM-as-judge system that scores formal proof quality along five dimensions beyond correctness: library leverage, automation fit, structural clarity, statement quality, and Mathlib conventions. The judge is grounded via tool access (querying Mathlib through bash) to the commit a PR is applied to. Alignment with human reviewers is measured by whether the judge rates the accepted post-revision version above the rejected pre-revision version.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Evaluated on 218 declaration pairs from distinct Mathlib PRs, all six judge models recovered reviewer preferences above chance, from 80.8% (claude-sonnet-5) to 63.5% (deepseek-v4-flash). Two open-weight judges reached roughly 70% at a tenth of the best judge&#x27;s cost. Judges were noisy, with verdicts flipping across replicates.</p><div class="sum-table"><table><thead><tr><th>Judge</th><th>Weights</th><th>Alignment % (95% CI)</th><th>USD/pair</th></tr></thead><tbody><tr><td>claude-sonnet-5</td><td>closed</td><td>80.8 (73.6–88.2)</td><td>1.392</td></tr><tr><td>gemini-3.7-flash</td><td>closed</td><td>75.2 (69.3–81.2)</td><td>0.186</td></tr><tr><td>muse-glimmer-30b</td><td>open</td><td>70.2 (63.4–77.3)</td><td>0.140</td></tr><tr><td>gpt-5.4-mini</td><td>closed</td><td>68.7 (60.6–77.1)</td><td>0.136</td></tr><tr><td>deepseek-v4-flash</td><td>open</td><td>63.5 (56.0–71.6)</td><td>0.029</td></tr></tbody></table><div class="tbl-cap">Six judges on the 218-pair test split, three replicates each</div></div></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

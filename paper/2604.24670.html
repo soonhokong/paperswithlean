@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -46,12 +46,13 @@
         <div class="btns">
           <a class="btn primary" href="https://arxiv.org/pdf/2604.24670v2" target="_blank" rel="noopener">Read PDF</a>
           <a class="btn" href="https://arxiv.org/abs/2604.24670" target="_blank" rel="noopener">arXiv abstract</a>
-          
+          <a class="btn repo-btn" href="https://github.com/rayiskander2406/qanary-one-bit-barrier-arXiv-2604.24670" target="_blank" rel="noopener" title="rayiskander2406/qanary-one-bit-barrier-arXiv-2604.24670">Code</a>
         </div>
         <div class="section-label first">TL;DR</div>
         <div class="tldr-box">Machine-checks cardinality/leakage bounds for masked Barrett reduction in Lean 4 with Mathlib.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">Barrett reduction is the nonlinear core of every practical NTT-based post-quantum cryptography implementation. Existing composition frameworks (ISW, t-SNI, PINI, DOM) address Boolean masking over GF(2); none provides a machine-checked characterization of Barrett&#x27;s leakage under first-order arithmetic masking and the first-order probing model over prime fields. Building on our prior series, QANARY [15], partial-NTT-masking margins [14], algebraic foundations [16], and butterfly composition [18], we close this gap. We prove a trichotomy: for any $q &gt; 0$ and shift $s$, the Barrett internal wire map $f_x(m) = ((x + 2^s - m) \bmod 2^s) \bmod q$ has preimage cardinality in $\{0, 1, 2\}$, never more. We call this the 1-Bit Barrier: max-multiplicity 2 implies at most 1 bit of min-entropy loss per internal wire, universal over all moduli. The count-zero cases, unreachable output values, reveal that actual leakage is often strictly less than 1 bit, making the bound conservative. We introduce PF-PINI (Prime-Field PINI): Barrett satisfies PF-PINI(2); the Cooley-Tukey butterfly satisfies PF-PINI(1). We observe (not yet proved) that with fresh inter-stage masking, the composed pipeline has max-multiplicity $\max(k_1, k_2)$, so the 1-Bit Barrier propagates. The trichotomy, the PF-PINI instantiations, and cardinality results are machine-checked in Lean 4 with Mathlib: 12 proved results, zero sorry, universal over all $q &gt; 0$ (the min-entropy bound follows by standard definitions). Adams Bridge lacks fresh inter-stage masking, violating PF-PINI composition and explaining why Papers 1 [15] and 2 [14] found vulnerabilities. NIST IR 8547 recommends formal methods for PQC implementation validation. The 1-Bit Barrier provides the first universal machine-checked cardinality bound for masked Barrett reduction in ML-KEM (FIPS 203) and ML-DSA (FIPS 204), with a corresponding 1-bit leakage interpretation.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Barrett reduction is central to NTT-based post-quantum cryptography, but no existing framework provides a machine-checked characterization of its leakage under first-order arithmetic masking over prime fields.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors prove a trichotomy: for any q &gt; 0 and shift s, the Barrett internal wire map has preimage cardinality in {0, 1, 2}. This establishes the 1-Bit Barrier: max-multiplicity 2 implies at most 1 bit of min-entropy loss per internal wire, universal over all moduli. They introduce PF-PINI (Prime-Field PINI) and show Barrett satisfies PF-PINI(2) while the Cooley-Tukey butterfly satisfies PF-PINI(1). All results are machine-checked in Lean 4 with Mathlib: 12 proved results, zero sorry.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The formalization covers 12 machine-checked theorems universal over all q &gt; 0. The count-zero cases reveal that actual leakage is often strictly less than 1 bit, making the bound conservative. Adams Bridge is shown to violate the fresh-masking assumption needed for composition.</p></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

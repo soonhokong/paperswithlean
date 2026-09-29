@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -46,12 +46,13 @@
         <div class="btns">
           <a class="btn primary" href="https://arxiv.org/pdf/2502.03438v3" target="_blank" rel="noopener">Read PDF</a>
           <a class="btn" href="https://arxiv.org/abs/2502.03438" target="_blank" rel="noopener">arXiv abstract</a>
-          
+          <a class="btn repo-btn" href="https://huggingface.co/ByteDance-Seed/BFS-Prover-V1-7B" target="_blank" rel="noopener" title="ByteDance-Seed/BFS-Prover-V1-7B (Hugging Face)">Code</a>
         </div>
         <div class="section-label first">TL;DR</div>
         <div class="tldr-box">BFS-Prover scales best-first tree search with expert iteration and DPO for LLM theorem proving in Lean4.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">Recent advancements in large language models (LLMs) have spurred growing interest in automatic theorem proving using Lean4, where effective tree search methods are crucial for navigating the underlying large proof search spaces. While the existing approaches primarily rely on value functions and/or Monte Carlo Tree Search (MCTS), the potential of simpler methods like Best-First Tree Search (BFS) remains underexplored. In this paper, we investigate whether BFS can achieve competitive performance in large-scale theorem proving tasks. We present BFS-Prover, a scalable expert iteration framework, featuring three key innovations. First, we implement strategic data filtering at each expert iteration round, excluding problems solvable via beam search node expansion to focus on harder cases. Second, we improve the sample efficiency of BFS through Direct Preference Optimization (DPO) applied to state-tactic pairs automatically annotated with compiler error feedback, refining the LLM&#x27;s policy to prioritize productive expansions. Third, we employ length normalization in BFS to encourage exploration of deeper proof paths. BFS-Prover achieves a state-of-the-art score of $72.95\%$ on the MiniF2F test set and therefore challenges the perceived necessity of complex tree search methods, demonstrating that BFS can achieve competitive performance when properly scaled. To facilitate further research and development in this area, we have open-sourced our model at <a href="https://huggingface.co/ByteDance-Seed/BFS-Prover-V1-7B" target="_blank" rel="noopener">https://huggingface.co/ByteDance-Seed/BFS-Prover-V1-7B</a>.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM theorem proving in Lean4 is dominated by value functions and Monte Carlo Tree Search; the potential of simpler best-first search is underexplored.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">BFS-Prover is a scalable expert-iteration framework over best-first tree search with three additions: strategic per-round data filtering of beam-solvable problems, Direct Preference Optimization on state-tactic pairs annotated with compiler error feedback, and length normalization to encourage deeper proof paths. The policy is a fine-tuned Qwen2.5-Math-7B over Mathlib data via LeanDojo.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2502.03438/x1.png" alt=""><figcaption>Figure 1: An overview of BFS-Prover . The figure illustrates two key components: a) Best-First Tree Search (BFS) mechanism for automatic theorem proving, showing how the system explores proof paths by expanding nodes based on accumulated probabilities, with different node types (proof finish, error, intermediate, and unexplored) represented via color coding. The identified proof path demonstrates </figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">BFS-Prover reaches a state-of-the-art 72.95% on the MiniF2F test set, challenging the assumed need for complex tree search and showing that properly scaled BFS is competitive.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2502.03438/x4.png" alt=""><figcaption>Figure 4: Evolution of proof accuracies with increasing number of proof search passes on the MiniF2F test. We compare two training methods: (blue) only using SFT on all state-tactic pairs accumulated in the expert iteration pipeline of BFS-Prover ; and (red) , on top of (blue) , perform another round of DPO refinement using negative tactic examples described in Section 2.3 . It can be seen that DP</figcaption></figure></div></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,6 +52,7 @@
         <div class="tldr-box">Mechanizes muSkia, a formal semantics for the Skia 2D graphics library, in Lean and uses it to verify and translation-validate optimizer rewrites.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">Rasterization is the process of determining the color of every pixel drawn by an application. Powerful rasterization libraries like Skia, CoreGraphics, and Direct2D put exceptional effort into drawing, blending, and rendering efficiently. Yet applications are still hindered by the inefficient sequences of operations that they ask these libraries to perform. Even Google Chrome, a highly optimized program co-developed with the Skia rasterization library, still produces inefficient instruction sequences even on the top 100 most visited websites. The underlying reason for this inefficiency is that rasterization libraries have complex semantics and opaque and non-obvious execution models. To address this issue, we introduce $μ$Skia, a formal semantics for the Skia 2D graphics library, and mechanize this semantics in Lean. $μ$Skia covers language and graphics features like canvas state, the layer stack, blending, and color filters, and the semantics itself is split into three strata to separate concerns and enable extensibility. We then identify four patterns of sub-optimal Skia code produced by Google Chrome, and then write replacements for each pattern. $μ$Skia allows us to verify the replacements are correct, including identifying numerous tricky side conditions. We then develop a high-performance Skia optimizer that applies these patterns to speed up rasterization. On 99 Skia programs gathered from the top 100 websites, this optimizer yields a speedup of 18.7% over Skia&#x27;s most modern GPU backend, while taking at most 32 $μ$s for optimization. The speedups persist across a variety of websites, Skia backends, and GPUs. To provide true, end-to-end verification, optimization traces produced by the optimizer are loaded back into the $μ$Skia semantics and translation validated in Lean.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Rasterization libraries like Skia have complex semantics and opaque execution models, leading to inefficient instruction sequences even in highly optimized applications like Google Chrome.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors introduce muSkia, a formal semantics for the Skia 2D graphics library, mechanized in Lean. The semantics covers canvas state, the layer stack, blending, and color filters, and is split into three strata to separate concerns. This provides a foundation for reasoning about and optimizing rasterization instruction sequences.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">muSkia provides a mechanized formal semantics enabling correctness reasoning about 2D rasterization operations, targeting the optimization of instruction sequences in applications using Skia-style libraries.</p></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

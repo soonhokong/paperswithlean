@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,6 +52,7 @@
         <div class="tldr-box">Open-source high-performance Lean server built on the Lean REPL, parallelizing Lean processes for large-scale proof verification.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">We introduce the Kimina Lean Server, an open-source project designed as a high-performance verifier for reinforcement learning pipelines. Built on top of the Lean REPL (Read-Eval-Print Loop) maintained by the Lean FRO, our server combines server-side parallelism by managing multiple Lean processes in parallel with a Least Recently Used (LRU) caching mechanism that reuses Lean imports across requests. On the client side, a lightweight Python package enables submitting proof batches and receiving Lean feedback, including extracted tactics and tactic states. Together, these features enable a scalable workflow for large-scale verification and data extraction. In our experiments, the Kimina Lean Server outperforms previous Lean interaction tools, achieving a 1.5 to 2 times speedup in verification time. Moreover, its improved efficiency has enabled its use in the large-scale training of state-of-the-art models such as Kimina-Prover. We hope that our open-source project will support the neural theorem proving community and accelerate future progress by enabling efficient large-scale verification and proof data extraction.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Reinforcement learning pipelines for theorem proving require high-throughput verification of Lean proofs, but existing Lean interaction tools are too slow and lack efficient parallelism and caching mechanisms.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The Kimina Lean Server is built on top of the Lean REPL with server-side parallelism (managing multiple Lean processes) and an LRU caching mechanism that reuses Lean imports across requests. A lightweight Python client enables submitting proof batches and receiving feedback including extracted tactics and tactic states.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 64 cores, the Kimina Lean Server verifies proofs in 7:56 total time versus 18:01 for leanclient and 12:56 for LeanInteract. Average verification time per proof is 0.051s on 64 cores. Caching reduces total time from 15:28 (non-cached) to 7:56 (cached).</p><div class="sum-table"><table><thead><tr><th>Project</th><th>8 cores</th><th>16 cores</th><th>32 cores</th><th>64 cores</th></tr></thead><tbody><tr><td>leanclient</td><td>109:55</td><td>56:58</td><td>30:16</td><td>18:01</td></tr><tr><td>LeanInteract</td><td>87:35</td><td>45:51</td><td>24:11</td><td>12:56</td></tr><tr><td>Kimina Lean Server</td><td>42:40</td><td>21:48</td><td>11:33</td><td>7:56</td></tr></tbody></table><div class="tbl-cap">Verification time comparison across tools (mm:ss)</div></div></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

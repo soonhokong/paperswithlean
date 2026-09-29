@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -46,12 +46,14 @@
         <div class="btns">
           <a class="btn primary" href="https://arxiv.org/pdf/2609.10579v1" target="_blank" rel="noopener">Read PDF</a>
           <a class="btn" href="https://arxiv.org/abs/2609.10579" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn" href="https://palomar-registry.org/entry?id=PALOMAR-2026-09-05-000003&amp;version=1" target="_blank" rel="noopener">Verified on Palomar</a>
           <a class="btn repo-btn" href="https://github.com/shhyang/n4code_lean" target="_blank" rel="noopener" title="shhyang/n4code_lean">Code</a>
         </div>
         <div class="section-label first">TL;DR</div>
         <div class="tldr-box">Lean 4 formalizes and kernel-checks Dong-Yang&#x27;s classification of optimal (n,4) binary codes for BSCs, using AI-generated proofs on Mathlib.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">We present a machine-checked Lean 4 formalization of Dong and Yang&#x27;s classification of optimal finite-length $(n,4)$ binary block codes for binary symmetric channels. The formalization was developed mainly by feeding the paper&#x27;s proofs to an AI tool. To establish correctness, the authors verified the main theorem statements in Lean and the accepted axioms. This note discusses the corrections and simplifications made to the AI-generated formalization, and records discrepancies found in the paper during the formalization. The Lean code is available at <a href="https://github.com/shhyang/n4code_lean" target="_blank" rel="noopener">https://github.com/shhyang/n4code_lean</a>.</div>
+        <div class="section-label">Verified on Palomar</div><ul class="pal-meta"><li><a href="https://palomar-registry.org/entry?id=PALOMAR-2026-09-05-000003&amp;version=1" target="_blank" rel="noopener">N4Code: optimal finite-length block codes of size four for binary symmetric channels</a> · trust high</li></ul>
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Dong and Yang&#x27;s  27-page classification of optimal finite-length (n,4) binary block codes for binary symmetric channels is long and complex, making human verification difficult. The goal is a machine-checked correctness guarantee for its classification theorems (Theorems 1-5).</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The paper&#x27;s LaTeX source is fed to AI coding agents (OpenAI Codex models) to autoformalize the proofs in Lean 4, building on Mathlib for finite types, big sums, parity, and real arithmetic. Codes are modeled with columns as the primary object (Code n = Fin n → Column). Parallel AI agents discharge the generated sorry statements, followed by a human-guided axiom audit ensuring dependence only on Lean&#x27;s standard base axioms (propext, Quot.sound, Classical.choice) and elimination of native_decide.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The resulting library is sorry-free and axiom-audited, totaling 37,561 lines across fourteen modules, with lake build succeeding and every headline theorem proved. Formalization exposed imprecise hypotheses and gaps in the original paper&#x27;s proofs, leading to strengthened statements and a catalogue of discrepancies.</p><div class="sum-table"><table><thead><tr><th>Location</th><th>Type</th><th>Issue</th></tr></thead><tbody><tr><td>§II-A</td><td>gap</td><td>Multiset invariance stated, not proved</td></tr><tr><td>Cor. 10</td><td>gap</td><td>Thm. 8 only for w(c3⊕c4) even</td></tr><tr><td>Thm. 16, n=3</td><td>strength</td><td>Vacuous; Lean adds DistinctRows</td></tr><tr><td>Thm. 16, n=2</td><td>error</td><td>n=2 case impossible under Class-I parity</td></tr><tr><td>Lem. 15 Case 1</td><td>labeling</td><td>&quot;Class-II-b&quot; should be Class-III-b</td></tr></tbody></table><div class="tbl-cap">Selected discrepancies between the published paper and the formalization</div></div></div></div>
       </div>
     </div>
@@ -60,7 +62,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zero density theorems for short intervals · Papers With Lean</title>
+<meta name="description" content="Explicit zero-density results for the Riemann zeta function in short intervals, formalized in Lean 4 over Mathlib. Count the nontrivial zeros whose imaginary part lies in a window (t-h, t+h], with multiplicity and with a zero on either horizontal edge counted for half. Seven…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zero density theorems for short intervals">
+<meta property="og:description" content="Explicit zero-density results for the Riemann zeta function in short intervals, formalized in Lean 4 over Mathlib. Count the nontrivial zeros whose imaginary part lies in a window (t-h, t+h], with multiplicity and with a zero on either horizontal edge counted for half. Seven…">
+<meta property="og:url" content="https://paperswithlean.com/paper/PALOMAR-2026-09-23-000001.html">
+
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://palomar-registry.org/entry?id=PALOMAR-2026-09-23-000001&amp;version=1" target="_blank" rel="noopener"><div class="thumb-ph">Palomar</div></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Zero density theorems for short intervals</h1>
+        <p class="authors">Andrew Fiori</p>
+        <div class="row">
+          <span class="badge src">Palomar</span> <span class="badge">math.NT</span>
+          <span class="date">Sep 23, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://palomar-registry.org/entry?id=PALOMAR-2026-09-23-000001&amp;version=1" target="_blank" rel="noopener">View on Palomar</a>
+          <a class="btn repo-btn" href="https://github.com/andrewfiori/ZeroDensityInShortIntervals/tree/97ee4b41d2d4a0680434282e09e688424b59922a" target="_blank" rel="noopener" title="andrewfiori/ZeroDensityInShortIntervals">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes explicit short-interval zero-density theorems for the Riemann zeta function in Lean 4 over Mathlib, with seven statements machine-checked.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Explicit zero-density results for the Riemann zeta function in short intervals, formalized in Lean 4 over Mathlib. Count the nontrivial zeros whose imaginary part lies in a window (t-h, t+h], with multiplicity and with a zero on either horizontal edge counted for half. Seven statements are submitted, and all seven are mechanically checked. Two are zero-density bounds for the edge strip Re s &gt; 1-alpha, valid for 0 &lt;= h &lt;= t^(2/3), proved by two different mechanisms – Jensen&#x27;s formula and Littlewood&#x27;s lemma, the source&#x27;s Theorems 2 and 3. Neither dominates the other over the whole parameter range. Two turn those into bounds on the fraction of the window&#x27;s zeros lying in that strip, and are antitone in both h0 and t0, so one evaluation bounds every larger window: Corollaries 4 and 5. The remaining three are the headline corollary, Corollary 1 – for every alpha in (0, 1/6) there are h0 and t0 beyond which a definite fraction of the window&#x27;s zeros, bounded below by an explicit POSITIVE constant, have real part in the middle band [alpha, 1-alpha], away from both edges of the critical strip. One states it with the constant named, one with the constant existentially quantified as the source phrases it, and one at the explicit parameters alpha = 1/16 with a sharper radius, where the limiting constant is 9/25. The positivity is proved, not assumed, and needs no numerics: every term of the constant except the leading one carries a factor 1/h or 1/log t, so it tends to a limit fixed by one rational inequality, which the radius 1/2 discharges for every admissible alpha. The factor of two relating the two edge strips is the reflection rho -&gt; 1 - conj(rho), proved in the development to be a multiplicity-preserving involution of the zero set. The results are conditional and their hypotheses are in the signature, not hidden. They are of two kinds, kept apart in the development because a reader is entitled to weigh them differently. Sixteen are published explicit bounds on zeta and Gamma transcribed from other authors; eleven are finite numerical certificates established outside Lean by arb ball arithmetic or mpmath on explicit compact boxes, which Mathlib cannot currently reproduce because it has no verified evaluation of zeta and the margins reach 9e-17. The source&#x27;s tables give the numerical values of the constant; they are not load-bearing for its sign. `comparator.json` names exactly those seven and is the authority on what is checked. Beyond them, the wider development supplies what they rest on: the Littlewood short-interval theorem (Theorem 32), the argument-integral machinery (Theorem 31), the appendix of explicit zeta bounds, the Laurent expansion of zeta&#x27;/zeta, and the reflection step.</div>
+        <div class="section-label">Palomar verification</div><p class="pal-meta">Trust level: high · pinned commit <a href="https://github.com/andrewfiori/ZeroDensityInShortIntervals/tree/97ee4b41d2d4a0680434282e09e688424b59922a" target="_blank" rel="noopener"><code>97ee4b4</code></a></p><ul class="thm-list"><li>ZeroDensityShortIntervals.zero_density_jensen</li><li>ZeroDensityShortIntervals.zero_density_littlewood</li><li>ZeroDensityShortIntervals.edge_proportion_jensen</li><li>ZeroDensityShortIntervals.edge_proportion_littlewood</li><li>ZeroDensityShortIntervals.positive_proportion_in_middle_band</li><li>ZeroDensityShortIntervals.positive_proportion</li><li>ZeroDensityShortIntervals.positive_proportion_sixteenth</li></ul>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Explicit zero-density results bound how many nontrivial zeros of the Riemann zeta function, with imaginary part in a short window (t-h, t+h], lie near the edges of the critical strip. The goal is a mechanically checked version of these bounds and of the corollary that a positive fraction of the window&#x27;s zeros lie in the middle band.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The results are formalized in Lean 4 over Mathlib. Two zero-density bounds for the strip Re s &gt; 1-alpha are proved by different methods, one via Jensen&#x27;s formula and one via Littlewood&#x27;s lemma. These are turned into bounds on the fraction of zeros in the strip that are antitone in both h0 and t0. The reflection rho -&gt; 1 - conj(rho) is proved to be a multiplicity-preserving involution, and it relates the two edge strips. The hypotheses appear explicitly in the theorem signatures: sixteen published bounds on zeta and Gamma, and eleven numerical certificates computed outside Lean with arb or mpmath.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">All seven submitted statements are machine-checked. They include Corollary 1: for every alpha in (0, 1/6), a provably positive fraction of zeros have real part in [alpha, 1-alpha], and at alpha = 1/16 the limiting constant is 9/25. Positivity is proved without numerics, and the supporting development also includes the Littlewood short-interval theorem, the argument-integral machinery, and the Laurent expansion of zeta&#x27;/zeta.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

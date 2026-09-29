@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,6 +52,7 @@
         <div class="tldr-box">Introduces OEIS Open, a benchmark of 492 open OEIS conjectures formalized in Lean, and evaluates generic language models against them.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">We construct OEIS Open, a benchmark based on 492 open mathematical conjectures from the OEIS, formalized in Lean by Tsoukalas et al. Whereas these conjectures had previously been attempted only with a bespoke agent, our open-source evaluation code runs any generic language model (LM) against them, and is secure against LM cheating attempts. We find that LMs equipped with a minimal set of tools resolve 147 of these conjectures with a budget of \$50 per attempt, scoring 30% on OEIS Open. OEIS Open Lite is a random subset of 100 conjectures for cheaper evaluation. When evaluated with a budget of \$200 per attempt, the best current LM scores 44% on OEIS Open Lite. Giving LMs access to the mathematics literature via 476,000 papers from arXiv did not increase performance on OEIS Open Lite, and nor did using more sophisticated agent loops. The conjectures covered in this work are of uncertain mathematical significance, and most have likely received little previous attention. Nevertheless, our results show that LMs can resolve open research conjectures autonomously and at modest cost.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Recent AI systems have solved open mathematical problems, but their success rates, costs, and comparability across models are undisclosed. Existing open-problem benchmarks cannot cover most of research mathematics and require bespoke verifiers.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A benchmark called OEIS Open is constructed from 492 open conjectures about integer sequences, formalized in Lean by Tsoukalas et al. Open-source evaluation code runs any generic language model against these Lean statements, resolving a conjecture when a submitted proof of the statement or its negation passes verification. The setup is designed to be secure against model cheating, and a 100-conjecture subset (OEIS Open Lite) is provided for cheaper evaluation.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With a $50 per-attempt budget on the full set, Claude Opus 4.8 resolved 30% of conjectures, outperforming the AlphaProof Nexus baseline (9%). On OEIS Open Lite with a $200 budget, the best model reached 44%. Access to arXiv literature and more sophisticated agent loops did not improve performance.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.11941/accuracy.png" alt=""><figcaption>Figure 1: Accuracy on OEIS Open Lite with the base agent (left; 100 conjectures, $200 budget per conjecture) and on the full OEIS Open set, with the reported AlphaProof Nexus baseline (right; 492 conjectures, $50 budget). Each bar splits solves into proofs (solid) and disproofs (pale). Error bars are \pm 1 standard error.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2608.11941/solve_cost_curves.png" alt=""><figcaption>Figure 2: Solve rate as a function of per-sample spend: the fraction of conjectures resolved with spend at most x , where spend is measured at the moment the conjecture was resolved. Each curve ends at its run’s per-conjecture budget cap. Lite curves average the three agent variants per model where available.</figcaption></figure></div></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

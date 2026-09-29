@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,6 +52,7 @@
         <div class="tldr-box">Introduces the PRIME benchmark of 156 theorems annotated in Lean 4 for autoformalization.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">Statement autoformalization acts as a critical bridge between human mathematics and formal mathematics by translating natural language problems into formal language. While prior works have focused on data synthesis and diverse training paradigms to optimize end-to-end Large Language Models (LLMs), they typically treat formal code as flat sequences, neglecting the hierarchical logic inherent in mathematical statements. In this work, we introduce Decompose, Structure, and Repair (DSR), a neuro-symbolic framework that restructures autoformalization into a modular pipeline. DSR decomposes statements into logical components and maps them to structured operator trees, leveraging this topological blueprint to precisely localize and repair errors via sub-tree refinement. Furthermore, we introduce PRIME, a benchmark of 156 undergraduate and graduate-level theorems selected from canonical textbooks and expertly annotated in Lean 4. Experimental results demonstrate that DSR establishes a new state-of-the-art, consistently outperforming baselines under equivalent computational budgets. The datasets, model, and code are available at <a href="https://github.com/XiaoyangLiu-sjtu/DSR" target="_blank" rel="noopener">https://github.com/XiaoyangLiu-sjtu/DSR</a>.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Statement autoformalization (translating natural language math to formal code) treats formal code as flat sequences, ignoring the hierarchical logic inherent in mathematical statements. This leads to errors that are difficult to localize and repair.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">DSR (Decompose, Structure, and Repair) is a neuro-symbolic framework that restructures autoformalization into a modular pipeline. It decomposes natural language statements into logical components via semantic canonicalization, maps each component to an operator tree (OPT) representation capturing hierarchical structure, and uses a tree-guided repair loop that leverages the OPT to localize errors at the sub-tree level. A curriculum learning strategy trains the formalizer on increasingly complex statements.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.19000/x1.png" alt=""><figcaption>Figure 1 : The Decompose, Structure, and Repair (DSR) Framework. Given an NL statement, DSR first decomposes it into logical NL components. The framework then structures the translation by mapping each NL component to its corresponding FL component and its associated FL OPT. Finally, a tree-guided repair loop leverages the OPT to precisely localize and repair errors via sub-tree refinement.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On ProverBench, DSR achieves Pass@1 of 32.62 (SC) and 25.85 (CC), improving over the baseline by +3.08 and +4.31 respectively. On ProofNet, improvements are +3.78 SC and +4.31 CC at Pass@1. The operator tree and curriculum learning components each contribute independently. DSR with an 8B model outperforms several 32B baselines on correctness checking.</p><div class="sum-table"><table><thead><tr><th>Config</th><th>ProverBench SC</th><th>ProverBench CC</th><th>ProofNet SC</th><th>ProofNet CC</th></tr></thead><tbody><tr><td>Baseline</td><td>29.54</td><td>21.54</td><td>15.09</td><td>12.13</td></tr><tr><td>+ Operator Tree</td><td>31.69</td><td>24.92</td><td>15.63</td><td>11.86</td></tr><tr><td>+ Curriculum</td><td>32.62</td><td>25.85</td><td>18.87</td><td>16.44</td></tr></tbody></table><div class="tbl-cap">DSR ablation on ProverBench and ProofNet (Pass@1)</div></div></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

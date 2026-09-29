@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,6 +52,7 @@
         <div class="tldr-box">Completes a machine-checked completeness theorem for hybrid logic L(forall) in Lean 4, building on Oltean&#x27;s formalization.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">We present a machine-checked completeness theorem, in Lean 4, for the hybrid logic $L(\forall)$: propositional modal logic with nominals, the satisfaction-style binder $\forall$, and the box modality. (Machine-checked completeness for basic hybrid logic, without binders, was pioneered by Asta Halkjær From in Isabelle/HOL.) We build on Alex Oltean&#x27;s 2023 Lean 4 formalization, which mechanized the syntax, semantics, Hilbert-style proof system, and soundness following Blackburn&#x27;s Hybrid Completeness (1998), but left completeness unfinished. Finishing it requires manufacturing fresh names at two structurally different points, and our central finding is that they call for two different tools. (1) The root witnessed maximal consistent set, built by an extended Lindenbaum construction, needs at each step a nominal fresh for the whole set; the right tool is structural freshness: extend the language so an infinite supply of nominals is reserved by construction. We survey the design space (Oltean&#x27;s odd/even encoding inside $\mathbb{N}$, the disjoint-sum $N \oplus \mathbb{N}$ parameterization suggested by Bud Mishra, and From&#x27;s synthetic-completeness frameworks) and explain the encoding we adopt. (2) The witnessed $\Diamond$-successor of a maximal consistent set cannot be obtained this way: its canonical box-reduct provably mentions every nominal, so no reserved name is fresh. Here the right tool is one Oltean chose but left incomplete: an existence-lemma Henkin construction drawing each witness from the predecessor&#x27;s witnessedness through a fresh state variable; we complete it with a data-carrying witness accumulator and a compactness argument. The theorem $Γ\models \varphi \to Γ\vdash \varphi$ is fully formalized: the development is sorry-free, and #print axioms reports only propext, Classical.choice, and Quot.sound. We port the development to Lean v4.30.0 / mathlib v4.30.0.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Oltean&#x27;s 2023 Lean 4 formalization of the hybrid logic L(forall) mechanized syntax, semantics, a Hilbert-style system, and soundness, but left completeness unfinished.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Finishing completeness requires fresh names at two structurally different points, handled with two tools. The root witnessed maximal consistent set uses structural freshness, extending the language so an infinite supply of nominals is reserved by construction; the witnessed diamond-successor instead uses a Henkin-style existence lemma with a data-carrying witness accumulator and a compactness argument. The authors survey the freshness design space and adopt a specific encoding.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The completeness theorem is fully formalized and sorry-free, with #print axioms reporting only propext, Classical.choice, and Quot.sound; the development is ported to Lean v4.30.0 and Mathlib v4.30.0.</p></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>

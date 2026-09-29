@@ -14,7 +14,7 @@
 <!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
 <link rel="stylesheet" href="../vendor/fonts/fonts.css">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
-<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<link rel="stylesheet" href="../assets/site.css?v=3852c82e39">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/auto-render.min.js"></script>
 </head>
@@ -52,6 +52,7 @@
         <div class="tldr-box">Presents FloatLib, a Lean 4 library providing verified arbitrary-precision floating-point arithmetic with machine-checked correctness and certified efficient execution.</div>
         <div class="section-label">Abstract</div>
         <div class="abs-full">We present FloatLib, a verified arbitrary-precision floating-point arithmetic library in Lean 4 that combines broad format coverage, machine-checked correctness, and efficient certified execution. To our knowledge, FloatLib is the first Lean library to unify IEEE binary and decimal arithmetic, arbitrary-width posits, P3109, and user-defined formats and rounding rules behind interchangeable certified software backends. Every certified backend is proved equal to a complete encoded specification, preserving signed zeros and exceptional values, while numerical theorems connect execution to real rounding, error bounds, and exactness. FloatLib combines exhaustive certified tables for small formats with verified word and limb kernels based on guard-and-sticky invariants and independently checked quotient candidates. Its posit development additionally proves standard rounding thresholds and exact quire accumulation within capacity for arbitrary widths. Across matched workloads, FloatLib achieves speedups of up to 1.46x over FLoPS and 116x over Universal, while remaining slower in some regimes such as binary arithmetic against MPFR. Independent conformance testing includes more than 102 million TestFloat evaluations with zero differences under the tested relation. We release the library, proofs, benchmarks, evaluation data, and guide as open source.</div>
+        
         <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Verified numerical programs require arithmetic specifications and theorems connecting executed floating-point operations to their real-valued meaning, including rounding, error bounds, and exceptional-value behavior. Existing verified libraries lack unified coverage of diverse formats behind interchangeable certified backends.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">FloatLib is structured in four layers: exact numerical representations, word and limb kernels, format models, and certified execution. It unifies IEEE binary and decimal arithmetic, arbitrary-width posits, P3109, and user-defined formats behind interchangeable certified software backends. Each certified backend is proved equal to a complete encoded specification via a run_eq_spec equality, preserving signed zeros and exceptional values, while numerical theorems connect execution to real rounding and exactness. It combines exhaustive certified tables for small formats with verified kernels using guard-and-sticky invariants and independently checked quotient candidates.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">FloatLib achieves speedups up to 1.46x over FLoPS and 116x over Universal, though remaining slower than MPFR in some binary regimes. Independent conformance testing included over 102 million TestFloat evaluations with zero differences under the tested relation.</p><div class="sum-table"><table><thead><tr><th>Family</th><th>Representation</th><th>Representative contract</th></tr></thead><tbody><tr><td>Binary</td><td>Parameterized fields, bias, exceptional encodings</td><td>IEEE-style real rounding and exactness</td></tr><tr><td>Decimal</td><td>Coefficient and quantum; BID/DPD</td><td>Datum-level arithmetic, rounding error, status</td></tr><tr><td>Posit</td><td>Regime, two exponent bits; n≥2</td><td>Standard rounding; exact accumulation in 16n-bit quire</td></tr><tr><td>P3109</td><td>Width, precision, signedness</td><td>Destination projection, saturation, mixed-format</td></tr><tr><td>MX</td><td>32 lanes with common E8M0 scale</td><td>Quantization; one-round exact dot product</td></tr></tbody></table><div class="tbl-cap">Numerical families in FloatLib and representative guarantees</div></div></div></div>
       </div>
     </div>
@@ -60,7 +61,8 @@
 
 <footer>
   <div class="wrap">
-    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API
+    and the <a href="https://palomar-registry.org" target="_blank" rel="noopener">Palomar</a> registry.
     Relevance note and tags by Claude.
   </div>
 </footer>
