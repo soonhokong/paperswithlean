@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Transfer Tactic for Lean · Papers With Lean</title>
+<meta name="description" content="Rewriting in proof assistants spans a strict hierarchy. Equational rewriting substitutes based on extensional equality; subequational rewriting substitutes based on homogeneous relations such as $\leq$ or $\subseteq$, justified by monotonicity lemmas; and generalized rewriting…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Transfer Tactic for Lean">
+<meta property="og:description" content="Rewriting in proof assistants spans a strict hierarchy. Equational rewriting substitutes based on extensional equality; subequational rewriting substitutes based on homogeneous relations such as $\leq$ or $\subseteq$, justified by monotonicity lemmas; and generalized rewriting…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.32115.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.32115.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.32115v1" target="_blank" rel="noopener"><img src="../thumbs/2609.32115.jpg" alt="First page of A Transfer Tactic for Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Transfer Tactic for Lean</h1>
+        <p class="authors">Zhaoxi Chen, Daniel Raggi</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Sep 26, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.32115v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.32115" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Implements a transfer tactic family for Lean 4 over a tagged rule database, benchmarked against Mathlib&#x27;s gcongr and grw test suites.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Rewriting in proof assistants spans a strict hierarchy. Equational rewriting substitutes based on extensional equality; subequational rewriting substitutes based on homogeneous relations such as $\leq$ or $\subseteq$, justified by monotonicity lemmas; and generalized rewriting relates different operations across different types, justified by transfer rules. All three are specializations of one schema, the function relator $(R \Rightarrow S)\,f\,g$. Lean 4&#x27;s rw and Mathlib&#x27;s grw/gcongr implement the first two levels, but the third has had no Lean implementation. We present one: a transfer tactic family over a tagged rule database, benchmarked using Mathlib&#x27;s own test suites, of which 112 of 178 ported tests close through the transfer engine. An evaluation of the design&#x27;s three motivating hypotheses returns a mixed result: generality holds, authoring effort wins in its amortized form (averaged per use), but on dependency footprint, transfer only ties a mature library and loses on coercions. This shows that transfer&#x27;s value is concentrated on transferring into domains where few theorems exist.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Rewriting in proof assistants spans equational, subequational, and generalized levels, all specializations of the function relator schema. Lean 4&#x27;s rw and Mathlib&#x27;s grw/gcongr implement the first two levels, but the generalized level (relating different operations across different types via transfer rules) had no Lean implementation.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A transfer tactic family is implemented over a tagged rule database, using attributes such as transfer_rule, transfer_back_rule, transfer_respects, and btransfer_rule, built on Mathlib&#x27;s Relator.LiftFun. Rules carry numerical priorities and cluster into ground facts, structural rules, uniqueness/totality facts, and one-way equality lemmas. The engine consumes Mathlib&#x27;s @[gcongr] database directly and reuses grw&#x27;s occurrence abstraction. The design is inspired by Isabelle&#x27;s Transfer package.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">112 of 178 ported Mathlib gcongr/grw tests close through the transfer engine. Generality holds, authoring effort wins in amortized form, but dependency footprint only ties a mature library and loses on bi-unique coercions where norm_cast is already complete.</p><div class="sum-table"><table><thead><tr><th>File</th><th>Tests</th><th>Via transfer</th><th>Def. (UX)</th><th>Def. (partial)</th><th>Fail</th></tr></thead><tbody><tr><td>GCongrInequalities</td><td>74</td><td>42</td><td>20</td><td>12</td><td>0</td></tr><tr><td>GRewrite</td><td>53</td><td>42</td><td>11</td><td>0</td><td>0</td></tr><tr><td>Total</td><td>178</td><td>112</td><td>54</td><td>12</td><td>0</td></tr></tbody></table><div class="tbl-cap">Parity suite results ported from Mathlib gcongr/grw tests</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
