@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formal Reasoning about Performance Models · Papers With Lean</title>
+<meta name="description" content="Discrete-event simulation is a standard technique for modelling and analysing the performance of computer systems, networks, and services. Although simulation tools are widely used, reasoning about the correctness and performance guarantees of the models they implement remains…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Formal Reasoning about Performance Models">
+<meta property="og:description" content="Discrete-event simulation is a standard technique for modelling and analysing the performance of computer systems, networks, and services. Although simulation tools are widely used, reasoning about the correctness and performance guarantees of the models they implement remains…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.37728.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.37728.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.37728v1" target="_blank" rel="noopener"><img src="../thumbs/2609.37728.jpg" alt="First page of Formal Reasoning about Performance Models"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Formal Reasoning about Performance Models</h1>
+        <p class="authors">Moussa Labbadi, Rupak Majumdar, V. R. Sathiyanarayana, Sadegh Soudjani</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Sep 29, 2026 · v1</span>
+          <span class="badge">cs.PF</span> <span class="badge">cs.PL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.37728v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.37728" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Implements the DES calculus and its proof rules as a shallow embedding in Lean 4 on Mathlib measure theory, with a custom tactic flauto.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Discrete-event simulation is a standard technique for modelling and analysing the performance of computer systems, networks, and services. Although simulation tools are widely used, reasoning about the correctness and performance guarantees of the models they implement remains largely ad hoc: simulation outputs are interpreted statistically, but there is no logical foundation for deductive reasoning about their behaviour. We present a core imperative calculus that captures the essential constructs common to discrete-event simulators: asynchronous execution, continuous and discrete sampling from distributions, and time-based event scheduling through a global event queue. On top of this calculus, we develop a proof system for reasoning about almost-sure reachability and expected reaching time properties. Our main result is a sound and complete proof rule for these properties. Our framework generalizes deductive reasoning for discrete-time probabilistic programs to the setting of performance models, in which continuous time and continuous probability distributions are central. We have implemented the proof rules in a tool embedded in Lean. We demonstrate the applicability of our proof rule by deriving proofs of almost-sure reachability and expected reaching time for a number of case studies, including client-server examples that go beyond analytic solutions from queueing theory as well as convergence behaviours in network routing protocols. Establishing the soundness and completeness of our proof rules requires significantly more complex arguments than in the discrete-time setting. This is due to the fundamentally discontinuous nature of the operational semantics and the measure-theoretic challenges of continuous time and probability distributions.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Discrete-event simulation models of computer systems and networks are analysed empirically, with no deductive foundation for proving almost-sure reachability or expected reaching time under continuous time and continuous distributions.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors define DES, a core imperative calculus with asynchronous procedures, discrete and continuous sampling, and a global time-ordered event queue, with semantics given as a Markov process. They develop proof rules for almost-sure reachability and expected reaching time. They implement the rules in the tool Leonides as a shallow embedding in Lean 4 on Mathlib&#x27;s measure theory. Proof obligations are emitted as goals and closed by a tactic, flauto, which uses search heuristics and SMT calls and is supplemented by user lemmas when needed.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The proof rule is shown sound and complete. Case studies are fully formalized in Lean with no remaining sorry, using only the standard classical axioms. They include client-server systems beyond analytic queueing-theory results and the convergence of a stochastic network routing protocol.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

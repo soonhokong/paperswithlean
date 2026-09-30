@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Restricted Binomial GCDs at Primes Congruent to -1 · Papers With Lean</title>
+<meta name="description" content="For integers $m\geq 2$ and $m\mid N$, let $G(N;m)=\gcd\{\binom{N}{k}:0&lt;k&lt;N,\ m\mid k\}$. We prove a complete $p$-adic valuation formula for $G(N;m)$ at primes $p\equiv -1\pmod m$, under the hypotheses $m\geq 3$, $m\mid N$, and $m&lt;N$. Writing $N=\sum_i d_i p^i$, put…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Restricted Binomial GCDs at Primes Congruent to -1">
+<meta property="og:description" content="For integers $m\geq 2$ and $m\mid N$, let $G(N;m)=\gcd\{\binom{N}{k}:0&lt;k&lt;N,\ m\mid k\}$. We prove a complete $p$-adic valuation formula for $G(N;m)$ at primes $p\equiv -1\pmod m$, under the hypotheses $m\geq 3$, $m\mid N$, and $m&lt;N$. Writing $N=\sum_i d_i p^i$, put…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.37754.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.37754.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.37754v1" target="_blank" rel="noopener"><img src="../thumbs/2609.37754.jpg" alt="First page of Restricted Binomial GCDs at Primes Congruent to -1"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Restricted Binomial GCDs at Primes Congruent to -1</h1>
+        <p class="authors">John Fairfax-Ball</p>
+        <div class="row">
+          <span class="badge">math.NT</span>
+          <span class="date">Sep 29, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.37754v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.37754" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/jfairfaxball-348/pascal-minus-one" target="_blank" rel="noopener" title="jfairfaxball-348/pascal-minus-one">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The minus-one valuation theorem, its plus-one companion, a scaling reduction, and the m=3,4,6 specializations are formalized in Lean 4 with Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">For integers $m\geq 2$ and $m\mid N$, let $G(N;m)=\gcd\{\binom{N}{k}:0&lt;k&lt;N,\ m\mid k\}$. We prove a complete $p$-adic valuation formula for $G(N;m)$ at primes $p\equiv -1\pmod m$, under the hypotheses $m\geq 3$, $m\mid N$, and $m&lt;N$. Writing $N=\sum_i d_i p^i$, put $A=\sum_{i\text{ even}}d_i$ and $B=\sum_{i\text{ odd}}d_i$. Then $v_p(G(N;m))$ is $2$ in the exceptional mixed case $(A,B)=(1,1)$ with $p=m-1$, is $1$ in the mixed case $(A,B)=(1,1)$ with $m&lt;p$, is $1$ in the one-parity cases $(A,B)=(m,0)$ and $(A,B)=(0,m)$, and is $0$ otherwise. The proof uses Kummer&#x27;s theorem to translate the problem into digitwise borrow counts and a minimal signed zero-sum classification. A source-level literature audit through 25 September 2026 located no equivalent prior theorem for the full minus-one classification: McTague&#x27;s corrected same-residue extension covers the one-parity $p&gt;m$ subcases, but not the mixed-parity branch or the $p=m-1$ regime. The theorem, its plus-one companion, a scaling reduction, and the $m=3,4,6$ specializations have been formalized in Lean 4 / Mathlib.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">G(N;m) is the gcd of the binomial coefficients C(N,k) with 0&lt;k&lt;N and m dividing k. Its p-adic valuation was known for primes p ≡ 1 (mod m) and for some one-parity cases with p ≡ -1 (mod m). A full classification for primes p ≡ -1 (mod m) was missing, including the mixed-parity branch and the case p = m-1.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Kummer&#x27;s theorem turns p-adic valuations of binomial coefficients into counts of base-p borrows. Because p^i ≡ (-1)^i (mod m), the condition m | k becomes a signed zero-sum condition on the even-position and odd-position digit sums. A classification of minimal signed zero-sums leaves only the shapes (1,1), (m,0) and (0,m). Each shape is then analyzed with explicit borrow witnesses, and the results are formalized in Lean 4 / Mathlib together with a scaling reduction.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">v_p(G(N;m)) equals 2 when (A,B)=(1,1) and p=m-1, and 1 when (A,B)=(1,1) and m&lt;p. It also equals 1 when (A,B) is (m,0) or (0,m), and 0 in all other cases. The theorem, the plus-one companion, the scaling theorem and the small-modulus specializations are machine-checked in Lean.</p><div class="sum-table"><table><thead><tr><th>Case</th><th>v_p(G(N;m))</th></tr></thead><tbody><tr><td>(A,B)=(1,1), p=m-1</td><td>2</td></tr><tr><td>(A,B)=(1,1), m&lt;p</td><td>1</td></tr><tr><td>(A,B)=(m,0) or (0,m)</td><td>1</td></tr><tr><td>otherwise</td><td>0</td></tr></tbody></table><div class="tbl-cap">Minus-one valuation formula (Theorem 1.1)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
