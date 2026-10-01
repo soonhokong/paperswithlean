@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fyan: A Human–AI Harness with Semantic Auditing for Document-Level Formalization · Papers With Lean</title>
+<meta name="description" content="We present FYAN, a human–AI harness for document-level mathematical formalization. Rather than treating theorems in isolation, FYAN coordinates an end-to-end workflow spanning specification, proof planning, logical review, Lean proof construction, knowledge curation, and…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fyan: A Human–AI Harness with Semantic Auditing for Document-Level Formalization">
+<meta property="og:description" content="We present FYAN, a human–AI harness for document-level mathematical formalization. Rather than treating theorems in isolation, FYAN coordinates an end-to-end workflow spanning specification, proof planning, logical review, Lean proof construction, knowledge curation, and…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.39228.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.39228.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.39228v1" target="_blank" rel="noopener"><img src="../thumbs/2609.39228.jpg" alt="First page of Fyan: A Human–AI Harness with Semantic Auditing for Document-Level Formalization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Fyan: A Human–AI Harness with Semantic Auditing for Document-Level Formalization</h1>
+        <p class="authors">Wei Zhao, Yangshuo Zou, Chengxiang Ding, Yifan Wu, Xuchuan Wang, Zimu Mao, Lei Zhang, Tao Luo</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Sep 30, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.39228v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.39228" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds an LLM agent harness that formalizes whole mathematical documents into dependency-linked Lean 4/Mathlib projects, evaluated with strict Lean checking.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present FYAN, a human–AI harness for document-level mathematical formalization. Rather than treating theorems in isolation, FYAN coordinates an end-to-end workflow spanning specification, proof planning, logical review, Lean proof construction, knowledge curation, and validation, with support for independent supervision and human guidance. A central component is evidence-grounded semantic auditing, which assesses whether formal statements faithfully preserve their informal specifications. A language model constructs structured evidence over local correspondences, omissions, scope, and logical relations, while a deterministic validator checks this evidence and produces reproducible judgments. When a substantive but admissible deviation is accepted, FYAN requires an explicit proof-transfer obligation connecting the formal statement back to a source-facing interpretation. With the same model (DeepSeek-V4.1-Flash) in every stage, FYAN proves 86 of 143 FormalTCS theorems under a strict Lean check, against 69 for a general agent harness, and raises the natural-language proof score from 0.501 to 0.851. On ConsistencyCheck, its semantic audit catches more inconsistent statements than a direct LLM judge, both on labels verified against the source (recall 0.777 vs. 0.636) and on the original labels (0.873 vs. 0.820), and localizes each mismatch it reports to a specific hypothesis, conclusion, or scope. FYAN also built ODENumLib, a 9,355-line Lean library for the numerical analysis of ordinary differential equation.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Scaling autoformalization from isolated theorems to whole documents requires managing dependencies and reusing results. Semantic mismatches between formal and informal statements can also propagate through downstream proofs even when everything compiles.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Fyan coordinates Specifier, Reasoner, Planner, Formalizer, Curator, and Auditor components over a document-level dependency DAG, producing a Lean project with provenance and review records. Its semantic audit has an LLM build structured evidence about correspondences, omissions, scope, and logical relations, which a deterministic validator then grades. Any accepted substantive deviation must come with a Lean-checked proof-transfer obligation linking it back to the source. All stages use the same model, DeepSeek-V4.1-Flash, with Lean 4.32.2 and Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Using the same model as the baseline, Fyan proves 86/143 FormalTCS theorems under strict Lean checking versus 69 for a general agent harness, and raises the natural-language proof score from 0.501 to 0.851. On ConsistencyCheck its audit reaches recall of 0.777 versus 0.636 for a direct LLM judge on verified labels. It also built ODENumLib, a 9,355-line Lean library on numerical analysis of ODEs.</p><div class="sum-table"><table><thead><tr><th>Task</th><th>Metric</th><th>Control</th><th>Fyan</th><th>Difference</th></tr></thead><tbody><tr><td>FT2FP</td><td>strict Lean pass</td><td>69/143 (48.3%)</td><td>86/143 (60.1%)</td><td>+17</td></tr><tr><td>T2NP</td><td>rubric mean</td><td>0.501</td><td>0.851</td><td>+0.350</td></tr><tr><td>NT2FT</td><td>BEq+ equivalent</td><td>5/143 (3.5%)</td><td>8/143 (5.6%)</td><td>+3</td></tr></tbody></table><div class="tbl-cap">FormalTCS stage-wise results (same model)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

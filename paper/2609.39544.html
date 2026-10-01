@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Growing an Agent/Prover Interface: Evolutionary Tool Design for Cost-Efficient Theorem Proving in Rocq and Lean · Papers With Lean</title>
+<meta name="description" content="Recent achievements in AI-assisted mathematics require intensive interaction of agents with proof assistants to generate machine-checked proof certificates. Agents interact with proof assistants such as Rocq or Lean through an interface that controls what the agent receives from…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Growing an Agent/Prover Interface: Evolutionary Tool Design for Cost-Efficient Theorem Proving in Rocq and Lean">
+<meta property="og:description" content="Recent achievements in AI-assisted mathematics require intensive interaction of agents with proof assistants to generate machine-checked proof certificates. Agents interact with proof assistants such as Rocq or Lean through an interface that controls what the agent receives from…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.39544.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.39544.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.39544v1" target="_blank" rel="noopener"><img src="../thumbs/2609.39544.jpg" alt="First page of Growing an Agent/Prover Interface: Evolutionary Tool Design for Cost-Efficient Theorem Proving in Rocq and Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Growing an Agent/Prover Interface: Evolutionary Tool Design for Cost-Efficient Theorem Proving in Rocq and Lean</h1>
+        <p class="authors">Jules Viennot, Guillaume Baudart, Marc Lelarge</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Sep 30, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.39544v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.39544" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/LLM4Rocq/rocq-mcp-experiment" target="_blank" rel="noopener" title="LLM4Rocq/rocq-mcp-experiment">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Ports the Rocq-evolved MCP tools to Lean (lean-mcp-evolve) and evaluates them on a PutnamBench subset against lean-lsp-mcp.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Recent achievements in AI-assisted mathematics require intensive interaction of agents with proof assistants to generate machine-checked proof certificates. Agents interact with proof assistants such as Rocq or Lean through an interface that controls what the agent receives from the prover and the cost of these interactions. Today, these interfaces are adapted from tools designed for humans and not optimized for agents. We propose an evolutionary method where a frontier model incrementally proposes new features and only keeps the ones that improve the overall performance of smaller models. We demonstrate the effectiveness of our method by growing, on a curated set of mathematical problems, \rme, a new MCP server for the Rocq prover. On the held-out test split of miniF2F-Rocq, an agent equipped with \rme outperforms both the baseline that only exposes the Rocq compiler and an established MCP server, across four models from two families, in success rate, cost per solve, and time per solve. Although evolved for Rocq, the resulting server transfers to Lean, improving cost and time per solve on a subset of PutnamBench. We release \rme and its port to Lean.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Agents interact with proof assistants like Rocq and Lean through interfaces adapted from human-oriented tools rather than designed for agents. These interfaces drive both the cost and the success of AI-assisted proving.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An evolutionary process starts from an MCP server that exposes only the Rocq compiler. At each step, a frontier orchestrator model (Claude Fable 5) proposes one feature, and the feature is kept only if it improves smaller tester models&#x27; accuracy, with cost and wall time as secondary objectives. The result is rocq-mcp-evolve, written in OCaml on the Rocq runtime. Its tools are also ported to Lean as lean-mcp-evolve.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2609.39544/evol_diag.png" alt=""><figcaption>Figure 2: A step of the evolutionary process. The mutation designed by the orchestrator is denoted by the dark red color. The purple dotted box represents rocq-mcp-evolve , the blue dotted box represents the evaluation of the mutation. The light gray circle shows the process is iterative: a new step starts at the end of the previous one.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On the miniF2F-Rocq test split, rocq-mcp-evolve outperforms the compiler-only control and the established rocq-mcp server in accuracy, cost, and wall time across four models. It also does better on project-scale autoformalization tasks. On a PutnamBench subset, lean-mcp-evolve lowers cost and time per solve relative to lean-lsp-mcp, but its solve rate is lower.</p><div class="sum-table"><table><thead><tr><th>MCP server</th><th>Accuracy</th><th>Cost ($)</th><th>Wall time (s)</th></tr></thead><tbody><tr><td>control</td><td>.33</td><td>.12</td><td>82</td></tr><tr><td>lean-lsp-mcp</td><td>.42</td><td>.14</td><td>86</td></tr><tr><td>lean-mcp-evolve</td><td>.33</td><td>.11</td><td>64</td></tr></tbody></table><div class="tbl-cap">Lean transfer on a PutnamBench subset (overall accuracy, cost per solve, wall time per solve)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
