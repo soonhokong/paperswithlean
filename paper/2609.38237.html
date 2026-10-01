@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Trust Ledger and an Execution Check for CPG-Based C-to-Lean 4 Autoformalization: Separating Declined from Silently Incorrect Translations · Papers With Lean</title>
+<meta name="description" content="Verifying large C codebases requires translating them into formally checkable semantics, but most autoformalization work reports a single aggregate success rate that conflates two different failure modes: code the translator declined to handle and code the translator translated…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Trust Ledger and an Execution Check for CPG-Based C-to-Lean 4 Autoformalization: Separating Declined from Silently Incorrect Translations">
+<meta property="og:description" content="Verifying large C codebases requires translating them into formally checkable semantics, but most autoformalization work reports a single aggregate success rate that conflates two different failure modes: code the translator declined to handle and code the translator translated…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.38237.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.38237.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.38237v1" target="_blank" rel="noopener"><img src="../thumbs/2609.38237.jpg" alt="First page of A Trust Ledger and an Execution Check for CPG-Based C-to-Lean 4 Autoformalization: Separating Declined from Silently Incorrect Translations"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Trust Ledger and an Execution Check for CPG-Based C-to-Lean 4 Autoformalization: Separating Declined from Silently Incorrect Translations</h1>
+        <p class="authors">Ishan K Singavarapu, Manish Bhatt</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Sep 28, 2026 · v1</span>
+          <span class="badge">cs.CR</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.38237v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.38237" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/mbhatt1/autoform" target="_blank" rel="noopener" title="mbhatt1/autoform">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Translates C code (SQLite) via Joern CPG into terms of a fuel-indexed Lean 4 definitional interpreter, with Lean-checked specifications and execution checks.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Verifying large C codebases requires translating them into formally checkable semantics, but most autoformalization work reports a single aggregate success rate that conflates two different failure modes: code the translator declined to handle and code the translator translated incorrectly. We present a deterministic code-property-graph (CPG)-based exporter that translates C source into a small Lean 4 core semantics under a three-tier correctness discipline: hole-free, call-closed, and dynamic-hole-risk, that keeps these modes distinct. Applied to a re-export of the SQLite source tree (8{,}602 functions, over 1.5 million AST nodes), the exporter translates 5{,}222 functions (60.7%) hole-free, of which only 2{,}134 (24.8%) are call-closed, a $2.4\times$ gap a single rate would hide. Both figures are reported in a full per-construct trust ledger rather than a single score. Our main contribution is methodological: a protocol for separating constructs that are fundamentally unresolvable by whole-program static analysis (such as public API boundaries) from constructs that only look that way. For example, we retracted our own “impossible” classification of function-pointer/vtable dispatch after tracing a concrete counterexample in the target codebase. Separately, a search for “more holes closed” surfaced a latent silent-wrong-answer bug: a translation that succeeded with an incorrect result rather than declining, a failure mode we argue is more dangerous than any hole, and one a hole-count-only evaluation would never surface.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Autoformalization pipelines for code usually report a single coverage rate. That rate conflates constructs the translator declined to handle with constructs it translated incorrectly. Silently incorrect translations type-check and count as translated, so coverage cannot detect them.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A deterministic pipeline uses Joern&#x27;s code property graph to export C source to JSON and then prints it as a term of a small, total, fuel-indexed Core interpreter written in Lean 4. Constructs that cannot be translated faithfully become holes labeled by cause. Coverage is reported in three tiers (hole-free, call-closed, dynamic-hole risk) with a per-cause trust ledger. Translated programs are executed and compared against compiled C to find silent miscompilations.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On SQLite (8,602 functions, 1.5M AST nodes), 60.7% of functions are hole-free but only 24.8% are call-closed, a 2.4x gap. Six documented cases show coverage and fidelity moving independently, including silent bugs in character literals, do-while loops and variadic signatures that no coverage number registered. A vtable-dispatch construct previously classified as impossible was also retracted after a counterexample was found.</p><div class="sum-table"><table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody><tr><td>Functions / AST nodes</td><td>8,602 / 1,513,464</td></tr><tr><td>Hole-free</td><td>5,222 (60.7%)</td></tr><tr><td>Call-closed</td><td>2,134 (24.8%)</td></tr><tr><td>Residual holes / causes</td><td>14,260 / 70</td></tr><tr><td>Dynamic-hole risk constructs</td><td>216,730</td></tr></tbody></table><div class="tbl-cap">SQLite export coverage tiers</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

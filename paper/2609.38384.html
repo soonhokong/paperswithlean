@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeanPolish: Verified Supervision for Lean Proof Compression · Papers With Lean</title>
+<meta name="description" content="Verified proof edits offer a natural source of supervision for improving language-model-generated Lean proofs. Yet verification establishes that an edit is correct, not that its training signal is free of search artifacts. We introduce LeanPolish, a symbolic Lean 4 pipeline that…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeanPolish: Verified Supervision for Lean Proof Compression">
+<meta property="og:description" content="Verified proof edits offer a natural source of supervision for improving language-model-generated Lean proofs. Yet verification establishes that an edit is correct, not that its training signal is free of search artifacts. We introduce LeanPolish, a symbolic Lean 4 pipeline that…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.38384.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.38384.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.38384v1" target="_blank" rel="noopener"><img src="../thumbs/2609.38384.jpg" alt="First page of LeanPolish: Verified Supervision for Lean Proof Compression"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">LeanPolish: Verified Supervision for Lean Proof Compression</h1>
+        <p class="authors">Pauline Bourigault</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Sep 29, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.38384v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.38384" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/paulinebourigault/leanpolish" target="_blank" rel="noopener" title="paulinebourigault/leanpolish">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a symbolic Lean 4 pipeline using InfoTree proof states to generate verified local proof-compression edits, then trains and evaluates LLM editors on them.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Verified proof edits offer a natural source of supervision for improving language-model-generated Lean proofs. Yet verification establishes that an edit is correct, not that its training signal is free of search artifacts. We introduce LeanPolish, a symbolic Lean 4 pipeline that releases 33,402 accepted local edits and 65,596 same-state failed attempts, and use it to study what models learn from this supervision. First-success search admits a goal-independent rule with perfect ranking accuracy; teacher-selected evaluation sites also reward trivial deletions. Continuing menu evaluation beyond the first success removes the ordering shortcut: a trained ranker selects the best candidate on 70.1% of evaluated held-out states, versus 36.9% for the strongest frozen baseline. For compression, iterating the symbolic pass raises miniF2F savings from 19.7% to 27.5%, exceeding the neural hybrids we test there. Verified neural editing helps on other proof sources, but matched frozen-model controls show that its gains need not come from training. The supervision does improve whole-proof rewriting: fine-tuning raises verified token reduction from 2.8% to 5.5% on 19 PutnamBench proofs. Together, the released edits, complete candidate pools, and controlled evaluations separate learning to imitate a search policy from improving on that search. They provide a reproducible basis for studying proof improvement while keeping correctness, compression, and edit policy distinct.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-generated Lean proofs are often verbose, and recent systems learn to shorten them from verified search outputs. A kernel check shows an edit is correct but does not show that the training signal is free of search artifacts such as first-success ordering or teacher-selected evaluation sites.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">LeanPolish is a symbolic Lean 4 pipeline that uses the InfoTree to test candidate tactics at saved proof states. It runs four phases (goal-closing tactic replacement under a specificity filter, local-fact anti-unification, unused-fact removal, and unreachable-code cleanup), re-checks each edited file, and iterates to a fixed point. It releases accepted local edits together with same-state failed attempts and complete candidate pools. These are used to train rankers and 7B editors, which are compared against frozen-model, iterated-symbolic, and few-shot controls.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The released data contain 33,402 accepted edits and 65,596 failed siblings. With complete-menu evaluation, a trained ranker picks the best candidate on 70.1% of held-out states, versus 36.9% for the strongest frozen baseline. Iterating the symbolic pass raises miniF2F token savings from 19.7% to about 27.5%, and fine-tuning raises verified whole-proof token reduction on 19 PutnamBench proofs from 2.8% to 5.5%.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Top-1 (%)</th></tr></thead><tbody><tr><td>First in menu order</td><td>11.6</td></tr><tr><td>Frozen DeepSeek-7B log-prob</td><td>36.9</td></tr><tr><td>Trained ranker, no goal</td><td>51.0</td></tr><tr><td>Trained ranker</td><td>70.1</td></tr><tr><td>Ref.: verifier, first success</td><td>76.9</td></tr></tbody></table><div class="tbl-cap">Top-1 best-candidate selection on held-out complete-menu states</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

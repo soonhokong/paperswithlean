@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Burr-Erdős-Graham-Sós conjecture for the seven-cycle · Papers With Lean</title>
+<meta name="description" content="For a graph $H$, let $f(n,e,H)$ be the least number of colors in an edge-coloring of some $n$-vertex graph with at least $e$ edges in which every copy of $H$ is rainbow. Burr, Erdős, Graham, and Sós conjectured that $f(n,\lfloor n^2/4\rfloor+1,C_{2k+1})=(1/8+o(1))n^2$ for every…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Burr-Erdős-Graham-Sós conjecture for the seven-cycle">
+<meta property="og:description" content="For a graph $H$, let $f(n,e,H)$ be the least number of colors in an edge-coloring of some $n$-vertex graph with at least $e$ edges in which every copy of $H$ is rainbow. Burr, Erdős, Graham, and Sós conjectured that $f(n,\lfloor n^2/4\rfloor+1,C_{2k+1})=(1/8+o(1))n^2$ for every…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.38286.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.38286.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.38286v1" target="_blank" rel="noopener"><img src="../thumbs/2609.38286.jpg" alt="First page of The Burr-Erdős-Graham-Sós conjecture for the seven-cycle"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">The Burr-Erdős-Graham-Sós conjecture for the seven-cycle</h1>
+        <p class="authors">Asad Shahab</p>
+        <div class="row">
+          <span class="badge">math.CO</span>
+          <span class="date">Sep 29, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.38286v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.38286" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Asad-Shahab/erdos-809-lean" target="_blank" rel="noopener" title="Asad-Shahab/erdos-809-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes in Lean 4 the Burr-Erdős-Graham-Sós rainbow odd-cycle conjecture for all k≥3, including the new seven-cycle proof and the Bucić-Chen-Ma argument.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">For a graph $H$, let $f(n,e,H)$ be the least number of colors in an edge-coloring of some $n$-vertex graph with at least $e$ edges in which every copy of $H$ is rainbow. Burr, Erdős, Graham, and Sós conjectured that $f(n,\lfloor n^2/4\rfloor+1,C_{2k+1})=(1/8+o(1))n^2$ for every fixed $k\ge3$, and Bucić, Chen, and Ma recently proved this for all $k\ge4$. We prove the remaining case $k=3$: \[ f\left(n,\left\lfloor n^2/4\right\rfloor+1,C_7\right) =\left(\frac18+o(1)\right)n^2. \] The lower bound rests on a weighted palette inequality, which we prove with an exact rational certificate on five sampled vertices. Its main ingredients are a fractional matching of compatible triangular edges and private resources attached to nontriangular edges. A stable form of the inequality, combined with regularity, triangle removal, and a direct argument for graphs close to bipartite, transfers the bound to arbitrary edge-colorings. We also describe a Lean 4 formalization of the conjecture for every fixed $k\ge3$, which combines the new seven-cycle proof with a formalization of the Bucić-Chen-Ma argument for $k\ge4$.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Burr, Erdős, Graham, and Sós conjectured that the minimum number of colors needed to make every C_{2k+1} rainbow in some n-vertex graph with ⌊n²/4⌋+1 edges is (1/8+o(1))n² for every fixed k≥3. Bucić, Chen, and Ma proved the cases k≥4, leaving k=3, the seven-cycle, open.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The lower bound rests on a weighted palette inequality, proved by an exact rational polynomial certificate on five sampled vertices verified by computer. The inequality uses a fractional matching of compatible triangular edges and private resources attached to nontriangular edges. A stable form of the inequality is transferred to arbitrary edge-colorings using regularity, triangle removal, and a direct argument for graphs close to bipartite. The full conjecture for every k≥3 is formalized in Lean 4, combining the seven-cycle proof with a formalization of the Bucić-Chen-Ma argument.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The case k=3 is settled: f(n,⌊n²/4⌋+1,C_7)=(1/8+o(1))n², which completes the conjecture (Erdős Problem #809) for all fixed k≥3. A Lean 4 formalization covers the full statement.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

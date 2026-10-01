@@ -6,7 +6,73 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 29 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 30 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Complete bipartite embeddings, lattice non-embeddability, and non-Euclidean powers of information distance</title>
+      <link>https://paperswithlean.com/paper/2609.38919.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.38919.html</guid>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Fengqi Hou</dc:creator>
+      <category>formalization</category><category>logic</category>
+      <description>Main theorems on scale-embeddings and Hilbert non-representability of information distance are accompanied by a Lean formalization checked by the kernel.
+
+We encode the vertices of every finite complete bipartite graph as binary strings at each scale. The information distances between these strings approximate the scaled graph distances with an additive error bounded by a constant independent of the scale. We also assign one fixed infinite binary sequence to each vertex; suitable prefixes satisfy the same distance estimate with logarithmic error. This extends Hutter&#x27;s construction for $K_{3,3}$ and resolves his open problem on scale-embeddings of finite complete bipartite graphs. Combined with his complete bipartite obstruction, these embeddings show that no positive power of information distance can be represented exactly by distances in a real Hilbert space, resolving his question about such representations. For conditional prefix complexity, we further prove that at most $2^{δ+C}$ strings lie between any two strings with total distance exceeding their mutual distance by at most $δ$, where $C$ is independent of the endpoints. This bound rules out scale-embeddings of the integer line and every positive-dimensional integer lattice, resolving Hutter&#x27;s lattice embedding problem for both string and sequence embeddings. Restriction to the integer lattice gives the same conclusion for $(\mathbb R^m,\|\cdot\|_1)$ for every $m\ge1$.</description>
+    </item>
+    <item>
+      <title>Machine-Checked Computational Group Theory in Lean 4: Operational Schreier-Sims Stabilizer Chains, BSGS Sifting, and Backtrack Ordered Partitions</title>
+      <link>https://paperswithlean.com/paper/2609.38492.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.38492.html</guid>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Volkan Dağlı, Zerrin Dağlı, Dağhan Dağlı</dc:creator>
+      <category>formalization</category><category>verification</category><category>mathlib</category><category>algebra</category>
+      <description>Formalizes Schreier-Sims stabilizer chains, BSGS sifting, partition refinement, and residue/cyclotomic rings from GAP in Lean 4 with Mathlib4.
+
+We present gap-lean4-port (Release v0.2.0), a machine-checked formalization of foundational algorithms in computational discrete algebra and permutation group theory within the Lean 4 interactive theorem prover and Mathlib4. While modern proof assistants feature extensive abstract algebraic hierarchies, constructive and operational permutation group algorithms, such as Charles Sims&#x27; 1970 Schreier-Sims algorithm, transversal tree lookups, and backtrack ordered partition refinement, have remained largely unformalized in dependent type theory. Here, we formalize the operational algorithmic core of the Groups, Algorithms, Programming (GAP) system library across four foundational modules, proving 35 machine-checked theorems with zero unproven conjectures (sorry) and zero custom axioms under standard Lean 4 foundations (propext, Classical.choice, Quot.sound). We machine-check: (1) Schreier-Sims stabilizer chain hierarchies (StabLevel, StabChain) and the invariance of incremental transversal tree extensions (extendSchreierPoint_invariant); (2) single-level and multi-level Schreier sifting reductions (siftOneLevel, siftFull), proving that full sifting strictly fixes all base points (siftFull_fixes_all_basePoints); (3) constructive soundness and completeness of Base and Strong Generating Set (BSGS) membership testing (membershipTestKnownBase_iff_mem); (4) backtrack ordered partition cell refinement (splitCellByPred), proving mutual cell disjointness, union conservation, and exact cardinality preservation; (5) cyclotomic extension rings Z/nZ(eps_m) and machine-check GAP&#x27;s exact size theorem |Z/nZ(eps_m)| = n^m; and (6) executable Bezout inverses via Extended Euclidean GCD (Nat.gcdA) over residue rings Z/nZ. The entire codebase compiles deterministically under &#x27;lake build RequestProject&#x27; and is openly available at https://github.com/pCwOrM/gap-lean4-port.</description>
+    </item>
+    <item>
+      <title>LeanPolish: Verified Supervision for Lean Proof Compression</title>
+      <link>https://paperswithlean.com/paper/2609.38384.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.38384.html</guid>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Pauline Bourigault</dc:creator>
+      <category>theorem-proving-ml</category><category>dataset</category><category>tooling</category><category>tactic-automation</category>
+      <description>Builds a symbolic Lean 4 pipeline using InfoTree proof states to generate verified local proof-compression edits, then trains and evaluates LLM editors on them.
+
+Verified proof edits offer a natural source of supervision for improving language-model-generated Lean proofs. Yet verification establishes that an edit is correct, not that its training signal is free of search artifacts. We introduce LeanPolish, a symbolic Lean 4 pipeline that releases 33,402 accepted local edits and 65,596 same-state failed attempts, and use it to study what models learn from this supervision. First-success search admits a goal-independent rule with perfect ranking accuracy; teacher-selected evaluation sites also reward trivial deletions. Continuing menu evaluation beyond the first success removes the ordering shortcut: a trained ranker selects the best candidate on 70.1% of evaluated held-out states, versus 36.9% for the strongest frozen baseline. For compression, iterating the symbolic pass raises miniF2F savings from 19.7% to 27.5%, exceeding the neural hybrids we test there. Verified neural editing helps on other proof sources, but matched frozen-model controls show that its gains need not come from training. The supervision does improve whole-proof rewriting: fine-tuning raises verified token reduction from 2.8% to 5.5% on 19 PutnamBench proofs. Together, the released edits, complete candidate pools, and controlled evaluations separate learning to imitate a search policy from improving on that search. They provide a reproducible basis for studying proof improvement while keeping correctness, compression, and edit policy distinct.</description>
+    </item>
+    <item>
+      <title>The Burr-Erdős-Graham-Sós conjecture for the seven-cycle</title>
+      <link>https://paperswithlean.com/paper/2609.38286.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.38286.html</guid>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Asad Shahab</dc:creator>
+      <category>formalization</category><category>combinatorics</category>
+      <description>Formalizes in Lean 4 the Burr-Erdős-Graham-Sós rainbow odd-cycle conjecture for all k≥3, including the new seven-cycle proof and the Bucić-Chen-Ma argument.
+
+For a graph $H$, let $f(n,e,H)$ be the least number of colors in an edge-coloring of some $n$-vertex graph with at least $e$ edges in which every copy of $H$ is rainbow. Burr, Erdős, Graham, and Sós conjectured that $f(n,\lfloor n^2/4\rfloor+1,C_{2k+1})=(1/8+o(1))n^2$ for every fixed $k\ge3$, and Bucić, Chen, and Ma recently proved this for all $k\ge4$. We prove the remaining case $k=3$: \[ f\left(n,\left\lfloor n^2/4\right\rfloor+1,C_7\right) =\left(\frac18+o(1)\right)n^2. \] The lower bound rests on a weighted palette inequality, which we prove with an exact rational certificate on five sampled vertices. Its main ingredients are a fractional matching of compatible triangular edges and private resources attached to nontriangular edges. A stable form of the inequality, combined with regularity, triangle removal, and a direct argument for graphs close to bipartite, transfers the bound to arbitrary edge-colorings. We also describe a Lean 4 formalization of the conjecture for every fixed $k\ge3$, which combines the new seven-cycle proof with a formalization of the Bucić-Chen-Ma argument for $k\ge4$.</description>
+    </item>
+    <item>
+      <title>A Calculus for Units of Measure with Conversion</title>
+      <link>https://paperswithlean.com/paper/2609.38242.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.38242.html</guid>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Eric Allen</dc:creator>
+      <category>verification</category><category>type-theory</category><category>formalization</category>
+      <description>All theorems of the units-of-measure calculus (abstraction theorems, adequacy, erasure, Pi theorem, decision procedures) are mechanized in Lean 4; the evaluator compiles natively.
+
+Programs that compute with physical quantities often need to convert between units of measurement, and as the Mars Climate Orbiter showed, these conversions can be a rich source of errors. Meanwhile, typed unit calculi, our most rigorous formalisms for checking physical units in a program, have excluded unit conversions. Through this exclusion, they have established a powerful property: well-typed programs are invariant under rescaling (no program can depend on how big a meter is). But losing the ability to convert between units is a significant cost. In contrast, practical languages provide conversion but no invariance theorem. We present $Λ_S$, a typed lambda calculus with conversion, quantification over units and dimensions, and vectors and linear maps with per-component units, and we determine exactly how much invariance survives conversion. For terms without unit constants we prove two abstraction theorems: (i) a convert-free term is invariant under every rescaling; (ii) a term with conversions is invariant under every rescaling that scales all units of one dimension by the same factor. The condition in (ii) cannot be weakened: under any other rescaling, some conversion of a nonzero value is not invariant. For first-order programs, a verified decision procedure returns one of three verdicts: it certifies that no error in the declared conversion factors can change the program&#x27;s answer, names the accumulated ratio through which such an error would scale it, or declines. A verified checker decides whether unit declarations are consistent and determine every conversion factor, and extracts each factor exactly. We also prove adequacy, erasure, and the $n$-variable Pi theorem of dimensional analysis with conversion. Every theorem is mechanized in Lean 4, and the evaluator compiles to a native binary.</description>
+    </item>
+    <item>
+      <title>A Trust Ledger and an Execution Check for CPG-Based C-to-Lean 4 Autoformalization: Separating Declined from Silently Incorrect Translations</title>
+      <link>https://paperswithlean.com/paper/2609.38237.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.38237.html</guid>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Ishan K Singavarapu, Manish Bhatt</dc:creator>
+      <category>verification</category><category>autoformalization</category><category>tooling</category>
+      <description>Translates C code (SQLite) via Joern CPG into terms of a fuel-indexed Lean 4 definitional interpreter, with Lean-checked specifications and execution checks.
+
+Verifying large C codebases requires translating them into formally checkable semantics, but most autoformalization work reports a single aggregate success rate that conflates two different failure modes: code the translator declined to handle and code the translator translated incorrectly. We present a deterministic code-property-graph (CPG)-based exporter that translates C source into a small Lean 4 core semantics under a three-tier correctness discipline: hole-free, call-closed, and dynamic-hole-risk, that keeps these modes distinct. Applied to a re-export of the SQLite source tree (8{,}602 functions, over 1.5 million AST nodes), the exporter translates 5{,}222 functions (60.7%) hole-free, of which only 2{,}134 (24.8%) are call-closed, a $2.4\times$ gap a single rate would hide. Both figures are reported in a full per-construct trust ledger rather than a single score. Our main contribution is methodological: a protocol for separating constructs that are fundamentally unresolvable by whole-program static analysis (such as public API boundaries) from constructs that only look that way. For example, we retracted our own “impossible” classification of function-pointer/vtable dispatch after tracing a concrete counterexample in the target codebase. Separately, a search for “more holes closed” surfaced a latent silent-wrong-answer bug: a translation that succeeded with an incorrect result rather than declining, a failure mode we argue is more dangerous than any hole, and one a hole-count-only evaluation would never surface.</description>
+    </item>
     <item>
       <title>The finite-horizon five-expert prediction problem</title>
       <link>https://paperswithlean.com/paper/2609.38035.html</link>
@@ -600,72 +666,6 @@ DAG-based consensus protocols can achieve great throughput and the optimal three
       <description>Trains and evaluates LLM proof-step generators on Lean 4 via LeanDojo using the leandojo-benchmark-4 split from mathlib4.
 
 Fine-tuned Large Language Models (LLMs) significantly advance Automated Theorem Proving (ATP), but are often deployed as guiding policies within tree search rather than for single-attempt generation. Recent work shows cross entropy is suboptimal for an LLM used in flat search strategies such as aggregation or filtering and that work has developed new loss functions to correct this misalignment. Extending this alignment to tree search is more challenging: proof discovery depends on exploration and recovery through off-trace states that supervised demonstrations do not reveal. We extend Compute-Aligned Training (CAT) to this setting through an abstraction of policy-guided search, deriving tractable, trace-supported losses. Alongside these search-aware losses, we introduce a search-agnostic uniform-allocation (UA) loss that accounts for the budget without specifying the specific search. Both induce scalar weights on per-tactic cross-entropy gradients. We characterize how off-trace behavior affects the search-aware weights, including conditions for vanishing approximation error at large budgets. On a Lean benchmark, both approaches achieve higher observed proof-success rates than cross-entropy across six search strategies, with strong results from a single shared UA adapter. Budget sweeps show larger gains over cross-entropy at 16 than at 256 expansions, implying CAT scales with test time compute.</description>
-    </item>
-    <item>
-      <title>Modular Composition of Inductive Types Using Lean Meta-programming</title>
-      <link>https://paperswithlean.com/paper/2609.25427.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.25427.html</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Ramy Shahin</dc:creator>
-      <category>tooling</category><category>type-theory</category>
-      <description>Presents Lean meta-programming algorithms and syntactic extensions for modular composition, reuse, and extension of inductive type and function definitions.
-
-Inductive types are ubiquitous building blocks in many programming and theorem proving languages. An inductive type is a closed set of constructors from which values of the type can be created. That set cannot be extended though once a type is defined. This limits extensibility, reuse, and modular separation of concerns when defining types and functions operating over their values. This limitation is manifested in the expression problem, where extending an expression language with new syntactic constructors without having to modify or re-compile existing ones is a challenge in almost all programming languages. This paper presents inductive type and function implementation composition algorithms based on meta-programming. In addition, a set of syntactic extensions to the Lean proof assistant implementing those algorithms are presented. This framework allows for modular reuse, composition, and extension of a subset of Lean type and function definitions. In addition, semantic subtyping relations between component and composite types are discussed both at the type theoretic and implementation levels. The framework is demonstrated on a case study, involving the composition of syntactic and semantic artifacts of three sublanguages into one language. The case study highlights both the features and limitations of the composition framework.</description>
-    </item>
-    <item>
-      <title>Beyond Natural Language: An Agent-Native Language for Autonomous Science</title>
-      <link>https://paperswithlean.com/paper/2609.25421.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.25421.html</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Yifeng He, Jiachen Liu</dc:creator>
-      <category>formalization</category><category>logic</category><category>verification</category>
-      <description>Semantic guarantees of the Lara claim-support language and metatheory are mechanized in Lean 4 ( 117,000 lines, sorry-free using standard axioms).
-
-As autonomous AI agents take on every stage of scientific inquiry, research output is expanding far beyond human review capacity. Yet scientific communication still relies on natural-language prose: an informal medium prone to ambiguity, hidden assumptions, and untracked limitations that machines cannot reliably audit. We introduce Lara, a machine-checkable language and protocol for checking and revising support for research claims. By turning research arguments into executable artifacts, Lara provides an epistemic kernel for autonomous science: it enables automated validation pipelines for research agents, lets declared bridges connect arguments across papers into an auditable network, and allows both humans and machines to recheck the standing of an encoded claim in milliseconds. In a Lara program, authors explicitly declare their claims, supporting evidence and assumptions, and known objections or limitations. A lightweight, deterministic checker adjudicates these interactions, assigning each claim a reproducible status: &quot;justified&quot;, &quot;defeated&quot;, &quot;contested&quot;, or &quot;gap&quot;, which marks a claim whose support is incomplete and locates the unanswered question. Case studies cover empirical review, a philosophical debate without measurements, and the loss of support when an assumed axiom is withdrawn. We establish the metatheory of claim checking and cross-context argument transport, and mechanize the semantic guarantees in Lean 4 (roughly 117,000 lines), leaving three arguments on paper. The audited public metatheory is &quot;sorry&quot;-free and uses only Lean&#x27;s three standard axioms; some executable examples additionally trust native evaluation.</description>
-    </item>
-    <item>
-      <title>Lean Pool: An AI-Maintained Archive of Formalized Mathematics</title>
-      <link>https://paperswithlean.com/paper/2609.25199.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.25199.html</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Vasily Ilin</dc:creator>
-      <category>tooling</category><category>mathlib</category><category>ai-agents</category><category>formalization</category>
-      <description>Presents Lean Pool, an AI-agent-maintained archive of 211 completed Lean/Mathlib formalization projects with automated linting, review, dependency updates, and optimization.
-
-Lean Pool is a repository of formalized mathematics. It is grown, maintained and optimized by AI agents.</description>
-    </item>
-    <item>
-      <title>The spherical cap conjecture for immersed disks</title>
-      <link>https://paperswithlean.com/paper/2609.24766.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.24766.html</guid>
-      <pubDate>Mon, 21 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>José M. Espinar</dc:creator>
-      <category>formalization</category><category>geometry</category>
-      <description>The analytic boundary lemma, proving both implications under stated hypotheses, was formalized in Lean 4 with Mathlib.
-
-We prove that every smooth immersed disk in Euclidean three-space with nonzero constant mean curvature, regular up to the boundary and mapping its boundary diffeomorphically onto a circle, is an embedded spherical cap.</description>
-    </item>
-    <item>
-      <title>Counterexamples to Grad&#x27;s conjecture</title>
-      <link>https://paperswithlean.com/paper/2609.24739.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.24739.html</guid>
-      <pubDate>Mon, 21 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Javier Gómez-Serrano, Lukas Liehr, Mitchell A. Taylor</dc:creator>
-      <category>formalization</category><category>analysis</category><category>physics</category>
-      <description>A Lean 4 certification is provided for the constructed magnetohydrostatic equilibria that serve as counterexamples to Grad&#x27;s conjecture.
-
-For each sufficiently large $N$, we construct smooth solutions of the magnetohydrostatic equations on embedded solid tori whose regular pressure levels are nested tori, whose magnetic field vanishes exactly on a round magnetic axis, and whose group of Euclidean symmetries, even when isometries reversing the sign of the field are admitted, is exactly the cyclic group $C_N$ of rotations through multiples of $2π/N$. For each such $N$, these equilibria form a smooth one-parameter family which is locally nontrivial in the moduli space of embedded configurations and have none of the plane-reflection, axial, or helical symmetries conjectured by Grad. A Lean 4 certification of the above results is also provided.</description>
-    </item>
-    <item>
-      <title>Encoding Lean&#x27;s Type Theory in Dedukti</title>
-      <link>https://paperswithlean.com/paper/2609.24604.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.24604.html</guid>
-      <pubDate>Mon, 21 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Frédéric Blanqui, Rishikesh Vaishnav</dc:creator>
-      <category>tooling</category><category>type-theory</category><category>logic</category>
-      <description>Presents a Dedukti theory encoding Lean&#x27;s type theory with a typability-preserving translation from a large subset of Lean.
-
-The Lean proof assistant has a rich library of mathematical formalizations that are interesting to users of other proof assistants. To help with the translation of this library to other systems, we present a theory in the Dedukti logical framework in which one can encode Lean terms and types, and define a typability-preserving translation from some large subset of Lean to that Dedukti theory.</description>
     </item>
   </channel>
 </rss>

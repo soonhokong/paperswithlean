@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Calculus for Units of Measure with Conversion · Papers With Lean</title>
+<meta name="description" content="Programs that compute with physical quantities often need to convert between units of measurement, and as the Mars Climate Orbiter showed, these conversions can be a rich source of errors. Meanwhile, typed unit calculi, our most rigorous formalisms for checking physical units in…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Calculus for Units of Measure with Conversion">
+<meta property="og:description" content="Programs that compute with physical quantities often need to convert between units of measurement, and as the Mars Climate Orbiter showed, these conversions can be a rich source of errors. Meanwhile, typed unit calculi, our most rigorous formalisms for checking physical units in…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.38242.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.38242.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.38242v1" target="_blank" rel="noopener"><img src="../thumbs/2609.38242.jpg" alt="First page of A Calculus for Units of Measure with Conversion"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Calculus for Units of Measure with Conversion</h1>
+        <p class="authors">Eric Allen</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Sep 29, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=type-theory">type-theory</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.38242v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.38242" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ericeallen/lambda-s" target="_blank" rel="noopener" title="ericeallen/lambda-s">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">All theorems of the units-of-measure calculus (abstraction theorems, adequacy, erasure, Pi theorem, decision procedures) are mechanized in Lean 4; the evaluator compiles natively.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Programs that compute with physical quantities often need to convert between units of measurement, and as the Mars Climate Orbiter showed, these conversions can be a rich source of errors. Meanwhile, typed unit calculi, our most rigorous formalisms for checking physical units in a program, have excluded unit conversions. Through this exclusion, they have established a powerful property: well-typed programs are invariant under rescaling (no program can depend on how big a meter is). But losing the ability to convert between units is a significant cost. In contrast, practical languages provide conversion but no invariance theorem. We present $Λ_S$, a typed lambda calculus with conversion, quantification over units and dimensions, and vectors and linear maps with per-component units, and we determine exactly how much invariance survives conversion. For terms without unit constants we prove two abstraction theorems: (i) a convert-free term is invariant under every rescaling; (ii) a term with conversions is invariant under every rescaling that scales all units of one dimension by the same factor. The condition in (ii) cannot be weakened: under any other rescaling, some conversion of a nonzero value is not invariant. For first-order programs, a verified decision procedure returns one of three verdicts: it certifies that no error in the declared conversion factors can change the program&#x27;s answer, names the accumulated ratio through which such an error would scale it, or declines. A verified checker decides whether unit declarations are consistent and determine every conversion factor, and extracts each factor exactly. We also prove adequacy, erasure, and the $n$-variable Pi theorem of dimensional analysis with conversion. Every theorem is mechanized in Lean 4, and the evaluator compiles to a native binary.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Typed unit calculi prove that well-typed programs are invariant under rescaling, but they exclude unit conversion. Practical languages allow conversion but provide no invariance guarantee. It has been unclear how much invariance survives once conversion is added.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors define Λ_S, a typed lambda calculus with unit conversion, quantification over units and dimensions, rational exponent vectors, and vectors and linear maps with per-component units. Semantics interpret unit abstraction as a family indexed by valuations, and logical relations are used to prove abstraction theorems. They build a verified drift-analysis decision procedure, a declaration-consistency checker with factor extraction, and a fuel-based evaluator. Everything is mechanized in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Convert-free terms are invariant under every rescaling, and terms with conversions are invariant exactly under dimension-coherent rescalings; this condition is shown to be tight. The paper also proves adequacy, erasure, non-definability of square root, and the n-variable Pi theorem with conversion. The evaluator compiles to a native binary.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
