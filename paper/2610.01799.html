@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SkillEvoLean: Mutation-enhanced skill evolution for Lean provers · Papers With Lean</title>
+<meta name="description" content="Skill evolution offers a promising way to improve large language model agents without updating their parameters, but its use in formal theorem proving remains underexplored. Existing methods mainly target natural-language reasoning, improving skills by analyzing successful and…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SkillEvoLean: Mutation-enhanced skill evolution for Lean provers">
+<meta property="og:description" content="Skill evolution offers a promising way to improve large language model agents without updating their parameters, but its use in formal theorem proving remains underexplored. Existing methods mainly target natural-language reasoning, improving skills by analyzing successful and…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.01799.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.01799.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.01799v1" target="_blank" rel="noopener"><img src="../thumbs/2610.01799.jpg" alt="First page of SkillEvoLean: Mutation-enhanced skill evolution for Lean provers"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">SkillEvoLean: Mutation-enhanced skill evolution for Lean provers</h1>
+        <p class="authors">Kuo Zhou, ZiXion Yang, Lu Zhang</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 1, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.01799v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.01799" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Evolves textual skills for LLM agents that generate Lean proofs, using Lean verifier feedback, evaluated on MiniF2F, PutnamBench, IMO 2025 and USAMO 2026.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Skill evolution offers a promising way to improve large language model agents without updating their parameters, but its use in formal theorem proving remains underexplored. Existing methods mainly target natural-language reasoning, improving skills by analyzing successful and failed trajectories and incrementally revising solving strategies. Although the Lean verifier provides reliable execution feedback, when all sampled trajectories fail, existing skill evolution methods lack successful trajectories from which to infer effective update directions. Furthermore, these methods also focus mainly on the root instruction file, thus underexploring the evolution of reference knowledge including mathematical concepts and proving techniques. To address these limitations, we propose a mutation-enhanced skill self-evolution framework for building skill-augmented Lean provers. The framework jointly evolves a high-level solving policy and its reference knowledge through progressive and mutation-based updates. Progressive evolution derives local improvements from successful and failed trajectories, while mutation is triggered when no complete proof can be generated, sampling mathematical concepts to produce and select new skill candidates under verifier feedback. We evaluate our method on MiniF2F, PutnamBench, the 2025 International Mathematical Olympiad (IMO 2025), and the 2026 USA Mathematical Olympiad (USAMO 2026). Under the same backbone model, trajectorysampling budget, and test-time compute, our method achieves proof success rates of 100.0%, 90.6%, 4/6, and 4/6, respectively, with GPT-5.5, outperforming the baseline methods. Further analysis shows that concept-guided mutation outperforms random-text-guided mutation by 6.9 and 8.2 percentage points on MiniF2F and PutnamBench, respectively, while solving one additional problem on both IMO 2025 and USAMO 2026.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Skill evolution improves LLM agents without parameter updates, but existing methods depend on successful trajectories. They stagnate when every sampled Lean proof attempt fails. They also mostly revise only the root instruction file and neglect reference knowledge such as mathematical concepts and proof techniques.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">SkillEvoLean jointly evolves a high-level solving policy (SKILL.md) and its reference knowledge using LLM-based operators. Progressive evolution compares successful and failed trajectories to locate and rewrite skill components. When no complete proof is found, mutation is triggered: the method samples new mathematical concepts from a concept pool to perturb the skill. The Lean verifier then selects among the resulting candidates.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With GPT-5.5, under matched sampling budget and test-time compute, it reaches 100.0% on MiniF2F, 90.6% on PutnamBench, and 4/6 on both IMO 2025 and USAMO 2026, outperforming baselines. Concept-guided mutation beats random-text mutation by 6.9 points on MiniF2F and 8.2 points on PutnamBench, and solves one extra problem on each olympiad set.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.01799/figure3.png" alt=""><figcaption>Figure 3: Progressive evolution converges without mutation. Without mutation-based exploration, progressive updates gradually saturate.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Benchmark</th><th>Success</th></tr></thead><tbody><tr><td>MiniF2F</td><td>100.0%</td></tr><tr><td>PutnamBench</td><td>90.6%</td></tr><tr><td>IMO 2025</td><td>4/6</td></tr><tr><td>USAMO 2026</td><td>4/6</td></tr></tbody></table><div class="tbl-cap">Proof success rates with GPT-5.5 (from abstract)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

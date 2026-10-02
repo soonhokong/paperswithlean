@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exact Distinguishability in Non-Markovian Decision Processes · Papers With Lean</title>
+<meta name="description" content="Non-Markovian environments are often modeled as Regular Decision Processes (RDPs), where dynamics depend on the interaction history through a finite automaton. Existing offline guarantees for RDPs rely on a distinguishability assumption on the behaviour policy but provide no…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Exact Distinguishability in Non-Markovian Decision Processes">
+<meta property="og:description" content="Non-Markovian environments are often modeled as Regular Decision Processes (RDPs), where dynamics depend on the interaction history through a finite automaton. Existing offline guarantees for RDPs rely on a distinguishability assumption on the behaviour policy but provide no…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.01527.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.01527.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.01527v1" target="_blank" rel="noopener"><img src="../thumbs/2610.01527.jpg" alt="First page of Exact Distinguishability in Non-Markovian Decision Processes"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Exact Distinguishability in Non-Markovian Decision Processes</h1>
+        <p class="authors">Kabir Murjani, Nisarg Patel</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 1, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">stat.ML</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-orange" href="../#tag=probability">probability</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.01527v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.01527" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Kcbir/pec" target="_blank" rel="noopener" title="Kcbir/pec">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Key theorems on frozen posterior odds and the T-maze counterexample to state coverage are machine-checked in a released Lean 4 development.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Non-Markovian environments are often modeled as Regular Decision Processes (RDPs), where dynamics depend on the interaction history through a finite automaton. Existing offline guarantees for RDPs rely on a distinguishability assumption on the behaviour policy but provide no means of verifying it. When the assumption is violated, distinct models may explain the data equally well. We study when data collected under a fixed behaviour policy can distinguish two candidate RDPs. We prove that the posterior odds between observationally equivalent candidates remain equal to the prior odds at every sample size, even when the policy visits every automaton state, and verify both results formally in Lean 4. We then characterize this equivalence exactly and derive PEC, an algorithm that decides it in time linear in the size of the product automaton. The distinguishability assumption of prior work fails on three of our four test environments, and the experiment identified by PEC restores it in each case.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Offline learning guarantees for Regular Decision Processes rely on a distinguishability assumption on the behaviour policy, but there is no way to check it. When it fails, distinct candidate models can explain the data equally well.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors define policy-relative observational equivalence between two candidate RDPs. They prove that posterior odds between equivalent candidates stay at the prior odds, and they give a two-action T-maze showing that state coverage does not imply distinguishability. Both results are verified in Lean 4. They characterize equivalence through disagreeing state-action pairs of the product automaton and a regular blame language, which yields PEC, a decision procedure linear in the product size that also names a separating experiment.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The distinguishability assumption of prior work fails on three of four test environments. The experiment identified by PEC restores separating mass in each case.</p><div class="sum-table"><table><thead><tr><th>Environment</th><th>T</th><th>mass under π</th><th>mass under π′</th><th>Assumption 2</th><th>PEC</th></tr></thead><tbody><tr><td>T-maze</td><td>2</td><td>0</td><td>1/2</td><td>fails</td><td>equivalent</td></tr><tr><td>Rotating MAB</td><td>3</td><td>0</td><td>245/512</td><td>fails</td><td>equivalent</td></tr><tr><td>Cheat MAB</td><td>3</td><td>0</td><td>1/9</td><td>fails</td><td>equivalent</td></tr><tr><td>Rotating Maze</td><td>4</td><td>0</td><td>1/8</td><td>holds (trivially)</td><td>equivalent</td></tr></tbody></table><div class="tbl-cap">Separating mass under behaviour policy π and PEC-designed policy π′</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lower Bound of 22 for 3x3 Matrix Multiplication over the Integers · Papers With Lean</title>
+<meta name="description" content="Strassen showed that two 2x2 matrices can be multiplied with 7 multiplications instead of 8. Applied recursively, his algorithm multiplies two nxn matrices with O(n^2.807) multiplications, beating the naive O(n^3). The best known 3x3 recursive matrix multiplication algorithm…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lower Bound of 22 for 3x3 Matrix Multiplication over the Integers">
+<meta property="og:description" content="Strassen showed that two 2x2 matrices can be multiplied with 7 multiplications instead of 8. Applied recursively, his algorithm multiplies two nxn matrices with O(n^2.807) multiplications, beating the naive O(n^3). The best known 3x3 recursive matrix multiplication algorithm…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.01639.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.01639.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.01639v1" target="_blank" rel="noopener"><img src="../thumbs/2610.01639.jpg" alt="First page of Lower Bound of 22 for 3x3 Matrix Multiplication over the Integers"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Lower Bound of 22 for 3x3 Matrix Multiplication over the Integers</h1>
+        <p class="authors">Isaac Rudich, Louis-Martin Rousseau</p>
+        <div class="row">
+          <span class="badge">cs.CC</span>
+          <span class="date">Oct 1, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.01639v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.01639" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.23047901" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Proves in Lean 4 with Mathlib that recursive 3x3 integer-constant matrix multiplication needs at least 22 multiplications, encoding algorithms as step programs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Strassen showed that two 2x2 matrices can be multiplied with 7 multiplications instead of 8. Applied recursively, his algorithm multiplies two nxn matrices with O(n^2.807) multiplications, beating the naive O(n^3). The best known 3x3 recursive matrix multiplication algorithm uses 23 multiplications O(n^2.854). The best published lower bound of 21 (on algorithms with integer constants) leaves room for an algorithm with O(n^2.771) multiplications, and thus does not rule out the possibility of an algorithm that would beat Strassen&#x27;s. We prove a lower bound of 22 multiplications for any 3x3 recursive algorithm with integer constants, proving that no such algorithm can do better than O(n^2.814) multiplications, and eliminating the possibility of a 3x3 algorithm that beats Strassen&#x27;s 2x2 method. The proof builds on a recent decomposition method from Wang, who approached the problem by turning it into 496 subproblems. We provide exact solutions for 359 of them. The proof is in Lean; verification requires auditing only a few short files. The Lean formalization directly encodes statements about the limitations of recursive algorithms for matrix multiplication, as opposed to just a statement about the rank of the problem.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The best known lower bound of 21 multiplications for 3x3 matrix multiplication with integer constants leaves open a recursive 3x3 algorithm that could beat Strassen&#x27;s O(n^2.807) exponent. Raising the bound to 22 would rule this out.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The proof builds on Wang&#x27;s decomposition of the problem into 496 restricted subproblems over F_2 (Wang&#x27;s table), adding new lower bounds and new decompositions found with SAT solving, branch and bound, flip graphs and linear programming. In Lean, algorithms are modeled as lists of steps that must multiply 3x3 grids of blocks of any size. A theorem reduces such programs to bilinear decompositions, and the table bounds are then checked over F_2. Auditing requires reading only a few short Defs/Theorems files and checking the axioms used.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The Lean theorem states that every program that multiplies on blocks uses at least 22 multiplications, which bounds any such algorithm at O(n^2.814). The proof bounds all 496 table elements, determines 359 exactly (against 195 for Wang), and raises 252 lower bounds. Its 3,521 modules take 11.1 hours to build on a single core.</p><div class="sum-table"><table><thead><tr><th></th><th>Wang</th><th>Ours</th></tr></thead><tbody><tr><td>Elements determined exactly</td><td>195</td><td>359</td></tr><tr><td>Lower bounds raised by +1</td><td>–</td><td>245</td></tr><tr><td>Lower bounds raised by +2</td><td>–</td><td>7</td></tr></tbody></table><div class="tbl-cap">Summary of bounds on Wang&#x27;s table (496 elements)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
