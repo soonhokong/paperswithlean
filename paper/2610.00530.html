@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fixing the Fixpoint: A Formal Theory of Convergence Detection for Incremental Recursive Computation · Papers With Lean</title>
+<meta name="description" content="Modern incremental computation theories like DBSP have enabled efficient incrementalization of general recursive computations. To do so, they require a runtime Fixpoint Detection (FPD) mechanism to detect whether an iterative computation has reached the fixpoint and thus should…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fixing the Fixpoint: A Formal Theory of Convergence Detection for Incremental Recursive Computation">
+<meta property="og:description" content="Modern incremental computation theories like DBSP have enabled efficient incrementalization of general recursive computations. To do so, they require a runtime Fixpoint Detection (FPD) mechanism to detect whether an iterative computation has reached the fixpoint and thus should…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.00530.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.00530.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.00530v1" target="_blank" rel="noopener"><img src="../thumbs/2610.00530.jpg" alt="First page of Fixing the Fixpoint: A Formal Theory of Convergence Detection for Incremental Recursive Computation"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Fixing the Fixpoint: A Formal Theory of Convergence Detection for Incremental Recursive Computation</h1>
+        <p class="authors">Chengxi Yang, Tej Chajed, Thomas Reps</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Sep 30, 2026 · v1</span>
+          <span class="badge">cs.DB</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.00530v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.00530" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Arcadia-Y/fixing-the-fixpoint" target="_blank" rel="noopener" title="Arcadia-Y/fixing-the-fixpoint">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">All results are mechanized in Lean 4, porting a Lean 3 DBSP formalization (2,095 lines) and adding 11,748 lines on convergence detection.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Modern incremental computation theories like DBSP have enabled efficient incrementalization of general recursive computations. To do so, they require a runtime Fixpoint Detection (FPD) mechanism to detect whether an iterative computation has reached the fixpoint and thus should terminate. However, we show that the commonly suggested &quot;FirstZero&quot; strategy is unsound even in naturally arising cases, and that exact FPD is impossible for arbitrary DBSP circuits with expressive primitive nodes. This issue reveals a fundamental gap between the mathematical specification and implementations of such theories. To fill this gap, using DBSP as a core calculus, we develop a formal theory of convergence detection. Within this theory, we define internal convergence (IntConv) as a declarative criterion corresponding to the internal-state-stability strategy used by practical implementations, and prove that IntConv is a sufficient condition for external convergence. We then define the state fixpoint (StFP) predicate and a sound and complete StFP detector. Combining the StFP detector with fixed-input and zero-output checks yields a sound and complete IntConv detector. Moreover, for a large class of useful circuits (programs) including Datalog queries, nested while queries, and their incrementally optimized versions, we show that IntConv is not only sound but also complete (meaning any convergence in the theory implies the convergence in our criterion). As a result, our theory provides semantic guarantees for convergence detection on all these circuits. Our results are formally verified in Lean, with the formalization available at <a href="https://github.com/Arcadia-Y/fixing-the-fixpoint/" target="_blank" rel="noopener">https://github.com/Arcadia-Y/fixing-the-fixpoint/</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Incremental computation frameworks like DBSP need runtime fixpoint detection to terminate iterative computations. The common FirstZero strategy is unsound, and exact fixpoint detection is impossible for arbitrary DBSP circuits, leaving a gap between theory and implementations.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Using DBSP as a core calculus with streams of level 1 or 2, the authors define internal convergence (IntConv), which matches the internal-state-stability strategy used by implementations such as Feldera. They prove IntConv sufficient for external convergence. They then build a sound and complete state-fixpoint (StFP) detector and combine it with fixed-input and zero-output checks. All definitions and proofs are mechanized in Lean 4, including a Hoare logic framework and Zset circuit case studies.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">IntConv is sound in general and complete for regular circuits, which include Datalog and nested while queries. Completeness is preserved by DBSP&#x27;s incremental optimizations (plift, incOpt). The Lean development totals about 13.8k lines.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

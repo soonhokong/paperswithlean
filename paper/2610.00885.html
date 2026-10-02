@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FORALL-LEAN-AGENT for Auditable Reasoning in Formal Mathematics and Software Verification · Papers With Lean</title>
+<meta name="description" content="Coding agents increasingly automate Lean proof development, but successful compilation alone does not establish that a candidate proves the intended statement under acceptable assumptions. We present FORALL-LEAN-AGENT, a frontend-agnostic framework for auditable reasoning in…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FORALL-LEAN-AGENT for Auditable Reasoning in Formal Mathematics and Software Verification">
+<meta property="og:description" content="Coding agents increasingly automate Lean proof development, but successful compilation alone does not establish that a candidate proves the intended statement under acceptable assumptions. We present FORALL-LEAN-AGENT, a frontend-agnostic framework for auditable reasoning in…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.00885.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.00885.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.00885v1" target="_blank" rel="noopener"><img src="../thumbs/2610.00885.jpg" alt="First page of FORALL-LEAN-AGENT for Auditable Reasoning in Formal Mathematics and Software Verification"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">FORALL-LEAN-AGENT for Auditable Reasoning in Formal Mathematics and Software Verification</h1>
+        <p class="authors">Naing Oo Lwin</p>
+        <div class="row">
+          <span class="badge">cs.SE</span>
+          <span class="date">Oct 1, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.00885v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.00885" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/astrio-labs/forall-verisoftbench" target="_blank" rel="noopener" title="astrio-labs/forall-verisoftbench">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds an agent harness that generates and audits Lean 4 proofs, adding axiom audits, fresh review, and independent kernel checking, evaluated on Lean benchmarks.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Coding agents increasingly automate Lean proof development, but successful compilation alone does not establish that a candidate proves the intended statement under acceptable assumptions. We present FORALL-LEAN-AGENT, a frontend-agnostic framework for auditable reasoning in formal mathematics and software verification. The framework combines isolated workspaces, Lean tools, and fresh review with statement comparison, axiom audits, and independent proof checking where supported. Verification evidence and reviewer decisions are bound to the same candidate artifact, making acceptance traceable. We evaluate the framework on VeriSoftBench, PutnamBench, and both problems in the Lean Eval softwareverification track. On the 100-task VeriSoftBench subset, integration with FORALLLEAN-AGENT raises benchmark-rule success from 93 to 100 for GPT-5.6 Sol at low effort while reducing cost from $69 to $62. The PutnamBench evaluation accepts all 672 problems at an average of $4.72 each. These results show that agent harness design can improve correctness and efficiency while providing evidence beyond aggregate solve counts.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Coding agents that write Lean proofs are usually judged by whether the proof compiles. Compilation does not show that the agent kept the intended statement, used only acceptable axioms, avoided reference solutions, or submitted the same artifact that was reviewed.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">FORALL-LEAN-AGENT is a frontend-agnostic harness with adapters for Claude Code, Codex, and OpenCode. Each actor works in an isolated sandbox with Lean MCP tools. A fresh read-only reviewer then recompiles and critiques the candidate. The framework runs statement-integrity and axiom audits (#print axioms), uses an independent comparator/kernel where supported, and binds verifier results and reviewer approval to a single SHA-256 digest of the candidate. Network and filesystem restrictions keep agents away from reference solutions.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.00885/codex.png" alt=""><figcaption>Figure 1: The Forall-Lean-Agent workflow. A coding agent develops a candidate in an isolated sandbox using Lean and MCP tools. A fresh reviewer recompiles and assesses the candidate without access to the actor’s transcript. Acceptance binds the verifier result, reviewer approval, and stored artifact to one digest. Axiom auditing checks dependencies, and Lean Eval additionally uses an independent c</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On a 100-task VeriSoftBench subset, every Codex and Claude Code configuration reached 100/100 benchmark-rule success; for GPT-5.6 Sol at low effort it rose from 93 to 100 while cost fell from $69 to $62. All 672 PutnamBench problems were accepted at $4.72 average cost. Both Lean Eval software-verification problems were solved and validated by the benchmark.</p><div class="sum-table"><table><thead><tr><th>System</th><th>Model / Effort</th><th>Rules</th><th>Strict</th><th>Cost</th></tr></thead><tbody><tr><td>Codex</td><td>GPT-5.6 Sol low</td><td>93</td><td>82</td><td>$69</td></tr><tr><td>Forall-Lean-Agent</td><td>GPT-5.6 Sol low</td><td>100</td><td>88</td><td>$62</td></tr><tr><td>Claude Code</td><td>Opus 5 xhigh</td><td>100</td><td>89</td><td>$135</td></tr><tr><td>Forall-Lean-Agent</td><td>Opus 5 xhigh</td><td>100</td><td>96</td><td>$111</td></tr><tr><td>Numina-Lean-Agent</td><td>Fable 5 low</td><td>86</td><td>–</td><td>$2,011</td></tr></tbody></table><div class="tbl-cap">Selected VeriSoftBench-Aristotle (100 tasks) results</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
