@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quantum code parameters, checkable by a certificate of provable size · Papers With Lean</title>
+<meta name="description" content="A code is described by three numbers: its physical qubits, its logical qubits, and the smallest error it cannot detect, counted in qubits. The first two are linear algebra. The third, the distance, is an optimum over an exponentially large set, read off a solver whose answer…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Quantum code parameters, checkable by a certificate of provable size">
+<meta property="og:description" content="A code is described by three numbers: its physical qubits, its logical qubits, and the smallest error it cannot detect, counted in qubits. The first two are linear algebra. The third, the distance, is an optimum over an exponentially large set, read off a solver whose answer…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.03214.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.03214.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.03214v1" target="_blank" rel="noopener"><img src="../thumbs/2610.03214.jpg" alt="First page of Quantum code parameters, checkable by a certificate of provable size"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Quantum code parameters, checkable by a certificate of provable size</h1>
+        <p class="authors">Shuoming An, Fusheng Yang</p>
+        <div class="row">
+          <span class="badge">quant-ph</span>
+          <span class="date">Oct 2, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-purple" href="../#tag=quantum">quantum</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.03214v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.03214" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/QCL-SUAT/QECCertificates" target="_blank" rel="noopener" title="QCL-SUAT/QECCertificates">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Quantum code parameters, including distance, are certified by certificates whose correctness the Lean kernel checks by computation, with certificate-size bounds proved as Lean theorems.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A code is described by three numbers: its physical qubits, its logical qubits, and the smallest error it cannot detect, counted in qubits. The first two are linear algebra. The third, the distance, is an optimum over an exponentially large set, read off a solver whose answer carries no certificate. Whether a code&#x27;s parameters can be checked uniformly across codes, with a certificate of proved size, is open. Here we show that they can, by moving the unit of work from the code to a certificate, a short object, either a list, a pairing or a symbolic instance, whose correctness the kernel of the \Lean\ proof assistant decides by computation. The kernel is the small core that checks each step. The certificate&#x27;s size is itself a theorem: its enumeration form lists the vectors of weight below the distance $d$, $\sum_{j&lt;d}\binom{n}{j}$ of them, a polynomial in the code&#x27;s length $n$ at fixed distance $d$. No bound uniform over codes in both $n$ and $d$ is smaller. For product families the certificate is smaller still, the bound being proved once, symbolically. Deciding that a vector lies outside the row space of the check matrix, the set of sums of its rows, becomes one matrix-vector product and one inner product. On an eighteen-qubit toric code, a surface code closed into a torus, the whole-file check of that decision falls from 42\,s to 9\,s. Eleven code families and thirty-nine parameter sets follow, the widest at 1872 qubits. Nothing beyond the three standard axioms of \Lean&#x27;s logic is trusted, though the generator that writes a code&#x27;s checks stops at twenty qubits, and the lower bound for the 144-qubit code is imported rather than proved here. A distance becomes checkable rather than believed, and the same move applies wherever else a computation ends in a solver.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The distance of a quantum code is an optimum over an exponentially large set and is usually read off solvers that give no certificate. It was open whether code parameters can be checked uniformly across codes using certificates of proved size.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Code parameters are checked through certificates (lists, pairings, or symbolic instances) that the Lean kernel decides by computation. Vectors are modeled as Fin n → F2, and row reduction runs inside Lean, with theorems that it preserves row space and computes rank and row-space membership. Certificate size is proved to be the sum over j&lt;d of binom(n,j), polynomial in n for fixed d, and this bound is shown to be tight. Hypergraph product families instead use symbolic cleaning-argument lower bounds proved once in Lean.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Eleven code families and thirty-nine parameter sets are kernel-checked, the largest at 1872 qubits, using only Lean&#x27;s three standard axioms. On an 18-qubit toric code, the row-space non-membership check falls from 42 s to 9 s. The check-generator stops at twenty qubits, and the [[144,12,12]] lower bound is imported rather than proved here.</p><div class="sum-table"><table><thead><tr><th>Instance</th><th>n</th><th>d</th><th>sum_{j&lt;d} C(n,j)</th><th>Route</th></tr></thead><tbody><tr><td>Hamming [15,11,3]</td><td>15</td><td>3</td><td>121</td><td>enumeration</td></tr><tr><td>BB [[18,4,4]]</td><td>18</td><td>4</td><td>988</td><td>enumeration</td></tr><tr><td>Toric [[18,2,3]]</td><td>18</td><td>3</td><td>172</td><td>enumeration</td></tr><tr><td>HGP toric m=16</td><td>512</td><td>16</td><td>2.8e28</td><td>structured, symbolic in m</td></tr><tr><td>BB [[144,12,12]]</td><td>144</td><td>12</td><td>1.0e16</td><td>transported analytic lower bound</td></tr></tbody></table><div class="tbl-cap">Selected instances: enumeration size vs. 2^n and verification route</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

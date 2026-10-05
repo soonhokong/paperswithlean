@@ -6,7 +6,95 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 01 Oct 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 04 Oct 2026 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Quantum code parameters, checkable by a certificate of provable size</title>
+      <link>https://paperswithlean.com/paper/2610.03214.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.03214.html</guid>
+      <pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Shuoming An, Fusheng Yang</dc:creator>
+      <category>verification</category><category>formalization</category><category>quantum</category>
+      <description>Quantum code parameters, including distance, are certified by certificates whose correctness the Lean kernel checks by computation, with certificate-size bounds proved as Lean theorems.
+
+A code is described by three numbers: its physical qubits, its logical qubits, and the smallest error it cannot detect, counted in qubits. The first two are linear algebra. The third, the distance, is an optimum over an exponentially large set, read off a solver whose answer carries no certificate. Whether a code&#x27;s parameters can be checked uniformly across codes, with a certificate of proved size, is open. Here we show that they can, by moving the unit of work from the code to a certificate, a short object, either a list, a pairing or a symbolic instance, whose correctness the kernel of the \Lean\ proof assistant decides by computation. The kernel is the small core that checks each step. The certificate&#x27;s size is itself a theorem: its enumeration form lists the vectors of weight below the distance $d$, $\sum_{j&lt;d}\binom{n}{j}$ of them, a polynomial in the code&#x27;s length $n$ at fixed distance $d$. No bound uniform over codes in both $n$ and $d$ is smaller. For product families the certificate is smaller still, the bound being proved once, symbolically. Deciding that a vector lies outside the row space of the check matrix, the set of sums of its rows, becomes one matrix-vector product and one inner product. On an eighteen-qubit toric code, a surface code closed into a torus, the whole-file check of that decision falls from 42\,s to 9\,s. Eleven code families and thirty-nine parameter sets follow, the widest at 1872 qubits. Nothing beyond the three standard axioms of \Lean&#x27;s logic is trusted, though the generator that writes a code&#x27;s checks stops at twenty qubits, and the lower bound for the 144-qubit code is imported rather than proved here. A distance becomes checkable rather than believed, and the same move applies wherever else a computation ends in a solver.</description>
+    </item>
+    <item>
+      <title>Resolving Erdős-Ulam Monochromatic Union-Closed Family Conjectures</title>
+      <link>https://paperswithlean.com/paper/2610.02833.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.02833.html</guid>
+      <pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Deep Bhattacharjee, Priyabrata Mandal, Ushashi Bhattacharya</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>combinatorics</category>
+      <description>All results, including both Erdős–Ulam bounds, are fully formalized in Lean 4 with Mathlib, using Mathlib&#x27;s Sauer–Shelah and Hales–Jewett theorems.
+
+We prove both Erdős-Ulam conjectures on monochromatic union-closed families. Every two-colouring of the subsets of a finite set contains a monochromatic union-closed family whose size grows faster than any fixed power of the size of the set, while suitable colourings admit no monochromatic union-closed family of exponential size. Both results hold for any number of colours and are verified in Lean.</description>
+    </item>
+    <item>
+      <title>VeriPy Source-Preserving Verification and Compatibility Checking for Python Components</title>
+      <link>https://paperswithlean.com/paper/2610.02814.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.02814.html</guid>
+      <pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Naing Oo Lwin</dc:creator>
+      <category>verification</category><category>tooling</category>
+      <description>Annotated Python components are translated into Lean 4 (and Dafny) artifacts, and all 25 proof units are checked in Lean 4.33.1.
+
+Keeping a Python program and its formal guarantees aligned is a continuing maintenance problem. Specifications must describe the implementation that actually runs, and updates must preserve the behavior on which existing callers depend. VeriPy brings these obligations into a common workflow for annotated Python components. Developers and agents express contracts, invariants, and proof hooks as Python comments, then refine checked auxiliary lemmas using source-located diagnostics. Direct encoders produce Dafny or Lean artifacts while retaining admitted executable bodies and explicit models of their dependencies. A relational product checks whether an updated component still admits old inputs and preserves returned values and modeled exceptions. The resulting workflow connects source-level proof development with functional verification and backward compatibility, recording the assumptions under which each guarantee applies. The code is available at https://github.com/astrio-labs/veripy.</description>
+    </item>
+    <item>
+      <title>High-Rate Quantum Codes with Proven Distance and Low-Weight Measurements</title>
+      <link>https://paperswithlean.com/paper/2610.02621.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.02621.html</guid>
+      <pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Kishor Bharti, Tobias Haug, Runzhou Tao, Kevin Ye</dc:creator>
+      <category>formalization</category><category>verification</category><category>quantum</category>
+      <description>Formally verifies in Lean the subsystem-code construction on rectangular grids and its dressed and bare distances, with Lean snippets explained throughout.
+
+We study a family of quantum subsystem codes defined on rectangular coordinate grids of any dimension, with even side lengths of at least four. The directly measured operators act along coordinate lines. For every member of the family, we derive the number of protected logical qubits and prove its dressed distance without a numerical search. To illustrate the resulting design choices, we impose a budget of at most 10,000 data qubits and determine the complete tradeoff between encoding rate and measurement weight within this family at distances 16, 32, and 64. At distance 16, one code protects 4,096 logical qubits among 10,000 data qubits using weight-ten measurements. At distances 32 and 64, codes with 7,776 and 9,216 data qubits protect 1,024 and 256 logical qubits, respectively, using weight-six measurements. We include and explain Lean code snippets throughout the paper to guide readers through the formal verification of our subsystem-code construction and its dressed and bare distances.</description>
+    </item>
+    <item>
+      <title>Proving at Scale for Universal Algebra</title>
+      <link>https://paperswithlean.com/paper/2610.02500.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.02500.html</guid>
+      <pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>João Araújo, Jan Hůla, Mikoláš Janota, Edmond W. H. Lee, Bartosz Naskręcki</dc:creator>
+      <category>formalization</category><category>ai-agents</category><category>algebra</category>
+      <description>Lean 4 kernel-checks finite identity bases, or proofs of non-finite-basability, for all semigroups of order at most 6, produced by LLM agents.
+
+We introduce SemiBase, a project that computes and formally certifies finite identity bases for small semigroups. Deciding finite basability is undecidable for finite algebras and remains open for finite semigroups. The task requires a proof that a candidate basis is complete, or a proof that none exists, rather than a single first-order validity query. LLM-guided agents search for these proofs; a referee agent rebuilds them from source, and the Lean kernel checks the resulting corpus in a final audit. Humans choose targets and approve final outcomes. We certify every semigroup of order at most 6: all 1309 semigroups of order at most 5 and all 15973 of order 6, including proofs that the four known nonfinitely based semigroups have no finite basis. The bases for order 6 define 505 distinct varieties, whose inclusion order Vampire determines except for four pairs. The resulting catalogue is a machine-checked account of results scattered across the literature and a tested foundation for order 7.</description>
+    </item>
+    <item>
+      <title>A Lean 4 Framework for the Radii Polynomial Method</title>
+      <link>https://paperswithlean.com/paper/2610.02335.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.02335.html</guid>
+      <pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Fengyang Wang</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>analysis</category><category>verification</category>
+      <description>Formalizes the radii polynomial method for computer-assisted proofs in Lean 4 with Mathlib, checking rational certificates for Taylor/Chebyshev series examples including Lorenz.
+
+Computer-assisted proofs in dynamics establish results about nonlinear systems by rigorous numerical computation. Their correctness rests on a trusted base of interval-arithmetic libraries and analytic estimates checked by hand. We formalize in Lean 4 a framework for the radii polynomial method, which certifies an exact solution near a numerical approximation by verifying four norm bounds and the resulting polynomial inequality. Weighted coefficient algebras provide the common setting for polynomial equations and initial value problems in Taylor and Chebyshev series. Their universal properties construct the bounded operators and the evaluation maps, and the universal property of the free commutative algebra makes polynomial substitution commute with evaluation. Finite/tail reductions turn the four norm bounds into finite rational inequalities, which are checked in Lean. The radii theorem then yields an exact coefficient solution, and realization theorems carry it to a solution of the original equation. The worked examples are a square-root branch given by a convergent power series and polynomial initial value problems, among them the Lorenz system, for which the library proves existence, uniqueness within the trajectory ball, and analyticity of the function-level solution.</description>
+    </item>
+    <item>
+      <title>Greedy Uniformity on Trees: Exact Obstruction and Near-Uniform Spiders</title>
+      <link>https://paperswithlean.com/paper/2610.02276.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.02276.html</guid>
+      <pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>John Fairfax-Ball</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>combinatorics</category><category>probability</category>
+      <description>The exact-obstruction theorem and the mixed-spider bias results are formalised in Lean 4 with Mathlib and registered with Palomar, using only standard axioms.
+
+Choose a uniformly random ordering of the vertices of a finite tree and run the usual greedy maximal-independent-set algorithm. We compare the resulting law on maximal independent sets with the uniform law. We prove that exact uniformity occurs only for the one-vertex tree and the single edge. The proof is structural: a diameter endpoint exposes a pendant star, and the remaining one-pendant-leaf case is resolved by a strict injection between exact permutation fibres obtained by swapping the pendant leaf with its support vertex. Exact uniformity is therefore rigid, but it can be approached closely. For an explicit mixed-spider family $T_{k,l}$ we count the maximal independent sets and compute the exact probability of every output. With $l=2^k-k$ the total-variation bias is positive and satisfies [ b(T_{k,2^k-k})=O!\left(\frac{\sqrt{k}}{4^k}\right) =O!\left(\frac{\sqrt{\log n_k}}{n_k^2}\right), \qquad n_k=2^k+k+1. ] The theorem package has also been formalised in Lean and registered with Palomar. These records document machine-checked formal verification and the checked axiom boundary; they are not peer review or a certificate of novelty.</description>
+    </item>
+    <item>
+      <title>Counterfactual Predictions in Scientific Emulators Without Controlled Experiments</title>
+      <link>https://paperswithlean.com/paper/2610.02252.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.02252.html</guid>
+      <pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Dingling Yao, Kahaan Gandhi, Valentin Duruisseaux, Boris Bonev, Francesco Locatello, Anima Anandkumar</dc:creator>
+      <category>formalization</category><category>probability</category>
+      <description>The core causal identification argument for the ReRoute construction, under explicit structural assumptions, is machine-checked in Lean.
+
+Many scientific questions require reasoning about what was never observed: What if the conditions, interventions, or history had been different? Models can predict accurately on observed data yet fail on such what-if queries when correlated inputs are varied independently. A common remedy is to add controlled simulation data in which these factors are explicitly disentangled, but this requires access to a simulator, can be computationally expensive, and inherits the simulator&#x27;s modeling assumptions. We introduce ReRoute, a framework for targeted scientific what-if prediction that combines factual data with partial mechanistic knowledge, without requiring controlled intervention data for adaptation. ReRoute fixes the queried input of a pretrained backbone to a reference value, reintroduces its variation through a known mechanistic pathway, and fine-tunes on the original factual data, while leaving downstream effects to the learned dynamics. We provide a causal identification result for this construction under explicit structural assumptions, with the core argument machine-checked in Lean. After showing that ReRoute achieves highly accurate counterfactual predictions in a controlled advection-diffusion system where exact responses are available, we turn to state-of-the-art climate emulation. On held-out coupled-climate interventions, ReRoute reduces aggregate climate error by 18.2-31.8% under severe CO$_2$ distribution shifts while preserving skill under standard conditions, at a small fraction of the cost of retraining on additional controlled simulations, without even accounting for the substantial expense of generating such data. Finally, on an emulator trained from historical ERA5 reanalysis, where no counterfactual reference exists, ReRoute preserves substantially more of the surface warming implied by the observed boundary conditions under a fixed-CO$_2$ counterfactual.</description>
+    </item>
     <item>
       <title>Borcea&#x27;s 2-variance conjecture</title>
       <link>https://paperswithlean.com/paper/2610.02035.html</link>
@@ -578,94 +666,6 @@ AI agents can now formalize entire textbooks and major theorems in proof assista
       <description>Proves the tree stacking-number formula conjectured by Csernák and Soukup, with the complete theorem formalized in Lean 4 using Mathlib.
 
 The stacking number of a graph is the least integer t &gt;= 2 such that every configuration of t pebbles can be transformed by pebbling moves into a configuration supported on one vertex. We prove that, for every finite tree T with at least two vertices, this number equals the rooted distance-and-degree estimator conjectured by Csernák and Soukup. The proof uses an exact recursive characterization of stackability at a prescribed vertex, an explicit zero-score obstruction, and a weighted cancellation argument for arbitrary nonstackable configurations. The complete theorem is formalized in Lean 4; the formal result has also passed Palomar mechanical verification and is publicly registered as PALOMAR-2026-09-25-000010.</description>
-    </item>
-    <item>
-      <title>No Universal Remainder Rate for Chambolle-Dossal Acceleration</title>
-      <link>https://paperswithlean.com/paper/2609.31557.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.31557.html</guid>
-      <pubDate>Sun, 27 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Yuchen Yang, Xinan Dai, Wenhao Deng, Yingdong Shi, Feng Xu, Tailin Wu</dc:creator>
-      <category>formalization</category><category>analysis</category>
-      <description>Both main results on Chambolle-Dossal acceleration&#x27;s lack of universal remainder rate and rate sharpness are formally verified in Lean 4.
-
-Chambolle-Dossal acceleration guarantees $F(x_n)-F^*=o(n^{-2})$ for every fixed smooth convex loss with a minimizer. We show that this qualitative improvement admits no universal quantitative rate. For every damping parameter $α&gt;3$ and positive nondecreasing gain $G(n)\to\infty$, we construct a fixed one-dimensional smooth convex loss whose exact CD orbit satisfies $\sup_{n\ge1} n^2G(n)\bigl(F(x_n)-F^*\bigr)=\infty$. Thus no divergent gain improves the $n^{-2}$ scale for all fixed losses, even with instance-dependent constants. The construction prescribes queried gradients and realizes infinitely many slow blocks within one smooth convex objective. Under local $p$-power growth with $p&gt;2$ and sufficiently strong damping, we also construct a fixed loss whose exact CD orbit satisfies $F(x_n)-F^*\sim Dn^{-2p/(p-2)}$, $D&gt;0$, establishing the sharpness of the known convergence rate. Both main results are formally verified in Lean 4.</description>
-    </item>
-    <item>
-      <title>Formalizing Carleson&#x27;s Theorem in Lean</title>
-      <link>https://paperswithlean.com/paper/2609.31334.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.31334.html</guid>
-      <pubDate>Sun, 27 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Lars Becker, María Inés de Frutos-Fernández, Leo Diedering, Floris van Doorn, Sébastien Gouëzel, Evgenia Karunus, Edward van de Meent, Pietro Monticone, Jasper Mulder-Sohn, Jim Portegies, Joris Roos, Michael Rothgang, James Sundstrom, Jeremy Tan</dc:creator>
-      <category>formalization</category><category>analysis</category><category>mathlib</category>
-      <description>Formalizes Carleson&#x27;s theorem and its metric-space generalization in Lean via a collaborative blueprint-driven effort building on Mathlib.
-
-We present the formalization of Carleson&#x27;s theorem in the proof assistant Lean. This paper describes the mathematical content, organization of the project, the blueprint, and the main design decisions behind the formalization. It is the result of a large collaborative effort, written and developed in public.</description>
-    </item>
-    <item>
-      <title>Quadratic bounds for uncompletable words and matrix mortality</title>
-      <link>https://paperswithlean.com/paper/2609.30817.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.30817.html</guid>
-      <pubDate>Sun, 27 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Rahul Chandelkar, Samrath Singh Chadha</dc:creator>
-      <category>formalization</category><category>combinatorics</category>
-      <description>The quadratic bounds for uncompletable words and matrix mortality, together with the explicit-code algorithm and its polynomial work bound, are proved in Lean.
-
-Every finite nonempty incomplete uniquely decipherable code with maximum word length $k$ has an uncompletable word of length at most $4k^2-3k$. The bound is independent of the number of codewords and their total length. Deleting a complete codeword cycle gives a finite path-counting identity; Kraft equality then supplies a short word of deficient compressed mass. Cyclic averaging and padding turn it into an uncompletable word. Conditional expectation makes the construction polynomial-time and also decides completeness. First-return words extend the bound to mortal families of nonnegative integer $n\times n$ matrices with joint spectral radius at most one, provided every strongly connected component has a vertex meeting every cycle. Such a family has a zero product of length at most $4n^2-3n$. A binary partial deterministic family with $2k-1$ states has shortest zero product of length $k^2+k-1$, establishing the optimal quadratic order. The bounds and the explicit-code algorithm, including its polynomial work bound, are proved in Lean.</description>
-    </item>
-    <item>
-      <title>The maximum area of the convex hull of a polyhex</title>
-      <link>https://paperswithlean.com/paper/2609.30310.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.30310.html</guid>
-      <pubDate>Sun, 27 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Pragyaan Gaur</dc:creator>
-      <category>formalization</category><category>combinatorics</category><category>geometry</category>
-      <description>The upper bound on the convex-hull area of polyhexes was formalized in Lean 4 with Mathlib, using Lebesgue measure.
-
-A polyhex is an edge-connected set of n cells of the regular hexagonal tiling, where each cell has area one. We prove that the convex hull of a polyhex has area at most (1/6)*ceiling(n^2 + 14n/3), and we show that some polyhex reaches this bound for every n. This proves a conjecture of Kurz from 2008, which asked for the weaker bound (1/6)*floor(n^2 + 14n/3 + 1). The two bounds differ exactly when 3 divides n. We checked the upper bound in the Lean 4 proof assistant with the Mathlib library. We also report a computation over all polyhexes with at most 12 cells, which shows that for these sizes only one shape reaches the maximum, up to rotation and reflection.</description>
-    </item>
-    <item>
-      <title>Moiré Pattern of Rotated Sierpiński Gaskets</title>
-      <link>https://paperswithlean.com/paper/2609.30235.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.30235.html</guid>
-      <pubDate>Thu, 24 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Ziyu Neroli</dc:creator>
-      <category>formalization</category><category>geometry</category>
-      <description>Sections defining the rotated Sierpiński gasket intersection and its finite-type dimension results are formalised in Lean.
-
-We study the moiré pattern formed by the intersection of a planar Sierpiński gasket and a copy rotated about its centre. At every resonant angle, we prove that the intersection is of finite type and compute its Hausdorff and Minkowski dimensions from an explicit finite matrix; for Lebesgue-almost every angle, we bound its upper Minkowski dimension by $\overline{\dim}_{\mathrm B}(\mathcal S_θ)\le 2\dim_{\mathrm H}(S)-2$. Finally, we conjecture that both dimensions equal this bound at every non-resonant angle. Sections 2 and 3 are formalised in Lean.</description>
-    </item>
-    <item>
-      <title>Steelhead: Interleaving Partially Synchronous and Asynchronous Commit Rules on a Shared DAG</title>
-      <link>https://paperswithlean.com/paper/2609.30163.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.30163.html</guid>
-      <pubDate>Thu, 24 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Zeno De Angeli, Philipp Jovanovic, Lefteris Kokoris-Kogias, Markus Legner, Alberto Sonnino</dc:creator>
-      <category>verification</category><category>logic</category>
-      <description>Safety and liveness of the Steelhead dual-mode DAG consensus protocol are machine-checked with mechanized proofs in Lean 4.
-
-Dual-mode consensus protocols are fast when the network is partially synchronous and remain live under asynchrony. We introduce Steelhead, a dual-mode mechanism that composes a partially synchronous and an asynchronous commit rule over one DAG: every k-th round is decided by the asynchronous rule, whose leader a common coin reveals after the votes, and all other rounds by the partially synchronous rule. Every interval, validators replay the committed DAG under each candidate period, adopt the one with the fewest expected message delays, and fall back to k = 1 when the output stalls; the asynchronous rule applied to the coin rounds alone keeps the protocol live. Steelhead sends no message beyond the DAG&#x27;s blocks, not even to agree on the period, and opens a coin only on the rounds that need a hidden leader. It is generic over pairs of DAG commit rules that share a committee; we instantiate it with Mysticeti and Mahi-Mahi at n &gt;= 3f+1 and with the two variants of BlueBottle at n &gt;= 5f+1. We prove it safe and live, and provide mechanized proofs in Lean 4. In simulation, Steelhead matches the partially synchronous protocol in a healthy network, stays close to the asynchronous one when network conditions stall the partially synchronous one, and adapts quickly in both directions.</description>
-    </item>
-    <item>
-      <title>Packing Tails of Reciprocal Rectangles into Squares of Equal Area</title>
-      <link>https://paperswithlean.com/paper/2609.28791.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.28791.html</guid>
-      <pubDate>Thu, 24 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Yu Jiang</dc:creator>
-      <category>formalization</category><category>combinatorics</category><category>geometry</category>
-      <description>The final packing statements of the tail rectangle-packing theorem were checked in Lean 4.
-
-The Meir–Moser rectangle-packing problem asks whether all rectangles with side lengths \(1/n\) and \(1/(n+1)\), for \(n\ge1\), can be packed into the unit square with pairwise disjoint interiors. We establish a tail version of this problem. Let \(R_n\) denote the rectangle with these side lengths. We prove that there exists an integer \(m_0\) such that, for every \(m\ge m_0\), the family \(\{R_n:n\ge m\}\) admits a packing, by translations and right-angle rotations, into a square of side length \(m^{-1/2}\), with pairwise disjoint interiors. The area of the square equals the sum of the areas of all the rectangles. The geometric construction recursively decomposes rectangular gaps, while local randomized quotas and random permutations assign subsequent integer indices. We separately control the total area of waiting gaps and the assignment load at each index. The proof is organized in six steps: a finite-prefix reduction, geometric row decompositions, an area bootstrap, a sharp source-load estimate, control of the actual adaptive construction, and a compactness limit. For every finite time horizon, the probability of failure has a bound that is independent of the horizon and can be made arbitrarily small. The adaptive step uses a permanent load ledger, actual fresh height queries, and a one-sided comparison with a frozen source experiment. Compactness then yields an infinite packing. The final packing statements have been checked in Lean 4. A sufficient threshold is \(m_0=10^{1000}\). This result applies only to sufficiently late tails and does not resolve the original Meir–Moser rectangle-packing problem for the full sequence starting at \(n=1\), which remains open.</description>
-    </item>
-    <item>
-      <title>Learning to Discover Interesting Mathematics</title>
-      <link>https://paperswithlean.com/paper/2609.28603.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.28603.html</guid>
-      <pubDate>Thu, 24 Sep 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Niket Patel, Ahmad Rammal, Amaury Hayat, Remi Munos, Julia Kempe</dc:creator>
-      <category>theorem-proving-ml</category><category>mathlib</category><category>ai-agents</category>
-      <description>Uses Lean 4/Mathlib as ground-truth library to define proof-difficulty and interestingness metrics, training a model to generate out-of-distribution formal theorems.
-
-Recently, Large Language Models (LLMs) have been increasingly able to solve advanced mathematical problems, including many that have been open for decades. This opens the door to expansion of mathematical knowledge at unprecedented scale. Yet, while LLMs may be able to conjecture and prove more and more theorems, it remains open whether this new mathematical knowledge is interesting or useful. We define intrinsic interestingness of a theorem as the ratio between the length of its proof and the length of its statement. We show that this correlates strongly with an extrinsic measure of the downstream utility of a theorem. We identify the difficulty of a proof conditioned on a set of premises as a useful primitive for computing these metrics, and train a 27B model that predicts proof difficulty more accurately than frontier general-purpose models. Optimizing for our metric creates a model capable of producing more interesting theorems, while also reducing substantial or full overlap with Mathlib from 91.9% to 30.6%, showcasing the creation of more out-of-distribution math. We show that our system can generate candidate theorems, select the most interesting among them, and iteratively build on a self-expanding mathematical library. These metrics provide a practical and quantifiable signal for ranking conjectures and guiding proof search within formal mathematical libraries. Our framework provides a path towards self-expanding, machine-verified mathematical libraries that can choose worthwhile statements without relying on human-supplied targets.</description>
     </item>
   </channel>
 </rss>

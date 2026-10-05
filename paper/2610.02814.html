@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VeriPy Source-Preserving Verification and Compatibility Checking for Python Components · Papers With Lean</title>
+<meta name="description" content="Keeping a Python program and its formal guarantees aligned is a continuing maintenance problem. Specifications must describe the implementation that actually runs, and updates must preserve the behavior on which existing callers depend. VeriPy brings these obligations into a…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VeriPy Source-Preserving Verification and Compatibility Checking for Python Components">
+<meta property="og:description" content="Keeping a Python program and its formal guarantees aligned is a continuing maintenance problem. Specifications must describe the implementation that actually runs, and updates must preserve the behavior on which existing callers depend. VeriPy brings these obligations into a…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.02814.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.02814.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.02814v1" target="_blank" rel="noopener"><img src="../thumbs/2610.02814.jpg" alt="First page of VeriPy Source-Preserving Verification and Compatibility Checking for Python Components"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">VeriPy Source-Preserving Verification and Compatibility Checking for Python Components</h1>
+        <p class="authors">Naing Oo Lwin</p>
+        <div class="row">
+          <span class="badge">cs.SE</span>
+          <span class="date">Oct 2, 2026 · v1</span>
+          <span class="badge">cs.LO</span> <span class="badge">cs.PL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.02814v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.02814" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/astrio-labs/veripy" target="_blank" rel="noopener" title="astrio-labs/veripy">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Annotated Python components are translated into Lean 4 (and Dafny) artifacts, and all 25 proof units are checked in Lean 4.33.1.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Keeping a Python program and its formal guarantees aligned is a continuing maintenance problem. Specifications must describe the implementation that actually runs, and updates must preserve the behavior on which existing callers depend. VeriPy brings these obligations into a common workflow for annotated Python components. Developers and agents express contracts, invariants, and proof hooks as Python comments, then refine checked auxiliary lemmas using source-located diagnostics. Direct encoders produce Dafny or Lean artifacts while retaining admitted executable bodies and explicit models of their dependencies. A relational product checks whether an updated component still admits old inputs and preserves returned values and modeled exceptions. The resulting workflow connects source-level proof development with functional verification and backward compatibility, recording the assumptions under which each guarantee applies. The code is available at <a href="https://github.com/astrio-labs/veripy" target="_blank" rel="noopener">https://github.com/astrio-labs/veripy</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Formal guarantees about Python components drift as the code is maintained. Specifications must match the implementation that actually runs, and updates must preserve the behavior existing callers rely on.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">VeriPy reads contracts, invariants, termination measures and proof hooks written as #@ comments in Python. It checks types with basedpyright and admits a supported fragment with explicit dependency models. Separate encoders emit Dafny or Lean artifacts while keeping the executable Python bodies available to native callers. A relational product program then checks backward compatibility: every input the old version admits must be admitted by the new one, with equal returned values and modeled exceptions.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.02814/veripy-verification.png" alt=""><figcaption>Figure 2: VeriPy verification workflow. VeriPy parses Python and #@ specifications, checks types with basedpyright, and admits a supported fragment. Dafny or Lean checks the translated program and any proof sidecars supplied by a human or LLM. CrossHair searches executable contracts for violations. Guards enforce admitted input conditions. Generated guards and the generic Hypothesis harness target</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">All 25 dual-backend proof units, drawn from seven repositories (including Django, PyTorch, Black, vLLM and CPython), verified in both Dafny 4.11.0 and Lean 4.33.1. On historical compatibility checks, some updates were proved compatible, Packaging yielded a counterexample, and several cases were inconclusive or unsupported.</p><div class="sum-table"><table><thead><tr><th>Component</th><th>Py LOC</th><th>Time D / L (s)</th><th>Property</th></tr></thead><tbody><tr><td>Black range composition</td><td>98</td><td>8.98 / 12.48</td><td>Exact ordered output</td></tr><tr><td>PyTorch shard validation</td><td>94</td><td>22.66 / 110.76</td><td>Overlap and errors</td></tr><tr><td>Django base36</td><td>11</td><td>5.37 / 6.84</td><td>Exact digits/errors</td></tr><tr><td>CPython time parser</td><td>37</td><td>12.73 / 163.59</td><td>Exact fields/errors</td></tr></tbody></table><div class="tbl-cap">Selected components verified in both backends (times in seconds, Dafny / Lean)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

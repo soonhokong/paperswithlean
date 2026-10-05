@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Counterfactual Predictions in Scientific Emulators Without Controlled Experiments · Papers With Lean</title>
+<meta name="description" content="Many scientific questions require reasoning about what was never observed: What if the conditions, interventions, or history had been different? Models can predict accurately on observed data yet fail on such what-if queries when correlated inputs are varied independently. A…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Counterfactual Predictions in Scientific Emulators Without Controlled Experiments">
+<meta property="og:description" content="Many scientific questions require reasoning about what was never observed: What if the conditions, interventions, or history had been different? Models can predict accurately on observed data yet fail on such what-if queries when correlated inputs are varied independently. A…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.02252.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.02252.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.02252v1" target="_blank" rel="noopener"><img src="../thumbs/2610.02252.jpg" alt="First page of Counterfactual Predictions in Scientific Emulators Without Controlled Experiments"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Counterfactual Predictions in Scientific Emulators Without Controlled Experiments</h1>
+        <p class="authors">Dingling Yao, Kahaan Gandhi, Valentin Duruisseaux, Boris Bonev, Francesco Locatello, Anima Anandkumar</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Sep 30, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">stat.ML</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.02252v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.02252" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The core causal identification argument for the ReRoute construction, under explicit structural assumptions, is machine-checked in Lean.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Many scientific questions require reasoning about what was never observed: What if the conditions, interventions, or history had been different? Models can predict accurately on observed data yet fail on such what-if queries when correlated inputs are varied independently. A common remedy is to add controlled simulation data in which these factors are explicitly disentangled, but this requires access to a simulator, can be computationally expensive, and inherits the simulator&#x27;s modeling assumptions. We introduce ReRoute, a framework for targeted scientific what-if prediction that combines factual data with partial mechanistic knowledge, without requiring controlled intervention data for adaptation. ReRoute fixes the queried input of a pretrained backbone to a reference value, reintroduces its variation through a known mechanistic pathway, and fine-tunes on the original factual data, while leaving downstream effects to the learned dynamics. We provide a causal identification result for this construction under explicit structural assumptions, with the core argument machine-checked in Lean. After showing that ReRoute achieves highly accurate counterfactual predictions in a controlled advection-diffusion system where exact responses are available, we turn to state-of-the-art climate emulation. On held-out coupled-climate interventions, ReRoute reduces aggregate climate error by 18.2-31.8% under severe CO$_2$ distribution shifts while preserving skill under standard conditions, at a small fraction of the cost of retraining on additional controlled simulations, without even accounting for the substantial expense of generating such data. Finally, on an emulator trained from historical ERA5 reanalysis, where no counterfactual reference exists, ReRoute preserves substantially more of the surface warming implied by the observed boundary conditions under a fixed-CO$_2$ counterfactual.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Scientific emulators trained on data with correlated drivers can predict well on observed data but fail on what-if queries that vary one driver independently. Adding controlled simulation data that disentangles these factors needs a simulator, can be costly, and inherits the simulator&#x27;s assumptions.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ReRoute fixes the queried input of a pretrained backbone to a reference value and reintroduces its variation through a known mechanistic pathway. The combined model is fine-tuned only on the original factual data, and downstream effects are left to the learned dynamics. A causal identification result is proved under explicit structural assumptions, with the core argument machine-checked in Lean. The method is evaluated on advection–diffusion with a Fourier neural operator, on ACE2 climate emulation, and on an ERA5-trained emulator.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">In advection–diffusion, ReRoute cuts counterfactual response error by up to 89.6% far from the training support. On held-out ACE2 interventions it reduces aggregate climate error by 18.2–31.8% under severe CO2 shifts while preserving standard skill. On the ERA5-trained emulator it preserves more near-surface warming under a fixed-CO2 counterfactual and gives a tropical cyclone climatology closer to ERA5.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.02252/parameter_error_maps.png" alt=""><figcaption>Figure 6: ReRoute separates strongly correlated advection and diffusion controls across the full parameter grid. The left panel shows the 512 parameter pairs used for training; dashed and dotted lines denote their center and range. The remaining panels show mean counterfactual-response RMSE after 100 rollout steps for the pretrained baseline, ReRoute applied only to diffusivity D , and ReRoute app</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.02252/co2_intervention_response_panel_revised.png" alt=""><figcaption>Figure 4: ReRoute preserves surface warming under fixed CO 2 in ACE2-ERA5, i.e. near-zero values in the heatmap. Shown is the change in time-mean near-surface temperature when CO 2 is held fixed at its 1940 value instead of following the historical trajectory, while retaining the other historical boundary conditions such as SST and sea-ice. The ACE2-ERA5 baseline exhibits widespread cooling, indic</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
