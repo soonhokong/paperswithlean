@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gödel&#x27;s and Scott&#x27;s Variants of the Ontological Argument in Lean 4 and TPTP THF · Papers With Lean</title>
+<meta name="description" content="The Isabelle/HOL dataset of Benzmüller and Scott&#x27;s study of Gödel&#x27;s ontological argument and Scott&#x27;s variant (Monatshefte für Mathematik, 2025) is carried to Lean 4 and from there back to the automated provers, as a benchmark independent of either proof assistant. The port…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gödel&#x27;s and Scott&#x27;s Variants of the Ontological Argument in Lean 4 and TPTP THF">
+<meta property="og:description" content="The Isabelle/HOL dataset of Benzmüller and Scott&#x27;s study of Gödel&#x27;s ontological argument and Scott&#x27;s variant (Monatshefte für Mathematik, 2025) is carried to Lean 4 and from there back to the automated provers, as a benchmark independent of either proof assistant. The port…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.26806.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.26806.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.26806v3" target="_blank" rel="noopener"><img src="../thumbs/2609.26806.jpg" alt="First page of Gödel&#x27;s and Scott&#x27;s Variants of the Ontological Argument in Lean 4 and TPTP THF"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Gödel&#x27;s and Scott&#x27;s Variants of the Ontological Argument in Lean 4 and TPTP THF</h1>
+        <p class="authors">Christoph Benzmüller</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Sep 14, 2026 · v3</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-slate" href="../#tag=logic">logic</a> <a class="tag c-amber" href="../#tag=verification">verification</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.26806v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.26806" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://arxiv.org/src/2609.26806v3/anc" target="_blank" rel="noopener" title="arXiv ancillary files">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Ports an Isabelle/HOL formalization of Gödel&#x27;s and Scott&#x27;s ontological arguments to Lean 4, using #print axioms to track frame conditions, and exports TPTP THF benchmarks.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The Isabelle/HOL dataset of Benzmüller and Scott&#x27;s study of Gödel&#x27;s ontological argument and Scott&#x27;s variant (Monatshefte für Mathematik, 2025) is carried to Lean 4 and from there back to the automated provers, as a benchmark independent of either proof assistant. The port covers all thirty theories, structure and names preserved: 548 statements compare identical as parsed, every named result is proved again, and five results the original reports without replaying them are proved here. For every theorem, #print axioms gives the postulates its proof consumes: Scott&#x27;s necessary existence and modal collapse need only a symmetric frame, confirming that KB suffices. The benchmark, in TPTP THF and SMT-LIB, turns the steps of an argument debated in philosophy into 294 theorems, alongside 45 statements the original refutes or leaves open, ten left open there. Five THF provers, and cvc5 on SMT-LIB, prove 227 theorems within ten seconds on one core and 232 within sixty, and none proves any of the 45. E and Leo-II solve the most, although Leo-II&#x27;s calculus has been unchanged for about a decade and was only repaired and modernised here, as release 2.2. Vampire, whose later version won the higher-order division of CASC-30, solves the most in no configuration. Only E and Leo-II are measured in their own automatic mode: Zipperposition proves 101 in a single mode and 213 with its developers&#x27; portfolio, Vampire 174 without options and 209 with a higher-order schedule that its CASC mode does not select, and Leo-III 159 alone and 177 with E as partner.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Benzmüller and Scott&#x27;s Isabelle/HOL study of Gödel&#x27;s ontological argument and Scott&#x27;s variant exists only in one proof assistant. It also lacks a prover-independent benchmark and a per-theorem account of which modal frame conditions each proof needs.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Thirty Isabelle/HOL theories are ported to Lean 4 one module per theory, using a shallow embedding of higher-order modal logic with frame conditions as named axioms. Names and parsed statements are compared mechanically against the originals. #print axioms reports the postulates each theorem consumes. A metaprogram exports the statements to TPTP THF and SMT-LIB, and six automated provers are evaluated, including a repaired Leo-II release 2.2.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">All 548 statement pairs are identical as parsed, and every named result is reproved, plus five results the original did not replay. Scott&#x27;s necessary existence and modal collapse need only symmetry, so the logic KB suffices. On the 294 THF theorems, the provers together prove 227 within 10 s and 232 within 60 s, and none proves any of the 45 refuted or open statements.</p><div class="sum-table"><table><thead><tr><th>Prover</th><th>Configuration</th><th>10 s</th><th>60 s</th></tr></thead><tbody><tr><td>E 3.2.5-ho</td><td>--auto-schedule</td><td>218</td><td>220</td></tr><tr><td>Leo-II 2.2</td><td>with first-order E</td><td>218</td><td>221</td></tr><tr><td>Vampire 4.8</td><td>HO snake_tptp_hol</td><td>209</td><td>219</td></tr><tr><td>Zipperposition 2.1</td><td>developers&#x27; portfolio</td><td>213</td><td>215</td></tr><tr><td>at least one</td><td>—</td><td>227</td><td>232</td></tr></tbody></table><div class="tbl-cap">Theorems proved out of 294 (selected prover configurations)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kernel-Checked Frontier Certificates for Erdős Problem 414 · Papers With Lean</title>
+<meta name="description" content="Let $h(n) = n + τ(n)$, where $τ$ counts divisors. Erdős and Graham asked, after Spiro, whether the orbits of any two positive integers under $h$ eventually share a point (Problem 414 on Bloom&#x27;s list). The problem is open, and a finite computation cannot close it; nothing about…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kernel-Checked Frontier Certificates for Erdős Problem 414">
+<meta property="og:description" content="Let $h(n) = n + τ(n)$, where $τ$ counts divisors. Erdős and Graham asked, after Spiro, whether the orbits of any two positive integers under $h$ eventually share a point (Problem 414 on Bloom&#x27;s list). The problem is open, and a finite computation cannot close it; nothing about…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.22298.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.22298.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.22298v1" target="_blank" rel="noopener"><img src="../thumbs/2609.22298.jpg" alt="First page of Kernel-Checked Frontier Certificates for Erdős Problem 414"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Kernel-Checked Frontier Certificates for Erdős Problem 414</h1>
+        <p class="authors">Ibrahim Mian, Shayaan Siddique</p>
+        <div class="row">
+          <span class="badge">math.GM</span>
+          <span class="date">Sep 14, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.22298v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.22298" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ibrahimmian36/hastatus" target="_blank" rel="noopener" title="ibrahimmian36/hastatus">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes elementary lemmas and a certificate-soundness theorem in Lean 4 with Mathlib, then kernel-checks coalescence certificates for Erdős Problem 414 up to 10^8.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Let $h(n) = n + τ(n)$, where $τ$ counts divisors. Erdős and Graham asked, after Spiro, whether the orbits of any two positive integers under $h$ eventually share a point (Problem 414 on Bloom&#x27;s list). The problem is open, and a finite computation cannot close it; nothing about it has been checked by a proof kernel, and the statement in the formal-conjectures repository carries a sorry. We replay what can be certified through the Lean 4 kernel under an axiom gate (axioms exactly propext, Classical.choice, Quot.sound; no sorry; no native_decide). Three elementary facts recorded by Li, namely that coalescence is an equivalence relation, $τ(n)$ is odd exactly for squares, and $τ(n)$ is bounded by $2\sqrt{n}$ so that orbits skip no square annulus $[k^2, (k+1)^2)$, are formalized, and his frontier lemma is formalized in a window form: every orbit started below a level $N$ has a point within $\lceil 2\sqrt{N} \rceil$ below $N$. The frontier lemma becomes a certificate: the $\lceil 2\sqrt{N} \rceil$ values $τ(m)$ just below $N$ and the orbit points above $N$ until the orbits through the crossing points have merged. Its soundness is a kernel-checked theorem, and the certified rungs state that every pair of positive integers below $N$ coalesces for $N = 10^5, 10^6, 10^7, 10^8$; the certificate at $10^8$ has 44,530 entries rather than $10^8$. Every ledger and every quoted count was produced by two programs sharing no code that agree by hash. We record what is known about a non-coalescing pair and measure the exit-set sizes Li bounds. Nothing here is a proof of the conjecture.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Erdős Problem 414 asks whether the orbits of any two positive integers under h(n)=n+τ(n) eventually meet. The problem is open, and its statement in the formal-conjectures repository is left as sorry.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Li&#x27;s elementary facts are formalized in Lean 4 against Mathlib under an axiom gate of propext, Classical.choice and Quot.sound only, with no sorry and no native_decide. The facts are that coalescence is an equivalence relation, that τ(n) is odd exactly for squares, and that τ(n) ≤ 2√n. Li&#x27;s frontier lemma is formalized in a window form and turned into a certificate format whose checker (certOk) has a kernel-checked soundness theorem. τ values in the certificates are established from factorization certificates, and the ledgers are generated by independent programs that agree by hash.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Kernel-checked theorems show that every pair of positive integers below N coalesces, for N = 10^5, 10^6, 10^7 and 10^8. The 10^8 certificate needs only 44,530 entries. Exit-set measurements for k ≤ 5000 are reported as data, not theorems.</p><div class="sum-table"><table><thead><tr><th>N</th><th>W</th><th>nodes above N</th><th>F_N</th><th>target</th></tr></thead><tbody><tr><td>10^5</td><td>633</td><td>903</td><td>11</td><td>104494</td></tr><tr><td>10^6</td><td>2000</td><td>410</td><td>11</td><td>1002242</td></tr><tr><td>10^7</td><td>6325</td><td>2844</td><td>12</td><td>10018018</td></tr><tr><td>10^8</td><td>20000</td><td>24530</td><td>13</td><td>100180126</td></tr></tbody></table><div class="tbl-cap">Certificate sizes per certified level</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

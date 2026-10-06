@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Refutation Gap: Certifying Both Halves of an Optimality Claim · Papers With Lean</title>
+<meta name="description" content="Synthesis pipelines increasingly claim not just that a program is correct, but that it is optimal. Such a claim has two halves with radically different verification stories. The upper bound, &quot;a program of size m exists&quot;, is witnessed by an artifact that can be re-executed,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Refutation Gap: Certifying Both Halves of an Optimality Claim">
+<meta property="og:description" content="Synthesis pipelines increasingly claim not just that a program is correct, but that it is optimal. Such a claim has two halves with radically different verification stories. The upper bound, &quot;a program of size m exists&quot;, is witnessed by an artifact that can be re-executed,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.20873.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.20873.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.20873v1" target="_blank" rel="noopener"><img src="../thumbs/2609.20873.jpg" alt="First page of The Refutation Gap: Certifying Both Halves of an Optimality Claim"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">The Refutation Gap: Certifying Both Halves of an Optimality Claim</h1>
+        <p class="authors">Rohan Pandey</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Sep 16, 2026 · v1</span>
+          <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-amber" href="../#tag=cryptography">cryptography</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.20873v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.20873" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Rohan-Pandey1729/refutation-gap" target="_blank" rel="noopener" title="Rohan-Pandey1729/refutation-gap">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Synthesized XOR circuits are emitted as self-contained Lean 4 certificate files proving validity, compiled with #print axioms reporting the trust base.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Synthesis pipelines increasingly claim not just that a program is correct, but that it is optimal. Such a claim has two halves with radically different verification stories. The upper bound, &quot;a program of size m exists&quot;, is witnessed by an artifact that can be re-executed, proved equivalent to its specification, and shipped with a machine-checked certificate. The lower bound, &quot;no program of size m-1 exists&quot;, has no witness and is discharged by running a solver until it reports UNSAT. Combinatorial optimization has known this asymmetry for decades and has largely addressed it: certifying algorithms make it explicit (McConnell et al., 2011), and pseudo-Boolean proof logging can certify optimality end to end with a formally verified checker (Bogaerts et al., 2023; Koops et al., 2025). That discipline has not reached circuit minimization. We call this the refutation gap: published gate counts for minimal XOR circuits provide no certificate for either half of the claim, and neither did 121 optimality results we ourselves produced. We close the gap with a pipeline that synthesizes minimal linear straight-line programs over GF(2), where every decisive UNSAT answer emits a DRAT proof checked by an independent third-party checker. We certify all 121 optimality results established by the project, across n = 6 to 9: 111 carry independently verified refutations, 10 are closed by a free counting bound, and none disagrees with the uncertified value. The median proof is 1.1 MB and checking costs 1.9x solving. We give five case studies where verification caught defects that code review did not, report two interface obstacles that push practitioners toward the uncertified path, and describe an adversarial audit that revealed a failure tail we were about to attribute to the problem was actually caused by our own budget.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Optimality claims for minimal linear straight-line programs over GF(2), the XOR circuits used as cipher diffusion layers, have two halves. The upper bound comes with a witness circuit. The lower bound rests on an unverified SAT solver&#x27;s UNSAT verdict. Published XOR-count records certify neither half.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A pipeline checks each synthesized circuit in three layers: re-execution, SMT equivalence checking with Z3, and a self-contained Lean 4 certificate file stating SLP.valid that is compiled and audited with #print axioms. Each decisive UNSAT answer emits a DRAT proof, which the independent checker drat-trim verifies. An LLM-driven adversarial audit then recomputed every quantitative claim in the write-up.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">All 121 optimality results for n=6 to 9 are certified: 111 by checked DRAT refutations and 10 by a counting bound, with no disagreements with the uncertified values. The median proof is 1.06 MB and checking costs a median 1.9x the solve time. Thirteen cipher circuits received Lean certificates, and verification exposed several defects that code review had missed.</p><div class="sum-table"><table><thead><tr><th>Quantity</th><th>Value</th></tr></thead><tbody><tr><td>Optimality results</td><td>121</td></tr><tr><td>Certified by checked refutation</td><td>111</td></tr><tr><td>Closed by counting bound</td><td>10</td></tr><tr><td>DRAT proof size median / max</td><td>1.06 MB / 301 MB</td></tr><tr><td>Check/solve ratio median</td><td>1.9x</td></tr></tbody></table><div class="tbl-cap">Certification summary</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>On the Expressive Power of Implicit Line-Graph Higher-Order Weisfeiler–Leman · Papers With Lean</title>
+<meta name="description" content="Whitney&#x27;s theorem allows isomorphism testing for connected simple graphs, apart from $K_3$ and $K_{1,3}$, to be formulated as distinguishing their line graphs. However, the relation between fixed-dimensional Weisfeiler–Leman (WL) expressivity on line graphs and on their roots…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="On the Expressive Power of Implicit Line-Graph Higher-Order Weisfeiler–Leman">
+<meta property="og:description" content="Whitney&#x27;s theorem allows isomorphism testing for connected simple graphs, apart from $K_3$ and $K_{1,3}$, to be formulated as distinguishing their line graphs. However, the relation between fixed-dimensional Weisfeiler–Leman (WL) expressivity on line graphs and on their roots…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.16412.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.16412.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.16412v1" target="_blank" rel="noopener"><img src="../thumbs/2609.16412.jpg" alt="First page of On the Expressive Power of Implicit Line-Graph Higher-Order Weisfeiler–Leman"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">On the Expressive Power of Implicit Line-Graph Higher-Order Weisfeiler–Leman</h1>
+        <p class="authors">Fan Yang</p>
+        <div class="row">
+          <span class="badge">cs.SI</span>
+          <span class="date">Sep 14, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.16412v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.16412" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/lukeyf/ilg-wl" target="_blank" rel="noopener" title="lukeyf/ilg-wl">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The backward-transfer theorems, WL refinements, line graphs, ILG definitions, and the neural expressivity model are formalized in Lean 4, with a public repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Whitney&#x27;s theorem allows isomorphism testing for connected simple graphs, apart from $K_3$ and $K_{1,3}$, to be formulated as distinguishing their line graphs. However, the relation between fixed-dimensional Weisfeiler–Leman (WL) expressivity on line graphs and on their roots remains unresolved. We study this relation through Implicit Line-Graph WL (ILG-$k$-WL), which is exactly $k$-WL on $L(G)$, executed over the edges of $G$ with line-graph relations derived from endpoint incidence and without explicitly constructing $L(G)$. On the Whitney-general class, the relation between root-domain and line-graph WL depends on $k$. For $k=1,2$, ILG-$k$-WL adds no distinguishing power beyond root-domain $1$-WL and misses some pairs that $1$-WL separates. For $k=3$, we prove the backward containment $L(G)\equiv_{3\text{-WL}}L(H)\Rightarrow G\equiv_{3\text{-WL}}H$. Strongly regular witness pairs, including the Shrikhande/rook pair, show that ILG-$3$-WL is strictly more expressive than $3$-WL. The backward containment also extends to disconnected graphs with no isolated vertices when every connected component is Whitney-general. Deterministic ILG-$3$-WL separates all three substructure-counting witness pairs, all $105$ pairs in SR25, and $359$ of $400$ BREC pairs. An untrained dense ILG-$3$-GNN gives the same pairwise verdicts on these evaluations.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Whitney&#x27;s theorem lets isomorphism testing of connected simple graphs be phrased as distinguishing their line graphs. How fixed-dimensional Weisfeiler–Leman expressivity on line graphs relates to WL expressivity on the root graphs was unresolved.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The paper defines Implicit Line-Graph WL (ILG-k-WL), which is k-WL on L(G) run over the root edges using endpoint-derived relation codes, without building L(G). It proves expressivity relations for k=1,2,3 on Whitney-general graphs and derives a higher-order GNN realization. The backward-transfer theorems and supporting lemmas are machine-checked in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">ILG-k-WL is strictly weaker than root k-WL for k=1,2. For k=3 it is strictly stronger: L(G)≡3-WL L(H) implies G≡3-WL H, and the Shrikhande/rook pair is a separating witness. ILG-3-WL separates all 105 SR25 pairs and 359 of 400 BREC pairs, and an untrained dense ILG-3-GNN gives the same pairwise verdicts.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

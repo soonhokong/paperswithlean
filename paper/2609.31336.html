@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Greedy queens and the golden ratio · Papers With Lean</title>
+<meta name="description" content="Place a queen in each successive column of an infinite $\mathbb{N}\times\mathbb{N}$ chessboard, always choosing the lowest row such that no two queens may attack one another. We prove that the row $q_n$ occupied by the queen in the $n$th column satisfies $q_n=nφ+O(1)$ or…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Greedy queens and the golden ratio">
+<meta property="og:description" content="Place a queen in each successive column of an infinite $\mathbb{N}\times\mathbb{N}$ chessboard, always choosing the lowest row such that no two queens may attack one another. We prove that the row $q_n$ occupied by the queen in the $n$th column satisfies $q_n=nφ+O(1)$ or…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.31336.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.31336.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.31336v2" target="_blank" rel="noopener"><img src="../thumbs/2609.31336.jpg" alt="First page of Greedy queens and the golden ratio"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Greedy queens and the golden ratio</h1>
+        <p class="authors">Boon Suan Ho</p>
+        <div class="row">
+          <span class="badge">math.CO</span>
+          <span class="date">Sep 25, 2026 · v2</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.31336v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.31336" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/boonsuan/queens" target="_blank" rel="noopener" title="boonsuan/queens">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The authors provide a Lean formalization of the greedy queens result alongside the code for the finite state-graph verification.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Place a queen in each successive column of an infinite $\mathbb{N}\times\mathbb{N}$ chessboard, always choosing the lowest row such that no two queens may attack one another. We prove that the row $q_n$ occupied by the queen in the $n$th column satisfies $q_n=nφ+O(1)$ or $q_n=n/φ+O(1)$, where $φ=(1+\sqrt5)/2$ is the golden ratio.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Greedy queens place a queen in each column of an infinite N×N board at the lowest non-attacked row. Dekking, Shallit, and Sloane conjectured that the queen positions stay within bounded distance of the lines y=xφ and y=x/φ.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The k-th upper queen is shown to lie on the k-th upper diagonal, and the conjecture is reduced to a bounded diagonal discrepancy |d_j−j|≤4 for lower queens. The process is modelled by finite local states (records) that are shown to determine each greedy step. A computer check confirms that the reachable states form a finite graph satisfying the required bounds, and induction extends this to all columns. Code and a Lean formalization are released.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For upper queens, |q_n−nφ|&lt;5/φ. For lower queens, |q_n−n/φ|&lt;4+5/φ, which proves the conjecture. Sharper explicit bounds are also given, along with an O(N)-time, O(log N)-memory generator that uses under 2 MiB for ten billion queens.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2609.31336/residuals-upper.png" alt=""><figcaption>Figure 8. The distance from each queen to its line, for 1\leq n\leq 10^{6} : the density of the points (n,q_{n}-n\phi) for upper queens (top) and (n,q_{n}-n/\phi) for lower queens (bottom), with a histogram of the distances on the right. Shaded: the bounds of Theorem 1 . Solid: the bounds of Theorem 2 . Dashed: Knuth’s observed ranges, in 0 -indexed coordinates.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

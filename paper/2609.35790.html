@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sage: Formalization with Semantic Correction · Papers With Lean</title>
+<meta name="description" content="While neural theorem provers have achieved impressive milestones in formal mathematics, they largely operate on the assumption that faithful Lean 4 formal statements are already provided. Translating informal natural language into a formal language is a critical data bottleneck…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sage: Formalization with Semantic Correction">
+<meta property="og:description" content="While neural theorem provers have achieved impressive milestones in formal mathematics, they largely operate on the assumption that faithful Lean 4 formal statements are already provided. Translating informal natural language into a formal language is a critical data bottleneck…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.35790.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.35790.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.35790v2" target="_blank" rel="noopener"><img src="../thumbs/2609.35790.jpg" alt="First page of Sage: Formalization with Semantic Correction"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Sage: Formalization with Semantic Correction</h1>
+        <p class="authors">Thomas Hirtz, Farzad Jafarrahmani, Abdelmouksit Sagueni, Xiang Zhou, Wenping Deng, Liang Zhang</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Sep 16, 2026 · v2</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.CL</span> <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.35790v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.35790" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Autoformalizes natural-language competition problems into Lean 4 statements with Mathlib, using Lean compiler diagnostics plus LLM semantic feedback in a correction loop.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">While neural theorem provers have achieved impressive milestones in formal mathematics, they largely operate on the assumption that faithful Lean 4 formal statements are already provided. Translating informal natural language into a formal language is a critical data bottleneck plagued by an &quot;illusion of rigor&quot;: standard type-checkers accept statements that compile but drop hypotheses, introduce vacuous truths, or subtly alter mathematical bounds. To resolve this, we introduce Sage (Semantic Agent-Guided Formalization Engine), an agentic framework that replaces monolithic translation with a four-stage decomposed generation pipeline coupled with a dual-signal semantic correction loop. By pairing Lean 4 compiler diagnostics with multi-dimensional semantic feedback, our correction loop enforces mathematical fidelity alongside syntactic validity. By explicitly accounting for the gap between open-ended queries and declarative formal targets, our pipeline prevents models from achieving high formalization rates by guessing unverified answers (exhibiting a 70.9% answer leakage rate in monolithic baselines). Consequently, Sage suppresses leakage to 2.7% while achieving 73.3% pass@4 joint compilation and semantic fidelity on the Omni-MATH without proofs (compared to 42.0% for a fine-tuned Goedel-Formalizer-V2 baseline). Finally, on IMO-Unformalized, a novel frontier of 175 unformalized International Mathematical Olympiad problems, Sage demonstrates effective zero-shot generalization with 87.4% pass@4 verified fidelity compared to just 19.4% for the baseline, winning over 79% of blind pairwise evaluations.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Translating informal math problems into faithful Lean 4 statements is a bottleneck. Compiling statements can still drop hypotheses, be vacuous, or leak guessed answers into open-ended questions.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Sage is an agentic framework that decomposes formalization into four role-isolated LLM stages: distiller, preprocessor, formalizer, and formatter. It then applies a dual-signal correction loop that combines Lean 4 compiler diagnostics with a reference-free semantic rater. It distinguishes answer-aware from answer-agnostic regimes to prevent answer injection. It also introduces IMO-Unformalized, a set of 175 IMO problems with no existing Lean formalization.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On answer-agnostic Omni-MATH, Sage reaches 73.3% pass@4 joint compile and semantic fidelity, versus 42.0% for Goedel-Formalizer-V2, and cuts answer leakage from 70.9% to 2.7%. On IMO-Unformalized it reaches 87.4% pass@4, versus 19.4% for the baseline.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>pass@1</th><th>pass@4</th></tr></thead><tbody><tr><td>Monolithic (Zero-Shot)</td><td>20.0</td><td>33.1</td></tr><tr><td>Goedel-Formalizer-V2</td><td>10.3</td><td>19.4</td></tr><tr><td>Sage</td><td>60.0</td><td>87.4</td></tr></tbody></table><div class="tbl-cap">Formalization on IMO-Unformalized (N=175), Compile ∧ Goedel-SM</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
