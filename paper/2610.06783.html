@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Truly Subquadratic 3SUM and Truly Subcubic APSP via Triangles in Sparse Lopsided Graphs · Papers With Lean</title>
+<meta name="description" content="We give the first polynomial improvements over the textbook algorithms for $3$SUM and All-Pairs Shortest Paths (APSP): we show how to deterministically solve $3$SUM on $n$ integers of polynomial size in $O(n^{1.9992})$ time and APSP on directed $n$-vertex graphs with…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Truly Subquadratic 3SUM and Truly Subcubic APSP via Triangles in Sparse Lopsided Graphs">
+<meta property="og:description" content="We give the first polynomial improvements over the textbook algorithms for $3$SUM and All-Pairs Shortest Paths (APSP): we show how to deterministically solve $3$SUM on $n$ integers of polynomial size in $O(n^{1.9992})$ time and APSP on directed $n$-vertex graphs with…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.06783.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.06783.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.06783v1" target="_blank" rel="noopener"><img src="../thumbs/2610.06783.jpg" alt="First page of Truly Subquadratic 3SUM and Truly Subcubic APSP via Triangles in Sparse Lopsided Graphs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Truly Subquadratic 3SUM and Truly Subcubic APSP via Triangles in Sparse Lopsided Graphs</h1>
+        <p class="authors">Josh Alman, Virginia Vassilevska Williams</p>
+        <div class="row">
+          <span class="badge">cs.DS</span>
+          <span class="date">Oct 5, 2026 · v1</span>
+          <span class="badge">cs.CC</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.06783v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.06783" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/anthropics/formal-math" target="_blank" rel="noopener" title="anthropics/formal-math">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The paper&#x27;s main results were certified by an Anthropic research model (Claude) in Lean 4 with Mathlib after the paper was written.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We give the first polynomial improvements over the textbook algorithms for $3$SUM and All-Pairs Shortest Paths (APSP): we show how to deterministically solve $3$SUM on $n$ integers of polynomial size in $O(n^{1.9992})$ time and APSP on directed $n$-vertex graphs with polynomially bounded integer weights in $O(n^{2.9995})$ time. This refutes the $3$SUM and APSP hypotheses. Using known reductions, we also refute the real-valued versions of the $3$SUM and APSP hypotheses, the Exact Triangle hypothesis, the Zero-Weight $k$-Clique hypotheses, and the three rectangular hinted Online Matrix–Vector conjectures of van den Brand, Nanongkai, and Saranurak, and we give polynomial speedups for a variety of other problems. All of these results follow from a single new algorithm for thin matrix products. Let $X$ be an $N\times D$ integer matrix and $Y$ a $D\times N$ integer matrix with $D\le N^{1/18}$, and let $W$ be any set of at most $N^2/\sqrt D$ positions. We compute the entries $(XY)[I,J]$, $(I,J)\in W$, in $O(N^2/D^{0.063})$ operations, which is polynomially less than the time needed to write down $XY$ or to compute $N^2/\sqrt D$ inner products one by one. We design this algorithm by modifying a variant of Coppersmith&#x27;s rectangular matrix multiplication algorithm, built from a ten-multiplication identity of Schönhage, to perform only the operations needed for the entries in $W$, and show that few operations are needed. Interpreted as a graph algorithm, this solves the All-Edges Sparse Triangle problem in truly subquadratic time on sparse lopsided tripartite graphs where two parts have $n$ vertices but one part has $n^{\varepsilon}$ vertices for $\varepsilon&lt;0.12$. By known reductions, Exact Triangle, and hence $3$SUM and APSP, reduce to this problem. We also give a data structure version that answers queries for single entries of $XY$, not known in advance.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">3SUM and All-Pairs Shortest Paths (APSP) had no known polynomial improvements over the textbook O(n^2) and O(n^3) algorithms. Fine-grained complexity hypotheses assumed none were possible.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The core is a new algorithm that computes a chosen set W of entries of a thin product XY, where X is N×D, Y is D×N, and D ≤ N^{1/18}. It modifies a variant of Coppersmith&#x27;s rectangular matrix multiplication algorithm, built from Schönhage&#x27;s ten-multiplication identity, so that only operations needed for the wanted entries are performed. As a graph algorithm, this solves All-Edges Sparse Triangle on lopsided tripartite graphs, and known reductions (made deterministic here) carry the result to Exact Triangle, 3SUM and APSP. The algorithm was originally found by Claude, and the main results were later certified in Lean 4 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The paper gives deterministic algorithms for 3SUM in O(n^{1.9992}) time and for APSP with polynomially bounded integer weights in O(n^{2.9995}) time, refuting both hypotheses. It also refutes the real-valued 3SUM/APSP hypotheses, the Exact Triangle and Zero-Weight k-Clique hypotheses, and the rectangular hinted OMv conjectures, and provides a data-structure version for single-entry queries of XY.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
