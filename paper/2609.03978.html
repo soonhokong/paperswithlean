@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barnacle: Adaptive Multi-Leader Scheduling for DAG-Based Consensus · Papers With Lean</title>
+<meta name="description" content="In DAG-based consensus, all validators propose blocks concurrently, and designated leader blocks drive transaction commit. Having multiple leader slots per round cuts queuing latency, yet production deployments run a single leader because of head-of-line blocking: a slow leader…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Barnacle: Adaptive Multi-Leader Scheduling for DAG-Based Consensus">
+<meta property="og:description" content="In DAG-based consensus, all validators propose blocks concurrently, and designated leader blocks drive transaction commit. Having multiple leader slots per round cuts queuing latency, yet production deployments run a single leader because of head-of-line blocking: a slow leader…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.03978.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.03978.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.03978v2" target="_blank" rel="noopener"><img src="../thumbs/2609.03978.jpg" alt="First page of Barnacle: Adaptive Multi-Leader Scheduling for DAG-Based Consensus"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Barnacle: Adaptive Multi-Leader Scheduling for DAG-Based Consensus</h1>
+        <p class="authors">George Danezis, Zeno De Angeli, Alexandru Ianov Vitanov, Philipp Jovanovic, Lefteris Kokoris-Kogias, Alberto Sonnino, Pasindu Tennage, Igor Zablotchi</p>
+        <div class="row">
+          <span class="badge">cs.DC</span>
+          <span class="date">Sep 3, 2026 · v2</span>
+          <span class="badge">cs.CR</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.03978v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.03978" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/zenodea/hammerheadv2" target="_blank" rel="noopener" title="zenodea/hammerheadv2">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Safety, liveness, agreement, and AIMD-rule properties of the Barnacle leader-count scheduler are machine-checked in Lean 4, with an open-source repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">In DAG-based consensus, all validators propose blocks concurrently, and designated leader blocks drive transaction commit. Having multiple leader slots per round cuts queuing latency, yet production deployments run a single leader because of head-of-line blocking: a slow leader stalls the pipeline for at least one leader timeout, and for several waves when its slot must wait for the fallback indirect decision rule. This risk grows with the leader count. We introduce Barnacle, an add-on that adapts the leader count at run time. Every interval, it measures on the agreed committed DAG the fraction of slots decided as commit by the direct rule, and drives the leader count with additive increase, multiplicative decrease. The measurement requires no extra messages and no cryptography, and is deterministic. Barnacle is generic over DAG protocols; we instantiate it on four protocols spanning the Byzantine (3f + 1, 5f + 1), crash-only (2c + 1), and mixed (5f + 3c + 1) fault models, with proven safety and liveness. Results show Barnacle matches the best static leader count in every regime: in a healthy network its latency is 6-13% lower than a single leader&#x27;s, and under degradation it matches a single leader while remaining 35-56% below a static high count. We are currently collaborating with the Sui team to integrate Barnacle into the Sui blockchain.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">DAG-based consensus protocols could cut queuing latency by using multiple leader slots per round. Production systems still run a single leader because a slow leader causes head-of-line blocking, and this risk grows with the leader count.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Barnacle is an add-on that measures, on the committed DAG, the fraction of leader slots decided by the direct commit rule in each interval. It then adjusts the leader count using additive increase, multiplicative decrease. It needs no extra messages and no cryptography, and it is instantiated on four protocols covering Byzantine, crash-only, and mixed fault models. Window agreement, leader-count agreement, safety, liveness, and AIMD bounds are proven by hand and machine-checked in Lean 4, with no sorry and only the standard axioms.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">In simulation, Barnacle matches the best static leader count in every regime. In a healthy network its latency is 6-13% lower than a single leader&#x27;s. Under degradation it matches a single leader and stays 35-56% below a static count of five leaders.</p><div class="sum-table"><table><thead><tr><th>Protocol</th><th>fixed-1</th><th>fixed-5</th><th>Barnacle</th></tr></thead><tbody><tr><td>Mysticeti</td><td>2,084</td><td>3,183</td><td>2,077</td></tr><tr><td>Blue Bottle</td><td>753</td><td>1,693</td><td>745</td></tr><tr><td>Nemo-Nemo</td><td>1,964</td><td>3,484</td><td>1,965</td></tr><tr><td>Orcaella</td><td>1,212</td><td>2,130</td><td>1,209</td></tr></tbody></table><div class="tbl-cap">Latency (ms) in the degraded steady state</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

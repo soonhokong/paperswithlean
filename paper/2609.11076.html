@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaltBench: A Referee-Gated Protocol for Measuring Method Effects in Machine-Checked Software Work · Papers With Lean</title>
+<meta name="description" content="SaltBench asks how a machine referee (a proof kernel, program verifier or withheld test suite) changes how a coding agent works. Outcomes are decided outside the agent&#x27;s toolchain; a wall probed before any scored run isolates the agent from the network, reference solutions and…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SaltBench: A Referee-Gated Protocol for Measuring Method Effects in Machine-Checked Software Work">
+<meta property="og:description" content="SaltBench asks how a machine referee (a proof kernel, program verifier or withheld test suite) changes how a coding agent works. Outcomes are decided outside the agent&#x27;s toolchain; a wall probed before any scored run isolates the agent from the network, reference solutions and…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.11076.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.11076.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.11076v3" target="_blank" rel="noopener"><img src="../thumbs/2609.11076.jpg" alt="First page of SaltBench: A Referee-Gated Protocol for Measuring Method Effects in Machine-Checked Software Work"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">SaltBench: A Referee-Gated Protocol for Measuring Method Effects in Machine-Checked Software Work</h1>
+        <p class="authors">Jason Hickey</p>
+        <div class="row">
+          <span class="badge">cs.SE</span>
+          <span class="date">Sep 10, 2026 · v3</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-amber" href="../#tag=verification">verification</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.11076v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.11076" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/jyh/saltbench" target="_blank" rel="noopener" title="jyh/saltbench">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses Lean 4 with Mathlib as a kernel-replay and axiom-audit referee for agent proofs on CLEVER tasks, in one of several scored populations.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">SaltBench asks how a machine referee (a proof kernel, program verifier or withheld test suite) changes how a coding agent works. Outcomes are decided outside the agent&#x27;s toolchain; a wall probed before any scored run isolates the agent from the network, reference solutions and harness; a dated freeze of predictions authorizes each run; a budget stop is a halt, never a failure. Five Rust systems components on a pinned Verus toolchain are each refereed by a withheld test suite. The arms: plain; salt-diet, also instructed to specify and verify its code (a registered reduced rendering of the method); and two arms handed the specification a priori, where the registered sign test at k=4 reached no verdict (3 of 4, p = 0.3125). salt-diet cost more on all five components, by a practical margin: no premium exceeded 2.8879x under either reading of the declared set and the three cheapest sat below 1.4x, a bound of this population and not a promise about larger ones: the premium is near 1 on the smallest components and rises with size. Versions 2 and 3 add the complete pilot matrix: 200 conditions over four models, 181 with a result of record, 16 inexpressible and 3 declared unreached at the cost cap, costed in tokens, dollars and wall time, with no verdict on the arms. Version 3 adds a correctness reading, declared post hoc and registered after every verdict it reads existed and many had been read by its author: 447 cells pass the withheld suite, 40 fail, 10 are censored at a registered budget, 4 are unscorable and 42 are read by condition. salt-diet&#x27;s pass-rate interval lies wholly below plain&#x27;s on 8 greenfield and 5 brownfield rows and wholly above it on 2 greenfield rows. It is descriptive, over three cells of record per condition, with no test, and says nothing about whether the method makes code more or less correct. The full record is public.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Benchmarks for coding agents often let the agent&#x27;s own account, or the experimenter&#x27;s after-the-fact reading, decide outcomes. This makes it hard to measure how a method, such as instructing agents to specify and verify their code, affects their work.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">SaltBench is a pre-registered protocol in which machine referees decide outcomes outside the agent&#x27;s toolchain. The referees are a Lean kernel replay with an axiom audit, a Verus verifier, or a withheld test suite. It also uses a probed sandbox wall, dated prediction freezes, and treats budget stops as halts rather than failures. The main measurement compares plain and &#x27;salt-diet&#x27; (specify-and-verify) arms on five authored Rust/Verus systems components. Earlier reads on CLEVER Lean tasks and Verus tasks shaped the design.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Salt-diet cost more on all five components (sign test 5 of 5, p=0.0312), with premiums up to about 2.89x that rise with component size. A post-hoc correctness pass and a 200-condition pilot matrix over four models did not separate the arms on correctness. The authors also report instrument findings, for example that censored caps bias budgets and that sandbox fences must be probed at every layer.</p><div class="sum-table"><table><thead><tr><th>problem</th><th>premium, reading A</th><th>premium, reading B</th></tr></thead><tbody><tr><td>Crc32</td><td>1.1610x</td><td>1.1610x</td></tr><tr><td>FreeList</td><td>2.8070x</td><td>2.8879x</td></tr><tr><td>LZW</td><td>1.3749x</td><td>1.3749x</td></tr><tr><td>Paxos</td><td>2.4306x</td><td>2.2437x</td></tr><tr><td>LRU</td><td>1.2826x</td><td>1.1521x</td></tr></tbody></table><div class="tbl-cap">Cost premium of salt-diet over plain per problem (median diet-bare / median plain-bare)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

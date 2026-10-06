@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fast Evaluation of Polynomials with Rational Preprocessing · Papers With Lean</title>
+<meta name="description" content="Horner&#x27;s rule evaluates a monic degree-$n$ polynomial using $n-1$ multiplications. We show that with rational preprocessing of the coefficients, any such polynomial can be evaluated using only $\lfloor n/2 \rfloor + 1$ multiplications over fields of characteristic zero or of…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fast Evaluation of Polynomials with Rational Preprocessing">
+<meta property="og:description" content="Horner&#x27;s rule evaluates a monic degree-$n$ polynomial using $n-1$ multiplications. We show that with rational preprocessing of the coefficients, any such polynomial can be evaluated using only $\lfloor n/2 \rfloor + 1$ multiplications over fields of characteristic zero or of…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.06022.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.06022.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.06022v1" target="_blank" rel="noopener"><img src="../thumbs/2609.06022.jpg" alt="First page of Fast Evaluation of Polynomials with Rational Preprocessing"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Fast Evaluation of Polynomials with Rational Preprocessing</h1>
+        <p class="authors">Thomas D. Ahle, Jakob B. T. Knudsen</p>
+        <div class="row">
+          <span class="badge">cs.DS</span>
+          <span class="date">Sep 5, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a> <a class="tag c-amber" href="../#tag=verification">verification</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.06022v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.06022" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/thomasahle/fast-polynomials" target="_blank" rel="noopener" title="thomasahle/fast-polynomials">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Upper-bound construction (multiplication count, decoder, height) and the degree-6 lower bound are machine-checked in a Lean 4 development, FastPoly.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Horner&#x27;s rule evaluates a monic degree-$n$ polynomial using $n-1$ multiplications. We show that with rational preprocessing of the coefficients, any such polynomial can be evaluated using only $\lfloor n/2 \rfloor + 1$ multiplications over fields of characteristic zero or of characteristic $p&gt;n$. This resolves the multiplication side of a conjecture of Rabin and Winograd (Comm. Pure Appl. Math 1972), who achieved $n/2 + 2\lceil\log_2 n\rceil$ multiplications and conjectured the logarithmic overhead was necessary. We show that this multiplication count can&#x27;t be beaten in general, proving that three multiplications do not suffice for degree $6$. This strengthens the lower bound of Pan (STOC 1978), who proved a tight bound for general, complex preprocessing. In characteristic 2, for every $n&gt;1$ and every finite field of size at least $2n$, we prove that an $n$-multiplication chain cannot parametrize all value vectors at $2n$ distinct evaluation points, even with arbitrary preprocessing. We give $\lfloor n/2 \rfloor + 1$ multiplication schedules over characteristic 2, each with an explicit inverse, for every odd degree $n\le 25$ and conjecture that this is possible for all $n$. We also give an injective polynomial construction for universal hashing that uses $N$ multiplications to hash $2N$ values with a single random key. This improves the best previous construction by Daniel J. Bernstein (cryp.to).</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Horner&#x27;s rule evaluates a monic degree-n polynomial with n-1 multiplications. Rabin and Winograd conjectured that rational preprocessing of the coefficients requires a logarithmic overhead above n/2 multiplications.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors build explicit circuit schedules with rational, everywhere-defined preprocessing and polynomial decoders, using floor(n/2)+1 multiplications in characteristic zero or characteristic p&gt;n. They prove a lower bound showing three multiplications do not suffice for degree 6, and give characteristic-2 schedules for odd degrees up to 25. They also give an injective recurrence for universal hashing. The upper-bound construction and the lower-bound case analysis are formalized in Lean 4 over commutative rings, with explicit IsUnit hypotheses.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Any monic polynomial can be evaluated with floor(n/2)+1 multiplications after rational preprocessing, which resolves the multiplication side of the Rabin–Winograd conjecture; this count is tight in general. The hashing construction uses N multiplications to hash 2N values and was benchmarked on ARM and x86 over GF(2^64).</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
