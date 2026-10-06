@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIProver: Agentic Auto-Formalization of Mathematical Research via Certificate-Driven Evolving Harness · Papers With Lean</title>
+<meta name="description" content="Proof auto-formalization translates natural-language (NL) theorems and proofs into a formal language (FL) such as Lean, enabling mechanical verification. Despite rapid progress, research-level proofs often depend on concepts missing from leading proof assistant libraries (e.g.,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AIProver: Agentic Auto-Formalization of Mathematical Research via Certificate-Driven Evolving Harness">
+<meta property="og:description" content="Proof auto-formalization translates natural-language (NL) theorems and proofs into a formal language (FL) such as Lean, enabling mechanical verification. Despite rapid progress, research-level proofs often depend on concepts missing from leading proof assistant libraries (e.g.,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.05367.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.05367.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.05367v1" target="_blank" rel="noopener"><img src="../thumbs/2610.05367.jpg" alt="First page of AIProver: Agentic Auto-Formalization of Mathematical Research via Certificate-Driven Evolving Harness"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">AIProver: Agentic Auto-Formalization of Mathematical Research via Certificate-Driven Evolving Harness</h1>
+        <p class="authors">Prithwish Jana, Viet Bach Hoang, Logan Luna, Viresh Pati, Akash Singirikonda, Cy Xie, Lisa Carbone, Wuyang Chen, Walter Moreira, Joe Stubbs, Sriram Vishwanath, Vijay Ganesh</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Oct 4, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.05367v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.05367" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/PrithwishJana/AIProver" target="_blank" rel="noopener" title="PrithwishJana/AIProver">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds an agentic system that autoformalizes research-level natural-language theorems and proofs into Lean 4, and introduces the LoCoBench dataset drawn from Mathlib, CSLib, and Mizar.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Proof auto-formalization translates natural-language (NL) theorems and proofs into a formal language (FL) such as Lean, enabling mechanical verification. Despite rapid progress, research-level proofs often depend on concepts missing from leading proof assistant libraries (e.g., Lean&#x27;s Mathlib), and successful compilation does not guarantee that a translation preserves the theorem&#x27;s meaning or the proof&#x27;s reasoning. Furthermore, aligned NL-FL training data are scarce, and leading agents often rely on costly frontier models and manually engineered harnesses. To address the above issues, we present AIProver, an agentic framework for autonomous proof auto-formalization and proof synthesis (AFPS) that jointly post-trains a 119B open-weight language model and evolves its agentic, tool-calling harness with HarnessEvolve. Verifiers assess type correctness, proof completeness, and semantic correctness, returning rewards and diagnostic certificates that drive model fine-tuning and alternating reinforcement learning via symbolic feedback and HarnessEvolve, a certificate-driven evolutionary search over the whole harness control flow that re-tailors the harness to the updated model. For research-level training and evaluation, we introduce LoCoBench, 58.9k instances from Mathlib, CSLib, Mizar Math Library, and a bounded-arithmetic textbook, with a 771-instance validation split whose theorem-proof pairs have no public Lean formalization. Against 39 frameworks spanning AFPS agents, frontier LLMs, and coding agents, AIProver lifts pass@4 semantic correctness over its Leanstral-1.5 base from 15.7% to 36.7% and outperforms every other open-weight system and Aristotle. As a Claude Code and Codex skill, it lifts their semantic correctness from 41.9% and 34.1% to 79.8% and 62.4%, respectively. Further, it is also 24% cheaper than Numina-Lean-Agent, pushing the accuracy-cost frontier of research-level AFPS.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Research-level proofs often depend on concepts missing from Mathlib. A Lean proof that compiles may still not preserve the meaning of the original theorem or proof. Aligned NL–FL training data are scarce, and existing agents depend on expensive frontier models and hand-built harnesses.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">AIProver post-trains a 119B open-weight model (Leanstral-1.5) and evolves its tool-calling harness. The model is first fine-tuned with a contrastive objective (SAM) that aligns NL and Lean representations. Verifiers check type correctness, proof completeness, and semantic correctness, and return graded rewards plus diagnostic certificates. These signals drive two steps that alternate across rounds: reinforcement learning from symbolic feedback, and HarnessEvolve, an evolutionary search over the harness control flow. Training and evaluation use LoCoBench, with 58.9k instances from Mathlib, CSLib, Mizar, and a bounded-arithmetic textbook; its 771-instance validation split has no public Lean formalization.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.05367/aiprover_fullpipeline.png" alt=""><figcaption>(b) Overall post-training loop of AIProver</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.05367/HarEvo_pipeline.png" alt=""><figcaption>(d) HarnessEvolve search</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Pass@4 semantic correctness rises from 15.7% for the Leanstral-1.5 base to 36.7%, outperforming every other open-weight system and Aristotle among 39 compared frameworks. Used as a skill, AIProver raises semantic correctness for Claude Code from 41.9% to 79.8% and for Codex from 34.1% to 62.4%. AIProver is also 24% cheaper than Numina-Lean-Agent.</p><div class="sum-table"><table><thead><tr><th>System</th><th>TC</th><th>TC+SC (w/ or w/o sorry)</th><th>TC+SC (full proofs)</th></tr></thead><tbody><tr><td>Leanstral-1.5-119B-A6B (w/ tools)</td><td>27.4</td><td>12.6</td><td>12.6</td></tr><tr><td>Aristotle</td><td>43.2</td><td>18.5</td><td>18.4</td></tr><tr><td>OpenGauss (w/ Leanstral-1.5)</td><td>57.3</td><td>22.2</td><td>21.5</td></tr><tr><td>AIProver-Baseline w/ HarnessEvolve</td><td>84.4</td><td>28.7</td><td>22.6</td></tr></tbody></table><div class="tbl-cap">Overall pass@4 (%) on LoCoBench-Val (n=771), selected systems</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
