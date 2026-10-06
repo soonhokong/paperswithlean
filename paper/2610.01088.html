@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Polylogarithmic Sparsity of Randomly Reweighted NPMLEs for Gaussian Mixtures · Papers With Lean</title>
+<meta name="description" content="The nonparametric maximum likelihood estimator (NPMLE) of a Gaussian location mixture maximizes the likelihood over the infinite-dimensional space of mixing distributions. The maximizing mixing distribution can be nonunique, and the classical bound on its number of atoms grows…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Polylogarithmic Sparsity of Randomly Reweighted NPMLEs for Gaussian Mixtures">
+<meta property="og:description" content="The nonparametric maximum likelihood estimator (NPMLE) of a Gaussian location mixture maximizes the likelihood over the infinite-dimensional space of mixing distributions. The maximizing mixing distribution can be nonunique, and the classical bound on its number of atoms grows…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.01088.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.01088.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.01088v1" target="_blank" rel="noopener"><img src="../thumbs/2610.01088.jpg" alt="First page of Polylogarithmic Sparsity of Randomly Reweighted NPMLEs for Gaussian Mixtures"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Polylogarithmic Sparsity of Randomly Reweighted NPMLEs for Gaussian Mixtures</h1>
+        <p class="authors">Hansheng Jiang</p>
+        <div class="row">
+          <span class="badge">stat.ME</span>
+          <span class="date">Oct 1, 2026 · v1</span>
+          <span class="badge">cs.LG</span> <span class="badge">math.ST</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.01088v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.01088" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/hanshengjiang/reweighted-npmle-lean" target="_blank" rel="noopener" title="hanshengjiang/reweighted-npmle-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The paper&#x27;s results are formalized in Lean 4 as an independent check, alongside the numerical study.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The nonparametric maximum likelihood estimator (NPMLE) of a Gaussian location mixture maximizes the likelihood over the infinite-dimensional space of mixing distributions. The maximizing mixing distribution can be nonunique, and the classical bound on its number of atoms grows linearly with the sample size $n$. We show that a vanishingly small random perturbation of the likelihood yields exact polylogarithmic sparsity. The resulting randomly reweighted NPMLE maximizes a weighted likelihood whose independent weights, taken to be Gamma in our analysis, concentrate around one as $n$ grows. With high probability, it is unique, has $O\{(\log n/\log\log n)^d+\log n\}$ atoms in dimension $d$, nearly maximizes the ordinary likelihood, and estimates the mixture density at a Hellinger rate that is parametric up to logarithmic factors. This sparsity holds for the estimator itself, not for an approximation of it, and requires no support penalty. The proof rests on an effective-dimension principle for positive kernel mixtures: low-dimensional variation of the fitted values controls the support of every extreme point of the set of maximizers. Numerical illustrations verify that the reweighted NPMLE has Hellinger risk and support size comparable to those of the ordinary NPMLE.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The nonparametric maximum likelihood estimator (NPMLE) of a Gaussian location mixture can be nonunique. The classical bound on its number of atoms grows linearly with the sample size n, and no polylogarithmic bound was known in several dimensions.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The estimator maximizes a weighted likelihood with independent Gamma weights that concentrate around one as n grows. An effective-dimension principle for positive kernel mixtures shows that low-dimensional variation of the fitted values controls the support of every extreme maximizer. For Gaussian kernels, this low-dimensional structure comes from a Taylor-series low-rank approximation of the fitted vectors. The results are checked by numerical experiments and a Lean 4 formalization.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With high probability, the randomly reweighted NPMLE is unique and has O((log n/log log n)^d + log n) atoms. Its ordinary log-likelihood gap is O(1/log n), and it attains a Hellinger rate that is parametric up to logarithmic factors. In simulations, its Hellinger risk and support size are comparable to those of the ordinary NPMLE.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.01088/path_weight_deviation.png" alt=""><figcaption>Figure 1: Regularization path on a fixed n=500 sample from the three-point mixture. Curves show medians across 30 independent Gamma-weight draws and bands show the 10th and 90th percentiles. The dashed and dotted vertical lines mark the balanced concentration and n^{3} , respectively.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.01088/risk_three_point.png" alt=""><figcaption>Figure 3: Estimated Hellinger risk, the Monte Carlo mean of the squared Hellinger loss, as a function of sample size. Shaded bands show pointwise Monte Carlo means plus or minus 1.96 standard errors.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

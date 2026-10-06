@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quantum Černý complexity of binary words · Papers With Lean</title>
+<meta name="description" content="We introduce the quantum Černý complexity $\mathrm{qc}(w)$ of a binary word $w$: the least dimension $d$ for which there exist quantum channels $A_0,A_1$ on $d\times d$ density matrices and a start state $ρ_0$ such that $w$ is the unique shortest word whose associated channel is…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Quantum Černý complexity of binary words">
+<meta property="og:description" content="We introduce the quantum Černý complexity $\mathrm{qc}(w)$ of a binary word $w$: the least dimension $d$ for which there exist quantum channels $A_0,A_1$ on $d\times d$ density matrices and a start state $ρ_0$ such that $w$ is the unique shortest word whose associated channel is…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.40154.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.40154.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.40154v1" target="_blank" rel="noopener"><img src="../thumbs/2609.40154.jpg" alt="First page of Quantum Černý complexity of binary words"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Quantum Černý complexity of binary words</h1>
+        <p class="authors">Pui Hang Lee, Pui-Yee Lee, Bjørn Kjos-Hanssen</p>
+        <div class="row">
+          <span class="badge">quant-ph</span>
+          <span class="date">Sep 30, 2026 · v1</span>
+          <span class="badge">cs.DM</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-purple" href="../#tag=quantum">quantum</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.40154v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.40154" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/bjoernkjoshanssen/quantumcerny" target="_blank" rel="noopener" title="bjoernkjoshanssen/quantumcerny">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The paper&#x27;s results on quantum Černý complexity of binary words are formalized in Lean 4, with a public GitHub repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We introduce the quantum Černý complexity $\mathrm{qc}(w)$ of a binary word $w$: the least dimension $d$ for which there exist quantum channels $A_0,A_1$ on $d\times d$ density matrices and a start state $ρ_0$ such that $w$ is the unique shortest word whose associated channel is constant on the reachable set. We show that $2\le\mathrm{qc}(w)\le\lceil\sqrt{|w|+1}\,\rceil$ for every nonempty $w$, a quadratic saving over the classical analogue, and that constant words are extremal: $\mathrm{qc}(0^m)=\lceil\sqrt{m+1}\,\rceil$. In contrast, $\mathrm{qc}(01^n0)=2$ for every $n\ge 1$, realized by a single qubit whose rotation angle acts as a counter; consequently there is no quantum analogue of the Černý function, and $\mathrm{qc}$ is strongly anti-correlated with intuitive notions of descriptive complexity. We further study the variant $\mathrm{qcp}$ in which the synchronization target is required to be a pure state. We prove that in dimension $2$ no word of length at least $2$ can be a unique shortest synchronizing word with pure target, and we exhibit an explicit qutrit instance, combining a coherent rotation with a measure-and-funnel channel, achieving $\mathrm{qcp}(01^n0)=3$ with target a computational basis state and with synchronization holding universally over all input states. Thus purity of the reset state costs exactly one dimension on this family. We also observe that $\mathrm{qc}$ is computable, by reduction to the first-order theory of the reals.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The paper defines the quantum Černý complexity qc(w) of a binary word w. It is the least dimension d for which quantum channels A0 and A1 and a start state exist such that w is the unique shortest word whose channel is constant on the reachable set. It also studies a variant in which the synchronization target must be a pure state.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Channels act affinely on density matrices, so synchronization reduces to matrix mortality on an invariant subspace of traceless Hermitian matrices. Upper bounds come from perturbing the completely depolarizing channel, and lower bounds come from nilpotency index arguments. Explicit qubit and qutrit constructions combine rotation counters with dephasing or measure-and-funnel channels. Computability follows by reduction to the first-order theory of the reals, and the results are formalized in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For every nonempty w, 2 ≤ qc(w) ≤ ⌈√(|w|+1)⌉, and constant words attain the upper bound: qc(0^m) = ⌈√(m+1)⌉. In contrast, qc(01^n0) = 2 for all n ≥ 1, so no quantum Černý function exists. No qubit instance has a pure-target unique shortest synchronizing word of length ≥ 2, while a qutrit instance gives qcp(01^n0) = 3.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
