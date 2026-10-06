@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Towards Certificate-Driven Software Porting: A Self-Improving Agentic Harness for Scientific Program Optimization · Papers With Lean</title>
+<meta name="description" content="The upgrade and rewriting of large scientific codebases has traditionally been a major challenge. While evolutionary search with large language models (LLMs) can port and accelerate legacy code, repair feedback in prompts alone does not prevent subsequent candidates from…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Towards Certificate-Driven Software Porting: A Self-Improving Agentic Harness for Scientific Program Optimization">
+<meta property="og:description" content="The upgrade and rewriting of large scientific codebases has traditionally been a major challenge. While evolutionary search with large language models (LLMs) can port and accelerate legacy code, repair feedback in prompts alone does not prevent subsequent candidates from…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.34069.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.34069.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.34069v1" target="_blank" rel="noopener"><img src="../thumbs/2609.34069.jpg" alt="First page of Towards Certificate-Driven Software Porting: A Self-Improving Agentic Harness for Scientific Program Optimization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Towards Certificate-Driven Software Porting: A Self-Improving Agentic Harness for Scientific Program Optimization</h1>
+        <p class="authors">Piyush Jha, Aishik Ghosh, Vijay Ganesh</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Sep 28, 2026 · v1</span>
+          <span class="badge">cs.PL</span> <span class="badge">cs.SE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-blue" href="../#tag=physics">physics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.34069v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.34069" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean is used in the evaluation harness to verify GPU work-assignment contracts, drawing on Physlib/HepLean and Mathlib; checked rules are translated into executable code.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The upgrade and rewriting of large scientific codebases has traditionally been a major challenge. While evolutionary search with large language models (LLMs) can port and accelerate legacy code, repair feedback in prompts alone does not prevent subsequent candidates from repeating the same errors. We introduce Certificate-Driven Evolutionary Search (CDES), which extends evolutionary search with enforceable restrictions derived from failed candidates, recorded as certificates of assumptions, checker evidence, and justified restrictions. Its control logic enforces these restrictions through rejection, backtracking, and targeted repair while preserving compatible edits. We apply CDES to CPU-to-GPU translation of two particle-simulation functions from the Geant4 toolkit, evaluated with a harness that goes beyond unit tests to combine formal checks, numerical comparisons, physics checks, and GPU safety tests. Generated implementations achieve 13.78x and 23.54x function-level speedups over CPU code, including data conversion and transfers; for one function, GPU throughput exceeds an expert implementation by 14.9%, reaching 16.1% when complementary components are combined. In an ablation over execution settings, certificate feedback increases the fraction of candidates passing required correctness checks from 55% to 90%.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Porting and accelerating large legacy scientific codebases such as Geant4 to GPUs is difficult. In LLM-driven evolutionary search, repair feedback given only in prompts does not stop later candidates from repeating the same errors.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Certificate-Driven Evolutionary Search (CDES) extends ShinkaEvolve-style evolutionary search. Failed candidates are recorded as certificates that hold assumptions, checker evidence, and justified restrictions. Control logic enforces these restrictions through rejection, backtracking, and targeted repair. The evaluation harness combines Lean proofs of GPU assignment contracts (supported by Physlib/HepLean and Mathlib), CBMC, differential tests, physics checks, and GPU safety tests.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On the Geant4 Compton and Fermi functions, generated CUDA code is 13.78x and 23.54x faster than the CPU versions. For Compton, GPU throughput is 14.9% above the expert Celeritas implementation, and a hybrid of the two reaches 16.1%. Certificate feedback raises the share of candidates passing required correctness checks from 55% to 90%.</p><div class="sum-table"><table><thead><tr><th>Function</th><th>Geant4 CPU</th><th>CDES CUDA</th><th>Speedup</th></tr></thead><tbody><tr><td>Compton</td><td>30.162</td><td>2.189</td><td>13.78x</td></tr><tr><td>Fermi</td><td>340.090</td><td>14.447</td><td>23.54x</td></tr></tbody></table><div class="tbl-cap">Function-level speedups (ms)</div></div><div class="sum-table"><table><thead><tr><th>Metric</th><th>Without certificates</th><th>With certificates</th></tr></thead><tbody><tr><td>Passing correctness checks</td><td>55%</td><td>90%</td></tr><tr><td>Passing with &gt;10% gain</td><td>50%</td><td>80%</td></tr><tr><td>Passing with &gt;20% gain</td><td>30%</td><td>35%</td></tr><tr><td>Best gain on withheld inputs</td><td>66.5%</td><td>68.6%</td></tr></tbody></table><div class="tbl-cap">Ablation of certificate feedback</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

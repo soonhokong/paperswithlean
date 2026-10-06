@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Should We Freeze? Guarded Freezing: Connectivity Shapes the Fine-Tuning of Pretrained Models · Papers With Lean</title>
+<meta name="description" content="When adapting pre-trained models through fine-tuning, freezing weights alone might not preserve performance, as updates elsewhere can change the inputs to the frozen core, ultimately affecting overall performance. We first analyse the case where a selected frozen core can be…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What Should We Freeze? Guarded Freezing: Connectivity Shapes the Fine-Tuning of Pretrained Models">
+<meta property="og:description" content="When adapting pre-trained models through fine-tuning, freezing weights alone might not preserve performance, as updates elsewhere can change the inputs to the frozen core, ultimately affecting overall performance. We first analyse the case where a selected frozen core can be…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.32124.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.32124.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.32124v1" target="_blank" rel="noopener"><img src="../thumbs/2609.32124.jpg" alt="First page of What Should We Freeze? Guarded Freezing: Connectivity Shapes the Fine-Tuning of Pretrained Models"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">What Should We Freeze? Guarded Freezing: Connectivity Shapes the Fine-Tuning of Pretrained Models</h1>
+        <p class="authors">Leonel Aguilar</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Sep 26, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.32124v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.32124" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The appendix&#x27;s grouping, monotonicity and scale-invariance results for the removal-value score were formalized in Lean 4 with an AI assistant; the formalizations are in the supplementary material.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">When adapting pre-trained models through fine-tuning, freezing weights alone might not preserve performance, as updates elsewhere can change the inputs to the frozen core, ultimately affecting overall performance. We first analyse the case where a selected frozen core can be isolated and propose removal-value, a capacity-based score that approximates HOPE&#x27;s removal cost averaged over removal orders. We show that in VGG-8, cutting paths from trainable neurons into a frozen core makes selection using this score useful: $70\%$ frozen preserves $5.22\pm0.51$ percentage points more old-task accuracy than DEFT at similar new-task accuracy. In transformers, shared residual streams leave paths into frozen neurons open. For this case, we derive drift-value, a forward-only proxy for the output disturbance from updating each weight entry under a local update model. In language models, at 40 epochs, this policy exceeds adapted Wanda and RIA freezing scores in settings with substantial retention loss, while its differences from Fisher remain unresolved. After 160 epochs on Qwen2.5-1.5B, it retains $0.0433\pm0.0102$ more than static Fisher. In DINOv3 vision-transformer adaptation to point clouds, drift-value retains $0.440$ image accuracy versus $0.187$ for a random mask of the same count. These results motivate Guarded Freezing: select by removal-value when incoming paths are cut, and by drift-value when they remain.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">When fine-tuning pretrained models, freezing weights alone may not preserve old-task performance, because updates elsewhere can change the inputs to the frozen core. The paper asks which parameters to freeze, depending on whether paths from trainable parameters into the frozen core are cut or left open.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">For isolated cores, it proposes removal-value, a capacity-based score that approximates HOPE&#x27;s removal cost averaged over removal orders. For exposed cores, such as transformers with shared residual streams, it derives drift-value, a forward-only proxy for the output disturbance caused by updating each weight entry. Both scores are evaluated on VGG-8 transfer from CIFAR-100 to SVHN, on six language models learning synthetic facts, and on DINOv3 adapted to point clouds. Theoretical properties of removal-value (grouping, monotonicity, scale-invariance) are formalized in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On VGG-8 at 70% frozen with incoming paths cut, removal-value retains 5.22±0.51 percentage points more old-task accuracy than DEFT at similar new-task accuracy. After 160 epochs on Qwen2.5-1.5B, drift-value retains 0.0433±0.0102 more than static Fisher, while its 40-epoch differences from Fisher remain unresolved. In DINOv3, drift-value retains 0.440 image accuracy versus 0.187 for a random mask of the same count.</p><div class="sum-table"><table><thead><tr><th>Policy</th><th>Image retention</th></tr></thead><tbody><tr><td>Attention freezing only</td><td>0.097</td></tr><tr><td>Random mask (35.2%)</td><td>0.187</td></tr><tr><td>Wanda score</td><td>0.233</td></tr><tr><td>SSU score</td><td>0.344</td></tr><tr><td>Drift-value (35.2%)</td><td>0.440</td></tr></tbody></table><div class="tbl-cap">DINOv3 point-cloud adaptation: image retention under each freezing policy (pretrained image accuracy 0.728)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

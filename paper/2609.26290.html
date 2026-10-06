@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning to Fluctuate: Statistical Foundations for Causal Tabular Pretraining · Papers With Lean</title>
+<meta name="description" content="Causal tabular foundation models amortize effect estimation across synthetic mechanisms, but latent-effect supervision rewards posterior shrinkage rather than encoding the repeated-sample response needed in a fixed deployment population. We introduce fluctuation-supervised…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning to Fluctuate: Statistical Foundations for Causal Tabular Pretraining">
+<meta property="og:description" content="Causal tabular foundation models amortize effect estimation across synthetic mechanisms, but latent-effect supervision rewards posterior shrinkage rather than encoding the repeated-sample response needed in a fixed deployment population. We introduce fluctuation-supervised…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.26290.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.26290.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.26290v2" target="_blank" rel="noopener"><img src="../thumbs/2609.26290.jpg" alt="First page of Learning to Fluctuate: Statistical Foundations for Causal Tabular Pretraining"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Learning to Fluctuate: Statistical Foundations for Causal Tabular Pretraining</h1>
+        <p class="authors">Zhiheng Zhang</p>
+        <div class="row">
+          <span class="badge">stat.ML</span>
+          <span class="date">Sep 22, 2026 · v2</span>
+          <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-orange" href="../#tag=probability">probability</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.26290v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.26290" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">All 21 numbered results are mapped to compiled Lean 4.32 declarations, using Git-pinned Mathlib and a formalized Berry–Esseen theorem, with a kernel-verification record.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Causal tabular foundation models amortize effect estimation across synthetic mechanisms, but latent-effect supervision rewards posterior shrinkage rather than encoding the repeated-sample response needed in a fixed deployment population. We introduce fluctuation-supervised pretraining (FSP): each synthetic table is labeled by its average treatment effect plus its efficient influence-function fluctuation; deployment remains a frozen forward pass. Along the path $T_{λ,P}=θ(P)+λP_nψ_P$, we prove an endpoint transition: every fixed $λ&lt;1$ retains label ambiguity of order $(1-λ)^2/n$, whereas full fluctuation makes the Gaussian label observable and reduces optimal finite-stratum causal label-prediction risk to order $n^{-2}$. A finite-pretraining bound combines label, network, episode-sampling, and optimization errors; its sampling defect controls fixed-mechanism bias, mean squared error, variance, Gaussian approximation, and, with variance-head accuracy, studentized coverage. Complementary lower bounds separate local $n^{-1}$ ATE risk from the $\log N/M$ excess risk of generic finite-dictionary episode learning. Experiments trace the learned sampling response. Across 24 nonlinear continuous-covariate cells at trained context lengths, continuous-row FSP lowers checkpoint-mean macro RMSE by 7.0% versus S-learner and wins all 12 weak-overlap cells; validation-selected Summary FSP deploys $11.6\times$ faster per table in our warm one-thread benchmark. Under effect shift, matched Raw FSP lowers mean-checkpoint RMSE by 54.2% and teacher defect by 99.0% versus latent-effect supervision, and RMSE by 10.2% versus the released CausalPFN-S checkpoint. Known-effect semisynthesis tests coverage; two randomized-study evaluations show that lower RMSE can coexist with residual attenuation.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Causal tabular foundation models trained with latent-effect supervision reward posterior shrinkage toward the prior. As a result, they can mis-center repeated-sample estimates of the average treatment effect in a fixed deployment population.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Fluctuation-supervised pretraining (FSP) labels each synthetic table with its ATE plus its efficient influence-function fluctuation, and deployment remains a frozen forward pass. The authors analyze the label path T_λ, prove finite-pretraining bounds linking the sampling defect to bias, variance, Gaussian approximation and coverage, and give complementary lower bounds. The 21 numbered results are formalized in Lean 4 with Mathlib.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2609.26290/13_lambda_path.png" alt=""><figcaption>Figure 5 : Changing supervision changes the sampling response. (a–c) Exact Gaussian MSE relative to FSP ( s=.035 , v=1 ); the white contour marks equal MSE. (d) All 105 seedwise coefficients at the typical mechanism: seven targets, five seeds, three context lengths, M=8192 . Lines are means; bands are 95\% across-seed t intervals. Appendix N.1 defines the coefficient.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Every fixed λ&lt;1 retains label ambiguity of order (1-λ)^2/n, while full fluctuation reduces optimal label-prediction risk to order n^{-2}. Continuous FSP lowers macro RMSE by 7.0% versus S-learner across 24 nonlinear cells. Under effect shift, Raw FSP lowers RMSE by 54.2% and teacher defect by 99.0% versus matched latent-effect supervision.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2609.26290/27_amortization_evidence.png" alt=""><figcaption>Figure 10 : Complete nonlinear and deployment-cost evidence. (a) FSP’s checkpoint-mean RMSE change relative to S-learner in all 48 continuous cells; blue negative entries favor FSP. Row suffixes denote smooth/rough response (S/R) and strong/weak overlap (S/W). (b–c) Equal-cell-weight macro RMSE and sampling-response slope; the grey region and open neural marks denote frozen extrapolation. (d) Medi</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2609.26290/18_main_validation.png" alt=""><figcaption>Figure 4 : Frozen transfer trades variance against residual attenuation. (a–b) National Supported Work at n=256 : 1,500 re-randomized-null and post-treatment estimates; white marks are medians and thick/thin bars are interquartile/5th–95th percentiles. (c) Known-effect semisynthesis at n=256 . Appendix N gives checkpoint budgets and protocols.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

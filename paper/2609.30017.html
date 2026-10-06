@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Canopy: Exploiting Piecewise Smooth Tree Priors for Multi-Fidelity Bandits · Papers With Lean</title>
+<meta name="description" content="Many LLM inference problems, including model routing, prefix-cache management, prompt trimming, and test-time search, can be viewed as optimization over a tree. This structure arises naturally from autoregressive generation: every prefix defines a node, and its continuations…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Canopy: Exploiting Piecewise Smooth Tree Priors for Multi-Fidelity Bandits">
+<meta property="og:description" content="Many LLM inference problems, including model routing, prefix-cache management, prompt trimming, and test-time search, can be viewed as optimization over a tree. This structure arises naturally from autoregressive generation: every prefix defines a node, and its continuations…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.30017.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.30017.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.30017v1" target="_blank" rel="noopener"><img src="../thumbs/2609.30017.jpg" alt="First page of Canopy: Exploiting Piecewise Smooth Tree Priors for Multi-Fidelity Bandits"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Canopy: Exploiting Piecewise Smooth Tree Priors for Multi-Fidelity Bandits</h1>
+        <p class="authors">Michael Jerge, Suman Jana</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Sep 24, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.30017v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.30017" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Key theoretical guarantees (bias certificate, fixed-budget and regret bounds) are mechanized in Lean 4, with sources shipped as supplementary material.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Many LLM inference problems, including model routing, prefix-cache management, prompt trimming, and test-time search, can be viewed as optimization over a tree. This structure arises naturally from autoregressive generation: every prefix defines a node, and its continuations form a subtree below it. Internal nodes of the tree provide cheap but biased estimates of a region&#x27;s value, while leaf evaluations are expensive but accurate. Hierarchical bandit methods can exploit this structure, but typically require a specific smoothness schedule to be specified in advance, even though real objectives are often only piecewise smooth and their optima may lie near sharp boundaries. We introduce CANOPY, a multi-fidelity tree bandit that learns where the smoothness prior is valid rather than assuming it globally. CANOPY uses cheap random-path probes to construct an online certificate of local aggregation bias, then directs expensive leaf evaluations toward cells where the certificate detects a smoothness violation. We prove fixed-budget and regret guarantees whose additional cost is additive in the number of discontinuities, recovering the smooth-tree rate when no violations are present and approaching structure-blind search as violations become dense. Across routing, top-$k$ identification, test-time search, caching, and prompt trimming, CANOPY consistently improves matched-budget performance, including $2.9\times$ higher top-10 recall on a 1000-model pool, $1.6\times$ more SWE-bench Verified issues resolved than best-of-$N$, and $3.6\times$ lower median time-to-first-token with prefix caching.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Many LLM inference tasks, such as routing, prefix caching, prompt trimming and test-time search, are optimization problems over a tree. Cheap internal-node probes give biased estimates and leaf evaluations are expensive. Hierarchical bandits need a smoothness schedule fixed in advance, yet real objectives are only piecewise smooth.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">CANOPY is a multi-fidelity tree bandit. It uses cheap random-path probes to build an online, data-driven certificate of each cell&#x27;s aggregation bias. Expensive leaf evaluations are then directed to cells where the certificate detects a smoothness violation. Fixed-budget and regret guarantees are proved, and the main statements are machine-checked in a Lean 4 development provided as supplementary material.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The extra cost in the guarantees is additive in the number of discontinuities: it recovers smooth-tree rates when there are no violations and approaches structure-blind search when violations are dense. Across twelve benchmarks CANOPY improves matched-budget performance, including 2.9x higher top-10 recall on a 1000-model pool, 1.6x more SWE-bench Verified issues resolved than best-of-N, and 3.6x lower median TTFT with prefix caching.</p><div class="sum-table"><table><thead><tr><th>Benchmark</th><th>Metric</th><th>Ours</th><th>Best baseline</th></tr></thead><tbody><tr><td>Top-k id. (1000 models), B=600</td><td>recall@10</td><td>.370</td><td>.126</td></tr><tr><td>MATH (300, Llama-70B)</td><td>accuracy</td><td>.617</td><td>.530</td></tr><tr><td>SWE-bench Verified (261)</td><td>resolved</td><td>.318</td><td>.195</td></tr><tr><td>vLLM caching (A10G)</td><td>TTFT p50 (s)</td><td>.267</td><td>.961 (off)</td></tr></tbody></table><div class="tbl-cap">Selected headline results at matched metric (from Table 1)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

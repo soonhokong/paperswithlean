@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SoL-Pi: Recursively Scaling Auto-Research Loops for Efficient Agent Harness · Papers With Lean</title>
+<meta name="description" content="As coding agents move from supervised code completion to unattended, around-the-clock exploration, their work expands from isolated predictions into long trajectories of reasoning, tool use, and feedback. Token efficiency therefore becomes important for scaling recursive…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SoL-Pi: Recursively Scaling Auto-Research Loops for Efficient Agent Harness">
+<meta property="og:description" content="As coding agents move from supervised code completion to unattended, around-the-clock exploration, their work expands from isolated predictions into long trajectories of reasoning, tool use, and feedback. Token efficiency therefore becomes important for scaling recursive…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.20519.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.20519.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.20519v1" target="_blank" rel="noopener"><img src="../thumbs/2609.20519.jpg" alt="First page of SoL-Pi: Recursively Scaling Auto-Research Loops for Efficient Agent Harness"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">SoL-Pi: Recursively Scaling Auto-Research Loops for Efficient Agent Harness</h1>
+        <p class="authors">Haozhe Liu, Tian Ye, Sensen Gao, Qihang Cao, Yitong Li, Mingchen Zhuge, Duomin Wang, Ruihua Zhang, Ping Luo, Jiawang Bian, Lei Zhu, Ligeng Zhu, Enze Xie, Song Han</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Sep 17, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.20519v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.20519" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/NVlabs/SoL-Pi" target="_blank" rel="noopener" title="NVlabs/SoL-Pi">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">One evaluation runs coding-agent harnesses on IMO 2026 problems, with each solution required to be formalized and verified in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">As coding agents move from supervised code completion to unattended, around-the-clock exploration, their work expands from isolated predictions into long trajectories of reasoning, tool use, and feedback. Token efficiency therefore becomes important for scaling recursive self-improvement. We take an RSI-inspired approach at the harness layer, scaling auto-research loops across increasingly numerous and diverse environments for harness rollouts. At this scale, the process yields reusable improvements that transfer beyond their development setting, moving automated harness discovery toward production-level outcomes. Four mechanisms survive selection and form SoL-Pi, spanning action execution, context compaction, observation handling, and delegated reading. On the 51-task EdgeBench evaluation, SoL-Pi achieves performance comparable to Pi across GPT-5.6 Sol and Opus 5 while reducing recorded token traffic by 44.7-49.0% and API cost by about one third. In other words, estimated hourly savings are \$8.75-\$13.50 relative to native Codex and Claude Code harnesses, and \$4.36-\$5.71 relative to Pi.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Long-horizon coding agents consume large numbers of tokens, so token efficiency matters for scaling unattended exploration and recursive self-improvement. Optimizing the agent harness by hand is hard because tool use, context management and delegation are tightly coupled.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An AI research agent inspects execution traces from a base harness (Pi), proposes candidate changes, and tests them across many development environments. Candidates must stay within fixed capability tolerances and improve at least one efficiency metric. Four retained mechanisms (Action Fusion, Online Context Compact, Evidence-Preserving Reducer, ObservationPack) are combined into SoL-Pi. SoL-Pi is evaluated on EdgeBench, Terminal-Bench 4, a kernel-optimization benchmark, and IMO 2026, where solutions must be formalized and verified in Lean 4.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2609.20519/teaser-funnel-v10.png" alt=""><figcaption>Figure 1 : SoL-Pi discovers a more token-efficient harness through automated research. (a) SoL-Pi: Scaling Auto-Research Loop. Prepared research environments supply tasks to an AI running the base harness. A research AI inspects its execution traces, proposes candidate changes, and filters the idea pool through capability and efficiency gates. Four retained mechanisms are integrated and refined in</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2609.20519/method_v2.png" alt=""><figcaption>Figure 4 : The four retained mechanisms act at different points in the agent–environment loop. (a) Action Fusion combines a mutation and its follow-up command into one request, reducing API calls from three to two. (b) Online Context Compact evaluates compaction at subtask completion and applies it only when projected savings exceed the rewrite cost. (c) ObservationPack sends large results in full</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On the 51 public EdgeBench tasks, the full SoL-Pi stack cuts token traffic by 44.7–49.0% and API cost by about one third relative to Pi, at comparable scores across GPT-5.6 Sol and Opus 5. On IMO 2026, SoL-Pi produced 3 of 6 Lean-verified solutions, matching Pi at lower cost, while Codex produced 5.</p><div class="sum-table"><table><thead><tr><th>Harness</th><th>TB4 Solved (/63)</th><th>TB4 Cost ($)</th><th>IMO Pass (/6)</th><th>IMO Cost ($)</th><th>Cost / Passed ($)</th></tr></thead><tbody><tr><td>Codex</td><td>18</td><td>272.35</td><td>5</td><td>114.47</td><td>22.89</td></tr><tr><td>Pi</td><td>18</td><td>286.45</td><td>3</td><td>75.95</td><td>25.32</td></tr><tr><td>SoL-Pi</td><td>15</td><td>211.12</td><td>3</td><td>62.69</td><td>20.90</td></tr></tbody></table><div class="tbl-cap">Terminal-Bench 4 and IMO 2026 (Lean 4-verified) results with GPT-5.6 Sol</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

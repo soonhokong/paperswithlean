@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZonoGPT: Towards An Abstract Domain for Verifying Large GPT Models · Papers With Lean</title>
+<meta name="description" content="Transformer-based models are widely used for reasoning, coding, and multimodal agentic tasks. To provide formal assurance of desirable behaviors, such as robustness, safety, and fairness, neural network verification techniques prove required properties and provide auditable…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZonoGPT: Towards An Abstract Domain for Verifying Large GPT Models">
+<meta property="og:description" content="Transformer-based models are widely used for reasoning, coding, and multimodal agentic tasks. To provide formal assurance of desirable behaviors, such as robustness, safety, and fairness, neural network verification techniques prove required properties and provide auditable…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.34457.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.34457.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.34457v1" target="_blank" rel="noopener"><img src="../thumbs/2609.34457.jpg" alt="First page of ZonoGPT: Towards An Abstract Domain for Verifying Large GPT Models"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">ZonoGPT: Towards An Abstract Domain for Verifying Large GPT Models</h1>
+        <p class="authors">Hai Duong, Thanh Le, ThanhVu Nguyen</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Sep 28, 2026 · v1</span>
+          <span class="badge">cs.SE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.34457v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.34457" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Soundness theorems for the LayerNorm, GELU, MLP and attention zonotope transformers are mechanized in Lean 4 (e.g., ZonoGpt/LayerNorm.lean).</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Transformer-based models are widely used for reasoning, coding, and multimodal agentic tasks. To provide formal assurance of desirable behaviors, such as robustness, safety, and fairness, neural network verification techniques prove required properties and provide auditable guarantees before deployment. However, prior work remains limited to small or restricted Transformers, and maintaining precision across deep models remains challenging. In this work, we introduce ZonoGPT, an abstract domain for verifying large transformers that maintains a space complexity independent of network depth. ZonoGPT uses a structured zonotope and a generator reduction mechanism to efficiently preserve correlations. To maintain precision, it introduces block-specific fused transformations for Attention and LayerNorm that retain feature relations, along with an affine transform for GELU that preserves generator relations. These mechanisms enable \tool{} to be the first approach to verify standard architectures, scaling to official HuggingFace models up to GPT-2 Medium (24 blocks, 300M+ parameters) and successfully verifying 1,339 instances across text and vision tasks.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Existing neural network verifiers for transformers handle only small or simplified models. They also lose precision across deep stacks of blocks, so none scale to standard architectures such as GPT-2.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ZonoGPT is an abstract domain built on structured zonotopes. Shared generators capture cross-token relations, local generators capture token-specific relations, and per-block generator reduction keeps space complexity independent of network depth. It uses fused residual Taylor-expansion transformers for Attention and LayerNorm and an affine transform for GELU. The soundness of these transformers is mechanized in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">ZonoGPT verifies 1,339 of 2,880 instances on GPT-2 Small and Medium classifiers (up to 24 blocks, 300M+ parameters) trained on MNIST and SST. IBP and CoVeNN verify none of these instances, and DeepZ and alpha-beta-CROWN run out of memory.</p><div class="sum-table"><table><thead><tr><th>Tool</th><th>Solved</th><th>Time (s)</th></tr></thead><tbody><tr><td>IBP</td><td>0</td><td>688.8</td></tr><tr><td>DeepZ</td><td>OOM</td><td>-</td></tr><tr><td>αβ-CROWN</td><td>OOM</td><td>-</td></tr><tr><td>CoVeNN</td><td>0</td><td>569409.8</td></tr><tr><td>ZonoGpt-A</td><td>1339</td><td>157325.4</td></tr></tbody></table><div class="tbl-cap">Total instances verified across all benchmarks (out of 2880)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

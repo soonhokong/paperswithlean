@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ServeGuard: Verifiable, Bounded-Residual Confinement of Operator-Invisible Channels Without Revealing the Certified Read Factor · Papers With Lean</title>
+<meta name="description" content="Third-party adapters for open-weight language models ship as opaque weight matrices; a recipient cannot check whether an adapter hides a backdoor without trusting the publisher or inspecting the weights, the publisher&#x27;s core asset. For one important class (payloads placed where…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ServeGuard: Verifiable, Bounded-Residual Confinement of Operator-Invisible Channels Without Revealing the Certified Read Factor">
+<meta property="og:description" content="Third-party adapters for open-weight language models ship as opaque weight matrices; a recipient cannot check whether an adapter hides a backdoor without trusting the publisher or inspecting the weights, the publisher&#x27;s core asset. For one important class (payloads placed where…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.21515.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.21515.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.21515v1" target="_blank" rel="noopener"><img src="../thumbs/2609.21515.jpg" alt="First page of ServeGuard: Verifiable, Bounded-Residual Confinement of Operator-Invisible Channels Without Revealing the Certified Read Factor"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">ServeGuard: Verifiable, Bounded-Residual Confinement of Operator-Invisible Channels Without Revealing the Certified Read Factor</h1>
+        <p class="authors">Dominik Dahlem, Rui Vieira</p>
+        <div class="row">
+          <span class="badge">cs.CR</span>
+          <span class="date">Sep 18, 2026 · v1</span>
+          <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-amber" href="../#tag=cryptography">cryptography</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.21515v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.21515" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The kernel-algebra soundness theorems for monitor-typed adapter confinement are formalized in Lean 4 with Mathlib in a sorry-free module, with each theorem mapped to a named Lean declaration.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Third-party adapters for open-weight language models ship as opaque weight matrices; a recipient cannot check whether an adapter hides a backdoor without trusting the publisher or inspecting the weights, the publisher&#x27;s core asset. For one important class (payloads placed where a safety monitor is structurally blind), detection is unsound as a defense: every detector that factors through the declared monitor is invariant on its blind subspace, and honest and backdoored adapters overlap on every blind-subspace statistic we evaluate, because benign adaptation uses that subspace too. Rather than detect this channel, we make it structurally absent and prove that we did. The publisher builds the adapter to read the input only through directions the monitor covers and proves this in zero knowledge, revealing nothing about the read factor it certifies. The certificate is cheap because the expensive part, identifying the monitor&#x27;s blind spot, is a deterministic function of the public base model, so only one linear identity is proved; the served residual is the base model&#x27;s own public floor, not a prover-chosen tolerance. The result is ServeGuard, a supply-chain primitive: the publisher ships a proof-carrying adapter whose proof lets a consumer or regulator verify, without the certified read factor and without trusting the publisher, that the adapter carries no hidden channel of this class relative to the declared monitor; an admission-time typing guard binds the guarantee to the adapter bytes admitted at serving time. Across eight checkpoints up to 7B from four families, the monitoring budget is architectural: the measured frontier saturates at the value-path rank on grouped-query checkpoints but not on multi-head ones. On a 0.5B model confinement is nearly free for benign adaptation, making monitor quality the security lever.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Third-party LoRA adapters for open-weight language models are opaque, so recipients cannot check them for backdoors. Payloads placed in a safety monitor&#x27;s blind subspace (its kernel) cannot be detected, because every detector that factors through the monitor is invariant on that subspace.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The publisher builds each adapter monitor-typed, with read factor A = CM, so the adapter reads input only through directions the public monitor covers. Inertness (ker M ⊆ ker V) is proved equivalent to factoring through the monitor. The publisher proves the linear identity A − CM = 0 in zero knowledge over a hiding commitment, and an admission-time guard binds the guarantee to the adapter bytes actually served. The soundness theorems are machine-checked in Lean 4 with Mathlib and depend only on standard classical axioms.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The certificate accepts confined adapters and rejects stealth backdoors, including attacks that pass magnitude, rank and sparsity bounds. Across eight checkpoints up to 7B, the monitoring budget is architectural: the measured frontier saturates at the value-path rank on grouped-query models but not on multi-head ones. On a 0.5B model, confinement costs benign adaptation almost nothing.</p><div class="sum-table"><table><thead><tr><th>Paper statement</th><th>Lean declaration</th></tr></thead><tbody><tr><td>Theorem 1(a) Channel-absence</td><td>attest_sound</td></tr><tr><td>Theorem 1(b) Factor-through</td><td>inert_iff_factors_through</td></tr><tr><td>Theorem 1(c) Defense</td><td>inert_of_factor_through_visible</td></tr><tr><td>Theorem 2 Typed LoRA</td><td>lora_typed_inert</td></tr><tr><td>Theorem 8 Deficient-basis counterexample</td><td>spanning_necessary</td></tr></tbody></table><div class="tbl-cap">Selected paper statements and their Lean declarations</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

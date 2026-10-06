@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TCSAlgBench: Benchmarking Automated Proving for Research-Level Theoretical Computer Science · Papers With Lean</title>
+<meta name="description" content="Large language models perform strongly on competition mathematics, but their research-level reasoning remains difficult to evaluate systematically. Theoretical computer science (TCS) connects algorithm design to explicit guarantees and fundamental limits, providing a setting for…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCSAlgBench: Benchmarking Automated Proving for Research-Level Theoretical Computer Science">
+<meta property="og:description" content="Large language models perform strongly on competition mathematics, but their research-level reasoning remains difficult to evaluate systematically. Theoretical computer science (TCS) connects algorithm design to explicit guarantees and fundamental limits, providing a setting for…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.35606.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.35606.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.35606v1" target="_blank" rel="noopener"><img src="../thumbs/2609.35606.jpg" alt="First page of TCSAlgBench: Benchmarking Automated Proving for Research-Level Theoretical Computer Science"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">TCSAlgBench: Benchmarking Automated Proving for Research-Level Theoretical Computer Science</h1>
+        <p class="authors">Chutong Yang, Xiyuan Zhang, Yu Huang, Boran Han, Soonho Kong, Shuai Zhang, Vihang Prakash Patil, Zhen Han, Michael Bohlke-Schneider, Bernie Wang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Sep 28, 2026 · v1</span>
+          <span class="badge">cs.CL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.35606v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.35606" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://huggingface.co/datasets/cyang98/TCSAlgBENCH" target="_blank" rel="noopener" title="cyang98/TCSAlgBENCH (Hugging Face)">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Supplies 221 provisional Lean 4 statements, autoformalized by a GPT-5.5 agent in a pinned Mathlib/CSLib environment, that pass compilation and semantic screening.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language models perform strongly on competition mathematics, but their research-level reasoning remains difficult to evaluate systematically. Theoretical computer science (TCS) connects algorithm design to explicit guarantees and fundamental limits, providing a setting for evaluating whether models can justify computational improvements with arguments humans can inspect. We introduce TCSAlgBench, a benchmark and reusable pipeline for natural-language proof discovery, comprising 398 theorem-level challenges from 138 STOC and COLT 2026 papers. Expert-designed rules complete paper-specific context, preserve computational assumptions and quantitative guarantees, and withhold constructions when discovering an algorithm is part of the task. For each task, prover systems receive theorem statements and access to cited prior work. The pipeline supports fresh, versioned challenge batches from newly released papers. We evaluate ten model configurations from four families under direct inference and prover-verifier discussion, and compare four agent workflows under matched model-call opportunities. All evaluations use the full benchmark. In the model comparison, GPT-5.6 Sol max achieves the highest five-run verifier-accepted coverage at 23.6% after 10-round discussion. Discussion and repeated sampling improve coverage. In the separate agent comparison using GPT-5.5 xhigh, decomposition improves coverage over discussion, and agentic planning achieves the highest five-run verifier-accepted coverage at 25.4%. TCSAlgBench provides a refreshable testbed for measuring progress in model reasoning and studying how agent workflows support research-level proof discovery.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Research-level reasoning by LLMs is hard to evaluate systematically, because most benchmarks target competition mathematics or isolated problems. Theoretical computer science offers explicit algorithmic guarantees that can be checked through human-inspectable proofs.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">TCSAlgBench contains 398 theorem-level challenges from 138 STOC and COLT 2026 papers. Expert-designed rules add paper-specific context and withhold constructions for algorithm-design tasks. Provers receive theorem statements plus cited prior work and must write natural-language proofs, which LLM verifiers judge. As a supplement, a GPT-5.5 agent autoformalizes challenge statements as Lean 4 Prop declarations against Mathlib/CSLib; declarations must compile without sorry, admit, or untrusted axioms.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">GPT-5.6 Sol max reaches 23.6% five-run verifier-accepted coverage after 10-round discussion. With GPT-5.5 xhigh, agentic planning reaches the highest coverage among workflows at 25.4%. 221 provisional Lean statements pass compilation and semantic screening.</p><div class="sum-table"><table><thead><tr><th>Workflow</th><th>Seed 1</th><th>Five-run coverage</th></tr></thead><tbody><tr><td>Decomposition with MCTS search</td><td>77 (19.3%)</td><td>96 (24.1%)</td></tr><tr><td>Discussion, no decomposition</td><td>60 (15.1%)</td><td>84 (21.1%)</td></tr><tr><td>Discussion, root-only decomposition</td><td>73 (18.3%)</td><td>93 (23.4%)</td></tr><tr><td>Discussion, agentic planning</td><td>72 (18.1%)</td><td>101 (25.4%)</td></tr></tbody></table><div class="tbl-cap">Agent workflow comparison with GPT-5.5 xhigh</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

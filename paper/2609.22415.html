@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Complex-valued Phase-Coherent Transformers · Papers With Lean</title>
+<meta name="description" content="Complex-valued Transformers have inherited softmax attention over the raw complex inner product. Outside natively complex domains this standard form stays near chance, and no complex attention had been shown to correct it. We show that the match must be a scaled cosine score:…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Complex-valued Phase-Coherent Transformers">
+<meta property="og:description" content="Complex-valued Transformers have inherited softmax attention over the raw complex inner product. Outside natively complex domains this standard form stays near chance, and no complex attention had been shown to correct it. We show that the match must be a scaled cosine score:…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.22415.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.22415.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.22415v1" target="_blank" rel="noopener"><img src="../thumbs/2609.22415.jpg" alt="First page of Complex-valued Phase-Coherent Transformers"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Complex-valued Phase-Coherent Transformers</h1>
+        <p class="authors">Leona Hioki</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Sep 18, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.22415v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.22415" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/leohio/phase-coherent-transformer-r-d" target="_blank" rel="noopener" title="leohio/phase-coherent-transformer-r-d">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Global phase-rotation equivariance and depth-uniform stability of the attention family are formalised in Lean 4 with Mathlib, sorry-free, in the released repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Complex-valued Transformers have inherited softmax attention over the raw complex inner product. Outside natively complex domains this standard form stays near chance, and no complex attention had been shown to correct it. We show that the match must be a scaled cosine score: L2-normalise queries and keys, so the score reads their cosine similarity and ignores their magnitudes, and hold that score at order-one scale. With this the same models train on four diagnostic tasks under two different gates; without the normalisation they stay at chance on ListOps and Needle under both gates and fall far below on the other two, and a normalised score placed at too small a scale fails as well. The resulting family of phase-coherent Transformers (\PCT) matches or exceeds the strongest real-valued baseline across long-range memory, positional retrieval, hierarchical reasoning, frequency-domain classification and physical complex signals; it shows no degradation up to depth 20; and its loss decreases log-linearly over a 61-fold range of parameters. A member of the family, complex screening combined with a phase-coherent recurrence, is the first genuinely complex-valued neural network to solve Path-X, with 91.6% of its trainable parameters complex-valued against 38.2% for S4. We record these as signs of generalisation not previously seen in complex-valued neural networks.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Complex-valued Transformers that apply softmax to the raw complex inner product stay near chance on discrete tasks outside natively complex domains. Which property of the attention score path decides whether a complex Transformer trains had not been isolated.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Queries and keys are L2-normalised and scored by the real part of their complex cosine similarity scaled by sqrt(d_h), followed by a real-valued gate (sigmoid, L2-softmax, or screening). This defines the phase-coherent Transformer (PCT) family. The family is compared against parameter-matched real and complex baselines on nine benchmark rows. A complex screening gate is combined with an LRU-style phase-coherent recurrence for Path-X. Equivariance under global phase rotation and depth-uniform stability are machine-checked in Lean 4 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">PCT matches or exceeds the strongest real baseline (real screening) on most tasks, for example 0.854 vs 0.698 on ListOps. It shows no degradation up to depth 20, and its loss decreases log-linearly with scale. The screening plus recurrence model solves Path-X at 92.71% with 91.6% of its parameters complex-valued.</p><div class="sum-table"><table><thead><tr><th>task</th><th>c_softmax</th><th>r_screen</th><th>PCT</th></tr></thead><tbody><tr><td>Copy d=2000</td><td>0.100</td><td>1.000</td><td>1.000</td></tr><tr><td>Needle L=2048</td><td>0.000</td><td>1.000</td><td>1.000</td></tr><tr><td>ListOps L=1024</td><td>0.104</td><td>0.698</td><td>0.854</td></tr><tr><td>LRA-Image (CIFAR)</td><td>0.232</td><td>0.318</td><td>0.372</td></tr></tbody></table><div class="tbl-cap">Unnormalised complex softmax vs PCT vs strongest real baseline (selected rows)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

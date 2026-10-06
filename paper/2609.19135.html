@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exponential Hardness of Off-Policy Evaluation under History-Dependent Logging · Papers With Lean</title>
+<meta name="description" content="Can a logged dataset visit every hidden state frequently and still be exponentially uninformative about a target policy&#x27;s value? We show that it can when the logger depends on history. For every horizon $H \ge 3$, we construct two POMDPs with at most two latent states per stage,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Exponential Hardness of Off-Policy Evaluation under History-Dependent Logging">
+<meta property="og:description" content="Can a logged dataset visit every hidden state frequently and still be exponentially uninformative about a target policy&#x27;s value? We show that it can when the logger depends on history. For every horizon $H \ge 3$, we construct two POMDPs with at most two latent states per stage,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.19135.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.19135.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.19135v1" target="_blank" rel="noopener"><img src="../thumbs/2609.19135.jpg" alt="First page of Exponential Hardness of Off-Policy Evaluation under History-Dependent Logging"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Exponential Hardness of Off-Policy Evaluation under History-Dependent Logging</h1>
+        <p class="authors">Pranaya Jajoo</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Sep 16, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-orange" href="../#tag=probability">probability</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.19135v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.19135" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/pranayajajoo/pomdp-logging-hardness" target="_blank" rel="noopener" title="pranayajajoo/pomdp-logging-hardness">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The main exponential lower bound, the finite-sample minimax error characterization, and the matching sample-complexity bounds are formalized and verified in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Can a logged dataset visit every hidden state frequently and still be exponentially uninformative about a target policy&#x27;s value? We show that it can when the logger depends on history. For every horizon $H \ge 3$, we construct two POMDPs with at most two latent states per stage, three actions, and a common logger with three memory states. Action coverage, belief coverage, and two behavior-marginal outcome-revealing conditions all have constants independent of $H$. Nevertheless, evaluating a known deterministic target policy to accuracy $1/8$ requires $Θ((3/2)^H \log(1/δ))$ logged episodes at confidence $1-δ$, for $0 &lt; δ\le 1/4$, even when both candidate models are known. The mechanism is simple: a reset erases the unknown transition that determines the target value. We characterize the resulting statistical experiment exactly and obtain a matching optimal estimator. A directed two-lane gridworld realizes the construction, and trajectory simulations agree with its finite-sample prediction. The result establishes intractability for the history-dependent-logging, model-based case posed by Zhang and Jiang (2025, arXiv:2503.01134), under their behavior-marginal definition of revealing.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Whether coverage and outcome-revealing conditions suffice for sample-efficient off-policy evaluation in POMDPs when the logging policy depends on history. This is the model-based, history-dependent-logging case posed by Zhang and Jiang (2025).</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Two POMDPs are built for every horizon H ≥ 3, with at most two latent states per stage, three actions, and a three-memory-state logger. Gates reset the hidden lane and erase the unknown first transition that determines the target policy&#x27;s value. An exact reduction to a three-symbol experiment yields a matching optimal estimator. The main proofs are formalized in Lean 4, and a two-lane gridworld simulation checks the finite-sample predictions.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Action coverage, belief coverage, and both revealing constants stay independent of H. Even so, evaluating the target to accuracy 1/8 needs Θ((3/2)^H log(1/δ)) episodes. In simulations, observed failure rates at the analytic 90%-success thresholds range from 8.6% to 10.2%. These thresholds grow from 43 episodes at H=4 to 143,982 at H=24.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
