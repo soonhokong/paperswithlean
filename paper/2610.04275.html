@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Symbolic Search Is Not Exhausted: Persistent Proof-Space Exploration in Lean4 · Papers With Lean</title>
+<meta name="description" content="Formal theorem proving increasingly combines learned semantic guidance with verified symbolic execution. The quality of the symbolic search substrate therefore determines how much useful mathematical structure can be accumulated, reused, and exposed under a finite inference…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Symbolic Search Is Not Exhausted: Persistent Proof-Space Exploration in Lean4">
+<meta property="og:description" content="Formal theorem proving increasingly combines learned semantic guidance with verified symbolic execution. The quality of the symbolic search substrate therefore determines how much useful mathematical structure can be accumulated, reused, and exposed under a finite inference…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.04275.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.04275.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.04275v1" target="_blank" rel="noopener"><img src="../thumbs/2610.04275.jpg" alt="First page of Symbolic Search Is Not Exhausted: Persistent Proof-Space Exploration in Lean4"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Symbolic Search Is Not Exhausted: Persistent Proof-Space Exploration in Lean4</h1>
+        <p class="authors">Ruoran Xu</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Oct 3, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.04275v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.04275" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/RuoranXu/ViaLean" target="_blank" rel="noopener" title="RuoranXu/ViaLean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds ViaLean, a model-free Lean 4 prover that searches a persistent proof-state graph, and evaluates it on Lean miniF2F with Mathlib leaf closure.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Formal theorem proving increasingly combines learned semantic guidance with verified symbolic execution. The quality of the symbolic search substrate therefore determines how much useful mathematical structure can be accumulated, reused, and exposed under a finite inference budget. We introduce ViaLean, a Lean4 prover that organizes symbolic reasoning as bounded exploration of a persistent proof-state graph. Its search preserves coverage across complementary reasoning modes, merges semantically equivalent goals, retains verified intermediate structure, and observes short symbolic futures before committing to a transition. On the complete miniF2F test split, the model-free configuration solves 122/244 problems (50.0% pass@1). Historical and recent symbolic reference points range from Lean&#x27;s earlier tidy search to modern grind and SMT-backed verification, showing that proof-space organization remains a substantial source of capability. The same persistent state also provides a natural interface for neural–symbolic agents: neural reasoning can operate over verified regions and intermediate objects while Lean continuously expands and validates the local proof space.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Learned provers have improved Lean theorem proving quickly, but the symbolic search layer that turns a finite inference budget into finished proofs is still largely unexplored. The question is how much capability comes from better organization of the proof space alone.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ViaLean represents each proof attempt as a bounded Atlas: a graph whose vertices are semantic proof states and whose edges are typed, replayable transitions. Candidate generation is split into symbolic perspectives (normalization, rewriting, elimination, construction, forward closure, and others) and merged round-robin under per-perspective caps. Equivalent goals are merged, verified intermediate structure is kept across visits, and short symbolic futures are explored before committing to a branch. The Atlas also serves as an interface for neural agents, whose proposals Lean elaborates and verifies.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.04275/fig_overview.png" alt=""><figcaption>Figure 1: Persistent proof-space exploration in ViaLean . A Lean goal is canonicalized into a semantic state, expanded through a diversity-balanced symbolic frontier, accumulated in a persistent Proof Atlas, and closed through bounded verified solvers. The Atlas also forms a shared state for optional neural guidance over regions, intermediate objects, and future symbolic expansion.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With no model, ViaLean solves 122/244 miniF2F-test problems (50.0% pass@1). This exceeds the reported Lean grind (32.4%), Dafny (38.9%) and Lean tidy (18.0%) results and matches DeepSeek-Prover-V1.5-RL at pass@32.</p><div class="sum-table"><table><thead><tr><th>System</th><th>Regime</th><th>Test</th><th>Setting</th></tr></thead><tbody><tr><td>Lean tidy</td><td>symbolic</td><td>18.0%</td><td>pass@1</td></tr><tr><td>Lean grind</td><td>symbolic</td><td>32.4%</td><td>79/244, no model</td></tr><tr><td>Dafny verifier</td><td>symbolic</td><td>38.9%</td><td>95/244</td></tr><tr><td>ViaLean</td><td>symbolic</td><td>50.0%</td><td>122/244, pass@1</td></tr><tr><td>Goedel-Prover-SFT</td><td>learned</td><td>57.6%</td><td>pass@32</td></tr></tbody></table><div class="tbl-cap">Selected miniF2F-test reference points</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

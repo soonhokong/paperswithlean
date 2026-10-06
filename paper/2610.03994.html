@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solving VeriContest with a Lean-Backed Rust Verifier · Papers With Lean</title>
+<meta name="description" content="VeriContest is a benchmark of 1007 competitive-programming problems in Rust, each with a Verus specification, a judge-accepted solution, and a Verus proof. Its authors report that proof generation is the bottleneck for frontier models: given the specification and the code, the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Solving VeriContest with a Lean-Backed Rust Verifier">
+<meta property="og:description" content="VeriContest is a benchmark of 1007 competitive-programming problems in Rust, each with a Verus specification, a judge-accepted solution, and a Verus proof. Its authors report that proof generation is the bottleneck for frontier models: given the specification and the code, the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.03994.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.03994.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.03994v1" target="_blank" rel="noopener"><img src="../thumbs/2610.03994.jpg" alt="First page of Solving VeriContest with a Lean-Backed Rust Verifier"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Solving VeriContest with a Lean-Backed Rust Verifier</h1>
+        <p class="authors">Traian Serbanuta, Jun Xu, Andrei Stefanescu, Cosmin Radoi</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Oct 2, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.SE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.03994v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.03994" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Translates Rust code and Verus specifications into Lean 4 theorems, which LLM agents prove with Lean&#x27;s kernel as the final check.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">VeriContest is a benchmark of 1007 competitive-programming problems in Rust, each with a Verus specification, a judge-accepted solution, and a Verus proof. Its authors report that proof generation is the bottleneck for frontier models: given the specification and the code, the best model produces an accepted Verus proof for 13.95% of the problems on the first attempt. We report on solving the same proof-generation task with Rust-Prover, a verifier for Rust backed by Lean 4. The Verus specification and the Rust code are restated and translated into Lean, each specification becomes a theorem, and agents prove the theorems with Lean&#x27;s kernel as the final check. All 1325 theorems of all 1007 problems were proved. 1259 of them were proved in one run of under 32 hours on Claude Opus 5.5, at a median of 3.2 minutes and $1.17 per proof, and 70% of them on the first iteration. The restated specifications were checked against the benchmark&#x27;s test suites, and reviewed where no suite applies. None was wrong or weakened. The translated Lean programs were run on 21,413 of the benchmark&#x27;s test cases and produced the same output as the Rust programs on every one. Across four Claude and four GPT models at five reasoning-effort settings, every current frontier model proves nearly all of a ten-theorem sample at every setting, and more effort raises the cost without raising the number of proofs. The cheapest Claude setting, Sonnet 5.5 at low effort, proves all of the 50 hardest theorems. We also rerun the benchmark&#x27;s own Verus protocol with Claude Opus 5.5 on the 50 problems with the longest reference proofs. Opus 5.5 alone fails to prove one of them.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">VeriContest is a benchmark of 1007 Rust competitive-programming problems with Verus specifications. Its authors report proof generation as the bottleneck, with the best model reaching 13.95% pass@1 on ProofGen.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Rust-Prover restates each Verus specification as an executable Rust spec, using a transpiler where possible and an agent otherwise. It then translates the code and spec into Lean 4, where each spec becomes a theorem. Automated tactics and LLM agents prove the theorems, and Lean&#x27;s kernel checks them. The restated specs are validated against the benchmark test suites or by review, and the translated Lean programs are differentially tested against the Rust programs.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">All 1325 theorems across 1007 problems were proved using only Lean&#x27;s standard axioms. In one run, 1259 proofs took a median of 3.2 minutes and $1.17 each, with 70% accepted on the first iteration. Most frontier models prove nearly all of a 10-theorem sample, and Sonnet 5.5 at low effort proves all 50 hardest theorems.</p><div class="sum-table"><table><thead><tr><th>Per proof</th><th>Median</th><th>Mean</th><th>90th pct</th><th>Max</th></tr></thead><tbody><tr><td>Time</td><td>3.2 min</td><td>4.1 min</td><td>7.7 min</td><td>69.7 min</td></tr><tr><td>Iterations (budget 40)</td><td>1</td><td>1.47</td><td>3</td><td>7</td></tr><tr><td>Cost</td><td>$1.17</td><td>$1.28</td><td>$2.22</td><td>$5.67</td></tr></tbody></table><div class="tbl-cap">Per-proof statistics for the main Claude Opus 5.5 run</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

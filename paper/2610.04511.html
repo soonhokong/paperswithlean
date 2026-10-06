@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Library-Grade Modal Logic · Papers With Lean</title>
+<meta name="description" content="Modal logic comprises a broad family of logics to reason about relational structures. The literature presents many such logics, displaying diverse operators, semantics, and applications. This plurality is reflected in a zoo of mechanised modal logics, which often duplicate…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Library-Grade Modal Logic">
+<meta property="og:description" content="Modal logic comprises a broad family of logics to reason about relational structures. The literature presents many such logics, displaying diverse operators, semantics, and applications. This plurality is reflected in a zoo of mechanised modal logics, which often duplicate…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.04511.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.04511.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.04511v1" target="_blank" rel="noopener"><img src="../thumbs/2610.04511.jpg" alt="First page of Library-Grade Modal Logic"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Library-Grade Modal Logic</h1>
+        <p class="authors">Marianna Girlando, Fabrizio Montesi</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Oct 3, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-slate" href="../#tag=logic">logic</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.04511v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.04511" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/leanprover/cslib" target="_blank" rel="noopener" title="leanprover/cslib">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a generic polyadic modal logic library in Lean within CSLib, reusing Mathlib&#x27;s PFunctor, and derives several modal logics plus applications.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Modal logic comprises a broad family of logics to reason about relational structures. The literature presents many such logics, displaying diverse operators, semantics, and applications. This plurality is reflected in a zoo of mechanised modal logics, which often duplicate syntax, semantics, metatheory, and reasoning infrastructure. We present a library-grade formalisation of modal logic in Lean, developed as part of CSLib (the Lean Computer Science Library) and designed around two complementary forms of reuse: vertical reuse, whereby specialised logics inherit from common abstractions, and horizontal reuse, whereby modal logic becomes a reasoning tool for independently formalised domains. Our development provides a generic framework for polyadic modal languages, reusable metatheory and proof automation, and derived interfaces for specialised modal logics. We exemplify our infrastructure by deriving basic modal logic, basic temporal logic, and Hennessy-Milner Logic; the latter subsumes and extends CSLib&#x27;s previous implementation while reducing its logic-specific code by 67%. We further apply the same modal infrastructure to reasoning about mathematics (radicals of ideals), theory of programming languages (the type safety strategy for the simply typed $λ$-calculus), and concurrency theory (reasoning about processes in the Calculus of Communicating Systems). Our experience suggests that reuse, automation, and integration with the strong Lean ecosystem should be treated as first-class design concerns when formalising theories for shared libraries.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Mechanised modal logics are typically developed independently, so each one duplicates its syntax, semantics, metatheory and reasoning infrastructure. CSLib, the Lean computer science library, needed a reusable foundation for modal logic instead of ad-hoc developments.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Modal similarity types are generalised to Mathlib polynomial functors, allowing operators of arbitrary, possibly infinite arity. On top of this sits a generic framework for polyadic modal languages, frames and satisfaction. The framework provides reusable metatheory, including axioms, frame-condition correspondences and logical equivalence, along with proof automation. Derived interfaces cover unary and unimodal logics and Lean predicates and containers. These support vertical reuse, where specialised logics inherit the generic machinery, and horizontal reuse, where modal logic serves as a tool for other formalised domains.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Basic modal logic, basic temporal logic and Hennessy–Milner Logic are derived from the framework, cutting HML&#x27;s logic-specific code by 67% and basic modal logic&#x27;s by 39%. The infrastructure is also applied to radicals of ideals, type safety of the simply typed λ-calculus, and CCS processes.</p><div class="sum-table"><table><thead><tr><th>Metric</th><th>HML Before</th><th>HML After</th><th>HML Red. (%)</th><th>BML Before</th><th>BML After</th><th>BML Red. (%)</th></tr></thead><tbody><tr><td>Lines of code</td><td>686</td><td>224</td><td>67.3</td><td>980</td><td>596</td><td>39.2</td></tr><tr><td>Theorems/lemmas</td><td>43</td><td>12</td><td>72.1</td><td>69</td><td>39</td><td>43.5</td></tr><tr><td>Definitions</td><td>14</td><td>1</td><td>92.9</td><td>28</td><td>19</td><td>32.1</td></tr><tr><td>Instances</td><td>19</td><td>0</td><td>100.0</td><td>19</td><td>6</td><td>68.4</td></tr></tbody></table><div class="tbl-cap">Code reduction after refactoring onto the generic framework</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
