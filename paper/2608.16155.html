@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>REFLEX: Reflexive Equilibrium Fixed-point Learning for Endogenous eXchanges · Papers With Lean</title>
+<meta name="description" content="In over-the-counter corporate bond markets, dealers compete for client trades by quoting bid and ask prices. Tighter quotes attract more business, but also informed customers more likely to trade ahead of adverse price moves, leaving the dealer holding the risk. As dealers…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="REFLEX: Reflexive Equilibrium Fixed-point Learning for Endogenous eXchanges">
+<meta property="og:description" content="In over-the-counter corporate bond markets, dealers compete for client trades by quoting bid and ask prices. Tighter quotes attract more business, but also informed customers more likely to trade ahead of adverse price moves, leaving the dealer holding the risk. As dealers…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.16155.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.16155.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.16155v1" target="_blank" rel="noopener"><img src="../thumbs/2608.16155.jpg" alt="First page of REFLEX: Reflexive Equilibrium Fixed-point Learning for Endogenous eXchanges"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">REFLEX: Reflexive Equilibrium Fixed-point Learning for Endogenous eXchanges</h1>
+        <p class="authors">Vignesh Nagarajan, Shriraghav Ashok</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Aug 17, 2026 · v1</span>
+          <span class="badge">cs.CE</span> <span class="badge">cs.GT</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-lime" href="../#tag=economics">economics</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.16155v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.16155" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/vignesh-nagarajan-vn/REFLEX" target="_blank" rel="noopener" title="vignesh-nagarajan-vn/REFLEX">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Logical skeletons of the six stability results are written in Lean 4 against Mathlib and released in the repository, but they are not yet compiled or checked.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">In over-the-counter corporate bond markets, dealers compete for client trades by quoting bid and ask prices. Tighter quotes attract more business, but also informed customers more likely to trade ahead of adverse price moves, leaving the dealer holding the risk. As dealers increasingly use machine learning to set quotes, they retrain these models on the trades their own quotes attract, creating a feedback loop in which each model reshapes the market that generates its next training data. The question is therefore not only whether a quoting model performs well, but whether the market it creates stays stable as the model learns from it. Existing performative prediction theory gives a sharp stability condition, yet expresses it through abstract properties of the learning objective a trading desk cannot measure before deployment. We introduce REFLEX, a framework that replaces those unobservable quantities with three measurable features of dealer behavior: how strongly trading volume responds to tighter quotes, how sharply the dealer&#x27;s objective bends around its optimum, and how quickly informed flow increases as spreads narrow. REFLEX combines these into a single retraining modulus, a pre-deployment stability margin estimated from a desk&#x27;s own quote and execution history that predicts whether repeated retraining will converge or amplify itself. In simulation, predicted and measured stability agree within 8%, and competing dealers increase instability by 1.74x with two and 3.16x with three, as predicted. Where ordinary retraining becomes unstable at modulus 1.21, a structurally anchored correction converges as blind retraining collapses. Calibrated over 36 years of public market data, stability headroom falls roughly 4.4x for investment grade and 4.3x for high yield from calm to crisis regimes. Ultimately, REFLEX turns an abstract convergence theorem into a market-level safety margin.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Dealers in OTC corporate bond markets retrain ML quoting models on flow their own quotes induce. This is a performative-prediction loop whose stability constants (epsilon, beta, gamma) are abstract and cannot be measured before deployment.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">REFLEX embeds performative prediction in a GLFT-style market-making model. It derives the stability constants in closed form from fill-curve curvature, P&amp;L scale, and toxic-flow slope, giving a retraining modulus m = epsilon*beta/gamma. Closed-form extensions cover PerfGD correction, multi-dealer competition, finite samples, multi-bond factor scaling, and lazy deployment. Each is checked against a learned simulator loop and backed by 66 numerical certificates plus uncompiled Lean 4/Mathlib formal skeletons.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.16155/phase_diagram_toxicity_feedback.png" alt=""><figcaption>Figure 2. Predict-then-verify phase diagram over the feedback gain f : measured modulus (median, IQR band, and R4 robust band over 8 seeds) against the a-priori closed form at the probe spread and the saturating fixed-point curve, with the measured ( f^{*}\approx 3.17 ) and predicted ( 4.70 ) crossings marked.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Predicted and measured stability agree within 8%, and competition amplifies instability by 1.74x with two dealers and 3.16x with three. A structurally anchored correction converges where blind retraining collapses, at modulus 1.21. On 36 years of data, stability headroom falls about 4.4x for investment grade and 4.3x for high yield from calm to crisis regimes.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.16155/fragility_index.png" alt=""><figcaption>Figure 1. The daily market-fragility index, 1990–2026: the R1 closed forms evaluated on real data. Top: \mathrm{fragility}(t)=\mathrm{median}(\varepsilon^{*})/\varepsilon^{*}(t) for IG (solid) and HY (dashed), with the Lehman and COVID-freeze dates marked. Bottom: the VIX spine, colored by volatility regime. The crisis plateau reflects the degenerate crisis-cell fit and is flagged, not hidden.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2608.16155/perfgd_ml_loops.png" alt=""><figcaption>Figure 4. Left: half-spread trajectories of the four learned retraining loops from a common seed in the RRM-unstable regime (the frozen-reference h_{\mathrm{PO}} and h_{\mathrm{SP}} lines are context, not the benchmark; Sec. 6.5 ). Blind RRM collapses; the structurally anchored loop converges to the realized performative optimum. Right: the three-way ML \leftrightarrow theory seam, showing the fre</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Certificate family</th><th>raw</th><th>calib.</th><th>worst resid.</th><th>tol.</th></tr></thead><tbody><tr><td>R1 analytic boundary</td><td>5/5</td><td>5/5</td><td>6.8e-2</td><td>8e-2</td></tr><tr><td>R3 multi-dealer</td><td>6/6</td><td>6/6</td><td>2.2e-16</td><td>1e-9</td></tr><tr><td>R4 robust boundary</td><td>7/7</td><td>7/7</td><td>3.2e-2</td><td>1e-1</td></tr><tr><td>R6 lazy deployment</td><td>6/6</td><td>6/6</td><td>1.1e-16</td><td>1e-12</td></tr></tbody></table><div class="tbl-cap">Numerical proof certificates (raw + calibrated configurations)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

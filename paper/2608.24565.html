@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MGQL: An Executable, Small-Step Semantics of GQL · Papers With Lean</title>
+<meta name="description" content="ISO Graph Query Language (GQL) is the first international standard for property graph-based graph query languages, standardized as ISO/IEC 39075 in 2024. However, ISO/IEC 39075 codifies its semantics informally across 600+ pages of prose, making it difficult to formally reason…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MGQL: An Executable, Small-Step Semantics of GQL">
+<meta property="og:description" content="ISO Graph Query Language (GQL) is the first international standard for property graph-based graph query languages, standardized as ISO/IEC 39075 in 2024. However, ISO/IEC 39075 codifies its semantics informally across 600+ pages of prose, making it difficult to formally reason…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.24565.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.24565.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.24565v1" target="_blank" rel="noopener"><img src="../thumbs/2608.24565.jpg" alt="First page of MGQL: An Executable, Small-Step Semantics of GQL"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">MGQL: An Executable, Small-Step Semantics of GQL</h1>
+        <p class="authors">Aditya Thimmaiah, Tong-Nong Lin, Milos Gligoric</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Aug 25, 2026 · v1</span>
+          <span class="badge">cs.DB</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=type-theory">type-theory</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.24565v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.24565" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/EngineeringSoftware/mgql" target="_blank" rel="noopener" title="EngineeringSoftware/mgql">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Mechanizes a small-step semantics, schema-aware type system, and type soundness proof for a GQL fragment in Lean 4, totaling about 23,000 lines.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">ISO Graph Query Language (GQL) is the first international standard for property graph-based graph query languages, standardized as ISO/IEC 39075 in 2024. However, ISO/IEC 39075 codifies its semantics informally across 600+ pages of prose, making it difficult to formally reason about the standard or for a standard-faithful implementation. Existing formalizations are not adequate because they either: (1) significantly reduce the semantic complexity by omitting bag semantics, schemas, and composite queries on multiple graphs; (2) or significantly reduce the syntactic complexity by only considering isolated fragments such as pattern-matching, leaving the full query pipeline unformalized. Yet it is these semantic-syntactic features that make formalizing GQL non-trivial. We present MGQL, the first mechanized, small-step operational semantics for a substantial read-only fragment of GQL that is grounded in the ISO/IEC 39075 standard. Our formalization models multi-graph property graphs with mixed edge directionality and supports a large fraction of GQL pattern constructs: quantified paths and edges, directional and undirected matching, label expressions, pattern lists, and composite queries. The semantics is supported by a schema-aware type system that refines variable types via closed-graph schemas, tracks nullability, supports multiple composite query operators, and models quantified-path bindings with list types. We prove that our type system is sound, ensuring an end-to-end guarantee of well-formed queries yielding results that conform to their declared schemas. MGQL provides the first bridge between GQL&#x27;s informal specification and a mechanized implementation, enabling formal reasoning about correctness.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">ISO GQL (ISO/IEC 39075) specifies its semantics informally across 600+ pages of prose. Existing formalizations omit bag semantics, schemas, and composite queries, or cover only isolated fragments such as pattern matching.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">MGQL defines an executable small-step operational semantics for a substantial read-only GQL fragment. The fragment covers multi-graph property graphs, quantified paths, directional and undirected matching, label expressions, pattern lists, and composite queries. A schema-aware type system refines types via closed-graph schemas, tracks nullability, and types quantified-path bindings as lists. Everything is mechanized in Lean 4 with inductive typing and step relations, plus an executable type checker.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">A type soundness theorem is proved: well-formed queries yield binding tables conforming to their declared schemas, with progress and preservation for the small-step layer. The mechanization spans about 23,655 lines in 14 modules, has zero sorry or user axioms, and is tested on LDBC SNB queries.</p><div class="sum-table"><table><thead><tr><th>Module</th><th>Content</th><th>LoC</th></tr></thead><tbody><tr><td>Typing.lean</td><td>Typing judgments</td><td>1,133</td></tr><tr><td>SmallStep.lean</td><td>Step relations</td><td>2,267</td></tr><tr><td>Metatheory.lean</td><td>Soundness proofs</td><td>14,057</td></tr><tr><td>TypeChecker.lean</td><td>Executable checker</td><td>1,364</td></tr><tr><td>Total</td><td></td><td>23,655</td></tr></tbody></table><div class="tbl-cap">Selected modules of the Lean 4 mechanization</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

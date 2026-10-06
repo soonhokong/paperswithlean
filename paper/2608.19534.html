@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AEGIS: Attention-Embedding Gradient Isolation Shield - Triple-Channel Gradient Masking for Privacy-Preserving Federated LLM Fine-Tuning · Papers With Lean</title>
+<meta name="description" content="Gradient inversion attacks recover private training text from gradients shared in federated learning, posing a serious threat to collaborative model training. Through our analysis of transformer gradient structure, we identify three channels through which private token…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AEGIS: Attention-Embedding Gradient Isolation Shield - Triple-Channel Gradient Masking for Privacy-Preserving Federated LLM Fine-Tuning">
+<meta property="og:description" content="Gradient inversion attacks recover private training text from gradients shared in federated learning, posing a serious threat to collaborative model training. Through our analysis of transformer gradient structure, we identify three channels through which private token…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.19534.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.19534.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.19534v1" target="_blank" rel="noopener"><img src="../thumbs/2608.19534.jpg" alt="First page of AEGIS: Attention-Embedding Gradient Isolation Shield - Triple-Channel Gradient Masking for Privacy-Preserving Federated LLM Fine-Tuning"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">AEGIS: Attention-Embedding Gradient Isolation Shield - Triple-Channel Gradient Masking for Privacy-Preserving Federated LLM Fine-Tuning</h1>
+        <p class="authors">Ye Tao, Hong Shen, Hui Tian, Xin Wang, Can Wang</p>
+        <div class="row">
+          <span class="badge">cs.CR</span>
+          <span class="date">Aug 20, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.19534v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.19534" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 formalizations of the core theorems and propositions behind the privacy guarantees for Channels 1 and 2 are provided in the supplementary material.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Gradient inversion attacks recover private training text from gradients shared in federated learning, posing a serious threat to collaborative model training. Through our analysis of transformer gradient structure, we identify three channels through which private token information leaks: the attention output projection gradient exposes a low-rank subspace that encodes input embeddings (Channel 1), the embedding gradient&#x27;s row-norm sparsity directly reveals which tokens are present (Channel 2), and the MLP expansion gradient carries a recoverable subspace signal analogous to Channel 1 (Channel 3). State-of-the-art attacks exploit these channels analytically to achieve near-exact token recovery in seconds. Existing defences address at most one channel and either degrade model utility or leave the remaining structural signals intact. We introduce AEGIS (Attention-Embedding Gradient Isolation Shield), a lightweight defence that closes all three analytical channels with three backward-path operations requiring no architectural changes: freezing attention projection parameters eliminates Channel 1 by construction, calibrated noise injection into the embedding gradient destroys Channel 2&#x27;s token-presence signal, and analogous per-block noise injection into the MLP expansion gradient masks Channel 3. The same masked gradient drives both the local optimiser step and the server export, so no clean signal is retained on either side. Evaluated across 11 models and six datasets, AEGIS reduces token recovery rates to near zero against a range of gradient inversion attacks, both analytical and optimisation-based, while preserving or improving model utility. We provide formal guarantees for Channels 1 and 2 and validate the full defence empirically against adaptive adversaries with complete knowledge of the mechanism.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Gradient inversion attacks recover private training text from gradients shared during federated LLM fine-tuning. Transformer gradients leak tokens through three analytical channels: the attention output-projection subspace, embedding-gradient row-norm sparsity, and the MLP expansion subspace. Existing defences close at most one of these channels.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">AEGIS applies three backward-path operations without architectural changes. It freezes attention parameters to close Channel 1, injects calibrated dense noise into the embedding gradient to hide Channel 2, and applies analogous per-block noise to the MLP expansion gradient to mask Channel 3. The same masked gradient drives both the local optimiser step and the server export. The paper proves guarantees for Channels 1 and 2, with Lean 4 formalizations of the theorem cores supplied as supplementary material.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.19534/aegis_overview.png" alt=""><figcaption>Fig. 1: Overview of the AEGIS mechanism. Channel 1 (the attention bottleneck) is neutrallised via freezing, while Channel 2 (embedding rows) and Channel 3 (the first MLP projection \mathbf{W}_{\mathrm{fc}} ) are obscured through mathematically calibrated dense Gaussian uniformisation. Downstream utility is maintained via the remaining unaffected trainable parameters (e.g., \mathbf{W}_{\mathrm{proj</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Across 11 models (110M–13B parameters) and six datasets, AEGIS reduces token recovery to near zero against analytical and optimisation-based attacks, including adaptive adversaries. Utility is preserved or improved. Step time is 1.10–1.22× undefended training, with lower peak memory and smaller gradient payload.</p><div class="sum-table"><table><thead><tr><th>Defence</th><th>Step time</th><th>Peak memory</th><th>Dense payload</th></tr></thead><tbody><tr><td>Undefended</td><td>1.00×</td><td>1.00×</td><td>1.00×</td></tr><tr><td>DP-SGD</td><td>2.31–7.53×</td><td>1.35–1.49×</td><td>1.00×</td></tr><tr><td>Pruning (90%)</td><td>1.34–1.84×</td><td>1.00×</td><td>1.00×</td></tr><tr><td>Soteria</td><td>1.02–1.07×</td><td>1.00×</td><td>1.00×</td></tr><tr><td>AEGIS</td><td>1.10–1.22×</td><td>0.76–0.90×</td><td>0.68–0.77×</td></tr></tbody></table><div class="tbl-cap">Overhead comparison across GPT-2, GPT-2-XL, LLaMA-2-7B (multipliers vs. undefended)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

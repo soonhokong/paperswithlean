@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tensor constructions for Euler magic matrices and proper examples of orders 9, 27, 81 and 243 · Papers With Lean</title>
+<meta name="description" content="An Euler magic matrix is an integer matrix $M$ satisfying $MM^{\mathsf{T}}=γI$ together with two diagonal square-sum conditions; it is proper when its entry squares are pairwise distinct. M{ü}ller proved that Euler magic matrices exist in every order other than $3$, and that no…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tensor constructions for Euler magic matrices and proper examples of orders 9, 27, 81 and 243">
+<meta property="og:description" content="An Euler magic matrix is an integer matrix $M$ satisfying $MM^{\mathsf{T}}=γI$ together with two diagonal square-sum conditions; it is proper when its entry squares are pairwise distinct. M{ü}ller proved that Euler magic matrices exist in every order other than $3$, and that no…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.05530.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.05530.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.05530v1" target="_blank" rel="noopener"><img src="../thumbs/2609.05530.jpg" alt="First page of Tensor constructions for Euler magic matrices and proper examples of orders 9, 27, 81 and 243"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Tensor constructions for Euler magic matrices and proper examples of orders 9, 27, 81 and 243</h1>
+        <p class="authors">Sanjit Singh Mehat</p>
+        <div class="row">
+          <span class="badge">math.GM</span>
+          <span class="date">Sep 1, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.05530v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.05530" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Bome2017/run004-euler-magic-verification" target="_blank" rel="noopener" title="Bome2017/run004-euler-magic-verification">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Existence of proper Euler magic matrices of orders 9, 27, 81, 243 and the order-9 and order-27 construction instances are kernel-verified in Lean 4 with Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">An Euler magic matrix is an integer matrix $M$ satisfying $MM^{\mathsf{T}}=γI$ together with two diagonal square-sum conditions; it is proper when its entry squares are pairwise distinct. M{ü}ller proved that Euler magic matrices exist in every order other than $3$, and that no Euler magic matrix of order $3$ exists at all, while proper examples are considerably more restrictive. We describe a tensor construction whose factors are only required to satisfy the orthogonality equation $AA^{\mathsf{T}}=γI$: for a linear reindexing $L$ of the row index group $\mathbb{F}_3^k$ obeying an explicit support condition, the reindexed Kronecker product of $k$ such $3\times3$ factors satisfies the full Euler magic conditions in order $3^k$. Choosing factors whose entry squares have pairwise distinct products, we obtain proper Euler magic matrices of orders $9$, $27$, $81$ and $243$. The construction therefore produces proper examples in powers of three even though order three admits no Euler magic matrix, and the passage from the factors to the product is exactly where the Euler conditions are created rather than inherited. We give an explicit support condition on $L$ and show that it characterises the linear reindexings forcing the two Euler diagonal identities for every tuple of semi-magic factor arrays; over $\mathbb{F}_p$ with two factors, such a reindexing exists only when $p\le3$. The four existence results are formalised in Lean 4, as are the two instances of the construction used to obtain them; the order-$243$ certificate is taken from the archived development and was not rebuilt in preparing this paper, although its witness was reproduced here by exact integer arithmetic. Further proper examples of orders $729$ and $2187$ are verified by exact integer computation only.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Euler magic matrices are integer matrices with MM^T = γI whose two diagonals also have square-sum γ; a proper one has pairwise distinct entry squares. No Euler magic matrix of order 3 exists, and proper examples in odd orders above 5 were open.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A reindexed Kronecker product of 3×3 orthogonality factors is built using a linear reindexing L of F_3^k that satisfies an explicit support condition. This construction creates the diagonal conditions even though the individual factors violate them. Properness reduces to the factors&#x27; entry-square products being pairwise distinct, and suitable factors are found by search. The existence results and the specific constructions at L_9 and L_27 are formalised in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Proper Euler magic matrices of orders 9, 27, 81 and 243 are obtained and machine-checked in Lean; the order-243 certificate is inherited from an archived development rather than rebuilt. The support condition characterises the valid reindexings, and examples of orders 729 and 2187 are verified by exact integer computation only.</p><div class="sum-table"><table><thead><tr><th>Order</th><th>k</th><th>Factor constants</th><th>γ</th></tr></thead><tbody><tr><td>9</td><td>2</td><td>3249, 9025</td><td>5415²</td></tr><tr><td>27</td><td>3</td><td>5041, 9801, 11025</td><td>738045²</td></tr><tr><td>81</td><td>4</td><td>11025, 17161, 21609, 29241</td><td>345759435²</td></tr><tr><td>243</td><td>5</td><td>3249, 9025, 21609, 53361, 199809</td><td>82193088285²</td></tr></tbody></table><div class="tbl-cap">The four witnesses and their constants</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

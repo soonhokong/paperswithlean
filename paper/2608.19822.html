@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pod-Deployability in Kubernetes with Inter-Pod Affinity Constraints is PSPACE-Complete · Papers With Lean</title>
+<meta name="description" content="Kubernetes is the de-facto platform for container orchestration. Its scheduler combines resource capacities with label-based affinity and anti-affinity rules, and the interaction of these features can make the eventual placement of a pod. In this paper, we study the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pod-Deployability in Kubernetes with Inter-Pod Affinity Constraints is PSPACE-Complete">
+<meta property="og:description" content="Kubernetes is the de-facto platform for container orchestration. Its scheduler combines resource capacities with label-based affinity and anti-affinity rules, and the interaction of these features can make the eventual placement of a pod. In this paper, we study the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.19822.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.19822.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.19822v1" target="_blank" rel="noopener"><img src="../thumbs/2608.19822.jpg" alt="First page of Pod-Deployability in Kubernetes with Inter-Pod Affinity Constraints is PSPACE-Complete"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Pod-Deployability in Kubernetes with Inter-Pod Affinity Constraints is PSPACE-Complete</h1>
+        <p class="authors">Saverio Giallorenzo, Jacopo Mauro, Gianluigi Zavattaro</p>
+        <div class="row">
+          <span class="badge">cs.CC</span>
+          <span class="date">Aug 20, 2026 · v1</span>
+          <span class="badge">cs.DC</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.19822v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.19822" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.22025656" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The polynomial-time result and both PSPACE-hardness reductions (from 1-safe Petri-net coverability and bounded black pebbling) are mechanized and verified in Lean 4, with a Zenodo artifact.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Kubernetes is the de-facto platform for container orchestration. Its scheduler combines resource capacities with label-based affinity and anti-affinity rules, and the interaction of these features can make the eventual placement of a pod. In this paper, we study the pod-deployability problem: given an initial cluster, a pod type, and a designated node, does some legal sequence of pod deployments and deletions cover the target pair? We give three complexity results. First, when dynamic constraints contain no affinity (anti-affinity is allowed), pod-deployability is decidable in polynomial time. Second, required affinity together with required anti-affinity makes the problem PSPACE-complete. Third, required affinity alone is already enough for PSPACE-completeness on a single node with one scalar capacity. The lower bounds encode, respectively, 1-safe Petri-net coverability and bounded black pebbling. These results isolate two independent sources of state-space complexity in Kubernetes scheduling: logical exclusion and resource-bounded prerequisite management.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Kubernetes schedules pods using resource capacities and label-based inter-pod affinity and anti-affinity rules. The question studied is pod-deployability: can some legal sequence of deployments and deletions place a given pod type on a designated node, for example across a security boundary?</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors formalize the hard scheduling constraints of the Kubernetes scheduler as a transition system over cluster configurations and cast pod-deployability as a coverability problem. Lower bounds come from reductions from 1-safe Petri-net goal coverability and from bounded black-pebble coverability. The encodings and their correctness proofs are mechanized in a Lean 4 library.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Without affinity (anti-affinity allowed), pod-deployability is decidable in polynomial time. Required affinity combined with anti-affinity makes it PSPACE-complete. Required affinity alone is already PSPACE-complete on a single node with one scalar capacity and unit resource requests.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

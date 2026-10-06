@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ALPS: Measuring Valid Creativity in Large Language Models with Mathematical Construction · Papers With Lean</title>
+<meta name="description" content="Large language models produce outputs presented as discoveries - new proofs, conjectures, or molecules. Whether such an output that appears creative is truly original and effective is hard to establish: open-ended outputs require subjective judgment, the output may replicate…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ALPS: Measuring Valid Creativity in Large Language Models with Mathematical Construction">
+<meta property="og:description" content="Large language models produce outputs presented as discoveries - new proofs, conjectures, or molecules. Whether such an output that appears creative is truly original and effective is hard to establish: open-ended outputs require subjective judgment, the output may replicate…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.15979.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.15979.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.15979v1" target="_blank" rel="noopener"><img src="../thumbs/2608.15979.jpg" alt="First page of ALPS: Measuring Valid Creativity in Large Language Models with Mathematical Construction"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">ALPS: Measuring Valid Creativity in Large Language Models with Mathematical Construction</h1>
+        <p class="authors">Eric Xie, Wenqian Ye, Aidong Zhang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Aug 17, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.15979v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.15979" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/EricX22/ALPS" target="_blank" rel="noopener" title="EricX22/ALPS">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Benchmark judge verifies trivial-side submissions as Lean proofs checked by the Lean kernel, with an autoformalization harness assembling Lean proofs from LLM equational derivations.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language models produce outputs presented as discoveries - new proofs, conjectures, or molecules. Whether such an output that appears creative is truly original and effective is hard to establish: open-ended outputs require subjective judgment, the output may replicate something seen in training, or the task may be too simple to need creativity. We present ALPS (Austin-Law Proof-Synthesis), a benchmark that designs a task to measure valid creativity: producing a solution that is original and can be proven correct. Each instance is a single equational law, certified to require either the construction of an infinite mathematical structure satisfying the law, or a proof that no such structure exists. Submissions are verified by automated proof checking with no human involvement, and a public generator produces new instances without limit, so LLMs are never evaluated on problems they may have seen. A portfolio of eight configurations of leading automated provers resolves 2.2% of the 4,141-law evaluation pool, and a twentyfold budget increase adds 0.6%: the obstacle is not compute, but the absence of any method that produces the tailored structure each law requires. Under a fixed protocol, the strongest reasoning model we test succeeds in 14% of instances on the proof side, but none on the construction side. The remaining 97.2% of the pool is unresolved at every configuration and budget we test. We release ALPS in full: the corpus, the generator, and the automated judge.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Judging whether LLM outputs are genuinely creative is hard: open-ended answers need subjective judgment, may be memorized from training data, or come from tasks too easy to require creativity. The goal is a benchmark that is verifiable, renewable, and constructive at once.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ALPS instances are single magma equational laws of the form x = T, each certified by machine-checked proof to have no nontrivial finite model. Each law therefore either entails x=y or has an infinite nontrivial model (an Austin law). Trivial-side answers are judged as Lean proofs checked by the Lean kernel, assembled by a harness from LLM-emitted chains of equalities. Construction-side answers are judged by automated-prover saturation certificates. A public generator produces new instances without limit.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Eight configurations of Vampire, E, and Twee resolve 2.2% of the 4,141-law residual pool, and a twentyfold budget increase adds only 23 triviality proofs and no new models. The strongest LLM tested (o3) succeeds on up to 14% of the certified-easy trivial instances and constructs no models on the hard tier. 97.2% of the pool remains unresolved.</p><div class="sum-table"><table><thead><tr><th>Budget (s)</th><th>New models</th><th>New trivial</th><th>Unresolved</th></tr></thead><tbody><tr><td>30</td><td>4</td><td>87</td><td>4,050</td></tr><tr><td>60</td><td>0</td><td>8</td><td>4,042</td></tr><tr><td>120</td><td>0</td><td>5</td><td>4,037</td></tr><tr><td>300</td><td>0</td><td>4</td><td>4,033</td></tr><tr><td>600</td><td>0</td><td>6</td><td>4,027</td></tr></tbody></table><div class="tbl-cap">Portfolio resolutions on the residual pool by per-configuration budget</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

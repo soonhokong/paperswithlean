@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>An algebraic proof of Colombo&#x27;s difference-power determinant conjecture · Papers With Lean</title>
+<meta name="description" content="Let $n\ge2$ be even, let $λ=(λ_1,\ldots,λ_n)\in\mathbb{R}^n$ have pairwise distinct coordinates, and define the difference-power matrix \[ A_d(λ) := \bigl[(λ_r-λ_s)^d\bigr]_{r,s=1}^n, \qquad d\in\mathbb{N}. \] In 1928, Colombo proved that $\det A_{n-1}(λ)\ne0$—and hence $\det…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="An algebraic proof of Colombo&#x27;s difference-power determinant conjecture">
+<meta property="og:description" content="Let $n\ge2$ be even, let $λ=(λ_1,\ldots,λ_n)\in\mathbb{R}^n$ have pairwise distinct coordinates, and define the difference-power matrix \[ A_d(λ) := \bigl[(λ_r-λ_s)^d\bigr]_{r,s=1}^n, \qquad d\in\mathbb{N}. \] In 1928, Colombo proved that $\det A_{n-1}(λ)\ne0$—and hence $\det…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.28274.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.28274.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.28274v1" target="_blank" rel="noopener"><img src="../thumbs/2608.28274.jpg" alt="First page of An algebraic proof of Colombo&#x27;s difference-power determinant conjecture"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">An algebraic proof of Colombo&#x27;s difference-power determinant conjecture</h1>
+        <p class="authors">Kun Li, Li Tie, Peng Wang, Zihan Liu</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Aug 28, 2026 · v1</span>
+          <span class="badge">math.RA</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.28274v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.28274" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ttieli/Colombo1928" target="_blank" rel="noopener" title="ttieli/Colombo1928">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The odd-exponent nonsingularity proof was formalized and kernel-checked in Lean 4 with Mathlib, and an appendix maps paper results to Lean theorems.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Let $n\ge2$ be even, let $λ=(λ_1,\ldots,λ_n)\in\mathbb{R}^n$ have pairwise distinct coordinates, and define the difference-power matrix \[ A_d(λ) := \bigl[(λ_r-λ_s)^d\bigr]_{r,s=1}^n, \qquad d\in\mathbb{N}. \] In 1928, Colombo proved that $\det A_{n-1}(λ)\ne0$—and hence $\det A_{n-1}(λ)&gt;0$—and that $\operatorname{rank} A_d(λ)=d+1$ for $0\le d&lt;n-1$. He conjectured that \[ \det A_d(λ)\ne0 \qquad\text{for every } d\ge n-1. \] For even $d$, the conjectured nonsingularity follows from previously published results on distance-power matrices. The remaining open cases were therefore the supercritical odd exponents $d\ge n+1$. We prove nonsingularity for all these odd exponents, thereby completing Colombo&#x27;s conjecture. Consequently, \[ \operatorname{rank} A_d(λ)=\min\{n,d+1\} \qquad(d\in\mathbb{N}). \] Our proof converts a hypothetical kernel vector into a real binary form having more projective real linear factors, counted with multiplicity, than its real Waring length permits.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Colombo conjectured in 1928 that the difference-power matrix [(λ_r−λ_s)^d] is nonsingular for even n, pairwise distinct real nodes, and every d ≥ n−1. The even-d cases already follow from known results on distance-power matrices. The supercritical odd exponents d ≥ n+1 remained open.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The proof assumes a nonzero kernel vector and uses it to build a real binary form F as a combination of d-th powers of linear forms. Apolarity shows that F vanishes at every node, so the product of the n distinct linear factors divides F. The remaining cofactor has odd degree and therefore contributes one more real linear factor. This contradicts a theorem bounding the number of real linear factors by the real Waring length, which is at most n. The odd-exponent argument was formalized and kernel-checked in Lean 4 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Nonsingularity holds for all odd d ≥ n+1, which completes Colombo&#x27;s conjecture. It follows that rank A_d = min{n, d+1}, and the sign of the determinant is determined. A Lean formalization independently verifies the odd branch and Colombo&#x27;s threshold result.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A kernel proof of the De Cock-De Moor Lyapunov identity · Papers With Lean</title>
+<meta name="description" content="We prove the rank-one Lyapunov spectral identity recorded as Problem 9.1 in the 2004 collection of unsolved problems in mathematical systems and control theory. Let $P,Q,R$ solve the coupled discrete Lyapunov and Sylvester equations associated with $A$ and its rank-one update…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A kernel proof of the De Cock-De Moor Lyapunov identity">
+<meta property="og:description" content="We prove the rank-one Lyapunov spectral identity recorded as Problem 9.1 in the 2004 collection of unsolved problems in mathematical systems and control theory. Let $P,Q,R$ solve the coupled discrete Lyapunov and Sylvester equations associated with $A$ and its rank-one update…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.24405.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.24405.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.24405v1" target="_blank" rel="noopener"><img src="../thumbs/2608.24405.jpg" alt="First page of A kernel proof of the De Cock-De Moor Lyapunov identity"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A kernel proof of the De Cock-De Moor Lyapunov identity</h1>
+        <p class="authors">Jonas Gillberg, Johan Löfberg</p>
+        <div class="row">
+          <span class="badge">eess.SY</span>
+          <span class="date">Aug 25, 2026 · v1</span>
+          <span class="badge">math.OC</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.24405v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.24405" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Provides a Lean 4 formalization of the rank-one Lyapunov spectral identity in an accompanying repository, alongside computer-algebra and numerical checks.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We prove the rank-one Lyapunov spectral identity recorded as Problem 9.1 in the 2004 collection of unsolved problems in mathematical systems and control theory. Let $P,Q,R$ solve the coupled discrete Lyapunov and Sylvester equations associated with $A$ and its rank-one update $A_2=A+vw^\top$. When the displayed inverses exist, we show that $P^{-1}RQ^{-1}R^\top$ and $(I+PQ)^{-1}$ have the same characteristic polynomial. A rank-one determinant factorization of the equation for $Q$ produces a scalar bilinear kernel. Evaluating it at the eigenvalues of $A$ and at their reciprocals gives $RQ^{-1}R^\top=BQ^{-1}B=P-BPB$, after which the two target matrices are the same two factors in opposite order. Polynomial continuation extends the identity from a nonempty open set of admissible systems to the full admissible domain and yields a determinant corollary without stability assumptions; when the spectra of $A$ and $A_2$ are disjoint, $Z=b(A)^{-1}P$ gives an explicit similarity. In the Schur-stable realization setting, the result recovers the associated principal-angle and past/future canonical-correlation spectra.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Problem 9.1 of the 2004 collection of open problems in systems and control asks whether P^{-1}RQ^{-1}R^T and (I+PQ)^{-1} have the same eigenvalues. Here P, Q, R solve the coupled discrete Lyapunov and Sylvester equations for A and its rank-one update A+vw^T. De Cock and De Moor checked the identity numerically and proved it for n=1.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A rank-one determinant factorization of the Lyapunov equation for Q yields a scalar bilinear kernel. Evaluating the kernel at the eigenvalues of A and at their reciprocals gives RQ^{-1}R^T = BQ^{-1}B = P - BPB. The two target matrices then become products of the same two factors in reverse order, so the AB–BA principle applies. Polynomial continuation from a nonempty open set extends the identity to the full admissible domain, and a Lean 4 formalization accompanies the proof.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.24405/lyapunov-domains.png" alt=""><figcaption>Figure 3: The four domains have different jobs: \mathcal{U}\subset\Omega^{\circ}\subset\Omega\subset\mathcal{D} . The divided kernel calculation starts on \mathcal{U} , the theorem extends to \Omega , the explicit similarity extends to \Omega^{\circ} , and the denominator-cleared polynomial identity extends to \mathcal{D} .</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The characteristic-polynomial identity holds on the full natural domain, with a determinant corollary that needs no stability assumptions. When the spectra of A and A_2 are disjoint, Z=b(A)^{-1}P gives an explicit similarity. In the Schur-stable case the principal-angle and canonical-correlation spectra are recovered as explicit matrix spectra.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

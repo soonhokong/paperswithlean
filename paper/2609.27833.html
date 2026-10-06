@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Reasoning Strings to Partial Orders: Verifier-Certified Rule Transport through Quotient Policy Optimization · Papers With Lean</title>
+<meta name="description" content="Many computations admit several valid execution orders because independent subgoals or disjoint state updates can commute. Reinforcement learning with verifiable rewards usually treats each successful trace as a separate token sequence, so serialization choices can be mistaken…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="From Reasoning Strings to Partial Orders: Verifier-Certified Rule Transport through Quotient Policy Optimization">
+<meta property="og:description" content="Many computations admit several valid execution orders because independent subgoals or disjoint state updates can commute. Reinforcement learning with verifiable rewards usually treats each successful trace as a separate token sequence, so serialization choices can be mistaken…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.27833.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.27833.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.27833v1" target="_blank" rel="noopener"><img src="../thumbs/2609.27833.jpg" alt="First page of From Reasoning Strings to Partial Orders: Verifier-Certified Rule Transport through Quotient Policy Optimization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">From Reasoning Strings to Partial Orders: Verifier-Certified Rule Transport through Quotient Policy Optimization</h1>
+        <p class="authors">Bang Xie, Hao Liu, Zhiyuan Peng, Xin Yin, Chenhao Ying, Yuan Luo, Senjian Zhang, Wei Chen</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Aug 20, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.27833v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.27833" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean is one of three environments; its kernel replays proof steps to certify whether independent sibling subgoals commute, supplying RL training signal.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Many computations admit several valid execution orders because independent subgoals or disjoint state updates can commute. Reinforcement learning with verifiable rewards usually treats each successful trace as a separate token sequence, so serialization choices can be mistaken for logical dependencies. We introduce Verifier-Certified Rule Transport (VCRT), which replays adjacent operation pairs with native verifiers. Pairs whose two orders are accepted and reach the same canonical state provide commutation certificates; rejected or state-changing reversals provide anti-diamonds. VCRT uses anti-diamonds to preserve genuine prerequisites and assigns policy credit to the total probability mass of each certified orbit. It also constrains post-swap consistency, source retention, and policy drift. We evaluate leave-one-environment-out transfer across ProofWriter, CLRS, and Lean through a shared anonymized relation-graph interface. All training and checkpoint decisions are frozen before held-out evaluation, which uses one greedy trajectory per item without search or verifier feedback. VCRT obtains a 77.60% macro pass rate versus 64.53% for the strongest matched baseline, a paired gain of 13.06 points (95% bootstrap CI [12.58, 13.54]). Lean accounts for most of this gain at 33.49 points, while ProofWriter and CLRS improve by 2.85 points on average. Mechanism tests consistently favor anti-diamond supervision, whereas No-Orbit is statistically indistinguishable from full VCRT. The evidence does not establish a general benefit from exact orbit aggregation.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Reinforcement learning with verifiable rewards treats each successful trace as a separate token sequence. Harmless serialization choices can therefore be mistaken for logical dependencies. Indiscriminate order augmentation has the opposite flaw: it can reward invalid permutations.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Verifier-Certified Rule Transport (VCRT) replays adjacent operation pairs in both orders with native verifiers (a ProofWriter rule engine, CLRS state transitions, and the Lean kernel). Pairs that are accepted in both orders and reach the same canonical state yield commutation certificates. Rejected or state-changing reversals yield anti-diamonds. Policy credit is assigned to the total probability mass of certified orbits, combined with an anti-diamond margin loss and consistency, retention, and KL terms. Evaluation is leave-one-environment-out through an anonymized relation-graph interface, using one greedy trajectory per item.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">VCRT reaches a 77.60% macro pass rate versus 64.53% for Canonical-GRPO, a paired gain of 13.06 points (95% CI [12.58, 13.54]). Most of the gain comes from Lean, which reaches 100%, possibly a ceiling effect. Anti-diamond supervision helps in every fold, while removing orbit aggregation makes no significant difference.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Held-Out Lean</th><th>Held-Out ProofWriter</th><th>Held-Out CLRS</th><th>Macro</th></tr></thead><tbody><tr><td>Outcome-GRPO</td><td>57.35</td><td>54.69</td><td>61.12</td><td>57.72</td></tr><tr><td>Canonical-GRPO</td><td>66.51</td><td>55.84</td><td>71.25</td><td>64.53</td></tr><tr><td>VCRT</td><td>100.00</td><td>57.95</td><td>74.84</td><td>77.60</td></tr></tbody></table><div class="tbl-cap">Held-out pass rate (%) with one greedy trajectory per item (mean of three runs)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
