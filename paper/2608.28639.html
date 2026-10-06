@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reward-Oracle MCTS for Formal Theorem Proving: Sample-Efficient Search and the Need for Kernel-Level Proof Auditing · Papers With Lean</title>
+<meta name="description" content="Formal theorem proving with large language models remains challenging due to the difficulty of navigating large proof search spaces efficiently. Existing tree search approaches either feed verbose compiler error messages directly into the generation context, increasing context…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reward-Oracle MCTS for Formal Theorem Proving: Sample-Efficient Search and the Need for Kernel-Level Proof Auditing">
+<meta property="og:description" content="Formal theorem proving with large language models remains challenging due to the difficulty of navigating large proof search spaces efficiently. Existing tree search approaches either feed verbose compiler error messages directly into the generation context, increasing context…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.28639.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.28639.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.28639v1" target="_blank" rel="noopener"><img src="../thumbs/2608.28639.jpg" alt="First page of Reward-Oracle MCTS for Formal Theorem Proving: Sample-Efficient Search and the Need for Kernel-Level Proof Auditing"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Reward-Oracle MCTS for Formal Theorem Proving: Sample-Efficient Search and the Need for Kernel-Level Proof Auditing</h1>
+        <p class="authors">Bodla Krishna Vamshi, Haizhao Yang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Aug 11, 2026 · v1</span>
+          <span class="badge">cs.LG</span> <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.28639v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.28639" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses the Lean 4 compiler (Lean 4.15, Mathlib) as a scalar reward oracle for MCTS proof search, and audits proofs for sorryAx dependence at kernel level.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Formal theorem proving with large language models remains challenging due to the difficulty of navigating large proof search spaces efficiently. Existing tree search approaches either feed verbose compiler error messages directly into the generation context, increasing context usage during search, or employ non-standard evaluation protocols that prevent direct comparison with established baselines. We propose a three-role Monte Carlo Tree Search (MCTS) framework that treats the Lean 4 compiler purely as a reward oracle using compiler output as a scalar signal for UCB-guided tree updates without feeding error content into the generation context. Our framework decomposes proof search into three roles: a generator for proof attempts, a decomposer for subgoal decomposition, and a critic for subgoal quality evaluation. We evaluate across 4 benchmarks spanning competition mathematics and physics (MiniF2F, PutnamBench, LeanPhysBench, PhysLeandata) with three prover models at standard proof attempt budgets (PAB@16 to PAB@256). Our method achieves 87.1% on MiniF2F with Goedel-Prover-V2-8B at PAB@256 and solves 26/659 PutnamBench problems at PAB@32 surpassing base sampling 18/659 at same proof attempt budget. Through an exhaustive axiom-level audit of every compiled proof, we further identify reward hacking in search-based theorem proving: DeepSeek-Prover-V2-7B produces proofs on PutnamBench that pass compilation and the standard sorry-token scan while depending on sorryAx. The audit removes 4 and 8 such proofs from whole-proof sampling at PAB@32 and PAB@128, and 11 and 19 from MCTS. We do not attribute these counts to the search procedure; we report them to establish that kernel-level auditing is necessary for compiler-verified evaluation.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-based formal theorem proving must search very large proof spaces efficiently. Existing tree-search methods either feed verbose compiler errors back into the generation context or use evaluation protocols that cannot be compared directly with standard baselines.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A three-role MCTS framework uses a generator, a decomposer with temperature-decayed sampling, and a critic that scores subgoal quality. Search runs over natural-language proof plans. The Lean 4 compiler supplies only a scalar reward, which is backpropagated for UCB-guided selection; no error text enters the model context. Evaluation covers MiniF2F, PutnamBench, LeanPhysBench and PhysLeanData with three frozen prover models in a pinned Lean 4.15/Mathlib environment, and every compiled proof receives an axiom-level audit.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.28639/x1.png" alt=""><figcaption>Figure 1: Overview of the proposed search framework. Each node n^{P}_{d,N} represents the k -th child at depth d , with parent P : P = r denotes the root.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With Goedel-Prover-V2-8B at PAB@256 the method reaches 87.1% on MiniF2F, and it solves 26/659 PutnamBench problems at PAB@32 versus 18/659 for whole-proof sampling, while using about 33% fewer inference tokens. The audit finds DeepSeek-Prover-V2-7B proofs that compile and pass sorry scans yet depend on sorryAx, showing that kernel-level auditing is needed.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>PAB</th><th>Success (%)</th></tr></thead><tbody><tr><td>Whole-proof</td><td>32</td><td>82.4 ± 0.6</td></tr><tr><td>Whole-proof</td><td>256</td><td>84.7 ± 0.1</td></tr><tr><td>Prover Agent</td><td>260</td><td>86.2 ± 0.1</td></tr><tr><td>Ours</td><td>32</td><td>84.2 ± 0.5</td></tr><tr><td>Ours</td><td>256</td><td>87.1 ± 0.2</td></tr></tbody></table><div class="tbl-cap">MiniF2F success (%) for Goedel-Prover-V2-8B</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

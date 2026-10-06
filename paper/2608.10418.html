@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A lower bound for stepsize-based acceleration of gradient descent · Papers With Lean</title>
+<meta name="description" content="Recent work has shown that, for smooth convex optimization, plain gradient descent can be accelerated from its textbook convergence rate of $O(T^{-1})$ (where $T$ denotes the number of iterations) to $O\big(T^{-\log_2(1+\sqrt{2})}\big)$ using carefully designed stepsize…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A lower bound for stepsize-based acceleration of gradient descent">
+<meta property="og:description" content="Recent work has shown that, for smooth convex optimization, plain gradient descent can be accelerated from its textbook convergence rate of $O(T^{-1})$ (where $T$ denotes the number of iterations) to $O\big(T^{-\log_2(1+\sqrt{2})}\big)$ using carefully designed stepsize…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.10418.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.10418.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.10418v1" target="_blank" rel="noopener"><img src="../thumbs/2608.10418.jpg" alt="First page of A lower bound for stepsize-based acceleration of gradient descent"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A lower bound for stepsize-based acceleration of gradient descent</h1>
+        <p class="authors">Jianhao Ma, Yuxin Chen</p>
+        <div class="row">
+          <span class="badge">math.OC</span>
+          <span class="date">Aug 11, 2026 · v1</span>
+          <span class="badge">cs.LG</span> <span class="badge">stat.ML</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.10418v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.10418" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/jianhaoma/gd-lower-bound-lean" target="_blank" rel="noopener" title="jianhaoma/gd-lower-bound-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The main lower-bound proof for gradient descent with predetermined stepsizes was formalized in Lean 4 using Codex; the code is publicly available.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Recent work has shown that, for smooth convex optimization, plain gradient descent can be accelerated from its textbook convergence rate of $O(T^{-1})$ (where $T$ denotes the number of iterations) to $O\big(T^{-\log_2(1+\sqrt{2})}\big)$ using carefully designed stepsize schedules alone, without resorting to momentum or other algorithmic modifications. Despite this progress, however, little was known about lower bounds for such methods beyond the classical $Ω(T^{-2})$ benchmark for general first-order methods. In this work, we present a new lower bound of $Ω(T^{-1.9319})$ for the last-iterate convergence rate of gradient descent with predetermined nonnegative stepsize schedules. This result provides rigorous evidence that stepsize schedules alone cannot accelerate plain GD to the optimal $O(T^{-2})$ convergence rate. The proof was developed by GPT-5.6 Sol Pro under the authors&#x27; guidance.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Carefully designed stepsize schedules can accelerate plain gradient descent on smooth convex problems to O(T^{-1.2715}). Little was known about lower bounds for this class beyond the classical Ω(T^{-2}) bound for all first-order methods.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">For any predetermined nonnegative schedule, the authors select long steps and build an adversarial trajectory across orthogonal blocks. They realize it with a smooth convex function via a Moreau envelope. A matching argument then removes the dependence on temporal order, and a cutoff/Lyapunov argument completes the bound. The proof was generated by GPT-5.6 Sol Pro under author guidance and formalized in Lean 4 with Codex.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For every p &gt; sqrt(2+sqrt(3)) ≈ 1.9319, the last iterate satisfies f(x_T)-f* ≥ c_p L R^2 (T+1)^{-p}. This shows that stepsize schedules alone cannot reach the optimal O(T^{-2}) rate. A Lean 4 formalization is released at github.com/jianhaoma/gd-lower-bound-lean.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

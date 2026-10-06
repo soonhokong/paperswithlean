@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ordered Ruzsa-Szemeredi Numbers at Matching Size Two · Papers With Lean</title>
+<meta name="description" content="Bondy and Szwarcfiter defined $\mathrm{ex}^*(n,F)$ as the largest number of edges in an $n$-vertex graph whose edge set partitions into induced copies of $F$; for $F=2K_2$ the deficiency $\binom{n}{2}-\mathrm{ex}^*(n,2K_2)$ is $Θ(n^{3/2})$. We study the ordered relaxation at…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ordered Ruzsa-Szemeredi Numbers at Matching Size Two">
+<meta property="og:description" content="Bondy and Szwarcfiter defined $\mathrm{ex}^*(n,F)$ as the largest number of edges in an $n$-vertex graph whose edge set partitions into induced copies of $F$; for $F=2K_2$ the deficiency $\binom{n}{2}-\mathrm{ex}^*(n,2K_2)$ is $Θ(n^{3/2})$. We study the ordered relaxation at…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.14695.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.14695.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.14695v2" target="_blank" rel="noopener"><img src="../thumbs/2608.14695.jpg" alt="First page of Ordered Ruzsa-Szemeredi Numbers at Matching Size Two"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Ordered Ruzsa-Szemeredi Numbers at Matching Size Two</h1>
+        <p class="authors">Xidan Song, Ruifeng Cao</p>
+        <div class="row">
+          <span class="badge">math.CO</span>
+          <span class="date">Aug 9, 2026 · v2</span>
+          <span class="badge">cs.DM</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.14695v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.14695" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The r=2 peeling characterisation and selected structural lemmas (induced C4 obstruction, component invariance) are formalised in Lean 4 against pinned Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Bondy and Szwarcfiter defined $\mathrm{ex}^*(n,F)$ as the largest number of edges in an $n$-vertex graph whose edge set partitions into induced copies of $F$; for $F=2K_2$ the deficiency $\binom{n}{2}-\mathrm{ex}^*(n,2K_2)$ is $Θ(n^{3/2})$. We study the ordered relaxation at fixed matching size, in which each part need only be induced in the union of itself with the parts that follow it; write $\mathrm{ORS}_n(r)$ for the largest number of parts, so that $r\,\mathrm{ORS}_n(r)$ is the ordered analogue of $\mathrm{ex}^*(n,rK_2)$. Our main tool is a characterisation valid for every $r$: an ordered decomposition into induced $r$-matchings is a sequence of steps that start from $K_n$ and repeatedly delete a perfect matching from $2r$ vertices currently spanning a clique. Reading a decomposition backwards turns a condition about the ordering into a reachability question that an exhaustive search can settle. For $r=2$ we determine $\mathrm{ORS}_n(2)$ exactly at orders five through nineteen, where it takes the values $1,3,5,8,11,14,19,23,28,34,40,47,54,62,70$, and we confine $\mathrm{ORS}_{20}(2)$ to $\{78,79\}$. The counting bound $\lfloor n(n-4)/4\rfloor$ is attained at orders five through nine and at eleven, and missed by exactly one part at every other order below twenty, so order eleven is an isolated exception, not a parity effect. Across this range the ordered deficiency equals $\frac32n+O(1)$, and along powers of two a dyadic construction keeps it below $O(n\log n)$; whether it is linear for all $n$ is our main open question. The structural results are formalised in Lean 4, and the searches are certified by fail-closed sweeps and an independent checker.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The paper studies the ordered Ruzsa–Szemerédi number ORS_n(r): the maximum number of size-r matchings that partition a graph&#x27;s edges such that each matching is induced in the union of itself with all later parts. The focus is matching size r=2, and specifically the ordered deficiency relative to the complete graph.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An ordered decomposition is shown to be equivalent to a sequence of K_{2r}-peels from K_n, each deleting a perfect matching on 2r vertices that currently span a clique. This turns the question into reachability of remainder graphs. Structural obstructions (induced C4, connectivity, bridgelessness, contraction correspondence) prune the exhaustive searches over cubic and near-cubic remainders. Lower bounds come from heuristic direct peeling of K_n, and an explicit dyadic construction handles powers of two. The r=2 structural results are formalised in Lean 4 with Mathlib. The searches are certified by fail-closed sweeps and an independent checker.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">ORS_n(2) is determined exactly for n=5..19, and ORS_20(2) is confined to {78,79}. The counting bound ⌊n(n-4)/4⌋ is attained at n=5–9 and n=11 and missed by one elsewhere, and the deficiency is (3/2)n+O(1) in this range. Along powers of two, the dyadic construction gives deficiency (n/2)log₂ n.</p><div class="sum-table"><table><thead><tr><th>n</th><th>⌊n(n-4)/4⌋</th><th>ORS_n(2)</th></tr></thead><tbody><tr><td>10</td><td>15</td><td>14</td></tr><tr><td>11</td><td>19</td><td>19</td></tr><tr><td>16</td><td>48</td><td>47</td></tr><tr><td>19</td><td>71</td><td>70</td></tr><tr><td>20</td><td>80</td><td>78–79</td></tr></tbody></table><div class="tbl-cap">Counting bound versus exact ORS_n(2) (selected orders)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
