@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Kernel-Certified Verification of the Erdős-Mollin-Walsh Conjecture below $10^{14}$ · Papers With Lean</title>
+<meta name="description" content="Erdős problem 364 asks whether three consecutive powerful numbers exist, where $n$ is powerful if $p \mid n$ implies $p^2 \mid n$. Erdős (1976) and, independently, Mollin and Walsh (1986) conjectured that none do; the $abc$ conjecture implies at most finitely many. The…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Kernel-Certified Verification of the Erdős-Mollin-Walsh Conjecture below $10^{14}$">
+<meta property="og:description" content="Erdős problem 364 asks whether three consecutive powerful numbers exist, where $n$ is powerful if $p \mid n$ implies $p^2 \mid n$. Erdős (1976) and, independently, Mollin and Walsh (1986) conjectured that none do; the $abc$ conjecture implies at most finitely many. The…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.25011.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.25011.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.25011v1" target="_blank" rel="noopener"><img src="../thumbs/2609.25011.jpg" alt="First page of A Kernel-Certified Verification of the Erdős-Mollin-Walsh Conjecture below $10^{14}$"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Kernel-Certified Verification of the Erdős-Mollin-Walsh Conjecture below $10^{14}$</h1>
+        <p class="authors">Ibrahim Mian, Shayaan Siddique</p>
+        <div class="row">
+          <span class="badge">math.GM</span>
+          <span class="date">Jul 29, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.25011v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.25011" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ibrahimmian36/Optio" target="_blank" rel="noopener" title="ibrahimmian36/Optio">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Proves in Lean 4 with Mathlib, via kernel-checked decide certificates, that no three consecutive powerful numbers exist below 10^12 and 10^14.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Erdős problem 364 asks whether three consecutive powerful numbers exist, where $n$ is powerful if $p \mid n$ implies $p^2 \mid n$. Erdős (1976) and, independently, Mollin and Walsh (1986) conjectured that none do; the $abc$ conjecture implies at most finitely many. The conjecture remains open. We present the first verification of the conjecture at any finite bound that is checked end to end by a proof kernel: machine-checked theorems in Lean 4 establishing that no triple of consecutive powerful numbers exists below $10^{12}$ and below $10^{14}$, with the axiom footprint of both theorems being exactly {propext, Classical.choice, Quot.sound} – no sorry, no native_decide, no trusted external computation. The statements are phrased in the byte-identical vocabulary of the google-deepmind/formal-conjectures formalization of the problem, and we prove abstractly that the open conjecture implies each bounded form, pinning the statement correspondence. The proof reduces the search to odd numbers via a mod-4 argument, represents every odd powerful number as $a^2 b^3$ with $a, b$ odd and $b$ squarefree, enumerates all odd powerful numbers by a fueled, kernel-reducible generator whose completeness is proved once and instantiated across 3,524 per-interval Boolean certificates, and eliminates the seven surviving distance-2 pairs (the members of OEIS A076445 below $10^{14}$) by explicit non-powerfulness witnesses. Every certificate&#x27;s expected values are computed independently by a Python engine, so each kernel-checked equality doubles as a cross-implementation agreement. Total certified kernel time is roughly 46 CPU-hours. Larger uncertified computations exist (exhaustive to $10^{22}$; conditionally to about $7.38 \times 10^{28}$); our contribution is not a computational record but the elimination of trusted enumeration code from the evidence chain.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Erdős problem 364 conjectures that no three consecutive powerful numbers exist. Existing computational evidence, exhaustive to 10^22, relies on trusted, uncertified enumeration code.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The search is reduced to odd powerful pairs at distance 2 by a mod-4 argument. Odd powerful numbers are represented as a^2 b^3 with b squarefree and enumerated by a fueled, kernel-reducible generator whose completeness is proved once. That generator is used in 3,524 per-interval Boolean certificates checked by decide, without native_decide. The seven surviving pairs are eliminated with explicit non-powerfulness witnesses, and statements reuse the byte-identical Powerful definition from google-deepmind/formal-conjectures.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Lean theorems establish that no powerful triple exists below 10^12 and below 10^14, with axiom footprint exactly {propext, Classical.choice, Quot.sound}. Total certified kernel time is about 46 CPU-hours, and Python-computed expected values provide cross-implementation agreement.</p><div class="sum-table"><table><thead><tr><th></th><th>X=10^12</th><th>X=10^14</th></tr></thead><tbody><tr><td>chunk certificates</td><td>320</td><td>3,204</td></tr><tr><td>kernel time</td><td>57,652 s (~16 CPU-h)</td><td>107,603 s (~30 CPU-h)</td></tr><tr><td>max single chunk</td><td>~305 s</td><td>61 s</td></tr><tr><td>pairs found</td><td>5</td><td>7</td></tr></tbody></table><div class="tbl-cap">Certified computation cost per bound</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
