@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Optimal Bounds-Only Pruning for Spatial AkNN Joins · Papers With Lean</title>
+<meta name="description" content="We propose a bounds-only pruning test for exact Euclidean AkNN joins on partitioned spatial datasets. Data warehouses commonly partition large tables and store row group statistics for them to accelerate searches and joins, rather than maintaining indexes. AkNN joins can benefit…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Optimal Bounds-Only Pruning for Spatial AkNN Joins">
+<meta property="og:description" content="We propose a bounds-only pruning test for exact Euclidean AkNN joins on partitioned spatial datasets. Data warehouses commonly partition large tables and store row group statistics for them to accelerate searches and joins, rather than maintaining indexes. AkNN joins can benefit…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2602.10027.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2602.10027.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2602.10027v1" target="_blank" rel="noopener"><img src="../thumbs/2602.10027.jpg" alt="First page of Optimal Bounds-Only Pruning for Spatial AkNN Joins"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Optimal Bounds-Only Pruning for Spatial AkNN Joins</h1>
+        <p class="authors">Dominik Winecki</p>
+        <div class="row">
+          <span class="badge">cs.DB</span>
+          <span class="date">Feb 10, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-teal" href="../#tag=geometry">geometry</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2602.10027v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2602.10027" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/dominikWin/apc-aknn" target="_blank" rel="noopener" title="dominikWin/apc-aknn">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The All-Points Proximity Theorem behind the pruning test is machine-checked in Lean 4 using Mathlib, with the proof provided as an artifact.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We propose a bounds-only pruning test for exact Euclidean AkNN joins on partitioned spatial datasets. Data warehouses commonly partition large tables and store row group statistics for them to accelerate searches and joins, rather than maintaining indexes. AkNN joins can benefit from such statistics by constructing bounds and localizing join evaluations to a few partitions before loading them to build spatial indexes. Existing pruning methods are overly conservative for bounds-only spatial data because they do not fully capture its directional semantics, thereby missing opportunities to skip unneeded partitions at the earliest stages of a join. We propose a three-bound proximity test to determine whether all points within a partition have a closer neighbor in one partition than in another, potentially occluded partition. We show that our algorithm is both optimal and efficient.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Exact Euclidean AkNN joins on partitioned, unindexed spatial datasets can use only row-group bounds statistics to skip partitions. Existing pruning tests compare two bounds and ignore direction, so they are overly conservative and miss partitions that could be skipped.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A three-bound test, AllPointsCloser, checks whether every point of origin box O is closer to every point of box E than to every point of box B. It does this by comparing MaxDist to E and MinDist to B at each corner of O. The equivalence (All-Points Proximity Theorem) is proved with convexity and the finite form of Jensen&#x27;s inequality. The proof is machine-checked in Lean 4 with Mathlib, and a Rust implementation is provided.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2602.10027/Delta.png" alt=""><figcaption>(c) \operatorname{MaxDist}(p,E)-\operatorname{MinDist}(p,B)</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The corner test is proved equivalent to the all-points condition, so it is both sound and optimal for bounds-only pruning. Unlike MinMaxDist and NXNDist, it still applies when k&gt;1, when bounds are not minimal, and when queries carry additional predicates.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2602.10027/DeltaNeg.png" alt=""><figcaption>(d) \operatorname{MaxDist}(p,E)&lt;\operatorname{MinDist}(p,B)</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

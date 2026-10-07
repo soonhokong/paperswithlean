@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLMFix: Leveraging Small Language Models for Domain Specific Language Error Fixing with Reinforcement Learning · Papers With Lean</title>
+<meta name="description" content="Large language models (LLMs) have shown impressive capabilities in code generation across many programming languages but even state-of-the-art LLMs generate programs that contain syntactic errors and fail to complete the given tasks, especially for low-resource programming…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SLMFix: Leveraging Small Language Models for Domain Specific Language Error Fixing with Reinforcement Learning">
+<meta property="og:description" content="Large language models (LLMs) have shown impressive capabilities in code generation across many programming languages but even state-of-the-art LLMs generate programs that contain syntactic errors and fail to complete the given tasks, especially for low-resource programming…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2511.19422.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2511.19422.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2511.19422v2" target="_blank" rel="noopener"><img src="../thumbs/2511.19422.jpg" alt="First page of SLMFix: Leveraging Small Language Models for Domain Specific Language Error Fixing with Reinforcement Learning"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">SLMFix: Leveraging Small Language Models for Domain Specific Language Error Fixing with Reinforcement Learning</h1>
+        <p class="authors">David Jiahao Fu, Aryan Gupta, Aaron Councilman, Yu-Xiong Wang, Vikram Adve</p>
+        <div class="row">
+          <span class="badge">cs.SE</span>
+          <span class="date">Nov 24, 2025 · v2</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.PL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2511.19422v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2511.19422" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 is one of four evaluated DSLs: the Lean parser validates generated code, NuminaMath Lean 4 problems supply data, and a Lean-specific similarity metric drives rewards.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language models (LLMs) have shown impressive capabilities in code generation across many programming languages but even state-of-the-art LLMs generate programs that contain syntactic errors and fail to complete the given tasks, especially for low-resource programming languages (LRPLs). In addition, the high cost of training makes finetuning LLMs unaffordable for those with constrained computational resources, further weakening the effectiveness of LLMs for code generation. In this work, we propose SLMFix, a novel code generation pipeline that leverages a small language model (SLM) finetuned using reinforcement learning (RL) techniques to fix syntactic errors in LLM-generated programs for domain-specific languages (DSLs) based on interpreter feedback. Our experimental results demonstrate the effectiveness and generalizability of our approach across multiple DSLs, improving the validator pass rates by 40% on LRPLs and eliminating more than 50% of syntactic errors for high-resource DSLs. Notably, SLMFix brings substantial performance improvement to the base model and outperforms supervised finetuning approach even for 7B models on LRPLs including Ansible and Lean, showing the potential of our approach in improving the quality of LLM-generated programs.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLMs often produce syntactically invalid programs in low-resource domain-specific languages such as Ansible and Lean. Finetuning large models to fix this is expensive for groups with limited compute.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A frozen general-purpose LLM generates an initial program, and a static validator checks it; for Lean, the built-in parser serves as the validator. If errors are found, a small language model trained with GRPO revises the program using the prompt and the error messages. The RL reward combines a validator pass signal with a semantic similarity score. For Lean, that score is based on token, declaration, and tactic overlap with the ground truth. Lean data comes from NuminaMath competition problems formalized in Lean 4.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2511.19422/overview.jpg" alt=""><figcaption>Figure 1: The overview of the proposed training and inference pipelines.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Across Ansible, Bash, SQL, and Lean, SLMFix raises validator pass rates by over 40% on average for the low-resource languages. On Lean, it substantially improves pass rates for the open-source 7B and 30B base models and outperforms supervised finetuning.</p><div class="sum-table"><table><thead><tr><th>Base LLM</th><th>Base</th><th>SFT</th><th>SLMFix</th></tr></thead><tbody><tr><td>GPT-5.4 mini</td><td>84.42%</td><td>-</td><td>89.91%</td></tr><tr><td>Qwen3-Coder 30B A3B</td><td>39.23%</td><td>-</td><td>79.81%</td></tr><tr><td>Qwen-2.5-Coder 7B</td><td>15.96%</td><td>7.31%</td><td>75.48%</td></tr></tbody></table><div class="tbl-cap">Lean validator pass rate: base model vs. SLMFix (SFT shown where reported)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

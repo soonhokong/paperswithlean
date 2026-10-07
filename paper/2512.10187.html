@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MINIF2F-DAFNY: LLM-Guided Mathematical Theorem Proving via Auto-Active Verification · Papers With Lean</title>
+<meta name="description" content="LLMs excel at reasoning, but validating their steps remains challenging. Formal verification offers a solution through mechanically checkable proofs. Interactive theorem provers (ITPs) dominate mathematical reasoning but require detailed low-level proof steps, while auto-active…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MINIF2F-DAFNY: LLM-Guided Mathematical Theorem Proving via Auto-Active Verification">
+<meta property="og:description" content="LLMs excel at reasoning, but validating their steps remains challenging. Formal verification offers a solution through mechanically checkable proofs. Interactive theorem provers (ITPs) dominate mathematical reasoning but require detailed low-level proof steps, while auto-active…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2512.10187.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2512.10187.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2512.10187v3" target="_blank" rel="noopener"><img src="../thumbs/2512.10187.jpg" alt="First page of MINIF2F-DAFNY: LLM-Guided Mathematical Theorem Proving via Auto-Active Verification"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">MINIF2F-DAFNY: LLM-Guided Mathematical Theorem Proving via Auto-Active Verification</h1>
+        <p class="authors">Mantas Baksys, Stefan Zetzsche, Olivier Bouissou, Sean B. Holden</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Dec 11, 2025 · v3</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2512.10187v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2512.10187" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/dafny-lang/miniF2F" target="_blank" rel="noopener" title="dafny-lang/miniF2F">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Translates the Lean miniF2F benchmark into Dafny. As a baseline comparison, it runs Lean 4&#x27;s grind tactic on the Lean miniF2F test problems.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">LLMs excel at reasoning, but validating their steps remains challenging. Formal verification offers a solution through mechanically checkable proofs. Interactive theorem provers (ITPs) dominate mathematical reasoning but require detailed low-level proof steps, while auto-active verifiers offer automation but focus on software verification. Recent work has begun bridging this divide by evaluating LLMs for software verification in ITPs, but the complementary direction, LLMs for mathematical theorem proving in auto-active verifiers, remains unexplored. We present MINIF2F-DAFNY, the first translation of the widely-used mathematical benchmark miniF2F to an auto-active verifier: Dafny. We find that Dafny&#x27;s automation alone solves 39-44% of problems with empty proofs, whereas many require substantial proof guidance in ITPs. We evaluate 8 off-the-shelf LLMs on proof generation, with the best model (Claude Opus 4.6) achieving 62.7% cumulative pass@4 on the full test set, improving over the 38.9% empty-proof baseline by 23.8 percentage points. These results show that auto-active verification offers a complementary empirical setting for AI-assisted mathematical reasoning, where LLMs provide high-level guidance while SMT automation handles low-level details. Our benchmark and evaluation infrastructure are publicly available on <a href="https://github.com/dafny-lang/miniF2F" target="_blank" rel="noopener">https://github.com/dafny-lang/miniF2F</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-based formal mathematical theorem proving has been studied almost entirely in interactive theorem provers such as Lean. Auto-active verifiers, which rely on SMT automation, had not been evaluated on pure mathematics.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors translate the 488 miniF2F problems (244 test, 244 validation) from Lean into Dafny lemmas with empty proof bodies. Supporting definitions and a library of 174 lemmas are axiomatized for the translation. They measure how much Dafny/Z3 solves with empty proofs, compare this against Lean 4&#x27;s grind tactic on the Lean versions, and evaluate 8 off-the-shelf LLMs at generating proof hints.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With empty proofs, Dafny verifies 38.9% of test problems, while Lean grind solves 32.4%; the two overlap but each solves problems the other misses. The best LLM, Claude Opus 4.6, reaches 62.7% cumulative pass@4 on the test set.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Pass@1</th><th>Pass@4</th></tr></thead><tbody><tr><td>Claude Opus 4.6</td><td>58.2</td><td>62.7</td></tr><tr><td>Claude Sonnet 4.5</td><td>52.5</td><td>55.7</td></tr><tr><td>Qwen 3 Coder 480B</td><td>45.5</td><td>48.8</td></tr><tr><td>Dafny Verifier (empty proof)</td><td>38.9</td><td>38.9</td></tr><tr><td>Lean grind</td><td>32.4</td><td>32.4</td></tr></tbody></table><div class="tbl-cap">miniF2F-Dafny test set results (%)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

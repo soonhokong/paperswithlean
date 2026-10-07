@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The verifier side of speculative window decoding: a predictability bracket, a machine-checked blast-radius bound, and a decoder-agnostic recover loop · Papers With Lean</title>
+<meta name="description" content="Speculative window decoders hide quantum error-correction decoder latency by guessing the cross-boundary decisions that link adjacent decoding windows, running downstream work on the guess, and verifying lazily. SWIPER and ARTERY each build one predictor, about 90% accurate;…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The verifier side of speculative window decoding: a predictability bracket, a machine-checked blast-radius bound, and a decoder-agnostic recover loop">
+<meta property="og:description" content="Speculative window decoders hide quantum error-correction decoder latency by guessing the cross-boundary decisions that link adjacent decoding windows, running downstream work on the guess, and verifying lazily. SWIPER and ARTERY each build one predictor, about 90% accurate;…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.13062.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.13062.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.13062v2" target="_blank" rel="noopener"><img src="../thumbs/2607.13062.jpg" alt="First page of The verifier side of speculative window decoding: a predictability bracket, a machine-checked blast-radius bound, and a decoder-agnostic recover loop"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">The verifier side of speculative window decoding: a predictability bracket, a machine-checked blast-radius bound, and a decoder-agnostic recover loop</h1>
+        <p class="authors">Rylan Malarchick</p>
+        <div class="row">
+          <span class="badge">quant-ph</span>
+          <span class="date">Jul 7, 2026 · v2</span>
+          <span class="badge">cs.AR</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-orange" href="../#tag=probability">probability</a> <a class="tag c-purple" href="../#tag=quantum">quantum</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.13062v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.13062" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The probability core of the temporal blast-radius bound (Peierls/union-bound tail, path-count bound) is machine-checked in Lean 4 with Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Speculative window decoders hide quantum error-correction decoder latency by guessing the cross-boundary decisions that link adjacent decoding windows, running downstream work on the guess, and verifying lazily. SWIPER and ARTERY each build one predictor, about 90% accurate; neither built the verifier side. We build it on a reconstructed SWIPER harness (Stim rotated surface code, minimum-weight matching). A predictor-only bracket shows the cross-boundary decision is local, the achievable accuracy reaching about 0.999 within three rounds, with small, diffuse headroom over SWIPER. We establish a worst-case temporal blast-radius bound, its probability core machine-checked in Lean4 and conditional on a modeling reduction we then test: a misprediction&#x27;s effect decays exponentially in the commit width, so the radius is one and speculation adds no error floor. We falsify that reduction shot by shot and find the real mechanism, clearest at near-threshold noise, is a global minimum-weight re-pairing. A compiler pass derives SWIPER&#x27;s restart policy from these numbers; a runtime executor confirms on the harness that the loop recovers exactly and removes the serial commit-chain stall up to a small penalty. A second decoder (union-find) settles which results are decoder-agnostic: the predict-verify-recover wrapper and the structural phenomenology, while the absolute magnitudes and the min-weight mechanism are matching-specific.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Speculative window decoders for quantum error correction (SWIPER, ARTERY) build predictors for cross-boundary decisions but no verifier side. Open questions are the achievable prediction accuracy, how far a misprediction can corrupt later windows, when speculation pays off, and whether a full predict-verify-recover loop works on a real decoder.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A SWIPER harness is reconstructed with Stim rotated surface codes and PyMatching MWPM. Achievable accuracy is bracketed with local-MWPM and learned predictors. A worst-case temporal blast-radius bound is proved, with its probability core (union-bound tail, path-count bound, assembled conditional containment theorem) machine-checked in Lean 4 with Mathlib and no sorry; the path-count bound was closed with the Aristotle prover. The bound&#x27;s modeling reduction is then tested shot by shot, and the results feed a compiler pass and a runtime executor, which are cross-checked against a union-find decoder.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The boundary decision is local: accuracy reaches about 0.999 within three rounds, and headroom over SWIPER is 0.019–0.063. Propagation decays exponentially in commit width, giving a temporal blast radius of one. The shot-by-shot tests falsify the Lean theorem&#x27;s reduction hypothesis; the actual mechanism is a global minimum-weight re-pairing. On a 16-window chain the executor recovers exactly and reaches speedups of about 15.99–16.00.</p><div class="sum-table"><table><thead><tr><th>d</th><th>W</th><th>Restart rate</th><th>Speedup</th><th>Speedup (pred=0.7)</th></tr></thead><tbody><tr><td>7</td><td>1</td><td>8.9e-3</td><td>15.999</td><td>15.80</td></tr><tr><td>7</td><td>3</td><td>1.0e-4</td><td>16.000</td><td>15.99</td></tr><tr><td>9</td><td>1</td><td>1.3e-2</td><td>15.997</td><td>15.81</td></tr><tr><td>9</td><td>3</td><td>3.2e-4</td><td>16.000</td><td>15.99</td></tr></tbody></table><div class="tbl-cap">Executor on a 16-window chain, p=1e-3 (subset)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

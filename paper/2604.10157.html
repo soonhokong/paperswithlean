@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accelerated Dopant Screening in Oxide Semiconductors via Multi-Fidelity Contextual Bandits and a Three-Tier DFT Validation Funnel · Papers With Lean</title>
+<meta name="description" content="Band gap engineering of oxide semiconductors through doping is critical for photocatalysis and optoelectronics, yet the combinatorial space of dopant elements, substitution sites, and co-doping combinations far exceeds typical density functional theory (DFT) budgets. We screen…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Accelerated Dopant Screening in Oxide Semiconductors via Multi-Fidelity Contextual Bandits and a Three-Tier DFT Validation Funnel">
+<meta property="og:description" content="Band gap engineering of oxide semiconductors through doping is critical for photocatalysis and optoelectronics, yet the combinatorial space of dopant elements, substitution sites, and co-doping combinations far exceeds typical density functional theory (DFT) budgets. We screen…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2604.10157.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2604.10157.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2604.10157v1" target="_blank" rel="noopener"><img src="../thumbs/2604.10157.jpg" alt="First page of Accelerated Dopant Screening in Oxide Semiconductors via Multi-Fidelity Contextual Bandits and a Three-Tier DFT Validation Funnel"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Accelerated Dopant Screening in Oxide Semiconductors via Multi-Fidelity Contextual Bandits and a Three-Tier DFT Validation Funnel</h1>
+        <p class="authors">Abhinaba Basu</p>
+        <div class="row">
+          <span class="badge">cond-mat.mtrl-sci</span>
+          <span class="date">Apr 11, 2026 · v1</span>
+          <span class="badge">cs.LG</span> <span class="badge">physics.comp-ph</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2604.10157v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2604.10157" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.19501400" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes the Lyapunov stability analysis of the MF-OFUL bandit&#x27;s surrogate errors in Lean 4: 1,826 lines and 57 theorems, with 12 matrix-analysis axioms absent from Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Band gap engineering of oxide semiconductors through doping is critical for photocatalysis and optoelectronics, yet the combinatorial space of dopant elements, substitution sites, and co-doping combinations far exceeds typical density functional theory (DFT) budgets. We screen doped candidates across five oxide hosts (ZnO, TiO2, SrTiO3, SnO2, MgO), culminating in a 529-candidate ZnO co-doping campaign, and identify Cu-containing co-doped ZnO systems as consistently achieving visible-light-range band gaps (1.0-1.8 eV), with Y2Cu2 co-doped ZnO as the optimal candidate (1.84 eV). A three-tier validation funnel (PBE, PBE+U, ionic relaxation) reveals that no single level of theory suffices: V-doped ZnO shifts from near-metallic to wide-gap upon Hubbard U correction, while Cu-doped SrTiO3 enters the visible-light window only after correcting for d-electron localization. To make this screening tractable, we introduce a multi-fidelity screening strategy that replaces 81% of DFT evaluations with computationally inexpensive surrogate predictions, reducing a 529-candidate closed-loop Quantum ESPRESSO campaign from an estimated 440 to 62 CPU-hours while finding the global optimum in 100% of 50 independent trials (p = 5.0e-8 versus random screening, Wilcoxon signed-rank). Cross-host analysis of the dopant-host interaction matrix reveals that dopant performance is governed by just two latent chemical dimensions, enabling prediction of rankings in unseen hosts. All 583 DFT calculations, screening code, and stability proofs are released as an open benchmark.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Screening doped oxide semiconductors for target band gaps involves combinatorial candidate spaces that exceed DFT budgets. A cheap, formally grounded selection strategy is needed that keeps surrogate errors bounded.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors propose MF-OFUL, a multi-fidelity linear contextual bandit that uses a bootstrap Ridge surrogate to replace many DFT calls. A three-tier DFT funnel (PBE, PBE+U, ionic relaxation) validates the candidates it finds. A Lyapunov stability analysis bounds the effect of surrogate bias on regret. This analysis is formalized in Lean 4 (57 theorems, no sorry), conditional on 12 axioms for standard matrix results such as the Woodbury identity.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">In a 529-candidate ZnO co-doping campaign, MF-OFUL replaced 81% of DFT evaluations and cut cost from an estimated 440 to 62 CPU-hours. It found the global optimum in all 50 trials, identifying Y2Cu2 co-doped ZnO (1.84 eV) as the optimal candidate. The 583 DFT calculations, the code and the Lean proofs are released.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.10157/fig5_zno_landscape.png" alt=""><figcaption>Figure 7: Bandgap landscape of the 529-candidate ZnO co-doping campaign. Each point represents a DFT-evaluated candidate, sorted by bandgap and colored by reward (green: near 2.0 eV target; red: far from target). Cu-containing systems (diamonds) cluster near the target window (green band), while most other combinations produce wide-gap or near-metallic outcomes. Key Cu co-doped candidates are anno</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Benchmark</th><th>MF-OFUL</th><th>OFUL</th><th>Random</th></tr></thead><tbody><tr><td>Materials Project (20%)</td><td>0.000</td><td>0.215</td><td>0.236</td></tr><tr><td>Synthetic (8%)</td><td>0.049</td><td>0.468</td><td>0.688</td></tr><tr><td>Real QE, ZnO (62.5%)</td><td>0.000</td><td>0.002</td><td>0.069</td></tr><tr><td>Real QE, cross-host (12%)</td><td>0.000</td><td>0.031</td><td>0.392</td></tr></tbody></table><div class="tbl-cap">Simple regret across benchmarks (lower is better)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

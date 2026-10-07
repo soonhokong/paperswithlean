@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Efficient Test-Time Optimization for Multi-Agent Proof Autoformalization · Papers With Lean</title>
+<meta name="description" content="Full-proof autoformalization bridges extensive mathematical proofs in natural language with formally validated reasoning, offering a pathway to elevate the ceiling of verifiable mathematical reasoning. Unlike statement-level formalization, proof autoformalization is a…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Efficient Test-Time Optimization for Multi-Agent Proof Autoformalization">
+<meta property="og:description" content="Full-proof autoformalization bridges extensive mathematical proofs in natural language with formally validated reasoning, offering a pathway to elevate the ceiling of verifiable mathematical reasoning. Unlike statement-level formalization, proof autoformalization is a…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.11307.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.11307.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.11307v1" target="_blank" rel="noopener"><img src="../thumbs/2607.11307.jpg" alt="First page of Efficient Test-Time Optimization for Multi-Agent Proof Autoformalization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Efficient Test-Time Optimization for Multi-Agent Proof Autoformalization</h1>
+        <p class="authors">Tian-Shuo Liu, Shiyuan Zhang, Zijie Geng, Haoyu Liu, Runjie Xu, Pengyuan Wang, Lei Yuan, Yang Yu</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jul 13, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.11307v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.11307" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Multi-agent pipeline formalizes natural-language proofs into Lean proof files and uses the Lean verifier to check them and guide decomposition optimization.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Full-proof autoformalization bridges extensive mathematical proofs in natural language with formally validated reasoning, offering a pathway to elevate the ceiling of verifiable mathematical reasoning. Unlike statement-level formalization, proof autoformalization is a long-horizon challenge requiring coordination of claims, contexts, and dependencies across many proof steps, yet has only recently come under focused study. Current approaches either rely on costly model training or apply excessive, unguided repair at inference time. To this end, we introduce ToMap, a multi-agent framework that structures proof autoformalization as a Decomposer-Formalizer-Prover pipeline with efficient test-time optimization guided by formal verification and semantic rubrics for proof quality. Rather than distributing test-time compute across all agents, we perform bottleneck analysis and identify the Decomposer as the critical bottleneck: the quality of its atomic, self-contained proof units directly determines whether downstream agents can successfully formalize and prove each step. ToMap therefore treats the Formalizer and Prover as downstream executors and efficiently focuses test-time compute on Decomposer refinement. This refinement follows a loop inspired by GEPA, evolving prompts over candidate decompositions and using formal verification progress together with semantic proof rubrics to define a Pareto frontier that guides the next decomposition update. Experiments on ProofFlowBench show that ToMap improves over the best previous method by 19.0% when evaluated by both syntactic correctness and semantic faithfulness, while requiring lower test-time cost. Scaling analysis shows that most gains emerge within a few iterations of decomposition evolution, guiding test-time budget selection.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Full-proof autoformalization means translating complete informal proofs into verified Lean proofs. It is a long-horizon task that requires coordinating claims, contexts and dependencies across many steps. Existing methods either need costly training or spend test-time compute on unguided repair.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ToMap structures the task as a Decomposer-Formalizer-Prover multi-agent pipeline, with Lean as the external verifier. A weak-link analysis gives the same Lean diagnostics to only one editable stage at a time, and identifies the Decomposer as the most recoverable stage. ToMap then runs a GEPA-style evolutionary loop over candidate decompositions, scored by LLM-judged rubrics for faithfulness, provability and Lean-friendliness. A Pareto frontier over these scores guides the next update, and only candidates passing a rubric gate are sent to the Formalizer, Prover and Lean for verification.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.11307/TOMAP_pipeline_new.png" alt=""><figcaption>Figure 1: Full-proof autoformalization as a multi-agent pipeline. A natural-language theorem and informal proof are first decomposed into proof units with local context. The downstream executor then formalizes each unit, proves each local obligation, and verifies them.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2607.11307/TOMAP_GEPA_flow_new.png" alt=""><figcaption>Figure 3: ToMap : GEPA-style test-time optimization of proof decompositions. ToMap concentrates test-time compute on the Decomposer interface while keeping the downstream Formalizer-Prover-Lean executor fixed. It maintains a pool of candidate natural-language decompositions, scores them with proof-quality rubrics measuring semantic faithfulness, atomicity, self-containedness, and dependency consis</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On ProofFlowBench, ToMap improves combined syntactic correctness and semantic faithfulness by 19.0% over the best prior method, at lower test-time cost. On miniF2F it also outperforms training-based and training-free baselines. Most gains appear within a few iterations of decomposition evolution.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Time(s)</th><th>SC</th><th>SF</th><th>SC∧SF</th></tr></thead><tbody><tr><td>ProofBridge</td><td>113.48</td><td>92.93</td><td>9.24</td><td>9.24</td></tr><tr><td>Codex End2End</td><td>104.22</td><td>25.00</td><td>32.61</td><td>21.20</td></tr><tr><td>ProofFlow</td><td>2348.48</td><td>36.41</td><td>33.15</td><td>15.76</td></tr><tr><td>ToMap-Qwen30B</td><td>610.10</td><td>66.30</td><td>27.71</td><td>21.10</td></tr></tbody></table><div class="tbl-cap">ProofFlowBench results (SC = syntactic correctness, SF = semantic faithfulness, %)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

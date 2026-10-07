@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rethinking Fine-Tuning when Scaling Test-Time Compute: Limiting Confidence Improves Mathematical Reasoning · Papers With Lean</title>
+<meta name="description" content="Recent progress in large language models (LLMs) highlights the power of scaling test-time compute to achieve strong performance on complex tasks, such as mathematical reasoning and code generation. This raises a critical question: how should model training be modified to…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rethinking Fine-Tuning when Scaling Test-Time Compute: Limiting Confidence Improves Mathematical Reasoning">
+<meta property="og:description" content="Recent progress in large language models (LLMs) highlights the power of scaling test-time compute to achieve strong performance on complex tasks, such as mathematical reasoning and code generation. This raises a critical question: how should model training be modified to…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2502.07154.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2502.07154.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2502.07154v4" target="_blank" rel="noopener"><img src="../thumbs/2502.07154.jpg" alt="First page of Rethinking Fine-Tuning when Scaling Test-Time Compute: Limiting Confidence Improves Mathematical Reasoning"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Rethinking Fine-Tuning when Scaling Test-Time Compute: Limiting Confidence Improves Mathematical Reasoning</h1>
+        <p class="authors">Feng Chen, Allan Raventos, Nan Cheng, Surya Ganguli, Shaul Druckmann</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Feb 11, 2025 · v4</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2502.07154v4" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2502.07154" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/allanraventos/refine" target="_blank" rel="noopener" title="allanraventos/refine">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Fine-tunes LLM tactic generators with a confidence-limiting loss and evaluates pass@4k proof search success on Lean Mathlib and MiniF2F theorems.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Recent progress in large language models (LLMs) highlights the power of scaling test-time compute to achieve strong performance on complex tasks, such as mathematical reasoning and code generation. This raises a critical question: how should model training be modified to optimize performance under a subsequent test-time compute strategy and budget? To explore this, we focus on pass@N, a simple test-time strategy that searches for a correct answer in $N$ independent samples. We show, surprisingly, that training with cross-entropy (CE) loss can be ${\it misaligned}$ with pass@N in that pass@N accuracy ${\it decreases}$ with longer training. We explain the origins of this misalignment in terms of model overconfidence induced by CE, and experimentally verify our prediction of overconfidence as an impediment to scaling test-time compute via pass@N. Furthermore we suggest a principled, modified training loss that is better aligned to pass@N by limiting model confidence and rescuing pass@N test performance. Our algorithm demonstrates improved mathematical reasoning on MATH and MiniF2F benchmarks under several scenarios: (1) providing answers to math questions; and (2) proving theorems by searching over proof trees of varying shapes. Overall our work underscores the importance of co-designing two traditionally separate phases of LLM development: training-time protocols and test-time search and reasoning strategies.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Standard cross-entropy fine-tuning can be misaligned with pass@N test-time search. Pass@N accuracy can fall with longer training because the model becomes overconfident. This matters for verifier-based settings such as math answers and formal theorem proving.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors propose Direct Coverage Optimization (DCO). DCO directly maximizes the probability that a correct completion appears among N samples. Its gradient is the cross-entropy gradient scaled by a factor that attenuates updates on examples the model is already confident about. For theorem proving, a step-level DCO variant with parameter N_eff controls how widely the search explores proof trees. These models are evaluated on Mathlib and MiniF2F theorems, including an ensemble over several N_eff values and expert iteration on Mathlib.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2502.07154/nips_fig2.png" alt=""><figcaption>Figure 2: (a) DCO improves on CE loss for pass@N test coverage over a broad range of N and traces a Pareto-optimal frontier. We fine-tune Llama-3-8B base models on MATH to produce direct answers: one with CE loss and others using \mathcal{L}_{\text{DCO}}^{N^{\prime}} for various N^{\prime} (color-coded). Each curve shows pass@N coverage for a single fine-tuned model. Note that no N^{\prime} is opt</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On MATH, DCO traces a Pareto-optimal pass@N frontier over cross-entropy for Llama-3-8B and 70B, including out-of-distribution evaluation on AIME24. For theorem proving at pass@4k, larger N_eff improves over the CE baseline. Under equal test compute, an ensemble over N_eff values gains 5.2% on Mathlib and 4.1% on MiniF2F.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2502.07154/Fig.1_DCO_frontier_70B.png" alt=""><figcaption>Figure 8: DCO improves on CE for pass@N test coverage over a broad range of N and traces a Pareto-optimal frontier with Llama-3-70B-base. Same as Figure 2 (a) but with Llama-3-70B-base model. We fine-tune Llama-3-70B base models on the MATH dataset to produce direct answers. We fine-tune for 4 epochs one model using CE loss and several models under the \mathcal{L}_{\text{DCO}}^{N^{\prime}} objecti</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2502.07154/Fig.1_DCO_frontier_AIME24.png" alt=""><figcaption>Figure 10: DCO improves on CE for pass@N test coverage over a broad range of N and traces a Pareto-optimal frontier on out-of-distribution test set. Same as Figure 2 (a) but evaluated on AIME24. We fine-tune Llama-3-8B base models on the MATH dataset to produce direct answers and evaluate on AIME24. We fine-tune for 4 epochs one model using CE loss and several models under the \mathcal{L}_{\text{D</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>N_eff</th><th>Mathlib</th><th>MiniF2F</th></tr></thead><tbody><tr><td>1 (CE loss)</td><td>55.6%</td><td>37.4%</td></tr><tr><td>8</td><td>56.1%</td><td>39.5%</td></tr><tr><td>16</td><td>56.5%</td><td>37.0%</td></tr><tr><td>Ensemble of all N_eff</td><td>62.2%</td><td>43.6%</td></tr><tr><td>N_eff=1 (5x test compute)</td><td>57.0%</td><td>39.5%</td></tr></tbody></table><div class="tbl-cap">Proof success rates on Mathlib and MiniF2F using pass@4k</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

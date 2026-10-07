@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cross-Domain Uncertainty Quantification for Selective Prediction: A Comprehensive Bound Ablation with Transfer-Informed Betting · Papers With Lean</title>
+<meta name="description" content="We present a comprehensive ablation of nine finite-sample bound families for selective prediction with risk control, combining concentration inequalities (Hoeffding, Empirical Bernstein, Clopper-Pearson, Wasserstein DRO, CVaR) with multiple-testing corrections (union bound,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cross-Domain Uncertainty Quantification for Selective Prediction: A Comprehensive Bound Ablation with Transfer-Informed Betting">
+<meta property="og:description" content="We present a comprehensive ablation of nine finite-sample bound families for selective prediction with risk control, combining concentration inequalities (Hoeffding, Empirical Bernstein, Clopper-Pearson, Wasserstein DRO, CVaR) with multiple-testing corrections (union bound,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.08907.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.08907.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.08907v1" target="_blank" rel="noopener"><img src="../thumbs/2603.08907.jpg" alt="First page of Cross-Domain Uncertainty Quantification for Selective Prediction: A Comprehensive Bound Ablation with Transfer-Informed Betting"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Cross-Domain Uncertainty Quantification for Selective Prediction: A Comprehensive Bound Ablation with Transfer-Informed Betting</h1>
+        <p class="authors">Abhinaba Basu</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Mar 9, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">stat.ML</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-orange" href="../#tag=probability">probability</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.08907v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.08907" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The core claims of Theorem 1 (Transfer-Informed Betting supermartingale, product bound, convergence rate, optimality) are formalized in Lean 4 with Mathlib, with Ville&#x27;s inequality axiomatized.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present a comprehensive ablation of nine finite-sample bound families for selective prediction with risk control, combining concentration inequalities (Hoeffding, Empirical Bernstein, Clopper-Pearson, Wasserstein DRO, CVaR) with multiple-testing corrections (union bound, Learn Then Test fixed-sequence) and betting-based confidence sequences (WSR). Our main theoretical contribution is Transfer-Informed Betting (TIB), which warm-starts the WSR wealth process using a source domain&#x27;s risk profile, achieving tighter bounds in data-scarce settings with a formal dominance guarantee. We prove that the TIB wealth process remains a valid supermartingale under all source-target divergences, that TIB dominates standard WSR when domains match, and that no data-independent warm-start can achieve better convergence. The combination of betting-based confidence sequences, LTT monotone testing, and cross-domain transfer is, to our knowledge, a three-way novelty not present in the literature. We evaluate all nine bound families on four benchmarks-MASSIVE (n=1,102), NyayaBench (n=280), CLINC-150 (n=22.5K), and Banking77 (n=13K)-across 18 (alpha, delta) configurations. On MASSIVE at alpha=0.10, LTT eliminates the ln(K) union-bound penalty, achieving 94.0% guaranteed coverage versus 73.8% for Hoeffding-a 27% relative improvement. On NyayaBench, where the small calibration set makes Hoeffding-family bounds infeasible below alpha=0.20, Transfer-Informed Betting achieves 18.5% coverage at alpha=0.10, a 5.4x improvement over LTT + Hoeffding. We additionally compare with split-conformal prediction, showing that conformal methods produce prediction sets (avg. 1.67 classes) whereas selective prediction provides single-prediction risk guarantees. We apply these methods to agentic caching systems, formalizing a progressive trust model where the guarantee determines when cached responses can be served autonomously.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Selective prediction for caching LLM agent responses needs finite-sample guarantees on the unsafe cache-hit rate. Standard Hoeffding plus union-bound certificates are loose, especially when calibration data is scarce.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors ablate nine bound families, combining concentration inequalities, multiple-testing corrections (union bound, Learn Then Test), and betting-based confidence sequences (WSR). They introduce Transfer-Informed Betting (TIB), which warm-starts the WSR wealth process using a source domain&#x27;s risk profile. They prove TIB remains a valid supermartingale, dominates WSR when the domains match, and is optimal among warm-starts. These claims are machine-checked in Lean 4 with Mathlib: 18 lemmas, no sorry, and one axiom for Ville&#x27;s inequality.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On MASSIVE at alpha=0.10, LTT reaches 94.0% guaranteed coverage versus 73.8% for Hoeffding. On NyayaBench, TIB achieves 18.5% coverage at alpha=0.10, a 5.4x improvement over LTT + Hoeffding.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Causal Past Logic for Runtime Verification of Distributed LLM Agent Workflows · Papers With Lean</title>
+<meta name="description" content="We study runtime monitoring for distributed LLM-agent workflows. In an asynchronous execution, a decision can only depend on events that are causally visible to the lifeline that makes it: an event that appears earlier in some log may still be unknown locally. We extend the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Causal Past Logic for Runtime Verification of Distributed LLM Agent Workflows">
+<meta property="og:description" content="We study runtime monitoring for distributed LLM-agent workflows. In an asynchronous execution, a decision can only depend on events that are causally visible to the lifeline that makes it: an event that appears earlier in some log may still be unknown locally. We extend the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.20923.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.20923.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.20923v2" target="_blank" rel="noopener"><img src="../thumbs/2605.20923.jpg" alt="First page of Causal Past Logic for Runtime Verification of Distributed LLM Agent Workflows"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Causal Past Logic for Runtime Verification of Distributed LLM Agent Workflows</h1>
+        <p class="authors">Benedikt Bollig</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">May 20, 2026 · v2</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.PL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.20923v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.20923" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/zippergen-io/zippergen-lean" target="_blank" rel="noopener" title="zippergen-io/zippergen-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">MSCs, Causal Past Logic semantics, the knowledge-vector monitor, and its correctness theorem are mechanized in Lean 4 without sorry.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We study runtime monitoring for distributed LLM-agent workflows. In an asynchronous execution, a decision can only depend on events that are causally visible to the lifeline that makes it: an event that appears earlier in some log may still be unknown locally. We extend the ZipperGen agent-workflow framework with Causal Past Logic (CPL), an adaptation of PT-DTL to guards in if-constructs and while loops. In addition to standard past-time modalities such as previous and since, a guard can inspect the latest causally visible event of another lifeline and selected variables stored there. The owner evaluates the guard online to select the next branch or loop step. We adapt the knowledge-vector monitor to ZipperGen and prove that the locally computed monitor value coincides with the denotational semantics of the guard at the current event.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">In asynchronous distributed LLM-agent workflows, a lifeline&#x27;s decision can only depend on events causally visible to it. Workflow guards therefore need a logic and a monitor that respect this causal visibility.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The ZipperGen choreographic agent-workflow framework is extended with Causal Past Logic (CPL), an adaptation of PT-DTL interpreted over valued message sequence charts. CPL supports previous/since operators and inspection of the latest causally visible event of another lifeline and its variables. A knowledge-vector monitor using vector clocks and latest-value views is adapted to ZipperGen. Its correctness with respect to the denotational semantics is proved and mechanized in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The locally computed monitor value is proven to coincide with the guard&#x27;s semantics at the current event, and the Lean development kernel-checks without sorry or custom axioms. A Python prototype shows sub-millisecond to few-millisecond per-event overhead on the benchmarks.</p><div class="sum-table"><table><thead><tr><th>Workload</th><th>ℓ</th><th>Atoms n</th><th>Vars k</th><th>Local (ms)</th><th>Send (ms)</th><th>Msg data (KB)</th></tr></thead><tbody><tr><td>Code review</td><td>4</td><td>–</td><td>1</td><td>0.047</td><td>0.069</td><td>1.2</td></tr><tr><td>Scaling Ψ</td><td>32</td><td>16</td><td>4</td><td>0.209</td><td>0.506</td><td>17.0</td></tr><tr><td>Scaling Ψ</td><td>8</td><td>128</td><td>128</td><td>1.976</td><td>2.979</td><td>58.0</td></tr></tbody></table><div class="tbl-cap">Monitor overhead per event (selected workloads)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

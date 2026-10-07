@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chain-of-Reasoning: Towards Unified Mathematical Reasoning in Large Language Models via a Multi-Paradigm Perspective · Papers With Lean</title>
+<meta name="description" content="Large Language Models (LLMs) have made notable progress in mathematical reasoning, yet often rely on single-paradigm reasoning, limiting their effectiveness across diverse tasks. We introduce Chain-of-Reasoning (CoR), a novel unified framework integrating multiple reasoning…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chain-of-Reasoning: Towards Unified Mathematical Reasoning in Large Language Models via a Multi-Paradigm Perspective">
+<meta property="og:description" content="Large Language Models (LLMs) have made notable progress in mathematical reasoning, yet often rely on single-paradigm reasoning, limiting their effectiveness across diverse tasks. We introduce Chain-of-Reasoning (CoR), a novel unified framework integrating multiple reasoning…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2501.11110.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2501.11110.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2501.11110v4" target="_blank" rel="noopener"><img src="../thumbs/2501.11110.jpg" alt="First page of Chain-of-Reasoning: Towards Unified Mathematical Reasoning in Large Language Models via a Multi-Paradigm Perspective"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Chain-of-Reasoning: Towards Unified Mathematical Reasoning in Large Language Models via a Multi-Paradigm Perspective</h1>
+        <p class="authors">Yiyao Yu, Yuxiang Zhang, Dongdong Zhang, Xiao Liang, Hengyuan Zhang, Xingxing Zhang, Ziyi Yang, Mahmoud Khademi, Hany Awadalla, Junjie Wang, Yujiu Yang, Furu Wei</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Jan 19, 2025 · v4</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2501.11110v4" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2501.11110" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/microsoft/CoR" target="_blank" rel="noopener" title="microsoft/CoR">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses Lean 4 as the symbolic reasoning paradigm, verifying generated proofs to build training data and evaluating theorem proving on miniF2F in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large Language Models (LLMs) have made notable progress in mathematical reasoning, yet often rely on single-paradigm reasoning, limiting their effectiveness across diverse tasks. We introduce Chain-of-Reasoning (CoR), a novel unified framework integrating multiple reasoning paradigms–Natural Language Reasoning (NLR), Algorithmic Reasoning (AR), and Symbolic Reasoning (SR)–to enable synergistic collaboration. CoR generates multiple potential answers via different reasoning paradigms and synthesizes them into a coherent final solution. We propose a Progressive Paradigm Training (PPT) strategy for models to progressively master these paradigms, leading to CoR-Math-7B. Experimental results demonstrate that CoR-Math-7B significantly outperforms current SOTA models, achieving up to a 41.0% absolute improvement over GPT-4o in theorem proving and a 15.0% improvement over RL-based methods on the MATH benchmark in arithmetic tasks. These results show the enhanced mathematical comprehension ability of our model, enabling zero-shot generalization across tasks.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM mathematical reasoners are usually trained on a single reasoning paradigm: natural language, code, or formal symbolic proof. As a result they perform unevenly across arithmetic computation and theorem proving tasks.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Chain-of-Reasoning (CoR) has a model generate solutions sequentially in natural language reasoning, symbolic reasoning (Lean 4 proofs checked by the Lean prover) and algorithmic reasoning (Python), then summarize them into a final answer. A Multi-Paradigm Math dataset is built from Numina-TIR and Lean-Workbook, with Lean verification used to filter and revise proof paths. Progressive Paradigm Training adds paradigms in stages to fine-tune DeepSeekMath-7B-Base, producing CoR-Math-7B.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2501.11110/data-train.png" alt=""><figcaption>Figure 3: An overview of (a) the Multi-Paradigm Math (MPM) dataset construction process, involving reconstruction, extension, and theorem prover verification, and (b) the Progressive Paradigm Training (PPT) method, where the model is trained with increasing reasoning paradigms in stages.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2501.11110/intro-example.png" alt=""><figcaption>Figure 2: The reasoning process under different paradigms: (a) In single-paradigm reasoning, each reasoning step relies on the same knowledge medium, such as Natural Language (NL), algorithms, or symbols. (b) In tool-integrated single-paradigm, NL is used for reasoning, while code assists in solving specific sub-problems. After obtaining the execution results, the reasoning continues using NL. (c)</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">CoR-Math-7B reaches 66.7% on MATH and 88.7% on GSM8K zero-shot. On miniF2F-test (Lean 4) it scores 52.9% at a 128×1 sample budget and 66.0% at 128×128, exceeding GPT-4o by 41.0 points absolute. Ablations show gains from each training stage and from the NLR→SR→AR ordering.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2501.11110/ppt-result.png" alt=""><figcaption>Figure 4: An evaluation of the effectiveness of the PPT strategy. We present the zero-shot Pass@1 results on the MATH and GSM8k benchmarks across three cumulative stages of the PPT strategy. The results highlight the PPT strategy’s cumulative effectiveness, showing increased performance with each progressive stage.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Model</th><th>GSM8k@1</th><th>MATH@1</th><th>miniF2F@128</th></tr></thead><tbody><tr><td>DSM + NLR</td><td>33.9</td><td>27.8</td><td>-</td></tr><tr><td>DSM + AR</td><td>75.8</td><td>37.6</td><td>-</td></tr><tr><td>DSM + SR</td><td>-</td><td>-</td><td>44.3</td></tr><tr><td>DSM + CoR</td><td>88.7</td><td>66.7</td><td>52.9</td></tr></tbody></table><div class="tbl-cap">Zero-shot results of single- vs multi-paradigm fine-tuning on DeepSeekMath-7B-Base</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

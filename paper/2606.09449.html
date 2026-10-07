@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reasoning without Gold Standards: A Proxy-Judge Theory of Autoformalization · Papers With Lean</title>
+<meta name="description" content="Complex reasoning tasks increasingly require systems to produce outputs whose correctness cannot be judged by exact match against a single reference. Autoformalization (AF) is a representative example; it asks a model to translate informal mathematical or logical reasoning into…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reasoning without Gold Standards: A Proxy-Judge Theory of Autoformalization">
+<meta property="og:description" content="Complex reasoning tasks increasingly require systems to produce outputs whose correctness cannot be judged by exact match against a single reference. Autoformalization (AF) is a representative example; it asks a model to translate informal mathematical or logical reasoning into…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.09449.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.09449.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.09449v1" target="_blank" rel="noopener"><img src="../thumbs/2606.09449.jpg" alt="First page of Reasoning without Gold Standards: A Proxy-Judge Theory of Autoformalization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Reasoning without Gold Standards: A Proxy-Judge Theory of Autoformalization</h1>
+        <p class="authors">Lei Xu, Xin Quan, André Freitas</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Jun 8, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.09449v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.09449" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Autoformalization outputs for miniF2F and ProofNet are elaborated in the Lean 4 kernel, with symbol grounding checked against Mathlib, to drive a per-axis refinement loop.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Complex reasoning tasks increasingly require systems to produce outputs whose correctness cannot be judged by exact match against a single reference. Autoformalization (AF) is a representative example; it asks a model to translate informal mathematical or logical reasoning into a formally checkable object, yet expert-validated formalizations do not scale beyond toy cases and a single informal argument can admit many valid formal renderings. Progress therefore depends on whether partial, structured proxies can substitute for exact references. We introduce a reference-free proxy-judge framework for AF that replaces gold-standard matching with a vector of per-axis property checks. The framework organizes the proxy along three structural scopes that cover global properties of the elicited object, per-module properties internal to its sub-components, and cross-domain properties that re-align it to the informal source, and aggregates each axis into a verdict vector. The vector drives a reflective refinement loop in which a violated coordinate routes the controller to a matching repair target, so each iteration changes only what is judged wrong. Under bounded judge noise, the expected intrinsic gap contracts geometrically to a noise-dependent plateau. Across seven formalization backbones on miniF2F, ProofNet, e-SNLI, and ProntoQA, refinement consistently lifts Pass Rate over the single-shot ICL baseline, and the per-axis proxy outperforms a matched scalar proxy on benchmarks where the baseline has room to improve. Structured proxy judgments therefore provide both a practical refinement signal and a theoretical handle on convergence when exact references are unavailable.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Autoformalization lacks scalable gold-standard references, and a single informal argument admits many valid formalizations. Exact-match evaluation therefore penalizes correct alternatives and merges distinct error types into one score.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A reference-free proxy-judge framework evaluates a candidate formalization with eight per-axis judges. The judges are grouped into global, per-module, and cross-domain scopes, and the kernel-decidable axes are checked by Lean 4 or Isabelle/HOL. A reflective refinement loop sends each violated axis to a matching repair target. Under bounded judge noise, the expected intrinsic gap is proven to contract geometrically to a noise-dependent plateau.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.09449/fig_loop.png" alt=""><figcaption>Figure 1: Reflective Refinement Loop. At each iteration the system proposes a candidate formalization, scores it on a fixed set of property axes, finds the worst-scoring axis, and applies a repair targeted to that axis.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2606.09449/fig_imp_exp.png" alt=""><figcaption>Figure 2: Implicit-to-Explicit Transition. Correctness is checked at three scopes: the whole object, each module, and the alignment back to the informal source nl and context \Gamma . Each scope has its own judge.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Across seven backbones on miniF2F and ProofNet (Lean 4) and on e-SNLI and ProntoQA (Isabelle), refinement raises Pass Rate over a single-shot ICL baseline. The per-axis proxy beats a matched scalar proxy where the baseline is below saturation, notably ProofNet and e-SNLI.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Judge</th><th>miniF2F</th><th>ProofNet</th><th>e-SNLI</th><th>ProntoQA</th></tr></thead><tbody><tr><td>Scalar</td><td>GPT-5.4</td><td>84.7</td><td>58.8</td><td>81.0</td><td>100.0</td></tr><tr><td>Scalar</td><td>GPT-5.4-mini</td><td>86.9</td><td>58.4</td><td>82.0</td><td>100.0</td></tr><tr><td>Decomposed</td><td>GPT-5.4</td><td>86.1</td><td>67.0</td><td>98.0</td><td>100.0</td></tr><tr><td>Decomposed</td><td>GPT-5.4-mini</td><td>88.5</td><td>66.8</td><td>100.0</td><td>100.0</td></tr></tbody></table><div class="tbl-cap">Scalar vs decomposed proxy (Pass Rate %)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

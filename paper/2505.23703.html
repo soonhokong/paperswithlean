@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Let&#x27;s Reason Formally: Natural-Formal Hybrid Reasoning Enhances LLM&#x27;s Math Capability · Papers With Lean</title>
+<meta name="description" content="Enhancing the mathematical reasoning capabilities of LLMs has garnered significant attention in both the mathematical and computer science communities. Recent works have made substantial progress in both Natural Language (NL) reasoning and Formal Language (FL) reasoning by…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Let&#x27;s Reason Formally: Natural-Formal Hybrid Reasoning Enhances LLM&#x27;s Math Capability">
+<meta property="og:description" content="Enhancing the mathematical reasoning capabilities of LLMs has garnered significant attention in both the mathematical and computer science communities. Recent works have made substantial progress in both Natural Language (NL) reasoning and Formal Language (FL) reasoning by…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2505.23703.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2505.23703.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2505.23703v4" target="_blank" rel="noopener"><img src="../thumbs/2505.23703.jpg" alt="First page of Let&#x27;s Reason Formally: Natural-Formal Hybrid Reasoning Enhances LLM&#x27;s Math Capability"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Let&#x27;s Reason Formally: Natural-Formal Hybrid Reasoning Enhances LLM&#x27;s Math Capability</h1>
+        <p class="authors">Ruida Wang, Yuxin Li, Yi R. Fung, Tong Zhang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">May 29, 2025 · v4</span>
+          <span class="badge">cs.CL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2505.23703v4" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2505.23703" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/RickySkywalker/HybridReasoning" target="_blank" rel="noopener" title="RickySkywalker/HybridReasoning">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Autoformalizes natural-language QA math problems into Lean4 existence theorems and uses a Lean4 prover (Kimina-Prover) whose reasoning yields answers.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Enhancing the mathematical reasoning capabilities of LLMs has garnered significant attention in both the mathematical and computer science communities. Recent works have made substantial progress in both Natural Language (NL) reasoning and Formal Language (FL) reasoning by leveraging the potential of pure Reinforcement Learning (RL) methods on base models. However, RL approaches struggle to impart new capabilities not presented in the base model, highlighting the need to integrate more knowledge like FL into NL math reasoning effectively. Yet, this integration is challenging due to inherent disparities in problem structure and reasoning format between NL and FL. To address these challenges, we introduce **NL-FL HybridReasoning (NFL-HR)**, an end-to-end framework designed to incorporate the FL expert into NL math problem-solving. To bridge the NL and FL input format gap, we propose the NL-FL Problem Alignment method, which reformulates the Question-Answering (QA) problems in NL as existence theorems in FL. Subsequently, the Mixed Problem Input technique we provide enables the FL reasoner to handle both QA and existence problems concurrently. Lastly, we mitigate the NL and FL output format gap in reasoning through an LLM-based Answer Extraction mechanism. Comprehensive experiments demonstrate that the NFL-HR framework achieves **89.80**% and **84.34%** accuracy rates on the MATH-500 and the AMC benchmarks, surpassing the NL baseline by **4.60%** and **4.82%**, respectively. Notably, some problems resolved by our framework remain unsolved by the NL baseline model even under a larger number of trials.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Reinforcement-learning methods for natural-language math reasoning in LLMs mostly refine abilities the base model already has. Formal-language (FL) reasoning knowledge could help, but NL and FL problems differ in structure and in output format.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">NFL-HR first rewrites a QA-style NL problem as an NL existence problem with a general LLM, then autoformalizes it into a Lean4 existence theorem. A Mixed Problem Input technique feeds both the NL QA problem and the Lean4 statement to a Long-CoT Lean4 prover. An LLM-based Answer Extraction step then recovers the implicit NL answer from the prover&#x27;s reasoning trace.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2505.23703/MainPlot-0907.png" alt=""><figcaption>Figure 1: NL-FL HybridReasoning (NFL-HR) framework: (a) NL-FL Problem Alignment: We first translate the QA-style NL problem into the NL existence problem using a general LLM, followed by converting the problem into an FL existence theorem through an autoformalizer. (b) FL Reasoner Problem Solving: We then apply the mixed problem input technique to ask the FL reasoner to concurrently address the QA</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With pass@16, NFL-HR reaches 89.80% on MATH-500 and 84.34% on AMC, which is 4.60% and 4.82% above the NL baseline. It improves on every MATH-500 subject, with the largest gain in geometry (+14.63%). It also solves some problems the NL baseline fails even with 64 trials.</p><div class="sum-table"><table><thead><tr><th>Dataset</th><th>NL Reasoning</th><th>NFL-HR</th><th>Improvement</th></tr></thead><tbody><tr><td>AMC</td><td>79.52%</td><td>84.34%</td><td>4.82%</td></tr><tr><td>MATH-500</td><td>85.20%</td><td>89.80%</td><td>4.60%</td></tr><tr><td>Geometry (MATH-500)</td><td>65.85%</td><td>80.49%</td><td>14.63%</td></tr></tbody></table><div class="tbl-cap">Pass@16 accuracy of NL reasoning vs NFL-HR</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quantitative Comparison of Credible Compilation and Verification In Coding Agent Compiler Development · Papers With Lean</title>
+<meta name="description" content="Formal program verification is a longstanding goal in the field. We present the first quantitative comparison of the two primary compiler verification approaches, credible compilation/translation validation and full verification. Working with the first verified compiler…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Quantitative Comparison of Credible Compilation and Verification In Coding Agent Compiler Development">
+<meta property="og:description" content="Formal program verification is a longstanding goal in the field. We present the first quantitative comparison of the two primary compiler verification approaches, credible compilation/translation validation and full verification. Working with the first verified compiler…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.08927.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.08927.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.08927v1" target="_blank" rel="noopener"><img src="../thumbs/2605.08927.jpg" alt="First page of Quantitative Comparison of Credible Compilation and Verification In Coding Agent Compiler Development"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Quantitative Comparison of Credible Compilation and Verification In Coding Agent Compiler Development</h1>
+        <p class="authors">Martin Rinard</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">May 9, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.08927v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.08927" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A coding agent implements and proves correct compiler optimizations in Lean 4 within the Axon verified compiler, comparing proof effort against credible compilation.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Formal program verification is a longstanding goal in the field. We present the first quantitative comparison of the two primary compiler verification approaches, credible compilation/translation validation and full verification. Working with the first verified compiler developed by a coding agent (operating under human supervision), we present quantitative results from a coding agent implementing several optimizations using these two approaches. The results indicate that 1) verification requires roughly an order of magnitude more development effort than credible compilation, 2) to enhance provability, the coding agent chooses less efficient algorithms and data structures for verified optimizations, and 3) in an attempt to minimize proof effort the coding agent repeatedly implemented optimization scope reductions for verified optimizations, and 4) certificate checking time dominates optimization and certificate generation time for the considered optimizations. Because of the increased proof overhead, verified optimizations required substantially more supervision and coding sessions than credible compilation optimizations. Given the capabilities of a modern coding agent working in this context, implementation efforts for both credible compilation and verified versions remained feasible for the considered optimizations (unreachable code elimination, dead assignment elimination, and constant propagation/folding).</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Compiler correctness can be ensured either by credible compilation (translation validation with a verified checker) or by full verification of each transformation. No quantitative comparison of the engineering effort the two approaches require has existed.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Starting from the Axon compiler written in Lean 4, a human supervised Claude Code as it implemented credible-compilation and fully verified versions of three optimizations: unreachable code elimination, dead assignment elimination, and constant propagation/folding. The agent wrote all code, certificate generators, and correctness proofs. Effort was measured by sessions, active time, tokens, code and proof lines of code, and supervisor prompts. Compile times were benchmarked on the Livermore kernels.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Verification took roughly an order of magnitude more effort than credible compilation, and the verified versions needed substantially more sessions and supervision. To ease proofs, the agent chose less efficient algorithms and data structures and repeatedly narrowed optimization scope. Certificate checking time dominated optimization and certificate generation time.</p><div class="sum-table"><table><thead><tr><th>Optimization</th><th>Sessions</th><th>Tokens</th><th>Code LoC</th><th>Proof LoC</th></tr></thead><tbody><tr><td>UCE+DAE CC</td><td>4</td><td>1.86 M</td><td>+287, -56</td><td>+0, -0</td></tr><tr><td>CP CC</td><td>3</td><td>1.75 M</td><td>+149, -24</td><td>+0, -0</td></tr><tr><td>UCE VF</td><td>8</td><td>12.27 M</td><td>+549, -190</td><td>+4,348, -290</td></tr><tr><td>UCE+DAE VF</td><td>14</td><td>16.35 M</td><td>+734, -301</td><td>+8,158, -662</td></tr><tr><td>CP VF</td><td>15</td><td>17.86 M</td><td>+1,079, -170</td><td>+6,131, -1,244</td></tr></tbody></table><div class="tbl-cap">Engineering effort per optimization (CC = credible compilation, VF = verified)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

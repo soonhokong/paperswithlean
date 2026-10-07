@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thermodynamic Limits of Proof · Papers With Lean</title>
+<meta name="description" content="Every irreversible recorded distinction has a positive thermodynamic work floor. Landauer&#x27;s principle supplies the ideal bound $\varepsilon\ge k_B T\ln 2$ per irreversible bit, experimentally verified to $\pm 10\%$. Proof available to an agent is checkable information for that…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Thermodynamic Limits of Proof">
+<meta property="og:description" content="Every irreversible recorded distinction has a positive thermodynamic work floor. Landauer&#x27;s principle supplies the ideal bound $\varepsilon\ge k_B T\ln 2$ per irreversible bit, experimentally verified to $\pm 10\%$. Proof available to an agent is checkable information for that…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2601.15571.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2601.15571.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2601.15571v5" target="_blank" rel="noopener"><img src="../thumbs/2601.15571.jpg" alt="First page of Thermodynamic Limits of Proof"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Thermodynamic Limits of Proof</h1>
+        <p class="authors">Tristan Simas</p>
+        <div class="row">
+          <span class="badge">cs.CC</span>
+          <span class="date">Jan 22, 2026 · v5</span>
+          <span class="badge">cs.LO</span> <span class="badge">math-ph</span> <span class="badge">math.CT</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-blue" href="../#tag=physics">physics</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2601.15571v5" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2601.15571" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.18140965" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Budget arithmetic, threshold lemmas, query-to-record bridges and proof-act bookkeeping are mechanized in Lean 4 with Mathlib, with a handle ledger and axiom scan.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Every irreversible recorded distinction has a positive thermodynamic work floor. Landauer&#x27;s principle supplies the ideal bound $\varepsilon\ge k_B T\ln 2$ per irreversible bit, experimentally verified to $\pm 10\%$. Proof available to an agent is checkable information for that agent: some substrate must produce, retain, and expose evidence that excludes answer-changing alternatives. A finite detector array operating at temperature $T$ for finite time has finite signal-acquisition capacity. Combining finite causal access, positive retained-record cost, and exact lower bounds on required records gives the Physical Counting Impossibility Theorem: no fixed-budget substrate can provide universal exact proof once the retained-record lower bound exceeds the declared budget. The theorem requires exactly $B&lt;\infty$ and $\varepsilon&gt;0$. An answer reports a value; proof supplies checkable grounds for accepting it. A reversible device may compute an answer and erase its scratch history, but proof requires retained, inspectable records. A global answer register, oracle response, entanglement witness, finite survey catalog, or trusted device output supplies proof only through an interface that exposes the relevant grounds to the verifier. A proposed interface must identify the retained-record lower-bound family $R(n)$ it induces. Sound operational claims about efficient solvability inherit the same finite-budget obstruction when their acceptance would license universal exact proof. Substrate-free derivability has proof status only when a physical verification event makes it available to an agent.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The paper asks whether a finite physical substrate can provide universal exact proof, given that every retained irreversible record has a positive thermodynamic work cost (Landauer&#x27;s bound) and that signal acquisition is limited by relativity.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Proof is modeled as retained, inspectable evidence over a declared finite-resolution query interface with a finite budget B, a per-record cost floor ε&gt;0, and a lower-bound family R(n) of required records drawn from query complexity (for example parity, sign queries and hidden truth tables). A Physical Counting Impossibility Theorem is derived from these premises. The arithmetic and interface bookkeeping are mechanized in Lean 4 with Mathlib, and a ledger maps each claim to a Lean declaration.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">No fixed-budget, positive-cost substrate can give universal exact proof once εR(n) exceeds B; parity alone already forces R(n)=n. An axiom scan of 121 Lean declarations found 3 that use no kernel axioms; most of the rest rely on the standard classical axioms.</p><div class="sum-table"><table><thead><tr><th>Category</th><th>Count</th></tr></thead><tbody><tr><td>Discovered theorem/lemma declarations</td><td>121</td></tr><tr><td>Successfully checked by Lean</td><td>121</td></tr><tr><td>No Lean kernel axioms reported</td><td>3</td></tr><tr><td>Depends on Classical.choice</td><td>114</td></tr><tr><td>Depends on propext</td><td>118</td></tr></tbody></table><div class="tbl-cap">Lean axiom scan (selected rows)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

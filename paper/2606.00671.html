@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moxia: A Trust-First Neuro-Symbolic Execution Architecture for Self-Explaining Mathematical Reasoning · Papers With Lean</title>
+<meta name="description" content="We present Moxia (formerly AXIOM), a trust-first neuro-symbolic architecture for self-explaining mathematical reasoning over natural-language input. Its language model is strictly a canonicalizer: it rewrites informal problem text into a narrow schema consumed by a deterministic…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Moxia: A Trust-First Neuro-Symbolic Execution Architecture for Self-Explaining Mathematical Reasoning">
+<meta property="og:description" content="We present Moxia (formerly AXIOM), a trust-first neuro-symbolic architecture for self-explaining mathematical reasoning over natural-language input. Its language model is strictly a canonicalizer: it rewrites informal problem text into a narrow schema consumed by a deterministic…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.00671.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.00671.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.00671v3" target="_blank" rel="noopener"><img src="../thumbs/2606.00671.jpg" alt="First page of Moxia: A Trust-First Neuro-Symbolic Execution Architecture for Self-Explaining Mathematical Reasoning"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Moxia: A Trust-First Neuro-Symbolic Execution Architecture for Self-Explaining Mathematical Reasoning</h1>
+        <p class="authors">Alessio Bruno</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">May 30, 2026 · v3</span>
+          <span class="badge">cs.CL</span> <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.00671v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.00671" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://huggingface.co/spaces/Squagghy/moxia" target="_blank" rel="noopener" title="Squagghy/moxia (Hugging Face)">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Handlers export derivations as Lean 4 theorems; 445 theorems from 479 task files are kernel-checked with Mathlib, with no sorry or axioms.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present Moxia (formerly AXIOM), a trust-first neuro-symbolic architecture for self-explaining mathematical reasoning over natural-language input. Its language model is strictly a canonicalizer: it rewrites informal problem text into a narrow schema consumed by a deterministic Computer-Algebra-System (CAS) pipeline, which derives and verifies the answer or abstains as a first-class output. Routing follows a 1:1:1 alignment of problem-shape regex, schema-specific prompt, and closed-form CAS handler, with 4,783 routes shipped, 71% of which answer without invoking the language model, and zero LOST_CORRECT regressions as a standing release gate. Because the answer is derived rather than generated, so is its explanation: every handler emits a step trace of the computation it performed, rendered as prose by a layer covering all 4,785 task files that cannot narrate a step the handler did not take. Derivations export to Lean 4 as well: 479 task files (10%) emit a theorem from the problem&#x27;s declared data, 445 accepted by the Lean kernel with Mathlib; that gate covers a fixture corpus, so live output is generated, not machine-checked. We report two numbers and never fuse them. On the full 7-category MATH test split, designed against, Moxia answers 90.2% (4,510/5,000) with one confident-wrong answer (99.98% trust on parseable). On held-out MATH-500, never designed against, it answers 89.2% (446/500) with zero confident-wrong answers. The 1.0 pp gap is the substantive result: a registry that had merely memorized problem shapes would collapse on held-out data, and this one does not. The rule-only path answers the 20,000-record lm-eval arithmetic benchmark at 100%, 1 ms per record. What we emphasize is not an accuracy figure but the forward dynamic: every logged abstain is a candidate correct after one ship cycle, since new tasks compose without regressing the registry.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM answers to math problems offer no way to verify them: a confident-wrong answer looks the same as a correct one. Lean-based provers do verify, but they need problems pre-formalized in Lean syntax, which is a bottleneck for natural-language input.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Moxia uses an LLM only to rewrite informal problem text into a narrow, task-specific schema. A deterministic SymPy CAS handler then derives and verifies the answer, or abstains with a structured fail-reason. Routing follows a 1:1:1 alignment of regex trigger, schema prompt, and handler across 4,783 routes, and 71% of routes need no LLM call. Handlers emit step traces rendered as prose, and a per-task exporter emits a Lean 4 theorem stating the problem data and the handler&#x27;s answer.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.00671/demo_trace.png" alt=""><figcaption>Figure 1: Single-query trace from the production demo on a circular seating problem: in how many ways can 7 people sit around a round table if no two of Pierre, Rosa and Thomas are adjacent? The three numbered pipeline stages (Router, Translator, Handler), followed by the answer and its derivation, materialize the 1{:}1{:}1 alignment of Section 2.1 : Router and Handler name the same Circular no k </figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On the full MATH test split, Moxia answers 90.2% (4,510/5,000) correctly with one confident-wrong answer; this split was designed against. On held-out MATH-500 it answers 89.2% with zero confident-wrong answers, and it scores 100% on the lm-eval arithmetic suite. For Lean, 479 task files (10%) produce 445 theorems that the Lean 4 kernel accepts with Mathlib, but this check covers a fixture corpus, so live output is not machine-checked.</p><div class="sum-table"><table><thead><tr><th>Domain</th><th>N</th><th>Correct</th><th>Trust on parse</th></tr></thead><tbody><tr><td>Intermediate Algebra</td><td>903</td><td>97.45%</td><td>99.89%</td></tr><tr><td>Number Theory</td><td>540</td><td>91.85%</td><td>100.00%</td></tr><tr><td>Algebra</td><td>1187</td><td>90.82%</td><td>100.00%</td></tr><tr><td>Geometry</td><td>479</td><td>83.51%</td><td>100.00%</td></tr><tr><td>Cumulative</td><td>5000</td><td>90.20%</td><td>99.98%</td></tr></tbody></table><div class="tbl-cap">Moxia per-domain results on the MATH test split (subset)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

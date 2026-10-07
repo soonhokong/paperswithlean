@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VeriScale: Adversarial Test-Suite Scaling for Verifiable Code Generation · Papers With Lean</title>
+<meta name="description" content="As large language models (LLMs) are increasingly deployed for software engineering, constructing high-quality benchmarks is crucial for evaluating not just the functional correctness, but also the formal verifiability of generated code. However, existing benchmarks are limited…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VeriScale: Adversarial Test-Suite Scaling for Verifiable Code Generation">
+<meta property="og:description" content="As large language models (LLMs) are increasingly deployed for software engineering, constructing high-quality benchmarks is crucial for evaluating not just the functional correctness, but also the formal verifiability of generated code. However, existing benchmarks are limited…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.22368.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.22368.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.22368v1" target="_blank" rel="noopener"><img src="../thumbs/2605.22368.jpg" alt="First page of VeriScale: Adversarial Test-Suite Scaling for Verifiable Code Generation"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">VeriScale: Adversarial Test-Suite Scaling for Verifiable Code Generation</h1>
+        <p class="authors">Yifan Bai, Xiaoyang Liu, Zihao Mou, Guihong Wang, Jian Yu, Shuhan Xie, Yantao Li, Yangyu Zhang, Jingwei Liang, Tao Luo</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">May 21, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.SE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.22368v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.22368" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/XiaoyangLiu-sjtu/VeriScale" target="_blank" rel="noopener" title="XiaoyangLiu-sjtu/VeriScale">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Expands and reduces test suites for the Lean 4 Verina benchmark, validating inputs and specifications via Lean v4.24.0 execution and #check.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">As large language models (LLMs) are increasingly deployed for software engineering, constructing high-quality benchmarks is crucial for evaluating not just the functional correctness, but also the formal verifiability of generated code. However, existing benchmarks are limited by the quantity and quality of positive and negative test cases, leading to an overestimation of model capabilities in generating specifications and implementations. To address this, we propose VeriScale, a novel framework driven by the adversarial implementations. It consists of two stages: test-suite expansion to construct diverse and challenging test cases, and test-suite reduction to distill them into compact yet discriminative suites. While VeriScale is general, we instantiate it on Verina to construct VerinaPlus, which expands the original test suites by over 83$\times$, and VerinaLite, a lightweight 14$\times$ variant. Our experiments across eight state-of-the-art LLMs demonstrate that VerinaPlus exposes substantial model weaknesses hidden by the original benchmark, evidenced by sharp score drops on both SpecGen and CodeGen tasks, whereas VerinaLite maintains this discriminative power at a fraction of the evaluation cost. The enhanced benchmarks and source code are publicly available at <a href="https://github.com/XiaoyangLiu-sjtu/VeriScale" target="_blank" rel="noopener">https://github.com/XiaoyangLiu-sjtu/VeriScale</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Benchmarks for verifiable code generation in Lean, such as Verina, include few positive and negative test cases. As a result, they overestimate how well LLMs generate specifications (SpecGen) and implementations (CodeGen).</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">VeriScale works in two stages. Test-suite expansion uses LLM seed generation and type-aware mutation of Lean input types, then synthesizes adversarial implementations to produce expected input-output pairs, unexpected inputs and unexpected outputs. All candidates are validated by Lean execution and the #check command on preconditions. Test-suite reduction then keeps a compact subset that still kills the adversarial implementations.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.22368/VeriScale.png" alt=""><figcaption>Figure 1: Overview of the VeriScale framework for adversarial test-suite scaling. Driven by the adversarial implementations, the framework scales verifiable code generation benchmarks through two core stages: test-suite expansion to ensure rigorous boundary coverage, and test-suite reduction to optimize evaluation efficiency without sacrificing discriminative power.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Applied to Verina, VeriScale produced VerinaPlus, with test suites over 83x larger, and VerinaLite, a 14x variant. Across eight LLMs, VerinaPlus raised failure counts by an average of 1.80x on SpecGen and 1.50x on CodeGen, exposing hidden weaknesses. VerinaLite keeps much of this discriminative power at lower cost.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.22368/example.png" alt=""><figcaption>Figure 3: Case study of a flawed specification on Verina #advanced_3. The generated postcondition successfully rejects unexpected outputs from the original dataset, but erroneously accepts our adversarially synthesized unexpected outputs.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Dataset</th><th>Expected I/O</th><th>Unexpected Output</th><th>Unexpected Input</th></tr></thead><tbody><tr><td>Verina</td><td>5.89</td><td>12.69</td><td>0.65</td></tr><tr><td>VerinaPlus</td><td>370.07 (x62.83)</td><td>1114.01 (x87.79)</td><td>119.00 (x183.08)</td></tr><tr><td>VerinaLite</td><td>52.34 (x8.89)</td><td>202.35 (x15.95)</td><td>15.80 (x24.31)</td></tr></tbody></table><div class="tbl-cap">Average number of test cases per task (multiplier relative to Verina)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

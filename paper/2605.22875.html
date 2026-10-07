@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RMA: Context-Orchestrated Research Math Agents · Papers With Lean</title>
+<meta name="description" content="Long-horizon mathematical reasoning fails less often because a model cannot produce a valid next step than because an agent fails to maintain and expose the right semantic state across many iterations. Left unmanaged, this produces research-level proofs that are locally…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RMA: Context-Orchestrated Research Math Agents">
+<meta property="og:description" content="Long-horizon mathematical reasoning fails less often because a model cannot produce a valid next step than because an agent fails to maintain and expose the right semantic state across many iterations. Left unmanaged, this produces research-level proofs that are locally…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.22875.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.22875.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.22875v2" target="_blank" rel="noopener"><img src="../thumbs/2605.22875.jpg" alt="First page of RMA: Context-Orchestrated Research Math Agents"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">RMA: Context-Orchestrated Research Math Agents</h1>
+        <p class="authors">Zelin Zhao, Bo Yuan, Yuchen Zhu, Jaemoo Choi, Yongxin Chen</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">May 20, 2026 · v2</span>
+          <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.22875v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.22875" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/sjtuytc/ResearchMathAgent" target="_blank" rel="noopener" title="sjtuytc/ResearchMathAgent">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Evaluates an agentic math framework by producing Lean 4 proofs for Formal Conjectures targets, verified by the Lean kernel under pinned Mathlib environments.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Long-horizon mathematical reasoning fails less often because a model cannot produce a valid next step than because an agent fails to maintain and expose the right semantic state across many iterations. Left unmanaged, this produces research-level proofs that are locally convincing yet globally incomplete: a key lemma unproved, an assumption unchecked, a citation unsupported, or a computational claim unverified. We present Research Math Agents (RMA), an agentic framework for long-horizon proof development built around a persistent, typed research store and an orchestrator that compiles operation-specific context from that store. The Research Context Orchestrator is the central state-management layer between the persistent research store and each locally scoped proof operation: it retrieves task-relevant artifacts, compiles them into a bounded context, invokes the appropriate operation, and writes the resulting proof edits, issue updates, literature notes, plans, or evaluations back to the store. This process is designed to keep proof revisions, unresolved issues, prior attempts, literature, and evaluations available across rounds while exposing only task-relevant state to each local operation. We evaluate RMA across complementary research-level settings using independent expert evaluation, blind mathematician review, LLM-based benchmark evaluation, and Lean 4 kernel verification. RMA achieves a 42.5% solve rate on the independently evaluated SOOHAK Challenge Hard set, obtains 8 of 10 correct solutions on First Proof B1 and 8 of 10 passing solutions on B2 under human-expert evaluation, and verifies 213 of 300 sampled Research Solved targets in Formal Conjectures with the Lean 4 kernel.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Long-horizon research-level mathematical reasoning by LLM agents often yields proofs that look convincing locally but are globally incomplete, with unproved lemmas, unchecked assumptions, or unverified claims. The underlying failure is in keeping the right semantic state across many iterations.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">RMA is an agentic framework built around a persistent, typed research store and a Research Context Orchestrator. For each locally scoped proof operation, the orchestrator retrieves the relevant artifacts, compiles them into a bounded context, invokes the operation, and writes the resulting proof edits, issues, literature notes, plans, or evaluations back to the store. Evaluation combines expert review, blind mathematician review, LLM-judged benchmarks, and Lean 4 kernel verification. In the Lean evaluation, proofs using sorry, custom axioms, or native_decide are rejected.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">RMA reaches a 42.5% solve rate on SOOHAK Challenge Hard and gets 8/10 solutions on First Proof B1 and 8/10 on B2 under human-expert evaluation. On 300 sampled Formal Conjectures Research Solved targets, it verifies 213 with the Lean 4 kernel, compared with 193 for SeedProver and 121 for direct Claude Opus 4.8.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Setting</th><th>Verified</th></tr></thead><tbody><tr><td>RMA (Opus 4.8)</td><td>agentic</td><td>213/300</td></tr><tr><td>Seed-Prover</td><td>prover</td><td>193/300</td></tr><tr><td>Hilbert</td><td>prover</td><td>164/300</td></tr><tr><td>NanoProof</td><td>prover</td><td>135/300</td></tr><tr><td>Opus 4.8 direct</td><td>direct</td><td>121/300</td></tr></tbody></table><div class="tbl-cap">Formal Conjectures Research Solved, Lean 4 kernel verification (300 sampled targets)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

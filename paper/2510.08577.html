@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>An Exact Rounds-versus-Queries Trade-off for Pointer Chasing, Machine-Checked in Lean 4 · Papers With Lean</title>
+<meta name="description" content="A deterministic query algorithm with $d$ rounds submits $d$ batches of queries, each chosen from the answers to earlier batches. Canonne and Gur asked for general bounds on the cost of removing rounds. For $k$-step pointer chasing over $k$ tables of $m \geq 2$ entries we…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="An Exact Rounds-versus-Queries Trade-off for Pointer Chasing, Machine-Checked in Lean 4">
+<meta property="og:description" content="A deterministic query algorithm with $d$ rounds submits $d$ batches of queries, each chosen from the answers to earlier batches. Canonne and Gur asked for general bounds on the cost of removing rounds. For $k$-step pointer chasing over $k$ tables of $m \geq 2$ entries we…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2510.08577.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2510.08577.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2510.08577v5" target="_blank" rel="noopener"><img src="../thumbs/2510.08577.jpg" alt="First page of An Exact Rounds-versus-Queries Trade-off for Pointer Chasing, Machine-Checked in Lean 4"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">An Exact Rounds-versus-Queries Trade-off for Pointer Chasing, Machine-Checked in Lean 4</h1>
+        <p class="authors">Rafig Huseynzade</p>
+        <div class="row">
+          <span class="badge">cs.CC</span>
+          <span class="date">Aug 29, 2025 · v5</span>
+          <span class="badge">cs.FL</span> <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2510.08577v5" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2510.08577" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://arxiv.org/src/2510.08577v5/anc" target="_blank" rel="noopener" title="arXiv ancillary files">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The query model, pointer chasing problem, and exact rounds-versus-queries trade-off theorem are formalised in Lean 4 core without Mathlib, sorry-free.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A deterministic query algorithm with $d$ rounds submits $d$ batches of queries, each chosen from the answers to earlier batches. Canonne and Gur asked for general bounds on the cost of removing rounds. For $k$-step pointer chasing over $k$ tables of $m \geq 2$ entries we determine this cost exactly: for $1 \leq d \leq k$, the least worst-case number of queries with at most $d$ rounds is exactly $(k-d)m+d$, so every round removed costs exactly $m-1$ queries, which is what the naive merging of two consecutive rounds pays. The lower bound uses an adversary that answers every query with the queried index, except at the first unread cell of the chain. The model, the problem and the theorem are formalised in Lean 4 without Mathlib, with no sorry and only the axioms propext and Quot.sound; an exhaustive search confirms the formula for small parameters.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Canonne and Gur asked for general bounds on the cost of removing rounds of adaptivity from deterministic query algorithms. The paper studies this cost exactly for k-step pointer chasing over k tables of m entries.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Query strategies are modelled as trees that submit batches of cells per round, with depth and cost defined as predicates on the tree. The upper bound follows the chain one cell per round and reads the last k-d tables in full. The lower bound uses an adversary that answers each query with the queried index, except at the first unread chain cell. The model, the problem and both bounds are formalised in Lean 4.22.0 using only the core library, and an exhaustive search checks small parameters.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With 1 ≤ d ≤ k rounds the least worst-case number of queries is exactly (k−d)m+d, so each removed round costs exactly m−1 queries, the same as naively merging two rounds. The Lean proofs contain no sorry and depend only on the axioms propext and Quot.sound; a few parts, such as the distinct-cell form of the lower bound and the asymptotic corollary, are checked on paper only.</p><div class="sum-table"><table><thead><tr><th>rounds d</th><th>cost_d(L_k)</th></tr></thead><tbody><tr><td>d = 0</td><td>∞</td></tr><tr><td>1 ≤ d ≤ k</td><td>(k−d)m + d</td></tr><tr><td>d ≥ k</td><td>k</td></tr></tbody></table><div class="tbl-cap">Exact cost of deciding L_k with at most d rounds</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

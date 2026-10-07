@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compile to Compress: Boosting Formal Theorem Provers by Compiler Outputs · Papers With Lean</title>
+<meta name="description" content="Large language models (LLMs) have demonstrated significant potential in formal theorem proving, yet state-of-the-art performance often necessitates prohibitive test-time compute via massive roll-outs or extended context windows. In this work, we address this scalability…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Compile to Compress: Boosting Formal Theorem Provers by Compiler Outputs">
+<meta property="og:description" content="Large language models (LLMs) have demonstrated significant potential in formal theorem proving, yet state-of-the-art performance often necessitates prohibitive test-time compute via massive roll-outs or extended context windows. In this work, we address this scalability…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2604.18587.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2604.18587.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2604.18587v2" target="_blank" rel="noopener"><img src="../thumbs/2604.18587.jpg" alt="First page of Compile to Compress: Boosting Formal Theorem Provers by Compiler Outputs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Compile to Compress: Boosting Formal Theorem Provers by Compiler Outputs</h1>
+        <p class="authors">Guchan Li, Rui Tian, Hongning Wang</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Mar 13, 2026 · v2</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.LO</span> <span class="badge">cs.PL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2604.18587v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2604.18587" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Trains LLM provers to refine failed Lean 4 proofs using Lean compiler error messages, evaluated with Lean v4.15.0 and Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language models (LLMs) have demonstrated significant potential in formal theorem proving, yet state-of-the-art performance often necessitates prohibitive test-time compute via massive roll-outs or extended context windows. In this work, we address this scalability bottleneck by exploiting an informative structure in formal verification: the observation that compilers map a vast space of diverse proof attempts to a compact set of structured failure modes. We introduce a learning-to-refine framework that leverages this compression to perform efficient learning and proof exploration. We perform tree search that corrects errors locally conditioned on explicit verifier feedback, thereby circumventing the costs associated with accumulating a long history of proof attempts. Extensive evaluations show that our method consistently amplifies the reasoning capabilities of base provers across varying scales. Notably, our approach achieves state-of-the-art performance on PutnamBench among publicly reported $\sim$8B and $\sim$32B parameter models under comparable test-time budgets, offering a scalable paradigm for next-generation verifier-guided reasoning.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">State-of-the-art LLM provers for Lean need very large test-time compute, either through massive roll-outs or long multi-round self-correction contexts. Existing methods reduce compiler feedback to binary success signals or treat it as plain text.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors observe that the Lean compiler maps many distinct failed proofs to a small set of recurring error messages, acting as a compressor. They synthesize refinement training data from pairs of failed and correct proofs, with Claude writing the analysis of each error, and fine-tune Kimina-Prover-Distill-8B and Goedel-Prover-V2-32B via expert iteration. Each refinement step is Markovian: it conditions only on the current proof and its compiler messages. At test time, random or value-guided tree search runs over these refinement steps.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.18587/SFT.png" alt=""><figcaption>Figure 2 : Refinement training data synthesis pipeline. Experiments were conducted using Kimina Lean server ( Santos et al., 2025 ) , with Lean v4.15.0 and a pinned snapshot of Mathlib.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The method improves the base provers on MiniF2F, ProofNet, MOBench and PutnamBench. The value-guided Goedel-Expert model solves 110 PutnamBench problems with a budget of 256, which the authors report as state of the art among publicly reported  8B and  32B models at comparable budgets.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.18587/Putnam146_value.png" alt=""><figcaption>(b) Value-guided tree search strategy.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Method</th><th>MiniF2F-test</th><th>ProofNet</th><th>Putnam</th><th>Putnam 256</th></tr></thead><tbody><tr><td>Kimina</td><td>77.46</td><td>14.56</td><td>10</td><td>10</td></tr><tr><td>Kimina Value</td><td>81.97</td><td>15.36</td><td>20</td><td>25</td></tr><tr><td>Goedel-V2</td><td>84.43</td><td>15.63</td><td>32</td><td>41</td></tr><tr><td>Goedel Value</td><td>86.89</td><td>24.26</td><td>63</td><td>110</td></tr></tbody></table><div class="tbl-cap">Accuracy (%) with sampling budget 64; Putnam column is number of solved problems; Putnam 256 uses budget 256</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning What to Remember and What to Internalize in LLM Self-Evolution via Adaptive Memory-Parameter Coordination · Papers With Lean</title>
+<meta name="description" content="Large language model agents increasingly operate in dynamic environments where tool interfaces, APIs, and user requirements change after deployment. Existing self-evolution methods mainly follow two paradigms: harness-based approaches, which externalize feedback into editable…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning What to Remember and What to Internalize in LLM Self-Evolution via Adaptive Memory-Parameter Coordination">
+<meta property="og:description" content="Large language model agents increasingly operate in dynamic environments where tool interfaces, APIs, and user requirements change after deployment. Existing self-evolution methods mainly follow two paradigms: harness-based approaches, which externalize feedback into editable…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.01234.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.01234.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.01234v1" target="_blank" rel="noopener"><img src="../thumbs/2608.01234.jpg" alt="First page of Learning What to Remember and What to Internalize in LLM Self-Evolution via Adaptive Memory-Parameter Coordination"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Learning What to Remember and What to Internalize in LLM Self-Evolution via Adaptive Memory-Parameter Coordination</h1>
+        <p class="authors">Tianyun Ji, Zhenya Huang, Jiayu Liu, Zirui Liu, Yu Su, Hongbin Pei</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Aug 2, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.01234v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.01234" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses Lean 4 theorem proving on MiniF2F as one of five evaluation tasks, analyzing Lean compiler error types under memory-based agent self-evolution.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language model agents increasingly operate in dynamic environments where tool interfaces, APIs, and user requirements change after deployment. Existing self-evolution methods mainly follow two paradigms: harness-based approaches, which externalize feedback into editable memories or skills for rapid adaptation, and parameter-based approaches, which internalize experience into model parameters for deeper capability improvement. However, using either mechanism alone creates a trade-off between flexibility and performance. This paper asks how an agent can coordinate both channels to achieve robust self-evolution. We present COVE, a unified agent self-evolution framework that combines harness-based and parameter-based learning through task-aware routing, stage-aware scheduling, and knowledge optimization. Through this design, COVE treats self-evolution not as indiscriminate accumulation of experience, but as a coordinated process that matches tasks and knowledge types to appropriate learning mechanisms. Experiments across multiple task categories show that COVE outperforms single-channel evolution strategies, demonstrating more robust and efficient improvement under changing environments.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM agents deployed in changing environments must keep improving. Existing self-evolution methods either store feedback in external memories or skills, which is flexible but shallow, or update model weights, which goes deeper but is costly and brittle when interfaces change.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">COVE combines harness-based (memory/skill) and parameter-based (fine-tuning) self-evolution. It uses a task-aware router, a stage-aware scheduler that triggers parametric updates on plateau, data sufficiency, or cold-start failure, and a knowledge optimization step that keeps volatile knowledge in the harness. Diagnostic analyses on Lean 4 MiniF2F theorem proving show that memory accumulation alone does not reduce Lean compiler errors. Lean is therefore treated as a cold-start domain needing an initial parametric update.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.01234/4_framework.png" alt=""><figcaption>Figure 5. Overview of COVE. Given task feedback, the task-aware router selects an evolution channel, the stage-aware scheduler determines when to invoke harness-side or parameter-side updates, and KnowledgePO coordinates knowledge transfer between external memories and model parameters by preserving volatile knowledge in the harness.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2608.01234/3_lean_error_types.png" alt=""><figcaption>Figure 3. Lean error types under harness evolution, showing no consistent reduction across episodes.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With Qwen3-8B, COVE reaches 7.0% success on Lean4 MiniF2F, against 0.0 for the base model and Evo-Memory and 6.2 for parametric-only. It also matches or exceeds single-channel variants on APPS, TableQA, HotpotQA and MATH, while cutting training tokens by roughly 73-90% relative to parametric-only.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Lean4</th><th>APPS</th><th>HotpotQA</th><th>MATH</th></tr></thead><tbody><tr><td>Base</td><td>0.0</td><td>23.2</td><td>45.1</td><td>75.1</td></tr><tr><td>Evo-Memory</td><td>0.0</td><td>11.5</td><td>64.5</td><td>69.0</td></tr><tr><td>Harness-only</td><td>3.0</td><td>31.6</td><td>66.2</td><td>84.0</td></tr><tr><td>Parametric-only</td><td>6.2</td><td>33.1</td><td>69.4</td><td>91.6</td></tr><tr><td>COVE</td><td>7.0</td><td>33.4</td><td>69.6</td><td>91.7</td></tr></tbody></table><div class="tbl-cap">Success rates (%) on selected tasks (Qwen3-8B)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

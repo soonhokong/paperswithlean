@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DreamProver: Evolving Transferable Lemma Libraries via a Wake-Sleep Theorem-Proving Agent · Papers With Lean</title>
+<meta name="description" content="We introduce DreamProver, an agentic framework that leverages a &quot;wake-sleep&quot; program induction paradigm to discover reusable lemmas for formal theorem proving. Existing approaches either rely on fixed lemma libraries, which limit adaptability, or synthesize highly specific…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DreamProver: Evolving Transferable Lemma Libraries via a Wake-Sleep Theorem-Proving Agent">
+<meta property="og:description" content="We introduce DreamProver, an agentic framework that leverages a &quot;wake-sleep&quot; program induction paradigm to discover reusable lemmas for formal theorem proving. Existing approaches either rely on fixed lemma libraries, which limit adaptability, or synthesize highly specific…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2604.26311.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2604.26311.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2604.26311v1" target="_blank" rel="noopener"><img src="../thumbs/2604.26311.jpg" alt="First page of DreamProver: Evolving Transferable Lemma Libraries via a Wake-Sleep Theorem-Proving Agent"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">DreamProver: Evolving Transferable Lemma Libraries via a Wake-Sleep Theorem-Proving Agent</h1>
+        <p class="authors">Youyuan Zhang, Jialiang Sun, Hangrui Bi, Chuqin Geng, Wenjie Ma, Zhaoyu Li, Xujie Si</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Apr 29, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2604.26311v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2604.26311" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/youyuan-zhang/DreamProver" target="_blank" rel="noopener" title="youyuan-zhang/DreamProver">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">LLM agent generates and verifies Lean 4 proofs with Mathlib, learning reusable lemma libraries evaluated on Lean benchmarks such as PutnamBench, CombiBench and LeanGeo-Bench.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We introduce DreamProver, an agentic framework that leverages a &quot;wake-sleep&quot; program induction paradigm to discover reusable lemmas for formal theorem proving. Existing approaches either rely on fixed lemma libraries, which limit adaptability, or synthesize highly specific intermediate lemmas tailored to individual theorems, thereby lacking generality. DreamProver addresses this gap through an iterative two-stage process. In the wake stage, DreamProver attempts to prove theorems from a training set using the current lemma library while proposing new candidate lemmas. In the &quot;sleep&quot; stage, it abstracts, refines, and consolidates these candidates to compress and optimize the library. Through this alternating cycle, DreamProver progressively evolves a compact set of high-level, transferable lemmas that can be effectively used to prove unseen theorems in related domains. Experimental results demonstrate that DreamProver substantially improves proof success rates across a diverse set of mathematical benchmarks, while also producing more concise proofs and reducing computational cost.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-based theorem provers usually treat each theorem in isolation. They rely either on fixed lemma libraries or on problem-specific intermediate lemmas that rarely transfer to other problems.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">DreamProver alternates wake and sleep stages. In the wake stage, an LLM decomposes training theorems into subgoals and proves them in Lean 4 using the current lemma library. In the sleep stage, intermediate theorems are semantically clustered and abstracted into general candidate lemmas, which are verified and pruned to keep the library compact. The learned domain-specific libraries are then used to prove unseen test theorems.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.26311/dreamprover_diagram.png" alt=""><figcaption>Figure 1: Overview of DreamProver as an iterative wake–sleep framework for learning a reusable lemma library. In the wake phase (top), the system attempts to prove a target theorem x using the current library L , where an LLM decomposes the problem into subgoals and constructs a proof p_{x} by leveraging existing lemmas. In the sleep phase (bottom), the resulting subgoals and intermediate theorems</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Across inequality, number theory, combinatorics, plane geometry and ML-theory benchmarks, DreamProver proves more theorems than proprietary LLMs, open-source provers and the Hilbert agent. It also produces shorter proofs at lower token cost. Ablations show library optimization and cluster evolving each contribute substantially.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2604.26311/token_stats.png" alt=""><figcaption>Figure 2: Total number of output tokens (millions) per sample on three well-represented domain benchmarks.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2604.26311/proof_length.png" alt=""><figcaption>Figure 3: Proof length statistics on three well-represented domain benchmarks.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Method</th><th>567NEQ</th><th>ChenNEQ</th><th>MO-INT</th><th>Total</th></tr></thead><tbody><tr><td>DreamProver</td><td>55</td><td>33</td><td>16</td><td>104</td></tr><tr><td>- library optimization</td><td>31</td><td>30</td><td>15</td><td>76</td></tr><tr><td>- cluster evolving</td><td>21</td><td>23</td><td>9</td><td>53</td></tr><tr><td>No library</td><td>23</td><td>24</td><td>8</td><td>55</td></tr><tr><td>+ retrieval (LEGO-Prover)</td><td>27</td><td>25</td><td>9</td><td>61</td></tr></tbody></table><div class="tbl-cap">Ablation on inequality benchmarks (theorems proved)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pipeline Denotational Design: Correct-by-Construction Data Pipelines at Zero Cost · Papers With Lean</title>
+<meta name="description" content="Pipeline Denotational Design (PDD) is a design-first methodology for building data pipelines that are correct by construction. As AI agents generate pipeline code at scale, the bottleneck shifts from writing to verifying pipelines, and the errors that matter most (grain…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pipeline Denotational Design: Correct-by-Construction Data Pipelines at Zero Cost">
+<meta property="og:description" content="Pipeline Denotational Design (PDD) is a design-first methodology for building data pipelines that are correct by construction. As AI agents generate pipeline code at scale, the bottleneck shifts from writing to verifying pipelines, and the errors that matter most (grain…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.12375.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.12375.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.12375v1" target="_blank" rel="noopener"><img src="../thumbs/2608.12375.jpg" alt="First page of Pipeline Denotational Design: Correct-by-Construction Data Pipelines at Zero Cost"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Pipeline Denotational Design: Correct-by-Construction Data Pipelines at Zero Cost</h1>
+        <p class="authors">Nikos Karayannidis</p>
+        <div class="row">
+          <span class="badge">cs.DB</span>
+          <span class="date">Jul 23, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=type-theory">type-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.12375v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.12375" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Pipeline Design Language (PDL), a DSL embedded in Agda and Lean 4, encodes the pipeline algebra so designs carry machine-checked correctness proofs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Pipeline Denotational Design (PDD) is a design-first methodology for building data pipelines that are correct by construction. As AI agents generate pipeline code at scale, the bottleneck shifts from writing to verifying pipelines, and the errors that matter most (grain inconsistencies that silently inflate aggregates) evade schema checks, type checks, and sampled tests. PDD designs pipelines in a semantic domain rather than in code: a design is composed from a typed algebra of operations (the Pipeline Design Algebra, one instantiation) in which every well-typed composition is grain-correct by construction. Resting on grain alone, the guarantee is universal: it holds for any grain-inferring operation set, over any engine. Correctness is established in three layers (grain, behavioral class, and domain) at design time, at zero cost, with no access to data: grain by a data-independent computation (CalcG), behavioral class by the type checker, and domain rules by a proof-carrying composition over operation contracts. A Pipeline Correctness theorem collapses the rest to a single input-boundary check: the only data-dependent residue is whether inputs meet the design&#x27;s preconditions (data quality, not code correctness), which PDD emits as SQL/PySpark verification queries. Correctness by construction is a spectrum: the same design can be verified by runtime checks, the deployed type-level checker, or machine-checked proofs in Agda/Lean 4. This recasts the engineer&#x27;s role: an agent instantiates a pre-verified pattern and ships a machine-checkable certificate; the human validates a compact specification and checks it. We realize the methodology in a production toolchain and set out an evaluation across pipeline patterns, behavioral classes, and data modelling paradigms. Because it rests on grain alone, the same design-time check extends to AI-generated queries over semantic layers and ontologies.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Data pipelines, increasingly generated by AI agents, suffer silent grain inconsistencies such as fan traps that inflate aggregates. Schema checks, type checks and sampled tests do not catch them. Verifying pipelines, rather than writing them, has become the bottleneck.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Pipeline Denotational Design specifies pipelines in a semantic domain using a typed Pipeline Design Algebra in which well-typed compositions are grain-correct by construction. Correctness is checked in three layers at design time: grain via a data-independent computation (CalcG), behavioral class via typing, and domain rules via proof-carrying operation contracts. Remaining data-dependent preconditions become generated SQL/PySpark queries at the input boundary. For full rigor, the algebra and its constraint logic are embedded in Agda/Lean 4 as PDL, so that type-checking a design yields a machine-checked proof.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">A Pipeline Correctness theorem reduces the runtime residue to a single input-boundary check. A production toolchain realizes the methodology, and a case-study pipeline is mechanized end to end in the dependently typed embedding. The quantitative evaluation is designed but not yet reported.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

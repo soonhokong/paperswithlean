@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fairis: Fairness-Aware Aggregation with Provable Influence Containment against Fairness Poisoning Attacks in Collaborative Machine Learning · Papers With Lean</title>
+<meta name="description" content="Collaborative machine learning among financial institutions must be both group-fair and robust against deliberate adversarial manipulation. Existing fairness-aware aggregation methods remain formally vulnerable to fairness poisoning: a malicious client maximizing group disparity…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fairis: Fairness-Aware Aggregation with Provable Influence Containment against Fairness Poisoning Attacks in Collaborative Machine Learning">
+<meta property="og:description" content="Collaborative machine learning among financial institutions must be both group-fair and robust against deliberate adversarial manipulation. Existing fairness-aware aggregation methods remain formally vulnerable to fairness poisoning: a malicious client maximizing group disparity…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.06469.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.06469.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.06469v1" target="_blank" rel="noopener"><img src="../thumbs/2608.06469.jpg" alt="First page of Fairis: Fairness-Aware Aggregation with Provable Influence Containment against Fairness Poisoning Attacks in Collaborative Machine Learning"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Fairis: Fairness-Aware Aggregation with Provable Influence Containment against Fairness Poisoning Attacks in Collaborative Machine Learning</h1>
+        <p class="authors">Devharsh Trivedi, Nesrine Kaaniche, Nikos Triandopoulos, Maryline Laurent, Jackson Walters</p>
+        <div class="row">
+          <span class="badge">cs.CR</span>
+          <span class="date">Aug 6, 2026 · v1</span>
+          <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.06469v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.06469" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">One author machine-checked the paper&#x27;s security theorems in Lean, including the Fairis weight properties, the clipped displacement bound, the EOD counterexample, and FairFed fixed-point results.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Collaborative machine learning among financial institutions must be both group-fair and robust against deliberate adversarial manipulation. Existing fairness-aware aggregation methods remain formally vulnerable to fairness poisoning: a malicious client maximizing group disparity while preserving accuracy evades accuracy-based Byzantine defenses, and in our threat model FairFed&#x27;s gap-based weighting can be gamed by an adversary who observes the global fairness score. We present Fairis, a server-side reweighting scheme in which each client&#x27;s update receives the normalized weight $ω_k = \bar{w}_k / \sum_j \bar{w}_j$ built from the unnormalized score $\bar{w}_k = η- \mathcal{F}_k$, with $\mathcal{F}_k \in [0,1]$ the local Equal Opportunity Difference and $η&gt; 1$ a security parameter. We prove three properties, Monotone Weight Reduction (MWR), Demographic Participation, and Non-Gamesmanship, extend MWR to colluding minority coalitions, and show that combining MWR with server-side norm clipping bounds the adversary&#x27;s displacement of the global model by $ω_0 C$, strictly decreasing in its own reported disparity. Assuming honest score reporting, an assumption this paper does not discharge, Fairis is the only rule evaluated that guarantees every client strictly positive weight while provably reducing an adversary&#x27;s weight monotonically in its bias; clipped FairFed can reach a lower weight but guarantees nothing and zeroes a client outright on Taiwan Credit. Against an adversary stealthy enough to evade accuracy-based defenses, within 0.04 accuracy of benign, Fairis cuts its weight by 41 to 54% below a size-blind control on Taiwan. On routine non-IID partitions no rule dominates, and a uniform-weighting ablation shows that containment tracks how far the adversary&#x27;s score separates from the honest mean, providing none when the honest population is already unfair.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Fairness-aware aggregation in collaborative learning is vulnerable to fairness poisoning, where a malicious client increases group disparity while keeping accuracy. FairFed&#x27;s gap-based weighting can be gamed by an adversary that matches the global fairness score.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Fairis weights each client by eta minus its local Equal Opportunity Difference, normalized across clients, with eta &gt; 1. The authors prove Monotone Weight Reduction, Demographic Participation, and Non-Gamesmanship. They extend these to colluding minority coalitions and bound adversarial displacement under norm clipping. One author machine-checked the proofs in Lean, including counterexamples and the FairFed matched-gap fixed point.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Assuming honest score reporting, Fairis guarantees every client positive weight and reduces an adversary&#x27;s weight monotonically in its bias. On Taiwan Credit it cuts a stealthy attacker&#x27;s weight by 41–54% relative to a uniform control. On routine non-IID partitions no rule dominates.</p><div class="sum-table"><table><thead><tr><th>alpha_adv</th><th>Uniform ω0</th><th>Fairis ω0</th><th>Reduction</th><th>Acc. gap</th></tr></thead><tbody><tr><td>0.25</td><td>0.333</td><td>0.268</td><td>19.6%</td><td>0.012</td></tr><tr><td>0.5</td><td>0.333</td><td>0.198</td><td>40.6%</td><td>0.005</td></tr><tr><td>1</td><td>0.333</td><td>0.152</td><td>54.4%</td><td>0.038</td></tr><tr><td>2</td><td>0.333</td><td>0.048</td><td>85.5%</td><td>0.111</td></tr></tbody></table><div class="tbl-cap">Attacker weight on Taiwan Credit: uniform vs Fairis</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

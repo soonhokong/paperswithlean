@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Euclean: Automated Geometry Problem Formalization with Unified Verification in Lean · Papers With Lean</title>
+<meta name="description" content="Recent formal reasoning systems have reached IMO-level performance, yet they leave a fragmented landscape: algebra and number theory are handled in Lean, while geometry still relies on domain-specific languages with limited formal guarantees. This split increases the trusted…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Euclean: Automated Geometry Problem Formalization with Unified Verification in Lean">
+<meta property="og:description" content="Recent formal reasoning systems have reached IMO-level performance, yet they leave a fragmented landscape: algebra and number theory are handled in Lean, while geometry still relies on domain-specific languages with limited formal guarantees. This split increases the trusted…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.19374.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.19374.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.19374v1" target="_blank" rel="noopener"><img src="../thumbs/2607.19374.jpg" alt="First page of Euclean: Automated Geometry Problem Formalization with Unified Verification in Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Euclean: Automated Geometry Problem Formalization with Unified Verification in Lean</h1>
+        <p class="authors">Linbin Tang, Jingyan You, Zilin Kang, Hanzhang Liu, Sophia Zhang, Zenan Li, Chenrui Cao, Liangcheng Song, Jiaao Wu, Xian Zhang, Fan Yang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jun 17, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-teal" href="../#tag=geometry">geometry</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.19374v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.19374" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/tlb-22/Euclean" target="_blank" rel="noopener" title="tlb-22/Euclean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Autoformalizes natural-language geometry problems into Lean 4 statements using native Mathlib Euclidean space constructs, producing large datasets for prover training.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Recent formal reasoning systems have reached IMO-level performance, yet they leave a fragmented landscape: algebra and number theory are handled in Lean, while geometry still relies on domain-specific languages with limited formal guarantees. This split increases the trusted computing base and hinders unified model development. Existing geometry-in-Lean efforts (LeanEuclid, LeanGeo) introduce custom axiom systems incompatible with standard Mathlib, and their small scale ($&lt;$ 1,100 problems) limits large-scale training. Native Mathlib autoformalization of geometry, however, poses distinct challenges: implicit diagrammatic assumptions (e.g., topological configuration and non-degeneracy) must be made explicit rather than deferred to external solvers, and models must adapt to Mathlib&#x27;s small, rapidly evolving geometry infrastructure. We present Euclean, a four-stage framework - constraint explication, configuration anchoring, formalization mapping, and iterative repair - for automatically formalizing geometry in native Mathlib. We construct OMNI-Geometry (768 competition problems) and Numina-Geometry (177,597 problems), the largest geometry formalization dataset in Lean. Human evaluation shows 48.89% TOP1 and 73.33% TOP5 accuracy. Training Goedel v2 on our formalizations improves proof success from 13.6% to 15.1%, validating dataset quality for unified neural theorem proving. Code and datasets: <a href="https://github.com/tlb-22/Euclean" target="_blank" rel="noopener">https://github.com/tlb-22/Euclean</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Formal reasoning systems handle algebra and number theory in Lean, but geometry still relies on domain-specific languages with weak formal guarantees. Existing geometry-in-Lean efforts use custom axiom systems that are incompatible with Mathlib and contain fewer than 1,100 problems.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Euclean is a four-stage LLM pipeline (constraint explication, configuration anchoring, formalization mapping, iterative repair). It translates informal geometry problems into Lean 4 theorems over Mathlib&#x27;s EuclideanSpace ℝ (Fin 2). It makes implicit diagrammatic assumptions explicit, such as non-degeneracy via AffineIndependent and ordering via Sbtw. DeepSeek-V3 is used as the generator, with 32 candidates per problem.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.19374/pipeline.png" alt=""><figcaption>Figure 1 : Overview of the Euclean formalization pipeline. Left (Ambiguity in Input): The process begins with an informal natural language statement containing topological ambiguity—for instance, “Point P on BC ” could topologically imply a segment, ray, or line. The diagrams illustrate that while the left configuration is the intended solution, the right configuration (on the extension) is invali</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The pipeline produced OMNI-Geometry (768 competition problems, 98.5% retention) and Numina-Geometry (177,597 problems). Human evaluation gives 48.89% TOP1 and 73.33% TOP5 accuracy. Fine-tuning Goedel v2 on the formalizations raises pass@1 from 13.6% to 15.1%.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Pass@1 (%)</th></tr></thead><tbody><tr><td>Goedel v2 (base)</td><td>13.6</td></tr><tr><td>base + SFT (round 1 passed)</td><td>15.1</td></tr><tr><td>base + DPO (pass/fail pairs)</td><td>15.0</td></tr></tbody></table><div class="tbl-cap">Downstream prover training (Pass@1)</div></div><div class="sum-table"><table><thead><tr><th>Configuration</th><th>Compiling</th></tr></thead><tbody><tr><td>Basic prompting</td><td>125 (13.0%)</td></tr><tr><td>+ concepts formalization mapping</td><td>254 (26.5%)</td></tr><tr><td>+ iterative code repair</td><td>465 (48.4%)</td></tr><tr><td>+ constraints formalization mapping</td><td>500 (52.1%)</td></tr><tr><td>+ configuration anchoring</td><td>480 (50.0%)</td></tr></tbody></table><div class="tbl-cap">Ablation: compiling formalizations out of 960 candidates</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

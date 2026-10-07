@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compiler-Guided Adaptive Proof Search with Cross-Model Synergy on Context-Dependent Theorem Proving · Papers With Lean</title>
+<meta name="description" content="Theorem proving in real-world Lean 4 projects is challenging because proofs often depend on project-specific context. While iterative refinement can use compiler errors to repair failed proofs, reusing failed attempts requires careful search control: some proofs provide better…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Compiler-Guided Adaptive Proof Search with Cross-Model Synergy on Context-Dependent Theorem Proving">
+<meta property="og:description" content="Theorem proving in real-world Lean 4 projects is challenging because proofs often depend on project-specific context. While iterative refinement can use compiler errors to repair failed proofs, reusing failed attempts requires careful search control: some proofs provide better…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.18084.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.18084.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.18084v2" target="_blank" rel="noopener"><img src="../thumbs/2608.18084.jpg" alt="First page of Compiler-Guided Adaptive Proof Search with Cross-Model Synergy on Context-Dependent Theorem Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Compiler-Guided Adaptive Proof Search with Cross-Model Synergy on Context-Dependent Theorem Proving</h1>
+        <p class="authors">Zhuo Liu, Ding Yu, Hangfeng He</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Jun 4, 2026 · v2</span>
+          <span class="badge">cs.PL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.18084v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.18084" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/joeliuz6/lean_proof_search" target="_blank" rel="noopener" title="joeliuz6/lean_proof_search">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds an LLM proof-search framework that uses Lean 4 compiler feedback to refine whole proofs, evaluated on Lean projects from miniCTX-v2.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Theorem proving in real-world Lean 4 projects is challenging because proofs often depend on project-specific context. While iterative refinement can use compiler errors to repair failed proofs, reusing failed attempts requires careful search control: some proofs provide better starting points than others, and later revisions may degrade a partially correct proof. We propose a compiler-guided proof search framework that balances exploration and exploitation. It explores diverse starting points through dual-model generation and stagnation-triggered resampling, while exploiting promising proof states through current-best refinement guided by compiler-grounded pairwise comparison. Experiments on seven real-world Lean 4 projects from miniCTX-v2 show that our method achieves a better effectiveness–efficiency tradeoff than pass@k baselines. Within the pass@32 budget, our method improves average pass rate by 12.8 percentage points while reducing LLM calls by 21.9%.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Proving theorems inside real-world Lean 4 projects depends on project-specific context such as local definitions and lemmas. Independent pass@k sampling discards failed proofs that contain partial progress, and naive iterative refinement can make a partially correct proof worse.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A compiler-guided search keeps a single current-best proof. For exploration, it draws candidates from two models, a generalist reasoning model and a Lean-specialized prover, and resamples when refinement stalls for N rounds. For exploitation, it repairs the current-best proof using compiler errors. An LLM judge makes compiler-grounded pairwise comparisons to decide whether each repaired proposal replaces the current best.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.18084/overview.png" alt=""><figcaption>Figure 1: Overview of our framework. Exploration (left) generates two diverse candidates via a generalist and a specialist. Exploitation (right) maintains a single current-best proof s^{*} and drives it toward verification: each repair produces a proposal , and an LLM judge decides whether to accept it. When refinement stagnates for N consecutive rounds, the system re-enters exploration and draws </figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On seven Lean 4 projects from miniCTX-v2, the method improves average pass rate by 12.8 percentage points over the base models&#x27; average pass@32 while using 21.9% fewer LLM calls. Ablations show that the specialist model, autosolve, resampling, and pairwise comparison each contribute to performance.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2608.18084/refinement_heatmap2.png" alt=""><figcaption>Figure 2: Empirical refinement results of one theorem with different initial attempts. One theorem, 10 wrong proofs (WP) as starting points (rows), each evaluated with 5 independent refinement runs (columns) with a 32-iteration budget. Cells show iterations to success; \times marks failure. Theorem: Set_EAnnulus_oc_subset_co in carleson . More examples can be found in Figure 9 and Figure 10 in App</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Method</th><th>Carleson</th><th>FLT</th><th>HepLean</th><th>Avg.</th></tr></thead><tbody><tr><td>Gemini-2.5-Flash</td><td>44.00</td><td>35.29</td><td>38.00</td><td>44.18</td></tr><tr><td>DeepSeek-Prover-v2</td><td>42.00</td><td>47.06</td><td>42.00</td><td>46.72</td></tr><tr><td>Ours</td><td>48.00</td><td>50.00</td><td>54.00</td><td>52.86</td></tr></tbody></table><div class="tbl-cap">Pass rate (%) on miniCTX-v2 test split (selected projects and average)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beyond Gold Standards: Epistemic Ensemble of LLM Judges for Formal Mathematical Reasoning · Papers With Lean</title>
+<meta name="description" content="Statement autoformalization plays a crucial role in formal mathematical reasoning by enabling the automatic translation of natural language statements into formal languages. While recent advances using large language models (LLMs) have shown promising capability of…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Beyond Gold Standards: Epistemic Ensemble of LLM Judges for Formal Mathematical Reasoning">
+<meta property="og:description" content="Statement autoformalization plays a crucial role in formal mathematical reasoning by enabling the automatic translation of natural language statements into formal languages. While recent advances using large language models (LLMs) have shown promising capability of…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2506.10903.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2506.10903.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2506.10903v2" target="_blank" rel="noopener"><img src="../thumbs/2506.10903.jpg" alt="First page of Beyond Gold Standards: Epistemic Ensemble of LLM Judges for Formal Mathematical Reasoning"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Beyond Gold Standards: Epistemic Ensemble of LLM Judges for Formal Mathematical Reasoning</h1>
+        <p class="authors">Lan Zhang, Marco Valentino, Jordan Meadows, Andre Freitas</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Jun 12, 2025 · v2</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2506.10903v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2506.10903" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/lanzhang128/autoformalization_evaluation" target="_blank" rel="noopener" title="lanzhang128/autoformalization_evaluation">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Evaluates LLM-judge ensembles on Lean4 and Isabelle/HOL autoformalizations from miniF2F and ProofNet, with formal validity checked by the theorem prover.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Statement autoformalization plays a crucial role in formal mathematical reasoning by enabling the automatic translation of natural language statements into formal languages. While recent advances using large language models (LLMs) have shown promising capability of autoformalization, methods for automatically evaluating autoformalization remain underexplored. LLM-as-a-judge presents a promising approach for automating such evaluation, however, existing methods typically employ coarse-grained and generic evaluation criteria, which limit their effectiveness for advanced formal mathematical reasoning, where quality hinges on nuanced, multi-granular dimensions. In this work, we take a step toward addressing this gap by introducing a systematic, automatic method to evaluate autoformalization tasks. The proposed method is based on an epistemically and formally grounded ensemble (EFG) of LLM judges, defined on criteria encompassing logical preservation (LP), mathematical consistency (MC), formal quality (FQ), and formal validity (FV), resulting in a transparent assessment that accounts for different contributing factors. We validate the proposed framework to serve as a proxy for autoformalization assessment within the domain of formal mathematics. Overall, our experiments demonstrate that the EFG ensemble of LLM judges is a more suitable emerging proxy for evaluation than a coarse-grained model. These findings suggest that LLM-as-judges, especially when guided by a well-defined set of atomic properties, could offer a scalable, interpretable, and reliable support for evaluating formal mathematical reasoning.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Evaluating autoformalization, the translation of natural-language math statements into formal languages, is hard. Syntactic checks miss semantic errors, human review does not scale, and reference-based metrics depend on ground truths that may be wrong.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors propose an epistemically and formally grounded (EFG) ensemble of LLM judges. Each judge scores one atomic criterion: logical preservation, mathematical consistency, formal quality, or formal validity, with the last checked by the theorem prover. A linear model combines the criteria into an overall score. Human rankings and assessments of formalizations from miniF2F and ProofNet in Lean4 and Isabelle/HOL are used for validation.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2506.10903/evaluation.png" alt=""><figcaption>Figure 1: Overview of the proposed framework for automatically evaluating autoformalization. Our method leverages ensembles of LLM judges based on epistemic criteria organized into a taxonomy, while also providing explanations for their judgments. A linear evaluation model aggregates the criteria into a single overall assessment to serve as a proxy for human evaluation.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Fine-grained EFG judges agree more closely with human rankings than coarse-grained judges. GPT-4.1-mini guided by operable atomic properties reaches about 72.7% pairwise ranking match with one human annotator on miniF2F, comparable to the 70% agreement between the two humans. Human review also found that many ground-truth formalizations in the benchmarks are flawed.</p><div class="sum-table"><table><thead><tr><th>AF</th><th>Judge</th><th>LP</th><th>MC</th><th>FQ</th><th>OA</th></tr></thead><tbody><tr><td>GPT-4.1</td><td>GPT-4.1-mini</td><td>0.924</td><td>0.985</td><td>0.957</td><td>0.891</td></tr><tr><td>Qwen-7B</td><td>GPT-4.1-mini</td><td>0.627</td><td>0.842</td><td>0.758</td><td>0.703</td></tr><tr><td>GPT-4.1</td><td>Qwen-Coder-7B</td><td>0.703</td><td>0.757</td><td>0.328</td><td>0.621</td></tr><tr><td>Qwen-7B</td><td>Qwen-Coder-7B</td><td>0.473</td><td>0.616</td><td>0.170</td><td>0.461</td></tr></tbody></table><div class="tbl-cap">Overall-assessment (OA) agreement on miniF2F test set with different autoformalizers (AF) and judges (Lean4)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

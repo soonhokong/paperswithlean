@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reasoning Models Can Be Effective Without Thinking · Papers With Lean</title>
+<meta name="description" content="Recent LLMs have significantly improved reasoning capabilities, primarily by including an explicit, lengthy Thinking process as part of generation. In this paper, we question whether this explicit thinking is necessary. Using the state-of-the-art DeepSeek-R1-Distill-Qwen, we…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reasoning Models Can Be Effective Without Thinking">
+<meta property="og:description" content="Recent LLMs have significantly improved reasoning capabilities, primarily by including an explicit, lengthy Thinking process as part of generation. In this paper, we question whether this explicit thinking is necessary. Using the state-of-the-art DeepSeek-R1-Distill-Qwen, we…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2504.09858.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2504.09858.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2504.09858v1" target="_blank" rel="noopener"><img src="../thumbs/2504.09858.jpg" alt="First page of Reasoning Models Can Be Effective Without Thinking"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Reasoning Models Can Be Effective Without Thinking</h1>
+        <p class="authors">Wenjie Ma, Jingxuan He, Charlie Snell, Tyler Griggs, Sewon Min, Matei Zaharia</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Apr 14, 2025 · v1</span>
+          <span class="badge">cs.CL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2504.09858v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2504.09858" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Evaluates NoThinking prompting on Lean 4 theorem-proving benchmarks (MiniF2F, ProofNet), using the Lean compiler as a perfect verifier for best-of-N selection.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Recent LLMs have significantly improved reasoning capabilities, primarily by including an explicit, lengthy Thinking process as part of generation. In this paper, we question whether this explicit thinking is necessary. Using the state-of-the-art DeepSeek-R1-Distill-Qwen, we find that bypassing the thinking process via simple prompting, denoted as NoThinking, can be surprisingly effective. When controlling for the number of tokens, NoThinking outperforms Thinking across a diverse set of seven challenging reasoning datasets–including mathematical problem solving, formal theorem proving, and coding–especially in low-budget settings, e.g., 51.3 vs. 28.9 on ACM 23 with 700 tokens. Notably, the performance of NoThinking becomes more competitive with pass@k as k increases. Building on this observation, we demonstrate that a parallel scaling approach that uses NoThinking to generate N outputs independently and aggregates them is highly effective. For aggregation, we use task-specific verifiers when available, or we apply simple best-of-N strategies such as confidence-based selection. Our method outperforms a range of baselines with similar latency using Thinking, and is comparable to Thinking with significantly longer latency (up to 9x). Together, our research encourages a reconsideration of the necessity of lengthy thinking processes, while also establishing a competitive reference for achieving strong reasoning performance in low-budget settings or at low latency using parallel scaling.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Reasoning LLMs generate long explicit thinking traces before answering, which costs many tokens and adds latency. The question is whether this explicit thinking is necessary for strong reasoning performance.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">NoThinking prefills the assistant response of DeepSeek-R1-Distill-Qwen with a dummy, empty thinking block so the model directly produces the final solution. It is compared with Thinking under budget forcing on seven tasks, including math, coding, and formal theorem proving in Lean 4 (MiniF2F, ProofNet). Parallel scaling generates N NoThinking samples independently and aggregates them, using the Lean compiler as a verifier for formal proofs and confidence-based best-of-N selection otherwise.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2504.09858/overview.png" alt=""><figcaption>Figure 1 : Before producing the final step-wise solution, Thinking generates a long chain of thought in the dedicated thinking box , containing a search process with reflection, backtracking, and self-verification. In contrast, NoThinking directly generates the solution after a prefilled dummy thinking box.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">At matched token budgets, NoThinking outperforms Thinking, especially at low budgets (e.g., 51.3 vs 28.9 on AMC 23 with 700 tokens), and its advantage grows with k in pass@k. On MiniF2F and ProofNet, NoThinking pass@2 exceeds full Thinking pass@1 with about 6–7x lower latency and about 4x fewer total tokens.</p><div class="sum-table"><table><thead><tr><th>Task</th><th>Thinking Latency</th><th>Thinking Acc</th><th>NoThinking Latency</th><th>NoThinking Acc</th><th>k</th></tr></thead><tbody><tr><td>MiniF2F</td><td>7767</td><td>34.84</td><td>1200 (-6.47x)</td><td>36.38</td><td>2</td></tr><tr><td>ProofNet</td><td>10178</td><td>5.52</td><td>1413 (-7.20x)</td><td>6.90</td><td>2</td></tr></tbody></table><div class="tbl-cap">Full Thinking (pass@1) vs NoThinking (pass@k) on Lean theorem-proving tasks</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

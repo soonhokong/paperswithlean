@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monotonic Reference-Free Refinement for Autoformalization · Papers With Lean</title>
+<meta name="description" content="While statement autoformalization has advanced rapidly, full-theorem autoformalization remains largely unexplored. Existing iterative refinement methods in statement autoformalization typically improve isolated aspects of formalization, such as syntactic correctness, but…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Monotonic Reference-Free Refinement for Autoformalization">
+<meta property="og:description" content="While statement autoformalization has advanced rapidly, full-theorem autoformalization remains largely unexplored. Existing iterative refinement methods in statement autoformalization typically improve isolated aspects of formalization, such as syntactic correctness, but…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2601.23166.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2601.23166.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2601.23166v2" target="_blank" rel="noopener"><img src="../thumbs/2601.23166.jpg" alt="First page of Monotonic Reference-Free Refinement for Autoformalization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Monotonic Reference-Free Refinement for Autoformalization</h1>
+        <p class="authors">Lan Zhang, Marco Valentino, André Freitas</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Jan 30, 2026 · v2</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2601.23166v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2601.23166" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses Lean 4 (v4.19.0-rc3 REPL) to check formal validity of generated full-theorem formalizations, with Lean prover LLMs as generators and repairers.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">While statement autoformalization has advanced rapidly, full-theorem autoformalization remains largely unexplored. Existing iterative refinement methods in statement autoformalization typically improve isolated aspects of formalization, such as syntactic correctness, but struggle to jointly optimize multiple quality dimensions, which is critical for full-theorem autoformalization. We introduce a reference-free iterative monotonic process at inference time for full-theorem autoformalization that leverages complementary feedback from theorem provers and LLM-based judges, without access to ground-truth or existing formalizations and without human intervention. Our approach optimizes a masked composite objective over Formal Validity, Logical Preservation, Mathematical Consistency, and Formal Quality, guided by a responsiveness map that indicates how different LLMs acting as different roles preferentially improve each dimension. We further propose an acceptance policy that guarantees certified monotonic improvement, and provide conditions ensuring convergence and termination. Empirical experiments demonstrate the proposed process enables simultaneous improvement across multiple dimensions, achieving 100.00% formal validity and a 90.27% overall score on miniF2F, and 77.96% formal validity and a 52.45% overall score on ProofNet.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Most autoformalization work targets theorem statements and leaves proofs as &quot;sorry&quot; placeholders, so full-theorem autoformalization (statement plus proof) is largely unexplored. Existing iterative refinement methods improve single quality aspects and struggle to optimize several dimensions jointly.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Full-theorem autoformalization is treated as one task scored on Formal Validity, checked by the Lean 4 REPL, and on Logical Preservation, Mathematical Consistency and Formal Quality, scored by LLM judges. At each step, one-off generators, recurrent refiners driven by judge feedback, and FV-repairers (DeepSeek-Prover-V2, Goedel-Prover-V2, Seed-Coder, Qwen2.5) propose candidates. A responsiveness map assigns models to these roles. A masked composite objective and an acceptance policy based on lower confidence bounds keep improvements certified as monotonic, with conditions given for convergence and termination.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2601.23166/monotonic.drawio.png" alt=""><figcaption>Figure 1 : Schematic illustration of the monotonic process with an example. In this process, One-Off Generators (OOGs) produce formalizations from scratch, Recurrent Generators (REGs) refine the current best formalization using feedback from LLM judges, and FV-Repairers (FVRs) correct formally invalid candidates generated by OOGs and REGs. The acceptance policy retains only the formalization estim</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">After six reference-free iterations, the process reaches 100.00% formal validity and a 90.27% overall score on miniF2F-Test. On ProofNet-Test it reaches 77.96% formal validity and a 52.45% overall score, improving several dimensions at once.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2601.23166/monotonic_complex.drawio.png" alt=""><figcaption>Figure 7 : Illustrative example of a single step in the monotonic process. The monotonic process enables the construction of high-quality formalizations that are both formally valid, as verified by the theorem prover, and semantically aligned, as evaluated by LLM judges.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EvolProver: Advancing Automated Theorem Proving by Evolving Formalized Problems via Symmetry and Difficulty · Papers With Lean</title>
+<meta name="description" content="Large Language Models (LLMs) for formal theorem proving have shown significant promise, yet they often lack generalizability and are fragile to even minor transformations of problem statements. To address this limitation, we introduce a novel data augmentation pipeline designed…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EvolProver: Advancing Automated Theorem Proving by Evolving Formalized Problems via Symmetry and Difficulty">
+<meta property="og:description" content="Large Language Models (LLMs) for formal theorem proving have shown significant promise, yet they often lack generalizability and are fragile to even minor transformations of problem statements. To address this limitation, we introduce a novel data augmentation pipeline designed…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2510.00732.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2510.00732.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2510.00732v1" target="_blank" rel="noopener"><img src="../thumbs/2510.00732.jpg" alt="First page of EvolProver: Advancing Automated Theorem Proving by Evolving Formalized Problems via Symmetry and Difficulty"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">EvolProver: Advancing Automated Theorem Proving by Evolving Formalized Problems via Symmetry and Difficulty</h1>
+        <p class="authors">Yuchen Tian, Ruiyuan Huang, Xuanwu Wang, Jing Ma, Zengfeng Huang, Ziyang Luo, Hongzhan Lin, Da Zheng, Lun Du</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 1, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2510.00732v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2510.00732" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Trains a 7B Lean 4 prover on augmented data, with statements generated via Lean 4 AST-level rewrites and checked by the Lean 4 compiler.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large Language Models (LLMs) for formal theorem proving have shown significant promise, yet they often lack generalizability and are fragile to even minor transformations of problem statements. To address this limitation, we introduce a novel data augmentation pipeline designed to enhance model robustness from two perspectives: symmetry and difficulty. From the symmetry perspective, we propose two complementary methods: EvolAST, an Abstract Syntax Tree (AST) based approach that targets syntactic symmetry to generate semantically equivalent problem variants, and EvolDomain, which leverages LLMs to address semantic symmetry by translating theorems across mathematical domains. From the difficulty perspective, we propose EvolDifficulty, which uses carefully designed evolutionary instructions to guide LLMs in generating new theorems with a wider range of difficulty. We then use the evolved data to train EvolProver, a 7B-parameter non-reasoning theorem prover. EvolProver establishes a new state-of-the-art (SOTA) on FormalMATH-Lite with a 53.8% pass@32 rate, surpassing all models of comparable size, including reasoning-based models. It also sets new SOTA records for non-reasoning models on MiniF2F-Test (69.8% pass@32), Ineq-Comp-Seed (52.2% pass@32), and Ineq-Comp-Transformed (34.0% pass@32). Ablation studies further confirm our data augmentation pipeline&#x27;s effectiveness across multiple benchmarks.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-based formal theorem provers generalize poorly and are fragile to minor transformations of problem statements, partly because high-quality formal training data is scarce.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A data augmentation pipeline evolves Lean 4 statements from the DeepSeek-Prover-V1 and STP-Lean datasets. EvolDomain uses an LLM to translate theorems across mathematical domains, and EvolDifficulty uses an LLM to vary their difficulty. Candidates are checked by the Lean 4 compiler and an LLM semantic check. EvolAST then produces semantically equivalent syntactic variants through Lean 4 AST rewrites, and a 7B non-reasoning prover is trained on the result with SFT and RL using a binary Lean-verification reward.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2510.00732/pip.png" alt=""><figcaption>Figure 2: The workflow of our data augmentation pipeline comprises three phases: EvolDomain and EvolDifficulty, Verification, and EvolAST.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2510.00732/evol_exam.png" alt=""><figcaption>Figure 1: An example of problems evolved by EvolDomain, EvolDifficulty, and EvolAST. A seed formal statement is evolved in parallel by EvolDomain and EvolDifficulty, yielding two new statements. Each of these is then further evolved by EvolAST to generate syntactic variants.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">EvolProver reaches 53.8% pass@32 on FormalMATH-Lite, the best among comparable-size models. It also sets non-reasoning records on MiniF2F-Test (69.8%), Ineq-Comp-Seed (52.2%) and Ineq-Comp-Transformed (34.0%). Ablations show gains from each augmentation stage.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>FormalMATH</th><th>MiniF2F</th><th>Ineq-Comp Seed</th><th>Ineq-Comp Transformed</th></tr></thead><tbody><tr><td>EvolProver-Base</td><td>44.71%</td><td>52.05%</td><td>43.26%</td><td>14.89%</td></tr><tr><td>EvolProver-SFT</td><td>51.53%</td><td>66.39%</td><td>49.82%</td><td>30.35%</td></tr><tr><td>EvolProver</td><td>53.96%</td><td>69.80%</td><td>52.20%</td><td>34.02%</td></tr></tbody></table><div class="tbl-cap">Ablation of augmentation stages (pass@32)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

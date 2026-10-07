@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inductive Deductive Synthesis: Enabling AI to Generate Formally Verified Systems · Papers With Lean</title>
+<meta name="description" content="AI agents increasingly excel at generating, testing, and refining code. However, they fall short on tasks requiring formal guarantees of full coverage that testing alone cannot provide. Distributed systems are a prime example: properties such as consistency between reads and…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Inductive Deductive Synthesis: Enabling AI to Generate Formally Verified Systems">
+<meta property="og:description" content="AI agents increasingly excel at generating, testing, and refining code. However, they fall short on tasks requiring formal guarantees of full coverage that testing alone cannot provide. Distributed systems are a prime example: properties such as consistency between reads and…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.23109.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.23109.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.23109v1" target="_blank" rel="noopener"><img src="../thumbs/2605.23109.jpg" alt="First page of Inductive Deductive Synthesis: Enabling AI to Generate Formally Verified Systems"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Inductive Deductive Synthesis: Enabling AI to Generate Formally Verified Systems</h1>
+        <p class="authors">Shubham Agarwal, Alexander Krentsel, Shu Liu, Mert Cemri, Audrey Cheng, Rui Meng, Tomas Pfister, Chun-Liang Li, Sylvia Ratnasamy, Aditya Parameswaran, Matei Zaharia, Ion Stoica, Mohsen Lesani</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">May 22, 2026 · v1</span>
+          <span class="badge">cs.DC</span> <span class="badge">cs.LO</span> <span class="badge">cs.PL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.23109v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.23109" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/skydiscover-ai/skydiscover" target="_blank" rel="noopener" title="skydiscover-ai/skydiscover">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Rocq is the primary backend; the proof agent is also evaluated on Lean 4 benchmarks (VERINA, miniCodeProps), checked via lake build.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">AI agents increasingly excel at generating, testing, and refining code. However, they fall short on tasks requiring formal guarantees of full coverage that testing alone cannot provide. Distributed systems are a prime example: properties such as consistency between reads and writes must hold under every possible interleaving of events. Mechanized formal verification can guarantee such correctness, but typically demands months to years of expert effort. As evidence, even SOTA coding agents (Codex with GPT-5.4 and Claude Code with Opus 4.6) succeed on only 2/7 distributed key-value-store specifications. In this paper, we present the first effective approach to addressing this gap, Inductive Deductive Synthesis (IDS), which jointly and incrementally synthesizes implementation and proof, and learns from failed attempts to systematically try promising strategies. Built as an agentic LLM system, IDS achieves 7/7 in about 6.8 hours and $106 per spec on average, roughly 200x faster than expert effort and 17% cheaper than SOTA agents. IDS further incorporates performance feedback into the same loop, yielding implementations up to 3x faster than published verified systems.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Coding agents cannot reliably produce formally verified distributed systems. Strong agents such as Codex (GPT-5.4) and Claude Code (Opus 4.6) each succeed on only 2 of 7 key-value-store consistency specifications. Manual mechanized verification of such systems typically takes months to years of expert effort.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Inductive Deductive Synthesis (IDS) is an agentic LLM system that synthesizes implementation and proof jointly and incrementally. Deductive Synthesis Agents decompose components using Admitted placeholders, and the Rocq type-checker checks each partial proof as it goes. An Inductive Synthesis Agent learns from failed attempts: it proposes helper lemmas when progress stalls and respawns agents with new designs at dead ends. Completed implementations are extracted to OCaml and benchmarked for performance feedback. The system is also evaluated on cross-language benchmarks in Dafny, Verus, Lean 4 and Rocq.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">IDS solves all 7 specifications at about 6.8 hours and $106 per spec on average. Its implementations are up to 3x faster than published verified systems. On proof benchmarks it reaches state-of-the-art results, including 176/189 on Lean&#x27;s VERINA and 100/100 on miniCodeProps.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>DafnyBench</th><th>miniCodeProps</th><th>Verus-Bench</th><th>CoqStoq</th><th>VERINA</th></tr></thead><tbody><tr><td>Prior SOTA</td><td>52/100</td><td>49/100</td><td>137/150</td><td>28/100</td><td>38/189</td></tr><tr><td>Codex</td><td>78/100</td><td>80/100</td><td>148/150</td><td>46/100</td><td>136/189</td></tr><tr><td>Claude Code</td><td>76/100</td><td>86/100</td><td>148/150</td><td>51/100</td><td>149/189</td></tr><tr><td>IDS</td><td>88/100</td><td>100/100</td><td>149/150</td><td>97/100</td><td>176/189</td></tr></tbody></table><div class="tbl-cap">Pass counts on verification benchmarks (selected)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

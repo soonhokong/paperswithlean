@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RE-SAC: Disentangling aleatoric and epistemic risks in bus fleet control: A stable and robust ensemble DRL approach · Papers With Lean</title>
+<meta name="description" content="Bus holding control is challenging due to stochastic traffic and passenger demand. While deep reinforcement learning (DRL) shows promise, standard actor-critic algorithms suffer from Q-value instability in volatile environments. A key source of this instability is the conflation…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RE-SAC: Disentangling aleatoric and epistemic risks in bus fleet control: A stable and robust ensemble DRL approach">
+<meta property="og:description" content="Bus holding control is challenging due to stochastic traffic and passenger demand. While deep reinforcement learning (DRL) shows promise, standard actor-critic algorithms suffer from Q-value instability in volatile environments. A key source of this instability is the conflation…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.18396.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.18396.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.18396v4" target="_blank" rel="noopener"><img src="../thumbs/2603.18396.jpg" alt="First page of RE-SAC: Disentangling aleatoric and epistemic risks in bus fleet control: A stable and robust ensemble DRL approach"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">RE-SAC: Disentangling aleatoric and epistemic risks in bus fleet control: A stable and robust ensemble DRL approach</h1>
+        <p class="authors">Yifan Zhang, Liang Zheng</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Mar 19, 2026 · v4</span>
+          <span class="badge">cs.RO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.18396v4" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.18396" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/erzhu419/RE-SAC" target="_blank" rel="noopener" title="erzhu419/RE-SAC">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Contraction of the multi-penalty Bellman operator, plus a counterexample to contraction, are machine-verified in Lean 4/Mathlib for finite spaces, provided as supplementary files.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Bus holding control is challenging due to stochastic traffic and passenger demand. While deep reinforcement learning (DRL) shows promise, standard actor-critic algorithms suffer from Q-value instability in volatile environments. A key source of this instability is the conflation of two distinct uncertainties: aleatoric uncertainty (irreducible noise) and epistemic uncertainty (data insufficiency). Treating these as a single risk leads to value underestimation in noisy states, causing catastrophic policy collapse. We propose a robust ensemble soft actor-critic (RE-SAC) framework to explicitly disentangle these uncertainties. RE-SAC applies Integral Probability Metric (IPM)-based weight regularization to the critic network to hedge against aleatoric risk, providing a smooth analytical lower bound for the robust Bellman operator without expensive inner-loop perturbations. To address epistemic risk, a diversified Q-ensemble penalizes overconfident value estimates in sparsely covered regions. This dual mechanism prevents the ensemble variance from misidentifying noise as a data gap, a failure mode identified in our ablation study. Experiments in a realistic bidirectional bus corridor simulation demonstrate that RE-SAC achieves the highest cumulative reward (approx. -0.4e6) compared to vanilla SAC (-0.55e6). Mahalanobis rareness analysis confirms that RE-SAC reduces Oracle Q-value estimation error by up to 62% in rare out-of-distribution states (MAE of 1647 vs. 4343), demonstrating superior robustness under high traffic variability.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Actor-critic DRL for bus holding control suffers Q-value instability because aleatoric noise and epistemic data gaps are conflated into a single risk. This causes value underestimation and policy collapse in stochastic transit environments.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">RE-SAC combines IPM-based ℓ1 weight regularization of the critic, which gives a Lipschitz lower bound against aleatoric risk, with a diversified Q-ensemble whose variance penalizes epistemic uncertainty. The theory shows that frozen target parameters are sufficient for γ-contraction of the multi-penalty Bellman operator, and it gives a counterexample when the penalties depend on Q. Both results are mechanized in Lean 4/Mathlib for the finite-space case. Evaluation covers Brax MuJoCo tasks and a bidirectional bus corridor simulation.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On MuJoCo, RE-SAC has the lowest oracle Q-error on 3 of 4 environments, with MAE up to 55% lower than DSAC on Ant. In the bus simulation it reaches about -0.4e6 cumulative reward versus -0.55e6 for SAC, and reduces Q-error in rare out-of-distribution states by up to 62%.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2603.18396/mujoco_oracle_q_error.png" alt=""><figcaption>Figure 1: Oracle Q-Error (MAE) binned by Mahalanobis rareness on four MuJoCo environments. Legend entries show overall Oracle MAE. RE-SAC v1 (coral \star ) maintains the lowest oracle Q-estimation error across rareness bins on three of four environments, with BAC (purple \times ) the closest competitor on Ant. The figure focuses on the five algorithms used in the paper’s main table; older RE-SAC v</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2603.18396/comparison_mahalanobis_rareness_restyled.png" alt=""><figcaption>Figure 5: Oracle Q-Error (MAE) banded by Mahalanobis Rareness. RE-SAC maintains accurate estimates even in highly rare/OOD states.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

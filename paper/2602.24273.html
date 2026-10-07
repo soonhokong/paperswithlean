@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Minimal Agent for Automated Theorem Proving · Papers With Lean</title>
+<meta name="description" content="We propose a minimal agentic baseline that enables systematic comparison across different AI-based theorem prover architectures. This design implements the core features shared among state-of-the-art systems: iterative proof refinement, library search and context management. We…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Minimal Agent for Automated Theorem Proving">
+<meta property="og:description" content="We propose a minimal agentic baseline that enables systematic comparison across different AI-based theorem prover architectures. This design implements the core features shared among state-of-the-art systems: iterative proof refinement, library search and context management. We…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2602.24273.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2602.24273.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2602.24273v3" target="_blank" rel="noopener"><img src="../thumbs/2602.24273.jpg" alt="First page of A Minimal Agent for Automated Theorem Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Minimal Agent for Automated Theorem Proving</h1>
+        <p class="authors">Borja Requena, Austin Letson, Krystian Nowakowski, Izan Beltran-Ferreiro, Leopoldo Sarra</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Feb 27, 2026 · v3</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2602.24273v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2602.24273" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Axiomatic-AI/ax-prover-base" target="_blank" rel="noopener" title="Axiomatic-AI/ax-prover-base">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds an LLM agent that writes Lean 4 proofs, refining them from compiler feedback and Mathlib search. It is evaluated on Lean benchmarks such as PutnamBench, FATE, and LeanCat.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We propose a minimal agentic baseline that enables systematic comparison across different AI-based theorem prover architectures. This design implements the core features shared among state-of-the-art systems: iterative proof refinement, library search and context management. We evaluate this agentic approach using qualitatively different benchmarks and compare various frontier language models and design choices. Our results show competitive performance compared to state-of-the-art approaches, while using a significantly simpler architecture and a fraction of their cost. Additionally, we demonstrate consistent advantages of an iterative approach over multiple single-shot generations, especially in terms of sample efficiency and cost effectiveness. The implementation is released open-source as a candidate reference for future research and as an accessible prover for the community.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">AI theorem provers for Lean are often complex, expensive, and hard to deploy. There is also no simple shared baseline for comparing prover architectures systematically.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">AxProverBase is a minimal modular agent with three parts. A proposer LLM writes Lean code, a review system returns Lean compiler feedback, and a memory module keeps either a history of attempts or a self-reflective context. Optional tools are LeanSearch for Mathlib premise selection and web search. Ablations on a 100-problem PutnamBench subset measure the effect of each component and of different frontier LLMs.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With Claude Opus 4.5 (32k thinking budget, 50 iterations), the agent reaches 54.7% on PutnamBench, 98% on FATE-M, 66% on FATE-H, 24% on FATE-X, and 59% on LeanCat. It is near parity with Hilbert on PutnamBench while using far fewer tokens. Iterative refinement contributes most to performance, followed by memory, then search tools.</p><div class="sum-table"><table><thead><tr><th>Dataset</th><th>Success rate</th><th>Avg tokens</th></tr></thead><tbody><tr><td>PutnamBench</td><td>54.7%</td><td>1.4M</td></tr><tr><td>LeanCat</td><td>59.0%</td><td>0.6M</td></tr><tr><td>FATE-M</td><td>98.0%</td><td>55.4k</td></tr><tr><td>FATE-H</td><td>66.0%</td><td>1.0M</td></tr><tr><td>FATE-X</td><td>24.0%</td><td>1.3M</td></tr></tbody></table><div class="tbl-cap">AxProverBase performance and token usage (Opus 4.5, 32k, 50 iterations)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

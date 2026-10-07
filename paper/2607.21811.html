@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Efficient Unclonable Encryption from Pauli Eigenstates · Papers With Lean</title>
+<meta name="description" content="We give, to our knowledge, the first plain-model, one-time information-theoretically secure, efficient unclonable encryption scheme for one classical bit. Previous work by Bhattacharyya and Culf (Nature Physics, 2026) and Bhattacharyya, Broadbent, and Culf either only showed…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Efficient Unclonable Encryption from Pauli Eigenstates">
+<meta property="og:description" content="We give, to our knowledge, the first plain-model, one-time information-theoretically secure, efficient unclonable encryption scheme for one classical bit. Previous work by Bhattacharyya and Culf (Nature Physics, 2026) and Bhattacharyya, Broadbent, and Culf either only showed…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.21811.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.21811.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.21811v2" target="_blank" rel="noopener"><img src="../thumbs/2607.21811.jpg" alt="First page of Efficient Unclonable Encryption from Pauli Eigenstates"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Efficient Unclonable Encryption from Pauli Eigenstates</h1>
+        <p class="authors">Seyoon Ragavan</p>
+        <div class="row">
+          <span class="badge">quant-ph</span>
+          <span class="date">Jul 23, 2026 · v2</span>
+          <span class="badge">cs.CR</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-purple" href="../#tag=quantum">quantum</a> <a class="tag c-amber" href="../#tag=cryptography">cryptography</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.21811v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.21811" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/sragavan99/lean-unclonable-enc-paulis" target="_blank" rel="noopener" title="sragavan99/lean-unclonable-enc-paulis">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Releases a Lean 4 repository, built with Codex, formalizing the correctness and security proofs of the unclonable encryption schemes, plus a reusable interface.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We give, to our knowledge, the first plain-model, one-time information-theoretically secure, efficient unclonable encryption scheme for one classical bit. Previous work by Bhattacharyya and Culf (Nature Physics, 2026) and Bhattacharyya, Broadbent, and Culf either only showed $1/\mathsf{poly}(λ)$ security loss or required inefficient encryption/decryption operations. We avoid both of these caveats; in doing so, we obtain (to our knowledge) the first plain-model construction of many-time secure $1 \to 2$ unclonable encryption for arbitrary polynomial-length messages, assuming the existence of pseudorandom function-like states (Bartusek and Goldin). The key is a uniformly random non-identity phase-free Pauli on $n$ qubits, and bit $a$ is encrypted as a random $(-1)^a$ eigenstate of that Pauli. The scheme is exponentially secure; we prove that the probability that both receivers recover the bit is at most $\frac{1}{2}+\frac{1}{2}\sqrt{{2^n}/({4^n-1})} = \frac{1}{2} + O\left(2^{-n/2}\right).$ By a lower bound due to Broadbent, Culf, and Rochette, this is the best probability bound achievable with $n$-qubit ciphertexts (up to the constant hidden in the $O(\cdot)$). The main conceptual idea is to leverage, in a precise spectral sense, the balanced commutation-anticommutation structure of the Pauli group. The proof is intricate but completely elementary and makes use of standard spectral bound techniques. The main technical workhorse is a standalone linear-algebraic lemma that informally relates the positivity of two different operators, each capturing the intuition that if the two receivers can individually decrypt unusually often then they must also disagree often. GPT-5.6 Sol Ultra found this proof in an extended conversation with the author and drafted a preliminary version of this paper. The author is fully accountable for the correctness of this paper.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Prior unclonable encryption schemes for one classical bit had caveats. They needed oracles, suffered inverse-polynomial security loss, or required inefficient encryption and decryption. The goal is a plain-model, one-time, information-theoretically secure, efficient scheme.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The key is a uniformly random non-identity Pauli on n qubits. Bit a is encrypted as a random (-1)^a eigenstate of that Pauli. Security is reduced via a ricochet argument to an operator inequality. That inequality is proved using the spectral balance of the Pauli symplectic character matrix and a linear-algebraic lemma on operator positivity. The correctness and security claims are formalized in Lean 4 with a modular interface for unclonable encryption; the efficiency claim is not formalized.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The probability that both receivers decrypt is at most 1/2 + (1/2)·sqrt(2^n/(4^n-1)). This is optimal up to constants for n-qubit ciphertexts. The same bound is shown for the Haar scheme, and many-time 1→2 unclonable encryption follows from pseudorandom function-like states.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

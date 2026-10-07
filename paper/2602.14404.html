@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boule or Baguette? A Study on Task Topology, Length Generalization, and the Benefit of Reasoning Traces · Papers With Lean</title>
+<meta name="description" content="Recent years have witnessed meteoric progress in reasoning models: neural networks that generate intermediate reasoning traces (RTs) before producing a final output. Despite the rapid advancement, our understanding of how RTs support reasoning, and the limits of this paradigm,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Boule or Baguette? A Study on Task Topology, Length Generalization, and the Benefit of Reasoning Traces">
+<meta property="og:description" content="Recent years have witnessed meteoric progress in reasoning models: neural networks that generate intermediate reasoning traces (RTs) before producing a final output. Despite the rapid advancement, our understanding of how RTs support reasoning, and the limits of this paradigm,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2602.14404.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2602.14404.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2602.14404v1" target="_blank" rel="noopener"><img src="../thumbs/2602.14404.jpg" alt="First page of Boule or Baguette? A Study on Task Topology, Length Generalization, and the Benefit of Reasoning Traces"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Boule or Baguette? A Study on Task Topology, Length Generalization, and the Benefit of Reasoning Traces</h1>
+        <p class="authors">William L. Tong, Ege Cakar, Cengiz Pehlevan</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Feb 16, 2026 · v1</span>
+          <span class="badge">cs.LG</span> <span class="badge">cs.NE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2602.14404v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2602.14404" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/wtong98/boule-or-baguette" target="_blank" rel="noopener" title="wtong98/boule-or-baguette">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds PITA, a 23-million-statement propositional logic dataset whose statements and proofs are written as Lean tactics, with proof states obtained by querying Lean.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Recent years have witnessed meteoric progress in reasoning models: neural networks that generate intermediate reasoning traces (RTs) before producing a final output. Despite the rapid advancement, our understanding of how RTs support reasoning, and the limits of this paradigm, remain incomplete. To promote greater clarity, we introduce PITA: a novel large-scale dataset of over 23 million statements in propositional logic and their corresponding proofs. As a benchmark for robust reasoning, we focus on length generalization: if a model is trained to determine truth or falsity on statements with proofs up to fixed length, how well does it generalize to statements requiring longer proofs? We propose notions of (1) task depth and (2) task breadth, which measure respectively (1) the number of steps required to solve an example from a task and (2) the number of unique examples across a task. We vary these quantities across subsets of PITA, and find that RT models generalize well on broad and shallow subsets, while deteriorating on narrow and deep subsets relative to non-RT baselines. To determine whether our results are idiosyncratic to PITA or indicative of general phenomena, we compare our results to a simple synthetic task based on syllogisms. Our resulting theory suggests fundamental scalings that limit how well RT models perform on deep tasks, and highlights their generalization strengths on broad tasks. Our findings overall identify fundamental benefits and limitations inherent in using reasoning traces.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">It is not well understood how reasoning traces help neural networks reason, or where they fail. The study asks how reasoning-trace (RT) models compare with direct-prediction (DP) models on length generalization for logical tasks.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors introduce PITA, a dataset of over 23 million propositional logic statements and 95 billion tokens. Proofs come from a focused proof search, are translated into Lean tactics, and are annotated with proof states obtained from the Lean proof assistant. They define task depth (steps needed to solve an example) and task breadth (number of unique examples), and train RT and DP Transformers on PITA splits with different depth and breadth. A synthetic transitive-inference task with B branches of D symbols each is analyzed theoretically to explain the results.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2602.14404/fig_ti.png" alt=""><figcaption>Figure 3: Transitive inference task. (a) Illustration of the TI task. Symbols are arranged in a series of parallel branches, each consisting of a line of inferences. Breadth is parameterized by the number of branches B , while depth is parameterized by the number of symbols in a branch D . (b) Generalization accuracy for fixed depth D=30 and varying breadth. The red dashed line indicates the max t</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">RT models generalize well on broad, shallow tasks but fall below DP baselines on narrow, deep tasks. The theory predicts different scaling laws for depth and breadth: DP generalization degrades as breadth grows, while long contexts with uniform attention limit RT performance on deep tasks.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2602.14404/app_fig_att.png" alt=""><figcaption>Figure 4: Attention weights are uniform. We show empirically that the attention weights become uniform in a Transformer trained on our transitive inference task. (a) In blue , total variation distance (TVD) between a uniform distribution and the attention weights in an RT model, measured across 1000 examples. The x-axis indicates the position of the query token. In orange , the probability assigne</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Prompt</th><th>Gen. acc.</th><th>Depth</th><th>Breadth</th></tr></thead><tbody><tr><td>DP</td><td>α_g ∝ B^-2</td><td>D ∝ H</td><td>B ∝ H^2</td></tr><tr><td>RT</td><td>α_g ∝ 1</td><td>D ∝ √H</td><td>B ∝ H^2</td></tr></tbody></table><div class="tbl-cap">Theoretical scalings for transitive inference (H = hidden width)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

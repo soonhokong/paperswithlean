@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EconProver: Towards More Economical Test-Time Scaling for Automated Theorem Proving · Papers With Lean</title>
+<meta name="description" content="Large Language Models (LLMs) have recently advanced the field of Automated Theorem Proving (ATP), attaining substantial performance gains through widely adopted test-time scaling strategies, notably reflective Chain-of-Thought (CoT) reasoning and increased sampling passes.…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EconProver: Towards More Economical Test-Time Scaling for Automated Theorem Proving">
+<meta property="og:description" content="Large Language Models (LLMs) have recently advanced the field of Automated Theorem Proving (ATP), attaining substantial performance gains through widely adopted test-time scaling strategies, notably reflective Chain-of-Thought (CoT) reasoning and increased sampling passes.…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2509.12603.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2509.12603.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2509.12603v1" target="_blank" rel="noopener"><img src="../thumbs/2509.12603.jpg" alt="First page of EconProver: Towards More Economical Test-Time Scaling for Automated Theorem Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">EconProver: Towards More Economical Test-Time Scaling for Automated Theorem Proving</h1>
+        <p class="authors">Mukai Li, Linfeng Song, Zhenwen Liang, Jiahao Xu, Shansan Gong, Qi Liu, Haitao Mi, Dong Yu</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Sep 16, 2025 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2509.12603v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2509.12603" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Trains LLM provers that generate whole Lean 4 proofs and evaluates them with the Lean checker on miniF2F and ProofNet.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large Language Models (LLMs) have recently advanced the field of Automated Theorem Proving (ATP), attaining substantial performance gains through widely adopted test-time scaling strategies, notably reflective Chain-of-Thought (CoT) reasoning and increased sampling passes. However, they both introduce significant computational overhead for inference. Moreover, existing cost analyses typically regulate only the number of sampling passes, while neglecting the substantial disparities in sampling costs introduced by different scaling strategies. In this paper, we systematically compare the efficiency of different test-time scaling strategies for ATP models and demonstrate the inefficiency of the current state-of-the-art (SOTA) open-source approaches. We then investigate approaches to significantly reduce token usage and sample passes while maintaining the original performance. Specifically, we propose two complementary methods that can be integrated into a unified EconRL pipeline for amplified benefits: (1) a dynamic Chain-of-Thought (CoT) switching mechanism designed to mitigate unnecessary token consumption, and (2) Diverse parallel-scaled reinforcement learning (RL) with trainable prefixes to enhance pass rates under constrained sampling passes. Experiments on miniF2F and ProofNet demonstrate that our EconProver achieves comparable performance to baseline methods with only 12% of the computational cost. This work provides actionable insights for deploying lightweight ATP models without sacrificing performance.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-based automated theorem provers for Lean rely on test-time scaling, either long reflective chain-of-thought or many sampling passes. Both are computationally expensive, and existing cost analyses count only sampling passes, ignoring differences in token usage.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors quantify token-level sampling cost across scaling strategies and propose EconRL, a pipeline with two parts. The first is dynamic CoT switching, trained with DPO, so the model uses extended reasoning only on harder problems. The second is diverse parallel-scaled RL with trainable prefixes (proof heads), which raises pass rates when the sampling budget is small. EconRL is applied to DeepSeek-Prover-V2-7B and Goedel-Prover-V2-8B.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On miniF2F and ProofNet, the resulting EconProver models reach accuracy comparable to full CoT mode at about 12% of the computational cost. For example, EconProver-GD scores 84.0% on miniF2F versus 84.4% for CoT mode, at 3x rather than 25x the relative cost of non-CoT mode.</p><div class="sum-table"><table><thead><tr><th>Model / Setting</th><th>Cost</th><th>Acc (%)</th><th>Rel. Cost</th></tr></thead><tbody><tr><td>DeepSeek-Prover-V2-7B CoT mode</td><td>4.5k × 32</td><td>75.8</td><td>10×</td></tr><tr><td>EconProver-DS</td><td>1.2k × 16</td><td>76.2</td><td>1.5×</td></tr><tr><td>Goedel-Prover-V2-8B CoT mode</td><td>12.3k × 32</td><td>84.4</td><td>25×</td></tr><tr><td>EconProver-GD</td><td>2.9k × 16</td><td>84.0</td><td>3×</td></tr></tbody></table><div class="tbl-cap">miniF2F-test accuracy and cost (tokens per pass × passes; relative cost vs. non-CoT mode)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

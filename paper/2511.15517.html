@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beluga: Block Synchronization for BFT Consensus Protocols · Papers With Lean</title>
+<meta name="description" content="Modern high-throughput BFT consensus protocols use streamlined push-pull mechanisms to disseminate blocks and keep happy-path performance optimal. Yet state-of-the-art designs lack a principled and efficient way to exchange blocks, which leaves them open to targeted attacks and…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Beluga: Block Synchronization for BFT Consensus Protocols">
+<meta property="og:description" content="Modern high-throughput BFT consensus protocols use streamlined push-pull mechanisms to disseminate blocks and keep happy-path performance optimal. Yet state-of-the-art designs lack a principled and efficient way to exchange blocks, which leaves them open to targeted attacks and…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2511.15517.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2511.15517.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2511.15517v2" target="_blank" rel="noopener"><img src="../thumbs/2511.15517.jpg" alt="First page of Beluga: Block Synchronization for BFT Consensus Protocols"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Beluga: Block Synchronization for BFT Consensus Protocols</h1>
+        <p class="authors">Tasos Kichidis, Lefteris Kokoris-Kogias, Arun Koshy, Ilya Sergey, Alberto Sonnino, Mingwei Tian, Jianting Zhang</p>
+        <div class="row">
+          <span class="badge">cs.CR</span>
+          <span class="date">Nov 19, 2025 · v2</span>
+          <span class="badge">cs.DC</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2511.15517v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2511.15517" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ilyasergey/block-sync-lean" target="_blank" rel="noopener" title="ilyasergey/block-sync-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The block-synchronizer correctness theorems (block and causal availability) are formalised in Lean, with machine-checked proofs and the code provided as accompanying material.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Modern high-throughput BFT consensus protocols use streamlined push-pull mechanisms to disseminate blocks and keep happy-path performance optimal. Yet state-of-the-art designs lack a principled and efficient way to exchange blocks, which leaves them open to targeted attacks and performance collapse under network asynchrony. This work introduces the concept of a block synchronizer, a simple abstraction that drives incremental block retrieval and enforces resource-aware exchange. Its interface and role fit cleanly inside a modern BFT consensus stack. We also uncover a new attack, where an adversary steers honest validators into redundant, uncoordinated pulls that exhaust bandwidth and stall progress. Beluga is a modular and scarcity-aware instantiation of the block synchronizer. It achieves optimal common-case latency while bounding the cost of recovery under faults and adversarial behavior. We integrate Beluga into Mysticeti, the consensus core of the Sui blockchain, and show on a geo-distributed AWS deployment that Beluga sustains optimal performance in the optimistic path and, under attack, delivers up to 3x higher throughput and 25x lower latency than prior designs. The Sui blockchain adopted Beluga in production.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">High-throughput BFT consensus protocols use push-pull block dissemination but have no principled, efficient way to exchange missing blocks. This leaves them open to targeted attacks and performance collapse under network asynchrony.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors define a block synchronizer abstraction and identify pull induction attacks, in which an adversary selectively shares blocks to force redundant pulls. Beluga instantiates the abstraction with an admission-control-based optimistic push and a hybrid pull based on Implicit Proof-of-Availability. Its correctness properties, block availability and causal availability, are proven with machine-checked Lean proofs. Beluga is integrated into Mysticeti, the consensus core of Sui.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2511.15517/pull-induction-attack.png" alt=""><figcaption>Figure 2 . The pull induction attack: by selectively sharing its blocks (e.g. v_{4} sends B_{4}^{r{-}1} only to v_{1} , so B_{1}^{r} references it), the adversary forces honest validators to trigger pulls to fetch the referenced parents, adding at least one pull round-trip of latency per round.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2511.15517/pull-overview.png" alt=""><figcaption>Figure 3 . The ImPoA-based hybrid pull protocol for v_{4} : (a) v_{4} accepts B_{2}^{r{+}2} and B_{4}^{r{+}2} whose parent B_{1}^{r{+}1} is only implicitly available (both reference it); (b) it advertises the blocks referencing missing ones to the bulk and live synchronizer modules, identifying the blocks to fetch; (c) it fetches them via a hybrid pull that balances latency and complexity.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On a geo-distributed AWS deployment, Beluga matches baseline performance in the optimistic path. Under attack it delivers up to 3x higher throughput and 25x lower latency than prior designs. Sui deployed it on mainnet in January 2025.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2511.15517/production-latency-before.png" alt=""><figcaption>Figure 1 . Latency of the Sui blockchain under network attacks before (left) and after (right) deploying Beluga.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

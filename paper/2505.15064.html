@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why and When Deep is Better than Shallow: Implementation-Agnostic State-Transition Model of Deep Learning · Papers With Lean</title>
+<meta name="description" content="We ask when adding hidden layers improves generalization, in a model that keeps the layers fixed and varies only their number. A hidden layer is a self-map of a state space, a depth-$k$ network composes at most $k$ hidden layers with an output layer, and depth is compared within…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why and When Deep is Better than Shallow: Implementation-Agnostic State-Transition Model of Deep Learning">
+<meta property="og:description" content="We ask when adding hidden layers improves generalization, in a model that keeps the layers fixed and varies only their number. A hidden layer is a self-map of a state space, a depth-$k$ network composes at most $k$ hidden layers with an output layer, and depth is compared within…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2505.15064.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2505.15064.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2505.15064v5" target="_blank" rel="noopener"><img src="../thumbs/2505.15064.jpg" alt="First page of Why and When Deep is Better than Shallow: Implementation-Agnostic State-Transition Model of Deep Learning"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Why and When Deep is Better than Shallow: Implementation-Agnostic State-Transition Model of Deep Learning</h1>
+        <p class="authors">Sho Sonoda, Yuka Hashimoto, Isao Ishikawa, Masahiro Ikeda</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">May 21, 2025 · v5</span>
+          <span class="badge">math.DS</span> <span class="badge">stat.ML</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2505.15064v5" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2505.15064" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/shosonoda/lean-deepgen" target="_blank" rel="noopener" title="shosonoda/lean-deepgen">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">All theorems on depth-dependent generalization bounds are formalized and machine-checked in Lean 4, with a public repository and blueprint.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We ask when adding hidden layers improves generalization, in a model that keeps the layers fixed and varies only their number. A hidden layer is a self-map of a state space, a depth-$k$ network composes at most $k$ hidden layers with an output layer, and depth is compared within the nested family $H_0\subset H_1\subset\cdots$ built from one class $F$ of hidden layers; this compares a deep network with shallower networks built from the same layers, not with wider ones. Our message is that the statistical cost of depth is the metric entropy of the set $B(k,F)$ of compositions. The estimation error is bounded by an entropy integral over $B(k,F)$ with constants that do not depend on the depth, and the bound is matched from below when the output layer can see the hidden states. For Lipschitz layers on a bounded state space this entropy grows at most polynomially in $k$, and it stays bounded, or grows only like $\log k$, under contraction, equicontinuity, or nilpotent structure. Balanced against the approximation error, this gives depths $k^\ast(n)$ that grow with the sample size, and it separates the models whose estimation error is independent of the depth from those whose estimation error grows with it. Deep ReLU networks, unrolled solvers, and chain-of-thought computation are worked out; for the last two the number of steps is derived rather than assumed. All statements are machine-checked in Lean 4; the formalization and its blueprint are available at <a href="https://shosonoda.github.io/lean-deepgen/" target="_blank" rel="noopener">https://shosonoda.github.io/lean-deepgen/</a> .</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The paper asks when adding hidden layers improves generalization. Depth is compared within a nested family of networks built by composing a fixed class of hidden-layer maps, rather than against wider networks.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Networks are modeled as state-transition systems: hidden layers are self-maps of a metric state space, and an output layer reads the final state. The estimation error is bounded by an entropy integral over the set B(k,F) of layer compositions, with depth-independent constants and a matching lower bound when the output layer can see hidden states. Covering-number growth is analyzed under Lipschitz, contraction, equicontinuity and nilpotent structure, then balanced against approximation error. All statements are formalized in Lean 4 with a blueprint.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For Lipschitz layers, the entropy grows at most polynomially in k, and it stays bounded or grows like log k under contraction, equicontinuity or nilpotent structure. The resulting optimal depths k*(n) grow with the sample size. Deep ReLU networks, unrolled solvers and chain-of-thought are worked out, and for the latter two the number of steps is derived rather than assumed.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2505.15064/cot-example.png" alt=""><figcaption>Figure 4: Chain-of-thought computation with r=3 symbols. Left and middle: scratchpads x_{k} (upper row of each pair) and y_{k} (lower row) of two inputs after k steps of one program, under append-only steps (left) and branching steps (middle); one colour per symbol, grey for padding, and a black bar at the first position where the two differ. Right: distinguishable programs of length at most k on </figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

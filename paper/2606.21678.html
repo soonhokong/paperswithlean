@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decodable but Not Faithful: Coupling Natural-Language Rationales to Programmatic Verifiers · Papers With Lean</title>
+<meta name="description" content="Language models can generate plausible rationales for their predictions, but these explanations may not faithfully represent the model&#x27;s internal reasoning. We propose verifier-coupled reasoning, a framework that inserts inline claims into reasoning traces and trains an…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Decodable but Not Faithful: Coupling Natural-Language Rationales to Programmatic Verifiers">
+<meta property="og:description" content="Language models can generate plausible rationales for their predictions, but these explanations may not faithfully represent the model&#x27;s internal reasoning. We propose verifier-coupled reasoning, a framework that inserts inline claims into reasoning traces and trains an…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.21678.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.21678.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.21678v2" target="_blank" rel="noopener"><img src="../thumbs/2606.21678.jpg" alt="First page of Decodable but Not Faithful: Coupling Natural-Language Rationales to Programmatic Verifiers"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Decodable but Not Faithful: Coupling Natural-Language Rationales to Programmatic Verifiers</h1>
+        <p class="authors">Vatsal Ananthula, Adarsh Kumarappan</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Jun 19, 2026 · v2</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.CL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.21678v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.21678" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds LeanCheck, a dataset of Lean 4 theorems and candidate proofs labeled by the Lean kernel, used as one verifier setting.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Language models can generate plausible rationales for their predictions, but these explanations may not faithfully represent the model&#x27;s internal reasoning. We propose verifier-coupled reasoning, a framework that inserts inline claims into reasoning traces and trains an auxiliary consistency head to predict programmatic verifier outputs from rationale-span hidden states. The central finding is a gap between decodability and faithfulness: consistency training reliably makes verifier information decodable from rationale representations, but decodability does not guarantee faithful generation. In LeanCheck (formal theorem proving), rationale-only and proof-only pooling achieve perfect directional separation under counterfactual conflict. In KataGo (Go engine), commentary spans encode 10-way win-rate buckets at 81% accuracy. Yet in a code setting, the model achieves 98.6% coupling while its generated explanations remain unfaithful: fluent prose with correct structured claims, but describing unrelated algorithms; a controlled pretrained-vs-from-scratch comparison shows the gap is not capacity-driven. Synthetic activation patching confirms causal influence (73-89% vs. 31% baseline), FEVER reveals that evidence-only pooling isolates genuine evidence sensitivity at the cost of raw accuracy, and per-claim analysis shows that consistency loss disproportionately benefits fine-grained claims over binary ones. These results establish that consistency losses are effective diagnostics and representation-shaping tools, but not sufficient conditions for faithful reasoning.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Language-model rationales can sound plausible without reflecting the model&#x27;s internal reasoning. Programmatic verifiers check final claims but do not hold the natural-language rationale itself accountable.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Verifier-coupled reasoning inserts an inline claim after a rationale. An auxiliary consistency head is trained to predict the verifier&#x27;s output from pooled hidden states over a selected text span. Five settings are tested: synthetic data, LeanCheck (Lean 4 kernel accept/reject labels on templated theorems), KataGo win-rate buckets, code, and FEVER. A ladder of diagnostics (decodability, counterfactual swaps, controls, activation patching) checks progressively stronger forms of coupling.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Consistency training makes verifier information decodable from rationale states in every setting. In LeanCheck, rationale-only and proof-only pooling separate perfectly under counterfactual conflict. In the code setting, coupling reaches 98.6% while generated explanations remain unfaithful, so decodability is not sufficient for faithfulness.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.21678/coupling_strength_v1.png" alt=""><figcaption>Figure 7: Code coupling training dynamics (V1, 20 epochs). Top left: Coupling strength (classifier accuracy from explanation-span pooling) reaches 1.0 by epoch 2 for the consistency-loss variant and stays there; baselines remain below 0.25. Top right: BLEU-1 and ROUGE-L stay flat near 0.06–0.10 for all variants, prose quality is never learned. Bottom: Counterfactual swap influence is 1.0 from epoc</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Setting</th><th>Diagnostic</th><th>Trained</th><th>Control</th></tr></thead><tbody><tr><td>Synthetic</td><td>layer-0 patch</td><td>73–89%</td><td>31%</td></tr><tr><td>LeanCheck</td><td>span follows</td><td>100%</td><td>50–52%</td></tr><tr><td>KataGo</td><td>claim-bin acc.</td><td>81.1%</td><td>25.1%</td></tr><tr><td>Code</td><td>mean coupling</td><td>98.6%</td><td>28.6%</td></tr><tr><td>FEVER</td><td>evid. swap fol.</td><td>46%</td><td>34%</td></tr></tbody></table><div class="tbl-cap">Key diagnostics per setting (trained vs. control)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

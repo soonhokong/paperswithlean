@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Epistemic Observability in Language Models · Papers With Lean</title>
+<meta name="description" content="We find that models report highest confidence precisely when they are fabricating. Across four model families (OLMo-3, Llama-3.1, Qwen3, Mistral), self-reported confidence inversely correlates with accuracy, with AUC ranging from 0.28 to 0.36 where 0.5 is random guessing. We…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Epistemic Observability in Language Models">
+<meta property="og:description" content="We find that models report highest confidence precisely when they are fabricating. Across four model families (OLMo-3, Llama-3.1, Qwen3, Mistral), self-reported confidence inversely correlates with accuracy, with AUC ranging from 0.28 to 0.36 where 0.5 is random guessing. We…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.20531.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.20531.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.20531v2" target="_blank" rel="noopener"><img src="../thumbs/2603.20531.jpg" alt="First page of Epistemic Observability in Language Models"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Epistemic Observability in Language Models</h1>
+        <p class="authors">Tony Mason, Vaastav Anand</p>
+        <div class="row">
+          <span class="badge">cs.DC</span>
+          <span class="date">Mar 20, 2026 · v2</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.CL</span> <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.20531v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.20531" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/fsgeek/ai-honesty" target="_blank" rel="noopener" title="fsgeek/ai-honesty">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The core impossibility theorems about text-only supervision of epistemic honesty are machine-checked in Lean 4 (4 theorems, a lemma, a corollary), with proofs in the public artifact repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We find that models report highest confidence precisely when they are fabricating. Across four model families (OLMo-3, Llama-3.1, Qwen3, Mistral), self-reported confidence inversely correlates with accuracy, with AUC ranging from 0.28 to 0.36 where 0.5 is random guessing. We prove, under explicit formal assumptions, that this is not a capability gap but an observational one. Under text-only observation, where a supervisor sees only the model&#x27;s output text, no monitoring system can reliably distinguish honest model outputs from plausible fabrications. We prove two results: first, that any policy conditioning only on the query cannot satisfy epistemic honesty across ambiguous world states; second, that no learning algorithm optimizing reward from a text-only supervisor can converge to honest behavior when the supervisor&#x27;s observations are identical for both grounded and fabricated responses. Within our formal model, these impossibilities hold regardless of model scale or training procedure, including RLHF and instruction tuning. We construct a tensor interface that escapes the impossibility by exporting computational byproducts (per-token entropy and log-probability distributions) that are structurally coupled to correctness under standard training. Per-token entropy achieves pooled AUC 0.757, outperforming all text baselines by 2.5–3.9 percentage points at every budget level tested (10%, 20%, 30%). The entropy signal generalizes across architectures (Spearman $ρ= 0.762$). The core contribution is a cost surface where the empirical mapping from verification budget (fraction of queries receiving expensive checks) to detection accuracy for each judge strategy is a practical lookup for system builders deciding how to allocate verification resources. The contribution is the map. The territory is the system you are building.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Language models&#x27; self-reported confidence is inversely correlated with accuracy, with AUC 0.28–0.36 across four model families. The paper asks whether a supervisor that sees only output text can ever verify epistemic honesty.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Two impossibility theorems are proved under explicit formal assumptions. The first says query-only policies cannot be honest across ambiguous world states. The second says no learning algorithm trained on rewards from a text-only supervisor can converge to honest behavior when grounded and fabricated responses look identical to that supervisor. The theorems are formalized in Lean 4 and also specified in TLA+, with TLA+ checked by the TLC model checker. As a way around the impossibility, a &#x27;tensor interface&#x27; exports per-token entropy and log-probabilities, which are evaluated as verification triage signals under fixed verification budgets.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2603.20531/epistemic_trace_demo.png" alt=""><figcaption>Figure 1 : Per-token entropy traces across five query categories. Top to bottom: knowable fact (low entropy, \bar{H}\approx 0.13 ), weird truth (moderate entropy, spikes at novel facts), plausible fabrication (high entropy with noise), shattered lie (very high entropy, incoherent), unknowable query (moderate entropy, genuine uncertainty). The same model; same generation process; only the world sta</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Per-token entropy achieves pooled AUC 0.757 and beats text baselines by 2.5–3.9 points at 10/20/30% verification budgets. The entropy signal correlates across architectures (Spearman ρ = 0.762). The Lean proofs compile with no unsolved goals.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2603.20531/exp27_crossmodel_correlation.png" alt=""><figcaption>Figure 4 : Cross-model entropy correlation. Spearman \rho=0.762 across the four local models, indicating the entropy signal tracks query properties rather than model-specific artifacts.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Condition</th><th>10% Budget</th><th>20% Budget</th><th>30% Budget</th></tr></thead><tbody><tr><td>No judge</td><td>75.8%</td><td>75.8%</td><td>75.8%</td></tr><tr><td>Text-guided (length)</td><td>79.2%</td><td>82.8%</td><td>87.6%</td></tr><tr><td>Tensor-guided</td><td>81.7%</td><td>86.7%</td><td>90.2%</td></tr><tr><td>Composed</td><td>81.1%</td><td>87.7%</td><td>91.8%</td></tr></tbody></table><div class="tbl-cap">Detection accuracy by judge strategy and verification budget</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

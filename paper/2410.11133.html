@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3D-Prover: Diversity Driven Theorem Proving With Determinantal Point Processes · Papers With Lean</title>
+<meta name="description" content="A key challenge in automated formal reasoning is the intractable search space, which grows exponentially with the depth of the proof. This branching is caused by the large number of candidate proof tactics which can be applied to a given goal. Nonetheless, many of these tactics…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3D-Prover: Diversity Driven Theorem Proving With Determinantal Point Processes">
+<meta property="og:description" content="A key challenge in automated formal reasoning is the intractable search space, which grows exponentially with the depth of the proof. This branching is caused by the large number of candidate proof tactics which can be applied to a given goal. Nonetheless, many of these tactics…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2410.11133.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2410.11133.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2410.11133v2" target="_blank" rel="noopener"><img src="../thumbs/2410.11133.jpg" alt="First page of 3D-Prover: Diversity Driven Theorem Proving With Determinantal Point Processes"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">3D-Prover: Diversity Driven Theorem Proving With Determinantal Point Processes</h1>
+        <p class="authors">Sean Lamont, Christian Walder, Amir Dezfouli, Paul Montague, Michael Norrish</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 14, 2024 · v2</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2410.11133v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2410.11133" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/sean-lamont/3D-Prover" target="_blank" rel="noopener" title="sean-lamont/3D-Prover">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Experiments run in Lean via a modified LeanDojo environment, filtering LLM-generated tactics for proof search on miniF2F and LeanDojo benchmarks.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A key challenge in automated formal reasoning is the intractable search space, which grows exponentially with the depth of the proof. This branching is caused by the large number of candidate proof tactics which can be applied to a given goal. Nonetheless, many of these tactics are semantically similar or lead to an execution error, wasting valuable resources in both cases. We address the problem of effectively pruning this search, using only synthetic data generated from previous proof attempts. We first demonstrate that it is possible to generate semantically aware tactic representations which capture the effect on the proving environment, likelihood of success, and execution time. We then propose a novel filtering mechanism which leverages these representations to select semantically diverse and high quality tactics, using Determinantal Point Processes. Our approach, 3D- Prover, is designed to be general, and to augment any underlying tactic generator. We demonstrate the effectiveness of 3D-Prover on the miniF2F and LeanDojo benchmarks by augmenting popular open source proving LLMs. We show that our approach leads to an increase in the overall proof rate, as well as a significant improvement in the tactic success rate, execution time and diversity. We make our code available at <a href="https://github.com/sean-lamont/3D-Prover" target="_blank" rel="noopener">https://github.com/sean-lamont/3D-Prover</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Proof search in automated theorem proving faces an exponentially growing search space. Many candidate tactics are semantically redundant or fail with execution errors, which wastes compute.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Tactic representations are learned from synthetic transition data collected in earlier proof attempts. A transition model predicts each tactic&#x27;s error status, execution time and environment output. The resulting embeddings are scaled by quality scores that combine generator logits, predicted success and predicted speed. A k-Determinantal Point Process then selects a diverse, high-quality subset of tactics, and the filter can augment any tactic generator, such as ReProver or InternLM2.5-StepProver, running in Lean through LeanDojo.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">3D-Prover improves the proof rate over Top-K and random filtering on miniF2F, with gains up to +8.9% on miniF2F-test and +15.2% on miniF2F-valid with ReProver at K=8. With InternLM2.5-StepProver it raises Pass@6 from 49.0% to 53.1%. It also improves tactic success rate, execution time and diversity.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2410.11133/sim.png" alt=""><figcaption>Figure 4 : Cosine similarity between tactic embeddings resulting in unique subgoals, for a sample root node in miniF2F-valid. The top value gives the similarity for embeddings from 3D-Prover, while the bottom gives the similarity for embeddings from an Autoencoder. We see that 3D-Prover better separates these semantically distinct tactics, in comparison to the Autoencoder, which only separates bas</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>K</th><th>Top-K</th><th>Random</th><th>3D-Prover</th><th>Gain</th></tr></thead><tbody><tr><td>8</td><td>22.4</td><td>19.0</td><td>24.4</td><td>+8.9%</td></tr><tr><td>16</td><td>26.5</td><td>25.4</td><td>27.3</td><td>+3.0%</td></tr><tr><td>32</td><td>27.8</td><td>27.4</td><td>28.2</td><td>+1.4%</td></tr></tbody></table><div class="tbl-cap">ReProver proof rate (%) on miniF2F-test (mean over four runs) by filter size K</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

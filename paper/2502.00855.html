@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Psychometric-Based Evaluation for Theorem Proving with Large Language Models · Papers With Lean</title>
+<meta name="description" content="Large language models (LLMs) for formal theorem proving have become a prominent research focus. At present, the proving ability of these LLMs is mainly evaluated through proof pass rates on datasets such as miniF2F. However, this evaluation method overlooks the varying…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Psychometric-Based Evaluation for Theorem Proving with Large Language Models">
+<meta property="og:description" content="Large language models (LLMs) for formal theorem proving have become a prominent research focus. At present, the proving ability of these LLMs is mainly evaluated through proof pass rates on datasets such as miniF2F. However, this evaluation method overlooks the varying…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2502.00855.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2502.00855.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2502.00855v1" target="_blank" rel="noopener"><img src="../thumbs/2502.00855.jpg" alt="First page of Psychometric-Based Evaluation for Theorem Proving with Large Language Models"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Psychometric-Based Evaluation for Theorem Proving with Large Language Models</h1>
+        <p class="authors">Jianyu Zhang, Yongwang Zhao, Long Zhang, Jilin Hu, Xiaokun Luan, Zhiwei Xu, Feng Yang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Feb 2, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2502.00855v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2502.00855" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.14776138" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds miniF2F-Graded by annotating the Lean 4 version of miniF2F with per-theorem difficulty from LLM proof attempts checked in Lean 4.13.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language models (LLMs) for formal theorem proving have become a prominent research focus. At present, the proving ability of these LLMs is mainly evaluated through proof pass rates on datasets such as miniF2F. However, this evaluation method overlooks the varying importance of theorems. As a result, it fails to highlight the real performance disparities between LLMs and leads to high evaluation costs. This study proposes a psychometric-based evaluation method for theorem proving with LLMs, comprising two main components: Dataset Annotation and Adaptive Evaluation. First, we propose a metric calculation method to annotate the dataset with difficulty and discrimination metrics. Specifically, we annotate each theorem in the miniF2F dataset and grade them into varying difficulty levels according to the performance of LLMs, resulting in an enhanced dataset: miniF2F-Graded. Experimental results show that the difficulty grading in miniF2F-Graded better reflects the theorem difficulty perceived by LLMs. Secondly, we design an adaptive evaluation method to dynamically select the most suitable theorems for testing based on the annotated metrics and the real-time performance of LLMs. We apply this method to evaluate 10 LLMs. The results show that our method finely highlights the performance disparities between LLMs. It also reduces evaluation costs by using only 23% of the theorems in the dataset.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM theorem provers are mainly evaluated by Pass@N on miniF2F. That metric weights all theorems equally, hides performance differences between models, and is computationally expensive.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Using psychometric ideas, four annotation LLMs generate whole proofs for the Lean version of miniF2F, and the proofs are verified with Lean 4.13. From the pass rates, each theorem receives difficulty and discrimination metrics and is graded into four levels, producing miniF2F-Graded. An adaptive evaluation procedure based on item response theory then selects the most informative theorems according to each model&#x27;s real-time performance.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2502.00855/Method_Overview.png" alt=""><figcaption>Figure 1: The method consists of two parts. In Part 1: Dataset Annotation, difficulty and discrimination metrics are assigned to each theorem in the miniF2F dataset based on the performance of LLMs, as determined by the Metric Calculation process, resulting in an annotated dataset, miniF2F-Graded. In Part 2: Adaptive Evaluation, the most suitable theorems are dynamically selected for testing based</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The new difficulty levels separate LLM pass rates monotonically, which the original human MATH-based grading does not. Adaptive evaluation of 10 LLMs distinguishes models more clearly and uses about 23% of the theorems, a 76% cost reduction.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2502.00855/scatter_by_classification.png" alt=""><figcaption>Figure 2: The scatter plot of the dataset annotation results illustrates the relationship between theorem difficulty (x-axis) and discrimination (y-axis).</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Level</th><th>Difficulty range</th><th>Count</th></tr></thead><tbody><tr><td>Level 1</td><td>0 ≤ x ≤ 0.5539</td><td>120</td></tr><tr><td>Level 2</td><td>0.5539 &lt; x ≤ 0.7661</td><td>120</td></tr><tr><td>Level 3</td><td>0.7661 &lt; x ≤ 0.9864</td><td>121</td></tr><tr><td>Level 4</td><td>x = 1</td><td>127</td></tr></tbody></table><div class="tbl-cap">Difficulty grading of miniF2F-Graded</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

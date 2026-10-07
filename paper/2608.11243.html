@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Off-Support Barrier: Why Semantic Safety Constraints Are Not Learning-Problem Invariants, and What Follows for Prior Design, Containment, and Verification · Papers With Lean</title>
+<meta name="description" content="We argue that a single structural fact organizes a wide range of phenomena in contemporary AI safety: a semantic safety constraint (e.g., the agent does not escape its sandbox) is an off-support object. Formally, if q is the data distribution and \(p(\cdot\mid w)\) the model,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Off-Support Barrier: Why Semantic Safety Constraints Are Not Learning-Problem Invariants, and What Follows for Prior Design, Containment, and Verification">
+<meta property="og:description" content="We argue that a single structural fact organizes a wide range of phenomena in contemporary AI safety: a semantic safety constraint (e.g., the agent does not escape its sandbox) is an off-support object. Formally, if q is the data distribution and \(p(\cdot\mid w)\) the model,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.11243.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.11243.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.11243v1" target="_blank" rel="noopener"><img src="../thumbs/2608.11243.jpg" alt="First page of The Off-Support Barrier: Why Semantic Safety Constraints Are Not Learning-Problem Invariants, and What Follows for Prior Design, Containment, and Verification"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">The Off-Support Barrier: Why Semantic Safety Constraints Are Not Learning-Problem Invariants, and What Follows for Prior Design, Containment, and Verification</h1>
+        <p class="authors">Yoshinori Watanabe</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Aug 1, 2026 · v1</span>
+          <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.11243v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.11243" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/xiangze/Preventing_Jailbreak_as_regularization" target="_blank" rel="noopener" title="xiangze/Preventing_Jailbreak_as_regularization">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 proofs, written against Mathlib, of soundness lemmas for verifying a safety predicate via ReLU network enclosure bounds; reported as not machine-checked in-session.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We argue that a single structural fact organizes a wide range of phenomena in contemporary AI safety: a semantic safety constraint (e.g., the agent does not escape its sandbox) is an off-support object. Formally, if q is the data distribution and \(p(\cdot\mid w)\) the model, the safety predicate B is not measurable with respect to \(σ(\text{model}, q)\), whereas the real log-canonical threshold (RLCT) of singular learning theory (SLT) is. From this non-invariance we derive, as corollaries rather than independent observations: (i) why reward hacking and sandbox escape arise under outcome-based optimization; (ii) why encoding such constraints through Bayesian prior design or soft penalty weighting has poor leverage in singular models; (iii) why hard invariants belong in the harness and soft dispositions in the model; (iv) why the same B is nonetheless soundly and locally certifiable by formal verification, exactly as the local learning coefficient (LLC) locally pins the same RLCT — with two precise points of disanalogy; and (v) why the residual difficulty, identifying which off-support region matters, coincides with performative prediction and self-referential functional dynamics, where SLT&#x27;s analytic machinery breaks down. We use the July 2026 OpenAI–Hugging Face evaluation incident as the motivating case. Numerical experiments code and related proofs in lean are available at <a href="https://github.com/xiangze/Preventing_Jailbreak_as_regularization" target="_blank" rel="noopener">https://github.com/xiangze/Preventing_Jailbreak_as_regularization</a></div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Semantic AI safety constraints, such as an agent not escaping its sandbox, are hard to enforce through learning. The paper asks why these constraints behave differently from quantities that singular learning theory (SLT) studies, such as the real log-canonical threshold (RLCT).</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors prove that a safety predicate depending on off-support behavior is not measurable with respect to the model and data distribution, whereas the RLCT is. From this they derive corollaries:
+- Support-preserving reweighting and prior design cannot enforce such constraints.
+- Enforcement has hardness results via Rice&#x27;s theorem and NP-hardness of ReLU reachability.
+- Off-support freedom can be read off from Jacobian fiber geometry.
+- SLT breaks down in performative regimes.
+They also argue that the safety predicate is locally certifiable by formal verification, and formalize the corresponding soundness lemmas in Lean 4, including affine, ReLU and composition enclosure lemmas.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The non-invariance proposition yields an account of reward hacking and sandbox escape, and a recommendation to keep hard invariants in the harness and soft dispositions in the model. The Lean 4 verification lemmas (safe_of_ub_nonpos, B_of_witness) are provided in the repository but were not machine-checked.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

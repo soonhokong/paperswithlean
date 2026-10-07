@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Context Cartography: Toward Structured Governance of Contextual Space in Large Language Model Systems · Papers With Lean</title>
+<meta name="description" content="The prevailing approach to improving large language model (LLM) reasoning has centered on expanding context windows, implicitly assuming that more tokens yield better performance. However, empirical evidence - including the &quot;lost in the middle&quot; effect and long-distance…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Context Cartography: Toward Structured Governance of Contextual Space in Large Language Model Systems">
+<meta property="og:description" content="The prevailing approach to improving large language model (LLM) reasoning has centered on expanding context windows, implicitly assuming that more tokens yield better performance. However, empirical evidence - including the &quot;lost in the middle&quot; effect and long-distance…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.20578.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.20578.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.20578v1" target="_blank" rel="noopener"><img src="../thumbs/2603.20578.jpg" alt="First page of Context Cartography: Toward Structured Governance of Contextual Space in Large Language Model Systems"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Context Cartography: Toward Structured Governance of Contextual Space in Large Language Model Systems</h1>
+        <p class="authors">Zihua Wu, Georg Gartner</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Mar 21, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.20578v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.20578" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">An appendix formalizes and mechanically verifies five structural properties of the context-zone framework in Lean 4 using Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The prevailing approach to improving large language model (LLM) reasoning has centered on expanding context windows, implicitly assuming that more tokens yield better performance. However, empirical evidence - including the &quot;lost in the middle&quot; effect and long-distance relational degradation - demonstrates that contextual space exhibits structural gradients, salience asymmetries, and entropy accumulation under transformer architectures. We introduce Context Cartography, a formal framework for the deliberate governance of contextual space. We define a tripartite zonal model partitioning the informational universe into black fog (unobserved), gray fog (stored memory), and the visible field (active reasoning surface), and formalize seven cartographic operators - reconnaissance, selection, simplification, aggregation, projection, displacement, and layering - as transformations governing information transitions between and within zones. The operators are derived from a systematic coverage analysis of all non-trivial zone transformations and are organized by transformation type (what the operator does) and zone scope (where it applies). We ground the framework in the salience geometry of transformer attention, characterizing cartographic operators as necessary compensations for linear prefix memory, append-only state, and entropy accumulation under expanding context. An analysis of four contemporary systems (Claude Code, Letta, MemOS, and OpenViking) provides interpretive evidence that these operators are converging independently across the industry. We derive testable predictions from the framework - including operator-specific ablation hypotheses - and propose a diagnostic benchmark for empirical validation.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Expanding LLM context windows does not govern how information moves between sensing, memory, and reasoning. Effects such as &#x27;lost in the middle&#x27; show that contextual space has positional salience gradients and accumulates entropy. Context engineering lacks a formal spatial model explaining why particular management strategies are needed.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Context Cartography partitions the contextual universe into three zones: black fog (unobserved), gray fog (stored memory), and the visible field (active context). Information moves between zones through four transitions: sense, recall, evict, and expire. Seven operators adapted from cartographic generalization theory are defined: reconnaissance, selection, simplification, aggregation, projection, displacement, and layering. Five structural properties of the framework are formalized and machine-checked in Lean 4 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Four systems (Claude Code, Letta, MemOS, OpenViking) are scored against a five-criterion rubric, giving post-hoc, interpretive evidence that these operators are being adopted independently across systems. The paper derives testable predictions, including operator-specific ablation hypotheses, and proposes a Context Cartography Diagnostic benchmark.</p><div class="sum-table"><table><thead><tr><th>Operator</th><th>Claude Code</th><th>Letta</th><th>MemOS</th><th>OpenViking</th></tr></thead><tbody><tr><td>Reconnaissance ρ</td><td>5</td><td>1</td><td>1</td><td>1</td></tr><tr><td>Selection σ</td><td>2</td><td>2</td><td>5</td><td>5</td></tr><tr><td>Projection π</td><td>2</td><td>5</td><td>5</td><td>5</td></tr><tr><td>Layering λ</td><td>5</td><td>5</td><td>5</td><td>5</td></tr><tr><td>System mean</td><td>3.00</td><td>2.86</td><td>3.29</td><td>2.71</td></tr></tbody></table><div class="tbl-cap">Operator implementation depth scores (1-5) across systems (excerpt)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

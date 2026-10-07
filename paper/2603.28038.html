@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beyond the Answer: Decoding the Behavior of LLMs as Scientific Reasoners · Papers With Lean</title>
+<meta name="description" content="As Large Language Models (LLMs) achieve increasingly sophisticated performance on complex reasoning tasks, current architectures serve as critical proxies for the internal heuristics of frontier models. Characterizing emergent reasoning is vital for long-term interpretability…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Beyond the Answer: Decoding the Behavior of LLMs as Scientific Reasoners">
+<meta property="og:description" content="As Large Language Models (LLMs) achieve increasingly sophisticated performance on complex reasoning tasks, current architectures serve as critical proxies for the internal heuristics of frontier models. Characterizing emergent reasoning is vital for long-term interpretability…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.28038.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.28038.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.28038v1" target="_blank" rel="noopener"><img src="../thumbs/2603.28038.jpg" alt="First page of Beyond the Answer: Decoding the Behavior of LLMs as Scientific Reasoners"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Beyond the Answer: Decoding the Behavior of LLMs as Scientific Reasoners</h1>
+        <p class="authors">Rohan Pandey, Eric Ye, Michael Li</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Mar 30, 2026 · v1</span>
+          <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.28038v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.28038" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses Lean 4 with Mathlib to verify LLM-generated proofs of MiniF2F algebra problems during GEPA prompt optimization and evaluation.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">As Large Language Models (LLMs) achieve increasingly sophisticated performance on complex reasoning tasks, current architectures serve as critical proxies for the internal heuristics of frontier models. Characterizing emergent reasoning is vital for long-term interpretability and safety. Furthermore, understanding how prompting modulates these processes is essential, as natural language will likely be the primary interface for interacting with AGI systems. In this work, we use a custom variant of Genetic Pareto (GEPA) to systematically optimize prompts for scientific reasoning tasks, and analyze how prompting can affect reasoning behavior. We investigate the structural patterns and logical heuristics inherent in GEPA-optimized prompts, and evaluate their transferability and brittleness. Our findings reveal that gains in scientific reasoning often correspond to model-specific heuristics that fail to generalize across systems, which we call &quot;local&quot; logic. By framing prompt optimization as a tool for model interpretability, we argue that mapping these preferred reasoning structures for LLMs is an important prerequisite for effectively collaborating with superhuman intelligence.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">It is unclear how prompting shapes LLM reasoning on scientific tasks, and whether optimized prompts transfer across models. The study examines this on formal theorem proving and graduate-level science questions.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A simplified custom variant of Genetic Pareto (GEPA) prompt optimization is run with DeepSeek-V3.2. Candidate prompts are scored by Lean verification of generated proofs for MiniF2F algebra theorems and by answer checking on GPQA Diamond. An LLM critic and an LLM evolver revise prompts based on failure logs. The resulting prompts are compared against hand-crafted baselines on GPT-5.4-mini, GLM 5, and Claude Sonnet 4.6.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The GEPA-optimized final prompt reaches 100% on Algebra and 94.44% on GPQA with DeepSeek-V3.2, but its gains transfer poorly to other models. Hand-crafted chain-of-thought prompts sometimes do better on those models. Optimized prompts roughly double in length and drift in embedding space during optimization.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2603.28038/prompt_lengths.png" alt=""><figcaption>Figure 1: The length of GEPA proposed prompts increases over the course of optimization, with the final prompt often being about twice as long in characters as the initial prompt. This shows that detailed prompting is likely required to unlock better reasoning capabilities in LLMs.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2603.28038/prompt_embeddings.png" alt=""><figcaption>Figure 2: The embeddings of GEPA proposed prompts tend to drift over the course of optimization. For both algebra and GPQA, there seems to be a significant jump in embedding space at around iteration 12. This suggests that for the same task, some regions of prompting space may offer more promising performance.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Model</th><th>CoT Algebra</th><th>CoT GPQA</th><th>GEPA Final Algebra</th><th>GEPA Final GPQA</th></tr></thead><tbody><tr><td>DeepSeek-V3.2</td><td>97.22%</td><td>91.67%</td><td>100.00%</td><td>94.44%</td></tr><tr><td>GPT-5.4-mini</td><td>47.22%</td><td>91.67%</td><td>61.11%</td><td>91.67%</td></tr><tr><td>GLM 5</td><td>97.22%</td><td>86.11%</td><td>94.44%</td><td>91.67%</td></tr><tr><td>Claude Sonnet 4.6</td><td>52.78%</td><td>83.33%</td><td>50.00%</td><td>80.56%</td></tr></tbody></table><div class="tbl-cap">Final GEPA prompt vs. Hand-Crafted CoT (Algebra / GPQA accuracy)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

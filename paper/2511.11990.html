@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Improving Autoformalization Using Direct Dependency Retrieval · Papers With Lean</title>
+<meta name="description" content="The convergence of deep learning and formal mathematics has spurred research in formal verification. Statement autoformalization, a crucial first step in this process, aims to translate informal descriptions into machine-verifiable representations but remains a significant…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Improving Autoformalization Using Direct Dependency Retrieval">
+<meta property="og:description" content="The convergence of deep learning and formal mathematics has spurred research in formal verification. Statement autoformalization, a crucial first step in this process, aims to translate informal descriptions into machine-verifiable representations but remains a significant…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2511.11990.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2511.11990.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2511.11990v4" target="_blank" rel="noopener"><img src="../thumbs/2511.11990.jpg" alt="First page of Improving Autoformalization Using Direct Dependency Retrieval"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Improving Autoformalization Using Direct Dependency Retrieval</h1>
+        <p class="authors">Shaoqi Wang, Lu Yu, Siwei Lou, Feng Yan, Chunjie Yang, Qing Cui, Jun Zhou</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 15, 2025 · v4</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2511.11990v4" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2511.11990" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://huggingface.co/datasets/Palca/FineLeanCorpus_DDR" target="_blank" rel="noopener" title="Palca/FineLeanCorpus_DDR (Hugging Face)">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Retrieves Lean 4 Mathlib dependencies for statement autoformalization, verifying candidate names against Mathlib via suffix arrays and checking outputs with Lean4 typechecking and BEq.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The convergence of deep learning and formal mathematics has spurred research in formal verification. Statement autoformalization, a crucial first step in this process, aims to translate informal descriptions into machine-verifiable representations but remains a significant challenge. The core difficulty lies in the fact that existing methods often suffer from a lack of contextual awareness, leading to hallucination of formal definitions and theorems. Furthermore, current retrieval-augmented approaches exhibit poor precision and recall for formal library dependency retrieval, and lack the scalability to effectively leverage ever-growing public datasets. To bridge this gap, we propose a novel retrieval-augmented framework based on DDR (Direct Dependency Retrieval) for statement autoformalization. Our DDR method directly generates candidate library dependencies from natural language mathematical descriptions and subsequently verifies their existence within the formal library via an efficient suffix array check. Leveraging this efficient search mechanism, we constructed a dependency retrieval dataset of over 500,000 samples and fine-tuned a high-precision DDR model. Experimental results demonstrate that our DDR model significantly outperforms SOTA methods in both retrieval precision and recall. Consequently, an autoformalizer equipped with DDR shows consistent performance advantages in both single-attempt accuracy and multi-attempt stability compared to models using traditional selection-based RAG methods.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Statement autoformalization into Lean 4 often fails because models hallucinate Mathlib definitions and theorems. Existing embedding-based retrieval of library dependencies has low precision and recall and does not scale with growing datasets.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Direct Dependency Retrieval (DDR) has an LLM generate candidate Mathlib dependency names directly from the natural-language statement. A suffix-array check (SAC) then verifies whether each candidate exists in the concatenated Mathlib item list, classifying matches as exact, partial, or none. SAC was also used to build a dependency retrieval dataset of over 500,000 samples from FineLeanCorpus, on which a DDR model was fine-tuned. The retrieved dependencies are supplied as context to autoformalizers, whose outputs are evaluated with Lean4 typechecking and BEq semantic checks.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2511.11990/fig0_v2.png" alt=""><figcaption>Figure 1: Comparison of two paradigms for formal dependency retrieval. The v {}_{2}(\cdot) in input indicates 2-adic valuation. (a) Select-based retrieval using embedding cosine similarity: both the input statement and library items are encoded into embeddings, and the top-k items with highest cosine similarity are retrieved as dependencies. (b) DDR generates potential dependencies based on contex</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">DDR reaches roughly 0.83–0.91 precision and 0.82–0.92 recall across difficulty levels. General LLMs used via ICL score about 0.15–0.54, and embedding top-k retrieval scores below 0.27. Autoformalizers equipped with DDR achieve higher single-attempt accuracy and more stable multi-attempt pass@k than those using ICL or no retrieval.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2511.11990/Deepseek_R1_main3.png" alt=""><figcaption>Figure 4: LLM efficiency across multiple attempts. Subplots (a–e) correspond to the performance of DeepSeek-R1 on datasets Diff01, Diff23, Diff45, Diff67, and Diff89, respectively. Each subplot illustrates the intermediate pass@k score ( y axis) out of 8 attempts using BEq verification, k range from 1 to 8 ( x axis). Dependency retrieval method: DDR (blue) ; ICL (orange) ; N/A (green) .</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2511.11990/Deepseek_R1_main2.png" alt=""><figcaption>Figure 3: LLM consistency across multiple attempts. Subplots (a–e) correspond to the performance of DeepSeek-R1 on datasets Diff01, Diff23, Diff45, Diff67, and Diff89, respectively. Each subplot illustrates the proportion of problems ( y axis) for which at least k (from 1 to 8, x axis) out of 8 attempts successfully pass the BEq verification. Dependency retrieval method: DDR (blue) ; ICL (orange) </figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Method</th><th>Diff01 P</th><th>Diff01 R</th><th>Diff45 P</th><th>Diff45 R</th></tr></thead><tbody><tr><td>GPT-4o</td><td>0.54</td><td>0.55</td><td>0.20</td><td>0.25</td></tr><tr><td>DeepSeek-R1</td><td>0.53</td><td>0.56</td><td>0.19</td><td>0.32</td></tr><tr><td>R@5</td><td>0.02</td><td>0.07</td><td>0.05</td><td>0.12</td></tr><tr><td>DDR</td><td>0.84</td><td>0.82</td><td>0.91</td><td>0.92</td></tr></tbody></table><div class="tbl-cap">Dependency retrieval precision/recall (selected difficulty levels)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

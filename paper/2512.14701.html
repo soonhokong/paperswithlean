@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Commutator-Governed Energy Exchange in Single-Ancilla Coherent Feedback · Papers With Lean</title>
+<meta name="description" content="A common route to ground-state preparation couples a system to one ancilla qubit, applies a conditional feedback operation, and resets the ancilla. I ask what physical quantity governs the energy such a cycle exchanges. The answer is a commutator, not the correlation the ancilla…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Commutator-Governed Energy Exchange in Single-Ancilla Coherent Feedback">
+<meta property="og:description" content="A common route to ground-state preparation couples a system to one ancilla qubit, applies a conditional feedback operation, and resets the ancilla. I ask what physical quantity governs the energy such a cycle exchanges. The answer is a commutator, not the correlation the ancilla…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2512.14701.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2512.14701.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2512.14701v3" target="_blank" rel="noopener"><img src="../thumbs/2512.14701.jpg" alt="First page of Commutator-Governed Energy Exchange in Single-Ancilla Coherent Feedback"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Commutator-Governed Energy Exchange in Single-Ancilla Coherent Feedback</h1>
+        <p class="authors">Jun Liang Tan</p>
+        <div class="row">
+          <span class="badge">quant-ph</span>
+          <span class="date">Dec 2, 2025 · v3</span>
+          <span class="badge">cs.ET</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-purple" href="../#tag=quantum">quantum</a> <a class="tag c-blue" href="../#tag=physics">physics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2512.14701v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2512.14701" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/poig/self-research" target="_blank" rel="noopener" title="poig/self-research">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Theorem 1, Corollary 1, the tensor-structure lemma, and the symmetry half of Theorem 2 are machine-checked in Lean 4 against Mathlib, with no sorry.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A common route to ground-state preparation couples a system to one ancilla qubit, applies a conditional feedback operation, and resets the ancilla. I ask what physical quantity governs the energy such a cycle exchanges. The answer is a commutator, not the correlation the ancilla acquires. The energy change per cycle is exactly $W = \langleΨ_1| A - U^\dagger A U |Ψ_1\rangle$ with $A = I_A \otimes H$, for every feedback strength and every sensing time, and it vanishes identically whenever the feedback generator commutes with $H$. No function of the system-ancilla correlation can therefore determine the work: on an explicit one-parameter family the mutual information and the logarithmic negativity are invariant to $2\times10^{-15}$ while the work varies continuously and changes sign. At fixed correlation the reachable work is a closed-form interval, and to leading order in the feedback strength it is symmetric about zero, so an unfiltered conditional kick heats as readily as it cools. That symmetry is exactly one orthogonality condition on the two spectra, and the two sufficient conditions I identify are its degenerate solutions, one holding automatically whenever the post-sensing branch is pure. At that order no choice of generator repairs a protocol that starts pure, and no choice of state repairs one with a symmetric generator. Breaking both is necessary but not sufficient: across the grid I searched, a finite kick&#x27;s second-order bias raises the directional fraction only to $0.015$. Directional cooling instead requires the frequency-filtered jump operators of single-ancilla Lindbladian preparation, which fall outside this Hermitian class. Read in reverse the same commutator is constructive: it identifies, before any circuit runs, variational parameter blocks whose energy gradient is identically zero, removing a fifth of the circuits from an optimisation run.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Single-ancilla sense–actuate–reset cycles are used for ground-state preparation. The question is what physical quantity governs the energy exchanged per cycle, given that no measurement occurs, so information-theoretic feedback bounds do not directly apply.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An exact identity gives the per-cycle work as W = &lt;Ψ1|A − U†AU|Ψ1&gt;, governed by the commutator of the feedback generator with H. To first order in feedback strength, the reachable work at fixed correlation is derived as a closed-form interval via von Neumann&#x27;s trace inequality. Key theorems, including the interval&#x27;s symmetry, are machine-checked in Lean 4 with Mathlib; the trace-inequality endpoint is not formalised. Dense simulations at N ≤ 7 complement the proofs, and frequency-filtered Lindbladian jump operators are compared.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2512.14701/achievable_work_theorem.png" alt=""><figcaption>Figure 3: The achievable set is predicted, not fitted. The shaded band is Eq. ( 9 ), computed from the spectra of M_{11} and Y alone, before any rotation is chosen. Green: the one-parameter R_{y} family of Fig. 1 , which reaches only 36.6\% of the bound on the right-hand instance and so would badly understate the achievable range if taken as evidence on its own. Grey: 400 Haar-random system-local </figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

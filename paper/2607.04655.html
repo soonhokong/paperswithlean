@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FormalRx: Rectify and eXamine Semantic Failures in Autoformalization · Papers With Lean</title>
+<meta name="description" content="The veracious semantic alignment in autoformalization is significant for formal mathematical reasoning. However, existing evaluations provide only opaque binary verdicts or scalar scores, offering no interpretable insight into where or why translations fail. This opacity…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FormalRx: Rectify and eXamine Semantic Failures in Autoformalization">
+<meta property="og:description" content="The veracious semantic alignment in autoformalization is significant for formal mathematical reasoning. However, existing evaluations provide only opaque binary verdicts or scalar scores, offering no interpretable insight into where or why translations fail. This opacity…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.04655.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.04655.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.04655v1" target="_blank" rel="noopener"><img src="../thumbs/2607.04655.jpg" alt="First page of FormalRx: Rectify and eXamine Semantic Failures in Autoformalization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">FormalRx: Rectify and eXamine Semantic Failures in Autoformalization</h1>
+        <p class="authors">Haocheng Wang, Baiyu Huang, Yingjia Wan, Xiao Zhu, Xiaoyang Liu, Yinya Huang, Zhijiang Guo</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Jul 6, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.04655v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.04655" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://huggingface.co/datasets/LARK-Lab/FormalRx-Test" target="_blank" rel="noopener" title="LARK-Lab/FormalRx-Test (Hugging Face)">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a Lean 4-specific autoformalization error taxonomy and dataset, using Mathlib and benchmark seed statements, with all formal statements compiled via the Lean REPL.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The veracious semantic alignment in autoformalization is significant for formal mathematical reasoning. However, existing evaluations provide only opaque binary verdicts or scalar scores, offering no interpretable insight into where or why translations fail. This opacity severely limits both human understanding and automated system improvement. To bridge this gap, we introduce FormalRx, a comprehensive diagnostic evaluation framework that transforms autoformalization assessment from black-box judgments into actionable feedback. At its core is SCI Error Taxonomy, a hierarchical classification scheme decomposing autoformalization errors into 28 distinct categories with strict priority ordering. Building on this taxonomy, FormalRx provides four critical diagnostic capabilities: alignment verdicts, error categorization, error localization, and correction. We instantiate the framework with a diagnostic model FormalRx-8B, trained on 56,287 NL-FL pairs with fine-grained diagnostic annotations, and release FormalRx-Test as the first fine-grained diagnostic benchmark. FormalRx-8B achieves F1-scores of 0.88 (verdict) and 0.71 (categorization), along with accuracies of 0.75 (localization) and 0.73 (correction), substantially outperforming both general-purpose LLMs and specialized baselines. By connecting evaluation with actionable insights, FormalRx enables systematic diagnosis and improvement of autoformalization systems.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Existing evaluations of autoformalization semantic alignment give only binary verdicts or scalar scores. They say nothing about where or why a natural-language-to-formal translation fails.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors define the SCI Error Taxonomy, which sorts errors into 28 prioritized categories across Semantic, Constraint, and Lean 4-specific Implementation dimensions. Starting from about 17.8k aligned NL-FL seed pairs (Mathlib, PutnamBench, FormalMATH and others), an LLM injects taxonomy-guided errors. Candidates are compiled via the Lean REPL and re-tagged by a second LLM, giving 56,287 annotated pairs. Qwen3 models are fine-tuned to output a verdict, error category, error location and corrected statement in a single generation.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.04655/SCI_taxonomy.png" alt=""><figcaption>Figure 2 : Overview of the Sci Error Taxonomy, which partitions 28 error categories into three disjoint, exhaustive dimensions: Semantic (S), Constraint (C), and Implementation (I) errors. Location-based catch-all categories ensure exhaustiveness, and priority ordering resolves cases that match more than one. See Section 3.3 for full definitions.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2607.04655/data_synth.png" alt=""><figcaption>Figure 3 : Overview of the data synthesis pipeline. From 17k aligned NL-FL seed pairs, an LLM applies taxonomy-guided error injection to produce 70k misaligned candidates. Discarding compilation failures leaves the 56k shown; a second LLM then validates and re-tags each candidate against the Sci Error Taxonomy, and the 52,521 samples passing this label check enter the dataset. See Section 4.3 for </figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">FormalRx-8B reaches 0.88 verdict F1, 0.71 categorization F1, 0.75 localization accuracy and 0.73 correction accuracy on the new FormalRx-Test benchmark, outperforming frontier LLMs and specialized baselines. Its advantage narrows on out-of-domain benchmarks.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Verdict F1</th><th>Categ. F1</th><th>Loc. Acc</th><th>Corr. Acc</th></tr></thead><tbody><tr><td>Qwen3-8B</td><td>0.833</td><td>0.155</td><td>0.398</td><td>0.458</td></tr><tr><td>GPT-5-mini</td><td>0.877</td><td>0.397</td><td>0.617</td><td>0.605</td></tr><tr><td>FormalRx-8B</td><td>0.881</td><td>0.709</td><td>0.750</td><td>0.729</td></tr></tbody></table><div class="tbl-cap">Selected results on FormalRx-Test (Verdict and Categorization F1; Localization and Correction accuracy)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

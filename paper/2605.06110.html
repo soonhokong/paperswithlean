@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>On Time, Within Budget: Constraint-Driven Online Resource Allocation for Agentic Workflows · Papers With Lean</title>
+<meta name="description" content="Agentic systems increasingly solve complex user requests by executing orchestrated workflows, where subtasks are assigned to specialized models or tools and coordinated according to their dependencies. While recent work improves agent efficiency by optimizing the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="On Time, Within Budget: Constraint-Driven Online Resource Allocation for Agentic Workflows">
+<meta property="og:description" content="Agentic systems increasingly solve complex user requests by executing orchestrated workflows, where subtasks are assigned to specialized models or tools and coordinated according to their dependencies. While recent work improves agent efficiency by optimizing the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.06110.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.06110.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.06110v2" target="_blank" rel="noopener"><img src="../thumbs/2605.06110.jpg" alt="First page of On Time, Within Budget: Constraint-Driven Online Resource Allocation for Agentic Workflows"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">On Time, Within Budget: Constraint-Driven Online Resource Allocation for Agentic Workflows</h1>
+        <p class="authors">Xinglin Wang, Zishen Liu, Shaoxiong Feng, Peiwen Yuan, Yiwei Li, Jiayi Shi, Yueqi Zhang, Chuyi Tan, Ji Zhang, Boyuan Pan, Yao Hu, Kan Li</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">May 7, 2026 · v2</span>
+          <span class="badge">cs.CL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.06110v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.06110" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/WangXinglin/MCPP" target="_blank" rel="noopener" title="WangXinglin/MCPP">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses the ProofFlow benchmark, where LLMs autoformalize proof steps into Lean 4 statements and proofs that Lean 4.15.0 checks.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Agentic systems increasingly solve complex user requests by executing orchestrated workflows, where subtasks are assigned to specialized models or tools and coordinated according to their dependencies. While recent work improves agent efficiency by optimizing the performance–cost–latency frontier, real deployments often impose concrete requirements: a workflow must be completed within a specified budget and before a specified deadline. This shifts the goal from average efficiency optimization to maximizing the probability that the entire workflow completes successfully under explicit budget and deadline constraints. We study constraint-driven online resource allocation for agentic workflows. Given a dependency-structured workflow and estimates of success rates and generation lengths for each subtask–model pair, the executor dynamically allocates models and parallel samples across simultaneously executable subtasks while managing the remaining budget and time. We formulate this setting as a finite-horizon stochastic online allocation problem and propose Monte Carlo Portfolio Planning (MCPP), a lightweight closed-loop planner that directly estimates constrained completion probability through simulated workflow executions and replans after observed outcomes. Experiments on CodeFlow and ProofFlow demonstrate that MCPP consistently improves constrained completion probability over strong baselines across a wide range of budget–deadline constraints.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Agentic workflows decompose requests into dependent subtasks handled by different models. Deployments often require the whole workflow to finish within a fixed budget and deadline, rather than optimizing average performance–cost–latency trade-offs.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The setting is formulated as a finite-horizon stochastic online allocation problem over a DAG of subtasks. At each state the executor picks a model and a number of parallel samples for every currently executable subtask, using estimated success rates and generation lengths. Monte Carlo Portfolio Planning (MCPP) estimates the probability of completing within the constraints by simulating workflow executions, and replans after observed outcomes. Evaluation uses CodeFlow and ProofFlow; in ProofFlow, a formalizer translates proof steps into Lean 4 and a prover completes the proofs, which Lean 4.15.0 then verifies.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.06110/intro.png" alt=""><figcaption>Figure 1: Comparison between performance–cost–latency frontier optimization and constraint-driven online resource allocation. A user request is first transformed into a static workflow, and success-rate and generation-length estimates for subtask–model pairs can be obtained from similar past queries or executions. Previous methods optimize or improve the performance–cost–latency frontier, but a be</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">MCPP consistently improves constrained completion probability over Uniform and Retry baselines across a wide range of budget–deadline settings. It remains robust to noisy estimates of success rates and generation lengths. A safe-improvement analysis shows MCPP improves on the best base policy in its portfolio, up to estimation and sampling errors.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

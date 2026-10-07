@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transformers are Bayesian Networks · Papers With Lean</title>
+<meta name="description" content="Transformers are the dominant architecture in AI, yet why they work remains poorly understood. This paper offers a precise answer: a transformer is a Bayesian network. We establish this in five ways. First, we prove that every sigmoid transformer with any weights implements…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Transformers are Bayesian Networks">
+<meta property="og:description" content="Transformers are the dominant architecture in AI, yet why they work remains poorly understood. This paper offers a precise answer: a transformer is a Bayesian network. We establish this in five ways. First, we prove that every sigmoid transformer with any weights implements…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.17063.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.17063.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.17063v1" target="_blank" rel="noopener"><img src="../thumbs/2603.17063.jpg" alt="First page of Transformers are Bayesian Networks"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Transformers are Bayesian Networks</h1>
+        <p class="authors">Gregory Coppola</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Mar 17, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.17063v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.17063" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/gregorycoppola/sigmoid-transformer-lean" target="_blank" rel="noopener" title="gregorycoppola/sigmoid-transformer-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Proves in Lean 4 that sigmoid transformers implement belief propagation, with exact-BP weight constructions, uniqueness, Turing completeness, and finiteness results, across named Lean repositories.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Transformers are the dominant architecture in AI, yet why they work remains poorly understood. This paper offers a precise answer: a transformer is a Bayesian network. We establish this in five ways. First, we prove that every sigmoid transformer with any weights implements weighted loopy belief propagation on its implicit factor graph. One layer is one round of BP. This holds for any weights – trained, random, or constructed. Formally verified against standard mathematical axioms. Second, we give a constructive proof that a transformer can implement exact belief propagation on any declared knowledge base. On knowledge bases without circular dependencies this yields provably correct probability estimates at every node. Formally verified against standard mathematical axioms. Third, we prove uniqueness: a sigmoid transformer that produces exact posteriors necessarily has BP weights. There is no other path through the sigmoid architecture to exact posteriors. Formally verified against standard mathematical axioms. Fourth, we delineate the AND/OR boolean structure of the transformer layer: attention is AND, the FFN is OR, and their strict alternation is Pearl&#x27;s gather/update algorithm exactly. Fifth, we confirm all formal results experimentally, corroborating the Bayesian network characterization in practice. We also establish the practical viability of loopy belief propagation despite the current lack of a theoretical convergence guarantee. We further prove that verifiable inference requires a finite concept space. Any finite verification procedure can distinguish at most finitely many concepts. Without grounding, correctness is not defined. Hallucination is not a bug that scaling can fix. It is the structural consequence of operating without concepts. Formally verified against standard mathematical axioms.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Why transformers work is poorly understood. The paper claims a precise characterization: a sigmoid transformer is a Bayesian network, with each layer performing one round of belief propagation.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Results are stated and machine-checked in Lean 4 repositories (e.g., sigmoid-transformer-lean, universal-lean, godel/*.lean). The first result shows that any sigmoid transformer implements weighted loopy BP on an implicit factor graph. Explicit weights are constructed and proven to implement exact BP on declared factor graphs, and a uniqueness result is proven. Further proofs cover Turing completeness via Boolean circuit simulation and the finiteness of distinguishable concepts under finite verification.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Lean-verified theorems include transformer_implements_bp, transformer_exact_on_tree, every_sigmoid_transformer_is_bayesian_network, transformer_is_turing_complete, and finite_distinguishable_symbols. Experiments are reported to corroborate the formal results, including the practical viability of loopy BP.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

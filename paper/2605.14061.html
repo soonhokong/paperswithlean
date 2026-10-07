@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MathAtlas: A Benchmark for Autoformalization in the Wild · Papers With Lean</title>
+<meta name="description" content="Current autoformalization benchmarks are largely focused on olympiad or undergraduate mathematics, while graduate and research-level mathematics remains underexplored. In this paper, we introduce MathAtlas, the first large-scale autoformalization benchmark of in the wild…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MathAtlas: A Benchmark for Autoformalization in the Wild">
+<meta property="og:description" content="Current autoformalization benchmarks are largely focused on olympiad or undergraduate mathematics, while graduate and research-level mathematics remains underexplored. In this paper, we introduce MathAtlas, the first large-scale autoformalization benchmark of in the wild…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.14061.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.14061.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.14061v1" target="_blank" rel="noopener"><img src="../thumbs/2605.14061.jpg" alt="First page of MathAtlas: A Benchmark for Autoformalization in the Wild"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">MathAtlas: A Benchmark for Autoformalization in the Wild</h1>
+        <p class="authors">Nilay Patel, Noah Arias, Davit Babayan, Victoria Cochran, Timothy Libman, Hafsah Mahmood, Liam McCarty, Soli Munoz, Laurel Willey, Jeffrey Flanigan</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">May 13, 2026 · v1</span>
+          <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.14061v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.14061" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://huggingface.co/datasets/MathAtlas/MathAtlas" target="_blank" rel="noopener" title="MathAtlas/MathAtlas (Hugging Face)">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Benchmarks LLM autoformalization of graduate textbook statements and definitions into Lean 4/Mathlib, measuring compile rate against Lean v4.24.0 and semantic faithfulness.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Current autoformalization benchmarks are largely focused on olympiad or undergraduate mathematics, while graduate and research-level mathematics remains underexplored. In this paper, we introduce MathAtlas, the first large-scale autoformalization benchmark of in the wild graduate-level mathematics, containing  52k theorems, definitions, exercises, examples, and proofs extracted from 103 graduate mathematics textbooks. MathAtlas is enriched with a mathematical dependency graph containing  178k relations, and is the first autoformalization benchmark to include such relations, facilitating evaluation and development of dependency-aware autoformalization systems. Our extensive experiments show that MathAtlas is high quality but extremely challenging: strong baselines achieve at most 9.8% correctness on theorem statements and 16.7% on definitions. Furthermore, we find performance of state-of-the-art models degrades substantially with dependency depth: on MA-Hard, a subset of 700 entities with the deepest dependency trees, the best model achieves only 2.6% correctness for autoformalization on this challenging dataset. We release MathAtlas to the community as a benchmark set for large-scale autoformalization of graduate-level mathematics in the wild.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Existing autoformalization benchmarks focus on olympiad or undergraduate mathematics and on theorem statements. Graduate-level material, definitions, and prerequisite dependency structure are largely left untested.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">MathAtlas is a dataset of about 52k definitions, theorems, exercises, examples, and proofs extracted automatically from 103 graduate textbooks. It is linked by a dependency graph of about 178k relations. Models are evaluated on formalizing these entities into Lean 4, with correctness defined as both compiling and being semantically faithful. MA-Align, a 200-item faithfulness benchmark, is introduced to assess LLM-as-judge metrics, and MA-Hard collects the roughly 700 entities with the deepest dependency trees.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.14061/MathAtlasPipeline.drawio.png" alt=""><figcaption>Figure 5 : MathAtlas creation pipeline. For visual convenience, we combine the “name” and “reference” extractors into one step called “identifier extractor.”</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2605.14061/mathatlas-dataset-figure.png" alt=""><figcaption>Figure 1 : An entity from MathAtlas together with a subgraph of its dependency tree. In yellow (bottom), we have a target theorem statement to be formalized (Proposition 15). Proposition 15 contains three “object references” to previously defined mathematical concepts: Dedeking ring, prime ideals, and principal ideal ring, which are dependencies needed to correctly formalize the theorem. These obj</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The best baselines reach 9.8% correctness on statements (ReForm 8B) and 16.7% on definitions (gpt-oss-120b). The best model reaches only 2.6% on MA-Hard. Correctness drops with dependency depth and is higher for entities found in Mathlib via LeanSearch.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.14061/in-mathlib-correctness.png" alt=""><figcaption>Figure 3 : Correctness of formalized entities from our best models compared with presence in Mathlib. Entities which our retrieval system (LeanSearch [ 11 ] ) found in Mathlib are significantly more likely to be correctly formalized than otherwise.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2605.14061/depth-vs-correctness-statements.png" alt=""><figcaption>(b) Correctness versus dependency depth of our best performing system for statements (ReForm 8B)</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Model</th><th>Compiling</th><th>Faithful</th><th>Correct</th></tr></thead><tbody><tr><td>gpt-oss-20b</td><td>14.3%</td><td>14.7%</td><td>2.1%</td></tr><tr><td>gpt-oss-120b</td><td>14.6%</td><td>17.8%</td><td>2.6%</td></tr></tbody></table><div class="tbl-cap">MA-Hard autoformalization results</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

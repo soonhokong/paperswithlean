@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sheaf-Cohomological Program Analysis: Unifying Bug Finding, Equivalence, and Verification via Čech Cohomology · Papers With Lean</title>
+<meta name="description" content="We present a framework in which program analysis – type checking, bug finding, and equivalence verification – is organized as computing the Čech cohomology of a semantic presheaf over a program&#x27;s site category. The presheaf assigns refinement-type information to observation…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sheaf-Cohomological Program Analysis: Unifying Bug Finding, Equivalence, and Verification via Čech Cohomology">
+<meta property="og:description" content="We present a framework in which program analysis – type checking, bug finding, and equivalence verification – is organized as computing the Čech cohomology of a semantic presheaf over a program&#x27;s site category. The presheaf assigns refinement-type information to observation…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.27015.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.27015.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.27015v1" target="_blank" rel="noopener"><img src="../thumbs/2603.27015.jpg" alt="First page of Sheaf-Cohomological Program Analysis: Unifying Bug Finding, Equivalence, and Verification via Čech Cohomology"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Sheaf-Cohomological Program Analysis: Unifying Bug Finding, Equivalence, and Verification via Čech Cohomology</h1>
+        <p class="authors">Halley Young</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Mar 27, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-cyan" href="../#tag=topology">topology</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.27015v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.27015" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/thehalleyyoung/deppy" target="_blank" rel="noopener" title="thehalleyyoung/deppy">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Key metatheorems (soundness, descent theorem, Mayer-Vietoris localization, fixed-point convergence) are mechanized in 1,259 lines of Lean 4 with Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present a framework in which program analysis – type checking, bug finding, and equivalence verification – is organized as computing the Čech cohomology of a semantic presheaf over a program&#x27;s site category. The presheaf assigns refinement-type information to observation sites and restricts it along data-flow morphisms. The cohomology group $H^{0}$ is the space of globally consistent typings. The first cohomology group $H^{1}$ classifies gluing obstructions – bugs, type errors, and equivalence failures – each localized to a specific pair of disagreeing sites. This formulation yields three concrete results unavailable in prior work: (1) the rank of $H^1$ over $F_{2}$ counts the minimum independent fixes; (2) $H_{1}(U, Iso) = 0$ is sound and complete for behavioral equivalence; (3) Mayer-Vietoris enables compositional, incremental obstruction counting. We implement the framework in Deppy, a Python analysis tool, and evaluate it on a suite of 375 benchmarks: 133 bug-detection programs, 134 equivalence pairs, and 108 specification-satisfaction checks. Deppy achieves {100% bug-detection recall} (69% precision, F1 = 81%), 99% equivalence accuracy with zero false equivalences, and 98% spec accuracy with zero false satisfactions – outperforming mypy and pyright, which report zero findings on unannotated code. The analysis models Python semantics as algebraic geometry: variables live on the generic fiber (non-None) unless on the closed nullable subscheme, integers form Spec($\mathbb{Z}$) with no bounded section (no overflow), and short-circuit evaluation defines an open-set topology on the presheaf.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Program analyses such as type checking, bug finding and equivalence checking all combine local facts into global conclusions. The authors seek a single mathematical framework for this local-to-global reasoning that also supports counting, localizing and composing errors.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Program analysis is modeled as computing the Čech cohomology of a semantic presheaf of refinement types over a program site category whose morphisms are data-flow edges. H^0 captures globally consistent typings and H^1 classifies gluing obstructions such as bugs and equivalence failures. The framework is implemented in Deppy, a Python analyzer that uses Z3 to check agreement on overlaps. Its metatheory (soundness, the H^0 characterization, the descent theorem, Mayer-Vietoris and convergence) is mechanized in Lean 4 with Mathlib across 7 modules.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 375 benchmarks, Deppy reaches 100% bug-detection recall (69% precision, F1 81%), 99% equivalence accuracy with no false equivalences, and 98% specification accuracy. mypy and pyright report zero findings on the same unannotated code.</p><div class="sum-table"><table><thead><tr><th>Task</th><th>Correct / Total</th><th>Notes</th></tr></thead><tbody><tr><td>Bug detection (133)</td><td>—</td><td>P 69%, R 100%, F1 81%</td></tr><tr><td>Equivalence (134)</td><td>133 / 134 (99%)</td><td>0 false equivalences</td></tr><tr><td>Spec satisfaction (108)</td><td>106 / 108 (98%)</td><td>0 false satisfactions</td></tr></tbody></table><div class="tbl-cap">Deppy accuracy across benchmark tasks</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

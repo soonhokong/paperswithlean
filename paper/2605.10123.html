@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Complex-Valued Phase-Coherent Transformer · Papers With Lean</title>
+<meta name="description" content="Complex-valued Transformers have largely inherited softmax attention from real-valued architectures. However, row-normalised token competition is not necessarily aligned with phase-preserving computation. In this paper, we introduce the Phase-Coherent Transformer (PCT), which…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Complex-Valued Phase-Coherent Transformer">
+<meta property="og:description" content="Complex-valued Transformers have largely inherited softmax attention from real-valued architectures. However, row-normalised token competition is not necessarily aligned with phase-preserving computation. In this paper, we introduce the Phase-Coherent Transformer (PCT), which…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.10123.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.10123.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.10123v3" target="_blank" rel="noopener"><img src="../thumbs/2605.10123.jpg" alt="First page of Complex-Valued Phase-Coherent Transformer"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Complex-Valued Phase-Coherent Transformer</h1>
+        <p class="authors">Leona Hioki</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">May 11, 2026 · v3</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.10123v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.10123" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/leohio/phase-coherent-transformer-r-d" target="_blank" rel="noopener" title="leohio/phase-coherent-transformer-r-d">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Theorems on per-layer and all-layer phase coherence are machine-checked in Lean/Mathlib, the latter under an explicit premise bundle, with a public repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Complex-valued Transformers have largely inherited softmax attention from real-valued architectures. However, row-normalised token competition is not necessarily aligned with phase-preserving computation. In this paper, we introduce the Phase-Coherent Transformer (PCT), which applies a real-valued, element-independent, smooth gate to L2-normalised complex query-key similarities. PCT replaces token competition with token-non-competing attention and is designed to preserve phase information across layers. Across mid-scale benchmarks spanning long-range memory, hierarchical long-range reasoning, positional retrieval, phase-based memory and superposition, and image classification, PCT shows strong generalisation across task categories. Under parameter-fair comparison, PCT consistently outperforms both the standard softmax Transformer and its direct complex-valued counterpart. Moreover, even on tasks traditionally considered difficult for complex-valued neural networks, such as NIAH and LRA-Text, PCT remains competitive with Multiscreen, the strongest real-valued NN baseline in our comparison. Experiments introducing gates that deliberately violate the PCT conditions show that the design is not incidental: smooth gates that preserve negatively aligned phase components remain strong, whereas gates that delete such components collapse on long-range retrieval, and gates whose outputs become excessively large suffer clear performance degradation. PCT also shows no depth-related accuracy collapse across the tested depth range. These results support introducing multi-layer phase-coherent structure into attention as a promising design principle for achieving generalisation in complex-valued Transformers.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Complex-valued Transformers usually inherit softmax attention. Its row normalisation forces tokens to compete for attention mass, which may conflict with preserving phase information across layers.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The Phase-Coherent Transformer (PCT) applies a real-valued, element-independent, smooth gate (a sigmoid) to L2-normalised complex query-key cosine scores, so tokens do not compete for attention mass. A four-condition framework (C1–C4) on the gate is linked to per-layer and all-layer phase coherence. Theorem 1 is formalized in Lean without sorry. Theorem 2 is machine-checked in Lean under an explicit premise bundle that packages lemmas not yet formalized. PCT is compared under parameter-fair conditions against real and complex softmax, sigmoid and screening baselines.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">PCT matches or exceeds the baselines across copy memory, NIAH, ListOps, FFT-MNIST, phase-memory and multi-pitch tasks, and shows no depth-related collapse. Gates that delete anti-phase components collapse on long-range retrieval. A complex screening model with a phase-coherent recurrence solves Path-X. #print axioms on the Lean theorem reports only the standard axioms.</p><div class="sum-table"><table><thead><tr><th>Task</th><th>r_softmax</th><th>r_screen</th><th>c_softmax</th><th>PCT</th></tr></thead><tbody><tr><td>Copy d=2000</td><td>0.10</td><td>1.00</td><td>0.08</td><td>1.00</td></tr><tr><td>NIAH L=2048</td><td>0.00</td><td>1.00</td><td>0.00</td><td>1.00</td></tr><tr><td>ListOps mid L1024</td><td>0.146</td><td>0.698</td><td>0.104</td><td>0.854</td></tr><tr><td>FFT-MNIST</td><td>0.32</td><td>0.43</td><td>0.39</td><td>0.45</td></tr></tbody></table><div class="tbl-cap">Headline accuracy (subset)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

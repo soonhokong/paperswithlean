@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beyond Correctness: Toward Automated Novelty Verification with Lean 4 · Papers With Lean</title>
+<meta name="description" content="Artificial intelligence systems applied to mathematics verify correctness but not novelty: an automatically generated theorem can compile in Lean without errors and yet be an already known result. This article presents AViD Journal, a pipeline that receives a LaTeX article,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Beyond Correctness: Toward Automated Novelty Verification with Lean 4">
+<meta property="og:description" content="Artificial intelligence systems applied to mathematics verify correctness but not novelty: an automatically generated theorem can compile in Lean without errors and yet be an already known result. This article presents AViD Journal, a pipeline that receives a LaTeX article,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.14669.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.14669.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.14669v1" target="_blank" rel="noopener"><img src="../thumbs/2608.14669.jpg" alt="First page of Beyond Correctness: Toward Automated Novelty Verification with Lean 4"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Beyond Correctness: Toward Automated Novelty Verification with Lean 4</h1>
+        <p class="authors">Ayrton Porto</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Aug 2, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.14669v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.14669" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ayrtonporto/avid-journal" target="_blank" rel="noopener" title="ayrtonporto/avid-journal">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Autoformalizes LaTeX statements into Lean 4, searches Mathlib via Leandex, tests triviality with Lean tactics, and compares proof premise sets.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Artificial intelligence systems applied to mathematics verify correctness but not novelty: an automatically generated theorem can compile in Lean without errors and yet be an already known result. This article presents AViD Journal, a pipeline that receives a LaTeX article, formalizes its statements in Lean 4, and issues a novelty verdict through a decision tree over three dimensions: prior existence in a formal corpus (Mathlib) and an informal one (TheoremSearch and Matlas, with temporal filter and LLM judge), non-triviality via automatic tactics, and structural distance between proofs measured as Jaccard distance over premise sets. Evaluation on papers withdrawn from arXiv due to declared duplication produced a result more informative than any performance measure: the identification of three obstacles that limit the approach regardless of this implementation. First, successful compilation of a Lean file does not guarantee semantic fidelity. Second, the recall ceiling is imposed by the coverage of theorem indices, not by the similarity metric. Third, arXiv removes the source code of articles upon withdrawal, compromising the reproducibility of any benchmark built upon them.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">AI systems for mathematics check whether a theorem is correct but not whether it is new. A generated theorem can compile in Lean and still be an already known result. Equating novelty with absence from Mathlib is a poor criterion: it flags trivial facts as new and misses results that exist only in the informal literature.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">AViD Journal parses a LaTeX article, orders its theorem environments by their dependencies, and formalizes them in Lean 4 using one of several selectable LLM backends. A decision tree with eight possible verdicts then checks three dimensions. The first is prior existence in Mathlib (searched via Leandex) and in the informal TheoremSearch and Matlas indices, using a temporal filter and an LLM judge. The other two are non-triviality, tested by whether automatic tactics such as aesop, decide or norm_num close the goal, and proof distance, measured as Jaccard distance over premise sets. Each instrument is validated separately, and the whole pipeline is evaluated on arXiv papers withdrawn for declared duplication, each paired with matched controls.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The Jaccard distance was consistent with the human judge on 5/5 calibration pairs, and the triviality check succeeded on 22/24 cases. Backend choice mattered: Qwen 3.7-max formalized 5/5 test cases while both DeepSeek models formalized 0/5. The evaluation identified three obstacles that limit the approach regardless of implementation: successful compilation does not guarantee semantic fidelity, recall is capped by the coverage of theorem indices rather than the similarity metric, and arXiv removes the sources of withdrawn papers, undermining reproducibility of such benchmarks.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Success</th><th>Predominant failure mode</th></tr></thead><tbody><tr><td>Qwen 3.7-max</td><td>5/5</td><td>—</td></tr><tr><td>GLM-5.2</td><td>3/5</td><td>fixable errors, one timeout</td></tr><tr><td>DeepSeek V4 Pro</td><td>0/5</td><td>synthesis errors, placeholder definition</td></tr><tr><td>DeepSeek V4 Flash</td><td>0/5</td><td>synthesis errors, unexpected tokens</td></tr></tbody></table><div class="tbl-cap">Formalization backend selection (5 test cases each)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

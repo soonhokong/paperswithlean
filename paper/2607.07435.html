@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RLVP: Penalize the Path, Reward the Outcome · Papers With Lean</title>
+<meta name="description" content="Agents acting on our behalf in the real world (e.g. placing phone calls) must learn online from costly, often irreversible interactions rather than cheap simulator steps. Two things follow. First, deployability depends on the path, not only the outcome. An agent must respect…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RLVP: Penalize the Path, Reward the Outcome">
+<meta property="og:description" content="Agents acting on our behalf in the real world (e.g. placing phone calls) must learn online from costly, often irreversible interactions rather than cheap simulator steps. Two things follow. First, deployability depends on the path, not only the outcome. An agent must respect…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.07435.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.07435.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.07435v1" target="_blank" rel="noopener"><img src="../thumbs/2607.07435.jpg" alt="First page of RLVP: Penalize the Path, Reward the Outcome"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">RLVP: Penalize the Path, Reward the Outcome</h1>
+        <p class="authors">Bojie Li, Noah Shi</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Jul 8, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.07435v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.07435" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/19PINE-AI/rlvp" target="_blank" rel="noopener" title="19PINE-AI/rlvp">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses Lean theorem proving on miniF2F as an RL testbed, with kernel-verified tactic steps and remaining-goal counts supplying dense progress rewards and penalties.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Agents acting on our behalf in the real world (e.g. placing phone calls) must learn online from costly, often irreversible interactions rather than cheap simulator steps. Two things follow. First, deployability depends on the path, not only the outcome. An agent must respect outcome-neutral constraints such as not repeatedly calling an unresponsive user, respecting business hours, or completing required authentication constraints that outcome-based rewards cannot express, since violating them frequently improves apparent success. Second, because each interaction is expensive, the agent must learn efficiently from very few examples. Reinforcement learning from verifiable rewards (RLVR) is blind to both challenges: it optimizes solely on the outcome and wastes expensive rollouts on all-fail groups where group-relative advantage collapses to zero. Attempts to densify supervision by rewarding progress target the hard-to-verify direction. In contrast, real agentic environments can cheaply detect bad moves. Since group-relative advantage is equivalent to within-group variance, a dense signal helps only when it supplies variance the outcome lacks. A verifiable penalty on the path meets this condition reliably, while a progress potential helps only where partial progress is reachable. The resulting recipe &quot;penalize the path, reward the outcome&quot; achieves high task success with near-zero violations, where outcome-only training violates constraints on nearly every episode. We provide four design rules for effective penalties, including avoidance of the inaction trap that arises when a penalty is used in isolation.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Reinforcement learning from verifiable outcome rewards ignores path constraints that deployed agents must respect. It also wastes costly rollouts on all-fail groups, where group-relative advantage collapses to zero.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">RLVP adds a second, per-action channel to the outcome reward. A deterministic rule engine penalizes verifiable bad moves and credits fulfilled obligations, and the two channels are normalized separately before being combined. The same credit, paid for verified progress, acts as a dense potential; for example, Lean kernel-verified reductions in remaining proof goals on miniF2F. The approach is evaluated on Lean theorem proving, TerminalBench, tau-bench, and SWE-bench, framed through a within-group variance analysis.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Path penalties reach comparable task success with near-zero or far fewer violations (about 6x fewer on TerminalBench). Dense potentials help only where partial progress is reachable. On Lean miniF2F the aligned potential reduces iterations to 0.9 success and eliminates dead all-fail updates, while on SWE-bench it provides no signal. A pure penalty used alone collapses into an inaction trap.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.07435/fig_phase_diagram.png" alt=""><figcaption>Figure 13 : Reachability, measured cheaply, gates the dense-reward benefit. (a) \operatorname{Var}_{G}(\Phi) on base-policy rollouts (no training) over model capability \times outcome sparsity: it rises with capability and peaks in the sparse-but-reachable corner. (b) The benefit of a dense reward (final-success gap, dense - outcome) against that same probe: zero where \operatorname{Var}_{G}(\Phi)</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Configuration</th><th>Iters to 0.9</th><th>AUC</th><th>Final success</th><th>Diverged</th></tr></thead><tbody><tr><td>4B aligned potential (Muon)</td><td>4.4±0.5</td><td>0.90±0.03</td><td>1.00±0.00</td><td>0/5</td></tr><tr><td>4B outcome-only (Muon)</td><td>7.0±0.7</td><td>0.87±0.02</td><td>1.00±0.00</td><td>1/5</td></tr><tr><td>30B aligned potential (Muon)</td><td>5.4±1.0</td><td>0.90±0.02</td><td>1.00±0.00</td><td>0/5</td></tr><tr><td>30B outcome-only (Muon)</td><td>8.5±0.5</td><td>0.84±0.00</td><td>1.00±0.00</td><td>3/5</td></tr><tr><td>30B outcome-only (AdamW)</td><td>19.2±1.9</td><td>0.63±0.07</td><td>0.97±0.05</td><td>0/5</td></tr></tbody></table><div class="tbl-cap">Theorem proving: aligned potential vs outcome-only (iterations to 0.9 success, AUC, final success, diverged seeds)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FormalEvolve: Neuro-Symbolic Evolutionary Search for Diverse Autoformalization · Papers With Lean</title>
+<meta name="description" content="Autoformalization aims to produce formal statements that compile and faithfully preserve the intended meaning of informal mathematics. Yet standard single-output evaluation collapses this many-to-many structure into a single prediction. For downstream proving, this granularity…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FormalEvolve: Neuro-Symbolic Evolutionary Search for Diverse Autoformalization">
+<meta property="og:description" content="Autoformalization aims to produce formal statements that compile and faithfully preserve the intended meaning of informal mathematics. Yet standard single-output evaluation collapses this many-to-many structure into a single prediction. For downstream proving, this granularity…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.19828.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.19828.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.19828v4" target="_blank" rel="noopener"><img src="../thumbs/2603.19828.jpg" alt="First page of FormalEvolve: Neuro-Symbolic Evolutionary Search for Diverse Autoformalization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">FormalEvolve: Neuro-Symbolic Evolutionary Search for Diverse Autoformalization</h1>
+        <p class="authors">Haijian Lu, Wei Wang, Jing Liu</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Mar 20, 2026 · v4</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.19828v4" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.19828" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/cnfjlhj/formalevolve" target="_blank" rel="noopener" title="cnfjlhj/formalevolve">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Generates Lean 4 autoformalizations via compile-gated evolutionary search, using Lean compilation as a feasibility gate and evaluating downstream Lean proving.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Autoformalization aims to produce formal statements that compile and faithfully preserve the intended meaning of informal mathematics. Yet standard single-output evaluation collapses this many-to-many structure into a single prediction. For downstream proving, this granularity is too coarse: a formal statement is not merely a faithful translation endpoint, but also a prover-facing interface whose structure can alter proof search under a fixed budget. We therefore recast autoformalization as budgeted test-time search: FormalEvolve maintains a compilation-feasible archive for reuse and returns a deduplicated, semantically accepted repertoire for evaluation and downstream proving. It expands the archive with LLM-driven mutation, crossover, bounded patch repair, and symbolic abstract syntax tree (AST) rewrites for structural diversity. Under a generator-call budget of T=100 with a fixed LLM semantic judge, FormalEvolve reaches SH@100 of 58.0% on CombiBench and 84.9% on ProofNet, improving over all no-archive controls while reducing the cross-problem concentration of semantic successes. Under a fixed B=64 prover budget, these repertoires improve theorem-complete proving over the matched no-archive control. Additional stronger-base statement-generation experiments show that archive-search gains persist with stronger seed and repair models.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Autoformalization is many-to-many: one informal theorem admits several faithful Lean statements. These variants can behave very differently under a fixed prover budget, so producing a single output discards variation that matters for proving.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">FormalEvolve treats Lean 4 autoformalization as budgeted test-time search. It keeps an archive of candidates that pass Lean compilation and expands it with LLM-driven mutation, crossover, bounded patch repair, and symbolic AST rewrites (EvolAST). An LLM semantic judge filters the archive into a deduplicated repertoire. This repertoire is used both for evaluation and for downstream proving under a fixed prover budget.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2603.19828/framework.png" alt=""><figcaption>Figure 2: Framework overview of FormalEvolve. A seed model produces an initial seedbank (debited as generator calls) that initializes a compilation-feasible archive. Candidates are stored with semantic scores and selected with usage penalties; a patch model proposes edits (full rewrite, diff patching, and cross patching) and triggers bounded repair or EvolAST fallbacks on duplicate proposals and c</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">At a budget of T=100 generator calls, FormalEvolve reaches SH@100 of 58.0% on CombiBench and 84.9% on ProofNet. This improves over all no-archive controls and lowers the Gini concentration of semantic successes across problems. Under B=64 prover attempts, it also improves theorem-complete proving over the matched hybrid control.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2603.19828/figR_proof_utility_decomposition_rr64_2bench.png" alt=""><figcaption>Figure 6: Decomposing theorem-complete@64 under a fixed prover and attempt budget ( B{=}64 ). Each bar splits the benchmark denominator into problems with an empty statement repertoire for proving (zero prover attempts), problems with a non-empty repertoire but no theorem-complete success, and problems with at least one theorem-complete success.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Method</th><th>CombiBench</th><th>ProofNet</th></tr></thead><tbody><tr><td>FormalEvolve</td><td>13/100</td><td>45/186</td></tr><tr><td>Hybrid control</td><td>9/100</td><td>40/186</td></tr><tr><td>Sample</td><td>8/100</td><td>41/186</td></tr><tr><td>C+S Repair</td><td>8/100</td><td>46/186</td></tr></tbody></table><div class="tbl-cap">Downstream proving at B=64 (theorem-complete@64)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beyond Theorem Proving: Formulation, Framework and Benchmark for Formal Problem-Solving · Papers With Lean</title>
+<meta name="description" content="As a seemingly self-explanatory task, problem-solving has been a significant component of science and engineering. However, a general yet concrete formulation of problem-solving itself is missing. With the recent development of AI-based problem-solving agents, the demand for…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Beyond Theorem Proving: Formulation, Framework and Benchmark for Formal Problem-Solving">
+<meta property="og:description" content="As a seemingly self-explanatory task, problem-solving has been a significant component of science and engineering. However, a general yet concrete formulation of problem-solving itself is missing. With the recent development of AI-based problem-solving agents, the demand for…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2505.04528.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2505.04528.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2505.04528v1" target="_blank" rel="noopener"><img src="../thumbs/2505.04528.jpg" alt="First page of Beyond Theorem Proving: Formulation, Framework and Benchmark for Formal Problem-Solving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Beyond Theorem Proving: Formulation, Framework and Benchmark for Formal Problem-Solving</h1>
+        <p class="authors">Qi Liu, Xinhao Zheng, Renqiu Xia, Xingzhi Qi, Qinxiang Cao, Junchi Yan</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">May 7, 2025 · v1</span>
+          <span class="badge">cs.CL</span> <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2505.04528v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2505.04528" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Purewhite2019/formal_problem_solving_main" target="_blank" rel="noopener" title="Purewhite2019/formal_problem_solving_main">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Implements formal problem-solving frameworks (FPS, D-FPS) and answer-checking (RPE) in Lean 4, with Lean benchmarks FormalMath500, MiniF2F-Solving, PutnamBench-Solving.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">As a seemingly self-explanatory task, problem-solving has been a significant component of science and engineering. However, a general yet concrete formulation of problem-solving itself is missing. With the recent development of AI-based problem-solving agents, the demand for process-level verifiability is rapidly increasing yet underexplored. To fill these gaps, we present a principled formulation of problem-solving as a deterministic Markov decision process; a novel framework, FPS (Formal Problem-Solving), which utilizes existing FTP (formal theorem proving) environments to perform process-verified problem-solving; and D-FPS (Deductive FPS), decoupling solving and answer verification for better human-alignment. The expressiveness, soundness and completeness of the frameworks are proven. We construct three benchmarks on problem-solving: FormalMath500, a formalization of a subset of the MATH500 benchmark; MiniF2F-Solving and PutnamBench-Solving, adaptations of FTP benchmarks MiniF2F and PutnamBench. For faithful, interpretable, and human-aligned evaluation, we propose RPE (Restricted Propositional Equivalence), a symbolic approach to determine the correctness of answers by formal verification. We evaluate four prevalent FTP models and two prompting methods as baselines, solving at most 23.77% of FormalMath500, 27.47% of MiniF2F-Solving, and 0.31% of PutnamBench-Solving.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Problem-solving (finding unknowns) lacks a rigorous formulation, and LLM-based solvers lack process-level verification. Formal theorem proving verifies proofs but only for known targets.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Problem-solving is formulated as a deterministic Markov decision process. In the FPS framework, the queried answer becomes a coupled metavariable in Lean 4 proof states, so solving proceeds by tactic application and the answer is extracted from metavariable assignments. D-FPS separates forward deductive solving from backward verification for find-all problems. RPE judges answer correctness by checking equivalence to the ground truth using restricted proof automation.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2505.04528/figs.FPS_MDP.png" alt=""><figcaption>Figure 2: Demonstrations of FPS and D-FPS. FPS: After initialization, an agent iteratively executes solution steps to transform solution states until all goals are solved. A direct answer and its soundness proof can be extracted. D-FPS: The whole process is further decoupled into a forward-solving part and an optional backward-proving part. Forward-solving enforces deductive reasoning for better h</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Three benchmarks are built: FormalMath500, MiniF2F-Solving and PutnamBench-Solving. Across four FTP models and two prompting methods, the best results are 23.77% solved on FormalMath500, 27.47% on MiniF2F-Solving and 0.31% on PutnamBench-Solving.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>FormalMath500</th><th>MiniF2F-Solving</th><th>PutnamBench-Solving</th></tr></thead><tbody><tr><td>InternLM2.5-StepProver</td><td>23.77%</td><td>27.47%</td><td>0.00%</td></tr><tr><td>LeanSTaR</td><td>23.51%</td><td>24.27%</td><td>0.00%</td></tr><tr><td>DeepSeekProver-V1.5</td><td>22.22%</td><td>22.40%</td><td>0.31%</td></tr><tr><td>TheoremLlama</td><td>16.02%</td><td>13.07%</td><td>0.00%</td></tr></tbody></table><div class="tbl-cap">FPS baselines, solved rate</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

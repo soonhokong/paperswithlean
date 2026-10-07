@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Theoretical Analysis of Provable Compositional Generalization in Neural Networks: A Necessary and Sufficient Condition · Papers With Lean</title>
+<meta name="description" content="Compositional generalization$\unicode{x2013}$the ability to systematically process novel combinations of known components$\unicode{x2013}$is a hallmark of human intelligence; however, its theoretical foundation in neural networks is not yet well understood. This paper…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Theoretical Analysis of Provable Compositional Generalization in Neural Networks: A Necessary and Sufficient Condition">
+<meta property="og:description" content="Compositional generalization$\unicode{x2013}$the ability to systematically process novel combinations of known components$\unicode{x2013}$is a hallmark of human intelligence; however, its theoretical foundation in neural networks is not yet well understood. This paper…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2505.02627.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2505.02627.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2505.02627v2" target="_blank" rel="noopener"><img src="../thumbs/2505.02627.jpg" alt="First page of A Theoretical Analysis of Provable Compositional Generalization in Neural Networks: A Necessary and Sufficient Condition"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Theoretical Analysis of Provable Compositional Generalization in Neural Networks: A Necessary and Sufficient Condition</h1>
+        <p class="authors">Yuanpeng Li</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">May 5, 2025 · v2</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2505.02627v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2505.02627" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/yuanpeng16/tacg" target="_blank" rel="noopener" title="yuanpeng16/tacg">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The main necessary-and-sufficient theorem for provable compositional generalization is fully proved and machine-verified in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Compositional generalization$\unicode{x2013}$the ability to systematically process novel combinations of known components$\unicode{x2013}$is a hallmark of human intelligence; however, its theoretical foundation in neural networks is not yet well understood. This paper establishes a necessary and sufficient condition for provable compositional generalization, precisely characterizing its boundary. Conceptually, the condition consists of two principles: (i) structural alignment, where a model&#x27;s computational graph aligns with a task&#x27;s true compositional hierarchy, and (ii) unambiguous minimized representations, where each component encodes adequate but not redundant information on the training data. The result is fully proved and machine-verified in Lean 4 and holds even in few-shot and one-shot regimes. The necessity direction establishes that provable compositional generalization cannot circumvent these requirements, while the sufficiency direction yields a unified inductive bias that jointly governs architectural design, training data properties, and regularization strategies. Building on this condition, we develop an example algorithmic approach, illustrate it through a controlled minimal example, and further demonstrate the condition on the SCAN jump task. All conclusions are derived mathematically without reliance on empirical validation. Our work provides a theoretical characterization of provable compositional generalization.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The theoretical foundation of compositional generalization in neural networks, meaning systematic handling of novel combinations of known components, is not well understood. The goal is to characterize exactly when a model provably generalizes compositionally.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Formal definitions are given for components, computational graphs, reference graph sets, structural alignment and representations. The main theorem states that provable compositional generalization holds if and only if the model has Aligned Structure–Unambiguous Minimized Representation (AS-UMR). Necessity is proved under a few assumptions and sufficiency without them, and both are formally verified in Lean 4. An example algorithm uses entropy-minimization regularization (Gaussian noise injection plus a power constraint) to obtain minimized representations.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The condition holds even in few-shot and one-shot regimes and yields a unified inductive bias covering architecture, training data and regularization. It is illustrated on a minimal XOR task and the SCAN jump task. On the XOR example, the full model generalizes perfectly, while the baseline and every ablation reach 0.0 test accuracy.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Train</th><th>Test</th></tr></thead><tbody><tr><td>Baseline</td><td>1.0 ± 0.0</td><td>0.0 ± 0.0</td></tr><tr><td>Full model</td><td>1.0 ± 0.0</td><td>1.0 ± 0.0</td></tr><tr><td>No structural alignment</td><td>1.0 ± 0.0</td><td>0.0 ± 0.0</td></tr><tr><td>Broken unambiguity</td><td>1.0 ± 0.0</td><td>0.0 ± 0.0</td></tr><tr><td>No entropy minimization</td><td>1.0 ± 0.0</td><td>0.0 ± 0.0</td></tr></tbody></table><div class="tbl-cap">Minimal XOR example: train/test accuracy</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

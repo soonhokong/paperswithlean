@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scalable Deductive Verification of Data-Level Parallel Programs · Papers With Lean</title>
+<meta name="description" content="This paper introduces several techniques that improve the scalability of the deductive verification of data-level programs working on arrays and matrices. First of all, we introduce a technique to rewrite expressions with (nested) quantifiers, so suitable triggers can be…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scalable Deductive Verification of Data-Level Parallel Programs">
+<meta property="og:description" content="This paper introduces several techniques that improve the scalability of the deductive verification of data-level programs working on arrays and matrices. First of all, we introduce a technique to rewrite expressions with (nested) quantifiers, so suitable triggers can be…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.13616.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.13616.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.13616v1" target="_blank" rel="noopener"><img src="../thumbs/2605.13616.jpg" alt="First page of Scalable Deductive Verification of Data-Level Parallel Programs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Scalable Deductive Verification of Data-Level Parallel Programs</h1>
+        <p class="authors">Lars B. van den Haak, Anton Wijs, Marieke Huisman</p>
+        <div class="row">
+          <span class="badge">cs.SE</span>
+          <span class="date">May 13, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.13616v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.13616" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/cav2026-anonymous/Scalable-Deductive-Verification-of-Data-Level-Parallel-Programs" target="_blank" rel="noopener" title="cav2026-anonymous/Scalable-Deductive-Verification-of-Data-Level-Parallel-Programs">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The correctness of the quantifier-rewriting procedure (Theorem 3.1) is proven in about 2500 lines of Lean 4, provided in the artefact.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">This paper introduces several techniques that improve the scalability of the deductive verification of data-level programs working on arrays and matrices. First of all, we introduce a technique to rewrite expressions with (nested) quantifiers, so suitable triggers can be generated for these expressions. We have proven this rewrite technique correct in a theorem prover. Second, we make reasoning about potentially overlapping arrays easier, by providing specification constructs to indicate and verify that two arrays are not aliases, or that they are immutable, so they can be modelled as mathematical sequences. All our techniques are implemented in the VerCors program verifier. We illustrate how our techniques improve scalability through a large number of experiments. Using our techniques on a set of typical GPU kernels, we achieve a reduction of verification time by, on average, a factor of 9, with outliers being up to 150 times faster. Additionally, applying these techniques to earlier experiments and an earlier case study of a radio telescope pipeline permitted the verification of results which were previously unobtainable and significantly reduced the verification time.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Deductive verification of data-parallel programs over arrays and matrices scales poorly. Nested quantifiers produce unsuitable SMT triggers, and possible aliasing between arrays adds many proof obligations.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors rewrite quantified expressions whose triggers contain linear index arithmetic, using a bijective mapping and its inverse so that plain array accesses can serve as triggers. Correctness of this rewrite is proven in Lean 4 (about 2500 lines). They also add `unique` and `immutable` type qualifiers for arrays, so that non-aliased or constant arrays can be modelled more cheaply. Both techniques are implemented in the VerCors verifier.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">None of the reported experiments verified without the rewrite procedure. On CLBlast GPU kernels, verification is on average 9x faster, with outliers up to 150x faster. Halide-generated programs and a radio telescope pipeline case study saw speedups, and previously unobtainable verification results were achieved.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

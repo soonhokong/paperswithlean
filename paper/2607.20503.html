@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeanFlow: A Case Study in Workflow-Driven Lean Autoformalization · Papers With Lean</title>
+<meta name="description" content="We present and evaluate LeanFlow, an LLM agent system specialized for translating mathematical papers into buildable Lean projects. Recent verifier-in-the-loop systems show that large formal artifacts can be produced, but it remains unclear which runtime mechanisms affect…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeanFlow: A Case Study in Workflow-Driven Lean Autoformalization">
+<meta property="og:description" content="We present and evaluate LeanFlow, an LLM agent system specialized for translating mathematical papers into buildable Lean projects. Recent verifier-in-the-loop systems show that large formal artifacts can be produced, but it remains unclear which runtime mechanisms affect…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.20503.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.20503.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.20503v1" target="_blank" rel="noopener"><img src="../thumbs/2607.20503.jpg" alt="First page of LeanFlow: A Case Study in Workflow-Driven Lean Autoformalization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">LeanFlow: A Case Study in Workflow-Driven Lean Autoformalization</h1>
+        <p class="authors">Lazar Milikic, Simon Guilloud, Khanh Nguyen, Viktor Kuncak</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jun 26, 2026 · v1</span>
+          <span class="badge">cs.LG</span> <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.20503v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.20503" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/epfl-lara/LeanFlow" target="_blank" rel="noopener" title="epfl-lara/LeanFlow">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Presents an LLM agent runtime that turns mathematical papers into buildable Lean 4/Mathlib projects, with a queue-based prover and the LeanProbe cached checker.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present and evaluate LeanFlow, an LLM agent system specialized for translating mathematical papers into buildable Lean projects. Recent verifier-in-the-loop systems show that large formal artifacts can be produced, but it remains unclear which runtime mechanisms affect completion, auditability, or efficiency in document-to-project formalization. We study this question through case studies on two previously unformalized mathematical papers in number theory and measure theory, using model, proof-workflow, and toolset ablations with Kimi2.6 and GPT5.5; we report task outcome, API calls, input tokens, and output tokens. With Kimi2.6, the full workflow completes both document-level projects within the 2000-call budget, while no-queue variants reach the budget limit; with GPT5.5, all document-level variants complete, and the full workflow has the lowest or tied-lowest input-token cost on both sources. As complementary calibration, LeanFlow reaches 75.7% BEq+ on the PFR slice of RLM25 and solves all five ICML 2026 AI for Math TCS challenge projects in our GPT5.5 runs.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Verifier-in-the-loop systems can produce large Lean artifacts from mathematical documents. It is unclear which runtime mechanisms affect completion, auditability, and efficiency when a whole paper is formalized into a buildable project.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">LeanFlow runs a deterministic source preflight and builds a blueprint mapping source spans to planned Lean declarations. A statement/source gate checks faithfulness before proof search. A programmatic workflow manager then assigns one proof obligation at a time, keeps failed-attempt memory, and accepts an edit only after Lean/Lake verification and a hygiene scan for sorry and axioms. LeanProbe supplies low-latency cached checks, and ablations remove the queue and swap the full toolset for CLI-only access, using Kimi-K2.6 and GPT-5.5.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With Kimi-K2.6, the full workflow completed both previously unformalized papers (a number-theory paper on Pythagorean polynomials and a measure-theory paper on Cramer–Wold) within the 2000-call budget, while no-queue variants exhausted the budget. With GPT-5.5, all document-level variants completed, and the full workflow had the lowest or tied-lowest input-token cost. LeanFlow reached 75.7% BEq+ on the PFR slice of RLM25 and solved all five ICML 2026 AI for Math TCS challenge projects.</p><div class="sum-table"><table><thead><tr><th>Source</th><th>Workflow</th><th>Outcome</th><th>Calls</th><th>In tok.</th></tr></thead><tbody><tr><td>Pythagorean</td><td>Full</td><td>success</td><td>1043</td><td>46.9M</td></tr><tr><td>Pythagorean</td><td>NoQ+Tools</td><td>failure</td><td>2000</td><td>160.2M</td></tr><tr><td>Cramer–Wold</td><td>Full</td><td>success</td><td>1278</td><td>66.0M</td></tr><tr><td>Cramer–Wold</td><td>NoQ+Tools</td><td>failure</td><td>2000</td><td>127.8M</td></tr></tbody></table><div class="tbl-cap">Kimi-K2.6 document-level ablations (excerpt)</div></div><div class="sum-table"><table><thead><tr><th>Workflow</th><th>Proof succ.</th><th>BEq</th><th>BEq+</th><th>Calls</th></tr></thead><tbody><tr><td>LeanFlow</td><td>81.2%</td><td>70.8%</td><td>75.7%</td><td>3541</td></tr><tr><td>terminal-only agent</td><td>80.6%</td><td>68.1%</td><td>72.9%</td><td>4053</td></tr></tbody></table><div class="tbl-cap">RLM25-PFR autoformalization with GPT-5.5</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

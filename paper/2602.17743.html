@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bigger Is Safer: Provable Robustness in In-Context Learning Scales with Capacity · Papers With Lean</title>
+<meta name="description" content="In-context learning (ICL) allows large language models to adapt to new tasks from a few examples without updating their parameters. Existing theories explain ICL by assuming the test task distribution matches pretraining – an assumption that breaks down under adversarial…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bigger Is Safer: Provable Robustness in In-Context Learning Scales with Capacity">
+<meta property="og:description" content="In-context learning (ICL) allows large language models to adapt to new tasks from a few examples without updating their parameters. Existing theories explain ICL by assuming the test task distribution matches pretraining – an assumption that breaks down under adversarial…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2602.17743.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2602.17743.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2602.17743v2" target="_blank" rel="noopener"><img src="../thumbs/2602.17743.jpg" alt="First page of Bigger Is Safer: Provable Robustness in In-Context Learning Scales with Capacity"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Bigger Is Safer: Provable Robustness in In-Context Learning Scales with Capacity</h1>
+        <p class="authors">Di Zhang, Ningxu Zhang, Zimeng Liu</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Feb 19, 2026 · v2</span>
+          <span class="badge">stat.ML</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2602.17743v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2602.17743" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Key derivations of the robustness bounds and scaling laws are machine-checked in Lean 4, with modules mapped to paper theorems in an appendix.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">In-context learning (ICL) allows large language models to adapt to new tasks from a few examples without updating their parameters. Existing theories explain ICL by assuming the test task distribution matches pretraining – an assumption that breaks down under adversarial distribution shifts. We introduce a distributionally robust meta-learning framework that provides worst-case guarantees for ICL under Wasserstein-based distribution shifts. Focusing on linear self-attention Transformers, we derive a non-asymptotic bound connecting adversarial perturbation strength ($ρ$), model capacity ($m$), and the number of in-context examples ($N$). The analysis reveals that the maximum safe perturbation radius scales as $ρ_{\max} \propto \sqrt{m}$, while maintaining performance under adversarial shift requires additional in-context examples with $N_ρ- N_0 \propto ρ^2$. Experiments on synthetic tasks confirm these scaling laws, and experiments on 21 real pretrained models (0.1B–7B parameters, 5 families) provide qualitative evidence consistent with the theory&#x27;s predictions, while revealing that ICL capability is a prerequisite for robustness. These findings advance the theoretical understanding of ICL under adversarial conditions and formalize the sense in which larger models are safer under distributional shift.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Existing theories of in-context learning (ICL) assume test tasks match the pretraining distribution, which fails under adversarial distribution shift. Worst-case guarantees for ICL under Wasserstein-ball shifts were missing.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ICL is cast as distributionally robust meta-learning over a Wasserstein ball around the true task distribution. For linear self-attention Transformers, a ridge-regression equivalence and a Lipschitz bound on the predictor are used to derive a non-asymptotic worst-case meta-risk bound in terms of perturbation strength, head dimension and context size. The key algebraic derivations are machine-checked in Lean 4 (Appendix C). The predictions are tested on synthetic regression tasks and 21 pretrained LLMs.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2602.17743/surface.png" alt=""><figcaption>Figure 2: Schematic visualization of the worst-case meta-risk upper bound as a function of adversarial radius \rho and model capacity m . The surface illustrates how risk increases quadratically with \rho but becomes progressively flatter as m increases, demonstrating the mitigating effect of model capacity on adversarial vulnerability.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The maximum safe perturbation radius scales as sqrt(m), and the extra in-context examples needed grow as rho^2. Synthetic experiments give a log-log slope of 0.453 (correlation 0.991), and real LLMs show qualitatively consistent trends, with ICL capability acting as a prerequisite for robustness.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2602.17743/fig1_exp1_scaling_law.png" alt=""><figcaption>Figure 3: Experiment 1: robustness-capacity scaling under non-ideal conditions. Left: mean \rho_{\max} with standard-error bars versus \sqrt{m} . Middle: log-log plot showing an approximately linear power-law relationship. Right: collapse plot of \rho_{\max}/\sqrt{m} versus m , which remains approximately flat across capacities. Despite anisotropy, heavy-tailed noise, and finite-sample effects, th</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2602.17743/fig9_bound_verification.png" alt=""><figcaption>Figure 12: Direct verification of Theorem 3.4 . Empirical worst-case risk (circles) versus the theoretical upper bound (dashed) for three capacities. The bound holds for all 189 test points (100% validity) with a mean relative gap of 36–74%, confirming that the bound is valid and reasonably tight for moderate \rho .</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

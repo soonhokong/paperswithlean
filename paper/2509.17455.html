@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Understanding Benchmark Language Under Weakened Formal Semantics · Papers With Lean</title>
+<meta name="description" content="State-of-the-art NLP benchmarks require interpretation of natural language that specifies conditions, procedures, and exceptions, often relying on implicit assumptions and external knowledge. Constructing complete semantic representations with proof-theoretic guarantees is…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Understanding Benchmark Language Under Weakened Formal Semantics">
+<meta property="og:description" content="State-of-the-art NLP benchmarks require interpretation of natural language that specifies conditions, procedures, and exceptions, often relying on implicit assumptions and external knowledge. Constructing complete semantic representations with proof-theoretic guarantees is…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2509.17455.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2509.17455.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2509.17455v2" target="_blank" rel="noopener"><img src="../thumbs/2509.17455.jpg" alt="First page of Understanding Benchmark Language Under Weakened Formal Semantics"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Understanding Benchmark Language Under Weakened Formal Semantics</h1>
+        <p class="authors">Haoyang Chen, Kumiko Tanaka-Ishii</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Sep 22, 2025 · v2</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2509.17455v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2509.17455" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses LLM-filled, hand-designed Lean templates checked by Lean as a feasibility probe for proof-level formalization of benchmark instances.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">State-of-the-art NLP benchmarks require interpretation of natural language that specifies conditions, procedures, and exceptions, often relying on implicit assumptions and external knowledge. Constructing complete semantic representations with proof-theoretic guarantees is frequently impractical at scale, and purely text-based reasoning offers limited means of inspection. This paper asks how much understanding of benchmark language can be achieved when formal semantic guarantees are weakened. We investigate this question by extracting computables: executable representations whose runtime behavior provides operational evidence of semantic adequacy, including executability, execution traces, and runtime failures. We induce and iteratively refine computables for benchmark instances using retrieval from external knowledge. Across mathematical reasoning, multi-step reasoning, causal inference, and rule- and exception-heavy legal and biomedical benchmarks, we find that the proposed approach consistently exceeds text-only reasoning and one-shot code execution. Beyond accuracy, our analyses show that these computables provide scalable, inspectable semantic evidence: they expose conditions and exceptions benchmark language forces into executable form, offering a practical bridge between proof-oriented semantics and purely textual reasoning.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">NLP benchmarks in law, medicine, mathematics, and causal reasoning require interpreting conditions and exceptions in natural language. Full proof-oriented formal semantics is impractical at scale, while text-only reasoning is hard to inspect.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">WISE induces executable Python programs (&#x27;computables&#x27;) from benchmark instances and refines them iteratively using retrieved external knowledge and execution feedback such as traces and runtime failures. A feasibility probe asks an LLM to fill hand-designed, task-specific Lean templates (theorem statement plus proof skeleton); the resulting scripts are checked by Lean. The induced programs are analyzed for executability, behavior under metamorphic tests, and control-flow and AST structure.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2509.17455/flowlatest.png" alt=""><figcaption>Figure 2 : Flowchart (left) and pseudocode (right) of our system.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2509.17455/paradigms_latest.png" alt=""><figcaption>Figure 1 : Four paradigms for mapping natural-language task descriptions to answers.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The fraction of Lean scripts accepted varies sharply by task (BBH-Dyck 100%, GSM8K 69%, CAIL 11%), indicating that proof-level formalization is infeasible at scale for open-textured domains. Using GPT-5, WISE outperforms text-only reasoning and one-shot code baselines across benchmarks, for example raising BBH accuracy from 0.64 to 0.88 and BBEH from 0.17 to 0.37.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2509.17455/stackdepth_vs_complexity_cropped.png" alt=""><figcaption>Figure 4 : Stack depth vs. cyclomatic complexity across task families. Points include benchmark-induced computables and reference Python corpora (used only for structural calibration).</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Dataset</th><th>LLM</th><th>CoT</th><th>CoC</th><th>Ours</th></tr></thead><tbody><tr><td>GSM8K</td><td>0.93</td><td>0.97</td><td>0.96</td><td>0.98</td></tr><tr><td>ProofNet</td><td>0.79</td><td>0.88</td><td>0.90</td><td>0.95</td></tr><tr><td>IFQA</td><td>0.32</td><td>0.31</td><td>0.34</td><td>0.51</td></tr><tr><td>Corr2Cause</td><td>0.65</td><td>0.81</td><td>0.79</td><td>0.86</td></tr><tr><td>BBH</td><td>0.64</td><td>0.68</td><td>0.71</td><td>0.88</td></tr></tbody></table><div class="tbl-cap">Accuracy (GPT-5) on selected benchmarks</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

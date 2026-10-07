@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reinforced Large Language Model is a formal theorem prover · Papers With Lean</title>
+<meta name="description" content="To take advantage of Large Language Model in theorem formalization and proof, we propose a reinforcement learning framework to iteratively optimize the pretrained LLM by rolling out next tactics and comparing them with the expected ones. The experiment results show that it helps…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reinforced Large Language Model is a formal theorem prover">
+<meta property="og:description" content="To take advantage of Large Language Model in theorem formalization and proof, we propose a reinforcement learning framework to iteratively optimize the pretrained LLM by rolling out next tactics and comparing them with the expected ones. The experiment results show that it helps…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2502.08908.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2502.08908.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2502.08908v1" target="_blank" rel="noopener"><img src="../thumbs/2502.08908.jpg" alt="First page of Reinforced Large Language Model is a formal theorem prover"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Reinforced Large Language Model is a formal theorem prover</h1>
+        <p class="authors">Zhiling Luo</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Feb 13, 2025 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2502.08908v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2502.08908" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/zhilingluo/theorem_prover" target="_blank" rel="noopener" title="zhilingluo/theorem_prover">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Trains a Qwen2.5-0.5B model to predict Lean 4 tactics from Lean-workbook data, with proof search via LeanDojo evaluated on miniF2F.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">To take advantage of Large Language Model in theorem formalization and proof, we propose a reinforcement learning framework to iteratively optimize the pretrained LLM by rolling out next tactics and comparing them with the expected ones. The experiment results show that it helps to achieve a higher accuracy compared with directly fine-tuned LLM.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-based Lean theorem provers are usually fine-tuned directly from general base models, which limits their performance. The work asks whether reinforcement learning can improve next-tactic prediction for formal proving in Lean 4.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Lean-workbook samples are augmented with GPT-4o-generated chain-of-thought explanations of the ground-truth next tactic. A two-phase pipeline first applies supervised fine-tuning (the adaption phase) to Qwen2.5-0.5B. It then runs GRPO reinforcement learning with accuracy and format rewards, comparing rolled-out tactics against the ground truth. At inference time, a modified LeanDojo handles interaction with Lean, and tree search is adapted from InternLM.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2502.08908/lean_framework.png" alt=""><figcaption>Figure 1: The framework includes offline data preparation, model training and online inference.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On a 30-problem miniF2F subset, the RL model reaches 43% accuracy versus 36% for the SFT-only model. On the training set, accuracy rises from 49% to 61%.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2502.08908/lean-grpo.jpg" alt=""><figcaption>Figure 3: Train process records of RL phase</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Model</th><th>#Positive on miniF2F</th><th>Acc on miniF2F</th><th>Acc on Trainset</th></tr></thead><tbody><tr><td>Lean-qwen0.5B-sft</td><td>11</td><td>36%</td><td>49%</td></tr><tr><td>Lean-qwen0.5B-rl</td><td>13</td><td>43%</td><td>61%</td></tr></tbody></table><div class="tbl-cap">Accuracy of SFT vs RL models on miniF2F (30 samples) and trainset</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

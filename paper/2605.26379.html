@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When Does LeJEPA Learn a World Model? · Papers With Lean</title>
+<meta name="description" content="A representation that scrambles the true degrees of freedom of the world cannot support reliable planning or compositional generalization. We prove that LeJEPA (alignment plus Gaussian regularization) linearly recovers the world&#x27;s latent variables from nonlinear observations, a…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="When Does LeJEPA Learn a World Model?">
+<meta property="og:description" content="A representation that scrambles the true degrees of freedom of the world cannot support reliable planning or compositional generalization. We prove that LeJEPA (alignment plus Gaussian regularization) linearly recovers the world&#x27;s latent variables from nonlinear observations, a…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2605.26379.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2605.26379.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2605.26379v1" target="_blank" rel="noopener"><img src="../thumbs/2605.26379.jpg" alt="First page of When Does LeJEPA Learn a World Model?"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">When Does LeJEPA Learn a World Model?</h1>
+        <p class="authors">David Klindt, Yann LeCun, Randall Balestriero</p>
+        <div class="row">
+          <span class="badge">stat.ML</span>
+          <span class="date">May 25, 2026 · v1</span>
+          <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2605.26379v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2605.26379" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/klindtlab/lejepa-identifiability" target="_blank" rel="noopener" title="klindtlab/lejepa-identifiability">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">All five theoretical results (identifiability, Gaussian uniqueness, approximate bound, planning) are verified in Lean 4 with Mathlib, with background lemmas axiomatized.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A representation that scrambles the true degrees of freedom of the world cannot support reliable planning or compositional generalization. We prove that LeJEPA (alignment plus Gaussian regularization) linearly recovers the world&#x27;s latent variables from nonlinear observations, a property known as linear identifiability, in a broad class of worlds where latents evolve under stationary, additive-noise transitions. Our main result is that among all such worlds, the Gaussian is the unique latent distribution for which this guarantee holds. The forward direction rests on a spectral decomposition in which each degree of nonlinearity is strictly penalized by alignment, making the linear map the optimum; the converse rules out every non-Gaussian alternative. We further prove an approximate identifiability result where the guarantee degrades gracefully, and show that linear, orthogonal identifiability enables optimal latent-space planning. We validate the theory with experiments ranging from 2D examples to 1024-dimensional latents, including distributional ablations and pixel-based robotic control. Our theory turns an empirically successful recipe into a mathematical guarantee, providing the foundation for building World Models that provably recover the structure of the world.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">No identifiability guarantees exist for Joint-Embedding Predictive Architectures (JEPAs). The open question is when LeJEPA, which combines alignment with Gaussian regularization (SIGReg), linearly recovers the world&#x27;s latent variables from nonlinear observations.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors model worlds whose latents are independent and evolve under stationary, additive-noise transitions. They analyze the induced transition operator spectrally, using Hermite expansions. They prove linear (orthogonal) identifiability for Gaussian worlds, uniqueness of the Gaussian within this class, an approximate identifiability bound, and optimality of latent-space planning. All proofs are verified in Lean 4 with Mathlib, with standard results such as Hermite polynomial properties and Mazur–Ulam axiomatized.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.26379/fig_lejepa_demo.jpg" alt=""><figcaption>Figure 1: LeJEPA learns the World Model. (left) The world has independent Gaussian latent variables . (center) An unknown nonlinear process scrambles them into the data we observe. (right) LeJEPA [ 2 ] recovers the latent variables up to rotation. We prove this is the unique optimum.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">LeJEPA&#x27;s optimum is h(z)=Qz with Q orthogonal if and only if the latents are Gaussian. Experiments from 2D mixings up to 1024-dimensional latents, plus pixel-based DMC Reacher, confirm recovery with R^2&gt;0.999 for SIGReg and VICReg, while InfoNCE degrades at scale. The Lean project compiles against Mathlib v4.28.0 with zero sorry obligations.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2605.26379/heatmap_r2_hz.png" alt=""><figcaption>Figure 6: Grid search over the regularization weight \lambda and OU correlation \rho (5 seeds each, mean \pm std). Left: Linear R^{2} between true and learned latents ( \uparrow better). Right: Normalized orthogonality error of the fitted linear map ( \downarrow better). Identifiability requires both objectives to be active: too much Gaussianity ( \lambda=0.5 ) collapses the representation entirel</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2605.26379/ou_r2_vs_rho.png" alt=""><figcaption>Figure 14: Left: OU identifiability vs. \rho for different \lambda values. R^{2} increases monotonically, with all \lambda values converging at high \rho . Higher \lambda (stronger SIGReg) helps at low \rho where the alignment signal is weak. Right: Gaussian (OU) vs. trajectory data at matched autocorrelation \rho . At the same \rho , Gaussian latents achieve substantially higher R^{2} , directly </figcaption></figure></div><div class="sum-table"><table><thead><tr><th>N</th><th>R^2(x→z)</th><th>SIGReg</th><th>VICReg</th><th>InfoNCE</th></tr></thead><tbody><tr><td>2</td><td>0.781</td><td>0.999998</td><td>0.999996</td><td>0.950961</td></tr><tr><td>16</td><td>0.734</td><td>0.999988</td><td>0.999987</td><td>0.999880</td></tr><tr><td>64</td><td>0.737</td><td>0.999966</td><td>0.999968</td><td>0.648496</td></tr><tr><td>128</td><td>0.739</td><td>0.999938</td><td>0.999942</td><td>0.566955</td></tr></tbody></table><div class="tbl-cap">Linear identifiability R^2(h→z) across regularizers vs. latent dimension N (RealNVP mixing; excerpt)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

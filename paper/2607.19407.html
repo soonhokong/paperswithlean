@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ITPEval: Benchmarking Formal Translation Across Interactive Theorem Provers · Papers With Lean</title>
+<meta name="description" content="Formal theorem proving has emerged as a frontier challenge for machine learning, yet the ecosystem is fragmented: proofs remain siloed across incompatible systems, limiting both training data for learning-based provers and the portability of verified results. We present ITPEval,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ITPEval: Benchmarking Formal Translation Across Interactive Theorem Provers">
+<meta property="og:description" content="Formal theorem proving has emerged as a frontier challenge for machine learning, yet the ecosystem is fragmented: proofs remain siloed across incompatible systems, limiting both training data for learning-based provers and the portability of verified results. We present ITPEval,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.19407.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.19407.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.19407v1" target="_blank" rel="noopener"><img src="../thumbs/2607.19407.jpg" alt="First page of ITPEval: Benchmarking Formal Translation Across Interactive Theorem Provers"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">ITPEval: Benchmarking Formal Translation Across Interactive Theorem Provers</h1>
+        <p class="authors">Jiayi Wu, Robert Joseph George, Anima Anandkumar</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jul 7, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.19407v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.19407" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/lean-dojo/ITPEval" target="_blank" rel="noopener" title="lean-dojo/ITPEval">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 is one of four target and source provers in a cross-ITP translation benchmark, with a Lean-specific BEq semantic equivalence check.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Formal theorem proving has emerged as a frontier challenge for machine learning, yet the ecosystem is fragmented: proofs remain siloed across incompatible systems, limiting both training data for learning-based provers and the portability of verified results. We present ITPEval, the first benchmark for evaluating automated formal proof translation across four major ITPs (Lean 4, Rocq, Isabelle, and HOL Light), spanning two distinct logical foundations. Our benchmark comprises 1,560 source files and 6,848 theorems organized into a controlled tier of axiomatized files that isolates foundational translation difficulty, and an ecosystem tier drawn from real libraries that exposes API and proof-style mismatches. We release itpeval, a unified multi-ITP verification infrastructure with state-isolated warm backends that preserve per-artifact native checking semantics. We evaluate both statement and proof translation across five frontier and open-weight LLMs on 12 directed translation pairs: statement translation peaks at 29.1% pass@1 and proof translation at 10.5%; controlled theorems reach 29.7% proof pass@1 versus 5.2% for ecosystem-level translations, confirming that library mismatch is the dominant bottleneck. In addition to pass@k evaluation, a deterministic Lean 4 BEq check establishes equivalence for 54.0% of verified source-to-Lean 4 miniF2F statement translations, showing that native type-checking alone can substantially overestimate semantic fidelity; in an autoformalization/auto-informalization round-trip study, Rocq and HOL Light are easier formalization targets than Lean 4 and Isabelle, while multi-ITP context improves pooled Lean 4 success from 4.8% to 10.6%. Our benchmark, verification infrastructure, and evaluation pipelines are publicly released.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Formal proofs are siloed across incompatible interactive theorem provers. No benchmark exists for measuring how well statements and proofs can be translated between Lean 4, Rocq, Isabelle, and HOL Light.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ITPEval is a benchmark of 1,560 source files and 6,848 theorems in two tiers. A controlled tier of self-contained axiomatized files isolates foundational translation difficulty, and an ecosystem tier drawn from real libraries exposes API and proof-style mismatches. A unified multi-ITP verifier with state-isolated warm backends checks every output in the native target prover. A bidirectional definitional-equivalence (BEq) check for Lean 4 targets tests whether verified translations preserve meaning, and a round-trip autoformalization/informalization study is included.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2607.19407/itpeval_overview_highres.png" alt=""><figcaption>Figure 1 : Overview of ITPEval. The figure summarizes the cross-ITP translation setting, natural-language round-trip tasks, and the unified state-isolated verification infrastructure.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2607.19407/infra_architecture_highres.png" alt=""><figcaption>Figure 2 : ITPEval verification infrastructure. Generated artifacts are filtered, cached, scheduled by environment, and checked by prover-specific warm backends while preserving native per-file checking semantics.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Across five LLMs on 12 directed translation pairs, statement translation peaks at 29.1% pass@1 and proof translation at 10.5%. Proof pass@1 is 29.7% on controlled theorems versus 5.2% on ecosystem theorems. Only 54.0% of verified Lean 4 miniF2F statement translations pass BEq, and multi-ITP context raises pooled Lean 4 round-trip success from 4.8% to 10.6%.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Passed</th><th>Pass@1</th></tr></thead><tbody><tr><td>GPT-5.5</td><td>93</td><td>10.5%</td></tr><tr><td>Gemini 3.1 Pro</td><td>45</td><td>5.1%</td></tr><tr><td>DeepSeek-V4-Pro</td><td>13</td><td>1.5%</td></tr><tr><td>Claude Sonnet 4.6</td><td>13</td><td>1.5%</td></tr><tr><td>Qwen3-235B-A22B</td><td>5</td><td>0.6%</td></tr></tbody></table><div class="tbl-cap">Overall pass@1 for proof translation</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

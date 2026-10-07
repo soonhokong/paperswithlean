@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rewarding the Unlikely: Lifting GRPO Beyond Distribution Sharpening · Papers With Lean</title>
+<meta name="description" content="Reinforcement learning is emerging as a primary driver for improving language model reasoning capabilities. A fundamental question is whether current reinforcement learning algorithms – such as Group Relative Policy Optimization (GRPO), the de facto standard algorithm used to…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rewarding the Unlikely: Lifting GRPO Beyond Distribution Sharpening">
+<meta property="og:description" content="Reinforcement learning is emerging as a primary driver for improving language model reasoning capabilities. A fundamental question is whether current reinforcement learning algorithms – such as Group Relative Policy Optimization (GRPO), the de facto standard algorithm used to…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2506.02355.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2506.02355.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2506.02355v2" target="_blank" rel="noopener"><img src="../thumbs/2506.02355.jpg" alt="First page of Rewarding the Unlikely: Lifting GRPO Beyond Distribution Sharpening"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Rewarding the Unlikely: Lifting GRPO Beyond Distribution Sharpening</h1>
+        <p class="authors">Andre He, Daniel Fried, Sean Welleck</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Jun 3, 2025 · v2</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2506.02355v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2506.02355" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/AndreHe02/rewarding-unlikely-release" target="_blank" rel="noopener" title="AndreHe02/rewarding-unlikely-release">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Trains LLM provers with GRPO using Lean 4 REPL verification as reward, on Lean Workbook and miniF2F theorem statements.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Reinforcement learning is emerging as a primary driver for improving language model reasoning capabilities. A fundamental question is whether current reinforcement learning algorithms – such as Group Relative Policy Optimization (GRPO), the de facto standard algorithm used to improve language model reasoning – merely sharpen the base model&#x27;s distribution around problems it can already solve. We investigate this question in the context of formal theorem proving, which has access to a perfect verifier. We identify a degenerate rank bias in GRPO in which highly probable trajectories are reinforced and rare ones are neglected. This results in distribution sharpening: the model can solve some problems with fewer samples, but underperforms simply sampling more solutions from the original model. To overcome GRPO&#x27;s rank bias we introduce unlikeliness reward, a simple method for explicitly up-weighting rare but correct solutions. We show that unlikeliness reward mitigates rank bias and improves pass@$N$ across a large range of $N$ in both synthetic and real theorem proving settings. We also uncover an unexpected link between rank bias and a seemingly mundane hyperparameter – the number of updates per batch – that leads to a second, complementary mitigation. We combine our insights into a revised GRPO training recipe for formal theorem proving, yielding an open pipeline that achieves competitive performance to DeepSeek-Prover-V1.5-RL on the miniF2F-test benchmark. We release our implementation at <a href="https://github.com/AndreHe02/rewarding-unlikely-release" target="_blank" rel="noopener">https://github.com/AndreHe02/rewarding-unlikely-release</a></div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">GRPO, the standard RL algorithm for LLM reasoning, tends to sharpen the base model&#x27;s distribution. It improves pass@1 but fails to improve, or even harms, pass@N at large N in formal theorem proving.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors identify a rank bias in GRPO: high-probability correct trajectories are reinforced while rare correct ones are neglected. They introduce an unlikeliness reward that down-weights high-probability correct samples within a group. They also show that increasing the number of PPO epochs per batch mitigates the bias. Training uses Lean 4 REPL verifier rewards on a curated Lean Workbook subset plus miniF2F-valid.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Both the unlikeliness reward and extra PPO epochs improve pass@N at large N on a held-out validation set. GRPO-Unlikeliness-2 solved the most training problems (8065/9600 versus 7707 for the static model). The revised recipe yields an open pipeline competitive with DeepSeek-Prover-V1.5-RL on miniF2F-test.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Solved</th><th>Δ</th></tr></thead><tbody><tr><td>Static (V1.5-SFT)</td><td>7707 / 9600</td><td>–</td></tr><tr><td>GRPO-Default</td><td>7860 / 9600</td><td>+153</td></tr><tr><td>GRPO-Epochs-2</td><td>8008 / 9600</td><td>+301</td></tr><tr><td>GRPO-Unlikeliness-1</td><td>8023 / 9600</td><td>+316</td></tr><tr><td>GRPO-Unlikeliness-2</td><td>8065 / 9600</td><td>+358</td></tr></tbody></table><div class="tbl-cap">Training problems solved during one epoch on D_train</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

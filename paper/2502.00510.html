@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Understanding and Optimizing Agentic Workflows via Shapley value · Papers With Lean</title>
+<meta name="description" content="Agentic workflows have become the dominant paradigm for building complex AI systems, orchestrating specialized components, such as planning, reasoning, action execution, and reflection, to tackle sophisticated real-world tasks. However, systematically analyzing and optimizing…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Understanding and Optimizing Agentic Workflows via Shapley value">
+<meta property="og:description" content="Agentic workflows have become the dominant paradigm for building complex AI systems, orchestrating specialized components, such as planning, reasoning, action execution, and reflection, to tackle sophisticated real-world tasks. However, systematically analyzing and optimizing…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2502.00510.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2502.00510.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2502.00510v3" target="_blank" rel="noopener"><img src="../thumbs/2502.00510.jpg" alt="First page of Understanding and Optimizing Agentic Workflows via Shapley value"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Understanding and Optimizing Agentic Workflows via Shapley value</h1>
+        <p class="authors">Yingxuan Yang, Bo Huang, Siyuan Qi, Chao Feng, Haoyi Hu, Yuxuan Zhu, Jinbo Hu, Haoran Zhao, Ziyi He, Xiao Liu, Muning Wen, Zongyu Wang, Lin Qiu, Xuezhi Cao, Xunliang Cai, Yong Yu, Weinan Zhang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Feb 1, 2025 · v3</span>
+          <span class="badge">cs.CL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2502.00510v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2502.00510" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a 111-task Lean 4 theorem-proving subset, alongside Coq and Isabelle, and evaluates LLM agentic workflow configurations on it.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Agentic workflows have become the dominant paradigm for building complex AI systems, orchestrating specialized components, such as planning, reasoning, action execution, and reflection, to tackle sophisticated real-world tasks. However, systematically analyzing and optimizing these workflows remains challenging due to intricate component interdependencies and the lack of principled attribution methods. In this work, we introduce ShapleyFlow, the first framework that employs cooperative game theory to analyze and optimize agentic workflows. By applying the Shapley value to evaluate all possible component configurations, ShapleyFlow enables fine-grained attribution of each component&#x27;s contribution and facilitates the identification of task-specific optimal configurations. Through a constructed dataset evaluated across 7 scenarios, such as navigation, math and OS, we demonstrate 3 key contributions: (1) Theoretical Framework: a principled game-theoretic approach for the attribution of contributions in agentic workflows. (2) Optimal Workflow Discovery: ShapleyFlow identifies task-specific component configurations that consistently outperform workflows relying on a single LLM across all tested tasks. (3) Comprehensive Analysis: we construct and analyze over 1,500 tasks, providing actionable insights and design guidelines for optimizing workflows across multiple domains.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Agentic LLM workflows combine planning, reasoning, action, and reflection components. Existing end-to-end evaluations do not attribute performance to individual components or capture how components interact.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ShapleyFlow treats the four workflow components as players in a cooperative game. Each component is swapped from a Llama3-8B baseline to a target LLM, all 16 configurations are evaluated, and Shapley values are computed from task success rates. Evaluation covers over 1,500 tasks in 7 domains with 9 LLMs. One domain is automated theorem proving, with 111 tasks each in Coq, Lean 4, and Isabelle.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2502.00510/main.png" alt=""><figcaption>Figure 1: ShapleyFlow framework for agentic workflow analysis and optimization. The left panel shows a typical agentic workflow with four core components (Planning, Reasoning, Action, Reflection) orchestrated through single-turn and multi-turn interactions. The middle panel illustrates our game-theoretic formulation, where workflow components are modeled as cooperative players with coalition outco</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2502.00510/Agent_Workflow3.png" alt=""><figcaption>Figure 2: A vanilla agentic workflow with 4 components.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Task-specific optimal configurations outperform single-LLM workflows in all tested domains. Computation-heavy tasks such as math and theorem proving gain most from upgrading the Action component. On Lean 4, Claude-3.5 alone reaches 84.7% versus 2.7% for the baseline, and the best configuration reaches 87.4%.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2502.00510/radar_chart.png" alt=""><figcaption>Figure 5: Radar plot comparing model performance across tasks with key contributions.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2502.00510/coq_lean_isabelle.png" alt=""><figcaption>Figure 8: An Example Problem in Three Languages.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>LLM</th><th>Coq</th><th>Lean 4</th><th>Isabelle</th></tr></thead><tbody><tr><td>llama3-8B (baseline)</td><td>6.4</td><td>2.7</td><td>7.2</td></tr><tr><td>Claude-3.5</td><td>96.4</td><td>84.7</td><td>74.8</td></tr><tr><td>gpt-4-turbo</td><td>86.5</td><td>41.4</td><td>69.4</td></tr><tr><td>qwen2.5-32B</td><td>74.8</td><td>57.7</td><td>63.1</td></tr><tr><td>best configuration</td><td>94.6</td><td>87.4</td><td>78.4</td></tr></tbody></table><div class="tbl-cap">Theorem-proving accuracy (%) by prover language (subset of models)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

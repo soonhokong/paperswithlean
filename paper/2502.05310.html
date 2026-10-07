@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oracular Programming: A Modular Foundation for Building LLM-Enabled Software · Papers With Lean</title>
+<meta name="description" content="Large Language Models (LLMs) can solve previously intractable tasks given only natural-language instructions and a few examples, but they remain difficult to steer precisely and lack a key capability for building reliable software at scale: the modular composition of…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracular Programming: A Modular Foundation for Building LLM-Enabled Software">
+<meta property="og:description" content="Large Language Models (LLMs) can solve previously intractable tasks given only natural-language instructions and a few examples, but they remain difficult to steer precisely and lack a key capability for building reliable software at scale: the modular composition of…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2502.05310.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2502.05310.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2502.05310v5" target="_blank" rel="noopener"><img src="../thumbs/2502.05310.jpg" alt="First page of Oracular Programming: A Modular Foundation for Building LLM-Enabled Software"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Oracular Programming: A Modular Foundation for Building LLM-Enabled Software</h1>
+        <p class="authors">Jonathan Laurent, André Platzer</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Feb 7, 2025 · v5</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2502.05310v5" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2502.05310" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/jonathan-laurent/delphyne" target="_blank" rel="noopener" title="jonathan-laurent/delphyne">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">One case study builds a self-improving LLM theorem-proving agent for Lean, using Draft-Sketch-Proof style strategies and Loogle search over Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large Language Models (LLMs) can solve previously intractable tasks given only natural-language instructions and a few examples, but they remain difficult to steer precisely and lack a key capability for building reliable software at scale: the modular composition of computations under enforceable contracts. As a result, they are often embedded in larger software pipelines that use domain-specific knowledge to decompose tasks and improve reliability through validation and search. Yet the complexity of writing, tuning, and maintaining such pipelines has so far limited their sophistication. We propose oracular programming: a foundational paradigm for integrating traditional, explicit computations with inductive oracles such as LLMs. It rests on two directing principles: the full separation of core and search logic (allowing the latter to freely evolve without breaking the former), and the treatment of few-shot examples as grounded and evolvable program components. Within this paradigm, programmers express high-level problem-solving strategies as programs with unresolved choice points. These choice points are resolved at runtime by LLMs, which generalize from user-provided examples of correct and incorrect decisions. An oracular program is composed of three orthogonal components: a strategy that consists of a nondeterministic program with choice points that can be reified into a search tree, a policy that specifies how to navigate this tree with the help of LLM oracles, and a set of demonstrations that describe successful and unsuccessful tree navigation scenarios across diverse problem instances. Each component is expressed in a dedicated programming language. We address the key programming language design challenges of modularly composing oracular programs and enforcing consistency between their components as they evolve.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLMs are unreliable and hard to steer, so they are usually embedded in larger pipelines that decompose tasks and add validation and search. Such pipelines are complex to write, tune, and maintain, and they lack modular composition under enforceable contracts.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors propose oracular programming, which splits a program into three components: a nondeterministic strategy whose choice points are reified into a search tree, a policy that navigates the tree using LLM oracles, and demonstrations that bundle few-shot examples with navigation tests. Consistency between strategies and policies is enforced by types, and consistency between strategies and demonstrations by navigation tests. The design is specified via a Haskell embedding and implemented in Delphyne, a Python framework with a VSCode extension. Case studies cover Why3 loop invariant synthesis, a self-improving Lean prover agent inspired by Draft-Sketch-Proof with a Loogle-based Mathlib search, and universal queries.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2502.05310/strategy-overview.png" alt=""><figcaption>Figure 4 . Example of a Modular Strategy For Program Synthesis. Strategies are nondeterministic programs that can be reified into search trees. They can issue queries to be answered by external oracles (queries are represented by diamonds \diamond and have constructors starting with uppercase letters). Branching , failure , and value nodes are labeled B , F , and V respectively. Horizontal lines d</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2502.05310/demo-overview.png" alt=""><figcaption>Figure 12 . Example of a Demonstration for the Strategy from Figure 4 . A demonstration bundles a set of query answers with a sequence of unit tests that describe concrete scenarios of navigating a specific strategy tree using these answers. Each test describes a path in the tree, highlighted with a matching color.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On invariant synthesis, an oracular program using gpt-4o-mini with search matches an o3 ReAct baseline (124 problems solved) at about fourteen times lower cost. Self-improvement for the Lean prover required only four extra lines of strategy code plus custom prompts for generating and aggregating advice.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2502.05310/feedback-prop.png" alt=""><figcaption>Figure 39 . Custom Feedback Propagation for our Lean Theorem Proving Strategy. Small green and red dots correspond to custom Feedback nodes (Appendix G.3 ), while J denotes a Join node. Positive feedback is issued for each proved subgoal (green arrows), while Lean errors result in negative feedback (red arrows). Importantly, these custom feedback nodes can be specified by adding only four lines of</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Agent</th><th>Problems Solved</th><th>Average Price (¢)</th><th>Median Price (¢)</th></tr></thead><tbody><tr><td>Abduction (gpt-4o-mini)</td><td>124.0 ± 0.0</td><td>0.12 ± 0.02</td><td>0.05 ± 0.00</td></tr><tr><td>Baseline (gpt-4o)</td><td>113.0 ± 2.0</td><td>3.19 ± 0.31</td><td>0.80 ± 0.17</td></tr><tr><td>Baseline (gpt-4o-mini)</td><td>120.0 ± 1.7</td><td>1.64 ± 0.24</td><td>0.10 ± 0.01</td></tr><tr><td>Baseline (o3)</td><td>124.0 ± 0.0</td><td>1.90 ± 0.03</td><td>1.58 ± 0.13</td></tr></tbody></table><div class="tbl-cap">Loop invariant synthesis: problems solved and cost</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When Do Staging Annotations Preserve Semantics? Mechanizing Typed Semantics-Preserving Multi-stage Programming with Let-Insertion (Extended Version) · Papers With Lean</title>
+<meta name="description" content="Multi-stage programming with quotations has long provided a powerful way to generate and manipulate code. By treating code as data, programmers can write multi-stage programs in which earlier stages produce specialized code from inputs available at generation time. Modern typed…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="When Do Staging Annotations Preserve Semantics? Mechanizing Typed Semantics-Preserving Multi-stage Programming with Let-Insertion (Extended Version)">
+<meta property="og:description" content="Multi-stage programming with quotations has long provided a powerful way to generate and manipulate code. By treating code as data, programmers can write multi-stage programs in which earlier stages produce specialized code from inputs available at generation time. Modern typed…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.30854.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.30854.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.30854v2" target="_blank" rel="noopener"><img src="../thumbs/2606.30854.jpg" alt="First page of When Do Staging Annotations Preserve Semantics? Mechanizing Typed Semantics-Preserving Multi-stage Programming with Let-Insertion (Extended Version)"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">When Do Staging Annotations Preserve Semantics? Mechanizing Typed Semantics-Preserving Multi-stage Programming with Let-Insertion (Extended Version)</h1>
+        <p class="authors">Jun Tan, Guannan Wei</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Jun 29, 2026 · v2</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=type-theory">type-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.30854v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.30854" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/instar-lang/mechanization" target="_blank" rel="noopener" title="instar-lang/mechanization">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Mechanizes two typed two-stage calculi and their semantics-preservation metatheory, including binary logical relations, in Lean 4 (about 22k lines).</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Multi-stage programming with quotations has long provided a powerful way to generate and manipulate code. By treating code as data, programmers can write multi-stage programs in which earlier stages produce specialized code from inputs available at generation time. Modern typed multi-stage languages (e.g., MetaML, MetaOCaml, Template Haskell, and Scala 3) adopt quotation/splicing constructs while enforcing the well-typedness of generated code. However, manipulating code fragments syntactically can subtly change evaluation order, leading to semantic discrepancies between a staged program and its unstaged counterpart, which is intended to serve as a reference implementation in many cases. The inconsistency complicates reasoning about correctness, and prevents staged code from being a drop-in replacement for its unstaged counterpart. In this paper, we study the design of multi-stage languages with semantics preservation guarantees. We develop two statically typed two-stage calculi, $λ_{|2|}$ and $λ^{ref}_{|2|}$, the latter supporting mutable references in the second stage. Their dynamic semantics models automatic let-insertion, tracked as a control effect in a lightweight type-and-effect system, enabling type-safe and semantics-preserving manipulation of effectful code fragments. We develop binary logical relations to prove strong semantics-preservation theorems: if a well-typed two-stage program $t_1$ evaluates to a value $\mathsf{code} t_2$, then $t_2$ is contextually equivalent to the stage-erasure of $t_1$. Our calculi and their mechanized metatheory provide a simple and definitive answer to the question posed by Inoue and Taha of when staging annotations preserve semantics, and lay a foundation for future work on semantics-preserving multi-stage programming.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Staging annotations in typed multi-stage languages can change evaluation order. A staged program may then behave differently from its unstaged counterpart when effects such as divergence or mutable state are present. The open question, posed by Inoue and Taha, is when staging annotations preserve semantics.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors design two statically typed two-stage calculi, λ|2| and λref|2|; the second allows mutable references in the second stage only. Both use automatic let-insertion, tracked as a control effect in a lightweight type-and-effect system. Step-indexed binary logical relations are used to prove that generated code is contextually equivalent to the stage-erasure of the source program. The calculi and metatheory are mechanized in Lean 4 using a locally nameless representation with de Bruijn levels.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For well-typed programs, the authors prove type soundness and strong semantics preservation: generated code is contextually equivalent to the erased program. All results are machine-checked in Lean, at about 10k lines for λ|2| and 11.8k lines for λref|2|.</p><div class="sum-table"><table><thead><tr><th>Component</th><th>λ\</th><th>2\</th><th></th><th>λref\</th><th>2\</th><th></th></tr></thead><tbody><tr><td>Syntax</td><td>2k</td><td>2.5k</td></tr><tr><td>LogicalEquiv</td><td>1.9k</td><td>2k</td></tr><tr><td>SemanticsPreservation</td><td>1.4k</td><td>1.7k</td></tr><tr><td>Total</td><td>10k</td><td>11.8k</td></tr></tbody></table><div class="tbl-cap">Summary of the mechanization in Lean (LoC)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

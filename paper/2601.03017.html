@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MMFormalizer: Multimodal Autoformalization in the Wild · Papers With Lean</title>
+<meta name="description" content="Autoformalization, which translates natural language mathematics into formal statements to enable machine reasoning, faces fundamental challenges in the wild due to the multimodal nature of the physical world, where physics requires inferring hidden constraints (e.g., mass or…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MMFormalizer: Multimodal Autoformalization in the Wild">
+<meta property="og:description" content="Autoformalization, which translates natural language mathematics into formal statements to enable machine reasoning, faces fundamental challenges in the wild due to the multimodal nature of the physical world, where physics requires inferring hidden constraints (e.g., mass or…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2601.03017.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2601.03017.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2601.03017v1" target="_blank" rel="noopener"><img src="../thumbs/2601.03017.jpg" alt="First page of MMFormalizer: Multimodal Autoformalization in the Wild"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">MMFormalizer: Multimodal Autoformalization in the Wild</h1>
+        <p class="authors">Jing Xiong, Qi Han, Yunta Hsieh, Hui Shen, Huajian Xin, Chaofan Tao, Chenyang Zhao, Hengyuan Zhang, Taiqiang Wu, Zhen Zhang, Haochen Wang, Zhongwei Wan, Lingpeng Kong, Ngai Wong</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Jan 6, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-blue" href="../#tag=physics">physics</a> <a class="tag c-teal" href="../#tag=geometry">geometry</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2601.03017v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2601.03017" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://huggingface.co/datasets/menik1126/PhyX-AF" target="_blank" rel="noopener" title="menik1126/PhyX-AF (Hugging Face)">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Autoformalizes multimodal math and physics problems into Lean statements using Mathlib and PhysLean dependencies, with compile and semantic accuracy evaluation.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Autoformalization, which translates natural language mathematics into formal statements to enable machine reasoning, faces fundamental challenges in the wild due to the multimodal nature of the physical world, where physics requires inferring hidden constraints (e.g., mass or energy) from visual elements. To address this, we propose MMFormalizer, which extends autoformalization beyond text by integrating adaptive grounding with entities from real-world mathematical and physical domains. MMFormalizer recursively constructs formal propositions from perceptually grounded primitives through recursive grounding and axiom composition, with adaptive recursive termination ensuring that every abstraction is supported by visual evidence and anchored in dimensional or axiomatic grounding. We evaluate MMFormalizer on a new benchmark, PhyX-AF, comprising 115 curated samples from MathVerse, PhyX, Synthetic Geometry, and Analytic Geometry, covering diverse multimodal autoformalization tasks. Results show that frontier models such as GPT-5 and Gemini-3-Pro achieve the highest compile and semantic accuracy, with GPT-5 excelling in physical reasoning, while geometry remains the most challenging domain. Overall, MMFormalizer provides a scalable framework for unified multimodal autoformalization, bridging perception and formal reasoning. To the best of our knowledge, this is the first multimodal autoformalization method capable of handling classical mechanics (derived from the Hamiltonian), as well as relativity, quantum mechanics, and thermodynamics. More details are available on our project page: MMFormalizer.github.io</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Autoformalization has largely been limited to text and symbolic geometry. Multimodal problems in mathematics and physics require grounding visual elements and hidden physical constraints in formal statements, and there is little infrastructure for integrating physics libraries such as PhysLean into autoformalization pipelines.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">MMFormalizer recursively grounds images into scene graphs of perceptual primitives. It lifts these into chains of Lean lemmas encoded with Sigma- and Pi-types, then composes axioms retrieved from Mathlib and PhysLean. Adaptive recursive termination stops decomposition at dimensional or axiomatic primitives, such as the Hamiltonian. A Lean compiler check validates the generated statements, and a toolkit deploys physics theorem search over the dependency libraries.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2601.03017/pipeline.png" alt=""><figcaption>Figure 3: The pipeline overview consists of three stages: Recursive Grounding , identifying physical primitives (the red parts in the figure, e.g., the Hamiltonian or dimensional quantities) for Termination , and Axiom Composition . The blue parts in the figure indicate the compiler checking process. The green part indicates the formal statements we retrieved from the dependency library.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On the new PhyX-AF benchmark of 115 samples (MathVerse, PhyX, Synthetic Geometry, Analytic Geometry), GPT-5 and Gemini-3-Pro achieve the highest compile and semantic accuracy. GPT-5 is strongest on physics, and geometry remains the hardest domain. Case studies include classical mechanics, relativity, quantum tunneling, and thermodynamics.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2601.03017/case_qmechanics.png" alt=""><figcaption>Figure A.5: Quantum Tunneling.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2601.03017/case_hex.png" alt=""><figcaption>Figure A.1: A Regular Hexagonal Prism.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

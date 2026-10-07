@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries · Papers With Lean</title>
+<meta name="description" content="Large language models (LLMs) have recently demonstrated impressive performance on complex, multi-step reasoning tasks, especially when post-trained with outcome-rewarded reinforcement learning Guo et al. 2025. However, it has been observed that outcome rewards often overlook…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries">
+<meta property="og:description" content="Large language models (LLMs) have recently demonstrated impressive performance on complex, multi-step reasoning tasks, especially when post-trained with outcome-rewarded reinforcement learning Guo et al. 2025. However, it has been observed that outcome rewards often overlook…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.29500.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.29500.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.29500v1" target="_blank" rel="noopener"><img src="../thumbs/2603.29500.jpg" alt="First page of Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries</h1>
+        <p class="authors">Luoxin Chen, Yichi Zhou, Huishuai Zhang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Mar 31, 2026 · v1</span>
+          <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.29500v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.29500" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">LLM emits structured reasoning steps in Lean 4 syntax, each checked with Lean tactics such as aesop and simp (or Z3/Prover9) to produce RL process rewards; includes a direct Lean-generation baseline.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language models (LLMs) have recently demonstrated impressive performance on complex, multi-step reasoning tasks, especially when post-trained with outcome-rewarded reinforcement learning Guo et al. 2025. However, it has been observed that outcome rewards often overlook flawed intermediate steps, leading to unreliable reasoning steps even when final answers are correct. To address this unreliable reasoning, we propose PRoSFI (Process Reward over Structured Formal Intermediates), a novel reward method that enhances reasoning reliability without compromising accuracy. Instead of generating formal proofs directly, which is rarely accomplishable for a modest-sized (7B) model, the model outputs structured intermediate steps aligned with its natural language reasoning. Each step is then verified by a formal prover. Only fully validated reasoning chains receive high rewards. The integration of formal verification guides the model towards generating step-by-step machine-checkable proofs, thereby yielding more credible final answers. PRoSFI offers a simple and effective approach to training trustworthy reasoning models.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Outcome-rewarded RL training of LLMs can reach correct final answers through flawed intermediate reasoning. Having modest-sized (7B) models generate full formal proofs directly is rarely successful.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">PRoSFI has the model output natural-language reasoning plus a JSON array of atomic inference steps. Each step lists its dependencies, a conclusion written in Lean 4 syntax, and the inference rule applied. Each step is verified with a formal prover, using lightweight Lean tactics or external solvers. Only fully verified chains receive maximal reward under GRPO training of Qwen2.5-7B-Instruct.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2603.29500/pipeline.png" alt=""><figcaption>Figure 1 : Pipeline for Process Reward over Structured Formal Intermediates and comparison with Outcome Reward. The process begins with a problem statement (left block) containing multiple propositions (h1–h4) related to individuals (Hattie and Candy). Then, a large language model (LLM) first generates natural language reasoning steps to solve the problem (middle block). The Outcome Reward approac</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On ProverQA, PRoSFI keeps or improves answer accuracy and raises GPT-judged reasoning soundness from about 22% to 76% (Hard) and from 12% to 56% (Extra). A direct Lean proof generation baseline gave only small or negative gains. The method also generalizes to Knights and Knaves, including out-of-distribution difficulty levels.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2603.29500/corr-0126.png" alt=""><figcaption>Figure 3 : Left: Metric correlation heatmap on ProverQA-Hard . Right: Metric correlation heatmap on ProverQA-Extra . Compared to Answer Correctness, PRoSFI Reward Hit better reflects reasoning-path soundness.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Method</th><th>Metric</th><th>Hard</th><th>Extra</th></tr></thead><tbody><tr><td>Outcome-CoT</td><td>Answer Correct</td><td>91.31</td><td>86.96</td></tr><tr><td>Outcome-CoT</td><td>GPT Soundness</td><td>21.97</td><td>11.87</td></tr><tr><td>Direct Lean Generation</td><td>Answer Correct</td><td>92.29</td><td>83.15</td></tr><tr><td>Direct Lean Generation</td><td>GPT Soundness</td><td>33.11</td><td>10.45</td></tr><tr><td>PRoSFI</td><td>Answer Correct</td><td>92.97</td><td>91.94</td></tr><tr><td>PRoSFI</td><td>GPT Soundness</td><td>76.07</td><td>56.10</td></tr></tbody></table><div class="tbl-cap">ProverQA results (%)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
