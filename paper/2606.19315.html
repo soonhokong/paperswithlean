@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diffusion-Proof: Recipe for Formal Theorem Proving Beyond Auto-Regressive Generation · Papers With Lean</title>
+<meta name="description" content="Enhancing the formal math reasoning capabilities of Large Language Models (LLMs) has become a key focus in both mathematical and computer science communities in recent years. While significant progress has been made in using state-of-the-art Auto-Regressive (AR) LLMs for formal…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Diffusion-Proof: Recipe for Formal Theorem Proving Beyond Auto-Regressive Generation">
+<meta property="og:description" content="Enhancing the formal math reasoning capabilities of Large Language Models (LLMs) has become a key focus in both mathematical and computer science communities in recent years. While significant progress has been made in using state-of-the-art Auto-Regressive (AR) LLMs for formal…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.19315.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.19315.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.19315v1" target="_blank" rel="noopener"><img src="../thumbs/2606.19315.jpg" alt="First page of Diffusion-Proof: Recipe for Formal Theorem Proving Beyond Auto-Regressive Generation"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Diffusion-Proof: Recipe for Formal Theorem Proving Beyond Auto-Regressive Generation</h1>
+        <p class="authors">Ruida Wang, Rui Pan, Pengcheng Wang, Shizhe Diao, Tong Zhang</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Jun 17, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.19315v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.19315" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Trains diffusion LLMs on Lean4 proof data to generate and in-fill-correct whole Lean4 proofs, verified by Lean on MiniF2F and ProofNet.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Enhancing the formal math reasoning capabilities of Large Language Models (LLMs) has become a key focus in both mathematical and computer science communities in recent years. While significant progress has been made in using state-of-the-art Auto-Regressive (AR) LLMs for formal theorem proving, these models suffer from inherent limitations. Their next-token prediction generation methods may yield suboptimal performance due to the challenges of long-range coherence and the compounding of errors over long sequences. Recent advancements in diffusion LLMs (dLLMs), which generate text through iterative denoising of a multi-token block, offer a promising alternative. However, the application of dLLMs to formal mathematics, where maintaining long-range coherence is critical, remains largely understudied. To address the challenges above, we propose **Diffusion-Proof**, to the best of our knowledge, the first framework to train and apply dLLMs for formal theorem proving. Our frameworks contain training and inference methods for two models. The first one is *dLLM-Prover-7B*, which performs whole-proof writing with long-range coherent tactic usage. The second one is *dLLM-Corrector-7B*, which is a novel large block diffusion-based correction model. It leverages the in-filling capabilities of dLLMs to perform local proof correction using bi-directional information. Extensive experiments demonstrate that **Diffusion-Proof** relatively significantly outperforms the AR LLM baseline trained under the same dataset. **Diffusion-Proof** achieves an absolute improvement of **1.61%** on ProofNet-Test and **6.14%** on MiniF2F-Test benchmarks compare to the baseline. Notably, **Diffusion-Proof** successfully resolves one IMO problem that more advanced thinking model DeepSeek-Prover-V2-7B could not solve, showcasing the unique advantage of dLLMs in formal theorem proving.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Auto-regressive LLM provers generate token by token, which makes long-range coherence hard and lets errors compound over long proofs. Diffusion LLMs, which denoise multi-token blocks, had not been explored for formal theorem proving.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Diffusion-Proof fine-tunes Fast-dLLM-V2-7B on 300k mixed natural-language/Lean4 examples, cleaned from a 5.5M Lean SFT corpus, to obtain dLLM-Prover-7B, which writes whole proofs with block diffusion. A second model, dLLM-Corrector-7B, is trained with large-block in-filling on subgoal-decomposed (have-based) proofs. When a proof fails Lean verification but its top-level subgoal skeleton is correct, the corrector rewrites the subgoal proofs using bi-directional context.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.19315/MainPlot-DiffProver-0106-1.png" alt=""><figcaption>Figure 1: Diffusion-Proof framework: (a) Data Collection and Model Training: We first collect a 5.5M Lean SFT dataset from previous works, then perform cleaning and selection to obtain 300k natural language (NL)-formal language (FL) mixture data to fine-tune Fast-dLLM-V2-7B into dLLM-Prover-7B . Subsequently, we select data with subgoal decomposition and perform block filling to formulate data for</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">At pass@32, Diffusion-Proof reaches 50.00% on MiniF2F-Test and 7.53% on ProofNet-Test. This is 6.14 and 1.61 points above an AR Qwen-2.5-Lean-SFT-7B baseline trained on the same data. It also solves one IMO problem that DeepSeek-Prover-V2-7B does not.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.19315/valid_loss_short.png" alt=""><figcaption>Figure 3: Validation loss for trained dLLM, trained AR LLM, base dLLM, and base AR LLM</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Dataset</th><th>Qwen-2.5-Lean-SFT-7B</th><th>Diffusion-Proof</th><th>Improvement</th></tr></thead><tbody><tr><td>ProofNet-Test</td><td>5.91%</td><td>7.53%</td><td>1.61%</td></tr><tr><td>MiniF2F-Test</td><td>43.85%</td><td>50.00%</td><td>6.14%</td></tr><tr><td>MiniF2F IMO</td><td>5.00%</td><td>15.00%</td><td>10.00%</td></tr><tr><td>MiniF2F Algebra</td><td>55.68%</td><td>67.05%</td><td>11.36%</td></tr></tbody></table><div class="tbl-cap">Pass@32 versus the AR baseline trained on the same data</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

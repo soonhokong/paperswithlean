@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Measurement noise limits the advantage of nonlinear models over linear models in biomedical prediction · Papers With Lean</title>
+<meta name="description" content="On biomedical tabular data, flexible models such as deep networks, gradient-boosted trees, and kernel methods are repeatedly matched or beaten by linear and logistic regression given the same features. The usual reaction is to treat this as a model-side shortfall, to be fixed…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Measurement noise limits the advantage of nonlinear models over linear models in biomedical prediction">
+<meta property="og:description" content="On biomedical tabular data, flexible models such as deep networks, gradient-boosted trees, and kernel methods are repeatedly matched or beaten by linear and logistic regression given the same features. The usual reaction is to treat this as a model-side shortfall, to be fixed…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.18420.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.18420.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.18420v1" target="_blank" rel="noopener"><img src="../thumbs/2606.18420.jpg" alt="First page of Measurement noise limits the advantage of nonlinear models over linear models in biomedical prediction"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Measurement noise limits the advantage of nonlinear models over linear models in biomedical prediction</h1>
+        <p class="authors">Marc-Andre Schulz, Kerstin Ritter</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Jun 16, 2026 · v1</span>
+          <span class="badge">q-bio.QM</span> <span class="badge">stat.ML</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-orange" href="../#tag=probability">probability</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.18420v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.18420" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The core excess-risk identity and its classification counterpart are machine-verified in Lean 4 with Mathlib, plus new modules for Mehler&#x27;s formula, Hermite orthogonality, and Pinsker&#x27;s inequality.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">On biomedical tabular data, flexible models such as deep networks, gradient-boosted trees, and kernel methods are repeatedly matched or beaten by linear and logistic regression given the same features. The usual reaction is to treat this as a model-side shortfall, to be fixed with more data, a better architecture, or tuning, on the assumption that the nonlinear structure is there and the model has failed to capture it. We argue that these fixes cannot help when the binding limit is the measurement rather than the model, as it frequently is in biomedicine. Additive noise blurs the population-optimal predictor, and because blurring removes a function&#x27;s fine, rapidly varying detail before its broad shape, it erases nonlinear structure faster than linear structure. A degree-$k$ interaction is attenuated by the $k$-th power of feature reliability, while the linear part is attenuated only once. At the reliabilities typical of biomedical measurement, the nonlinear advantage can vanish even when the underlying biology is strongly nonlinear, and what the noise removes cannot be recovered by a larger cohort or a more flexible model, only by better measurement. The nonlinearity is hidden, not absent, and a tie between linear and flexible models is not by itself a verdict on the biology. These pieces are classical, drawn from measurement-error statistics, psychometrics, and Gaussian analysis, and we assemble them into an exact excess-risk identity. Measurement reliability is one of three conditions, alongside sample size and feature representation, that must align for a flexible model to help, and together they leave only a narrow window that most biomedical tasks fall outside. Across 140 UK Biobank tasks, the gap between flexible and linear models, where it exists, carries the predicted noise signature, and the three conditions can be separated by intervention but not by a benchmark alone.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">On biomedical tabular data, flexible nonlinear models rarely outperform linear or logistic regression. The authors ask whether measurement noise, rather than model shortcomings, removes recoverable nonlinear structure.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Using Hermite expansions and Mehler&#x27;s formula under Gaussian assumptions, the authors derive an exact identity: the excess risk of the best linear predictor over the Bayes predictor is a sum of squared Hermite coefficients, each weighted by products of feature reliabilities raised to the interaction order. They frame measurement reliability, sample size, and feature representation as three conditions that must all hold for a flexible model to help. The identity and its classification counterpart are formalized in Lean 4 with Mathlib, using 12 additional modules for missing results. Predictions are tested on controlled benchmarks and 140 UK Biobank tasks.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.18420/fig1_framework.png" alt=""><figcaption>Figure 1: Measurement noise straightens the optimal predictor. (a) The prediction pipeline runs from biological signal S through feature extraction X=g(S) and measurement \tilde{X}=X+\eta to a finite-sample estimator. (b) For classification, the optimal decision boundary at four noise levels, flattening from a curved boundary toward a line. (c) For regression, the optimal predictor E[Y\mid\tilde{X</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2606.18420/fig5_regime_map.png" alt=""><figcaption>Figure 2: The window in which flexible models help. Three slices through the space of measurement reliability, sample size, and feature dimension. A nonlinear advantage exists only where reliability, sample size, and representation all permit it (green). Its three failure regions are low reliability (noise-linearized), too small a sample (statistically suppressed), and an already-linear representa</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The Lean development is 22 files that compile with no sorries and no custom axioms; the σ^4 scaling claim is not formalized. In experiments, the nonlinear gap shrinks faster than the linear signal under injected noise and recovers when replicate measurements are averaged. UK Biobank gaps, where present, show this noise signature.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.18420/fig3_measurement_quality.png" alt=""><figcaption>Figure 3: Noise hides nonlinear structure, and reducing it brings the structure back. Ridge regression (grey) and polynomial-kernel ridge (teal) on a controlled benchmark; bands are \pm 1 s.e.m. across 12 runs. (a) Both R^{2} curves fall as noise is added. (b) The nonlinear gap (orange) falls faster than the linear signal (grey), each normalized to its baseline. (c) Averaging m replicates restores</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2606.18420/fig_noise_injection_composite.png" alt=""><figcaption>Figure 4: The signature on UK Biobank tasks. (a,b) Normalized decay curves for age predicted from blood features (45 features, ICC 0.61) and from T1 brain MRI features (20 features, ICC 0.90); in both, the nonlinear gap falls faster than the linear signal. (c) Decay ratios by modality; resting-state functional connectivity (ICC 0.2–0.3) shows no measurable baseline gap. (d) Distribution of decay r</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Reliability ρ</th><th>Linear (k=1)</th><th>Pairwise (k=2)</th><th>Three-way (k=3)</th></tr></thead><tbody><tr><td>0.9</td><td>90%</td><td>81%</td><td>73%</td></tr><tr><td>0.7</td><td>70%</td><td>49%</td><td>34%</td></tr><tr><td>0.5</td><td>50%</td><td>25%</td><td>12%</td></tr><tr><td>0.3</td><td>30%</td><td>9%</td><td>3%</td></tr></tbody></table><div class="tbl-cap">Fraction of structure retained by interaction order at a given feature reliability</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

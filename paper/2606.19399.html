@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VERITAS: Verifier-Guided Proof Search for Zero-Shot Formal Theorem Proving · Papers With Lean</title>
+<meta name="description" content="LLM-based formal provers often collapse rich verifier signals (syntax errors, type mismatches, partial goal progress) into a binary pass/fail bit. We present VERITAS, a zero-shot framework that routes every verifier signal back into proof search through a two-phase protocol:…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VERITAS: Verifier-Guided Proof Search for Zero-Shot Formal Theorem Proving">
+<meta property="og:description" content="LLM-based formal provers often collapse rich verifier signals (syntax errors, type mismatches, partial goal progress) into a binary pass/fail bit. We present VERITAS, a zero-shot framework that routes every verifier signal back into proof search through a two-phase protocol:…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.19399.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.19399.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.19399v1" target="_blank" rel="noopener"><img src="../thumbs/2606.19399.jpg" alt="First page of VERITAS: Verifier-Guided Proof Search for Zero-Shot Formal Theorem Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">VERITAS: Verifier-Guided Proof Search for Zero-Shot Formal Theorem Proving</h1>
+        <p class="authors">Manish Acharya, Zhenyu Liao, Yueke Zhang, Kevin Leach, Yu Huang, Yifan Zhang</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Jun 17, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.LO</span> <span class="badge">cs.PL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.19399v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.19399" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/manishacharya60/veritas" target="_blank" rel="noopener" title="manishacharya60/veritas">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses Lean 4 verifier feedback and Mathlib premise retrieval to guide LLM-driven MCTS proof search, and releases a Lean 4 combinatorics benchmark.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">LLM-based formal provers often collapse rich verifier signals (syntax errors, type mismatches, partial goal progress) into a binary pass/fail bit. We present VERITAS, a zero-shot framework that routes every verifier signal back into proof search through a two-phase protocol: Best-of-N sampling first, then a critic-guided MCTS pass that ingests Phase 1 failures as explicit negative examples. The protocol preserves every theorem solved by its own Phase 1 sweep, so Phase 2&#x27;s additional solves are attributable to feedback-driven exploration. VERITAS reaches 40.6% on miniF2F (vs. an independently run Best-of-5 at 36.9%, Portfolio 26.2%) and 7.3% on VERITAS-CombiBench, a 55-theorem combinatorics benchmark we release on which Best-of-5 (1.8%) falls below Portfolio (3.6%), exposing that unguided sampling hurts when correct lemma names must be recovered iteratively from verifier feedback. Artifacts are available on GitHub.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-based formal provers usually reduce rich verifier output (syntax errors, type mismatches, partial goal progress) to a single pass/fail bit. That discards information that could guide proof search.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">VERITAS is a zero-shot multi-agent framework with four roles sharing a proof state annotated with four Lean signals (syntax, type correctness, goal progress, completion): a Strategist, a Tactician (Claude Sonnet), a Critic (Claude Haiku), and a Mathlib premise Retriever. Phase 1 runs Best-of-N sampling. Phase 2 runs critic-guided MCTS on the unsolved theorems, feeding Phase 1 failures and their Lean error messages back in as negative examples. A batched Lean validation step checks all K candidates for a node in a single proof-checker call.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.19399/veritas_architecture.png" alt=""><figcaption>Figure 1 : VERITAS two-phase protocol. Phase 1: Best-of- N dispatch; failures feed corpus \mathcal{F}_{1} . Phase 2: Critic-guided MCTS on U_{1} with Lean signals \sigma_{A} – \sigma_{D} ; final S=S_{1}\cup S_{2} satisfies S\supseteq S_{1} .</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">VERITAS solves 40.6% of miniF2F, versus 36.9% for Best-of-5 and 26.2% for a heuristic portfolio. On the released 55-theorem VERITAS-CombiBench it reaches 7.3%, while Best-of-5 gets 1.8% and the portfolio 3.6%; unguided sampling hallucinates Mathlib lemma names that Lean rejects.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>miniF2F (%)</th><th>CombiBench (%)</th></tr></thead><tbody><tr><td>Portfolio (heuristic)</td><td>26.2</td><td>3.6</td></tr><tr><td>Best-of-1 Sonnet</td><td>29.1</td><td>1.8</td></tr><tr><td>Best-of-5 Sonnet</td><td>36.9</td><td>1.8</td></tr><tr><td>VERITAS Two-Phase</td><td>40.6</td><td>7.3</td></tr></tbody></table><div class="tbl-cap">Overall solve rates on miniF2F and VERITAS-CombiBench</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

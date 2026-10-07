@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sorries Are Not the Hard Part: An Expert-Review Case Study of a Semi-Autonomous Formalization · Papers With Lean</title>
+<meta name="description" content="Large language models can often close proof gaps in interactive theorem provers, but a verified theorem is not the same thing as a reusable library contribution. We study this distinction through a detailed case study: a semi-autonomous formalization of Grothendieck&#x27;s vanishing…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sorries Are Not the Hard Part: An Expert-Review Case Study of a Semi-Autonomous Formalization">
+<meta property="og:description" content="Large language models can often close proof gaps in interactive theorem provers, but a verified theorem is not the same thing as a reusable library contribution. We study this distinction through a detailed case study: a semi-autonomous formalization of Grothendieck&#x27;s vanishing…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.13925.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.13925.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.13925v1" target="_blank" rel="noopener"><img src="../thumbs/2606.13925.jpg" alt="First page of Sorries Are Not the Hard Part: An Expert-Review Case Study of a Semi-Autonomous Formalization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Sorries Are Not the Hard Part: An Expert-Review Case Study of a Semi-Autonomous Formalization</h1>
+        <p class="authors">Vasily Ilin, Brian Nugent</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jun 11, 2026 · v1</span>
+          <span class="badge">math.AG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-cyan" href="../#tag=topology">topology</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.13925v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.13925" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Vilin97/Autoformalization" target="_blank" rel="noopener" title="Vilin97/Autoformalization">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Claude Code and Aristotle agents formalize Grothendieck&#x27;s vanishing theorem in Lean 4 on top of Mathlib, and expert reviews then assess whether the code is usable as a library contribution.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language models can often close proof gaps in interactive theorem provers, but a verified theorem is not the same thing as a reusable library contribution. We study this distinction through a detailed case study: a semi-autonomous formalization of Grothendieck&#x27;s vanishing theorem. The initial version compiles with no sorries, but an expert review found serious problems in definitions, theorem generality, file organization, and the API. We then ran a review-driven refactor and compression process and obtained a second expert review. The before-and-after comparison shows a sharp split: agents adapted well to local, mechanically checkable feedback, but remained weak at choosing definitions and designing APIs. We argue that autoformalization should be evaluated not only by closed sorries, but by whether the resulting formalization survives expert review.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM agents can close sorries in Lean, but a sorry-free proof is not necessarily a reusable library contribution. The paper asks how the quality of agent-produced Lean code falls short of Mathlib standards.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors hand-wrote the Lean statement of Grothendieck&#x27;s vanishing theorem using only existing Mathlib definitions. Claude Code, given a Hartshorne proof excerpt and using Aristotle for bounded lemmas, produced a sorry-free formalization of about 5,000 lines. A Lean/Mathlib expert reviewed it, the agents ran review-driven refactor and compression loops, and a second expert review assessed the result. Commit logs, telemetry, and both reviews are released as a dataset.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.13925/phase_timeline_gv.png" alt=""><figcaption>Figure 2 : Daily commit counts classified by loop mode (commit-message tag). Phase shading matches Figure 1 . Interactive commits dominate the proving phase (the formalization was not fully automated); the April 8–17 gap is the expert-review window; the refactor loop (green) drives the April 17–26 activity; the compression loop (orange) and a final mathlib-style polish (red) close out the project.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2606.13925/tool_use_gv.png" alt=""><figcaption>Figure 4 : Tool calls across the project (19,393 total). Left: top 20 tools by call count, dominated by shell/file operations ( Bash , Read , Edit , Grep ) and Lean LSP queries. Right: daily tool calls grouped by category, phase shading as in Figure 1 . Proof construction leans on Lean LSP diagnostics, goal queries, and library search; the review response is dominated by repository edits, shell ch</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Agents handled local, mechanically checkable feedback well, such as file structure, naming, and specific requested changes. They remained weak at choosing definitions, generalizing theorem statements, and designing APIs. The authors argue that autoformalization should be evaluated by whether the output survives expert review, not only by closed sorries.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.13925/cycle_effectiveness_gv.png" alt=""><figcaption>Figure 5 : Per-cycle refactor and compression outcomes summarizing loop behavior across the project.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Review theme</th><th>State A criticism</th><th>State B outcome</th></tr></thead><tbody><tr><td>File structure</td><td>Confusing, unorganized names</td><td>Fixed</td></tr><tr><td>Definitions</td><td>Dozens of specific, often unnecessary definitions</td><td>Still weakest; no noticeable improvement</td></tr><tr><td>Theorem statements</td><td>Not general enough to reuse</td><td>Requested changes done; no further generalization</td></tr><tr><td>API design</td><td>Proofs unfold definitions repeatedly</td><td>Partially fixed; API noisy and bloated</td></tr><tr><td>Proof style</td><td>Long walls of `have`, defeq misuse</td><td>Better but uneven</td></tr></tbody></table><div class="tbl-cap">Qualitative before-and-after summary from expert reviews (abridged)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

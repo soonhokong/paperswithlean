@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Identifiability of Relational Queries in Multi-View Pretraining · Papers With Lean</title>
+<meta name="description" content="When data sources are integrated through a shared interface, a downstream query may or may not be determined by what the interface exposes: two globally consistent worlds can agree on every shared attribute yet disagree on the query answer. This ambiguity is structural – a…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Identifiability of Relational Queries in Multi-View Pretraining">
+<meta property="og:description" content="When data sources are integrated through a shared interface, a downstream query may or may not be determined by what the interface exposes: two globally consistent worlds can agree on every shared attribute yet disagree on the query answer. This ambiguity is structural – a…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2607.04735.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2607.04735.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2607.04735v1" target="_blank" rel="noopener"><img src="../thumbs/2607.04735.jpg" alt="First page of Identifiability of Relational Queries in Multi-View Pretraining"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Identifiability of Relational Queries in Multi-View Pretraining</h1>
+        <p class="authors">Ratan Bahadur Thapa, Daniel Hernández</p>
+        <div class="row">
+          <span class="badge">cs.DB</span>
+          <span class="date">Jul 6, 2026 · v1</span>
+          <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.04735v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2607.04735" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/danielhz/query-identifiability" target="_blank" rel="noopener" title="danielhz/query-identifiability">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Main theoretical results (closure certificate, minimax 1/2 error floor, FD/Armstrong correspondence, Fano&#x27;s inequality, reduction to query determinacy) are machine-checked in a public Lean 4 development.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">When data sources are integrated through a shared interface, a downstream query may or may not be determined by what the interface exposes: two globally consistent worlds can agree on every shared attribute yet disagree on the query answer. This ambiguity is structural – a property of the interface design, not the data volume – and cannot be resolved by collecting more records or training a larger model. We formalize query identifiability for data integration under interface laws (functional dependencies that hold uniformly across all legal worlds rather than within a single instance) and prove three results. (i) A polynomial-time certificate (CheckCert) decides identifiability via attribute closure, and is exact on instances that expose any residual ambiguity (closure-separable). (ii) Non-identifiable queries face an irreducible 1/2 minimax error floor for any estimator using only interface evidence, bounding multi-view pretraining systems from below. (iii) A minimum-augmentation algorithm (Greedy-MinAug) finds the smallest set of interface additions to certify a query, reducing to Set Cover (logarithmic approximation). Experiments on synthetic benchmarks, real integration datasets spanning three domains (scholarly, product, restaurant), and schemas up to 10^3 attributes confirm CheckCert is exact, both algorithms run in single-digit milliseconds, and ML classifiers exhibit the predicted error floor and abrupt capability gains.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">When data sources are integrated through a shared interface, a downstream query may not be determined by the exposed attributes. Two consistent worlds can agree on all shared views yet give different answers. The paper asks when such queries are identifiable under interface laws, which are functional dependencies that hold across all legal worlds.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Query identifiability is defined through observational equivalence on closure-augmented overlap projections. The authors prove that a polynomial-time attribute-closure certificate (CheckCert) decides identifiability on closure-separable instances. They also prove a 1/2 minimax error floor for non-identifiable queries, and reduce minimum interface augmentation to Set Cover, solved by Greedy-MinAug. Key results are machine-checked in a Lean 4 development (MultiViewIdentifiability), with queries modeled semantically by their answer invariants.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The closure certificate, the minimax lower bound, the FD/Armstrong correspondence, the reduction to query determinacy and Fano&#x27;s inequality are verified in Lean; the capability-jump theorem and the MinAug hardness and approximation bounds remain open in the formalization. Experiments on synthetic and real integration datasets confirm that CheckCert is exact, that both algorithms run in milliseconds on schemas with up to 10^3 attributes, and that ML classifiers show the predicted error floor.</p><div class="sum-table"><table><thead><tr><th>Framework</th><th>CQ complexity</th><th>Certificate</th></tr></thead><tbody><tr><td>Query determinacy</td><td>Undecidable (general)</td><td>Sufficient only</td></tr><tr><td>Certain answers</td><td>coNP-complete</td><td>Complete</td></tr><tr><td>Data exchange</td><td>PTIME (chase)</td><td>Sound (target-side)</td></tr><tr><td>CheckCert (this work)</td><td>PTIME (closure)</td><td>Complete (on closure-separable instances)</td></tr></tbody></table><div class="tbl-cap">Identifiability vs. related query-answering frameworks (Boolean CQs)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

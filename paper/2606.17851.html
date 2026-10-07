@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A homotopy-type-theoretic generalization of neurosymbolic inference · Papers With Lean</title>
+<meta name="description" content="A wide range of neurosymbolic (NeSy) systems compute one functional: a belief-weighted sum of a logical quantity over a space of $σ$-structures, of which weighted model counting, fuzzy logic, and probabilistic logic are special cases. This account is built on sets, and a set…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A homotopy-type-theoretic generalization of neurosymbolic inference">
+<meta property="og:description" content="A wide range of neurosymbolic (NeSy) systems compute one functional: a belief-weighted sum of a logical quantity over a space of $σ$-structures, of which weighted model counting, fuzzy logic, and probabilistic logic are special cases. This account is built on sets, and a set…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.17851.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.17851.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.17851v2" target="_blank" rel="noopener"><img src="../thumbs/2606.17851.jpg" alt="First page of A homotopy-type-theoretic generalization of neurosymbolic inference"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A homotopy-type-theoretic generalization of neurosymbolic inference</h1>
+        <p class="authors">Fernando Zhapa-Camacho, Robert Hoehndorf</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Jun 16, 2026 · v2</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.17851v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.17851" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/bio-ontology-research-group/hott-nesy" target="_blank" rel="noopener" title="bio-ontology-research-group/hott-nesy">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The conservativity theorem, orbit-uniform posterior, and generating-function results are formalized in Lean 4 over Mathlib via orbit–stabilizer arithmetic, with no sorry.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A wide range of neurosymbolic (NeSy) systems compute one functional: a belief-weighted sum of a logical quantity over a space of $σ$-structures, of which weighted model counting, fuzzy logic, and probabilistic logic are special cases. This account is built on sets, and a set deliberately forgets two things that are important for NeSy: when two $σ$-structures are the same up to a symmetry of the theory, and how many distinct proofs witness a query. Types, in the sense of homotopy type theory, preserve this information and turn the functional into a belief-weighted homotopy cardinality, a notion of size that counts each object in inverse proportion to its symmetries. We develop the framework from scratch for NeSy systems, prove a conservativity theorem that recovers the classical functional when symmetries are trivial, and show that the symmetry our framework exposes is exactly the one behind reasoning shortcuts. The payoff is concrete: the shortcut-aware concept posterior that recent methods reach by ensembling or expressive density estimation is the only symmetry-invariant point of the confusion-set simplex, computable in closed form by averaging a single model over the symmetry group. On MNIST reasoning-shortcut benchmarks this single-model wrapper is better calibrated than a diversity-trained ensemble, while leaving label accuracy and identifiable concepts untouched. Code is freely available at <a href="https://github.com/bio-ontology-research-group/hott-nesy" target="_blank" rel="noopener">https://github.com/bio-ontology-research-group/hott-nesy</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Many neurosymbolic inference systems compute a belief-weighted sum over a set of σ-structures. Sets forget two things: symmetries between structures and the multiplicity of proofs witnessing a query. The symmetry information is what underlies reasoning shortcuts.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Sets are replaced by homotopy types, so inference becomes a belief-weighted homotopy cardinality of a dependent sum of proof families, with semiring choice as the decategorification. A conservativity theorem recovers the classical functional when symmetries are trivial. The symmetry is identified with reasoning shortcuts, and the shortcut-aware posterior is derived as the unique symmetry-invariant point, computed by averaging a single model over the group. The finite, 1-truncated theorems are machine-checked in Lean 4 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The orbit-averaged single model matches the base model&#x27;s label accuracy and lowers confusable-digit calibration error. It is better calibrated than RS-independence, NeSyDM and Bears ensembles on MNIST reasoning-shortcut tasks. The Lean development compiles with only standard axioms and no sorry.</p><div class="sum-table"><table><thead><tr><th>method</th><th>label</th><th>id-ECE</th><th>conf-ECE</th><th>conf-ent.</th></tr></thead><tbody><tr><td>base</td><td>0.996</td><td>0.002</td><td>0.588</td><td>0.05</td></tr><tr><td>ours (orbit-avg.)</td><td>0.996</td><td>0.004</td><td>0.013</td><td>0.94</td></tr><tr><td>RS-independence</td><td>0.995</td><td>0.004</td><td>0.054</td><td>0.94</td></tr><tr><td>NeSyDM (40 ep.)</td><td>0.997</td><td>0.002</td><td>0.021</td><td>0.93</td></tr><tr><td>Bears (best fair)</td><td>0.997</td><td>0.007</td><td>0.102</td><td>0.91</td></tr></tbody></table><div class="tbl-cap">MNIST label-merging reasoning-shortcut task (selected rows)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
