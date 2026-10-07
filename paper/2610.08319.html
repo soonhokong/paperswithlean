@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SCOPE: Certified Theorem Proving with a Language Model as the Policy Planner · Papers With Lean</title>
+<meta name="description" content="In proof assistants such as Lean, a generated proof must pass machine compilation checks, so evaluation needs no human scoring. Direct generation fails on multi-step numeric propositions: a proof is valid only if every content integer is correct, so the pass rate is bounded by…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SCOPE: Certified Theorem Proving with a Language Model as the Policy Planner">
+<meta property="og:description" content="In proof assistants such as Lean, a generated proof must pass machine compilation checks, so evaluation needs no human scoring. Direct generation fails on multi-step numeric propositions: a proof is valid only if every content integer is correct, so the pass rate is bounded by…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.08319.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.08319.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.08319v1" target="_blank" rel="noopener"><img src="../thumbs/2610.08319.jpg" alt="First page of SCOPE: Certified Theorem Proving with a Language Model as the Policy Planner"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">SCOPE: Certified Theorem Proving with a Language Model as the Policy Planner</h1>
+        <p class="authors">Hanchao Zhou, Jialei Li</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 6, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.08319v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.08319" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Small LM plans operator chains; a symbolic engine computes numerics and a compiler renders Lean proofs certified by the Lean compiler, evaluated on Lean-Workbook.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">In proof assistants such as Lean, a generated proof must pass machine compilation checks, so evaluation needs no human scoring. Direct generation fails on multi-step numeric propositions: a proof is valid only if every content integer is correct, so the pass rate is bounded by the k-th power of the per-integer accuracy. Controlled corruption across 2,617 reference proofs confirms this power law. SCOPE (State-Conditioned Operator Planning and Execution) enforces the natural division of labor: the model plans over an operator vocabulary, a symbolic engine executes the numerics, and a compiler renders the proof. On a 218-problem suite it certifies 191/218 (87.6%) with a 135M backbone; the 7B DeepSeek-Prover-V1.5-RL certifies 18/218 at 27.5 times the tokens and 37.5 times the wall-clock, and DeepSeek-Prover-V2-7B certifies zero on a bidirectional dual suite. Multi-step thinking costs 6.12 discrete decision actions per problem and produces no natural-language thinking text. Replacing the lagged engine state in the decision frame with the current one lifts the pass rate from 117/218 to 191/218, while up-weighting the chain-end loss hurts. On the public Lean-Workbook library, 2,132 of 3,536 gradeable admissible problems certify (60.29%) with zero regression on the main suite. All readings come from a version-frozen review with independent rechecks and reverse verification. Restricting free generation and keeping decision-time information visible is a more direct route than enlarging the model.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Direct generation of Lean proofs fails on multi-step numeric propositions. Validity requires every content integer to be correct, so the pass rate is bounded by p^k, where p is the per-integer accuracy and k is the number of integers.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">SCOPE splits the work into three parts. A 135M SmolLM2 backbone plans over a finite operator vocabulary (194–220 operators), a symbolic engine executes the numerics exactly, and a template compiler renders Lean proof text that the Lean compiler checks. A factorial ablation tests feeding the current, rather than lagged, engine state into the decision frame. Controlled corruption of 2,617 reference proofs tests the power law.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.08319/fig1_scope_overview.jpg" alt=""><figcaption>Fig. 1: The SCOPE architecture and data flow. A mathematical proposition enters a latent decision loop through discrete encoding: the chain planner, with its operator and argument heads, handles perception and routing and commits to one decision per step inside the operator vocabulary, which supplies both operator semantics and rendering templates; the symbolic engine executes each step exactly, a</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On a 218-problem deep-chain suite, SCOPE certifies 191/218 (87.6%). DeepSeek-Prover-V1.5-RL certifies 18/218 using 27.5x the tokens. On Lean-Workbook, 2,132 of 3,536 gradeable admissible problems certify (60.29%), and the state shift raises the main-suite pass rate from 117/218 to 191/218.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.08319/fig5_grid.png" alt=""><figcaption>Fig. 5: Main results. (a) Certified pass-rate ladder of the main configurations: 0/218 (direct generation), 1/218 (slotting), 117/218 (compilation), 191/218 (state shift), with the shallow-chain reference 180/1083 and the comparison model 18/218 marked. (b) Resource comparison (log axis): generated tokens per problem (6.12 versus 168.0), wall-clock per problem (0.53 s versus 19.88 s), and peak mem</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.08319/fig3_law1.png" alt=""><figcaption>Fig. 3: Quantitative tests of Law 1. (a) The pass rate of direct generation decays as a power law in the number k of content integers (p = 0.79), with measured points overlaid (control 1/20, deep-chain suite 0/218, comparison model 18/218). (b) Measured pass rate under controlled integer corruption (0.558) against the independent-assumption theory (0.530), bin by bin.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Configuration</th><th>Certified</th></tr></thead><tbody><tr><td>Direct generation</td><td>0/218</td></tr><tr><td>DeepSeek-Prover-V1.5-RL (7B)</td><td>18/218</td></tr><tr><td>Compilation (lagged state)</td><td>117/218</td></tr><tr><td>SCOPE with state shift</td><td>191/218</td></tr></tbody></table><div class="tbl-cap">Certified pass rates on the 218-problem deep-chain suite</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

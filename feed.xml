@@ -8,6 +8,94 @@
     <language>en</language>
     <lastBuildDate>Tue, 06 Oct 2026 00:00:00 +0000</lastBuildDate>
     <item>
+      <title>Efficient Learning of Structured Fermionic States under General Quadratic Evolution</title>
+      <link>https://paperswithlean.com/paper/2610.08723.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.08723.html</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Erfan Amidi, Ali Asadian, Ali Hamed Moosavian</dc:creator>
+      <category>formalization</category><category>quantum</category>
+      <description>Supporting algebraic and statistical lemmas for the fermionic state-learning results are formalized in Lean in the accompanying code.
+
+We prove that unknown pure fermionic states prepared from disjoint-branch fixed-particle-number blocks can be reconstructed after general quadratic evolution, including pair creation and annihilation. For a fixed particle cap per block, adaptive or nonadaptive single-copy Gaussian measurements yield classical input and circuit descriptions with prescribed fidelity and confidence, using polynomial resources in system size and inverse infidelity. The adaptive procedure has the sharper copy guarantee. Connected quartic correlations and a covariance-compatible commutant identify the hidden blocks; local states are recovered from fresh measurements or a predetermined bounded-degree moment table. Stable branch recovery gives valid preparation descriptions. Neither particle-number conservation nor block homogeneity is required; no lower bound on branch weights or covariance gaps is assumed. A certified variant returns a passive preparation whenever one exists within the promised family, without advance membership information. On the full Gaussian orbit of paired magic states, quartic measurements alone suffice, with an explicit bound converting observable error into state error.</description>
+    </item>
+    <item>
+      <title>An AI-Assisted Formalization of the Poincaré Conjecture</title>
+      <link>https://paperswithlean.com/paper/2610.08329.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.08329.html</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Zhiyuan Zhang, Axel Delaval, Leheng Chen, Jinxuan Chen, Jie Xu, Yuxuan Liao, Jiedong Jiang, Chunlei Liu, Bin Dong</dc:creator>
+      <category>formalization</category><category>ai-agents</category><category>autoformalization</category><category>topology</category>
+      <description>AI agents, guided by a human-written blueprint and 90 milestone statements, produce a Lean 4 formalization of the Poincaré conjecture whose target statements use only Mathlib.
+
+We present an AI-assisted Lean 4 formalization of the Poincaré conjecture. The project began with limited reusable formal infrastructure for the geometric analysis behind the proof. To organize this work, we combined a proof blueprint prepared by mathematicians with explicit milestone statements. These milestones enabled parallel agent work and gave mathematicians clear points to locate blockers and provide effective mathematical guidance. Our analysis identifies the human interventions and organizational choices behind this workflow. The project provides a starting point toward reusable infrastructure for future formalization projects; such infrastructure, once developed, could eventually reduce the cost of verifying mathematical results in geometric analysis.</description>
+    </item>
+    <item>
+      <title>SCOPE: Certified Theorem Proving with a Language Model as the Policy Planner</title>
+      <link>https://paperswithlean.com/paper/2610.08319.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.08319.html</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Hanchao Zhou, Jialei Li</dc:creator>
+      <category>theorem-proving-ml</category><category>benchmark</category>
+      <description>Small LM plans operator chains; a symbolic engine computes numerics and a compiler renders Lean proofs certified by the Lean compiler, evaluated on Lean-Workbook.
+
+In proof assistants such as Lean, a generated proof must pass machine compilation checks, so evaluation needs no human scoring. Direct generation fails on multi-step numeric propositions: a proof is valid only if every content integer is correct, so the pass rate is bounded by the k-th power of the per-integer accuracy. Controlled corruption across 2,617 reference proofs confirms this power law. SCOPE (State-Conditioned Operator Planning and Execution) enforces the natural division of labor: the model plans over an operator vocabulary, a symbolic engine executes the numerics, and a compiler renders the proof. On a 218-problem suite it certifies 191/218 (87.6%) with a 135M backbone; the 7B DeepSeek-Prover-V1.5-RL certifies 18/218 at 27.5 times the tokens and 37.5 times the wall-clock, and DeepSeek-Prover-V2-7B certifies zero on a bidirectional dual suite. Multi-step thinking costs 6.12 discrete decision actions per problem and produces no natural-language thinking text. Replacing the lagged engine state in the decision frame with the current one lifts the pass rate from 117/218 to 191/218, while up-weighting the chain-end loss hurts. On the public Lean-Workbook library, 2,132 of 3,536 gradeable admissible problems certify (60.29%) with zero regression on the main suite. All readings come from a version-frozen review with independent rechecks and reverse verification. Restricting free generation and keeping decision-time information visible is a more direct route than enlarging the model.</description>
+    </item>
+    <item>
+      <title>LeanPlan: Optimal Planning with LLM-Generated Heuristics and Admissibility Proofs</title>
+      <link>https://paperswithlean.com/paper/2610.08246.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.08246.html</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>André G. Pereira, Augusto B. Corrêa, Felipe Meneguzzi, Jendrik Seipp</dc:creator>
+      <category>verification</category><category>ai-agents</category><category>theorem-proving-ml</category>
+      <description>Implements LLM-generated planning heuristics, their admissibility proofs, and an A* planner with machine-checked grounding and search in Lean 4.
+
+Frontier large language models (LLMs) can generate heuristic functions that guide search to achieve state-of-the-art performance in satisficing planning, where any plan is acceptable. However, these heuristics are not guaranteed to be admissible and can lead to suboptimal plans. We introduce LeanPlan, the first planning system that finds optimal plans with LLM-generated heuristics whose admissibility is machine-checked. Given a domain description and training tasks, an agentic loop uses planner feedback to iteratively improve a reusable domain-specific heuristic, its admissibility proof and the required domain assumptions. LeanPlan implements the heuristic, its proof and an efficient planner with machine-checked grounding and search in Lean 4. We evaluate LeanPlan on ten domains from the International Planning Competition and three new domains, using test tasks with up to 57 times as many objects as the training tasks. With GPT-5.6 Sol in the agentic loop, we successfully generate heuristics and admissibility proofs for all these domains. With the resulting heuristics, LeanPlan usually expands fewer states than the state-of-the-art Scorpion planner and solves more tasks overall.</description>
+    </item>
+    <item>
+      <title>Navier-Stokes lost in translation: Why Lean verification of AI autoformalisation does not guarantee correct natural language proofs</title>
+      <link>https://paperswithlean.com/paper/2610.08144.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.08144.html</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Alexander Bastounis, Fabian Circelli, Anders C. Hansen</dc:creator>
+      <category>autoformalization</category><category>meta-study</category><category>logic</category><category>analysis</category>
+      <description>Examines AI-generated Lean 4 formalisations, including OpenAI&#x27;s Navier–Stokes repository, and documents mismatches between the compiled Lean proofs and the natural-language proofs they claim to formalise.
+
+Autoformalisation is increasingly used to verify mathematical texts, including those generated by AI, as in OpenAI&#x27;s announced proof of blow-up of solutions to the Navier-Stokes equations. In this process, an AI system translates the text from a natural language (NL) into a formal language such as Lean. Once this translation is done, the argument expressed in the formal language can easily be mechanically verified. The purpose of this article is to demonstrate why this process may offer no confidence in the original NL argument, owing to the various difficulties in performing the translation semantically faithfully. In particular, we highlight that the problem of resolving ambiguities in mathematical NL text, which is necessary in order to provide semantically faithful translation, is arbitrarily high up in the Solvability Complexity Index (SCI) hierarchy/arithmetical hierarchy (the SCI $= \infty$). Hence, informally, providing semantically faithful AI autoformalisation is harder than any computational problem including the Halting problem (which has SCI $= 1$). To demonstrate the effect of this result we provide several examples of AI mistranslations of NL statements and proofs into Lean in practice, resulting in mismatches between NL proofs and their Lean `verifications&#x27;. These include OpenAI&#x27;s announced Navier-Stokes proof. In particular, we show that the formalised Lean proof does not correspond to the NL proof of blow-up of solutions to the Navier-Stokes equations.</description>
+    </item>
+    <item>
+      <title>Unimodality of Forest Independence Polynomials</title>
+      <link>https://paperswithlean.com/paper/2610.07943.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.07943.html</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Wei Li, Kevin Vallier, Tong Zhang</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>combinatorics</category>
+      <description>The full unimodality theorem for forest independence polynomials (Erdős Problem 993) is formally proved in Lean 4 with Mathlib, using kernel and compiled evaluations of interval-arithmetic certificates.
+
+For a finite forest $F$ let $i_k(F)$ be the number of independent sets of $F$ with $k$ vertices. Zhang and Li proved that the sequence $i_0(F),i_1(F),\dots,i_{α(F)}(F)$ is unimodal for every finite forest $F$, which answers Erdős Problem 993. We give a second proof. It starts from their decomposition relative to a fixed independent set and from the bounds of Zhang and Li and of Fang, Lu, Nevo, Yao and Zheng that confine a valley of the sequence to an explicit window of ranks. For a forest with at least $25$ vertices, one moment argument excludes a valley at every rank of the window: at the activity where the hard-core mean equals the rank, the size of a random independent set is a mixture of binomial laws over an independent set of maximum weight, a valley is a moment inequality for this mixture, and it is excluded by duality given three bounds that hold for every forest, on the variance of the number of free vertices and on its Laplace transforms, and on the variance ratio. The variance bound is proved by hand up to finitely many interval checks and the other two bounds are verified by computer on finite interval-arithmetic coverings; on the resulting parameter domain a valley is excluded by exact tests on finitely many rational boxes while the mean number of free vertices is below an explicit starting mean between $19$ and $50$, and above it by one inequality, with explicit constants, for the fibers of a weighted valley kernel, proved by hand up to a finite list of explicit checks and averaged over the mixture. Forests with at most $24$ vertices are treated by exact counting, by hand except for exact rational evaluations of two explicit formulas at $43$ parameter triples. No forest is enumerated. A formal proof of the theorem in Lean 4 accompanies the paper.</description>
+    </item>
+    <item>
+      <title>Carlet&#x27;s cyclic-additive conjecture for the Kasami monomials</title>
+      <link>https://paperswithlean.com/paper/2610.07905.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.07905.html</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Gábor P. Nagy, Douglas S. McNeil, Attila Vajda</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>number-theory</category><category>cryptography</category>
+      <description>The main theorem on Kasami cyclic-additive difference sets is formalised and machine-checked in Lean 4 on Mathlib, with AI assistance including Aristotle.
+
+Let $K$ be a finite field of characteristic two with $|K| = 2^{n}$, let $\gcd(k,n) = 1$, let $d_{k} = 4^{k} - 2^{k} + 1$ be the Kasami exponent, and let $Δ_{k} = \{(b+1)^{d_{k}} + b^{d_{k}} + 1 : b \in K\}$ be the image of the normalised derivative of the Kasami monomial in the direction $1$. We show that, for all distinct nonzero $v_{1},v_{2} \in K$, \[ \bigl|\{(x,y,z) \in Δ_{k}^{3} : v_{1}x + v_{2}y + (v_{1}+v_{2})z = 0\}\bigr| = 2^{2n-3}. \] This establishes the cyclic-additive difference-set condition introduced by Carlet and later posed for the Kasami functions at NSUCRYPTO 2019. Starting from the known half-size property of the derivative image, we express the Fourier correction as twisted root counts and prove their required nonnegativity by an incidence argument on the Fermat cubic. An exact average over the slopes then forces equality pointwise. The argument covers every admissible pair $(n,k)$ and has been formalised and machine-checked in Lean 4 with Mathlib.</description>
+    </item>
+    <item>
+      <title>Uniform Bessel bounds for endpoint crossings in the persistent random walk</title>
+      <link>https://paperswithlean.com/paper/2610.06935.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.06935.html</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Arjun Pemmasani</dc:creator>
+      <category>formalization</category><category>probability</category><category>combinatorics</category>
+      <description>Many results, including the explicit crossing bracket for all N≥2, are formalized in Lean 4. The Lean kernel rechecks the integer certificates for N≤174.
+
+A ball bounces down a Galton board, where its first bounce&#x27;s direction is fair while every later bounce repeats the previous bounce&#x27;s direction with probability $p$, all the way down to some bin. We ask for which $p$ the middle bin is exactly as likely as the end bins, a question originally posed by Kagey. We find that for $N$ bounces, the tie occurs when the ball changes direction (turns) approximately $\log N$ times on average. We compare the central bin with a Bessel function, with an error bound that is explicit for all $N$. This yields an explicit interval for the tie at every $N \geq 2$, rather than just for large $N$. This is done analytically for $N \geq 175$, and for smaller $N$ exactly by integer arithmetic, cross-verified in Lean. We also find the tie of every other bin with the end bins and the shift caused by periodic boundaries.</description>
+    </item>
+    <item>
       <title>Truly Subquadratic 3SUM and Truly Subcubic APSP via Triangles in Sparse Lopsided Graphs</title>
       <link>https://paperswithlean.com/paper/2610.06783.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2610.06783.html</guid>
@@ -578,94 +666,6 @@ Many computations admit several valid execution orders because independent subgo
       <description>Main results (irreducible-representation classification, unique trace extension, separable faithful model, density/CH statements) are formalized in Lean 4 with Mathlib in MathlibAnnex.
 
 We construct in ZFC a unital, simple, infinite-dimensional $C^*$-algebra whose nonzero irreducible representations form a single unitary equivalence class, but which admits a faithful representation on a separable Hilbert space. The algebra contains a unital copy of the canonical anticommutation relation (CAR) algebra, and the normalized CAR trace has a unique extension among all states. This extension is tracial, and its GNS representation is separable and faithful, with weak closure the hyperfinite $\mathrm{II}_1$ factor. In contrast, every nonzero irreducible representation acts on a Hilbert space of density $2^{\aleph_0}$. The construction separates the added unitaries into shell terms, controlled by finite CAR relations, and rank-one defect terms. These relations determine every irreducible representation of the generated algebra and every extension of the CAR trace. The algebra has norm density $2^{\aleph_0}$; consequently, the continuum hypothesis (CH) is equivalent over ZFC to the existence of a counterexample to Naimark&#x27;s problem of norm density $\aleph_1$.</description>
-    </item>
-    <item>
-      <title>Gödel&#x27;s and Scott&#x27;s Variants of the Ontological Argument in Lean 4 and TPTP THF</title>
-      <link>https://paperswithlean.com/paper/2609.26806.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.26806.html</guid>
-      <pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Christoph Benzmüller</dc:creator>
-      <category>formalization</category><category>benchmark</category><category>logic</category><category>verification</category>
-      <description>Ports an Isabelle/HOL formalization of Gödel&#x27;s and Scott&#x27;s ontological arguments to Lean 4, using #print axioms to track frame conditions, and exports TPTP THF benchmarks.
-
-The Isabelle/HOL dataset of Benzmüller and Scott&#x27;s study of Gödel&#x27;s ontological argument and Scott&#x27;s variant (Monatshefte für Mathematik, 2025) is carried to Lean 4 and from there back to the automated provers, as a benchmark independent of either proof assistant. The port covers all thirty theories, structure and names preserved: 548 statements compare identical as parsed, every named result is proved again, and five results the original reports without replaying them are proved here. For every theorem, #print axioms gives the postulates its proof consumes: Scott&#x27;s necessary existence and modal collapse need only a symmetric frame, confirming that KB suffices. The benchmark, in TPTP THF and SMT-LIB, turns the steps of an argument debated in philosophy into 294 theorems, alongside 45 statements the original refutes or leaves open, ten left open there. Five THF provers, and cvc5 on SMT-LIB, prove 227 theorems within ten seconds on one core and 232 within sixty, and none proves any of the 45. E and Leo-II solve the most, although Leo-II&#x27;s calculus has been unchanged for about a decade and was only repaired and modernised here, as release 2.2. Vampire, whose later version won the higher-order division of CASC-30, solves the most in no configuration. Only E and Leo-II are measured in their own automatic mode: Zipperposition proves 101 in a single mode and 213 with its developers&#x27; portfolio, Vampire 174 without options and 209 with a higher-order schedule that its CASC mode does not select, and Leo-III 159 alone and 177 with E as partner.</description>
-    </item>
-    <item>
-      <title>The Odlyzko-Poonen Conjecture on Irreducibility of Random Polynomials</title>
-      <link>https://paperswithlean.com/paper/2609.26771.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.26771.html</guid>
-      <pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Constantin Kogler</dc:creator>
-      <category>formalization</category><category>number-theory</category><category>probability</category>
-      <description>All results, including needed prior-work results, were formalized in Lean (credited to an AI system), with source code in an accompanying repository.
-
-The Odlyzko-Poonen conjecture states that a monic polynomial of constant coefficient $1$ and with remaining coefficients chosen independently and uniformly from $\{0,1 \}$ is irreducible over the rational numbers with probability tending to one as the degree tends to infinity. We prove the Odlyzko-Poonen conjecture unconditionally.</description>
-    </item>
-    <item>
-      <title>Learning to Fluctuate: Statistical Foundations for Causal Tabular Pretraining</title>
-      <link>https://paperswithlean.com/paper/2609.26290.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.26290.html</guid>
-      <pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Zhiheng Zhang</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>probability</category><category>ml-theory</category>
-      <description>All 21 numbered results are mapped to compiled Lean 4.32 declarations, using Git-pinned Mathlib and a formalized Berry–Esseen theorem, with a kernel-verification record.
-
-Causal tabular foundation models amortize effect estimation across synthetic mechanisms, but latent-effect supervision rewards posterior shrinkage rather than encoding the repeated-sample response needed in a fixed deployment population. We introduce fluctuation-supervised pretraining (FSP): each synthetic table is labeled by its average treatment effect plus its efficient influence-function fluctuation; deployment remains a frozen forward pass. Along the path $T_{λ,P}=θ(P)+λP_nψ_P$, we prove an endpoint transition: every fixed $λ&lt;1$ retains label ambiguity of order $(1-λ)^2/n$, whereas full fluctuation makes the Gaussian label observable and reduces optimal finite-stratum causal label-prediction risk to order $n^{-2}$. A finite-pretraining bound combines label, network, episode-sampling, and optimization errors; its sampling defect controls fixed-mechanism bias, mean squared error, variance, Gaussian approximation, and, with variance-head accuracy, studentized coverage. Complementary lower bounds separate local $n^{-1}$ ATE risk from the $\log N/M$ excess risk of generic finite-dictionary episode learning. Experiments trace the learned sampling response. Across 24 nonlinear continuous-covariate cells at trained context lengths, continuous-row FSP lowers checkpoint-mean macro RMSE by 7.0% versus S-learner and wins all 12 weak-overlap cells; validation-selected Summary FSP deploys $11.6\times$ faster per table in our warm one-thread benchmark. Under effect shift, matched Raw FSP lowers mean-checkpoint RMSE by 54.2% and teacher defect by 99.0% versus latent-effect supervision, and RMSE by 10.2% versus the released CausalPFN-S checkpoint. Known-effect semisynthesis tests coverage; two randomized-study evaluations show that lower RMSE can coexist with residual attenuation.</description>
-    </item>
-    <item>
-      <title>Maximal Filters in the Lattice of Partitions of an Infinite Set</title>
-      <link>https://paperswithlean.com/paper/2609.26201.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.26201.html</guid>
-      <pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>David Victor Feldman, Alexander Wilce</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>topology</category><category>logic</category>
-      <description>The paper&#x27;s results were formalized and machine-checked in Lean 4 with Mathlib, using the Aristotle system; partitions are modelled as Setoids and the ultrapower as germs.
-
-We study maximal (proper) filters in the complete lattice of partitions of an infinite set $X$. In the language of uniform spaces, these are precisely the atoms of the lattice of zero-dimensional uniformities on $X$, introduced by Pelant and Reiterman and studied further by Pelant, Reiterman, Rödl and Simon. The first half of this paper recovers, sharpens, and extends their classification in purely partition-theoretic terms. {Call a maximal filter of partitions {\em type I} if it does not contain all finite partitions, and {\em type II} if it does.} Type I filters are induced, in an essentially unique way, by ultrafilters on families of pairwise disjoint doubletons. {A type II filter} determines a non-principal ultrafilter on $X$, the heart; the heart determines the filter precisely when {the former} is minimal in the Rudin–Keisler order. Each member $F$ of {a type II filter} gives rise to a closed fiber in $X^{*} = βX \setminus X$, {consisting of} the set of ultrafilters agreeing with the heart on $F$. We prove a trichotomy describing the topology of arbitrary fibers. We then show that the fibers do not encode the filter: fibers do not form a semilattice under intersection, the closure of an infinite discrete set of ultrafilters of a single Rudin–Keisler type (a sparse set, in our terminology) need not be a fiber, and a partition incompatible with a member of the filter may have a {fiber strictly larger than that member.} A representation that does succeed is nevertheless available in another category: the {type-II filters} with heart $\mathfrak{u}$ correspond to the maximal proper substructures of the ultrapower $X^X\!/\mathfrak{u}$ of the full structure on $X$. The topological representation problem remains open.</description>
-    </item>
-    <item>
-      <title>The Missing Zigzag: Cycles of Semitone Trichords and a Conservation Law in Equal Temperament</title>
-      <link>https://paperswithlean.com/paper/2609.26114.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.26114.html</guid>
-      <pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>David Victor Feldman</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>combinatorics</category>
-      <description>The zigzag classification (conservation law, exclusions at n=6 and 12, and existence construction) is formalized and machine-checked in Lean 4 with Mathlib.
-
-A cycle of nine pitch classes in twelve-tone equal temperament can be arranged so that its nine consecutive three-note windows realize, exactly once each, every trichord type containing a semitone – types taken up to transposition but not inversion. Such cycles exist in abundance, and generalize to n-tone equal temperament, where the windows realize the n-3 semitone-containing types. In every one of the 1764 such cycles in twelve-tone equal temperament, the chromatic trichord 012 appears scalarly, as a direct chromatic run, and never in a broken &quot;zigzag&quot; contour such as 1-0-2. Why is the zigzag missing? We show that the zigzag presentation behaves as a conserved topological charge of an underlying interval-flow network: it occurs if and only if 3 divides n and n is neither 6 nor 12. The forward obstruction is a Z/3-valued conservation law, proved for all n by a weight-function argument; the two exceptional temperaments – one of them the common Western tuning – are excluded by finite certificates; and existence for every other multiple of 3 follows from an explicit construction. We also quantify rarity, and give exact censuses well beyond the reach of direct search. The classification is machine verified in Lean 4 in both directions. The paper is written for two audiences. Musical sections require no more than pitch-class set vocabulary; the mathematical development is self-contained and elementary, yet fully rigorous.</description>
-    </item>
-    <item>
-      <title>A Polytopal Realization of Higher-Categorical Associahedra</title>
-      <link>https://paperswithlean.com/paper/2609.25316.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.25316.html</guid>
-      <pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Spencer Backman, Nathaniel Bottman, Daria Poliakova</dc:creator>
-      <category>formalization</category><category>combinatorics</category><category>geometry</category><category>ai-agents</category>
-      <description>The authors used Anthropic&#x27;s AI models to produce a Lean 4 formalization proving the barycentric velocity fan is polytopal for all categorical n-associahedra.
-
-We describe a polytopal realization of categorical $n$-associahedra. The normal fan of this polytopal realization is a modification of the authors&#x27; velocity fan and was found by OpenAI&#x27;s Astra model.</description>
-    </item>
-    <item>
-      <title>FrontierMath Erdős</title>
-      <link>https://paperswithlean.com/paper/2609.25050.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.25050.html</guid>
-      <pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Tom Adamczewski, Thomas F. Bloom</dc:creator>
-      <category>benchmark</category><category>theorem-proving-ml</category><category>ai-agents</category><category>combinatorics</category>
-      <description>Benchmark of 68 open Erdős problems stated in Lean 4 with Mathlib; AI agents must produce Lean proofs, which the Comparator tool checks.
-
-We introduce FrontierMath Erdős (FME), a benchmark of 68 Erdős problems that are open as of August 2026. To solve a task in FME, AI systems must resolve (prove or disprove) one of the 68 conjectures in the proof assistant Lean. Our 68 problems were selected by the second author among 652 open problems on erdosproblems.com for their mathematical interest and difficulty. AIs have recently resolved several open problems in mathematics, but these demonstrations fall short of a systematic study of AI capabilities. FME evaluates every AI model on the same fixed problems, autonomously and under the same budget. We evaluated five AIs with a budget of \$300 per problem. One (GPT-6 Astra) scored 3%, and all others scored 0%.</description>
-    </item>
-    <item>
-      <title>The logarithmic spiral is optimal for shoreline search: a computer-assisted proof</title>
-      <link>https://paperswithlean.com/paper/2609.24454.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.24454.html</guid>
-      <pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Alexander Temerev</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>geometry</category>
-      <description>Formalizes the finite-dimensional and one-dimensional measure-theoretic reduction lemmas (polygonal reduction, Kneser–Poulsen on the line) in eight sorry-free Lean 4/Mathlib modules.
-
-A ship starts at a point of the plane and moves at unit speed; it has to reach an unknown straight line, of which neither the distance nor the direction is known. The competitive ratio of a path is the supremum, over all lines, of the time at which the line is reached divided by its distance. Baeza-Yates, Culberson and Rawlins conjectured that a logarithmic spiral, with ratio $C_{\mathrm{sp}} = 13.8111351794611\ldots$, is optimal. We give a computer-assisted proof. Paths are arbitrary: the distance from the start and the polar angle may both decrease. The proof lifts the set of found directions to the universal cover of the circle, where unfolding the polar angle can only increase it (Kneser-Poulsen on the line); a bookkeeping inequality with a monotone final source then bounds the covered measure by the reward of a three-state relaxed control problem, in which inward motion is an ordinary control and excursions below the guaranteed disk are impulses. An explicit $C^1$ storage function, a tensor cubic B-spline plus a closed-form term, satisfies the dissipation inequalities of that problem at the spiral&#x27;s level and is tight only at the spiral; this is verified with about $10^6$ boxes of Arb ball arithmetic, an exact jet and an interval Hessian at the spiral.</description>
     </item>
   </channel>
 </rss>
