@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Let the Library Speak: Self-Advertised Method Selection for Formal Proving · Papers With Lean</title>
+<meta name="description" content="LLM-based formal provers can retrieve relevant lemmas and prior proofs, but relevance alone does not say whether a mathematical method can be used on the current theorem. A method has prerequisites, a target, an intended action, and obligations that its use leaves to prove.…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Let the Library Speak: Self-Advertised Method Selection for Formal Proving">
+<meta property="og:description" content="LLM-based formal provers can retrieve relevant lemmas and prior proofs, but relevance alone does not say whether a mathematical method can be used on the current theorem. A method has prerequisites, a target, an intended action, and obligations that its use leaves to prove.…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.09401.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.09401.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.09401v1" target="_blank" rel="noopener"><img src="../thumbs/2610.09401.jpg" alt="First page of Let the Library Speak: Self-Advertised Method Selection for Formal Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Let the Library Speak: Self-Advertised Method Selection for Formal Proving</h1>
+        <p class="authors">Xiaopeng Yuan, Suijin Wang, Yanli Wang, Haibo Jin, Peng Kuang, Jerry Wang, Lijun Yu, Haohan Wang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 7, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.09401v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.09401" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a library of 82 Method Contracts with Mathlib anchors and Lean-checked scaffolds, and selects methods to guide an LLM-based Lean prover.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">LLM-based formal provers can retrieve relevant lemmas and prior proofs, but relevance alone does not say whether a mathematical method can be used on the current theorem. A method has prerequisites, a target, an intended action, and obligations that its use leaves to prove. Methods that look equally related to a theorem may therefore differ substantially in whether they offer a plausible next step. We formulate this as an applicability-aware method-selection problem and introduce self-advertisement: before candidates are ranked, a model generates a problem-specific proposal for each one, stating what part of the goal it targets, what action it would take, and what conditions that action requires. We organize 82 reusable methods from Putnam 2000-2014 as Method Contracts, which pair applicability descriptions with Mathlib anchors, a checked example or scaffold, and expected proof obligations. A single batched call elicits proposals across the library; vague or unsupported proposals are demoted, yielding a ranked shortlist accompanied by inspectable claims about each candidate&#x27;s use. We analyze when similarity-based representations cannot distinguish methods with different applicability, how errors in applicability estimates affect shortlist quality, and what a checked scaffold guarantees under its stated assumptions. Against lexical, embedding, and embedding-plus-LLM reranking baselines, self-advertisement achieves 95.0% hit@5 on Putnam 2015-2025, compared with 84.2% for the strongest reranker. On IMO ProofBench, it achieves 91.7% compared with 88.3%. These results indicate improved coverage of annotated methods in the retrieved shortlists, particularly on Putnam.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-based formal provers retrieve lemmas and proofs by relevance. Relevance does not show whether a mathematical method is actually applicable to the current Lean goal, given its prerequisites and the obligations it leaves.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Method selection is framed as an applicability-aware retrieval problem over 82 Method Contracts drawn from Putnam 2000–2014. Each contract pairs an applicability description with Mathlib anchors, a Lean-checked example or scaffold, and expected proof obligations. In one batched call, an LLM writes a problem-specific proposal (target, action, required conditions) for every contract. A commitment gate demotes vague or unsupported proposals, and a tiered ranking produces the shortlist; an optional runoff refines the top choice.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.09401/pipeline_figure.png" alt=""><figcaption>Figure 1: Self-advertised method selection. Given a theorem, a single model call asks every contract in the library how it would be used. A gate demotes proposals that are vague (Pigeonhole) or unsupported (AM-GM, since a_{i}\geq 0 is not given), and the top-ranked contract (Cauchy–Schwarz) goes to the prover. Inset: similarity retrieval would pick AM-GM instead.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Self-advertisement reaches 95.0% hit@5 on Putnam 2015–2025, versus 84.2% for the strongest embedding-plus-LLM reranker. On IMO ProofBench it reaches 91.7% versus 88.3%. Adding the top-ranked contract to a fixed-budget proof loop increases the number of problems proved, e.g. 12.5% vs 5.8% on Putnam for the AxProverBase baseline.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Putnam All</th><th>IMO Basic</th><th>IMO Adv.</th><th>IMO All</th></tr></thead><tbody><tr><td>pass@20</td><td>0.8</td><td>3.3</td><td>0.0</td><td>1.7</td></tr><tr><td>APOLLO</td><td>2.5</td><td>13.3</td><td>0.0</td><td>6.7</td></tr><tr><td>AxProverBase</td><td>5.8</td><td>20.0</td><td>0.0</td><td>10.0</td></tr><tr><td>+ Self-adv. contract</td><td>12.5</td><td>26.7</td><td>3.3</td><td>15.0</td></tr></tbody></table><div class="tbl-cap">Downstream proving success (%) in a fixed-budget proof loop</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

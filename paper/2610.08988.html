@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Associativity of Multiplication Is Hard for Resolution · Papers With Lean</title>
+<meta name="description" content="SAT solvers are empirically known to perform poorly when reasoning about multiplication. Yet for over a decade we have lacked a theoretical explanation for this phenomenon. CDCL SAT solvers implicitly search for resolution proofs, and no lower bound on proof size has ruled out…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Associativity of Multiplication Is Hard for Resolution">
+<meta property="og:description" content="SAT solvers are empirically known to perform poorly when reasoning about multiplication. Yet for over a decade we have lacked a theoretical explanation for this phenomenon. CDCL SAT solvers implicitly search for resolution proofs, and no lower bound on proof size has ruled out…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.08988.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.08988.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.08988v1" target="_blank" rel="noopener"><img src="../thumbs/2610.08988.jpg" alt="First page of Associativity of Multiplication Is Hard for Resolution"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Associativity of Multiplication Is Hard for Resolution</h1>
+        <p class="authors">Vincent Liew</p>
+        <div class="row">
+          <span class="badge">cs.CC</span>
+          <span class="date">Oct 6, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-slate" href="../#tag=logic">logic</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.08988v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.08988" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/dysfunctor/associativity" target="_blank" rel="noopener" title="dysfunctor/associativity">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Appendix B provides an AI-generated (Claude) Lean 4 formalization of the main lower-bound theorems, released as a GitHub repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">SAT solvers are empirically known to perform poorly when reasoning about multiplication. Yet for over a decade we have lacked a theoretical explanation for this phenomenon. CDCL SAT solvers implicitly search for resolution proofs, and no lower bound on proof size has ruled out the existence of short proofs that solvers simply fail to find. We give the first lower bound of this kind by showing that general resolution proofs of the associativity of $n$-bit multiplication require size $2^{Ω((n/\log n)^{1/4})}$. This lower bound holds for a broad class of multiplier encodings based on partial product summation, including the standard array and Wallace-tree multipliers used to bit-blast multiplication in SMT solvers. This result resolves an open problem of Beame and Liew. The proof constructs a reduction from a perfect-matching principle on bounded-degree bipartite expander graphs to multiplier associativity. Itsykson, Slabodkin, and Sokolov proved that this principle is hard for resolution. The lower bound for multiplier associativity follows. The same reduction, when combined with Håstad&#x27;s recent lower bound for the perfect-matching principle of the odd grid, yields an exponential lower bound for multiplier associativity in the stronger bounded-depth Frege proof systems.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">SAT solvers perform poorly on multiplication, but no proof-size lower bound had ruled out short resolution proofs for basic multiplication properties. Beame and Liew posed as an open problem whether associativity of multiplication is hard for resolution.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors define strip-local multiplier encodings, a class that includes array and Wallace-tree multipliers. They reduce a star-local extension of the perfect-matching principle on bounded-degree bipartite expanders to the associativity formula, using a restriction built from Golomb-ruler index maps. Known width lower bounds of Itsykson–Slabodkin–Sokolov then transfer to the associativity formula. The main theorems are formalized in Lean 4, with the formalization generated by Claude.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.08988/associativity-formula.png" alt=""><figcaption>Figure 2: The associativity instance \mathsf{Assoc}_{n} . The two inner multipliers \mathsf{Mul}_{n} compute \mathbf{x}\mathbf{y} and \mathbf{y}\mathbf{z} , the two outer multipliers \mathsf{Mul}_{2n} compute (\mathbf{x}\mathbf{y})\mathbf{z} and \mathbf{x}(\mathbf{y}\mathbf{z}) , and the miter variables e_{i} , with the long miter clause e_{0}\vee\cdots\vee e_{4n-1} , assert that (\mathbf{x}\mathb</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.08988/refutation-shape.png" alt=""><figcaption>Figure 4: The refutation of \mathsf{SPM}(H) , the star-local extension of perfect matching. This refutation uses \mathsf{SPM}(H) to derive a subclause of each clause of the restricted, substituted \mathsf{Assoc}_{n} in a constant number of steps. The restricted, substituted refutation of \mathsf{Assoc}_{n} then derives \bot from these clauses.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Resolution refutations of n-bit multiplier associativity require size 2^{Ω((n/log n)^{1/4})}, which resolves the Beame–Liew open problem. Combining the same reduction with Håstad&#x27;s odd-grid lower bound gives exponential lower bounds in bounded-depth Frege.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

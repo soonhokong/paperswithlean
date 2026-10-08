@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When Double Rounding is Correct · Papers With Lean</title>
+<meta name="description" content="Number libraries, which implement number formats and their arithmetic in software, are used to simulate hardware, making hardware behavior reproducible and thus verifiable and easier to design. However, modern machine learning accelerators are difficult to simulate, as they…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="When Double Rounding is Correct">
+<meta property="og:description" content="Number libraries, which implement number formats and their arithmetic in software, are used to simulate hardware, making hardware behavior reproducible and thus verifiable and easier to design. However, modern machine learning accelerators are difficult to simulate, as they…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.09005.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.09005.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.09005v1" target="_blank" rel="noopener"><img src="../thumbs/2610.09005.jpg" alt="First page of When Double Rounding is Correct"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">When Double Rounding is Correct</h1>
+        <p class="authors">Brett Saiki, Bill Zorn, Cynthia Richey, Zachary Tatlock</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Oct 6, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.09005v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.09005" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/bksaiki/mpfx-lean" target="_blank" rel="noopener" title="bksaiki/mpfx-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Format containment and correct double-rounding results are mechanized in Lean 4, with LLMs (Claude) used to mechanize prose proofs; supplementary artifact provided.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Number libraries, which implement number formats and their arithmetic in software, are used to simulate hardware, making hardware behavior reproducible and thus verifiable and easier to design. However, modern machine learning accelerators are difficult to simulate, as they increasingly use specialized number formats that existing number libraries do not support. It is costly to extend these libraries using traditional methods: each combination of operation, format, and rounding mode typically requires a bespoke implementation. An easier way is to double round—compute at higher precision, then re-round—so that one high-precision kernel serves many formats, but double rounding is only known to be correct in select cases. We give a precise, efficiently checkable characterization of when double rounding is correct across many formats and rounding modes. Our result rests on a novel abstract number format that unifies fixed- and floating-point representations, reducing the correctness of double rounding to format containment: whether every value of one format is representable in another. We mechanized these results in Lean 4. In addition, we introduce a format inference algorithm that, given a sequence of operations, bounds each expression by a number format guaranteed to contain its result. We apply these insights in two ways. First, we present MPFX, a correctly-rounded, multi-precision number library that exploits correct double rounding to efficiently simulate many number formats. MPFX&#x27;s correctly-rounded operations are up to 11x (mean: 6.05x) faster than MPFR&#x27;s, and competitive with SoftFloat&#x27;s—between 0.46x and 1.63x as fast (mean: 0.94x)—at the same precision. Second, in a case study, we implement a software simulation of a hardware specification using both SoftFloat and MPFX&#x27;s primitives; the MPFX version is up to 13.5x faster.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Number libraries must simulate many specialized ML number formats, and writing a bespoke implementation for each combination of operation, format and rounding mode is costly. Double rounding (compute at higher precision, then re-round) avoids this, but it was only known to be correct in select cases.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors define an abstract number format A(p, exp, b) that unifies fixed- and floating-point formats. This reduces correct double rounding to format containment, which is decided by efficient rules on the format parameters. They add a format inference algorithm that bounds intermediate expressions by a format. The results are mechanized in Lean 4: definitions and theorem statements were written by hand, and LLMs mechanized the prose proofs.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.09005/floating-point-numbers.png" alt=""><figcaption>Figure 4. Representable values on the real line for a floating-point format with an initial quantum q=2^{-2} and a maximum precision of p=2 .</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">MPFX, a C++ correctly-rounded multi-precision library built on correct double rounding, is up to 11x faster than MPFR (mean 6.05x) and comparable to SoftFloat (mean 0.94x). In an MX dot-product case study, the MPFX-based simulation is up to 13.5x faster than the SoftFloat-based one.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.09005/speedup.png" alt=""><figcaption>Figure 10. Relative speedup over SoftFloat for each operation, datatype, and rounding mode. The top and bottom panels show single-precision (FP32) and half-precision (FP16), with the six operations along the x -axis. Within each operation, the bars are, left to right, MPFR, FloppyFloat (FP32 only), CPFloat, MPFX/HW, and MPFX/EFT, each as three bars for the RNE, RTP, and RTZ modes; the dashed line </figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.09005/mx_dot_prod_error.png" alt=""><figcaption>Figure 11. Mismatches between the specification in Figure 2 (left) and a naive implementation that runs the entire dot product uniformly in FP32.</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

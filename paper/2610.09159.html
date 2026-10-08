@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SpecGuard: Proving a Task Is Broken Before the Agent Cheats · Papers With Lean</title>
+<meta name="description" content="As autonomous coding agents get increasingly deployed, the risk that accidental or adversarially injected misspecifications in tasks lead to dangerous agent behavior is critical to address. Prior work has shown that agents given such tasks rarely flag the conflict and instead…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpecGuard: Proving a Task Is Broken Before the Agent Cheats">
+<meta property="og:description" content="As autonomous coding agents get increasingly deployed, the risk that accidental or adversarially injected misspecifications in tasks lead to dangerous agent behavior is critical to address. Prior work has shown that agents given such tasks rarely flag the conflict and instead…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.09159.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.09159.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.09159v1" target="_blank" rel="noopener"><img src="../thumbs/2610.09159.jpg" alt="First page of SpecGuard: Proving a Task Is Broken Before the Agent Cheats"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">SpecGuard: Proving a Task Is Broken Before the Agent Cheats</h1>
+        <p class="authors">Param Biyani, Krishnamurthy Dvijotham</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 6, 2026 · v1</span>
+          <span class="badge">cs.LO</span> <span class="badge">cs.SE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.09159v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.09159" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">LLM agents autoformalize coding-task descriptions and tests into Lean 4, and the Lean kernel checks proofs certifying that the two cannot both be satisfied.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">As autonomous coding agents get increasingly deployed, the risk that accidental or adversarially injected misspecifications in tasks lead to dangerous agent behavior is critical to address. Prior work has shown that agents given such tasks rarely flag the conflict and instead cheat, editing tests or hard-coding expected outputs, and the actions taken to cheat can cause real damage, such as deleting a security defense to make a corrupted test pass. It remains unclear whether such conflicts can be established with independently verifiable evidence before the agent acts. We present SpecGuard, which detects and formally certifies these conflicts between task intent and tests. Given only the task description and codebase, SpecGuard autoformalizes the intended behaviour into a Lean 4 specification. The tests are formalized independently, and the Lean kernel checks whether any implementation could satisfy both formalizations, producing a machine-checked certificate when none can. On conflicted SWE-bench tasks, SpecGuard detects up to 72.8% of conflicts and formally certifies up to 51.1%, with a nearly five-fold lower conflict miss rate than model-based judgment. SpecGuard provides a pre-execution safety check that identifies reward-hacking opportunities through formal certification of task-level conflicts, before any agent behavior is observed. Our code is available at <a href="https://github.com/prmbiy/specguard" target="_blank" rel="noopener">https://github.com/prmbiy/specguard</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Coding agents given tasks whose descriptions conflict with their tests often cheat, for example by editing tests or hard-coding outputs. The question is whether such conflicts can be established with independently verifiable evidence before any agent acts.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">SpecGuard has three agents. A SpecAgent explores the codebase and writes an executable Lean 4 specification from the task description, without seeing the tests. A TestAgent formalizes the test requirements independently. A Certifier builds a semantic connector between the two and tries to prove that no implementation satisfies both, giving a Lean kernel-checked conflict certificate. All agents iterate with Lean compiler feedback.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.09159/pipeline.png" alt=""><figcaption>Figure 3: Overview of SpecGuard . The SpecAgent generates an executable formal specification from the description and codebase without access to the tests. The TestAgent formalizes the test requirements. The Certifier constructs a semantic connector and attempts to produce a kernel-checked certificate of disagreement.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On conflicted SWE-bench tasks, SpecGuard detects up to 72.8% of conflicts and formally certifies up to 51.1%. Its conflict miss rate with GPT-5.6 Sol is 8.1%, versus 39.8% for an LLM-judge baseline. It also yields 8 Lean-certified conflicts among 22 real GitHub conflicts.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.09159/pop_figure.png" alt=""><figcaption>Figure 1: Headline results for SpecGuard .</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Method</th><th>Detected</th><th>Certified</th><th>FN</th><th>Inconcl.</th></tr></thead><tbody><tr><td>SpecGuard</td><td>57.0</td><td>51.1</td><td>8.1</td><td>34.9</td></tr><tr><td>SpecGuard (paired tests)</td><td>73.9</td><td>67.0</td><td>4.9</td><td>21.2</td></tr><tr><td>Judge Agent (k=5)</td><td>60.2</td><td>–</td><td>39.8</td><td>0.0</td></tr><tr><td>Python Reference (paired tests)</td><td>74.8</td><td>–</td><td>3.2</td><td>22.1</td></tr></tbody></table><div class="tbl-cap">Comparison with baselines on conflicted SWE-bench tasks (GPT-5.6 Sol, %)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
