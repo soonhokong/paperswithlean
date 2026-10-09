@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not All Error Yields to Scale: Where Scaling Stops in Vision-Language Inference · Papers With Lean</title>
+<meta name="description" content="Vision-language models (VLMs) face a fixed-budget trade-off between processing more visual information for fine-grained perception and using a larger language backbone for complex reasoning. Existing studies do not tell us which combination of backbone size and input resolution…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Not All Error Yields to Scale: Where Scaling Stops in Vision-Language Inference">
+<meta property="og:description" content="Vision-language models (VLMs) face a fixed-budget trade-off between processing more visual information for fine-grained perception and using a larger language backbone for complex reasoning. Existing studies do not tell us which combination of backbone size and input resolution…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.01640.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.01640.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.01640v1" target="_blank" rel="noopener"><img src="../thumbs/2610.01640.jpg" alt="First page of Not All Error Yields to Scale: Where Scaling Stops in Vision-Language Inference"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Not All Error Yields to Scale: Where Scaling Stops in Vision-Language Inference</h1>
+        <p class="authors">Xinye Zhao, Yunkai Dang, Yunchen Wu, Wenbin Li</p>
+        <div class="row">
+          <span class="badge">cs.CV</span>
+          <span class="date">Oct 1, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.01640v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.01640" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">An appendix gives Lean 4/Mathlib source that machine-checks the algebraic core of the closed-form compute-allocation rule, including uniqueness and budget elasticities.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Vision-language models (VLMs) face a fixed-budget trade-off between processing more visual information for fine-grained perception and using a larger language backbone for complex reasoning. Existing studies do not tell us which combination of backbone size and input resolution to deploy, especially in high-resolution deployments. To address this gap, we propose the Separable Law that describes how VLM performance changes with language backbone size and visual token count. We fit the law to measurements from 26 InternVL and QwenVL models, with language backbone sizes from 1B to 72B, on four high-resolution benchmarks with image sizes from 224 pixels to 8K. We find that the questions responding to scaling can be predicted from the skill they require, while a substantial fraction never responds at all. We also find that the two model families gain similarly from a larger backbone, while their gains from more visual tokens differ sharply. Combined with a cost law, the Separable Law gives a closed-form rule for allocating compute between backbone size and visual tokens. When deployment is limited to available configurations, the law identifies model and image sizes that perform close to the best feasible choice under the same budget. We hope our work offers a principled way to decide how much a model should be allowed to see at high resolution, given what it must reason about.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Under a fixed inference budget, vision-language models must trade compute between a larger language backbone and more visual tokens, especially for high-resolution images. Existing scaling studies do not say which combination of backbone size and input resolution to deploy.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors propose the Separable Law, L(N,R) = e_inf + A/N^alpha + B/R^beta, and fit it to 26 InternVL and QwenVL models (1B–72B) on four high-resolution benchmarks with inputs from 224 px to 8K. Combining it with a fitted power-law cost model gives a closed-form optimal allocation via a visual–parameter exchange condition. The algebraic core of this allocation is certified in Lean 4 with Mathlib. The proof checks the budget and balance identities, the uniqueness of their intersection, and the budget elasticities.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.01640/Figure1_Motivation.png" alt=""><figcaption>Figure 2: Motivation. Left: Language backbone size ( N ) and visual tokens ( R ) both consume inference compute, which raises the question of how to split a fixed budget between them. Right: Scaling helps many questions but leaves others wrong at every scale we test.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">About a third of questions stay wrong at every scale tested, and which ones they are depends mainly on the required visual skill. Reasoning tasks saturate more often than perception tasks. The two families have similar capacity exponents but very different visual-token exponents, so the law directs extra compute to the backbone for InternVL and to visual tokens for QwenVL. The law&#x27;s top-ranked configurations perform close to the best feasible option under the same budget.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.01640/fig_finding1.png" alt=""><figcaption>Figure 4: Question-level scaling heterogeneity and responses by domain and skill. Left: Mean probability of the correct option versus its variability across (N,R) configurations. Middle: Probability gain \bar{p}_{Q_{4}}-\bar{p}_{Q_{1}} versus its low-compute value \bar{p}_{Q_{1}} . Right: Accuracy across compute quartiles, with one panel per visual domain and one curve per skill.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Task type</th><th>Mean e_inf</th><th>Median e_inf</th><th>Floor</th><th>Saturation</th></tr></thead><tbody><tr><td>Perception</td><td>0.073</td><td>0.001</td><td>72%</td><td>20%</td></tr><tr><td>Reasoning</td><td>0.155</td><td>0.001</td><td>53%</td><td>33%</td></tr></tbody></table><div class="tbl-cap">Per-task fitted floor e_inf across 40 fits</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
