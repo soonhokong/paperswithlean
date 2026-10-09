@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LEVER: Adaptive Cost-Aware Proof Search Over AND/OR Graphs · Papers With Lean</title>
+<meta name="description" content="Mathematicians value proofs for more than correctness: among correct proofs, simplicity, purity and the computational cost of finding them vary widely. Yet LLM-powered theorem provers largely search for any correct proof, and improve its quality only after it is found. We…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LEVER: Adaptive Cost-Aware Proof Search Over AND/OR Graphs">
+<meta property="og:description" content="Mathematicians value proofs for more than correctness: among correct proofs, simplicity, purity and the computational cost of finding them vary widely. Yet LLM-powered theorem provers largely search for any correct proof, and improve its quality only after it is found. We…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.11862.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.11862.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.11862v1" target="_blank" rel="noopener"><img src="../thumbs/2610.11862.jpg" alt="First page of LEVER: Adaptive Cost-Aware Proof Search Over AND/OR Graphs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">LEVER: Adaptive Cost-Aware Proof Search Over AND/OR Graphs</h1>
+        <p class="authors">Nihal Jain, Shuangjie Yao, Begum Cicekdag, Zhuo Zhang, Suman Jana</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 8, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.11862v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.11862" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">LLM agents decompose goals into Lean 4 subgoal files checked by the Lean kernel, evaluated on PutnamBench; includes a Lean-verified proof of an algorithmic property.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Mathematicians value proofs for more than correctness: among correct proofs, simplicity, purity and the computational cost of finding them vary widely. Yet LLM-powered theorem provers largely search for any correct proof, and improve its quality only after it is found. We propose LEVER, a proof search algorithm that makes the objective over correct proofs programmable and optimizes it during search. LEVER scores partial proofs over an AND/OR proof graph, combining realized objective values with predictions for open subgoals, so the objective guides search before a proof is complete. The same mechanism optimizes computational cost, proof length, topical impurity, and even their weighted combinations, while the Lean kernel enforces correctness. On PutnamBench in Lean 4, under matched budgets, LEVER costs 34% less than a strong single-conversation agent while raising the solve rate from 80% to 96%. On reducing topical impurity, i.e., how far a proof strays from its theorem&#x27;s subject, it improves over post-hoc refactoring (42% reduction against 33%) at two-thirds of the cost and more reliably; on proof length, the metric refactoring is built for, it approaches refactoring. Varying the objective&#x27;s weights traces a quality-cost trade-off curve, so the user can choose how much a better proof is worth. Overall, LEVER is a performant, cost-efficient and tunable proof search algorithm for navigating the space of correct proofs.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-based theorem provers usually search for any correct proof and improve its quality only afterwards through post-hoc refactoring. The cost of the search and properties of the proof such as length or topical impurity are not optimized while the search runs.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">LEVER represents partial proofs as an AND/OR graph in which goals are OR nodes and decompositions are AND nodes. Each partial proof is scored by combining the realized objective values of solved parts with LLM-predicted values for open subgoals, and the best-scoring partial proof is expanded. Each expansion is an LLM agent conversation in a Lean workspace, with tools for compilation and Mathlib retrieval. The Lean kernel checks every decomposition and the assembled final proof.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 80 hard PutnamBench problems in Lean 4 with a $3 budget, LEVER solves 96.3% of problems against 80.0% for the NearAI agent, at 34% lower cost. Optimizing for topical impurity reduces impurity by 42%, against 33% for post-hoc refactoring, at two-thirds of the cost. On proof length, LEVER comes close to refactoring.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Solved</th><th>Cost ($)</th><th>Tokens In (M)</th><th>Tokens Out (M)</th></tr></thead><tbody><tr><td>NearAI</td><td>0.800</td><td>1.44</td><td>42.0</td><td>0.36</td></tr><tr><td>Lever</td><td>0.963</td><td>0.95</td><td>17.9</td><td>0.62</td></tr></tbody></table><div class="tbl-cap">Cost of proof search at a $3 budget (90% common cache rate)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
