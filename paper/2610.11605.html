@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NanoProof: Open and Efficient Automated Theorem Proving in Lean 4 · Papers With Lean</title>
+<meta name="description" content="We introduce NanoProof, to our knowledge the first factorized execution-guided theorem prover in Lean 4 whose training data, extraction tooling, training pipeline, and weights are all released, making it end-to-end reproducible using open-source resources. To this end, we build…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NanoProof: Open and Efficient Automated Theorem Proving in Lean 4">
+<meta property="og:description" content="We introduce NanoProof, to our knowledge the first factorized execution-guided theorem prover in Lean 4 whose training data, extraction tooling, training pipeline, and weights are all released, making it end-to-end reproducible using open-source resources. To this end, we build…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.11605.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.11605.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.11605v1" target="_blank" rel="noopener"><img src="../thumbs/2610.11605.jpg" alt="First page of NanoProof: Open and Efficient Automated Theorem Proving in Lean 4"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">NanoProof: Open and Efficient Automated Theorem Proving in Lean 4</h1>
+        <p class="authors">Matěj Kripner, Milan Straka</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 8, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.11605v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.11605" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Kripner/nanoproof" target="_blank" rel="noopener" title="Kripner/nanoproof">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Trains an MCTS-based execution-guided prover that interacts with Lean 4, and releases LeanTree, a Mathlib proof-tree dataset and Lean interaction tool.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We introduce NanoProof, to our knowledge the first factorized execution-guided theorem prover in Lean 4 whose training data, extraction tooling, training pipeline, and weights are all released, making it end-to-end reproducible using open-source resources. To this end, we build and release a dataset of structured proof trees, as well as a tool for programmatic interaction and data extraction within the Lean 4 formal verifier. To support sustainable research, we focus on compute efficiency to facilitate accessible training and evaluation. NanoProof achieves 50.8% pass@16 on MiniF2F-Test, exceeding the two closest systems of its class, HyperTree Proof Search and ABEL, at roughly 90x and 7x less compute, and using more than four orders of magnitude less compute than AlphaProof. Stronger open-weight provers exist, but they are fine-tuned from large pretrained language models and release neither training data nor pipeline; NanoProof shows that the factorized execution-guided class of provers can be rebuilt from scratch with modest resources.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Factorized execution-guided provers such as HyperTree Proof Search, ABEL and AlphaProof have not been reproducible, because their code, data and pipelines are closed. They are also very expensive to train.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">NanoProof follows AlphaProof&#x27;s AND-OR MCTS proof search. A 1B-parameter actor-critic network proposes Lean tactics and predicts proof depth, and tactics are executed in Lean during search. The network is base-trained on Nemotron-CC-Math and then fine-tuned on LeanTree, a new dataset of 92,927 verified structured proof trees extracted from Mathlib. It is then improved by reinforcement learning on NuminaMath-LEAN statements. The extraction tool, Lean interface, data and weights are all released.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.11605/rl_infra.png" alt=""><figcaption>Figure 2 . Runtime architecture of RL training.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">NanoProof reaches 50.8% pass@16 on MiniF2F-Test. This exceeds HyperTree Proof Search and ABEL while using roughly 90x and 7x less compute, respectively. 9.53% of Mathlib tactic proofs could not yet be converted into LeanTree.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
