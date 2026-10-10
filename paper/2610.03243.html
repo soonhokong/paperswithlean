@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Kinetic Theory of the Gated Self-Evolving LLM Agent · Papers With Lean</title>
+<meta name="description" content="We find traces of fluid dynamics in the self-evolution of an LLM agent, and give the kinetic theory that predicts them. Gated self-evolution is the loop in which an agent rewrites its own skills under a validation gate. Self-evolution research has treated the agent as the unit;…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Kinetic Theory of the Gated Self-Evolving LLM Agent">
+<meta property="og:description" content="We find traces of fluid dynamics in the self-evolution of an LLM agent, and give the kinetic theory that predicts them. Gated self-evolution is the loop in which an agent rewrites its own skills under a validation gate. Self-evolution research has treated the agent as the unit;…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.03243.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.03243.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.03243v1" target="_blank" rel="noopener"><img src="../thumbs/2610.03243.jpg" alt="First page of A Kinetic Theory of the Gated Self-Evolving LLM Agent"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Kinetic Theory of the Gated Self-Evolving LLM Agent</h1>
+        <p class="authors">Haipeng Wang</p>
+        <div class="row">
+          <span class="badge">cs.GR</span>
+          <span class="date">Oct 2, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-orange" href="../#tag=probability">probability</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.03243v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.03243" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The hitting-time certificate (Theorem A) and a fluctuation-variance special case are machine-checked in Lean, with Lean sources released in the supplementary material.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We find traces of fluid dynamics in the self-evolution of an LLM agent, and give the kinetic theory that predicts them. Gated self-evolution is the loop in which an agent rewrites its own skills under a validation gate. Self-evolution research has treated the agent as the unit; we study instead the individual instances inside it. Here the agent is DSH-plugin-based: it runs in production on DeepSeek Harness (DSH), and its plugins satisfy four architectural properties (permutation symmetry, reversibility, acyclicity, typed contracts), which license treating these instances as identical hard spheres; the theory is accordingly scoped to DSH-class plugin populations. On this scope the paper builds three theory layers. The rigorous layer, independent of any analogy, comprises an any-time hitting-time certificate bounding the expected rounds to any prescribed improvement, a resolution law that prices held-out validation budgets, and a separation theorem: the daemon must stay outside the population, because merging evaluator with evaluated voids the certificate. The kinetic layer is a master equation over the plugin x version x task grid with four operators (collision, reaction, external field, gate), where collision is co-activation. Its moment hierarchy, the step that turns a gas into fluid equations, generates the falsifiable statistical signatures. Throughout, the fluid reading is a bounded analogy: momentum is not conserved, so no Navier-Stokes limit exists. The measured layer runs on a faithful minimal instance, a large library of four-parameter skill plugins retrieved one per episode with a co-activation probe, in a one-model, one-task-family WebShop environment; every element maps to the DSH loop by architectural role. Population fluctuation scaling is density-gated: invisible at sparse edit density, it emerges at the predicted rate under tripled density, as directional evidence.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Self-evolving LLM agents rewrite their own skills under a validation gate, and their population-level statistics lack a predictive theory. The authors model the plugin-version instances inside a DSH-based agent registry as a gas of hard spheres.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Four architectural axioms of DSH plugins (permutation symmetry, reversibility, acyclicity, typed contracts) license a kinetic master equation with collision, reaction, external-field and gate operators. A rigorous layer gives a hitting-time certificate bounding the expected number of rounds to a target improvement, a resolution law for validation budgets, and a separation theorem that keeps the evaluator outside the population. The certificate is machine-checked in Lean. Predictions are tested on a minimal WebShop instance with four-parameter skill plugins.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.03243/overview_gpt.png" alt=""><figcaption>Figure 1: Graphical overview of the proposed kinetic theory: the self-evolution run of a gated LLM agent, interpreted through the framework of fluid mechanics.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.03243/operator_circuit.png" alt=""><figcaption>Figure 3: The driven-dissipative circuit of the operators. Reward drives the pump into the collision chamber Q[f,f] (fed by the shared experience database), the reaction loop R[f] mutates species, the gate valve G[f] admits improving candidates and drains rejected edits, and the population tank \rho(x,v,e,t) rejoins the loop; F is the external task field. Drive–dissipation balance at the valve is </figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Fluctuation scaling is flat at sparse edit density (β̂=-0.04) and reaches β̂=-0.58 at tripled density, close to the predicted -1/2, which the authors report as directional evidence. A collision probe gives a fan-3 final score of 0.495 versus 0.301 for fan-1.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.03243/e6_density_gated.png" alt=""><figcaption>Figure 6: Density-gated scaling (corrected gate). Points: per-arm standard deviations of the two seed finals (records: Appendix C ). Left: sparse density, flat \hat{\beta}=-0.04 . Right: tripled density, CLT emerges at \hat{\beta}=-0.58 vs. -1/2 .</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.03243/e5_waterline_formal8.png" alt=""><figcaption>Figure 8: Device traces. Left: six b{=}3 validation waterlines (near-additive, deviations {\leq}0.024 ). Right: collision probe—fan-3 final 0.495 vs. fan-1 0.301 (formal9).</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Probe</th><th>Criterion</th><th>Measured</th><th>Verdict</th></tr></thead><tbody><tr><td>P1 scaling, b=3</td><td>β̂&lt;0</td><td>-0.04 (r²=0.12)</td><td>flat; undetectable</td></tr><tr><td>P1 dial, b=9</td><td>report as measured</td><td>-0.58 (r²=0.94)</td><td>matches -1/2, directional</td></tr><tr><td>Collision</td><td>fan-3 vs fan-1 final</td><td>0.495 vs 0.301</td><td>net gain +0.19</td></tr></tbody></table><div class="tbl-cap">Selected signature probes</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
