@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Riemann-Siegel remainder as a fractional summand · Papers With Lean</title>
+<meta name="description" content="Starting from the Riemann-Siegel decomposition of $ζ(s)$ given in Siegel&#x27;s 1932 paper, we introduce a change of variable, $t=I(T)$, that replaces Siegel&#x27;s coupled pair &quot;imaginary part $t$ / summation index $m$&quot; with one real index $T$. We then split Siegel&#x27;s single remainder…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Riemann-Siegel remainder as a fractional summand">
+<meta property="og:description" content="Starting from the Riemann-Siegel decomposition of $ζ(s)$ given in Siegel&#x27;s 1932 paper, we introduce a change of variable, $t=I(T)$, that replaces Siegel&#x27;s coupled pair &quot;imaginary part $t$ / summation index $m$&quot; with one real index $T$. We then split Siegel&#x27;s single remainder…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.03728.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.03728.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.03728v2" target="_blank" rel="noopener"><img src="../thumbs/2610.03728.jpg" alt="First page of The Riemann-Siegel remainder as a fractional summand"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">The Riemann-Siegel remainder as a fractional summand</h1>
+        <p class="authors">Paul Stahura</p>
+        <div class="row">
+          <span class="badge">math.NT</span>
+          <span class="date">Aug 22, 2026 · v2</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.03728v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.03728" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/paul-stahura/zest" target="_blank" rel="noopener" title="paul-stahura/zest">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes in Lean 4 with Mathlib the algebraic identity R=R1+R2 and the critical-line consequences d1=d2 and equal legs, with no sorry.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Starting from the Riemann-Siegel decomposition of $ζ(s)$ given in Siegel&#x27;s 1932 paper, we introduce a change of variable, $t=I(T)$, that replaces Siegel&#x27;s coupled pair &quot;imaginary part $t$ / summation index $m$&quot; with one real index $T$. We then split Siegel&#x27;s single remainder integral $R$ into two exact pieces, $R_{1ps}$ and $R_{2ps}$, and prove that $R=R_{1ps}+R_{2ps}$, so that $ζ=Σ_1+R_{1ps}+Σ_2+R_{2ps}$. Our central observation is that each of these remainders is nothing more than one additional, fractional partial summand appended to its Dirichlet sum: $ζ(s)=\sum_{n=1}^{m}n^{-s}+\hat{d}_1(m+1)^{-s}+χ(s)\sum_{n=1}^{m}n^{s-1}+\hat{d}_2χ(s)(m+1)^{s-1}$, with $\hat{d}_1,\hat{d}_2$ real numbers (always positive on the critical line), the fractions of those two summands that are used. As a corollary, when $σ=\frac{1}{2}$ one has $d_1=d_2$ (equivalently $\hat{d}_1=\hat{d}_2$); this fact is formally verified in Lean. Also, with this rescaling the remainder terms are nearly periodic in $T$ with period one, converging to a fixed waveform in the fractional part of $T$. This decomposition of Siegel&#x27;s $R$ was discovered through experimental mathematics using a spiral visualization of the partial sums, described later in the paper. We also discuss a number of other observations, including what we call the yin yang curves, the zero counting function, and ovals of equal length leg loci.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Siegel&#x27;s 1932 Riemann–Siegel formula writes ζ(s) as two finite Dirichlet sums plus an opaque remainder integral R, with t serving both as the imaginary part of s and as the source of the summation cutoff. The aim is a cleaner structural description of that remainder.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A change of variable t=I(T) makes a single real index T determine both t and the cutoff m=⌊T⌋. Siegel&#x27;s R is split exactly into R1+R2, each lying along the next (M-th) summand of its Dirichlet sum with a real weight. The algebraic identity, and the critical-line equality d1=d2 with its equal-leg corollaries, are formalized in Lean 4 with Mathlib (no axioms beyond Lean&#x27;s standard three), with AI assistance in writing the Lean code. Spiral visualizations of partial sums guided the discovery.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.03728/fig_F_curve.png" alt=""><figcaption>Figure 4: The trace of \overline{F(\tau)} of ( 27 ) in the complex plane for -1.5\leq\tau\leq 1.5 , with red dots every 0.1 in \tau . The apparent poles at the integers are removable (black squares), with \overline{F(\tau)}\to\tfrac{1}{2}-n as \tau\to n : the values -\tfrac{1}{2} , +\tfrac{1}{2} , +\tfrac{3}{2} at n=1,0,-1 . Points of the curve one apart in \tau are exactly one unit apart in the p</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">ζ equals the main and dual Dirichlet sums, each extended by one fractional summand with real weights that are positive on the critical line, where d1=d2. The rescaled weights are nearly periodic in T and converge to a limit waveform. Further observations cover yin-yang curves, zero counting and equal-leg loci.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.03728/fig_d_limit.png" alt=""><figcaption>Figure 3: The closed-form profile d(x) (blue) against the exact \sqrt{m+1}\,d_{1} sampled at T=10+x , 50+x , 400+x on the critical line. Already at T=10+x the samples sit on the curve; the marked squares are the exact values (\tfrac{1}{4},\tfrac{1}{4}) , (\tfrac{1}{2},\tfrac{1}{2}) , (\tfrac{3}{4},\tfrac{3}{4}) , and the dashed red lines are the extremes m_{0}=0.2268951\ldots and 1-m_{0}=0.7731048</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.03728/fig_combined_strips.png" alt=""><figcaption>Figure 21: Figures 19 and 20 overlaid: the equal-leg locus L_{1}=L_{2} (blue), the folded-leg locus \vartheta_{2}=\pi (red), the critical line (blue, since it belongs to the equal-leg locus), and the zeta zeros (black dots). A zero requires both conditions at once, so zeros occur exactly where red meets blue. On the critical line the blue locus is the line itself (Corollary 9.1 ), and every red cu</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
