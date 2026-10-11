@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practical Runtime Enforcement of First-Order Temporal Requirements · Papers With Lean</title>
+<meta name="description" content="Runtime enforcers observe a system&#x27;s behavior and exert control over it to ensure that the system always adheres to its requirements. Many natural requirements not only formulate restrictions on the system&#x27;s present behavior, but also impose obligations on its future behavior;…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Practical Runtime Enforcement of First-Order Temporal Requirements">
+<meta property="og:description" content="Runtime enforcers observe a system&#x27;s behavior and exert control over it to ensure that the system always adheres to its requirements. Many natural requirements not only formulate restrictions on the system&#x27;s present behavior, but also impose obligations on its future behavior;…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.04611.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.04611.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.04611v1" target="_blank" rel="noopener"><img src="../thumbs/2610.04611.jpg" alt="First page of Practical Runtime Enforcement of First-Order Temporal Requirements"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Practical Runtime Enforcement of First-Order Temporal Requirements</h1>
+        <p class="authors">François Hublet, David Basin, Srđan Krstić</p>
+        <div class="row">
+          <span class="badge">cs.SE</span>
+          <span class="date">Oct 3, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.04611v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.04611" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/runtime-enforcement/EnfFlash" target="_blank" rel="noopener" title="runtime-enforcement/EnfFlash">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Theorems on the core logic, let-normal form, compilation soundness, and enforcement-loop soundness are formally verified in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Runtime enforcers observe a system&#x27;s behavior and exert control over it to ensure that the system always adheres to its requirements. Many natural requirements not only formulate restrictions on the system&#x27;s present behavior, but also impose obligations on its future behavior; for instance, agentic security may require personal data collected during a run to be erased by some deadline. In an ever-growing compliance landscape, real-world systems may be subject to hundreds of such requirements. However, existing enforcement mechanisms supporting complex policies are often too slow for production software; instead, developers may resort to non-temporal access control mechanisms and ad-hoc instrumentation, but these scale poorly with requirement complexity. To address this problem, we introduce an efficient algorithm and tool for enforcing complex temporal requirements and demonstrate its performance. Specifically, we identify a fragment of Metric First-Order Temporal Logic (MFOTL) that can be enforced with low runtime complexity while supporting a rich family of practically relevant requirements, including obligations. We then design an enforcement algorithm for this fragment and implement it in EnfFlash, a novel tool that enforces requirements with latency up to 44x lower than EnfGuard, the previous state-of-the-art enforcer, on standard benchmarks, and up to three orders of magnitude lower on security policies for LLM agents. This performance is achieved by compiling requirements into imperative programs that we efficiently interpret. We evaluate EnfFlash both standalone, on existing benchmarks, and integrated in web applications as an enforcement backend. We demonstrate that it can enforce a substantial 400-line MFOTL formula specifying the GDPR on a social network while adding under 15 ms to each page view, which is sufficient for most interactive and real-time applications.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Runtime enforcers for complex first-order temporal requirements, including obligations about future behavior, are often too slow for production systems. Developers therefore fall back on non-temporal access control or ad-hoc instrumentation.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors identify a fragment of Metric First-Order Temporal Logic (MFOTL) that can be enforced with low runtime complexity and still includes obligations. Formulas in this fragment are compiled, via let-normalization, guard extraction, rewriting and dependency analysis, into EF, an operational enforcement DSL whose per-time-point cost is bounded. EF programs run in a Rust interpreter. The core theorems, including let-normal form and the soundness of compilation and of the enforcement loop, are mechanized in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">EnfFlash has up to 44x lower latency than EnfGuard on standard benchmarks and up to three orders of magnitude lower latency on security policies for LLM agents. It enforces a 400-line GDPR MFOTL policy in a web application while adding under 15 ms per page view.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.04611/fig_micro.png" alt=""><figcaption>Figure 8. Evaluation results (Tables 2 – 5 ); in (d), prev. is the number of attacks prevented out of 143.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Policy</th><th>EnfFlash</th><th>EnfPoly</th><th>EnfGuard</th><th>Dogwood</th></tr></thead><tbody><tr><td>consent</td><td>0.08 (1)</td><td>0.11 (1)</td><td>1.32 (6)</td><td>0.19 (1)</td></tr><tr><td>lawfulness</td><td>0.08 (1)</td><td>0.09 (2)</td><td>1.46 (7)</td><td>0.19 (2)</td></tr><tr><td>gdpr</td><td>0.09 (2)</td><td>–</td><td>3.97 (13)</td><td>–</td></tr><tr><td>deletion</td><td>0.08 (1)</td><td>–</td><td>0.32 (3)</td><td>–</td></tr></tbody></table><div class="tbl-cap">Average latency (max in parentheses) on GDPR benchmark policies (subset)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

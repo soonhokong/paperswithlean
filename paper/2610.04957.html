@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trinity: One Differentiable Physics for Training, Refining and Scoring Generative Floorplanners · Papers With Lean</title>
+<meta name="description" content="Floorplanning arranges the blocks of a chip and decides their shapes under objectives that press blocks together, short wirelength and a small outline, and constraints that hold them apart, non-overlap, clusters, MIB shapes and boundary blocks. Recent diffusion placers train on…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Trinity: One Differentiable Physics for Training, Refining and Scoring Generative Floorplanners">
+<meta property="og:description" content="Floorplanning arranges the blocks of a chip and decides their shapes under objectives that press blocks together, short wirelength and a small outline, and constraints that hold them apart, non-overlap, clusters, MIB shapes and boundary blocks. Recent diffusion placers train on…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.04957.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.04957.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.04957v1" target="_blank" rel="noopener"><img src="../thumbs/2610.04957.jpg" alt="First page of Trinity: One Differentiable Physics for Training, Refining and Scoring Generative Floorplanners"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Trinity: One Differentiable Physics for Training, Refining and Scoring Generative Floorplanners</h1>
+        <p class="authors">Shih-Ying Yeh, Tzu-Sian Wang, Xuehai Wang, Jia-Hua Lee, Daniel Z. Kaplan, Ming-Qi Xu, Wuqian Tang, Chun-Yao Wang, Shang-Hong Lai, Chun-Yi Lee</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 4, 2026 · v1</span>
+          <span class="badge">cs.AR</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.04957v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.04957" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Kohaku-Lab/Trinity" target="_blank" rel="noopener" title="Kohaku-Lab/Trinity">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The numbered theoretical results of an appendix are checked in Lean 4 against Mathlib, with some standard analytic steps assumed as hypotheses; code is in the supplementary material.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Floorplanning arranges the blocks of a chip and decides their shapes under objectives that press blocks together, short wirelength and a small outline, and constraints that hold them apart, non-overlap, clusters, MIB shapes and boundary blocks. Recent diffusion placers train on reference layouts alone and leave this coupled system to guidance, post-hoc loops and a legalizer, reporting only the endpoint, which hides what the generator contributes. We re-implement four of them under one recipe on FloorSet, score raw, refined and legalized layouts on one scale, and propose Trinity, a flow-matching floorplanner whose six differentiable functions for the constraints and objectives are its training loss term, the energy of a closed-form refiner after sampling and the base of a soft cost for every stage. The network thus learns the correction prior placers apply in their samplers, and sampling needs no guidance. Stage by stage, the training term lowers a plain transformer&#x27;s raw soft cost by 26% and matters most at short budgets, the shared refiner decides more of the final cost than the generator and matches a ported placer&#x27;s loop in 16 to 660 times fewer steps, Trinity&#x27;s refined soft cost is 36% below the best ported pipeline, the soft cost ranks settings as the contest&#x27;s hard cost does, and on the FloorSet val set the pipeline reaches a mean hard cost of 1.014 in 1.63 s per case.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Diffusion-based chip floorplanners train only on reference layouts. They leave the coupled constraints and objectives to guidance, post-hoc loops and legalization, and report only endpoint quality, which hides what the generator itself contributes.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Four prior diffusion placers are re-implemented under one recipe on FloorSet, and raw, refined and legalized layouts are scored on one shared scale. Trinity is a flow-matching transformer floorplanner. Its six differentiable constraint and objective functions serve three roles: a training loss term, the energy of a closed-form refiner after sampling, and the basis of a soft cost used at every stage. Supporting theoretical results in an appendix are machine-checked in Lean 4 with Mathlib.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.04957/fig_teaser.png" alt=""><figcaption>Figure 1: The network beside each pipeline is the generator that training updates and sampling evaluates. Left: In prior diffusion placers the constraints are absent from training (dashed), differ in form between stages ( \neq ), and the layouts in between are not measured. Middle: Trinity carries one set of constraint and objective functions, its differentiable physics, through training, refineme</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The training term lowers raw soft cost by 26%, and the shared refiner matches ported placers&#x27; loops in 16 to 660 times fewer steps. Trinity&#x27;s refined soft cost is 36% below the best ported pipeline, and the soft cost ranks settings consistently with the contest hard cost. On the FloorSet val set Trinity reaches a mean hard cost of 1.014 at 1.63 s per case.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.04957/J1_cases.png" alt=""><figcaption>Figure 60: Three FloorSet val set cases with 21, 60 and 120 blocks through the pipeline, 48 draws at \mathrm{NFE}{=}8 with 400 refiner steps and the shared legalizer, the draw with the cheapest legalized layout shown at every stage: the reference layout, the raw sample, the refined layout and the legalized layout. Blocks are coloured by constraint kind, every pairwise overlap region is red, block-</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>NFE</th><th>Steps</th><th>N</th><th>Mean cost</th><th>sec</th></tr></thead><tbody><tr><td>32</td><td>400</td><td>48</td><td>1.015</td><td>1.86</td></tr><tr><td>8</td><td>400</td><td>48</td><td>1.014</td><td>1.63</td></tr><tr><td>8</td><td>400</td><td>16</td><td>1.019</td><td>1.14</td></tr><tr><td>4</td><td>100</td><td>16</td><td>1.043</td><td>0.63</td></tr><tr><td>1</td><td>50</td><td>16</td><td>1.115</td><td>0.48</td></tr></tbody></table><div class="tbl-cap">FloorSet val set: hard cost and runtime by sampling budget</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
