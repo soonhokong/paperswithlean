@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The stacking number of a tree · Papers With Lean</title>
-<meta name="description" content="The stacking number of a graph is the least integer t &gt;= 2 such that every configuration of t pebbles can be transformed by pebbling moves into a configuration supported on one vertex. We prove that, for every finite tree T with at least two vertices, this number equals the…">
+<meta name="description" content="Csernák and Soukup introduced the stacking number of a graph: the least integer $t\ge2$ such that every configuration of $t$ pebbles can be transformed by pebbling moves into a configuration supported on one vertex. They conjectured an explicit formula for the stacking number of…">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The stacking number of a tree">
-<meta property="og:description" content="The stacking number of a graph is the least integer t &gt;= 2 such that every configuration of t pebbles can be transformed by pebbling moves into a configuration supported on one vertex. We prove that, for every finite tree T with at least two vertices, this number equals the…">
+<meta property="og:description" content="Csernák and Soukup introduced the stacking number of a graph: the least integer $t\ge2$ such that every configuration of $t$ pebbles can be transformed by pebbling moves into a configuration supported on one vertex. They conjectured an explicit formula for the stacking number of…">
 <meta property="og:url" content="https://paperswithlean.com/paper/2609.31811.html">
 <meta property="og:image" content="https://paperswithlean.com/thumbs/2609.31811.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -32,27 +32,27 @@
     <a class="backlink" href="../">← All papers</a>
     <div class="detail">
       <div class="detail-thumb">
-        <a href="https://arxiv.org/pdf/2609.31811v1" target="_blank" rel="noopener"><img src="../thumbs/2609.31811.jpg" alt="First page of The stacking number of a tree"></a>
+        <a href="https://arxiv.org/pdf/2609.31811v2" target="_blank" rel="noopener"><img src="../thumbs/2609.31811.jpg" alt="First page of The stacking number of a tree"></a>
       </div>
       <div class="detail-main">
         <h1 class="ptitle">The stacking number of a tree</h1>
         <p class="authors">John Fairfax-Ball</p>
         <div class="row">
           <span class="badge">math.CO</span>
-          <span class="date">Sep 25, 2026 · v1</span>
+          <span class="date">Sep 25, 2026 · v2</span>
           
         </div>
-        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
         <div class="btns">
-          <a class="btn primary" href="https://arxiv.org/pdf/2609.31811v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.31811v2" target="_blank" rel="noopener">Read PDF</a>
           <a class="btn" href="https://arxiv.org/abs/2609.31811" target="_blank" rel="noopener">arXiv abstract</a>
           <a class="btn repo-btn" href="https://github.com/jfairfaxball-348/TreeStack-Structural-Certificates-for-Stacking-on-Trees" target="_blank" rel="noopener" title="jfairfaxball-348/TreeStack-Structural-Certificates-for-Stacking-on-Trees">Code</a>
         </div>
         <div class="section-label first">TL;DR</div>
-        <div class="tldr-box">Proves the tree stacking-number formula conjectured by Csernák and Soukup, with the complete theorem formalized in Lean 4 using Mathlib.</div>
+        <div class="tldr-box">The main stacking-number theorem for trees and the stackability criterion are fully formalized in Lean 4 with Mathlib, audited for axioms, and registered with Palomar.</div>
         <div class="section-label">Abstract</div>
-        <div class="abs-full">The stacking number of a graph is the least integer t &gt;= 2 such that every configuration of t pebbles can be transformed by pebbling moves into a configuration supported on one vertex. We prove that, for every finite tree T with at least two vertices, this number equals the rooted distance-and-degree estimator conjectured by Csernák and Soukup. The proof uses an exact recursive characterization of stackability at a prescribed vertex, an explicit zero-score obstruction, and a weighted cancellation argument for arbitrary nonstackable configurations. The complete theorem is formalized in Lean 4; the formal result has also passed Palomar mechanical verification and is publicly registered as PALOMAR-2026-09-25-000010.</div>
-        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The stacking number of a graph is the least t&gt;=2 such that every configuration of t pebbles can be transformed via pebbling moves onto a single vertex. Csernák and Soukup conjectured an explicit rooted distance-and-degree estimator formula for trees, verified only computationally up to order seven.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An exact recursive characterization of stackability at a prescribed vertex is developed via integer branch messages sent across boundary edges recording gain or cost of clearing. An explicit zero-score obstruction configuration of mass estim(T)-1 establishes the lower bound. A weighted cancellation argument on local defect equations gives the upper bound for arbitrary nonstackable configurations, combined with an exact-size threshold lemma. The full theorem is formalized in Lean 4 with a pinned Mathlib revision.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For every finite tree with at least two vertices, stack(T)=estim(T), proving the conjecture for all trees without an order bound. The Lean declaration TreeStack.stack_eq_estim_of_two_le_card uses only the standard axioms propext, Quot.sound and Classical.choice, and passed independent mechanical verification.</p></div></div>
+        <div class="abs-full">Csernák and Soukup introduced the stacking number of a graph: the least integer $t\ge2$ such that every configuration of $t$ pebbles can be transformed by pebbling moves into a configuration supported on one vertex. They conjectured an explicit formula for the stacking number of a tree in terms of the degrees of its vertices and their distances from a chosen root. We prove this conjecture for every finite tree with at least two vertices. We also show that whether a configuration on a tree can be stacked at a given vertex is decided exactly by the sign of an integer score built from recursive branch messages; consequently, stackability can be tested with a linear number of arithmetic operations. The proof combines this criterion with an explicit zero-score obstruction and a weighted cancellation argument for arbitrary nonstackable configurations. The main theorem and the stackability criterion are formalized in Lean 4, and the main theorem has passed Palomar mechanical verification; it is publicly registered as PALOMAR-2026-09-25-000010.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Csernák and Soukup conjectured an explicit formula for the stacking number of a finite tree, the least t ≥ 2 such that every configuration of t pebbles can be moved by pebbling moves onto a single vertex. The formula is given in terms of vertex degrees and distances from a root.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Integer branch messages are defined recursively across edges, giving a rooted score S_r(C). A configuration is stackable at r exactly when S_r(C) &gt; 0, and necessity is proved for arbitrary move orders via a boundary-flux lemma. An explicit zero-score configuration of mass estim(T)−1 shows the lower bound, and a weighted cancellation argument over defect equations gives the upper bound. The whole proof is formalized in Lean 4 (pinned 4.35.0-rc2 plus a pinned Mathlib revision) as TreeStack.stack_eq_estim_of_two_le_card.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The conjecture stack(T) = estim(T) is proved for every finite tree with at least two vertices, and stackability can be tested with a linear number of arithmetic operations. The Lean proof uses only the standard axioms and passed Palomar mechanical verification, including NanoDa kernel replay (PALOMAR-2026-09-25-000010).</p></div></div>
       </div>
     </div>
   </div>
