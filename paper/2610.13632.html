@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Humanize Olympiad Agents: A Multi-Session Workflow for Olympiad Problem Solving with Solve, Review, Wiki, Verify · Papers With Lean</title>
+<meta name="description" content="Large language model (LLM) agents are rapidly improving on long-horizon scientific and olympiad tasks. Recent systems have produced a Lean-formalized resolution of the Navier–Stokes problem and autonomous solutions to four open questions in the Erdős Conjectures database. Yet…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Humanize Olympiad Agents: A Multi-Session Workflow for Olympiad Problem Solving with Solve, Review, Wiki, Verify">
+<meta property="og:description" content="Large language model (LLM) agents are rapidly improving on long-horizon scientific and olympiad tasks. Recent systems have produced a Lean-formalized resolution of the Navier–Stokes problem and autonomous solutions to four open questions in the Erdős Conjectures database. Yet…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.13632.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.13632.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.13632v1" target="_blank" rel="noopener"><img src="../thumbs/2610.13632.jpg" alt="First page of Humanize Olympiad Agents: A Multi-Session Workflow for Olympiad Problem Solving with Solve, Review, Wiki, Verify"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Humanize Olympiad Agents: A Multi-Session Workflow for Olympiad Problem Solving with Solve, Review, Wiki, Verify</h1>
+        <p class="authors">Zhengyang Zhang, Jing Xiong, Hongzhou Lin, Juihui Chung, Zijian Zhang, Song Han, Sihao Liu, Ligeng Zhu</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 9, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.13632v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.13632" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/humanfia/hoa" target="_blank" rel="noopener" title="humanfia/hoa">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Generates Lean proofs verified by Comparator and the Lean kernel, evaluated on PutnamBench and Lean-Eval, and formalizes physics problems as Lean statements.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language model (LLM) agents are rapidly improving on long-horizon scientific and olympiad tasks. Recent systems have produced a Lean-formalized resolution of the Navier–Stokes problem and autonomous solutions to four open questions in the Erdős Conjectures database. Yet neither system releases both its underlying model and complete inference stack. More broadly, a single agent session remains brittle on difficult problems: early errors can propagate, missing domain knowledge can stall progress, and apparent success can mask a misinterpretation or weakening of the original task. We introduce HOA (Humanize Olympiads Agent), an open, flow-level framework that coordinates multiple agent sessions through three complementary feedback channels. First, an independent reviewer evaluates each candidate and provides actionable feedback. Second, a structured wiki supplies task-specific knowledge that may be missing or unreliable in model pretraining. Third, a verifier checks generated Lean proofs against trusted challenge statements. With GPT-5.6 Sol, HOA achieves perfect scores on the IMO, IPhO, and IOI 2026, near-full marks on the IChO 2026 problem set, and solves all 672 problems (100%) on PutnamBench. On the Lean-Eval leaderboard, HOA ranks first, solving 251 of 304 problems (82.6%). We further evaluate HOA with open models. Using Kimi-K3, HOA achieves full scores on the IMO, IPhO, and IOI, and a gold-level score of 97.1% on the IChO. These results closely match the closed-source GPT-5.6 Sol + /Goal baseline on the IMO and IPhO, while exceeding it on the IChO and IOI, demonstrating that systematic feedback can help bridge substantial differences in base-model capability.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Single LLM agent sessions are brittle on hard olympiad and research-level problems. Early errors propagate, domain knowledge may be missing, and agents can misread or weaken the task. Prior strong systems do not release both their model and full inference stack.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">HOA is an open flow-level framework built on Humanize. It coordinates a worker, an independent reviewer, a structured wiki of provenance-tracked knowledge, and a task-specific verifier in an iterative repair loop. For mathematics and physics, generated Lean proofs are checked against trusted statements with Comparator and the Lean kernel, and a formalization agent turns physics problems into typed Lean statements. Programming tasks keep their native execution tests.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.13632/HOA_architecture_imagegen_v5_white_notitle.png" alt=""><figcaption>Figure 2: Overview of HOA. The worker receives the problem, acceptance plan, tools, budget, and prior feedback, and may retrieve provenance-bearing wiki records while building a versioned candidate. An independent reviewer inspects the frozen candidate and returns semantic findings. The worker and reviewer may both call the external verifier for objective checks. If any requirement fails, the find</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With GPT-5.6 Sol, HOA solves all 672 PutnamBench problems and ranks first on Lean-Eval with 251/304. It also reaches full or near-full scores on IMO, IPhO, IChO and IOI 2026. With the open model Kimi-K3, HOA matches or exceeds the closed /Goal baseline on these olympiads.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.13632/figure1_no_small_text_white_notitle_problem_case.png" alt=""><figcaption>Figure 1: HOA replaces a brittle one-shot workflow with iterative review, knowledge retrieval, and verification. The bottom row summarizes results from high-school olympiads to research-level formal mathematics.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>System</th><th>Open Source</th><th>Solved</th></tr></thead><tbody><tr><td>HOA (ours)</td><td>✓</td><td>251</td></tr><tr><td>AxiomProver</td><td>✗</td><td>246</td></tr><tr><td>Tau (caj.al)</td><td>✗</td><td>200</td></tr><tr><td>Aristotle (Harmonic)</td><td>✗</td><td>162</td></tr><tr><td>GPT-5.6 official</td><td>✗</td><td>112</td></tr></tbody></table><div class="tbl-cap">Lean-Eval research-level results (solved / 304)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

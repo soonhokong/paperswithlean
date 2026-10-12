@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Machine Unlearning for Federated Socially Fair k-Means Clustering · Papers With Lean</title>
+<meta name="description" content="Federated clustering can support applications such as patient stratification across hospitals and customer segmentation across distributed financial datasets. Responsible AI calls for fair representation of demographic groups and support for data deletion, motivated in part by…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Unlearning for Federated Socially Fair k-Means Clustering">
+<meta property="og:description" content="Federated clustering can support applications such as patient stratification across hospitals and customer segmentation across distributed financial datasets. Responsible AI calls for fair representation of demographic groups and support for data deletion, motivated in part by…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.13717.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.13717.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.13717v1" target="_blank" rel="noopener"><img src="../thumbs/2610.13717.jpg" alt="First page of Machine Unlearning for Federated Socially Fair k-Means Clustering"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Machine Unlearning for Federated Socially Fair k-Means Clustering</h1>
+        <p class="authors">Aravind Reddy, Deeraj S K, Mohd Wasif Raza, Saurav Prakash</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 9, 2026 · v1</span>
+          <span class="badge">cs.DS</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.13717v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.13717" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/arareddy/mufsc" target="_blank" rel="noopener" title="arareddy/mufsc">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The supplement includes Lean 4/Mathlib proofs of the replay and certificate results, fair-update and sufficient-statistic results, lower-bound constructions, and approximation-transfer calculations.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Federated clustering can support applications such as patient stratification across hospitals and customer segmentation across distributed financial datasets. Responsible AI calls for fair representation of demographic groups and support for data deletion, motivated in part by rights such as the GDPR&#x27;s right to erasure. These goals interact: deleting records can change the balance between groups and alter the clustering of the remaining population. We study exact machine unlearning for federated socially fair $k$-means, whose objective is to minimize the largest group-average squared distance to the nearest center. Our approach keeps separate local summaries for each group, so summaries at unaffected institutions remain valid as global fairness weights change. For two groups, we prove an initialization approximation guarantee independent of client group proportions under ideal sampling, and we show that same-seed replay reproduces retraining exactly. Reuse pays off most when a whole client withdraws: across three datasets, replay is $35.8\times$ faster than retraining for the initialization-only model and remains $2.4\times$ and $1.7\times$ faster with one and two fair-refinement rounds, which improve worst-group cost. For individual record deletions, gains are modest (about $1.06\times$), and certifying cached assignments can cost more than it saves. These results map where exact unlearning can profitably reuse computation. Code and reproducibility materials are available at <a href="https://github.com/arareddy/mufsc" target="_blank" rel="noopener">https://github.com/arareddy/mufsc</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Federated socially fair k-means minimizes the worst group-average squared distance to centers. Honoring data-deletion requests can shift group balance, so exact unlearning, meaning output identical to retraining on the retained records with the same seed, must account for changing global fairness weights.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Each client keeps separate per-group local summaries, so summaries at unaffected institutions stay valid when global fairness weights change. Counts, vector sums and squared-norm sums are accumulated exactly in integer arithmetic over fixed-point data, enabling same-seed replay that reproduces retraining. The authors prove an O(log^2 k) initialization approximation guarantee for two groups that is independent of client group proportions, and show that a natural merged summary loses a Theta(kappa) factor. Mathematical results are formalized in Lean 4 with Mathlib in the supplement.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">All 810 replay comparisons matched fresh training exactly. Whole-client withdrawal replay was 35.8x faster than retraining for the initialization-only model, and 2.4x and 1.7x faster with one and two fair-refinement rounds. Individual record deletions gave only about 1.06x speedup, and certifying cached assignments could cost more than it saved.</p><div class="sum-table"><table><thead><tr><th>Dataset</th><th>Compact T=0</th><th>Direct T=1</th><th>Direct T=2</th><th>Φ(T=0)</th><th>Φ(T=2)</th></tr></thead><tbody><tr><td>Adult</td><td>26.96</td><td>2.053</td><td>1.544</td><td>117.957</td><td>95.998</td></tr><tr><td>Bank</td><td>115.53</td><td>2.646</td><td>1.828</td><td>45.898</td><td>32.634</td></tr><tr><td>Credit</td><td>25.03</td><td>2.647</td><td>1.856</td><td>20.124</td><td>13.009</td></tr></tbody></table><div class="tbl-cap">Whole-client withdrawal speedups over retraining and worst-group cost by refinement budget</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
