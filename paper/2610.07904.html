@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ApexQuant: Data-Free Elastic Quantization by Residual Re-Isotropization · Papers With Lean</title>
+<meta name="description" content="We introduce ApexQuant, a calibration-free quantization method that recursively re-quantizes the residual error, serving as a refinement layer on top of existing quantizers. We establish that a fresh random rotation returns each residual to the uniform distribution on the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ApexQuant: Data-Free Elastic Quantization by Residual Re-Isotropization">
+<meta property="og:description" content="We introduce ApexQuant, a calibration-free quantization method that recursively re-quantizes the residual error, serving as a refinement layer on top of existing quantizers. We establish that a fresh random rotation returns each residual to the uniform distribution on the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.07904.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.07904.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.07904v1" target="_blank" rel="noopener"><img src="../thumbs/2610.07904.jpg" alt="First page of ApexQuant: Data-Free Elastic Quantization by Residual Re-Isotropization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">ApexQuant: Data-Free Elastic Quantization by Residual Re-Isotropization</h1>
+        <p class="authors">Aksel Fristrup, Sumit Pandey, Ankit Kariryaa</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 6, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-orange" href="../#tag=probability">probability</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.07904v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.07904" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/afristrup/ApexQuant" target="_blank" rel="noopener" title="afristrup/ApexQuant">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Section 3 theoretical results (re-isotropization, decay law, spherical marginals) are machine-checked in Lean 4 against Mathlib, with 154 public theorems.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We introduce ApexQuant, a calibration-free quantization method that recursively re-quantizes the residual error, serving as a refinement layer on top of existing quantizers. We establish that a fresh random rotation returns each residual to the uniform distribution on the hypersphere, which characterizes the rate of progressive error decay across successive passes. This result lets us determine, before any weight is read, how many passes a layer needs for a target weight-space error. Every prefix is itself a valid lower-rate model, so one artifact serves several precisions. We instantiate ApexQuant with three interchangeable stages, scalar, $E_8$ and trellis, and validate it on four open-weight LLMs and on Earth-observation and medical domains where in-distribution data is often unattainable as imagery arrives under restrictive licences or due to patient material under privacy constraints. Progressive re-isotropization comes within a few percent of full precision at four bits and gives the best two-bit arm we measure, in a completely data-free setting.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Calibration-free post-training quantization of neural networks is needed when calibration data is unavailable, for example because of licensing or privacy restrictions. Existing data-free quantizers also serve only a single bit-width per stored model.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ApexQuant recursively re-quantizes the residual error, applying a fresh random rotation before each pass. A proposition shows that a Haar rotation returns each residual to the uniform distribution on the sphere, so one codebook is optimal at every pass and error decay follows a closed-form law. The method is instantiated with scalar Lloyd–Max, E8 lattice and trellis stages. All Section 3 results except an arithmetic proposition are machine-checked in Lean 4 against Mathlib (154 public theorems, no extra axioms), including Mathlib-based statements about the normalised surface measure.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The predicted decay matches measured values to at least three decimals. On four LLMs, ApexQuant with the trellis stage is close to full precision at 4 bits and gives the best 2-bit results among data-free methods. Every prefix of passes is a valid lower-rate model, enabling elastic multi-precision inference from one artifact.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>b/w</th><th>TinyLlama</th><th>Phi-1.5</th><th>Mistral-7B</th><th>Qwen2.5-7B</th></tr></thead><tbody><tr><td>SINQ, g=64</td><td>≤2.53</td><td>4.537</td><td>1.431</td><td>2.107</td><td>6.152</td></tr><tr><td>HQQ, g=64</td><td>2.50</td><td>8.115</td><td>1.912</td><td>6.361</td><td>4.091</td></tr><tr><td>ApexQuant, E8</td><td>2.03</td><td>5.756</td><td>0.693</td><td>2.836</td><td>0.681</td></tr><tr><td>ApexQuant, trellis</td><td>2.03</td><td>3.201</td><td>0.447</td><td>1.903</td><td>0.477</td></tr></tbody></table><div class="tbl-cap">KL divergence (nats/token) vs fp16 on WikiText-2, 2-bit class (selected rows)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

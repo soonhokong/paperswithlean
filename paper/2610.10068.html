@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Efficient Provably Private Classification with a Tabular Foundation Model · Papers With Lean</title>
+<meta name="description" content="Tabular data underpin prediction and decision-making in medicine, finance, government and science, but often contain sensitive individual-level information, creating a need for accurate prediction while preserving privacy. Traditional private learning provides formal privacy…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Efficient Provably Private Classification with a Tabular Foundation Model">
+<meta property="og:description" content="Tabular data underpin prediction and decision-making in medicine, finance, government and science, but often contain sensitive individual-level information, creating a need for accurate prediction while preserving privacy. Traditional private learning provides formal privacy…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.10068.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.10068.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.10068v1" target="_blank" rel="noopener"><img src="../thumbs/2610.10068.jpg" alt="First page of Efficient Provably Private Classification with a Tabular Foundation Model"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Efficient Provably Private Classification with a Tabular Foundation Model</h1>
+        <p class="authors">Talal Alrawajfeh, Cristiana Diaconu, Ossi Räisä, Sebastian Rodriguez Beltran, Yuan He, John Bronskill, Richard E. Turner, Antti Honkela</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 7, 2026 · v1</span>
+          <span class="badge">cs.CR</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.10068v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.10068" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/TrustworthyMLHelsinki/PrivTab" target="_blank" rel="noopener" title="TrustworthyMLHelsinki/PrivTab">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 formalisation (DPMHCA.lean) verifies the sensitivity bound and adaptive Gaussian differential privacy composition underlying the private summary mechanism&#x27;s noise calibration.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Tabular data underpin prediction and decision-making in medicine, finance, government and science, but often contain sensitive individual-level information, creating a need for accurate prediction while preserving privacy. Traditional private learning provides formal privacy guarantees, but requires slow dataset-specific optimisation, suffers substantial utility loss under strong privacy, and is often difficult to apply correctly. Tabular foundation models adapt rapidly to new datasets, but existing models lack formal privacy guarantees, and are highly vulnerable to membership-inference attacks, limiting their use on sensitive data. Here we introduce PrivTab, an easy to use tabular foundation model for differentially private classification that embeds a privacy mechanism within its architecture. Pretrained on simulated datasets, PrivTab uses in-context learning to transform sensitive rows into compact, provably private summaries—effectively learning how to learn under privacy. PrivTab outperforms private linear and neural-network baselines under moderate-to-strong privacy, shows negligible membership leakage, maintains well-calibrated predictions under strong privacy, and reduces dataset fitting time by 10,000 times, requiring only a single forward pass. By combining formal privacy, speed, and easy of use, PrivTab brings recent advances in AI to applications where sensitive individual-level data have limited their adoption.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Tabular foundation models fit new datasets quickly but give no formal privacy guarantees and are vulnerable to membership inference. Traditional differentially private learning is slow, loses utility under strong privacy, and is hard to apply correctly.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">PrivTab embeds a differentially private multi-head cross-attention (DP-MHCA) mechanism in a tabular foundation model. Learnable pseudo-tokens compress the sensitive context rows into a noisy private summary, and all later predictions are post-processing of that summary. The model is pretrained on simulated tasks across a range of privacy levels. The sensitivity bound and adaptive GDP composition used for noise calibration are formally verified in Lean 4 and complemented by empirical audits.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.10068/dp-tnp-high-level.drawio.png" alt=""><figcaption>Figure 1 : Alternative approaches to tabular prediction from sensitive data. a , Private learning trains a new model on each sensitive dataset, requiring relatively slow dataset-specific optimisation. b , Non-private tabular learning fits new datasets in a single forward pass through in-context learning, but retains sensitive data for prediction. c , PrivTab instead releases a reusable private sum</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 33 TabArena datasets, PrivTab outperforms DP logistic regression and DP-MLP baselines under moderate-to-strong privacy and fits about 10,000 times faster. On the Maternal Health Risk dataset it shows negligible membership leakage, while TabPFN v3 and TabICL v2 have highly vulnerable records.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.10068/elo_rankings.png" alt=""></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.10068/maternal_health_risk_membership_panels_ab.png" alt=""><figcaption>Figure 5 : Record-level membership-inference protection. a , Distribution of the record-wise membership-inference AUC on the Maternal Health Risk dataset. For each record, we compute its AUC and 95% confidence interval, then plot the lower endpoint of that interval. Boxes show the interquartile range and median, whiskers span the central 95%, squares mark the maximum across records, and dotted ver</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
