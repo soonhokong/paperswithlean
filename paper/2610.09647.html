@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When Rank Rises as LLMs Degrade · Papers With Lean</title>
+<meta name="description" content="Post-training adapts language models in non-stationary environments. Practitioners monitor representation health with RankMe and related spectral statistics, often assuming that rank falls when representations degrade. We show that this assumption is unsafe for LLM…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="When Rank Rises as LLMs Degrade">
+<meta property="og:description" content="Post-training adapts language models in non-stationary environments. Practitioners monitor representation health with RankMe and related spectral statistics, often assuming that rank falls when representations degrade. We show that this assumption is unsafe for LLM…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.09647.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.09647.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.09647v1" target="_blank" rel="noopener"><img src="../thumbs/2610.09647.jpg" alt="First page of When Rank Rises as LLMs Degrade"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">When Rank Rises as LLMs Degrade</h1>
+        <p class="authors">Zhaohui Geoffrey Wang</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 7, 2026 · v1</span>
+          <span class="badge">cs.CL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.09647v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.09647" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">One supporting theorem, the non-negativity of the anisotropy deficit via AM-GM on the spectrum, is machine-checked in Lean 4.24.0 with Mathlib and an axiom audit.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Post-training adapts language models in non-stationary environments. Practitioners monitor representation health with RankMe and related spectral statistics, often assuming that rank falls when representations degrade. We show that this assumption is unsafe for LLM post-training. In a controlled study of Qwen3-0.6B with four degradation modes and three seeds, data duplication worsens held-out loss by 75% relative to healthy while increasing both original and centred RankMe; the latter changes by 13.5 pooled standard deviations. Covariance effective rank rises to nearly twice its healthy value. This failure is spectral dispersion rather than collapse, so a one-sided monitor rates the worst checkpoint as the healthiest. By contrast, a learning-rate misconfiguration lowers centred RankMe and k95, while uncentred RankMe is inconsistent across seeds. Direction is therefore a property of the regime-statistic pair and cannot be fixed by recalibration alone. We also distinguish two often-conflated statistics: RankMe normalises singular values, whereas covariance effective rank normalises eigenvalues. On raw intermediate-layer states in the pretrained model, massive activations pin the latter near 1 out of dimension d while RankMe retains usable range. We then test a two-sided, multichannel sequential monitor with separate calibration and test data. In a pre-registered shared-prefix, leave-one-seed-out evaluation, it detects all three damage regimes in every fold 10 to 60 steps after the fork and separates dispersion from downward-rank damage by firing direction. However, it never precedes held-out probe loss, and calibration with two seeds produces false alarms on the held-out healthy seed. Spectral monitoring can diagnose failure regimes, but it does not warn earlier than held-out loss, and validity claims require held-out healthy data.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Practitioners monitor LLM post-training with spectral statistics such as RankMe, assuming rank falls when representations degrade. The work tests whether that assumption holds and whether such statistics can serve as a reliable label-free early-warning monitor.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A controlled study of Qwen3-0.6B uses four degradation modes and three seeds, tracking RankMe (uncentred and centred), covariance effective rank, k95, an anisotropy deficit and cross-batch similarity. The authors separate RankMe (singular values) from covariance effective rank (eigenvalues) and examine how massive activations affect each. A two-sided, multichannel sequential monitor with a union-bound false-alarm correction is evaluated under a pre-registered, shared-prefix, leave-one-seed-out protocol. Non-negativity of the anisotropy deficit is machine-checked in Lean 4 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Under data duplication, held-out loss worsens by 75% while RankMe and effective rank rise (centred RankMe by 13.5 pooled s.d.); under learning-rate misconfiguration, the centred statistics fall. The monitor detects all damage regimes 10–60 steps after the fork and distinguishes dispersion from collapse, but it never precedes held-out probe loss and false-alarms on held-out healthy seeds.</p><div class="sum-table"><table><thead><tr><th>mode</th><th>probe loss</th><th>RankMe^c</th><th>r_eff</th><th>k95</th></tr></thead><tbody><tr><td>healthy</td><td>2.530±0.01</td><td>812.6±0.4</td><td>174.8±1.6</td><td>689.7±0.6</td></tr><tr><td>high_lr</td><td>3.153±0.16</td><td>799.9±3.5 ↓[3.6]</td><td>183.2±4.2 [1.9, n.s.]</td><td>665.7±5.9 ↓[4.1]</td></tr><tr><td>duplicate_data</td><td>4.429±0.31</td><td>877.9±4.8 ↑[13.5]</td><td>329.2±14.4 ↑[10.7]</td><td>782.0±7.0 ↑[13.1]</td></tr><tr><td>narrow_domain</td><td>2.586±0.01</td><td>816.4±0.8 ↑[4.2]</td><td>179.4±1.1 [2.4]</td><td>696.3±1.5 ↑[4.1]</td></tr></tbody></table><div class="tbl-cap">Endpoint diagnostics after 1000 steps (mean ± s.d. over 3 seeds; separation from healthy in pooled s.d.)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
