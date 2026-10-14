@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bipartite Carrier Compression and Machine-Certified Bounds in Schönhage Trilinear Multiplication Tensors · Papers With Lean</title>
+<meta name="description" content="Under the conditional framework breaking the longstanding O(n log n) integer multiplication barrier (originating from OpenAI Preprint #109), the asymptotic time complexity exponent T(n) = O(n (log n)^{1-κ}) is governed by bounding the second moment E[X^2] &lt; 1 of recursive…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bipartite Carrier Compression and Machine-Certified Bounds in Schönhage Trilinear Multiplication Tensors">
+<meta property="og:description" content="Under the conditional framework breaking the longstanding O(n log n) integer multiplication barrier (originating from OpenAI Preprint #109), the asymptotic time complexity exponent T(n) = O(n (log n)^{1-κ}) is governed by bounding the second moment E[X^2] &lt; 1 of recursive…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.14263.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.14263.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.14263v1" target="_blank" rel="noopener"><img src="../thumbs/2610.14263.jpg" alt="First page of Bipartite Carrier Compression and Machine-Certified Bounds in Schönhage Trilinear Multiplication Tensors"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Bipartite Carrier Compression and Machine-Certified Bounds in Schönhage Trilinear Multiplication Tensors</h1>
+        <p class="authors">Volkan Dağlı, Zerrin Dağlı, Dağhan Dağlı</p>
+        <div class="row">
+          <span class="badge">cs.CC</span>
+          <span class="date">Oct 9, 2026 · v1</span>
+          <span class="badge">cs.DS</span> <span class="badge">math.CO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.14263v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.14263" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.23268580" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 proofs, checked by norm_num with no sorry, verify the wire-width reduction identity and the strict improvement of the certified exponent κ over prior records.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Under the conditional framework breaking the longstanding O(n log n) integer multiplication barrier (originating from OpenAI Preprint #109), the asymptotic time complexity exponent T(n) = O(n (log n)^{1-κ}) is governed by bounding the second moment E[X^2] &lt; 1 of recursive branching processes over trilinear tensor carrier graphs. In this work, we present a constructive combinatorial optimization over the alternating carrier bipartite matching graphs of the Schönhage trilinear tensor decomposition at dimensions h=23 and h=25. Through an alternating augmenting path search, we uncover a non-trivial cluster-unlocking cascade that eliminates 185 carrier roles (95 roles in h=23 and 90 roles in h=25), reducing the global physical wire width by 377,890 wires from the reviewed baseline W = 177,284,805 down to W = 176,906,915. Evaluated over the exact 10^{-14} rational grid, this wire reduction certifies an improved second-moment coefficient AB = 5,164,059 / 125,000,000,000 and establishes the sharpened conditional exponent κ= 826,215,307 / 20,000,000,000,000 \approx 4.131076535 \times 10^{-5}, strictly surpassing the preceding record on this architecture (κ\approx 4.123864 \times 10^{-5}). All 47 polynomial constraints and 7 rational security margins are audited in exact Q-arithmetic with zero floating-point error, and the fundamental wire reduction identity is formally verified in the Lean 4 interactive theorem prover without unproven axioms.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">In a conditional framework for beating the O(n log n) integer multiplication bound, the exponent κ depends inversely on the wire width W of carrier graphs in Schönhage trilinear tensor decompositions at h=23 and h=25. The goal is to reduce W below the previous record of 177,284,805 and so sharpen κ.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A 15-round greedy augmenting-path search works on the bipartite carrier matching graphs. It evaluates tensor-parity and vertex-permutation swap moves and recomputes maximum matchings with Hopcroft–Karp. A move is accepted only if it strictly reduces role counts and preserves CRT consistency and rank-mass conservation. The second-moment parameter is then bisected over an exact rational grid. The wire-width identity and the strict-improvement inequalities are formalized in Lean 4 and proved with norm_num.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The search eliminates 185 carrier roles (95 at h=23, 90 at h=25), reducing W by 377,890 to 176,906,915. This certifies κ = 826,215,307/(2×10^13) ≈ 4.131077×10^-5, above the prior κ ≈ 4.123864×10^-5. The Lean theorems are fully proven without sorry.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Every n points in the plane contain (m1 + o(1)) n points with no unit distance · Papers With Lean</title>
+<meta name="description" content="Let $f(n)$ be the largest integer such that every set of $n$ points in the plane contains $f(n)$ points no two at distance $1$, and let $m_1$ be the supremum of the upper densities of Lebesgue measurable planar sets with no two points at distance $1$. Larman and Rogers observed…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Every n points in the plane contain (m1 + o(1)) n points with no unit distance">
+<meta property="og:description" content="Let $f(n)$ be the largest integer such that every set of $n$ points in the plane contains $f(n)$ points no two at distance $1$, and let $m_1$ be the supremum of the upper densities of Lebesgue measurable planar sets with no two points at distance $1$. Larman and Rogers observed…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.15424.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.15424.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.15424v1" target="_blank" rel="noopener"><img src="../thumbs/2610.15424.jpg" alt="First page of Every n points in the plane contain (m1 + o(1)) n points with no unit distance"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Every n points in the plane contain (m1 + o(1)) n points with no unit distance</h1>
+        <p class="authors">Shisheng Li, Yong Su</p>
+        <div class="row">
+          <span class="badge">math.CO</span>
+          <span class="date">Oct 11, 2026 · v1</span>
+          <span class="badge">math.MG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-teal" href="../#tag=geometry">geometry</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.15424v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.15424" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/daizisheng/erdos-1070" target="_blank" rel="noopener" title="daizisheng/erdos-1070">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The full proof that f(n)/n tends to m1 is formalized in Lean 4 with Mathlib, building on OpenAI&#x27;s Lean development of the plane five-colouring Haar rigidity theorem.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Let $f(n)$ be the largest integer such that every set of $n$ points in the plane contains $f(n)$ points no two at distance $1$, and let $m_1$ be the supremum of the upper densities of Lebesgue measurable planar sets with no two points at distance $1$. Larman and Rogers observed that $f(n) \ge m_1 n$. We prove that $f(n)/n \to m_1$; that is, $f(n) = (m_1 + o(1))n$. This is the first half of a conjecture of Dúcz and Varga, and with the bound $m_1 \le 0.247$ of Ambrus, Csiszárik, Matolcsi, Varga and Zsámboki it gives $f(n) \le (0.247 + o(1))n$. The proof builds a random independent subset of the algebraic plane, invariant under algebraic translations and rotations, whose probability of containing the origin is at least the worst finite independence ratio, and turns it into a measurable planar set of at least that upper density. Its only non-classical input is the Haar rigidity theorem for wild character laws from the OpenAI preprint The Euclidean plane is not five-colorable, which has a machine-checked Lean proof. The whole argument has been formalized in Lean 4 on top of it.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Let f(n) be the largest number such that every n-point planar set contains f(n) points with no two at unit distance, and let m1 be the supremum of upper densities of measurable unit-distance-free planar sets. Larman and Rogers showed f(n) ≥ m1 n. Dúcz and Varga conjectured that f(n)/n → m1.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors show that f(n)/n converges to the worst finite independence ratio α*, and recall that α* ≥ m1. For the new direction, m1 ≥ α*, they build a random independent subset of the algebraic plane, invariant under algebraic translations and rotations, and transfer it to a measurable planar set. This step uses the Haar rigidity theorem for wild character laws from OpenAI&#x27;s five-colorability preprint. The argument is formalized in Lean 4 on top of OpenAI&#x27;s Lean development, using ultrafilter limits and the Riesz–Markov theorem.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">They prove that f(n)/n → m1 and that f(n) ≥ m1 n for all n. Combined with known bounds, this gives 0.22936n ≤ f(n) ≤ (0.247+o(1))n. The Lean proofs cover the square (natural radius) and disc (real radius) density conventions and depend only on the standard axioms.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Do Theorem Provers Need Theorem-Proving Agents? mini-Lean-agent: A Coding-Agent Baseline for Lean · Papers With Lean</title>
+<meta name="description" content="General-purpose coding agents use standard shell and file interactions, yet formal theorem-proving agents often rely on specialized, ad-hoc tooling. This makes it difficult to determine which components of theorem-proving agents provide benchmark gains: an improved base model, a…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Do Theorem Provers Need Theorem-Proving Agents? mini-Lean-agent: A Coding-Agent Baseline for Lean">
+<meta property="og:description" content="General-purpose coding agents use standard shell and file interactions, yet formal theorem-proving agents often rely on specialized, ad-hoc tooling. This makes it difficult to determine which components of theorem-proving agents provide benchmark gains: an improved base model, a…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.17331.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.17331.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.17331v1" target="_blank" rel="noopener"><img src="../thumbs/2610.17331.jpg" alt="First page of Do Theorem Provers Need Theorem-Proving Agents? mini-Lean-agent: A Coding-Agent Baseline for Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Do Theorem Provers Need Theorem-Proving Agents? mini-Lean-agent: A Coding-Agent Baseline for Lean</h1>
+        <p class="authors">Tomas Ortega, Simon Park, Ayush Khaitan, Liam Fowl, Alex Kontorovich, Sanjeev Arora</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 12, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.17331v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.17331" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/TomasOrtega/mini-lean-agent" target="_blank" rel="noopener" title="TomasOrtega/mini-lean-agent">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a bash-only coding agent that searches Mathlib and invokes Lean 4 to prove Putnam 2025 problems, with a separate trusted Lean checker validating proofs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">General-purpose coding agents use standard shell and file interactions, yet formal theorem-proving agents often rely on specialized, ad-hoc tooling. This makes it difficult to determine which components of theorem-proving agents provide benchmark gains: an improved base model, a specialized harness, a specific tool, or a combination of any of them. We introduce mini-Lean-agent, a deliberately minimal agent for Lean tasks whose only model-visible tool is bash. The model must use bash to inspect and edit the repository, search local libraries, invoke Lean, and manage its own intermediate work, while a separate trusted evaluator verifies the final artifact. We compare mini-Lean-agent against AxProverBase and Numina-Lean-Agent on the Putnam 2025 benchmark. Experiments with Gemini 3.8 Flash as the base model show that mini-Lean-agent solves 7/12 problems at \$2 per problem limit, compared with AxProverBase&#x27;s 4/12. With Astra as the base model, mini-Lean-agent solves 12/12 problems at an average cost of \$1.28 per problem. This suggests that a generic coding agent with a minimal harness can already achieve strong performance on Lean benchmarks. Our results motivate using mini-Lean-agent as a standard baseline when evaluating theorem-proving infrastructure.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Theorem-proving agents for Lean often rely on specialized harnesses and tools. This makes it hard to tell whether benchmark gains come from the base model, the harness, or the tools.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">mini-Lean-agent is built on mini-SWE-agent and exposes only bash to the model. Through bash the model inspects and edits files, greps Mathlib, runs `lake env lean`, and keeps scratch files. A separate trusted evaluator verifies the final proof. It is compared with AxProverBase (same model and budget) and with reported Numina-Lean-Agent results on the twelve Putnam 2025 problems, using Lean and Mathlib v4.28.0-rc1 in sandboxed Docker containers.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With Gemini 3.8 Flash and a $2 per-problem limit, mini-Lean-agent verified 7/12 problems versus 4/12 for AxProverBase, at lower total charge. With the Astra model it solved 12/12 at an average of $1.28 per problem; Fable 5.1 solved 11/12 at much higher cost.</p><div class="sum-table"><table><thead><tr><th>Harness</th><th>$0.50</th><th>$1.00</th><th>$2.00</th><th>Charge</th></tr></thead><tbody><tr><td>mini-Lean-agent</td><td>0/12</td><td>4/12</td><td>7/12</td><td>$14.64</td></tr><tr><td>AxProverBase</td><td>0/12</td><td>0/12</td><td>4/12</td><td>$20.97</td></tr></tbody></table><div class="tbl-cap">Problems verified by budget with Gemini 3.8 Flash</div></div><div class="sum-table"><table><thead><tr><th>Model</th><th>Verified</th><th>Charge</th><th>Calls</th><th>Minutes</th></tr></thead><tbody><tr><td>Astra</td><td>12/12</td><td>$15.37</td><td>106</td><td>51.3</td></tr><tr><td>Fable 5.1</td><td>11/12</td><td>$120.29</td><td>133</td><td>99.9</td></tr></tbody></table><div class="tbl-cap">mini-Lean-agent with stronger models</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeanPRM: Lean-Grounded Process Supervision for Natural Language Proof Verification · Papers With Lean</title>
+<meta name="description" content="AI systems now write long and difficult mathematical proofs, and checking their step-by-step validity is becoming a bottleneck. A learned verifier could check proofs cheaply, but training one requires a correctness label on every step, and such labels are hard to obtain for…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeanPRM: Lean-Grounded Process Supervision for Natural Language Proof Verification">
+<meta property="og:description" content="AI systems now write long and difficult mathematical proofs, and checking their step-by-step validity is becoming a bottleneck. A learned verifier could check proofs cheaply, but training one requires a correctness label on every step, and such labels are hard to obtain for…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.17697.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.17697.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.17697v1" target="_blank" rel="noopener"><img src="../thumbs/2610.17697.jpg" alt="First page of LeanPRM: Lean-Grounded Process Supervision for Natural Language Proof Verification"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">LeanPRM: Lean-Grounded Process Supervision for Natural Language Proof Verification</h1>
+        <p class="authors">Rodney Lafuente-Mercado, Salman Rahman, Jingyan Shen, James Shiffer, Saadia Gabriel, Pavel Izmailov</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 13, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.17697v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.17697" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/pavelslab-nyu/LeanPRM" target="_blank" rel="noopener" title="pavelslab-nyu/LeanPRM">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses Lean 4 to check paired formal tactic steps, turning compile outcomes into step-level correctness labels for training natural-language proof verifiers.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">AI systems now write long and difficult mathematical proofs, and checking their step-by-step validity is becoming a bottleneck. A learned verifier could check proofs cheaply, but training one requires a correctness label on every step, and such labels are hard to obtain for open-ended proofs. Existing methods take them from human annotators, which is costly, or derive them from final answers, which proofs do not have, and formalizing each proof in Lean requires expert effort. We introduce LeanPRM, a framework that uses the Lean proof assistant to create step-level labels for natural-language proofs. A model writes a natural-language proof together with a paired formal proof, without feedback from Lean. Lean then labels every step, and a second model discards failures caused only by the formal syntax, so that the negative labels mark errors in the mathematics. LeanPRM contains 10,634 proofs with 152K labeled steps and no human annotation. A Qwen3-4B verifier trained on LeanPRM raises exact step-label accuracy on a held-out set of 200 proofs (LeanPRM-Bench) from 48.2 to 74.7, as opposed to 60.3 when the same base model is trained on PRM800K. It also selects better proofs in best-of-N selection on IMO-level problems, and outperforms the PRM800K-trained verifier on three of four external verification benchmarks. Training on LeanPRM improves verifiers at every size from 0.6B to 8B parameters on LeanPRM-Bench, Hard2Verify and IMO-GradingBench. Given the labels need no human annotation, LeanPRM can grow with the supply of formal statements, offering a path to step-level feedback on AI-generated proofs that are hard for humans to check.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Training step-level verifiers (process reward models) for natural-language mathematical proofs requires per-step correctness labels. These are costly to get from humans and cannot be derived from final answers, since proofs have none.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A model writes a natural-language proof in one shot, pairing each step with a Lean tactic, and Lean checks the steps in order. A second model decides whether the first failure is a mathematical error or only a formal-syntax issue. Syntax failures are repaired once and rechecked. For successful proofs, it confirms that the prose matches the formal proof. Steps are labeled by their tactic outcome up to the first failure. Qwen3 verifiers (0.6B–8B) are trained with GRPO on the resulting corpus and read only natural language.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.17697/overview.png" alt=""><figcaption>Figure 1: Overview of LeanPRM, with one example from the corpus running through it. Top row: Stage 1 writes a proof attempt from the theorem statement alone, each natural-language step paired with its formal step, and Lean checks the steps in order. Bottom row: Stage 2 decides whether the first failure lies in the mathematics or only in the formal syntax (syntax failures are patched and rechecked </figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The corpus has 10,634 proofs with 152K labeled steps and no human annotation. On LeanPRM-Bench, exact step-label accuracy for Qwen3-4B rises from 48.2 to 74.7, versus 60.3 when trained on PRM800K. The LeanPRM verifier beats the PRM800K-trained verifier on three of four external benchmarks and improves best-of-N selection on IMO-level problems.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>LeanPRM-Bench</th><th>Hard2Verify</th><th>ProcessBench</th><th>PRMBench</th><th>IMO-GB</th></tr></thead><tbody><tr><td>Qwen3-4B (initial)</td><td>48.2</td><td>37.1</td><td>74.3</td><td>42.5</td><td>53.8</td></tr><tr><td>PRM800K-Verifier-4B</td><td>60.3</td><td>63.1</td><td>83.0</td><td>43.3</td><td>57.0</td></tr><tr><td>LeanPRM-Verifier-4B</td><td>74.7</td><td>72.8</td><td>74.9</td><td>47.4</td><td>66.4</td></tr></tbody></table><div class="tbl-cap">Verifier performance (4B models)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

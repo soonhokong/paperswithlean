@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Extending concurrent separation logic to the hardware level to verify the xv6 OS kernel on RISC-V with AI agents · Papers With Lean</title>
+<meta name="description" content="MachCSL is a framework for verifying system software, such as an OS kernel, on top of low-level semantics of a RISC-V computer, based on the Sail RISC-V semantics. The key idea behind MachCSL is to adapt concurrent separation logic, based on Iris, to reasoning about low-level…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Extending concurrent separation logic to the hardware level to verify the xv6 OS kernel on RISC-V with AI agents">
+<meta property="og:description" content="MachCSL is a framework for verifying system software, such as an OS kernel, on top of low-level semantics of a RISC-V computer, based on the Sail RISC-V semantics. The key idea behind MachCSL is to adapt concurrent separation logic, based on Iris, to reasoning about low-level…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.04043.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.04043.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.04043v3" target="_blank" rel="noopener"><img src="../thumbs/2609.04043.jpg" alt="First page of Extending concurrent separation logic to the hardware level to verify the xv6 OS kernel on RISC-V with AI agents"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Extending concurrent separation logic to the hardware level to verify the xv6 OS kernel on RISC-V with AI agents</h1>
+        <p class="authors">M. Frans Kaashoek, Nickolai Zeldovich</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Sep 3, 2026 · v3</span>
+          <span class="badge">cs.OS</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.04043v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.04043" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/mit-pdos/xv6iris" target="_blank" rel="noopener" title="mit-pdos/xv6iris">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The Rocq-based MachCSL/xv6 verification was ported to Lean by an AI agent, exposing and fixing a boolean-semantics bug in Sail&#x27;s Lean extraction.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">MachCSL is a framework for verifying system software, such as an OS kernel, on top of low-level semantics of a RISC-V computer, based on the Sail RISC-V semantics. The key idea behind MachCSL is to adapt concurrent separation logic, based on Iris, to reasoning about low-level hardware execution at the sub-instruction level: page-table translation, TLB, privilege levels, configuration registers, instruction fetch/decode/execute, traps and interrupts, DMA, shared memory, power failures, etc. Reasoning at this level of detail ensures that the system software correctly manages all of the hardware details. Verifying software at this low level of abstraction is tedious, but LLM-based agents are capable of reasoning about such low-level details. As a case study, we verify the xv6 OS kernel (6,657 lines of C and assembly code), which provides a traditional Unix system call interface (processes, file system, file descriptors, and preemptive scheduling) and has substantial internal concurrency (multi-core support with fine-grained locking, shared memory, interrupts, DMA, etc.). In the verification process, we uncovered 11 bugs in the xv6 implementation, as well as one bug in the Sail RISC-V semantics, and one bug in Sail&#x27;s Lean extraction. The verification effort took us 102 days, including the time to develop the MachCSL framework. On top of the verified xv6 kernel, we prove a theorem about console-level behavior: e.g., if the user types echo hello world as input on the UART console, the only output the system can produce is hello world (if there are no crashes or other errors). This theorem covers both the kernel and the init, sh, echo, cat, grep, sync, and seccomp binaries in the initial file system image.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">OS kernels must correctly manage low-level hardware such as page tables, TLBs, interrupts, DMA and multicore concurrency. Verifying kernels against detailed hardware semantics is tedious and rarely done end to end.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">MachCSL adapts Iris-based concurrent separation logic to sub-instruction-level reasoning over the Sail RISC-V model, extended with models of shared memory, devices, DMA and power failures. LLM-based agents (Claude) were used to write specifications and proofs for the xv6 kernel and for user programs including init, sh, echo, cat, grep, sync and seccomp. The roughly 1.6M-line development was done in Rocq and later ported entirely to Lean by an agent.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The development proves a console-level theorem: typing &#x27;echo hello world&#x27; can only produce &#x27;hello world&#x27; or an allowed error. It also yields kernel integrity, process isolation, crash safety and hardware safety. The work found 11 xv6 bugs, one Sail RISC-V model bug, and one Sail Lean-extraction bug (eager boolean evaluation), which was fixed in the Sail tool. The effort took 102 days.</p><div class="sum-table"><table><thead><tr><th>Bug</th><th>Component</th><th>Consequence</th></tr></thead><tbody><tr><td>A/D writeback was a blind write</td><td>Sail model</td><td>One CPU could resuscitate a page-table entry another CPU cleared</td></tr><tr><td>Incorrect short-circuiting boolean semantics</td><td>Sail extraction</td><td>Wrong boolean operator semantics in the Lean CPU model</td></tr><tr><td>iput freed inode before dropping reference</td><td>fs</td><td>Racing iput and ialloc could orphan an on-disk inode</td></tr><tr><td>Overflowing nlink</td><td>fs</td><td>Unlinking an inode with too many links panicked</td></tr></tbody></table><div class="tbl-cap">Selected bugs found</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

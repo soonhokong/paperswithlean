@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>An Efficient, Lean 4 Verified Necessary and Sufficient Condition for Membership in Pedigree Polytopes · Papers With Lean</title>
+<meta name="description" content="The set \(P_{n}\) consists of the characteristic vectors of pedigrees, which are combinatorial encodings in one-to-one correspondence with Hamiltonian cycles. For \(n \geq 4\) and \(τ_{n} = \binom{n}{3}-1\), the Membership Problem for the Pedigree Polytope (M3P) asks whether a…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="An Efficient, Lean 4 Verified Necessary and Sufficient Condition for Membership in Pedigree Polytopes">
+<meta property="og:description" content="The set \(P_{n}\) consists of the characteristic vectors of pedigrees, which are combinatorial encodings in one-to-one correspondence with Hamiltonian cycles. For \(n \geq 4\) and \(τ_{n} = \binom{n}{3}-1\), the Membership Problem for the Pedigree Polytope (M3P) asks whether a…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.15914.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.15914.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.15914v1" target="_blank" rel="noopener"><img src="../thumbs/2610.15914.jpg" alt="First page of An Efficient, Lean 4 Verified Necessary and Sufficient Condition for Membership in Pedigree Polytopes"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">An Efficient, Lean 4 Verified Necessary and Sufficient Condition for Membership in Pedigree Polytopes</h1>
+        <p class="authors">T. S. Arthanari</p>
+        <div class="row">
+          <span class="badge">math.OC</span>
+          <span class="date">Oct 11, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.15914v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.15914" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/TiruArt/Pedigree-Polytopes-Lean4" target="_blank" rel="noopener" title="TiruArt/Pedigree-Polytopes-Lean4">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Both directions of a membership characterisation for pedigree polytopes are formalised in Lean 4/Mathlib4 with no sorrys, and the project is public on GitHub.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The set \(P_{n}\) consists of the characteristic vectors of pedigrees, which are combinatorial encodings in one-to-one correspondence with Hamiltonian cycles. For \(n \geq 4\) and \(τ_{n} = \binom{n}{3}-1\), the Membership Problem for the Pedigree Polytope (M3P) asks whether a given vector \(X \in \mathbb{Q}^{τ_{n}}\) belongs to \(\mathrm{conv}(P_n)\). This paper gives a complete account, with the full proof statements and machine-verified Lean 4 certificates, of the necessary and sufficient (\NS) condition established in Chapter 5 of Pedigree Polytopes: New Insights on Computational Complexity of Combinatorial Optimisation Problems (Arthanari, 2023): membership of $X$ in $\mathrm{conv}(P_n)$ is characterised by the feasibility, at every stage $k=4,\dots,n-1$, of a recursively constructed layered network, together with, when needed, a multicommodity flow problem $\mathrm{MCF}(k-1)$ achieving its maximum possible flow $z_{\max}$. We present the construction, the \NS{} condition itself, and the proofs of this characterisation, together with the resulting polynomial-time algorithm for M3P. Both directions of the \NS{} condition — sufficiency and necessity (the multicommodity-flow feasibility argument of the book&#x27;s Chapter 5) — are machine-verified in Lean 4/Mathlib4 with zero unresolved sorrys in either dependency chain. The \NS{} characterisation therefore follows directly from the two machine-checked implications. The complete Lean 4 project is publicly available. A companion introductory article (arXiv:2507.09069) presents the same material for a broader readership, without the Lean 4 verification; the present paper adds full statements, proof sketches, and the complete machine-checked certificates.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The Membership Problem for the Pedigree Polytope (M3P) asks whether a rational vector lies in the convex hull of pedigree characteristic vectors. Pedigrees are combinatorial encodings of Hamiltonian cycles used in the multistage insertion formulation of the symmetric TSP. The aim is to state and machine-check the necessary and sufficient condition for membership given in Arthanari&#x27;s 2023 book.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Membership is characterised by the feasibility of a recursively constructed layered network at every stage k. Where needed, a multicommodity flow problem MCF(k-1) must also reach its maximum flow z_max. Both the sufficiency and necessity directions are formalised in Lean 4/Mathlib4, including a new proof of a packability corollary. Cardinality and complexity bounds are proved on paper only.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Both implications compile with no unresolved sorry, using only the standard axioms (propext, Classical.choice, Quot.sound). The repository is public, tagged ns-paper-v1. On paper, the authors also derive a polynomial-time algorithm for M3P; the further P=NP claim belongs to a companion paper and is outside this verification.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

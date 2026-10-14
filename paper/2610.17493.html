@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VeriPIE: Checkable Query Plans and Evidence-Guided Selection for Text-to-SQL · Papers With Lean</title>
+<meta name="description" content="Financial Artificial Intelligence (AI) governance and model risk management (MRM) emphasize independent validation, transparency, and effective challenge of AI-generated computations. Text-to-SQL translates natural-language questions into Structured Query Language (SQL), but…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VeriPIE: Checkable Query Plans and Evidence-Guided Selection for Text-to-SQL">
+<meta property="og:description" content="Financial Artificial Intelligence (AI) governance and model risk management (MRM) emphasize independent validation, transparency, and effective challenge of AI-generated computations. Text-to-SQL translates natural-language questions into Structured Query Language (SQL), but…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.17493.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.17493.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.17493v1" target="_blank" rel="noopener"><img src="../thumbs/2610.17493.jpg" alt="First page of VeriPIE: Checkable Query Plans and Evidence-Guided Selection for Text-to-SQL"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">VeriPIE: Checkable Query Plans and Evidence-Guided Selection for Text-to-SQL</h1>
+        <p class="authors">Piyush Jha, Cruise Song, Zhengyu Li, Yatharth Sejpal</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Oct 12, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.17493v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.17493" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Implements the QuerySketch plan language&#x27;s parser, elaborator, and typed relational core in Lean to check and lower LLM-generated query plans to SQL.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Financial Artificial Intelligence (AI) governance and model risk management (MRM) emphasize independent validation, transparency, and effective challenge of AI-generated computations. Text-to-SQL translates natural-language questions into Structured Query Language (SQL), but queries that agree on one database can still express different computations. We present VeriPIE, a neurosymbolic framework combining language-model generation with symbolic checks. It ensembles direct SQL generation with QuerySketch, a structured plan language checked by a backend implemented in Lean, a theorem prover and programming language. Plan diagnostics guide repair before SQL generation, while execution agreement and bounded searches for distinguishing databases inform candidate selection. These checks expose malformed plans and hidden disagreement without proving agreement with the user&#x27;s intent. In single-run experiments on the complete Spider development set, VeriPIE achieves 72.05% test-suite accuracy (745/1,034), compared with DeepEye&#x27;s 65.67% (679/1,034). Its two-query shortlist covers 78.43% (811 questions), compared with 74.66% for DIN-SQL (772) and 69.05% for DeepEye (714). On BIRD, VeriPIE reaches 68.90% execution accuracy and 73.73% two-query coverage. The central benefit is reviewable evidence about the generated computation: explicit plan checks, repair diagnostics, and concrete disagreements that support safer financial analysis.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Text-to-SQL queries produced by LLMs can agree on one database yet compute different things, which hinders independent validation in financial model risk management. Execution agreement alone does not establish what a generated query computes.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">VeriPIE extends DeepEye-SQL by ensembling direct SQL generation with QuerySketch, a QPL-derived plan language. QuerySketch&#x27;s parser, elaborator, and typed relational core are implemented in Lean; they type-check plans against the schema, produce diagnostics for repair, and lower plans to SQL. Candidates are grouped into equivalence-aware buckets using execution agreement and bounded SMT counterexample search (SpotIt+), then ranked.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On the Spider dev set, VeriPIE reaches 72.05% top-1 test-suite accuracy, compared with 65.67% for DeepEye, and 78.43% top-2 coverage. On BIRD it reaches 68.90% execution accuracy. The Lean-backed pipeline alone reaches 71.18%, compared with 68.37% for direct SQL alone.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Spider Top-1</th><th>Spider Top-2</th><th>BIRD Top-1</th><th>BIRD Top-2</th></tr></thead><tbody><tr><td>MAC-SQL</td><td>64.99</td><td>68.09</td><td>63.89</td><td>67.01</td></tr><tr><td>DeepEye</td><td>65.67</td><td>69.05</td><td>68.45</td><td>73.66</td></tr><tr><td>DIN-SQL</td><td>71.86</td><td>74.66</td><td>62.65</td><td>65.71</td></tr><tr><td>VeriPIE</td><td>72.05</td><td>78.43</td><td>68.90</td><td>73.73</td></tr></tbody></table><div class="tbl-cap">Spider (test-suite) and BIRD (execution) accuracy</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

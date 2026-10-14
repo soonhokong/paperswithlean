@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CLASSO: a practical primal path-following algorithm for the constrained LASSO · Papers With Lean</title>
+<meta name="description" content="We present CLASSO, a path-following method for the LASSO subject to general linear equality and inequality constraints. The local direction is obtained from a quadratic programme on an augmented active set, which determines both the coefficients that leave zero and the weakly…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CLASSO: a practical primal path-following algorithm for the constrained LASSO">
+<meta property="og:description" content="We present CLASSO, a path-following method for the LASSO subject to general linear equality and inequality constraints. The local direction is obtained from a quadratic programme on an augmented active set, which determines both the coefficients that leave zero and the weakly…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.17024.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.17024.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.17024v1" target="_blank" rel="noopener"><img src="../thumbs/2610.17024.jpg" alt="First page of CLASSO: a practical primal path-following algorithm for the constrained LASSO"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">CLASSO: a practical primal path-following algorithm for the constrained LASSO</h1>
+        <p class="authors">Michael Hobson, Luke Butcher, Lindley Lentati</p>
+        <div class="row">
+          <span class="badge">stat.CO</span>
+          <span class="date">Oct 12, 2026 · v1</span>
+          <span class="badge">stat.ML</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.17024v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.17024" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The well-posedness, piecewise-affine path finiteness and termination theorems, plus counterexamples, are formalised in Lean 4 against Mathlib with no admitted proofs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present CLASSO, a path-following method for the LASSO subject to general linear equality and inequality constraints. The local direction is obtained from a quadratic programme on an augmented active set, which determines both the coefficients that leave zero and the weakly active inequalities that remain binding. For a positive-definite Hessian and a nonempty feasible set, this programme has a unique primal minimiser, even when the binding constraint rows are dependent, and gives the local derivative of the solution path. The construction recovers the LASSO-modified LARS direction without constraints, and over the full cone gives the segment leaving the origin. We prove that the primal path is piecewise affine with finitely many kinks, without a constraint qualification or unique multipliers. A finite path does not imply a finite traversal: re-certifying at each kink can fail to terminate. CLASSO instead follows the minimum-norm certificate along a lexicographic rate; we prove that this rule reaches $λ=0$ in exact arithmetic within an explicit bound and traverses the whole path. These results are machine-checked in Lean 4, and the floating-point implementation agrees with an exact rational one on all $210$ small test problems. We assess the implementation on a $39$-case synthetic suite and six constrained versions of the diabetes benchmark. On the $31$ nontrivial synthetic cases with $n\ge p$, sampled relative objective differences from numerical reference solves are below $10^{-9}$ in magnitude; unnormalised endpoint differences reach $1.5\times10^{-7}$ in magnitude. For $n&lt;p$, matched differences range from $-3.6\times10^{-7}$ to $2\times10^{-9}$ across five ridge strengths. Across the synthetic and diabetes benchmarks, checks of all $580$ recorded segments found no missed interior event and all checked KKT residuals within the stated tolerances.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Path-following for the LASSO under general linear equality and inequality constraints. The prior method of Gaines et al. requires a full-row-rank condition on binding constraints, and that condition often fails, for example under sign constraints.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">CLASSO obtains the local direction from a quadratic programme on an augmented active set. The QP determines which zero coefficients leave zero and which weakly active inequalities stay binding. The method follows a minimum-norm certificate along a lexicographic rate to guarantee finite traversal. The theory, including the piecewise-affine structure without a constraint qualification and termination within an explicit bound, is machine-checked in Lean 4 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On the 31 nontrivial synthetic cases with n ≥ p, sampled relative objective differences from reference solves are below 1e-9 in magnitude. The floating-point implementation agrees with an exact rational one on all 210 small test problems. Checks of all 580 recorded segments found no missed interior event, and all checked KKT residuals were within the stated tolerances.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

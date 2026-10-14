@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masked Attention Pooling Is Invariant to Padding and Permutation: A Formal Proof in Lean · Papers With Lean</title>
+<meta name="description" content="Attention-based multiple instance learning (MIL) pools a variable-size bag of instance embeddings into one vector. In batched training, bags are padded to a common length, and the pooled output is expected not to depend on how much padding was added or on the order in which…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Masked Attention Pooling Is Invariant to Padding and Permutation: A Formal Proof in Lean">
+<meta property="og:description" content="Attention-based multiple instance learning (MIL) pools a variable-size bag of instance embeddings into one vector. In batched training, bags are padded to a common length, and the pooled output is expected not to depend on how much padding was added or on the order in which…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.17132.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.17132.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.17132v1" target="_blank" rel="noopener"><img src="../thumbs/2610.17132.jpg" alt="First page of Masked Attention Pooling Is Invariant to Padding and Permutation: A Formal Proof in Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Masked Attention Pooling Is Invariant to Padding and Permutation: A Formal Proof in Lean</h1>
+        <p class="authors">Yusuf Khaled Sadek, Enes Yilmaz</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 12, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.17132v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.17132" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/y2x0/masked-attention-lean" target="_blank" rel="noopener" title="y2x0/masked-attention-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Proves padding and permutation invariance of masked attention pooling in Lean 4 with mathlib, and links the proofs to traced JAX code via jax-lean certificates.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Attention-based multiple instance learning (MIL) pools a variable-size bag of instance embeddings into one vector. In batched training, bags are padded to a common length, and the pooled output is expected not to depend on how much padding was added or on the order in which instances are stored. This expectation holds only if padded rows are removed from both the numerator and the softmax normalizer. Common implementation idioms meet it only under side conditions. Zeroing padded features alone does not work. Masking logits with $-\infty$ fails on empty bags and on nonfinite padding. Masking with a large negative constant is exact only after floating-point underflow. We define masked attention pooling with a guarded normalizer and prove in Lean 4 with mathlib that it is invariant under any bijective reindexing of rows and under appending any finite number of masked rows with arbitrary real features and logits. We also prove that values at masked positions are irrelevant and that an all-masked bag maps to zero. The theorems hold for arbitrary finite index types and feature dimensions. Using the jax-lean certificate pipeline, we connect these theorems to the Jaxpr traced from the JAX kernel itself. Lean checks translation certificates for two concrete shapes, identifies the generated functions with the generic specification, and transfers both invariances to the imported Jaxpr&#x27;s real-arithmetic semantics. All audited theorems depend only on Lean&#x27;s three standard axioms. The results concern ideal real arithmetic. Floating-point execution, XLA, and the JAX tracer and importer remain outside the proof.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Batched attention-based multiple instance learning (MIL) pooling pads bags to a common length. The output should not depend on the amount of padding or on row order. Common masking idioms, such as zeroing padded features or masking logits with -inf or a large negative constant, break this under side conditions such as empty bags or nonfinite padding.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors define masked attention pooling with a guarded softmax normalizer. In Lean 4 with mathlib they prove, for arbitrary finite index types and feature dimensions, four results: invariance under bijective reindexing, invariance under appending masked rows with arbitrary contents, irrelevance of masked values, and zero output on all-masked bags. Using jax-lean, they trace the JAX kernel at two shapes and check translation certificates. These certificates identify the generated functions with the generic specification and transfer the invariances to the imported Jaxpr&#x27;s real-arithmetic semantics.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Seven audited theorems depend only on Lean&#x27;s three standard axioms, with no sorry, in a development of about 560 lines. Separate JAX tests confirm the expected floating-point behavior. Floating-point execution, XLA, and the JAX tracer and importer remain outside the proof.</p><div class="sum-table"><table><thead><tr><th>Idiom</th><th>Zero pad</th><th>NaN pad</th><th>Empty</th><th>Exact in R</th></tr></thead><tbody><tr><td>Zero padded features only</td><td>(1.3563,0.8921)</td><td>(1.3563,0.8921)</td><td>(0,0)</td><td>no</td></tr><tr><td>Logits to -inf, features unmasked</td><td>correct</td><td>NaN</td><td>NaN</td><td>n/a</td></tr><tr><td>Logits to -1e9, features unmasked</td><td>correct</td><td>NaN</td><td>(2,3)</td><td>no</td></tr><tr><td>Softmax of -inf-masked logits, features zeroed</td><td>correct</td><td>correct</td><td>NaN</td><td>n/a</td></tr><tr><td>Definition 1 (masked_pool)</td><td>correct</td><td>correct</td><td>(0,0)</td><td>yes</td></tr></tbody></table><div class="tbl-cap">Behaviour of common masking idioms in JAX (float32)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

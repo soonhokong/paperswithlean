@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Selecting the 7th Smallest of 16 Elements Takes Exactly 28 Comparisons · Papers With Lean</title>
+<meta name="description" content="Let $V_i(n)$ denote the minimum worst-case number of comparisons needed to find the $i$-th smallest of $n$ distinct elements. We construct algorithms showing $V_7(16)\le28$ and $V_8(16)\le29$, improving the previously reported upper bounds of 30 and 31. Together with known lower…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Selecting the 7th Smallest of 16 Elements Takes Exactly 28 Comparisons">
+<meta property="og:description" content="Let $V_i(n)$ denote the minimum worst-case number of comparisons needed to find the $i$-th smallest of $n$ distinct elements. We construct algorithms showing $V_7(16)\le28$ and $V_8(16)\le29$, improving the previously reported upper bounds of 30 and 31. Together with known lower…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.18740.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.18740.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.18740v1" target="_blank" rel="noopener"><img src="../thumbs/2610.18740.jpg" alt="First page of Selecting the 7th Smallest of 16 Elements Takes Exactly 28 Comparisons"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Selecting the 7th Smallest of 16 Elements Takes Exactly 28 Comparisons</h1>
+        <p class="authors">Jonathan Cremer</p>
+        <div class="row">
+          <span class="badge">cs.DS</span>
+          <span class="date">Oct 13, 2026 · v1</span>
+          <span class="badge">math.CO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.18740v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.18740" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/JCremerr/selection-7-of-16" target="_blank" rel="noopener" title="JCremerr/selection-7-of-16">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 kernel-checks the decision-graph certificates for all seven new selection upper bounds; a separate Mathlib-based development formalizes the partial-order leaf lower bound.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Let $V_i(n)$ denote the minimum worst-case number of comparisons needed to find the $i$-th smallest of $n$ distinct elements. We construct algorithms showing $V_7(16)\le28$ and $V_8(16)\le29$, improving the previously reported upper bounds of 30 and 31. Together with known lower bounds, these results establish $V_7(16)=28$ and leave $V_8(16)\in\{28,29\}$. For 17 elements, we establish $V_5(17)=27$ and improve the upper bounds for ranks 6 through 9 to 29, 30, 31, and 31, respectively. Every new upper bound has an explicit decision-graph certificate verified by a static checker developed independently of the search. We also derive a lower bound for selection from a partially ordered state by combining the Fussenegger-Gabow weight with its order-reversed counterpart. All new upper bounds and this lower bound are formally verified in Lean 4. For $V_8(16)$, we show that a lower bound based solely on the total number of decision-tree leaves cannot establish $V_8(16)\ge29$. The algorithms were found using fixed-budget search, information-guided comparison ordering, and proof-number search. Proof-number search was decisive in finding the 28-comparison algorithm; in our experiments, refuting a comparison budget remained substantially more expensive than finding an algorithm within it.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">V_i(n) is the minimum worst-case number of comparisons needed to find the i-th smallest of n elements. The entries V_7(16) and V_8(16) were open, with ranges 28–30 and 28–31, and several 17-element entries had wide gaps.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Selection algorithms were found as decision-graph certificates (Rust programs) using fixed-budget search, information-guided comparison ordering, and proof-number search. A static checker that shares no code with the search verifies each certificate. Lean 4 proofs using only the core library verify the translated certificates. A second, Mathlib-based Lean development formalizes a new lower bound that combines the Fussenegger–Gabow weight with its order-reversed counterpart, for all finite strict partial orders.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The results establish V_7(16)=28, V_8(16)∈{28,29}, and V_5(17)=27, and lower the upper bounds for ranks 6–9 of 17 elements to 29, 30, 31 and 31. A leaf-count argument alone cannot prove V_8(16)≥29. Proof-number search was decisive in finding the 28-comparison algorithm.</p><div class="sum-table"><table><thead><tr><th>i</th><th>5</th><th>6</th><th>7</th><th>8</th></tr></thead><tbody><tr><td>before</td><td>26</td><td>27</td><td>28–30</td><td>28–31</td></tr><tr><td>this paper</td><td>26</td><td>27</td><td>28</td><td>28–29</td></tr></tbody></table><div class="tbl-cap">Row n=16 of the selection table (previous vs. new)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
