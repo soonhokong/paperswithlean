@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Curating Always-Loaded Context for LLM Agents: A Capacitated Assortment Model with Censored Feedback · Papers With Lean</title>
+<meta name="description" content="At the start of every session, LLM agents load a fixed context file, such as $\texttt{AGENTS.md}$. Each loaded token in the file is charged again in every later round of the session, and these files can degrade performance as they grow in size. However, in practice, human or…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Curating Always-Loaded Context for LLM Agents: A Capacitated Assortment Model with Censored Feedback">
+<meta property="og:description" content="At the start of every session, LLM agents load a fixed context file, such as $\texttt{AGENTS.md}$. Each loaded token in the file is charged again in every later round of the session, and these files can degrade performance as they grow in size. However, in practice, human or…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.11007.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.11007.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.11007v1" target="_blank" rel="noopener"><img src="../thumbs/2610.11007.jpg" alt="First page of Curating Always-Loaded Context for LLM Agents: A Capacitated Assortment Model with Censored Feedback"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Curating Always-Loaded Context for LLM Agents: A Capacitated Assortment Model with Censored Feedback</h1>
+        <p class="authors">Zexuan Liu, Yuning Yang, Tiancheng Zhao</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 7, 2026 · v1</span>
+          <span class="badge">cs.LG</span> <span class="badge">math.OC</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-lime" href="../#tag=economics">economics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.11007v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.11007" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Nearly all numbered theorems on context-file curation, except those relying on one smoothness assumption, have complete formal proofs in Lean 4, supplied as supplementary material.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">At the start of every session, LLM agents load a fixed context file, such as $\texttt{AGENTS.md}$. Each loaded token in the file is charged again in every later round of the session, and these files can degrade performance as they grow in size. However, in practice, human or automated curators usually grow these files by appending. We formulate context curation as a capacitated assortment problem. Instructions consume tokens under a finite attention capacity; adding an instruction never raises the compliance of the others, while retained instructions incur a per-session setup cost. We prove an upper bound on the optimal file size, regardless of the number of available candidate instructions, and that appending every instruction with positive standalone value can be arbitrarily worse in net value than selecting an optimal subset. A token budget also limits the loss when the token price is underestimated. We then examine what can be learned from past sessions and how this information can guide decisions to add or remove instructions. Feedback is inherently censored: the benefits and harms of loaded instructions are observable, whereas missing instructions generate feedback only when their absence causes harm. In this setting, we show that deleting instructions ignored by agents can inevitably remove helpful ones. We characterize how much evidence should be collected before adding an instruction. Besides, we bound regret when human reviewers can inspect only a limited number of edits per period. Empirical experiments further show that irrelevant rules drawn from real context files reduce language-model compliance.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM agents load a fixed context file such as AGENTS.md every session, and curators usually grow it by appending. Each loaded token costs something in every round, and large files can lower compliance. The open questions are what the file should contain and how to learn that from censored session transcripts.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Context curation is modeled as a capacitated assortment problem. Instructions have token costs and signed gains, and compliance is diluted under a finite attention capacity. Learning from transcripts is analyzed under censored feedback, where absent instructions are observed only through gap sightings, and reviewers can approve only a limited number of edits per period. The numbered results are formally proved in Lean 4, and experiments with Claude models on ManyIFEval tasks vary file and pool sizes.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The optimal file size is bounded independently of the candidate pool size. Appending every instruction with positive standalone value can be arbitrarily worse than optimal selection. Deleting instructions that agents ignore can remove helpful ones, and the edit-limited regret bounds match up to constant factors. In experiments, large files reduced gross value, and the best tested files stayed small as the pool grew.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

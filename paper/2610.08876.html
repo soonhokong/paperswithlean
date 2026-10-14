@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Towards Verifying Neural Networks Against Multi-Parameter Bit-Flip Perturbations · Papers With Lean</title>
+<meta name="description" content="Hardware faults can flip bits in the stored weights of a quantized neural network, potentially compromising its predictions. While such faults typically affect multiple parameters simultaneously, existing verifiers are limited to single-parameter perturbations due to the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Towards Verifying Neural Networks Against Multi-Parameter Bit-Flip Perturbations">
+<meta property="og:description" content="Hardware faults can flip bits in the stored weights of a quantized neural network, potentially compromising its predictions. While such faults typically affect multiple parameters simultaneously, existing verifiers are limited to single-parameter perturbations due to the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.08876.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.08876.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.08876v1" target="_blank" rel="noopener"><img src="../thumbs/2610.08876.jpg" alt="First page of Towards Verifying Neural Networks Against Multi-Parameter Bit-Flip Perturbations"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Towards Verifying Neural Networks Against Multi-Parameter Bit-Flip Perturbations</h1>
+        <p class="authors">Hai Duong, Thanh Le, Ho Nguyen, ThanhVu Nguyen</p>
+        <div class="row">
+          <span class="badge">cs.CR</span>
+          <span class="date">Oct 6, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.08876v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.08876" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Soundness propositions of the bit-flip verifier (top-m bound, LP relaxation exactness, branch-and-bound correctness, propagation counting) are mechanized in Lean 4 with Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Hardware faults can flip bits in the stored weights of a quantized neural network, potentially compromising its predictions. While such faults typically affect multiple parameters simultaneously, existing verifiers are limited to single-parameter perturbations due to the combinatorial explosion of possible flip locations in large networks. We present mBFV (m-BitFlip Verifier), an efficient verification framework that proves robustness against simultaneous bit flips across multiple parameters without explicitly enumerating these combinations. mBFV achieves this via a novel multi-parameter bound propagation technique that directly aggregates the m worst-case contributions. To further tighten these bounds, mBFV employs a branch-and-bound mechanism over perturbation locations, partitioning the potential flips to smaller groups of neurons. Evaluated on 625 instances, mBFV successfully verifies 293, significantly outperforming a prior single-parameter verifier (38 verified instances) and an exact mixed-integer linear programming baseline (0 verified instances). Notably, while these baselines are restricted to single-parameter flips on small networks (up to 13k parameters), mBFV scales to verify networks with up to 1.15M parameters against up to four simultaneous parameter flips.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Hardware bit flips in the stored weights of quantized neural networks can change their predictions. Such faults usually affect several parameters at once, but existing verifiers handle only single-parameter perturbations because the number of flip-location combinations explodes.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">mBFV extends CROWN bound propagation by recording each parameter&#x27;s worst-case contribution and aggregating the m largest contributions, which avoids enumerating combinations. A branch-and-bound search over groups of neurons restricts where flips can occur, tightening the bounds. Key soundness results are mechanized in Lean 4 with Mathlib, including the top-m relaxation proposition (Proof/TopM.lean), branch-and-bound correctness, and the bound on the number of propagations.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 625 instances, mBFV verifies 293, compared with 38 for BFAVerifier and 0 for an exact MILP baseline. It scales to networks with 1.15M parameters under up to four simultaneous parameter flips.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Verified</th></tr></thead><tbody><tr><td>mBFV</td><td>293</td></tr><tr><td>BFAVerifier (single-parameter)</td><td>38</td></tr><tr><td>MILP baseline</td><td>0</td></tr></tbody></table><div class="tbl-cap">Verified instances out of 625</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
