@@ -8,6 +8,94 @@
     <language>en</language>
     <lastBuildDate>Thu, 15 Oct 2026 00:00:00 +0000</lastBuildDate>
     <item>
+      <title>KL Before and After Mixing: A Round-Complexity Separation in Parallel Sampling</title>
+      <link>https://paperswithlean.com/paper/2610.13924.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.13924.html</guid>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Tianyi Wu</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>probability</category><category>ml-theory</category>
+      <description>A Lean 4/Mathlib package (369 modules) kernel-checks the paper&#x27;s key bounds, numerical brackets, and finite exhibits on parallel-sampling round complexity.
+
+A parallel sampler can choose at random which coordinates to generate together. For a target $p$ and the output law $q_U$ of a schedule $U$ drawn afresh for each output, we compare the schedule-averaged divergence $\mathbb{E}_U D_{\mathrm{KL}}(p\|q_U)$ with the output-law divergence $D_{\mathrm{KL}}(p\|\mathbb{E}_U q_U)$, in nats. Rounds commit independent draws from exact conditional marginals frozen at the round&#x27;s start, each output&#x27;s schedule is drawn before sampling from a finite mixture of schedules, and every scheduled round is charged. For the uniform distribution on binary strings of even length $n$ with $n/2$ ones, the least expected number of rounds at a fixed tolerance $\varepsilon&gt;0$ is $Θ_\varepsilon((\log n)^2)$ under the first criterion but $(e^{-\varepsilon}+o(1))\log_2\ln n$ under the second, and the double-logarithmic order is attainable with the same round count on every run. For this target, a count-state recursion gives the exact least output divergence at every round cap over all causal randomized policies. The separation extends to weighted fixed-count targets with bounded weight ratios and quota fractions bounded away from zero and one, without permutation symmetry, and to the full-support Beta$(1,1)$–Bernoulli target, where the sharp expected cost under the output-law criterion is $(e^{-\varepsilon}/2+o(1))\log_2\log_2n$, attained with rare $n$-round runs. Prior work implies the order of the schedule-averaged cost on the balanced target and its $O_\varepsilon((\log n)^2)$ upper bounds on both extensions.</description>
+    </item>
+    <item>
+      <title>Quantitative Eshelby stability: local and finite-shape theory through AI-assisted mechanics</title>
+      <link>https://paperswithlean.com/paper/2610.13400.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.13400.html</guid>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Bo Ni</dc:creator>
+      <category>formalization</category><category>analysis</category><category>physics</category>
+      <description>Selected mathematical components of the local Eshelby stability theorem are partially formalized and checked in Lean 4; the full theorem is not formally verified.
+
+How can human researchers use artificial intelligence (AI) to make progress on difficult mechanics problems while retaining control of physical significance, mathematical rigor, and validation? We explore this opportunity through a quantitative stability problem rooted in the Eshelby conjecture. For a uniform dilatational eigenstrain in a homogeneous isotropic solid, we establish a nonlinear two-sided relation between whole-interior strain heterogeneity and a geometry-only distance from the ellipsoid family, with half-order Sobolev scaling that captures morphological length scale. We then develop a complementary finite-shape theory: ellipsoidal subtraction yields an exact residual-field budget from which systematically convergent upper and lower bounds are obtained for a prescribed geometry. Applied to protruded, indented, and necked inclusions, the bounds agree with independent displacement-based finite-element calculations. The study also documents a human-led, AI-assisted research process in which researchers select consequential problems, shape targets, audit arguments, require independent checks, and interpret mechanics, while AI broadens analytical exploration and supports computation. This experience also led us to develop Open Problems in Mechanics, a versioned community-facing map that makes selected mechanics questions, their known/open boundaries, and criteria for progress explicit.</description>
+    </item>
+    <item>
+      <title>Anechoic: Onsager-Corrected Parallel Annealing for Sub-0.1 ms Dense Max-Cut on an FPGA</title>
+      <link>https://paperswithlean.com/paper/2610.13368.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.13368.html</guid>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Seungki Hong, Kyeongwon Jeong, Taekwang Jang</dc:creator>
+      <category>verification</category><category>formalization</category><category>mathlib</category>
+      <description>Finite identities behind the annealing correction and the hardware engine (field updates, address mapping, cut formula) are machine-checked in Lean 4 with Mathlib, and also in Rocq.
+
+Ising machines solve combinatorial optimization problems by annealing a network of spins. On dense problems, the least expensive hardware step updates all spins at once: stochastic cellular automata (SCA) decide every spin in parallel and read couplings only for the spins that flip. Such synchronous updates create an echo: the previous state of each spin returns to it through its neighbors. On K2000, a Max-Cut benchmark on a 2,000-node complete graph, two-thirds of all flips undo the same spin&#x27;s flip one step earlier. This paper presents Anechoic, an FPGA Ising machine that subtracts this echo from every decision. Dynamical mean-field theory identifies the echo as an Onsager reaction; its one-step strength is the number of spins whose flip probability is strictly between 0 and 1, divided by twice the temperature. The decision logic already flags these spins, so the correction costs one population count per step; a temperature-scaled form needs none. An RTL engine executes a dense 2,000-spin step in 18.1 cycles plus 0.14 per flip, so every saved step and flip saves time. Both forms find better K2000 cuts at every step budget than five published binary-spin algorithms at their papers&#x27; settings. Twelve engines at 250 MHz on an AMD Alveo V80 reach a cut of at least 33,000 with 99% probability in 0.05 ms, 5.2 times faster than the fastest published hardware, at 5.4 mJ per solution; with 2-bit couplings, the temperature-scaled form is also faster than uncorrected SCA on 49 of 51 G-set graphs. On an NVIDIA GH200 GPU, the same engine is 2.3 times slower and needs 8.0 times more energy per solution, though its 240 concurrent anneals give 2.3 times the throughput. As a GlobalFoundries 22 nm ASIC at 1.25 GHz, twelve engines would reach the target in about 10 microseconds, 26 times faster than the fastest published hardware. The code is available at https://github.com/skethz/anechoic.</description>
+    </item>
+    <item>
+      <title>Strict Dirichlet Pólya Inequality for Simply Connected Planar Domains</title>
+      <link>https://paperswithlean.com/paper/2610.13139.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.13139.html</guid>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Quanyu Tang, Zuoqin Wang</dc:creator>
+      <category>formalization</category><category>analysis</category><category>ai-agents</category>
+      <description>The main strict Dirichlet Pólya theorem and a strict Neumann analogue were formalized in Lean 4, assisted by Harmonic&#x27;s Aristotle and OpenAI&#x27;s Codex.
+
+We establish the strict Dirichlet Pólya inequality on every bounded simply connected planar domain. The proof uses a unitary boundary transport formulation of the Helmholtz equation and relates Dirichlet resonances to unitary eigenphase crossings through the Dirichlet-to-Neumann map. An exact area identity yields the sharp Weyl coefficient, while a Ky Fan estimate leaves a strictly positive remainder in the counting estimate. The general case follows by conformal exhaustion.</description>
+    </item>
+    <item>
+      <title>The order types of the supports of $p$-adic algebraic Hahn series</title>
+      <link>https://paperswithlean.com/paper/2610.13014.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.13014.html</guid>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Shanwen Wang, Yijun Yuan</dc:creator>
+      <category>formalization</category><category>number-theory</category><category>mathlib</category><category>ai-agents</category>
+      <description>All main theorems are formalized sorry-free in Lean 4 with mathlib4, built by agentic autoformalization systems on a standalone library, TrustworthyKedlaya.
+
+Let $p$ be a prime number. In 1986, David Lampert asked if one expands a $\mathbf{Q}_p$-algebraic number as a $p$-adic Hahn series, then what is the possible order type of its support? In 2001, Kedlaya made a vague conjecture that the possible ordinals can only be finite ordinals, $ω$ and $ω^ω$, where $ω$ is the first infinite ordinal. In this article, we solve Lampert&#x27;s problem by confirming Kedlaya&#x27;s intuition. Moreover, we completely characterize the $\mathbf{Q}_p$-algebraic numbers with order type of support at most $ω$. As an application, we determine the bi-algebraic set of the $p$-adic shadow map.</description>
+    </item>
+    <item>
+      <title>Sequential Conformal Calibration under Recursive Selection</title>
+      <link>https://paperswithlean.com/paper/2610.12937.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.12937.html</guid>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Yuning Yang, Zexuan Liu, Tianci Wang, Danlin Li</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>probability</category>
+      <description>Deterministic and algebraic cores of the conformal-calibration theory are formalized in Lean 4 with Mathlib, with probabilistic steps entering as named hypotheses.
+
+Conformal prediction provides finite-sample, distribution-free coverage guarantees that can support decision-making in specific settings. In multistage problems, earlier decisions determine the populations relevant to later calibration. When later scores are refit using earlier calibration results, reusing those cases for ranking need not preserve exchangeability with a surviving test case. We study sequential conformal calibration with a fresh fold at each stage: conditional on earlier folds, the selected fold scores and the surviving test score are exchangeable. This yields finite-sample coverage guarantees for every prefix of the decision sequence. For atomless survivor score distributions, we derive a universal Binomial-thinned Beta chain for the realized coverage process. Its law depends only on fold sizes and target levels, even under predictable refitting, and yields exact coverage slack, abstention probabilities, and calibration-conditional guarantees. We further characterize the tradeoff between freshness and data reuse. For fixed scores, strict-survivor reuse is exactly valid. For adaptive scores refit using past calibration data, reusing survivors can incur worst-case rank loss, while blocked designs provide an intermediate option between full reuse and stagewise fresh folds. As a case study, we apply the framework to serial multi-echelon inventory problem and propose a sequential conditional-quantile formulation. Each stock level is learned as a context-dependent quantile of cumulative demand among scenarios satisfying earlier no-backlog constraints. We connect these targets to common-shift stationarity and derive decision-level implications for the resulting calibrated policies. In a three-echelon simulation, fresh-fold refitting achieves 81.98% final-prefix coverage against an 81.82% target while reducing mean cost by 5.5% relative to the Bonferroni baseline.</description>
+    </item>
+    <item>
+      <title>A Catalytic Algorithm for Transposing Unknown Qutrit Unitaries with Tight Query Bounds</title>
+      <link>https://paperswithlean.com/paper/2610.12664.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.12664.html</guid>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Yu-Ao Chen</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>quantum</category>
+      <description>Formalizes the paper&#x27;s exact results (Secs. S1–S5: catalytic transposition circuit, query lower bounds, repeated-use constructions) in Lean 4 with Mathlib, provided as ancillary sources.
+
+We construct exact deterministic circuits for transposing and inverting an unknown qutrit unitary $U\in\mathrm{SU}(3)$ using only forward queries. Three queries prepare a catalyst independently of the input state. Four further queries implement transposition while returning the catalyst unchanged and uncorrelated with the output. Two uses within an antisymmetric encoding implement inversion with eight processing queries and return the same catalyst. Reusing the catalyst implements $m$ transpositions or inversions with $3+4m$ or $3+8m$ total queries, respectively. More generally, we prove that exact transposition and inversion of an unknown $U\in\mathrm{SU}(d)$, $d\ge2$, require at least $d+1$ and $d^2-1$ processing queries, respectively, in fixed causal order. These processing bounds hold for any program state prepared independently of the input state using finitely many forward queries, even if that state is consumed during processing. Both our catalytic qutrit algorithms attain their respective bounds. Moreover, exact qutrit transposition with four processing queries requires at least three preparation queries, and our construction attains this bound.</description>
+    </item>
+    <item>
+      <title>On the Five-Point Case of Mordell&#x27;s Problem</title>
+      <link>https://paperswithlean.com/paper/2610.12504.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.12504.html</guid>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Tiancheng Xu, Guowei Dou, Wensheng Yu</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>analysis</category><category>algebra</category>
+      <description>The five-point Mordell discriminant inequality and both directions of its equality case are fully formalized in Lean 4 with Mathlib, including verified interval-bound checks.
+
+For five complex points $z_1,\ldots,z_5$ satisfying $\sum_i|z_i|^2=5$, Mordell&#x27;s discriminant inequality states that $\prod_{i&lt;j}|z_i-z_j|^2\leq5^5$, with equality precisely for a unit regular pentagon, up to rotation and permutation. We organize its proof around a direct comparison of discriminant values. A global maximizer gives a centered stationary configuration, whose coefficient equations reduce the generic case to two quartic branches. On each branch, the absolute value of a cubic polynomial gives the original discriminant objective after accounting for the normalization scale. Exact rational interval bounds exclude both branches from the maximum, and the exceptional coefficient cases leave the regular pentagon. The argument determines the maximizing configuration without reconstructing all stationary shapes. We have completed a full Lean formalization of the five-point inequality and both directions of its equality condition, including all reductions and finite checks used in this proof.</description>
+    </item>
+    <item>
       <title>Codimension-one holomorphic Anosov diffeomorphisms</title>
       <link>https://paperswithlean.com/paper/2609.37695.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2609.37695.html</guid>
@@ -578,94 +666,6 @@ Under the conditional framework breaking the longstanding O(n log n) integer mul
       <description>The incidence checks for both (23_4) configurations, one over the integers and one over Q(√17), are formalized in Lean 4.
 
 A geometric $(n_4)$ configuration is a set of $n$ points and $n$ lines in the real projective plane such that every point lies on exactly four of the lines and every line contains exactly four of the points. The question of which $n$ admit such a configuration was posed by Grünbaum in 2000, following his 1990 paper with Rigby that gave the first geometric $4$-configuration, a $(21_4)$. Successive work of Bokowski-Schewe, of Bokowski, Grünbaum and Schewe, of Bokowski-Pilaud, and of Cuntz settled every case but one. Cuntz&#x27;s 2018 paper, which constructed $(22_4)$ and $(26_4)$ configurations, states that only $n=23$ remained open. We settle this last case. We prove that for every prime $n\equiv3\pmod4$, in particular for $n=23$, the group of projective symmetries of a geometric $(n_4)$ configuration has order at most four, which explains why $n=23$ resisted the symmetric constructions that settled the other values. Reducing the case of a Klein four-group of symmetries to a few thousand bilinear polynomial systems in $18$ unknowns, and solving all of them exactly with Gröbner bases and saturation, we show that exactly two geometric $(23_4)$ configurations reach this bound, up to projective equivalence, and that there are no others even over $\mathbb{C}$. Both are self-polar with respect to a conic. The first has integer homogeneous coordinates; the second is defined over $\mathbb{Q}(\sqrt{17})$, but not over $\mathbb{Q}$. Consequently geometric $(n_4)$ configurations exist if and only if $n\ge18$ and $n\ne19$. A third configuration, self-polar and defined over a real cubic field, has only a single symmetry of order two. The same classification at $n=22$ and $n=26$ recovers Cuntz&#x27;s configurations and finds three new combinatorial types at $n=22$ and $94$ at $n=26$, among them a $(26_4)$ configuration that is self-polar with respect to a conic without real points.</description>
-    </item>
-    <item>
-      <title>Classification of the Orbits of Three Quadratic Collatz-type Maps</title>
-      <link>https://paperswithlean.com/paper/2610.10660.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.10660.html</guid>
-      <pubDate>Tue, 13 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Xuda Ye</dc:creator>
-      <category>formalization</category><category>number-theory</category><category>mathlib</category>
-      <description>The classification theorems and Szalay&#x27;s Diophantine lemma are verified in Lean 4 with Mathlib, taking Beukers&#x27; results as axioms; code is on GitHub.
-
-We study three quadratic Collatz-type maps on the non-negative integers. Each of them halves an even number, and they send an odd $n$ to $n(n-1)/2$, to $n(n+1)/2$ and to $(n^2 - 1)/4$, respectively. Along an orbit, the odd terms grow until they reach a number of the form $2^m + 1$ or $2^m - 1$, depending on the map, and an orbit with an odd term greater than $1$ is bounded exactly when this happens. The step that reaches such a number gives a solution of an exponential Diophantine equation, which becomes the equation $2^a \pm 2^b + 1 = z^2$ after completing the square. With Szalay&#x27;s classification of the solutions of this equation, we classify all orbits of the maps. Every orbit either is eventually periodic or tends to infinity, and we determine exactly the initial values with bounded orbits. For the map with odd branch $n(n-1)/2$, Sedaghat stated the classification, and we give a new and complete proof. For this map, we also give an elementary criterion for unbounded orbits, based on divisibility alone. To our knowledge, the classifications for the other two maps are new.</description>
-    </item>
-    <item>
-      <title>Notes on Kozma and Nitzan&#x27;s proof of $θ(p_c)=0$</title>
-      <link>https://paperswithlean.com/paper/2610.10502.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.10502.html</guid>
-      <pubDate>Tue, 13 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Arthur Blanc-Renaudie</dc:creator>
-      <category>formalization</category><category>probability</category>
-      <description>Gives a human-readable proof of Kozma–Nitzan inequalities whose AI-generated proofs were machine-checked in Lean 4/Mathlib; cites those Lean repositories.
-
-We present a human intelligible proof of the conjectures of Kozma and Nitzan, that they used to show $θ(p_c)=0$. The proof was recently found by AI, but was very poorly written. Our version is much shorter as it completely skips the horizontal term and its long estimate.</description>
-    </item>
-    <item>
-      <title>Iterated Graph Systems (II): Bernoulli percolation and critical-exponent universality classes on hierarchical lattices</title>
-      <link>https://paperswithlean.com/paper/2610.10469.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.10469.html</guid>
-      <pubDate>Tue, 13 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Ziyu Neroli</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>probability</category>
-      <description>Results of Sections 2–5 are formalized in Lean 4 with Mathlib, including kernel-checked certificate identities, assuming only Gelfond–Schneider and the six exponentials theorem.
-
-We study Bernoulli percolation and its universality classes on hierarchical lattices generated by edge iterated graph systems (EIGS). By examining eight critical exponents, we prove that no finite family of substitution-multiplicative dimensions completely determines universality, providing a rigorous proof of the failure of dimension-based universality discussed by Hauser and Saxena [Phys. Rev. B 34 (1986), 8193-8195]. Although the six exponentials theorem provides number-theoretic criteria for scale commensurability, we further disprove the conjecture that critical-exponent universality requires commensurate discrete renormalisation scales.</description>
-    </item>
-    <item>
-      <title>Finite-Sample Approximation of Hessian-Guided Perturbed Wasserstein Gradient Flows</title>
-      <link>https://paperswithlean.com/paper/2610.10218.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.10218.html</guid>
-      <pubDate>Tue, 13 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Ryotaro Kawata, Atsushi Nitanda, Taiji Suzuki</dc:creator>
-      <category>formalization</category><category>analysis</category><category>probability</category><category>ml-theory</category>
-      <description>An accompanying Lean 4 development of 4,274 declarations formalizes the paper&#x27;s finite-particle tracking theorems, the variance-plus-cosine example, and the local-geometry results, with an axiom audit.
-
-Wasserstein gradient flow extends gradient descent to probability measures. Its Hessian-guided perturbed variant (PWGF) adds Gaussian perturbations to escape saddle points in nonconvex problems. We investigate when its approximation by finitely many interacting particles remains accurate over growing time horizons. Our analysis retains the curvature accumulated along the population-driven reference path: negative curvature can amplify approximation errors, while subsequent positive curvature can damp their influence. This captures favorable scenarios in which temporary instability is compatible with accurate tracking over growing horizons. Under regularity assumptions and a prescribed common perturbation schedule, we prove particle and objective-value tracking bounds on a high-probability event for reference paths satisfying explicit conditions on accumulated curvature. To handle state-dependent Gaussian jumps, we construct a population-first coupling that preserves the reference particles&#x27; conditional independence and reduces jump errors to covariance comparison. We verify the conditions in a variance-plus-cosine model, where curvature recovery yields a growing-horizon tracking guarantee. We also establish local attraction, transverse descent, and positive second variation in two regions of a regularized matrix-factorization model, motivating a positive-negative-positive curvature pattern.</description>
-    </item>
-    <item>
-      <title>Finite Chains of Two-Complexes and Acyclic Covers</title>
-      <link>https://paperswithlean.com/paper/2610.10074.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.10074.html</guid>
-      <pubDate>Tue, 13 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Laurent Bartholdi, Roman Mikhailov</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>topology</category>
-      <description>Theorem A, characterizing two-complexes with finite chains zero on π2 via acyclic covers, was formalized in Lean/Mathlib, with the formalization slated for the Palomar repository.
-
-A negative answer to Whitehead&#x27;s asphericity problem would follow from an infinite chain of two-complexes, starting with a non-aspherical one, in which every inclusion induces the zero map on second homotopy groups. We prove that a connected two-complex $K$ is the first term of such chains of every finite length if and only if $K$ has a connected acyclic regular cover. In particular, there is a finite non-aspherical two-complex $K$, a presentation complex of $\mathrm{SL}(2,5)$, such that for every $n$ there is a strictly increasing chain of finite two-complexes $K=K_0\subset K_1\subset\dots\subset K_n$ in which all inclusions are zero on $π_2$.</description>
-    </item>
-    <item>
-      <title>When Rank Rises as LLMs Degrade</title>
-      <link>https://paperswithlean.com/paper/2610.09647.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.09647.html</guid>
-      <pubDate>Tue, 13 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Zhaohui Geoffrey Wang</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>ml-theory</category>
-      <description>One supporting theorem, the non-negativity of the anisotropy deficit via AM-GM on the spectrum, is machine-checked in Lean 4.24.0 with Mathlib and an axiom audit.
-
-Post-training adapts language models in non-stationary environments. Practitioners monitor representation health with RankMe and related spectral statistics, often assuming that rank falls when representations degrade. We show that this assumption is unsafe for LLM post-training. In a controlled study of Qwen3-0.6B with four degradation modes and three seeds, data duplication worsens held-out loss by 75% relative to healthy while increasing both original and centred RankMe; the latter changes by 13.5 pooled standard deviations. Covariance effective rank rises to nearly twice its healthy value. This failure is spectral dispersion rather than collapse, so a one-sided monitor rates the worst checkpoint as the healthiest. By contrast, a learning-rate misconfiguration lowers centred RankMe and k95, while uncentred RankMe is inconsistent across seeds. Direction is therefore a property of the regime-statistic pair and cannot be fixed by recalibration alone. We also distinguish two often-conflated statistics: RankMe normalises singular values, whereas covariance effective rank normalises eigenvalues. On raw intermediate-layer states in the pretrained model, massive activations pin the latter near 1 out of dimension d while RankMe retains usable range. We then test a two-sided, multichannel sequential monitor with separate calibration and test data. In a pre-registered shared-prefix, leave-one-seed-out evaluation, it detects all three damage regimes in every fold 10 to 60 steps after the fork and separates dispersion from downward-rank damage by firing direction. However, it never precedes held-out probe loss, and calibration with two seeds produces false alarms on the held-out healthy seed. Spectral monitoring can diagnose failure regimes, but it does not warn earlier than held-out loss, and validity claims require held-out healthy data.</description>
-    </item>
-    <item>
-      <title>Plunge bounds for Fourier concentration operators: geometry, smoothing, and wave packets</title>
-      <link>https://paperswithlean.com/paper/2610.09406.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.09406.html</guid>
-      <pubDate>Tue, 13 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Ahmadreza Azimifard</dc:creator>
-      <category>formalization</category><category>analysis</category><category>algebra</category>
-      <description>Selected algebraic and finite-dimensional matrix results supporting the spectral bounds, such as star-ring identities and singular-value inequalities, were formalized and checked in Lean 4.
-
-We prove a single-logarithm bound for the eigenvalues in the plunge region of Fourier concentration operators, removing the extra logarithmic factor in the Kulikov–Dam Larsen bound for two general admissible sets throughout each fixed exponential window. For bounded spatial and frequency sets $A,B\subset\mathbb{R}^d$ of positive measure with finite upper codimension-one Minkowski boundary content, the number $Λ_\varepsilon(cA,B)$ of eigenvalues in $(\varepsilon,1-\varepsilon)$ satisfies $Λ_\varepsilon(cA,B)\le C(d,A,B,β)c^{d-1}D(1+\log_+(c/D))$, where $D=\log(1/(\varepsilon(1-\varepsilon)))$, for every fixed $β&gt;0$, $c\ge2$, $0&lt;\varepsilon&lt;1/2$, and $D\leβc$, with $\log_+t=\max(0,\log t)$. The argument uses positive band-limited smoothing and requires no symmetry, convexity, or connectedness. In dimension two, the corresponding exponential-window estimate has a constant uniform in the window parameter. We also determine the optimal coordinate-Lipschitz constant $d-1$ for recursive decompositions of balls and standard simplices in every dimension, and obtain box-frequency estimates with explicit geometric constants. For $C^1$ convex bodies in three dimensions, the optimal infimum of recursive coordinate slopes is $2$. Uniform real-order Bessel estimates give independent disk and ball bounds at every spectral threshold, including an explicit deep-tail term. For smooth strictly convex planar frequency bodies with positive curvature, we prove correlation estimates for aligned Gaussian packets at arbitrary relative scales and quantitative lower bounds on the cost of estimating spatial blocks separately. Together these results connect the global spectral bound with sharp geometric constructions and the cancellation retained by grouping boundary interactions.</description>
-    </item>
-    <item>
-      <title>Efficient Provably Private Classification with a Tabular Foundation Model</title>
-      <link>https://paperswithlean.com/paper/2610.10068.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.10068.html</guid>
-      <pubDate>Mon, 12 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Talal Alrawajfeh, Cristiana Diaconu, Ossi Räisä, Sebastian Rodriguez Beltran, Yuan He, John Bronskill, Richard E. Turner, Antti Honkela</dc:creator>
-      <category>verification</category><category>formalization</category><category>probability</category>
-      <description>Lean 4 formalisation (DPMHCA.lean) verifies the sensitivity bound and adaptive Gaussian differential privacy composition underlying the private summary mechanism&#x27;s noise calibration.
-
-Tabular data underpin prediction and decision-making in medicine, finance, government and science, but often contain sensitive individual-level information, creating a need for accurate prediction while preserving privacy. Traditional private learning provides formal privacy guarantees, but requires slow dataset-specific optimisation, suffers substantial utility loss under strong privacy, and is often difficult to apply correctly. Tabular foundation models adapt rapidly to new datasets, but existing models lack formal privacy guarantees, and are highly vulnerable to membership-inference attacks, limiting their use on sensitive data. Here we introduce PrivTab, an easy to use tabular foundation model for differentially private classification that embeds a privacy mechanism within its architecture. Pretrained on simulated datasets, PrivTab uses in-context learning to transform sensitive rows into compact, provably private summaries—effectively learning how to learn under privacy. PrivTab outperforms private linear and neural-network baselines under moderate-to-strong privacy, shows negligible membership leakage, maintains well-calibrated predictions under strong privacy, and reduces dataset fitting time by 10,000 times, requiring only a single forward pass. By combining formal privacy, speed, and easy of use, PrivTab brings recent advances in AI to applications where sensitive individual-level data have limited their adoption.</description>
     </item>
   </channel>
 </rss>

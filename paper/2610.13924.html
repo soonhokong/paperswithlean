@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KL Before and After Mixing: A Round-Complexity Separation in Parallel Sampling · Papers With Lean</title>
+<meta name="description" content="A parallel sampler can choose at random which coordinates to generate together. For a target $p$ and the output law $q_U$ of a schedule $U$ drawn afresh for each output, we compare the schedule-averaged divergence $\mathbb{E}_U D_{\mathrm{KL}}(p\|q_U)$ with the output-law…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KL Before and After Mixing: A Round-Complexity Separation in Parallel Sampling">
+<meta property="og:description" content="A parallel sampler can choose at random which coordinates to generate together. For a target $p$ and the output law $q_U$ of a schedule $U$ drawn afresh for each output, we compare the schedule-averaged divergence $\mathbb{E}_U D_{\mathrm{KL}}(p\|q_U)$ with the output-law…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.13924.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.13924.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.13924v1" target="_blank" rel="noopener"><img src="../thumbs/2610.13924.jpg" alt="First page of KL Before and After Mixing: A Round-Complexity Separation in Parallel Sampling"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">KL Before and After Mixing: A Round-Complexity Separation in Parallel Sampling</h1>
+        <p class="authors">Tianyi Wu</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 9, 2026 · v1</span>
+          <span class="badge">cs.IT</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-orange" href="../#tag=probability">probability</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.13924v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.13924" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://arxiv.org/src/2610.13924v1/anc" target="_blank" rel="noopener" title="arXiv ancillary files">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A Lean 4/Mathlib package (369 modules) kernel-checks the paper&#x27;s key bounds, numerical brackets, and finite exhibits on parallel-sampling round complexity.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A parallel sampler can choose at random which coordinates to generate together. For a target $p$ and the output law $q_U$ of a schedule $U$ drawn afresh for each output, we compare the schedule-averaged divergence $\mathbb{E}_U D_{\mathrm{KL}}(p\|q_U)$ with the output-law divergence $D_{\mathrm{KL}}(p\|\mathbb{E}_U q_U)$, in nats. Rounds commit independent draws from exact conditional marginals frozen at the round&#x27;s start, each output&#x27;s schedule is drawn before sampling from a finite mixture of schedules, and every scheduled round is charged. For the uniform distribution on binary strings of even length $n$ with $n/2$ ones, the least expected number of rounds at a fixed tolerance $\varepsilon&gt;0$ is $Θ_\varepsilon((\log n)^2)$ under the first criterion but $(e^{-\varepsilon}+o(1))\log_2\ln n$ under the second, and the double-logarithmic order is attainable with the same round count on every run. For this target, a count-state recursion gives the exact least output divergence at every round cap over all causal randomized policies. The separation extends to weighted fixed-count targets with bounded weight ratios and quota fractions bounded away from zero and one, without permutation symmetry, and to the full-support Beta$(1,1)$–Bernoulli target, where the sharp expected cost under the output-law criterion is $(e^{-\varepsilon}/2+o(1))\log_2\log_2n$, attained with rare $n$-round runs. Prior work implies the order of the schedule-averaged cost on the balanced target and its $O_\varepsilon((\log n)^2)$ upper bounds on both extensions.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Parallel samplers for masked diffusion and any-order autoregressive models fill several coordinates per round with independent draws, and random schedules can be judged by two criteria. One is the schedule-averaged KL divergence; the other is the KL divergence of the mixed output law. The question is how many rounds each criterion requires.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The analysis uses an exact-oracle interface on the uniform distribution over balanced binary strings, and on its extensions to weighted fixed-count targets and the Beta(1,1)–Bernoulli target. Output divergence is reduced to a survival probability via uniform relabelling, and a count-state recursion gives exact optimal divergence at every round cap. Upper bounds come from square-root ladder schedules, and lower bounds from entropy-decrement arguments. Key bounds, numerical brackets and finite exhibits are kernel-checked in a Lean 4/Mathlib package.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On the balanced slice the schedule-averaged criterion needs Θ((log n)^2) rounds, while the output-law criterion needs (e^{-ε}+o(1)) log2 ln n rounds. The separation extends to bounded-weight slices and to the full-support target, where the sharp cost is (e^{-ε}/2+o(1)) log2 log2 n. Lean checks include the bound L_H&gt;26.20 and an 11-round profile with F≤ln 2 at n=65536.</p><div class="sum-table"><table><thead><tr><th>design, criterion, cost</th><th>balanced slice</th></tr></thead><tbody><tr><td>fixed schedule, KL, length</td><td>Θ((log n)^2)</td></tr><tr><td>mixture, H, mean</td><td>Θ((log n)^2)</td></tr><tr><td>relabelled profile, F, length</td><td>ℓ+O(1)</td></tr><tr><td>mixture, F, mean</td><td>(e^{-ε}+o(1))ℓ</td></tr></tbody></table><div class="tbl-cap">Round complexity on the balanced slice (ℓ ≈ log2 ln n)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

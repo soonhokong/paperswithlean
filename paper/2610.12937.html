@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sequential Conformal Calibration under Recursive Selection · Papers With Lean</title>
+<meta name="description" content="Conformal prediction provides finite-sample, distribution-free coverage guarantees that can support decision-making in specific settings. In multistage problems, earlier decisions determine the populations relevant to later calibration. When later scores are refit using earlier…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sequential Conformal Calibration under Recursive Selection">
+<meta property="og:description" content="Conformal prediction provides finite-sample, distribution-free coverage guarantees that can support decision-making in specific settings. In multistage problems, earlier decisions determine the populations relevant to later calibration. When later scores are refit using earlier…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.12937.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.12937.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.12937v2" target="_blank" rel="noopener"><img src="../thumbs/2610.12937.jpg" alt="First page of Sequential Conformal Calibration under Recursive Selection"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Sequential Conformal Calibration under Recursive Selection</h1>
+        <p class="authors">Yuning Yang, Zexuan Liu, Tianci Wang, Danlin Li</p>
+        <div class="row">
+          <span class="badge">stat.ME</span>
+          <span class="date">Oct 9, 2026 · v2</span>
+          <span class="badge">math.OC</span> <span class="badge">stat.AP</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.12937v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.12937" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Deterministic and algebraic cores of the conformal-calibration theory are formalized in Lean 4 with Mathlib, with probabilistic steps entering as named hypotheses.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Conformal prediction provides finite-sample, distribution-free coverage guarantees that can support decision-making in specific settings. In multistage problems, earlier decisions determine the populations relevant to later calibration. When later scores are refit using earlier calibration results, reusing those cases for ranking need not preserve exchangeability with a surviving test case. We study sequential conformal calibration with a fresh fold at each stage: conditional on earlier folds, the selected fold scores and the surviving test score are exchangeable. This yields finite-sample coverage guarantees for every prefix of the decision sequence. For atomless survivor score distributions, we derive a universal Binomial-thinned Beta chain for the realized coverage process. Its law depends only on fold sizes and target levels, even under predictable refitting, and yields exact coverage slack, abstention probabilities, and calibration-conditional guarantees. We further characterize the tradeoff between freshness and data reuse. For fixed scores, strict-survivor reuse is exactly valid. For adaptive scores refit using past calibration data, reusing survivors can incur worst-case rank loss, while blocked designs provide an intermediate option between full reuse and stagewise fresh folds. As a case study, we apply the framework to serial multi-echelon inventory problem and propose a sequential conditional-quantile formulation. Each stock level is learned as a context-dependent quantile of cumulative demand among scenarios satisfying earlier no-backlog constraints. We connect these targets to common-shift stationarity and derive decision-level implications for the resulting calibrated policies. In a three-echelon simulation, fresh-fold refitting achieves 81.98% final-prefix coverage against an 81.82% target while reducing mean cost by 5.5% relative to the Bonferroni baseline.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">In multistage decision problems, earlier calibrated thresholds determine which cases survive to later stages. Refitting later scores on reused calibration data can break exchangeability with a surviving test case and invalidate conformal coverage guarantees.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors propose sequential conformal calibration with a fresh calibration fold at each stage. Thresholds are set as augmented order statistics of survivor scores, and scores may be refit predictably from earlier folds. They derive a universal Binomial-thinned Beta chain for the realized coverage process and analyze the tradeoff between fresh folds and data reuse. The framework is applied to serial multi-echelon inventory, where it gives a sequential conditional-quantile formulation. Parts of the theory are checked in Lean 4.34.1 with Mathlib, with each claim linked to a named declaration.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Fresh-fold calibration gives finite-sample prefix coverage guarantees, and under atomless scores it gives an exact coverage law that depends only on fold sizes and target levels. In a three-echelon simulation it reaches 81.98% final-prefix coverage against an 81.82% target and reduces mean cost by 5.5% relative to the Bonferroni baseline. The Lean proofs use only the standard axioms and contain no sorry.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.12937/small_oracle.png" alt=""><figcaption>Figure 1: Left: fitted stocks at N=300 , with the population optimum marked by a star. The scatter is not a confidence region for s^{*} . Right: mean population cost gaps; bars are 1.96 standard errors across calibration replications.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Target rule</th><th>Calibration</th><th>k=1</th><th>k=2</th><th>k=3</th><th>Cost</th></tr></thead><tbody><tr><td>Required</td><td>—</td><td>90.91</td><td>86.36</td><td>81.82</td><td>—</td></tr><tr><td>Marginal</td><td>Conformal</td><td>90.94</td><td>84.61</td><td>77.08</td><td>70.49</td></tr><tr><td>Sequential</td><td>Plug-in</td><td>89.34</td><td>84.16</td><td>78.88</td><td>69.12</td></tr><tr><td>Sequential</td><td>Conformal</td><td>90.98</td><td>86.52</td><td>81.98</td><td>68.98</td></tr></tbody></table><div class="tbl-cap">Target/calibration ablation: mean prefix coverage (%) and cost over 100 fits</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

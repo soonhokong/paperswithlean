@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anechoic: Onsager-Corrected Parallel Annealing for Sub-0.1 ms Dense Max-Cut on an FPGA · Papers With Lean</title>
+<meta name="description" content="Ising machines solve combinatorial optimization problems by annealing a network of spins. On dense problems, the least expensive hardware step updates all spins at once: stochastic cellular automata (SCA) decide every spin in parallel and read couplings only for the spins that…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Anechoic: Onsager-Corrected Parallel Annealing for Sub-0.1 ms Dense Max-Cut on an FPGA">
+<meta property="og:description" content="Ising machines solve combinatorial optimization problems by annealing a network of spins. On dense problems, the least expensive hardware step updates all spins at once: stochastic cellular automata (SCA) decide every spin in parallel and read couplings only for the spins that…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.13368.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.13368.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.13368v1" target="_blank" rel="noopener"><img src="../thumbs/2610.13368.jpg" alt="First page of Anechoic: Onsager-Corrected Parallel Annealing for Sub-0.1 ms Dense Max-Cut on an FPGA"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Anechoic: Onsager-Corrected Parallel Annealing for Sub-0.1 ms Dense Max-Cut on an FPGA</h1>
+        <p class="authors">Seungki Hong, Kyeongwon Jeong, Taekwang Jang</p>
+        <div class="row">
+          <span class="badge">cs.AR</span>
+          <span class="date">Oct 9, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.13368v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.13368" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/skethz/anechoic" target="_blank" rel="noopener" title="skethz/anechoic">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Finite identities behind the annealing correction and the hardware engine (field updates, address mapping, cut formula) are machine-checked in Lean 4 with Mathlib, and also in Rocq.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Ising machines solve combinatorial optimization problems by annealing a network of spins. On dense problems, the least expensive hardware step updates all spins at once: stochastic cellular automata (SCA) decide every spin in parallel and read couplings only for the spins that flip. Such synchronous updates create an echo: the previous state of each spin returns to it through its neighbors. On K2000, a Max-Cut benchmark on a 2,000-node complete graph, two-thirds of all flips undo the same spin&#x27;s flip one step earlier. This paper presents Anechoic, an FPGA Ising machine that subtracts this echo from every decision. Dynamical mean-field theory identifies the echo as an Onsager reaction; its one-step strength is the number of spins whose flip probability is strictly between 0 and 1, divided by twice the temperature. The decision logic already flags these spins, so the correction costs one population count per step; a temperature-scaled form needs none. An RTL engine executes a dense 2,000-spin step in 18.1 cycles plus 0.14 per flip, so every saved step and flip saves time. Both forms find better K2000 cuts at every step budget than five published binary-spin algorithms at their papers&#x27; settings. Twelve engines at 250 MHz on an AMD Alveo V80 reach a cut of at least 33,000 with 99% probability in 0.05 ms, 5.2 times faster than the fastest published hardware, at 5.4 mJ per solution; with 2-bit couplings, the temperature-scaled form is also faster than uncorrected SCA on 49 of 51 G-set graphs. On an NVIDIA GH200 GPU, the same engine is 2.3 times slower and needs 8.0 times more energy per solution, though its 240 concurrent anneals give 2.3 times the throughput. As a GlobalFoundries 22 nm ASIC at 1.25 GHz, twelve engines would reach the target in about 10 microseconds, 26 times faster than the fastest published hardware. The code is available at <a href="https://github.com/skethz/anechoic" target="_blank" rel="noopener">https://github.com/skethz/anechoic</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Synchronous stochastic cellular automata (SCA) annealers update all spins in parallel, which is cheap on dense problems. They suffer an &#x27;echo&#x27;: a spin&#x27;s previous state returns through its neighbors and undoes flips. On the 2,000-node complete-graph Max-Cut benchmark K2000, two-thirds of flips undo the previous step.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Dynamical mean-field theory identifies the echo as an Onsager reaction. Its one-step coefficient is the number of linear (non-deterministic) decisions divided by twice the temperature, so it costs one population count per step; a temperature-scaled variant needs none. A hand-written RTL engine with flip-proportional step cost is deployed as twelve engines on an AMD Alveo V80 FPGA, and is also evaluated on a GPU and as a 22 nm ASIC design. Supporting finite identities (Table 1) are machine-checked in Lean 4 with Mathlib and in Rocq; the large-N step is not formalized.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Twelve engines at 250 MHz reach a K2000 cut of at least 33,000 with 99% probability in 0.05 ms, 5.2x faster than the fastest published hardware, at 5.4 mJ per solution. The temperature-scaled form beats uncorrected SCA on most G-set graphs with 2-bit couplings. The projected ASIC would reach the target in about 10 µs.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.13368/asic_engine_v64_1p25.png" alt=""><figcaption>Figure 6. ASIC implementation of one engine (v6) in GlobalFoundries 22FDX, placed and routed at 1.25 GHz. (a) SRAM macros and standard cells by design hierarchy: each of the eight slices holds four groups next to their coupling macros, so every coupling read stays within its slice. (b) Signal and clock wiring by metal layer. (c) Clock tree: 2,798 buffers and 756 clock gates drive about 162,000 fli</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Label</th><th>Rule</th><th>Steps S</th><th>p</th><th>TTS99 [ms]</th></tr></thead><tbody><tr><td>O1</td><td>Onsager-κT</td><td>280</td><td>0.338</td><td>0.050</td></tr><tr><td>O2</td><td>Onsager-online</td><td>360</td><td>0.326</td><td>0.053</td></tr><tr><td>B5</td><td>plain SCA (STATICA)</td><td>560</td><td>0.134</td><td>0.231</td></tr><tr><td>B7</td><td>plain SCA (STATICA)</td><td>1560</td><td>0.824</td><td>0.302</td></tr></tbody></table><div class="tbl-cap">Selected K2000 schedules on the V80 (TTS99, primary estimate, ms)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
