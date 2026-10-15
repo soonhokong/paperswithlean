@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MolLean: A Process-Verifiable Language for Chemical Reasoning · Papers With Lean</title>
+<meta name="description" content="Chemical chain-of-thought can contain hallucinated structural and property claims. We thereby introduce MolLean, a process-verifiable language that grounds chemical reasoning in an explicit molecular state. A layered Lean-based kernel checks state transitions and assertions over…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MolLean: A Process-Verifiable Language for Chemical Reasoning">
+<meta property="og:description" content="Chemical chain-of-thought can contain hallucinated structural and property claims. We thereby introduce MolLean, a process-verifiable language that grounds chemical reasoning in an explicit molecular state. A layered Lean-based kernel checks state transitions and assertions over…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.20459.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.20459.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.20459v1" target="_blank" rel="noopener"><img src="../thumbs/2610.20459.jpg" alt="First page of MolLean: A Process-Verifiable Language for Chemical Reasoning"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">MolLean: A Process-Verifiable Language for Chemical Reasoning</h1>
+        <p class="authors">Jiatong Li, Yatao Bian</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Oct 14, 2026 · v1</span>
+          <span class="badge">cs.CE</span> <span class="badge">cs.PL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.20459v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.20459" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/phenixace/Open-MolLean" target="_blank" rel="noopener" title="phenixace/Open-MolLean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Implements a Lean kernel that checks molecular state transitions and structural assertions for LLM chemical reasoning, with Lean-proved soundness of valence and connectivity validation.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Chemical chain-of-thought can contain hallucinated structural and property claims. We thereby introduce MolLean, a process-verifiable language that grounds chemical reasoning in an explicit molecular state. A layered Lean-based kernel checks state transitions and assertions over molecular readouts, from primitive graph edits to compound transformations. Meanwhile, a typed witness protocol separates native structural checks from externally supplied measurements. We further introduce MolLean-MCP, a stateful tool interface that exposes these transitions, checks, and readouts during generation: the model receives feedback to decide its next action, and rejected actions leave the state unchanged. MolLean supports one-pass trace execution, whole-trace refinement, and interactive reasoning through MolLean-MCP. We evaluate these three modes with direct chain-of-thought on 8,800 matched examples across 12 tasks spanning molecular generation, editing, optimization, and reactions. With Qwen3.6-27B, whole-trace refinement outperforms direct chain-of-thought on all 12 tasks. MolLean-MCP complements whole-trace refinement with stepwise verification feedback, reaching better performance in reaction tasks. Together, these results highlight an executable foundation for chemical reasoning, in which explicit chemical commitments can be checked and revised rather than remaining solely in free-form explanations.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Chemical chain-of-thought produced by language models can contain hallucinated structural and property claims, such as absent functional groups, lost bonds, or unproven property improvements. Free-form explanations offer no mechanism to check these claims.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">MolLean is a process-verifiable language grounded in an explicit molecular state. A layered Lean kernel checks transitions (graph edits, compound transformations) and native structural assertions, and Lean proves soundness properties for valence and connectivity validation. A typed witness protocol lets external providers such as RDKit supply descriptor measurements, to which Lean applies predicates. Python handles parsing and orchestration, and MolLean-MCP exposes stateful tools for interactive generation. One-pass, whole-trace refinement, and MCP modes are compared against direct chain-of-thought.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 8,800 examples across 12 tasks with Qwen3.6-27B, whole-trace refinement outperforms direct chain-of-thought on all 12 tasks. MCP gives the best results on forward reaction and retrosynthesis. Qwen3-4B also gains substantially on structural tasks.</p><div class="sum-table"><table><thead><tr><th>Task</th><th>CoT</th><th>One-pass</th><th>Refine</th><th>MCP</th></tr></thead><tbody><tr><td>Atom counts</td><td>42.0</td><td>61.4</td><td>88.8</td><td>82.6</td></tr><tr><td>QED optimization</td><td>24.8</td><td>41.1</td><td>59.0</td><td>49.4</td></tr><tr><td>Forward reaction</td><td>35.0</td><td>23.6</td><td>62.8</td><td>66.4</td></tr><tr><td>Retrosynthesis</td><td>3.0</td><td>11.6</td><td>20.8</td><td>27.4</td></tr><tr><td>ChEBI-20 text to molecule</td><td>18.1</td><td>25.3</td><td>33.1</td><td>23.5</td></tr></tbody></table><div class="tbl-cap">Accuracy (%) with Qwen3.6-27B on selected tasks</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
