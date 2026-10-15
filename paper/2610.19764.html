@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verifying deployed bytecode against executable EVM semantics, with exact gas and no added axioms · Papers With Lean</title>
+<meta name="description" content="Much of Ethereum&#x27;s most consequential code is immutable bytecode: old output of unverified compilers, and protocol logic run as contract code. We show that such bytecode can be verified as it is, without trusting what produced it, without simplifying the machine it runs on, and…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Verifying deployed bytecode against executable EVM semantics, with exact gas and no added axioms">
+<meta property="og:description" content="Much of Ethereum&#x27;s most consequential code is immutable bytecode: old output of unverified compilers, and protocol logic run as contract code. We show that such bytecode can be verified as it is, without trusting what produced it, without simplifying the machine it runs on, and…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.19764.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.19764.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.19764v1" target="_blank" rel="noopener"><img src="../thumbs/2610.19764.jpg" alt="First page of Verifying deployed bytecode against executable EVM semantics, with exact gas and no added axioms"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Verifying deployed bytecode against executable EVM semantics, with exact gas and no added axioms</h1>
+        <p class="authors">Seulkee Baek</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Oct 14, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.19764v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.19764" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/skbaek/blanc" target="_blank" rel="noopener" title="skbaek/blanc">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds Blanc, a Lean 4 stack that verifies deployed EVM bytecode against Jaune, an executable Lean EVM semantics, using kernel-checked certificates and no added axioms.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Much of Ethereum&#x27;s most consequential code is immutable bytecode: old output of unverified compilers, and protocol logic run as contract code. We show that such bytecode can be verified as it is, without trusting what produced it, without simplifying the machine it runs on, and with no axioms beyond Lean&#x27;s own. Blanc, a Lean 4 verification stack, reads fixed runtime bytes via kernel-checked certificates and states every theorem against Jaune, an executable semantics of the EVM and block processing that passes all 34,205 blockchain-test cases of Ethereum&#x27;s fixture release v20.0.2 that involve only forks that have governed mainnet since May 2025. Eight artifacts, deployed from 2017 to 2026, come from seven compiler versions and an assembler. For the EIP-7002 contract, we prove that the end-of-block call to it, whose failure would invalidate the block, succeeds whatever its storage holds, and that each block&#x27;s withdrawal requests are exactly the oldest pending submissions; mainnet met these theorems&#x27; starting premises when Prague began. For a Uniswap V2 pair, we prove that after any valid history whose hashed slots stay apart, from any checkpoint representing its Solidity model&#x27;s state, the storage represents that model replayed over exactly the committed calls, a balanced liquidity ledger stays balanced, and, under a premise on token answers, geometric-mean reserves per share fall only through the protocol fee. Exact gas makes liveness provable: a tracked WETH9 holder without code can withdraw by a transaction whose gas has a closed form, matching all 3,748 comparable mainnet receipts of its shape in 30,000 blocks. On Curve pool bytes compiled with the lock bug exploited in 2023, Jaune executes such a reentrancy from deployment; for bytes from a fixed compiler, we prove the lock excludes it. AI agents wrote the proofs in fifteen days under one author&#x27;s direction, atop an existing stack.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Much consequential Ethereum code is immutable bytecode produced by unverified compilers. The goal is to verify such bytecode as deployed, without trusting its compiler, without simplifying the EVM, and with no axioms beyond Lean&#x27;s three standard ones.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Blanc, a Lean 4 verification stack, lifts fixed runtime bytes through certificates proposed by an untrusted program and checked by a decision procedure run in Lean&#x27;s kernel. Every theorem is stated against Jaune, an executable Lean semantics of the EVM and block processing that is conformance-tested on Ethereum fixtures. Gas is modeled exactly, which makes liveness properties provable. AI agents wrote the proofs in fifteen days under one author&#x27;s direction.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Jaune passes all 34,205 relevant blockchain-test cases. Theorems cover eight mainnet artifacts from seven compiler versions and an assembler. They include EIP-7002 end-of-block call success, Uniswap V2 model refinement and a liquidity invariant, and WETH9 withdrawal liveness with a closed-form gas cost that matches 3,748 mainnet receipts. For Curve, Jaune executes the 2023 reentrancy on the vulnerable bytes, and the lock is proved to exclude it in the fixed bytes. The 725,186-line library uses no axioms beyond Lean&#x27;s three.</p><div class="sum-table"><table><thead><tr><th>Calldata tokens</th><th>Predicted gas (not emptying)</th><th>Matches</th><th>Predicted gas (emptying)</th><th>Matches</th></tr></thead><tbody><tr><td>63</td><td>35,192</td><td>128 of 128</td><td>30,392</td><td>238 of 238</td></tr><tr><td>66</td><td>35,204</td><td>481 of 481</td><td>30,404</td><td>1,097 of 1,097</td></tr><tr><td>69</td><td>35,216</td><td>465 of 465</td><td>30,416</td><td>900 of 900</td></tr><tr><td>72</td><td>35,228</td><td>150 of 150</td><td>30,428</td><td>250 of 250</td></tr></tbody></table><div class="tbl-cap">WETH9 withdrawal gas predictions versus mainnet receipts</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

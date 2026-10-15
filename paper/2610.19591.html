@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L3M: A Verifiable Harness and Runtime for Self-Extending and Self-Improving Agents · Papers With Lean</title>
+<meta name="description" content="The lasting gains in AI have come from methods that absorb more computation, and language models already scale computation within a call. Useful work, though, happens across calls: over hours or days, through tools and external systems, among many agents and the humans they work…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="L3M: A Verifiable Harness and Runtime for Self-Extending and Self-Improving Agents">
+<meta property="og:description" content="The lasting gains in AI have come from methods that absorb more computation, and language models already scale computation within a call. Useful work, though, happens across calls: over hours or days, through tools and external systems, among many agents and the humans they work…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.19591.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.19591.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.19591v1" target="_blank" rel="noopener"><img src="../thumbs/2610.19591.jpg" alt="First page of L3M: A Verifiable Harness and Runtime for Self-Extending and Self-Improving Agents"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">L3M: A Verifiable Harness and Runtime for Self-Extending and Self-Improving Agents</h1>
+        <p class="authors">Carson Eisenach, Robert Joseph George, Vincent Quenneville-Belair, Kate Gwimm, Dean Foster</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 14, 2026 · v1</span>
+          <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.19591v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.19591" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Implements an agent harness runtime in Lean 4, proves kernel-checked safety theorems about its code, and has agents extend it with sealed Lean programs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The lasting gains in AI have come from methods that absorb more computation, and language models already scale computation within a call. Useful work, though, happens across calls: over hours or days, through tools and external systems, among many agents and the humans they work for, and increasingly through code the agents write themselves. Whether that work compounds is enabled by the harness around it, and the harness faces a constraint the model does not: of the three participants in such a computation, the human, the model and code, only the human&#x27;s attention does not scale, so the computation can grow only if the human is not in every loop. L3M is a runtime built on that premise, written in Lean 4 so that one language implements the harness, states its invariants, and is the language agents extend it in. One computation spans humans, agents, models and code, and all of its state lives in Git: a rich state trajectory – rather than a chat conversation – is an object the runtime can resume, rewind, fork, compare and merge. Waiting, communication, delegation and undo are primitives, not patterns the model reasons through each time. When an agent works out a procedure, it can write it once as a sealed Lean program whose type is its permission request, and the harness offers it back as a tool – machinery for the model to use. To take the human out of the loop, L3M uses reversibility to decide where that is safe: a tool&#x27;s review tier follows from how far its effects can be undone, so agents act freely where the runtime can recover. Because the machinery can change, the properties that make this safe are stated as kernel-checked theorems about the code that runs. On Terminal-Bench, an untuned L3M reaches about two thirds of its (unsafe) shell-equipped pass rate using only safe (not needing human review) tools.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Long-running agentic computations need a harness that keeps the human out of every loop while keeping it safe for agents to act and to extend the harness with their own code. Conventional model-centred loops route waiting, coordination, recovery and state back through the model.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">L3M is a runtime written in Lean 4 that keeps all agent state (logs, grants, mail, workspaces) as Git refs, so trajectories can be resumed, rewound, forked and merged. Tools are effect-typed and carry capability tokens, and each tool&#x27;s review tier is set by how reversible its effects are. Agents add tools by writing sealed Lean programs whose types state their permission requests. Invariants such as path confinement, monotone authority across the agent tree, and no self-granting are stated and proved as kernel-checked theorems about the running code, with Lean Manifests recording what each claim rests on.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 37 Terminal-Bench tasks, an untuned L3M using only safe (tame) tools reaches 27.0% pass@3, against 41.7% with an unreviewed shell and 59.5% for Claude Code with permissions bypassed. Shell review mainly adds model calls and tokens rather than lowering success.</p><div class="sum-table"><table><thead><tr><th>Configuration</th><th>Pass@3, %</th><th>Model calls</th><th>Tokens, M</th><th>Minutes</th></tr></thead><tbody><tr><td>Claude Code, permissions bypassed</td><td>59.5</td><td>53.0</td><td>4.43</td><td>24.6</td></tr><tr><td>L3M, shell, review off</td><td>41.7</td><td>53.2</td><td>7.70</td><td>25.4</td></tr><tr><td>L3M, tame</td><td>27.0</td><td>53.3</td><td>7.74</td><td>21.6</td></tr><tr><td>L3M, tame, no programs</td><td>24.3</td><td>41.5</td><td>6.17</td><td>24.5</td></tr></tbody></table><div class="tbl-cap">Terminal-Bench (37 tasks, pass@3)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

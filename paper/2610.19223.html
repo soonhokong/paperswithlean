@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Definition Grounding in Theory-Level Auto-formalization · Papers With Lean</title>
+<meta name="description" content="LLM-based auto-formalization systems can now generate formally verified Lean code at unprecedented rates. However, a formalization advances mathematical research only when further mathematical results can be built on it, especially when its definitions and helper lemmas are…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Definition Grounding in Theory-Level Auto-formalization">
+<meta property="og:description" content="LLM-based auto-formalization systems can now generate formally verified Lean code at unprecedented rates. However, a formalization advances mathematical research only when further mathematical results can be built on it, especially when its definitions and helper lemmas are…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.19223.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.19223.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.19223v1" target="_blank" rel="noopener"><img src="../thumbs/2610.19223.jpg" alt="First page of Definition Grounding in Theory-Level Auto-formalization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Definition Grounding in Theory-Level Auto-formalization</h1>
+        <p class="authors">Leyan Pan, Christian Szegedy, Frederick Rajasekaran, Robi Bhattacharjee, Gregory Constantine, Wenke Lee</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 13, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.19223v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.19223" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces ReuseBench, in which LLM agents formalize definitions and layered statements of textbook theories in Lean 4 on top of Mathlib, and evaluates definition reusability.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">LLM-based auto-formalization systems can now generate formally verified Lean code at unprecedented rates. However, a formalization advances mathematical research only when further mathematical results can be built on it, especially when its definitions and helper lemmas are general enough to be imported and used idiomatically. We propose definition grounding, where definition formalizations are continuously judged and revised, as a method to ensure formalization quality. We find that agents formalizing definitions from textbook text often produce definitions that later statements cannot use, and only 25%-50% of their definition sets are compatible with all later statements. However, clarifying the informal definitions can improve this rate up to 77.5% averaged over all models. Furthermore, stating a small set of basic properties without proving them can improve model judges&#x27; capability to detect definitions with compatibility issues, at only about 11% of the definition formalization cost. These results are verified with ReuseBench, a benchmark we curated for formalizing new mathematical fields and theories.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM auto-formalization systems produce Lean code quickly, but their formalized definitions are often unusable for downstream statements. This makes theory-level formalization libraries hard to build on.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors propose definition grounding, where definition formalizations are continuously judged and revised. They curate ReuseBench: 8 theories from textbooks, each with core definitions followed by up to 5 layers of increasingly advanced statements, formalized from an empty Mathlib-based project. Definition sets written by frontier models are tested by having a canonical agent formalize the downstream layers. They also study LLM judges that predict compatibility, with and without first formalizing basic downstream statements.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Only 25%-50% of definition sets written from source text are compatible with all later statements. Clarifying the informal definitions raises the rate to 77.5% averaged over models. Stating a small set of basic properties without proofs improves judge accuracy from 0.65 to 0.85, at about 11% of the definition formalization cost.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Source</th><th>Cleaned</th></tr></thead><tbody><tr><td>GPT 6 Astra</td><td>43.8</td><td>81.2</td></tr><tr><td>Claude Fable 5.1</td><td>50.0</td><td>100.0</td></tr><tr><td>Claude Opus 5</td><td>50.0</td><td>87.5</td></tr><tr><td>All models</td><td>40.0</td><td>77.5</td></tr></tbody></table><div class="tbl-cap">Full pass rate (%) of definition formalizations from source text vs. cleaned statements</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
