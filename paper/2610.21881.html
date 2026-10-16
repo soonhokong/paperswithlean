@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning Lean Feedback for Efficient Proof-Candidate Evaluation on GPUs · Papers With Lean</title>
+<meta name="description" content="Training language models for formal theorem proving requires large numbers of verifier calls. Slow checks and timeouts often leave GPUs waiting and withhold rewards from potentially correct proofs. We train neural evaluators to predict Lean 4 verdicts and compiler feedback on…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning Lean Feedback for Efficient Proof-Candidate Evaluation on GPUs">
+<meta property="og:description" content="Training language models for formal theorem proving requires large numbers of verifier calls. Slow checks and timeouts often leave GPUs waiting and withhold rewards from potentially correct proofs. We train neural evaluators to predict Lean 4 verdicts and compiler feedback on…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.21881.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.21881.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.21881v1" target="_blank" rel="noopener"><img src="../thumbs/2610.21881.jpg" alt="First page of Learning Lean Feedback for Efficient Proof-Candidate Evaluation on GPUs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Learning Lean Feedback for Efficient Proof-Candidate Evaluation on GPUs</h1>
+        <p class="authors">Lazar Milikic, Etienne Bamas, Emmanuel Abbe, Viktor Kunčak</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 15, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.21881v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.21881" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/epfl-lara/learning-lean-feedback" target="_blank" rel="noopener" title="epfl-lara/learning-lean-feedback">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Trains neural models to predict Lean 4 verdicts and compiler feedback on 4.84M Lean-checked programs, combining them with Lean checks for GRPO rewards.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Training language models for formal theorem proving requires large numbers of verifier calls. Slow checks and timeouts often leave GPUs waiting and withhold rewards from potentially correct proofs. We train neural evaluators to predict Lean 4 verdicts and compiler feedback on GPUs using 4.84M labelled programs. We compare two validity classifiers with a feedback model that annotates proof attempts with predicted goal states and error messages. A two-stage evaluator that screens candidates with a classifier and scores its positive predictions with the feedback model reaches 87.8% accuracy in predicting whether Lean accepts a candidate proof, evaluated on a 68,932-program benchmark collected from public provers. The combined evaluator processes 3.5 candidates per second on one H100, 4.2x the throughput of our 64-worker Lean baseline with environment reuse. Finally, we combine our evaluator with Lean verdicts to obtain a hybrid reward system that shortens GRPO training steps by approximately 31%. After one GRPO epoch with hybrid rewards, the prover achieves nearly the same miniF2F pass@1 as with Lean-only rewards (62.2% versus 62.4%) and a pass@32 of 72.4% versus 71.3%.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Reinforcement learning for Lean provers needs many verifier calls. Slow Lean checks and timeouts leave GPUs idle and withhold rewards from proofs that may be correct; in this setup Lean scoring took about 40% of each GRPO step.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A training corpus of 4.84M programs labelled by Lean v4.15.0 was built from NuminaMath-LEAN, Goedel-Prover, APRIL, and sampled proof attempts. Three evaluators were trained after continued pretraining on Lean code: a ModernBERT validity classifier, a Qwen3-8B one-token classifier, and a Qwen3-4B model that predicts goal states and error messages. A cascade passes candidates through the one-token classifier and then scores its positive predictions with the feedback model. A hybrid reward keeps the Lean verdicts that finish in time and uses cascade predictions for the remaining candidates.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On a 68,932-program benchmark built from outputs of public provers, the cascade reaches 87.8% accuracy at 3.5 candidates/s on one H100, 4.2x the throughput of a 64-worker Lean pool. Hybrid rewards cut GRPO step time by about 31% with nearly unchanged miniF2F pass@1 (62.2% vs 62.4% for Lean-only) and better pass@32 (72.4% vs 71.3%).</p><div class="sum-table"><table><thead><tr><th>Reward source</th><th>Pass@1 (%)</th><th>Pass@32 (%)</th><th>Step time (s)</th></tr></thead><tbody><tr><td>Initial checkpoint</td><td>53.8±0.6</td><td>72.8±0.3</td><td>—</td></tr><tr><td>Lean-only, 60 s timeout</td><td>62.4±0.6</td><td>71.3±0.8</td><td>1,050</td></tr><tr><td>Hybrid rewards</td><td>62.2±0.8</td><td>72.4±0.4</td><td>720</td></tr><tr><td>Lean-only, 13 s timeout</td><td>59.8±0.6</td><td>69.7±1.1</td><td>720</td></tr></tbody></table><div class="tbl-cap">GRPO training with different reward sources (miniF2F)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

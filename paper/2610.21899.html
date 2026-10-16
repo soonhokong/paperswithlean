@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Isaac&#x27;s Condition (TU) is false · Papers With Lean</title>
+<meta name="description" content="In 2006 Isaac reduced the simple normality to base $2$ of $\sqrt s$, for $s$ not a perfect square, to a property of dyadic expansions that he called Condition (TU): the upper frequency of the digit $1$ in $\sqrtν$, along any subsequence, depends only on the tail of the expansion…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Isaac&#x27;s Condition (TU) is false">
+<meta property="og:description" content="In 2006 Isaac reduced the simple normality to base $2$ of $\sqrt s$, for $s$ not a perfect square, to a property of dyadic expansions that he called Condition (TU): the upper frequency of the digit $1$ in $\sqrtν$, along any subsequence, depends only on the tail of the expansion…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.21899.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.21899.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.21899v1" target="_blank" rel="noopener"><img src="../thumbs/2610.21899.jpg" alt="First page of Isaac&#x27;s Condition (TU) is false"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Isaac&#x27;s Condition (TU) is false</h1>
+        <p class="authors">Ralf Stephan</p>
+        <div class="row">
+          <span class="badge">math.NT</span>
+          <span class="date">Oct 15, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.21899v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.21899" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/rwst/lean-code" target="_blank" rel="noopener" title="rwst/lean-code">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">All definitions, lemmas and both proofs refuting Isaac&#x27;s Condition (TU) are formalized in Lean 4 with Mathlib; two cited theorems enter as axioms.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">In 2006 Isaac reduced the simple normality to base $2$ of $\sqrt s$, for $s$ not a perfect square, to a property of dyadic expansions that he called Condition (TU): the upper frequency of the digit $1$ in $\sqrtν$, along any subsequence, depends only on the tail of the expansion of $ν$. We show that Condition (TU) is false, already for the full sequence. We give two proofs. The first is elementary and turns Isaac&#x27;s own reduction against the condition. The second uses the theorem of Kaufman and Mosquera–Shmerkin on the Fourier decay of smooth images of self-similar measures, and gives counterexamples for almost every point of a Cantor measure. All results are machine-verified in Lean 4; the second proof uses the two cited theorems as hypotheses.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">In 2006 Isaac reduced the simple normality to base 2 of square roots of non-squares to a property he called Condition (TU). It states that the upper frequency of the digit 1 in the dyadic expansion of sqrt(ν) depends only on the tail of ν&#x27;s expansion. Whether Condition (TU) holds determines whether Isaac&#x27;s claimed proof is valid.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The first proof is elementary. It turns Isaac&#x27;s own reduction into a bootstrap that builds a sparse dyadic series x for which the pair (x^2, x^2+1/4) would violate (TU). The second proof uses the Mosquera–Shmerkin Fourier-decay theorem and the Davenport–Erdős–LeVeque criterion on a ratio-1/8 Cantor measure. This yields explicit counterexamples for almost every point of the measure. Everything is formalized in Lean 4 with Mathlib in the file BB47/Isaac.lean, with the two cited theorems stated as axioms.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Condition (TU) is false, already for the full sequence n_i = i, so the simple normality of sqrt(2) to base 2 remains open. The first proof is verified using only Lean&#x27;s standard axioms. The second proof additionally relies on exactly the two cited theorems.</p><div class="sum-table"><table><thead><tr><th>Statement</th><th>Lean declaration</th></tr></thead><tbody><tr><td>Definition 2.1</td><td>TU, TUfull, SameTail, freq</td></tr><tr><td>Proposition 3.1</td><td>frequently_freq_ge</td></tr><tr><td>Theorem 1.1, first proof</td><td>not_TUfull_bootstrap, not_TU_bootstrap</td></tr><tr><td>Theorem 4.1 (axiom)</td><td>MS.fourierDecay_smoothImage</td></tr><tr><td>Theorem 1.1, second proof</td><td>not_TUfull_fourier</td></tr></tbody></table><div class="tbl-cap">Correspondence between paper statements and Lean declarations (excerpt)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

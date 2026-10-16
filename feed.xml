@@ -8,6 +8,50 @@
     <language>en</language>
     <lastBuildDate>Thu, 15 Oct 2026 00:00:00 +0000</lastBuildDate>
     <item>
+      <title>Lean Graph Search for Formal Theorem Proving</title>
+      <link>https://paperswithlean.com/paper/2610.22339.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.22339.html</guid>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Yihan Xu, Jia-Chen Gu, Junyi Zhang, Di Wu, Haikang Deng, Po-Nien Kung, Kai-Wei Chang, Amit Sahai, Wei Wang, Nanyun Peng</dc:creator>
+      <category>theorem-proving-ml</category><category>mathlib</category><category>tooling</category>
+      <description>Builds a premise-retrieval graph from Mathlib declaration dependencies and uses it in an LLM proving loop driven by Lean compiler feedback.
+
+Retrieving relevant lemmas is crucial for formal theorem proving, enabling provers to build machine-checkable proofs from established mathematical results. Recent retrieval systems match library declarations to a target theorem or its intermediate proof steps, but make limited use of multi-hop dependencies among declarations. These dependencies can reveal supporting lemmas that are not necessarily lexically similar to the target theorem but recur in proofs of related problems. To this end, we propose LeanGraphSearch, a graph-based retrieval method for Lean 4 that constructs a graph from Mathlib&#x27;s forward dependencies and traverses it to uncover supporting lemmas through multi-hop dependency chains. Specifically, LeanGraphSearch links each declaration to the premises it depends on, uses a graph-based ranking algorithm to propagate relevance from semantically matched declarations to their dependencies, and reranks the expanded candidates against the original query. Across two mathematical retrieval benchmarks, LeanGraphSearch improves recall by up to 12% over the strongest baseline, LeanSearch v2, on MathlibQR and increases coverage of complete annotated proof routes on MathlibMPR, covering up to 3.7% of extra groups. More importantly, we evaluate whether these retrieval gains translate into improved end-to-end theorem proving by integrating LeanGraphSearch into an iterative proving loop guided by Lean feedback. Across three theorem proving benchmarks, LeanGraphSearch improves pass rate at {8, 16, 32} reflection turns by as much as 40% compared to vanilla prover and at most 10% compared to LeanSearch v2, showing higher accuracy-cost efficiency. These findings highlight the value of dependency graph search for theorem proving and motivate further research on structure-aware search for proof discovery.</description>
+    </item>
+    <item>
+      <title>Evolution algebras: a survey of results and a list of open problems</title>
+      <link>https://paperswithlean.com/paper/2610.22248.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.22248.html</guid>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Ivan Kaygorodov, Cándido Martín González, Antonio Viruel</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>algebra</category><category>ai-agents</category>
+      <description>New observations about evolution algebras (automorphism groups, idempotent counts) were formalized and proved in Lean 4 with Mathlib, assisted by the Aristotle AI system.
+
+Evolution algebras, introduced by J. P. Tian as an algebraic model of non- Mendelian inheritance, are commutative algebras with a basis whose distinct elements multiply to zero. The first part of the paper surveys the theory: low-dimensional classifica- tions, structure theory, nilpotency, automorphisms and derivations, directed graphs and random walks, infinite-dimensional and dynamical aspects, and embedding theorems. The second part is a unified list of fifty open questions and eleven new conjectures, each accompanied by the available evidence; two of the conjectures and one of the questions are settled here. We also prove several new observations, most of them formally verified in the proof assistant Lean (see Section 2.1.11): every finite group is the automorphism group of a simple evolution algebra over every field, and | Aut(A)|/ dim A takes every positive ratio- nal value on simple evolution algebras over every field; infinitude of the automorphism group of nilpotent algebras, the possible numbers of idempotents of real perfect evolution algebras, a Galois-theoretic criterion for the existence of idempotents in dimension two, the average number of idempotents over finite fields, and a perfect evolution algebra whose automorphism group is a non-split extension.</description>
+    </item>
+    <item>
+      <title>Isaac&#x27;s Condition (TU) is false</title>
+      <link>https://paperswithlean.com/paper/2610.21899.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.21899.html</guid>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Ralf Stephan</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>number-theory</category>
+      <description>All definitions, lemmas and both proofs refuting Isaac&#x27;s Condition (TU) are formalized in Lean 4 with Mathlib; two cited theorems enter as axioms.
+
+In 2006 Isaac reduced the simple normality to base $2$ of $\sqrt s$, for $s$ not a perfect square, to a property of dyadic expansions that he called Condition (TU): the upper frequency of the digit $1$ in $\sqrtν$, along any subsequence, depends only on the tail of the expansion of $ν$. We show that Condition (TU) is false, already for the full sequence. We give two proofs. The first is elementary and turns Isaac&#x27;s own reduction against the condition. The second uses the theorem of Kaufman and Mosquera–Shmerkin on the Fourier decay of smooth images of self-similar measures, and gives counterexamples for almost every point of a Cantor measure. All results are machine-verified in Lean 4; the second proof uses the two cited theorems as hypotheses.</description>
+    </item>
+    <item>
+      <title>Learning Lean Feedback for Efficient Proof-Candidate Evaluation on GPUs</title>
+      <link>https://paperswithlean.com/paper/2610.21881.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.21881.html</guid>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Lazar Milikic, Etienne Bamas, Emmanuel Abbe, Viktor Kunčak</dc:creator>
+      <category>theorem-proving-ml</category><category>dataset</category><category>tooling</category>
+      <description>Trains neural models to predict Lean 4 verdicts and compiler feedback on 4.84M Lean-checked programs, combining them with Lean checks for GRPO rewards.
+
+Training language models for formal theorem proving requires large numbers of verifier calls. Slow checks and timeouts often leave GPUs waiting and withhold rewards from potentially correct proofs. We train neural evaluators to predict Lean 4 verdicts and compiler feedback on GPUs using 4.84M labelled programs. We compare two validity classifiers with a feedback model that annotates proof attempts with predicted goal states and error messages. A two-stage evaluator that screens candidates with a classifier and scores its positive predictions with the feedback model reaches 87.8% accuracy in predicting whether Lean accepts a candidate proof, evaluated on a 68,932-program benchmark collected from public provers. The combined evaluator processes 3.5 candidates per second on one H100, 4.2x the throughput of our 64-worker Lean baseline with environment reuse. Finally, we combine our evaluator with Lean verdicts to obtain a hybrid reward system that shortens GRPO training steps by approximately 31%. After one GRPO epoch with hybrid rewards, the prover achieves nearly the same miniF2F pass@1 as with Lean-only rewards (62.2% versus 62.4%) and a pass@32 of 72.4% versus 71.3%.</description>
+    </item>
+    <item>
       <title>Imaginary quadratic fields of class number at most 2000</title>
       <link>https://paperswithlean.com/paper/2610.21511.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2610.21511.html</guid>
@@ -83,6 +127,17 @@ Formal inequality proving requires mathematical reasoning and exact computation,
       <description>Lean is a secondary evaluation setting: discovery policies are run on 24 Verina Lean tasks, where the Verus no-feedback advantage does not reproduce.
 
 Correctness feedback suppresses the very evidence that specification-completeness auditing is designed to uncover: programs that satisfy a written contract but violate intended behavior. We demonstrate this objective reversal on 12 Verus/Rust tasks across four model families under matched call budgets. Independent no-feedback discovery more than doubles certified-witness yield relative to IntentShield&#x27;s corrective-feedback loop (59.0% versus 27.1%). A format-matched iterative control places the larger share of this gap in feedback content, not independent restarts. The advantage holds in every model family and survives parser repair. A separate phase-separated execution matches the aggregate yield without reusing responses; most certified witnesses also fail held-out cases. Preserving these witnesses delivers stronger specification repair: Phase-Revised contracts achieve 81.3% implementation success, versus 62.5% for IS-Revised, with Direct-Revised close behind. Both no-feedback witness sources substantially outperform weakened contracts. The effect does not reproduce in the available Dafny and Lean evaluations, establishing an empirical boundary around the studied Verus/Rust workflow. Completeness auditing and correctness repair have opposing immediate objectives. Preserve and certify the admitted failure before repairing it.</description>
+    </item>
+    <item>
+      <title>Distinguishing sets and measures from their planar Brownian images</title>
+      <link>https://paperswithlean.com/paper/2610.16339.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.16339.html</guid>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Sascha Troscheit</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>probability</category>
+      <description>The paper&#x27;s results on distinguishing Brownian images of sets and measures are formalised in Lean 4 over Mathlib, with LLMs drafting much of the code.
+
+Motivated by a question of Hochman, we investigate whether two deterministic time measures or time sets can be distinguished almost surely from a single planar Brownian image. Using rescaled correlation integrals, we give a criterion for mutual singularity of the laws of the image measures, even when the time measures have the same dimension. For self-similar time sets satisfying the open set condition, we also recover the natural occupation measure from the compact image. Together, these results allow us to distinguish lattice and non-lattice self-similar sets and their natural measures within this class. For a naturally parametrised family with two contractions, with fixed dimension, each parameter can be distinguished from all but finitely many others. If the dimension is sufficiently small, every distinct parameter can be distinguished. The results are formalised in Lean.</description>
     </item>
     <item>
       <title>KL Before and After Mixing: A Round-Complexity Separation in Parallel Sampling</title>
@@ -611,61 +666,6 @@ We prove that the classical Bloch constant is strictly smaller than the Ahlfors�
       <description>Presents Redhill, a human-written Lean/mathlib formalisation of lower bounds on strong n-conjectures disproving Ramaekers&#x27;s conjecture, with lemmas upstreamed to mathlib.
 
 We describe Redhill, a Lean formalisation of the major results in Hölzl, Kleine and Stephan&#x27;s &quot;Improved Lower Bounds for Strong $n$-Conjectures&quot; (arXiv:2409.13439). Design decisions regarding types and data structures are justified as enabling canonical versions of the paper&#x27;s claims, and from there the most direct proofs of said claims. The formalisation process also uncovered many errors, omissions and optimisation opportunities in the informal proof, all of which are addressed in the final library. Although Redhill is meant to stand alone, a few lemmas were upstreamed to the primary Lean mathematics library mathlib. We discuss the tension between upstreaming and leaving lemmas in separate libraries. Unlike many other contemporary formalisation projects, Redhill was completed without any assistance from large language models (LLMs). We compare our work with LLM-assisted projects, in particular an extension of arXiv:2409.13439 to $n=4$, aiming to establish design and style guidelines that define good Lean formalisations.</description>
-    </item>
-    <item>
-      <title>An Efficient, Lean 4 Verified Necessary and Sufficient Condition for Membership in Pedigree Polytopes</title>
-      <link>https://paperswithlean.com/paper/2610.15914.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.15914.html</guid>
-      <pubDate>Tue, 13 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>T. S. Arthanari</dc:creator>
-      <category>formalization</category><category>combinatorics</category>
-      <description>Both directions of a membership characterisation for pedigree polytopes are formalised in Lean 4/Mathlib4 with no sorrys, and the project is public on GitHub.
-
-The set \(P_{n}\) consists of the characteristic vectors of pedigrees, which are combinatorial encodings in one-to-one correspondence with Hamiltonian cycles. For \(n \geq 4\) and \(τ_{n} = \binom{n}{3}-1\), the Membership Problem for the Pedigree Polytope (M3P) asks whether a given vector \(X \in \mathbb{Q}^{τ_{n}}\) belongs to \(\mathrm{conv}(P_n)\). This paper gives a complete account, with the full proof statements and machine-verified Lean 4 certificates, of the necessary and sufficient (\NS) condition established in Chapter 5 of Pedigree Polytopes: New Insights on Computational Complexity of Combinatorial Optimisation Problems (Arthanari, 2023): membership of $X$ in $\mathrm{conv}(P_n)$ is characterised by the feasibility, at every stage $k=4,\dots,n-1$, of a recursively constructed layered network, together with, when needed, a multicommodity flow problem $\mathrm{MCF}(k-1)$ achieving its maximum possible flow $z_{\max}$. We present the construction, the \NS{} condition itself, and the proofs of this characterisation, together with the resulting polynomial-time algorithm for M3P. Both directions of the \NS{} condition — sufficiency and necessity (the multicommodity-flow feasibility argument of the book&#x27;s Chapter 5) — are machine-verified in Lean 4/Mathlib4 with zero unresolved sorrys in either dependency chain. The \NS{} characterisation therefore follows directly from the two machine-checked implications. The complete Lean 4 project is publicly available. A companion introductory article (arXiv:2507.09069) presents the same material for a broader readership, without the Lean 4 verification; the present paper adds full statements, proof sketches, and the complete machine-checked certificates.</description>
-    </item>
-    <item>
-      <title>Universal Shift Congruences for Weighted Permutation Sequences</title>
-      <link>https://paperswithlean.com/paper/2610.15849.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.15849.html</guid>
-      <pubDate>Tue, 13 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Ahaan Kallat</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>combinatorics</category><category>number-theory</category>
-      <description>Main theorems (shift congruence, exact content formula, prime lifting, Lagrange-type theorem) are formalized in Lean 4 with Mathlib, sorry-free, with public repositories.
-
-The involution numbers $1,1,2,4,10,26,\ldots$ repeat modulo $3$, $5$ and $7$. We explain this, and many similar patterns, by one rule. Many sequences count permutations in which every cycle of length $m$ carries a weight $w_m$ (involutions, derangements, &quot;sets of lists&quot;, and many others in the OEIS). Writing $A(n)$ for such a count, the rule is $A(n+k)\equiv A(n)A(k)$ modulo $\mathrm{lcm}(n,k)$. It generalizes our earlier proof of the case modulo $k$ for one such sequence, but now it holds for all weights at once, as a coefficientwise congruence between universal polynomials, and we find the largest modulus that works for the universal polynomials, $nk/\mathrm{rad}(\gcd(n,k))$, and show that nothing larger does. We then show that passing from $k$ to $pk$ behaves like raising to the $p$-th power modulo a high power of $p$, with a sharp exponent for the polynomials, which gives $A(p^r)\equiv(w_1+(p-1)w_p)^{p^{r-1}}$ modulo $p^r$ for odd $p$, and explains why the prime $2$ is special. A family of sequences defined by Lagrange inversion fits the same framework, which proves Bala&#x27;s conjecture for the whole family (the single sequence A278070 had been proved earlier by an automated system) and the divisibility observed in the entries A251568 and A251569. As further applications we prove OEIS conjectures of Richman, Hanna, van Hoeij and Bala (A227937), and the theorems apply to 101 OEIS sequences, whose congruences are recorded in a supplementary catalogue. Higher-order versions of the content formula are treated in a separate paper.</description>
-    </item>
-    <item>
-      <title>Coprime pairs with equal sum of divisors, assuming smooth shifted primes</title>
-      <link>https://paperswithlean.com/paper/2610.15674.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.15674.html</guid>
-      <pubDate>Tue, 13 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Shisheng Li, Zhong Zhuang</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>number-theory</category><category>ai-agents</category>
-      <description>Formalizes in Lean 4 with Mathlib the conditional implication from smooth shifted primes to h(x)&gt;x^{2-ε} for Erdős Problem #824, sorry-free.
-
-Let $h(x)$ be the number of pairs $1\le a&lt;b&lt;x$ with $\gcd(a,b)=1$ and $σ(a)=σ(b)$. Erdős Problem #824 asks whether $h(x)&gt;x^{2-o(1)}$. By an argument of Pollack and Pomerance, this follows if for every fixed $δ&gt;0$ there are $y^{1-o(1)}$ primes $p\le5y$ with $p+1$ free of prime factors exceeding $y^δ$. We write this implication out with explicit parameters and formalize it in Lean 4. We then check that the argument of the recent OpenAI preprint &quot;Weighted dilation graphs, smooth shifted primes and totient fibers&quot;, which claims the corresponding statement for $p-1$, applies to $p+1$ after a change of sign in two of its sections. Consequently $h(x)=x^{2-o(1)}$, conditionally on the correctness of that preprint, which has not been refereed and whose main new estimates we have not independently verified.</description>
-    </item>
-    <item>
-      <title>Every n points in the plane contain (m1 + o(1)) n points with no unit distance</title>
-      <link>https://paperswithlean.com/paper/2610.15424.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.15424.html</guid>
-      <pubDate>Tue, 13 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Shisheng Li, Yong Su</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>combinatorics</category><category>geometry</category>
-      <description>The full proof that f(n)/n tends to m1 is formalized in Lean 4 with Mathlib, building on OpenAI&#x27;s Lean development of the plane five-colouring Haar rigidity theorem.
-
-Let $f(n)$ be the largest integer such that every set of $n$ points in the plane contains $f(n)$ points no two at distance $1$, and let $m_1$ be the supremum of the upper densities of Lebesgue measurable planar sets with no two points at distance $1$. Larman and Rogers observed that $f(n) \ge m_1 n$. We prove that $f(n)/n \to m_1$; that is, $f(n) = (m_1 + o(1))n$. This is the first half of a conjecture of Dúcz and Varga, and with the bound $m_1 \le 0.247$ of Ambrus, Csiszárik, Matolcsi, Varga and Zsámboki it gives $f(n) \le (0.247 + o(1))n$. The proof builds a random independent subset of the algebraic plane, invariant under algebraic translations and rotations, whose probability of containing the origin is at least the worst finite independence ratio, and turns it into a measurable planar set of at least that upper density. Its only non-classical input is the Haar rigidity theorem for wild character laws from the OpenAI preprint The Euclidean plane is not five-colorable, which has a machine-checked Lean proof. The whole argument has been formalized in Lean 4 on top of it.</description>
-    </item>
-    <item>
-      <title>A Four-by-Four Obstruction to Polynomial Removal for Ordered Binary Matrices</title>
-      <link>https://paperswithlean.com/paper/2610.15370.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.15370.html</guid>
-      <pubDate>Tue, 13 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Zinan Wang</dc:creator>
-      <category>formalization</category><category>combinatorics</category><category>mathlib</category>
-      <description>The main obstruction, exact copy count, edit-distance lower bound, classification and transversal identity are formalized in Lean 4 with Mathlib, supplied as ancillary files.
-
-We exhibit a fixed $4\times 4$ binary matrix with no polynomial induced ordered removal bound. At depth $h\geq 1$, let $m=2^h$. Our explicit host has order $(14h+2)m$, exactly $2m^6+\frac{1}{2}(m-2)m^5$ induced copies, and exact editing distance $m^2$ cells. Its normalized editing distance is $Θ(h^{-2})$, while its induced-copy density is $Θ(4^{-h}h^{-8})$. The lower bound holds against arbitrary cell edits through an injective family of $m^2$ protected selections. An exhaustive arithmetic classification identifies every induced copy and proves that a matching canonical repair creates none. The original-copy transversal number is exactly $m$, yielding an unbounded gap between hitting existing copies and eliminating all copies. The identities and the obstruction at every depth are formalized in Lean, with verification sources included as ancillary files.</description>
     </item>
   </channel>
 </rss>

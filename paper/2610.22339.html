@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lean Graph Search for Formal Theorem Proving · Papers With Lean</title>
+<meta name="description" content="Retrieving relevant lemmas is crucial for formal theorem proving, enabling provers to build machine-checkable proofs from established mathematical results. Recent retrieval systems match library declarations to a target theorem or its intermediate proof steps, but make limited…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lean Graph Search for Formal Theorem Proving">
+<meta property="og:description" content="Retrieving relevant lemmas is crucial for formal theorem proving, enabling provers to build machine-checkable proofs from established mathematical results. Recent retrieval systems match library declarations to a target theorem or its intermediate proof steps, but make limited…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.22339.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.22339.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.22339v1" target="_blank" rel="noopener"><img src="../thumbs/2610.22339.jpg" alt="First page of Lean Graph Search for Formal Theorem Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Lean Graph Search for Formal Theorem Proving</h1>
+        <p class="authors">Yihan Xu, Jia-Chen Gu, Junyi Zhang, Di Wu, Haikang Deng, Po-Nien Kung, Kai-Wei Chang, Amit Sahai, Wei Wang, Nanyun Peng</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 15, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.22339v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.22339" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/PlusLabNLP/LeanGraphSearch" target="_blank" rel="noopener" title="PlusLabNLP/LeanGraphSearch">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a premise-retrieval graph from Mathlib declaration dependencies and uses it in an LLM proving loop driven by Lean compiler feedback.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Retrieving relevant lemmas is crucial for formal theorem proving, enabling provers to build machine-checkable proofs from established mathematical results. Recent retrieval systems match library declarations to a target theorem or its intermediate proof steps, but make limited use of multi-hop dependencies among declarations. These dependencies can reveal supporting lemmas that are not necessarily lexically similar to the target theorem but recur in proofs of related problems. To this end, we propose LeanGraphSearch, a graph-based retrieval method for Lean 4 that constructs a graph from Mathlib&#x27;s forward dependencies and traverses it to uncover supporting lemmas through multi-hop dependency chains. Specifically, LeanGraphSearch links each declaration to the premises it depends on, uses a graph-based ranking algorithm to propagate relevance from semantically matched declarations to their dependencies, and reranks the expanded candidates against the original query. Across two mathematical retrieval benchmarks, LeanGraphSearch improves recall by up to 12% over the strongest baseline, LeanSearch v2, on MathlibQR and increases coverage of complete annotated proof routes on MathlibMPR, covering up to 3.7% of extra groups. More importantly, we evaluate whether these retrieval gains translate into improved end-to-end theorem proving by integrating LeanGraphSearch into an iterative proving loop guided by Lean feedback. Across three theorem proving benchmarks, LeanGraphSearch improves pass rate at {8, 16, 32} reflection turns by as much as 40% compared to vanilla prover and at most 10% compared to LeanSearch v2, showing higher accuracy-cost efficiency. These findings highlight the value of dependency graph search for theorem proving and motivate further research on structure-aware search for proof discovery.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Lemma retrieval systems for Lean match library declarations to a query by semantic similarity. They make little use of multi-hop dependencies among declarations, so they can miss supporting lemmas that are not lexically similar to the target theorem.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">LeanGraphSearch uses static analysis with jixia to build a directed dependency graph over Mathlib declarations, with an edge from each declaration to the premises its type and value reference. Semantic seeds come from embedding retrieval plus reranking. Personalized PageRank then propagates relevance from the seeds to their dependencies, and the merged candidates are reranked against the original query. The retriever is exposed as a search tool inside an iterative LLM proving loop that uses Lean compiler diagnostics and an optional failure memory.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On MathlibQR, Recall@100 rises from 82.7% (LeanSearch v2) to 94.7%. On MathlibMPR, Covered@20 rises from 39.1% to 42.8%. In end-to-end proving on FATE-H, MathlibMPR-Prop and Lean-IMO-Bench, pass rates are generally higher than LeanSearch v2 at similar or lower cost, reaching 81 vs 73 on FATE-H at pass@32.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>nDCG@10</th><th>Recall@10</th><th>Recall@100</th></tr></thead><tbody><tr><td>LeanExplore</td><td>0.393</td><td>0.569</td><td>0.789</td></tr><tr><td>LeanFinder</td><td>0.533</td><td>0.698</td><td>0.875</td></tr><tr><td>LeanSearch v2</td><td>0.616</td><td>0.765</td><td>0.827</td></tr><tr><td>LeanGraphSearch</td><td>0.629</td><td>0.794</td><td>0.947</td></tr></tbody></table><div class="tbl-cap">MathlibQR retrieval (standard mode)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
