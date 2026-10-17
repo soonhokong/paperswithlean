@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aligning Faithfulness for Theory-Scale Autoformalization · Papers With Lean</title>
+<meta name="description" content="Autoformalization (AF) requires more than compilation: formal statements must preserve the meaning of their informal sources, a property known as faithfulness. An emerging frontier is the automated evaluation of this property, yet most existing methods operate at the statement…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Aligning Faithfulness for Theory-Scale Autoformalization">
+<meta property="og:description" content="Autoformalization (AF) requires more than compilation: formal statements must preserve the meaning of their informal sources, a property known as faithfulness. An emerging frontier is the automated evaluation of this property, yet most existing methods operate at the statement…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.18498.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.18498.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.18498v1" target="_blank" rel="noopener"><img src="../thumbs/2610.18498.jpg" alt="First page of Aligning Faithfulness for Theory-Scale Autoformalization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Aligning Faithfulness for Theory-Scale Autoformalization</h1>
+        <p class="authors">Yuming Feng, Tadd Mao, Dhruva Arekar, Tianjun Zhong, Jiani Huang, Xujie Si, Ziyang Li</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Oct 13, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.18498v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.18498" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Benchmark aligning informal math statements with Lean 4 formalizations and Mathlib dependencies, with phrase-level faithfulness labels annotated by Lean experts.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Autoformalization (AF) requires more than compilation: formal statements must preserve the meaning of their informal sources, a property known as faithfulness. An emerging frontier is the automated evaluation of this property, yet most existing methods operate at the statement level and produce whole-item verdicts, failing to reveal how individual expressions correspond or which contextual interpretations support the judgment. This omission is consequential because AF is inherently theory-scale: target statements derive their meaning from surrounding mathematical material and unstated conventions. We formulate faithfulness evaluation as a context-aware align-then-label problem: identifying phrase-level correspondences between informal and formal statements and assigning a faithfulness label to each under explicitly specified contextual interpretations and assumptions. We also introduce FaithAlign, the first theory-scale faithfulness benchmark comprising 460 items and 4,982 annotated phrase-level links, alongside FaithAlign-Gap, a companion set of 146 items with informal context and assumptions withheld. Each FaithAlign item includes the target statement pair, relevant context, formal dependencies, and, where needed, assumptions specifying one given interpretation. Across 8 models, GPT-6 Astra achieves the highest defect F1 at 47.8% and identifies all defects in only 4.5% of items with two or more defects. On FaithAlign-Gap, Astra identifies only 28.2% of undecidable items as such. These results show the difficulty of recovering context-dependent correspondences, establishing FaithAlign as a testbed for fine-grained, context-aware faithfulness evaluation.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Autoformalization must preserve meaning (faithfulness), not just compile. Existing faithfulness evaluators give whole-statement verdicts that do not localize defects, ignore surrounding context, and cannot express cases where context is too underspecified to decide.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Faithfulness evaluation is cast as a context-aware align-then-label task. An evaluator links regions of an informal statement, its source context and assumptions to regions of a Lean target and its formal dependencies (e.g., Mathlib declarations), then labels each link faithful, unfaithful, or undecidable. FaithAlign contains 460 items with 4,982 expert-annotated links drawn from LeanEuclid, Pistis, MA-Align, LCS-Bench and ProofNet-Verified. A companion set, FaithAlign-Gap (146 items), withholds the informal context and assumptions.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.18498/faithalign-illustrative-overview.png" alt=""><figcaption>Figure 2: A bird’s-eye-view illustration of eleven samples (with truncation) from FaithAlign, where each segment from natural language (NL) or formal language is bucketed into Target, Context, or Implicit Assumptions. Segments from both sides are matched or unconnected (connected to \varnothing ): faithful links are indicated by green lines, while unfaithful links are marked in red, implying that </figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Across 8 LLMs, the best model (GPT-6 Astra) reaches 47.8% defect F1. It finds all defects in only 4.5% of items with two or more defects, and recognizes only 28.2% of undecidable FaithAlign-Gap items as undecidable.</p><div class="sum-table"><table><thead><tr><th>Source</th><th>Items</th><th>Unfaithful items</th><th>Links</th><th>Unfaithful links</th></tr></thead><tbody><tr><td>LCS-Bench</td><td>196</td><td>149</td><td>2,218</td><td>335</td></tr><tr><td>ProofNet-Verified</td><td>77</td><td>46</td><td>436</td><td>62</td></tr><tr><td>MA-Align</td><td>122</td><td>80</td><td>1,470</td><td>328</td></tr><tr><td>LeanEuclid–Pistis</td><td>65</td><td>21</td><td>858</td><td>25</td></tr><tr><td>Total</td><td>460</td><td>296</td><td>4,982</td><td>750</td></tr></tbody></table><div class="tbl-cap">FaithAlign composition by source</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

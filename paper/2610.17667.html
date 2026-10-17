@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PrT-Flow: Probability-Tractable Flow Matching for Reinforcement Learning · Papers With Lean</title>
+<meta name="description" content="Diffusion models and Flow Matching can represent flexible distributions over robot actions, but many reinforcement learning algorithms also require the probability of each action. We introduce PrT-Flow (Probability-Tractable Flow Matching), which computes probability density…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PrT-Flow: Probability-Tractable Flow Matching for Reinforcement Learning">
+<meta property="og:description" content="Diffusion models and Flow Matching can represent flexible distributions over robot actions, but many reinforcement learning algorithms also require the probability of each action. We introduce PrT-Flow (Probability-Tractable Flow Matching), which computes probability density…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.17667.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.17667.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.17667v1" target="_blank" rel="noopener"><img src="../thumbs/2610.17667.jpg" alt="First page of PrT-Flow: Probability-Tractable Flow Matching for Reinforcement Learning"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">PrT-Flow: Probability-Tractable Flow Matching for Reinforcement Learning</h1>
+        <p class="authors">Congzhong Sun, Ning Tan</p>
+        <div class="row">
+          <span class="badge">cs.RO</span>
+          <span class="date">Oct 13, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.17667v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.17667" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Sunlight-zero/PrT-Flow" target="_blank" rel="noopener" title="Sunlight-zero/PrT-Flow">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The paper&#x27;s two propositions on Flow Matching density tracking and the equivalence of CET minimizers are formally verified in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Diffusion models and Flow Matching can represent flexible distributions over robot actions, but many reinforcement learning algorithms also require the probability of each action. We introduce PrT-Flow (Probability-Tractable Flow Matching), which computes probability density while retaining multimodal, multi-step action generation. Its Jacobian-Tractable Transformer (JTT) makes each sampling step invertible and enables efficient computation of its Jacobian determinant. We train these finite steps with Conditional Euler-step Training (CET), which supervises their displacement over one step during sampling rather than their instantaneous velocity. We prove that, under certain assumptions, CET has the same minimizers as fitting the Euler-solver updates of Flow Matching. PrT-Flow achieves 96% success on Robomimic Lift after 300 epochs of imitation learning, matching the diffusion policy reference, and 96% success on OGBench Cube-Triple after 600k online steps. These results demonstrate that invertible networks with tractable probability densities can learn effective robot policies and support SAC-style actor-critic training. Our code is available at <a href="https://github.com/Sunlight-zero/PrT-Flow" target="_blank" rel="noopener">https://github.com/Sunlight-zero/PrT-Flow</a> .</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Diffusion and Flow Matching robot policies represent multimodal action distributions, but they do not readily provide action probabilities. RL algorithms such as SAC and PPO need those probabilities. A finite-step Euler sampler is not generally invertible, and computing its density is costly.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">PrT-Flow parameterizes each Euler sampling step with a Jacobian-Tractable Transformer (JTT). JTT combines causal monotone splines with orthogonal coordinate transforms, so each step is invertible with an analytic Jacobian determinant. Log-densities therefore accumulate during the same forward pass that generates an action. Conditional Euler-step Training (CET) supervises finite one-step displacements rather than instantaneous velocities. Propositions 4.1 and 4.2 on density tracking and on CET&#x27;s minimizers are formally verified in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">CET is proved to have the same minimizers as fitting the Euler-solver updates of Flow Matching, under stated assumptions. PrT-Flow reaches 96% success on Robomimic Lift with imitation learning, matching the Diffusion Policy reference. It also reaches 96% success on OGBench Cube-Triple after offline-to-online SAC-style training.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

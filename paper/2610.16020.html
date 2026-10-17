@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When Does Compensating Inherited Quantization Error Help? Mean-Square Guarantees for Layer-Wise Quantization and Their Limits · Papers With Lean</title>
+<meta name="description" content="Layer-wise post-training quantization methods let each layer compensate for the quantization error inherited from earlier layers. We ask under what assumptions such compensation guarantees a network output error no larger than without it. For linear networks of any depth, with…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="When Does Compensating Inherited Quantization Error Help? Mean-Square Guarantees for Layer-Wise Quantization and Their Limits">
+<meta property="og:description" content="Layer-wise post-training quantization methods let each layer compensate for the quantization error inherited from earlier layers. We ask under what assumptions such compensation guarantees a network output error no larger than without it. For linear networks of any depth, with…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.16020.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.16020.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.16020v1" target="_blank" rel="noopener"><img src="../thumbs/2610.16020.jpg" alt="First page of When Does Compensating Inherited Quantization Error Help? Mean-Square Guarantees for Layer-Wise Quantization and Their Limits"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">When Does Compensating Inherited Quantization Error Help? Mean-Square Guarantees for Layer-Wise Quantization and Their Limits</h1>
+        <p class="authors">Tianhao Guo</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 12, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.IT</span> <span class="badge">eess.SP</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.16020v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.16020" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/tellsgo/quantization-compensation" target="_blank" rel="noopener" title="tellsgo/quantization-compensation">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Selected statements, including counterexamples and identities about layer-wise quantization error compensation, are machine-checked in Lean 4 with Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Layer-wise post-training quantization methods let each layer compensate for the quantization error inherited from earlier layers. We ask under what assumptions such compensation guarantees a network output error no larger than without it. For linear networks of any depth, with the required calibration Gram matrices invertible, if the rounding error of each layer has zero conditional mean and a deterministic second-moment map common to both schemes, as under subtractive dither on an unbounded grid, then compensation with strengths in $[0,1]$ fixed in advance gives a mean-square output error no larger than no compensation, each scheme being followed along its own trajectory. The exact gain separates error removed directly from reduced excitation of later rounding noise. Outside this setting the comparison can fail. With rectified linear activations it fails for two independent reasons: noise changes activation states, and, even when no state changes, the correction moves error from samples on which a unit is inactive to samples on which it is active. With stable activations, commutators between the calibration projection and the activation patterns bound the excess. With a bounded codebook, even unique exact layer-wise minimizers with no overload can give a larger output error. For fixed rounding errors it already fails for two scalar linear layers, refuting a published universal guarantee. An exact residual identity gives the necessary and sufficient condition on a common layer input. All these comparisons hold the calibration input fixed. On two 8B models at 4 bits, fixed half-strength compensation beat uncompensated rounding in every model, text and draw tested, yet no rule for choosing the strength beat a layer-wise rule consistently, and lowering the full-network loss on the data used to choose did not reliably lower it on new text.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Layer-wise post-training quantization methods such as QEP let each layer compensate for quantization error inherited from earlier layers. It is unclear under what assumptions this compensation guarantees a network output error no larger than without it. A published universal guarantee claims that it always does.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An exact residual identity decides, on a common input, when a correction of a given strength helps. Mean-square comparisons are proved for linear networks under zero-conditional-mean rounding errors with a common second-moment map, as produced by subtractive dither. Explicit counterexamples are built for ReLU networks, bounded codebooks and fixed rounding errors. A commutator condition bounds the excess error. Some results are checked in a scoped Lean 4/Mathlib formalization, and experiments are run on synthetic networks and two 8B LLMs at 4 bits.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Compensation provably helps in mean square for linear networks of any depth. It can fail for ReLU networks, for exact minimizers over a bounded codebook, and for fixed errors even with two scalar layers, which refutes the published QEP guarantee. On the 8B models, half-strength compensation beat uncompensated rounding in every model, text and draw tested, but no rule for choosing the strength was consistently better than a layer-wise rule.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
