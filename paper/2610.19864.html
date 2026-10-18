@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Euler: Towards Human-Centered Multi-Agent Mathematical Discovery · Papers With Lean</title>
+<meta name="description" content="Mathematical research drives scientific discovery, and recent advances in AI for mathematics have shown that language-model agents can solve challenging problems and develop substantial mathematical proofs. Yet much of today&#x27;s AI-for-mathematics work centers on obtaining a final…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Euler: Towards Human-Centered Multi-Agent Mathematical Discovery">
+<meta property="og:description" content="Mathematical research drives scientific discovery, and recent advances in AI for mathematics have shown that language-model agents can solve challenging problems and develop substantial mathematical proofs. Yet much of today&#x27;s AI-for-mathematics work centers on obtaining a final…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.19864.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.19864.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.19864v1" target="_blank" rel="noopener"><img src="../thumbs/2610.19864.jpg" alt="First page of Euler: Towards Human-Centered Multi-Agent Mathematical Discovery"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Euler: Towards Human-Centered Multi-Agent Mathematical Discovery</h1>
+        <p class="authors">Qiuyu Chen, Qi Wang, Liang Xu, Xin Jin, Baao Xie, Wenjun Zeng</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 14, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.19864v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.19864" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/canghaimeng/Euler" target="_blank" rel="noopener" title="canghaimeng/Euler">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Euler integrates Lean kernel checking as an evidence level, and its three case studies come with publicly linked Lean 4 formalizations, including Mathlib&#x27;s SimpleGraph.IsHamiltonian.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Mathematical research drives scientific discovery, and recent advances in AI for mathematics have shown that language-model agents can solve challenging problems and develop substantial mathematical proofs. Yet much of today&#x27;s AI-for-mathematics work centers on obtaining a final answer. This emphasis leaves the exploration behind a result difficult for researchers to understand, while long-running investigations face fragmented context and the risk of unsupported claims propagating across reasoning steps. We present Euler, a human-centered mathematical research system built around a shared, structured representation of the research process. Euler organizes mathematical statements, assumptions, proof dependencies, alternative approaches, failed attempts, and verification evidence into connected research graphs. This representation allows researchers to trace how results are developed and supplies agents with persistent, task-relevant knowledge for planning, collaboration, and verification across sessions. Researchers can also select a graph node linked to a saved team state, revisit the agents&#x27; earlier reasoning, and explore alternative directions through continued interaction. We illustrate Euler&#x27;s capabilities through three mathematical research case studies and describe the implemented system and its software validation.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">AI-for-mathematics systems mostly target final answers. That leaves the exploration behind a result hard to inspect. Long-running multi-agent investigations also suffer from fragmented context and from unsupported claims propagating into later reasoning.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Euler is a human-centered multi-agent research system. It keeps a shared, versioned research state: problem contracts, obligations, routes, failed attempts and evidence, stored in an append-only event store and a Fact Graph. A frontier-driven controller schedules agent actions with compiled contexts. Results enter the state only through evidence-aware reconciliation, with evidence levels ranging from LLM-checked proofs to Lean-kernel-checked proofs recorded with source hashes and permitted axioms. A browser workbench lets researchers read proofs, navigate dependency graphs and branch from saved team checkpoints.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.19864/source-000-clean.png" alt=""><figcaption>Figure 1 : The Euler research loop. A fixed mathematical target and persistent research records determine an active frontier. Agents receive contexts for selected obligations, produce arguments or computational evidence, and return checked outcomes to the shared state. The same underlying objects are presented to the human researcher through the workbench.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.19864/source-001-clean.png" alt=""><figcaption>Figure 2 : An illustrative AND/OR frontier. Two proposed routes compete to establish T . Evidence closes A and excludes the route requiring B ; a checked reduction of C creates obligations D and E . The active fringe moves as supported claims and route relations change.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Three case studies are presented in the workbench: Nikoghosyan&#x27;s Hamiltonicity conjecture, a Lewis–Overton BFGS rate conjecture and the four-connected Jankiewicz–Norin–Wise problem. Each comes with manuscripts and linked Lean developments. Software validation passed 1,352 offline tests plus the native-team and browser test suites.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.19864/nikoghosyan-structure.png" alt=""><figcaption>Figure 8 : Selected proof modules leading to Nikoghosyan’s Hamiltonicity theorem. The overview exposes the principal prerequisite dependencies.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.19864/lewis-overton-structure.png" alt=""><figcaption>Figure 10 : Proof structure for the Lewis–Overton investigation. The five-trial and four-trial execution families establish distinct sharp rates, which are compared to derive initialization dependence. Each module links to its exact conditions and evidence.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Case</th><th>Documented result</th><th>Research-state focus</th></tr></thead><tbody><tr><td>Nikoghosyan</td><td>Hamiltonicity for finite, 1-tough, (P4∪P1)-free simple graphs on ≥3 vertices</td><td>Prerequisite closure and exact theorem assumptions</td></tr><tr><td>Lewis–Overton</td><td>Two nonterminating BFGS executions with distinct sharp trial-normalized rates for 9/5&lt;u&lt;13/6</td><td>Source conventions, paired constructions, parameter scope</td></tr><tr><td>Jankiewicz–Norin–Wise</td><td>A 33-vertex witness for the four-connected legal-system obstruction question</td><td>Candidate exclusions, strategy changes, hereditary subgraph conditions</td></tr></tbody></table><div class="tbl-cap">Mathematical scope of the three case studies</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

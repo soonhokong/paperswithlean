@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teaching Agents in their Own Style: Blackbox Teacher Distillation for Web Agents · Papers With Lean</title>
+<meta name="description" content="Frontier web agents using closed models have high inference and computational costs. Smaller open models can be an alternative, but to be performant, they require training supervision from a human or teacher model. Token-level teacher distillation is not an option for closed…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Teaching Agents in their Own Style: Blackbox Teacher Distillation for Web Agents">
+<meta property="og:description" content="Frontier web agents using closed models have high inference and computational costs. Smaller open models can be an alternative, but to be performant, they require training supervision from a human or teacher model. Token-level teacher distillation is not an option for closed…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.19834.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.19834.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.19834v1" target="_blank" rel="noopener"><img src="../thumbs/2610.19834.jpg" alt="First page of Teaching Agents in their Own Style: Blackbox Teacher Distillation for Web Agents"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Teaching Agents in their Own Style: Blackbox Teacher Distillation for Web Agents</h1>
+        <p class="authors">Md Farhan Ishmam, Kenneth Marino</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 14, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.19834v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.19834" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">All propositions, lemmas, and theorems in the theory appendix are formalized in Lean 4 on finite models, with the formalization in supplementary material.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Frontier web agents using closed models have high inference and computational costs. Smaller open models can be an alternative, but to be performant, they require training supervision from a human or teacher model. Token-level teacher distillation is not an option for closed teachers as it needs access to the model&#x27;s logits. The standard approach is to imitate teacher demonstrations offline, but it trains the student on states it has never visited, and in a style it does not write in. We introduce WebKD, where the teacher is the editor of the student&#x27;s failures. Given a failed episode, the teacher finds the first point of mistake, and rewrites the student&#x27;s reasoning traces, harness states, and actions from that point onward. The editing reveals that the teacher&#x27;s corrections can be more surprising to the student than the student&#x27;s own text. WebKD instead aims to edit minimally. In the data space, the teacher writes each correction in the student&#x27;s style. In the objective space, the reasoning is weighted by its contribution to the action. A role-asymmetric KL anchor allows the corrected action to move freely while keeping the reasoning near the student&#x27;s prior. On the TimeWarp benchmark, WebKD students gain about 5.5-10.7 pp over behavior cloning, outcome-reward RL, and teacher editing baselines. The performance transfers to unseen versions and to the live web in the OnlineMind2Web benchmark. WebKD opens a new way of distilling black-box models to improve the capabilities of open-weight web agents.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Small open-weight web agents need supervision from strong teachers, but frontier teachers are black boxes that expose no logits, so token-level distillation is unavailable. Behavior cloning on teacher demonstrations trains the student on states it never visits and in a style it does not write in.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">WebKD makes the teacher an editor of the student&#x27;s failed episodes. It localizes the first mistaken step, then rewrites the reasoning, harness states, and actions from that point onward in the student&#x27;s own style. Training uses a loss that weights reasoning tokens by their pointwise mutual information with the action, plus a role-asymmetric KL anchor that keeps reasoning near the student prior while letting the corrected action move freely. The theory appendix results are machine-checked in Lean 4 on finite models, with a README mapping each result to its Lean declaration.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.19834/methFinalv1.11.png" alt=""><figcaption>Figure 1: Overview of WebKD . (Top) At step t , the harness generates the observation history from the goal, accessibility tree, and previous responses. The web agent emits a five-component response conditioned on the observation history. The T hink, P lan, and S tep components carry their reasoning and running plan, the M emory component reads from and writes to the scratchpad memory, and only th</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On TimeWarp, WebKD students gain about 5.5-10.7 pp over behavior cloning, outcome-reward RL (m-GRPO), and teacher-editing baselines. The gains transfer to unseen interface versions and to the live web on OnlineMind2Web. Students still reach only about half of the GPT-5.5 teacher&#x27;s success rate.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.19834/webAgentFails.png" alt=""><figcaption>Figure 8: Failure mode analysis of Qwen3.5-4B. Each bar assigns every evaluation trajectory of a method to exactly one outcome for the 103\times 3=309 tasks.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Variant</th><th>S.R.</th></tr></thead><tbody><tr><td>Teacher takeover (off-policy)</td><td>17.48 ± 2.16</td></tr><tr><td>Teacher edit + teacher style</td><td>33.01 ± 2.68</td></tr><tr><td>Teacher edit + student style (in-context)</td><td>**41.10 ± 2.80**</td></tr><tr><td>Teacher edit + student re-style (2-pass)</td><td>25.89 ± 2.49</td></tr><tr><td>Student-only edit</td><td>24.27 ± 2.44</td></tr></tbody></table><div class="tbl-cap">Edit-style ablation, success rate (Qwen-3.5 4B, TimeWarp)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

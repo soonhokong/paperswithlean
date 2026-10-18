@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sparse Autoencoders Are a Shared Coordinate System for Symbolic Matching · Papers With Lean</title>
+<meta name="description" content="Large language models (LLMs) hold broad knowledge in one set of weights, but lack interpretability and trustworthy reasoning, especially in high-stakes use cases. A neuro-symbolic model, with its interpretable architecture and System 2 reasoning capacity, is a promising…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sparse Autoencoders Are a Shared Coordinate System for Symbolic Matching">
+<meta property="og:description" content="Large language models (LLMs) hold broad knowledge in one set of weights, but lack interpretability and trustworthy reasoning, especially in high-stakes use cases. A neuro-symbolic model, with its interpretable architecture and System 2 reasoning capacity, is a promising…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.19636.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.19636.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.19636v1" target="_blank" rel="noopener"><img src="../thumbs/2610.19636.jpg" alt="First page of Sparse Autoencoders Are a Shared Coordinate System for Symbolic Matching"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Sparse Autoencoders Are a Shared Coordinate System for Symbolic Matching</h1>
+        <p class="authors">Xiaocong Yang, Xuanyu Meng, Yuji Zhang, Jiawei Han, ChengXiang Zhai</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 14, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.CL</span> <span class="badge">cs.SC</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.19636v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.19636" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/AI-Interpretability-Illinois/Symbolic-Merge" target="_blank" rel="noopener" title="AI-Interpretability-Illinois/Symbolic-Merge">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses Lean 4 miniF2F statements as queries for matching equivalent statements in Isabelle, Metamath and HOL Light, as part of the evaluation.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language models (LLMs) hold broad knowledge in one set of weights, but lack interpretability and trustworthy reasoning, especially in high-stakes use cases. A neuro-symbolic model, with its interpretable architecture and System 2 reasoning capacity, is a promising alternative if built at the scale of LLMs; however, its symbolic backbone is usually constructed with human effort, so existing neuro-symbolic models are bottlenecked by the scope of the symbol component and usually domain-specific. A data-driven method could instead build a larger symbolic system by aligning and merging existing ones. We target its first, foundational step: matching units across these heterogeneous systems. Our method, SAE-IDF, encodes a symbol in its native context into a sparse code with a sparse autoencoder (SAE), re-weights each dimension by its rarity and matches across systems. On 12 tasks across 6 kinds of symbolic system, SAE-IDF outperforms the same LLM&#x27;s dense baseline on all tasks with Gemma-2-9B and all but one with Llama-3.1-8B, by up to 45 points, consistently across SAE layers and configurations. SAE-IDF is also interpretable: every dimension of the sparse code has a human-readable meaning, so each match decomposes into named concepts (features). Our work paves the way to a universal symbolic backbone.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Building large neuro-symbolic systems requires aligning heterogeneous symbolic systems. These include proof assistants, code, table schemas, knowledge graphs and ontologies. The first step is matching corresponding units across systems.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">SAE-IDF feeds each symbol, in its native context, through an LLM. It encodes the residual-stream states with a pretrained sparse autoencoder, averages the resulting sparse codes, and re-weights each feature by inverse document frequency. Candidates are ranked by cosine similarity. One task family retrieves the counterpart of each Lean 4 miniF2F statement among the statements of another prover (Isabelle, Metamath, HOL Light), with names and proofs stripped.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With Gemma-2-9B, SAE-IDF beats the same model&#x27;s dense state on all 12 tasks. With Llama-3.1-8B it wins on all but one. The largest gain is +0.45 MRR on Lean 4 to Metamath. Ablations show that both the learned SAE dictionary and the idf weighting are needed. Dedicated trained retrievers still lead on the formal-mathematics pairs.</p><div class="sum-table"><table><thead><tr><th>Task</th><th>Strings</th><th>Dense</th><th>Dense, PC1 rm.</th><th>SAE-IDF</th></tr></thead><tbody><tr><td>Lean 4 → Isabelle</td><td>0.825</td><td>0.912</td><td>0.926</td><td>0.961</td></tr><tr><td>Lean 4 → Metamath</td><td>0.615</td><td>0.210</td><td>0.151</td><td>0.661</td></tr><tr><td>Lean 4 → HOL Light</td><td>0.741</td><td>0.539</td><td>0.531</td><td>0.898</td></tr></tbody></table><div class="tbl-cap">miniF2F cross-prover matching MRR (Gemma-2-9B, layer 20)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
