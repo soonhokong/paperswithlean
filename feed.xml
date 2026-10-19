@@ -8,6 +8,116 @@
     <language>en</language>
     <lastBuildDate>Sun, 18 Oct 2026 00:00:00 +0000</lastBuildDate>
     <item>
+      <title>Perron-Wright asymptotics and critical component processes for regular inhomogeneous random graphs</title>
+      <link>https://paperswithlean.com/paper/2610.23003.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.23003.html</guid>
+      <pubDate>Sun, 18 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Wentao Hu, Wen Sun</dc:creator>
+      <category>formalization</category><category>probability</category><category>combinatorics</category>
+      <description>The main results (Theorems 3.6, 3.8, 3.9 and 3.10) on critical inhomogeneous random graphs are stated to be formalized and checked in Lean 4.
+
+We extend Wright&#x27;s enumeration of connected labelled graphs with fixed surplus to irreducible critical finite type kernels and regular compact type kernels. Let $C_t(k,r)$ denote the total weight of connected labelled graphs with $k$ vertices and surplus $r$. Let $u&gt;0$ satisfy $Ku=u$ and $\int u\,dμ=1$, and put $α=\int u^2\,dμ$ and $β=\int u^3\,dμ$. We prove that the rooted-tree radius $ρ$ is positive and real analytic near $1$, with $ρ(1)=1$ and $\logρ(t)=\frac{α^2}{2β}(t-1)^2+O(|t-1|^3)$, and that, for fixed $r\in\mathbb{Z}_{\ge0}$ and $0\le L &lt; \infty$, $C_t(k,r)=w_rβ^{(r-1)/2}e^{-k}ρ(t)^{-k}k^{k+3r/2-2}\{1+O_{r,L}(k^{-1/2})\}$, uniformly for $|t-1|\le Lk^{-1/2}$, where $w_r$ is the classical Wright constant. At $t_n=1+λn^{-1/3}$, these asymptotics yield local size and surplus point-process limits for deterministic finite type models and annealed compact type Bollobas-Janson-Riordan models satisfying projective quadratic regularity. After rescaling component sizes by $β^{1/3}n^{-2/3}$, the limit is the Aldous process at parameter $αβ^{-2/3}λ$, and the corresponding type profiles concentrate at the Perron law $p(dx)=u(x)μ(dx)$. For every regular countable critical kernel, we construct graph sequences with growing finite supports and the same local limits, and identify the additive shift of the critical window caused by spectral perturbations of order $n^{-1/3}$.</description>
+    </item>
+    <item>
+      <title>Implementing the EIT complete electrode model through Robin boundary conditions</title>
+      <link>https://paperswithlean.com/paper/2610.22944.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.22944.html</guid>
+      <pubDate>Sun, 18 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Bing-Zhou Chen, Amelia Deakin, Andy Adler, Paul D. Ledger, William R. B. Lionheart</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>analysis</category><category>physics</category>
+      <description>Formalizes in Lean 4 with Mathlib the discrete energy argument, the equivalence theorem between the augmented and Robin-transadmittance CEM, and the potential-reference results.
+
+Objective. Medical electrical impedance tomography systems prescribe electrode currents. Accurate voltages, even on passive electrodes, require the complete electrode model (CEM), the most accurate model known for skin electrodes. Its current constraints specify total electrode currents, whereas standard finite element boundary interfaces impose local conditions. We describe how to implement the CEM through Robin boundary conditions, which are available in standard FEM packages. Approach. Prescribed electrode potentials give Robin problems whose unit-potential responses define an electrode transadmittance matrix. We prove equivalence to the conventional augmented CEM and formalise the discrete energy, equivalence and reference arguments in Lean 4. Numerical comparisons use two-dimensional P1 finite elements in DOLFINx, FreeFEM, GetFEM, MFEM and NGSolve, with the same nodal reference potential as EIDORS. Main results. For identical assembled blocks, the two procedures have the same solution set whenever the Robin matrix is invertible. Across the five packages in dimensionless test cases, maximum absolute electrode-potential differences from EIDORS were below $5\times10^{-13}$ (2692 nodes), and errors against an exact rational-arithmetic reference were below $1.1\times10^{-13}$ (2535 nodes). Significance. Standard Robin solves and consistent electrode-current integration provide a portable route to the current-driven CEM, with current constraints enforced through a small electrode system.</description>
+    </item>
+    <item>
+      <title>Repair, Retry, and the Cost of Hindsight: Verifier Feedback in Formal Theorem Proving</title>
+      <link>https://paperswithlean.com/paper/2610.22698.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.22698.html</guid>
+      <pubDate>Sun, 18 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Jack Li, Sophia Li</dc:creator>
+      <category>theorem-proving-ml</category><category>benchmark</category>
+      <description>Studies verifier-guided self-repair for Lean 4 proof generation on MiniF2F, using Lean compiler errors as feedback and Lean verification as the success criterion.
+
+Verifier-guided self-repair conditions a model on feedback from failed attempts before it tries again, without weight updates. Yet two findings in prior work are in tension: verifier feedback can improve repair of failures, but self-repair itself can provide little-to-no advantage over independent resampling. We reconcile these findings in Lean theorem proving through controlled one-step experiments that hold the preceding failure fixed while varying whether the failed proof is shown, whether the compiler error corresponds to that failure, and the retry instruction. We test frozen Qwen3.6-27B, a general-purpose model, and DeepSeek-Prover-V2-7B, a specialized prover, on difficult MiniF2F problems. We find two opposing effects. Showing the model its failed predecessor reduces success and sharply increases copying of it, while on Qwen adding that attempt&#x27;s compiler error recovers the loss, to the level of the diagnostic alone. Replacing the predecessor with another theorem&#x27;s failed proof largely removes the degradation on both models; on Qwen, replacing the diagnostic with another problem&#x27;s error substantially reduces the recovery. Without the failed proof, correct diagnostics show no resolved advantage over wrong-diagnostic controls on either model. The failed-proof penalty persists with and without the retry instruction, whereas Qwen&#x27;s diagnostic recovery is weaker without it. In 11-problem sequential experiments through 64 attempts, Qwen retains a correct-diagnostic benefit within failed-proof histories, while DeepSeek-Prover shows no resolved recovery. However, no tested one-step feedback condition establishes an advantage over instruction-only resampling, nor does 64-attempt sequential repair with failed proofs and correct diagnostics at equal token budgets. Verifier feedback can thus improve repair without overcoming the performance loss from conditioning on a failed attempt.</description>
+    </item>
+    <item>
+      <title>Spectral stability for strong ideal-gas shock layers</title>
+      <link>https://paperswithlean.com/paper/2610.22660.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.22660.html</guid>
+      <pubDate>Sun, 18 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Jeffrey Humpherys</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>analysis</category><category>physics</category>
+      <description>The paper&#x27;s analytical spectral-stability arguments were checked in Lean 4 with Mathlib, taking cited external results as explicit hypotheses; the artifact is archived on Zenodo.
+
+We give a purely analytical proof of one-dimensional spectral stability of sufficiently strong shock layers for the full ideal-gas Navier–Stokes equations with constant viscosity and heat conduction. Earlier work reduced this question to a limiting problem and gave numerical evidence of stability, but no proof. We prove stability on an explicit region of gas constants and transport ratios that includes air and monatomic gases. No step of the argument relies on numerical computation, and the arguments, taking the cited results of Humpherys, Lyng, and Zumbrun as hypotheses, have also been verified in the Lean proof assistant.</description>
+    </item>
+    <item>
+      <title>Proof Perplexity: A Probabilistic Approach to Measuring non-triviality in Machine Generated Proofs</title>
+      <link>https://paperswithlean.com/paper/2610.22612.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.22612.html</guid>
+      <pubDate>Sun, 18 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Madhuparna Das, Soumya Banerjee</dc:creator>
+      <category>benchmark</category><category>mathlib</category><category>theorem-proving-ml</category><category>number-theory</category>
+      <description>Defines a proof-perplexity metric over Lean kernel declaration dependency trees relative to Mathlib, applied to a Lean 4 formalized Riemann zeta proof.
+
+In this article, we propose a benchmark to quantify the non-triviality and novelty of machine-generated mathematical proofs compared to existing literature. Our core methodology uses a probabilistic measure to evaluate the non-triviality of the underlying mathematical arguments in comparison to the current MATHLIB library. Finally, we apply this benchmark to the recent proof generated by Claude on the complex zeros of the Riemann zeta function to test for non-trivial steps.</description>
+    </item>
+    <item>
+      <title>At the Limits of Computability: Steps Towards Autonomous AI Discovery on the Busy Beaver Frontier</title>
+      <link>https://paperswithlean.com/paper/2610.22603.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.22603.html</guid>
+      <pubDate>Sun, 18 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Marco Dos Santos, Vivek Veeriah, Alex Havrilla, Andrew Bolt, Goran Zuzic, Satinder Singh, Tom Zahavy</dc:creator>
+      <category>ai-agents</category><category>formalization</category><category>autoformalization</category><category>logic</category>
+      <description>A Gemini agent formally verifies conjectured Turing-machine acceleration rules in Lean 4, building on the BusyLean repository&#x27;s Turing machine definitions.
+
+Recent breakthroughs in AI for mathematics—ranging from Olympiad medal performances to resolving long-standing open conjectures—have rapidly expanded what automated systems can achieve. Yet these successes primarily concern predefined, human-formulated problems, leaving open how AI systems can autonomously uncover mathematical structure and formulate new questions. To push beyond static challenges, we explore the Busy Beaver (BB) domain, an uncomputable frontier that is fundamentally open-ended. Because no algorithm can compute the Busy Beaver number $\mathrm{BB}(n)$ for every $n$, this domain provides a natural setting for sustained exploration through mathematical conjecture and proof. In this paper, we introduce a Gemini-based agentic pipeline that automatically discovers accelerations of Turing machines, expressed as compact mathematical rules summarizing many execution steps. Our system integrates pattern recognition, automated conjecturing, informal mathematical reasoning, and formal theorem proving in Lean. With this framework, our system autonomously discovered and formally verified novel Collatz-like accelerations for eleven machines in $\mathrm{BB}(6)$. Subject to community acceptance, we provisionally classify these machines as Cryptids, namely machines whose blank-tape executions admit exact, compact mathematical descriptions but whose halting behavior remains unresolved. These results advance the analysis of $\mathrm{BB}(6)$ holdouts on the Busy Beaver frontier and demonstrate the potential of autonomous AI systems for open-ended mathematical discovery in fundamental computer science.</description>
+    </item>
+    <item>
+      <title>ForTress: Bringing Assurance and Determinism for LLM-Driven Fortran-to-Python Translation</title>
+      <link>https://paperswithlean.com/paper/2610.22528.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.22528.html</guid>
+      <pubDate>Sun, 18 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Qinrun Dai, Ruitong Liu, Chien-Wei Huang, Guanhong Tao, Guannan Wei, Yueqi Chen</dc:creator>
+      <category>verification</category><category>ai-agents</category><category>theorem-proving-ml</category>
+      <description>Mechanizes Fortran and Python semantics in Lean and kernel-checks LLM-generated soundness proofs and refutations for Fortran-to-Python translation rules.
+
+Modernizing mature scientific software from Fortran to Python can improve accessibility and integration with modern computing tools, but manual rewriting is expensive. Large language models (LLMs) make translation more practical, yet generated code can pass regression tests while violating source-language semantics, and contextual corrections may not persist across subsequent translations. We present ForTress, which solidifies recurring LLM translation decisions into guarded executable rules for deterministic reuse and provides semantic assurance for a non-trivial subset of these rules. Its LLM-assisted auditing process expresses universally quantified preservation obligations over mechanized Fortran and Python semantics in Lean. Human experts review semantic fidelity and correspondence with production rules, and Lean&#x27;s kernel checks proofs and refutations under explicit assumptions. These audit records expose the conditions either supporting correctness or identifying failure cases. We evaluate ForTress on 17 benchmarks from 15 scientific software spanning diverse domains. The translated programs achieve bitwise-identical with native Fortran on all evaluated tests under the recorded execution and initialization configurations. Against these software, ForTress accumulates 193 executable rules and 188 audit records, of which 121 have checked soundness proofs, including 31 established after counterexample-guided refinement. Cross-software reuse exceeds 90% for 14 of the 15 software. Even with additional assurance and determinism, the LLM usage cost is 44.2% lower than direct LLM translation.</description>
+    </item>
+    <item>
+      <title>Lean4AgenticRL: Advancing Agentic RL with Verifiable Multi-level Process Rewards</title>
+      <link>https://paperswithlean.com/paper/2610.22448.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.22448.html</guid>
+      <pubDate>Sun, 18 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Ruida Wang, Gerald Friedland, Tong Zhang, Chris Kong</dc:creator>
+      <category>verification</category><category>ai-agents</category>
+      <description>Formalizes agent workflows as Lean 4 specifications, building on the Lean4Agent library, and checks decidable stage predicates in Lean to supply multi-level RL rewards.
+
+Enhancing the agentic capabilities of Large Language Models (LLMs) to tackle complex software engineering (SWE) and general terminal-usage problems is a pressing challenge. Current state-of-the-art LLMs often go through large-scale agentic Reinforcement Learning (RL). However, they mostly rely on high-level outcome rewards, with minimal consideration of low-level toolcall and mid-level workflow-stage rewards, which makes the training less effective. To overcome this limitation, we propose **Lean4AgenticRL**, which, to the best of our knowledge, is the first framework that grounds multi-level process rewards in the unified Lean4 formalization schema for open-ended agentic RL. **Lean4AgenticRL** first builds a *problem-specific workflow* system that balances the agent&#x27;s own capability and controllability during execution, laying the foundation for further verification. Subsequently, our workflow formalization and multi-level reward annotation methods enable agent behavior verification within a general harness system. It provides multi-level rewards to support more effective agentic RL with the workflow-stage-normalized GRPO algorithm. Using **Lean4AgenticRL**, we train **LAR-9B/27B**, a family of models with enhanced agentic capability. Extensive experiments indicate that our model outperforms the leading model of similar size. **LAR-27B** achieves **77.3%** on TerminalBench-2.1. On average, our models outperform the base model by **9.89%** and surpass the second-best model of comparable size we know by **5.07%**. These results indicate the potential of integrating formal methods in enhancing open-ended agentic RL.</description>
+    </item>
+    <item>
+      <title>The square achievement game on $n \times n$ boards</title>
+      <link>https://paperswithlean.com/paper/2610.22410.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.22410.html</guid>
+      <pubDate>Sun, 18 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Sean Reid</dc:creator>
+      <category>formalization</category><category>verification</category><category>mathlib</category><category>combinatorics</category>
+      <description>All proofs, including the outcome theorem for every board size and the plus-rule strategy&#x27;s soundness, are formalized in Lean 4 on Mathlib with verified checkers.
+
+Two players alternately claim cells of an $n \times n$ grid; the first to hold all four corners of an axis-parallel square wins, and a full board without one is a draw. The first player has a winning strategy if and only if $n \ge 5$, which answers a question of Erickson. For $n \ge 6$ one strategy serves every board: a rule with no lookup table whose moves after the second reply are all forcing, built around the plus, a stone with the four cells at a common distance from it along the axes, a shape proposed for this game by Sirgedas in 2010. The rule is checked on the boards of size $6$ to $17$, and a simulation theorem carries one checked run on the $23 \times 23$ board to every larger board. The proofs are formalized in Lean 4, and the theorem for the rule states that the tree of its own moves is winning.</description>
+    </item>
+    <item>
+      <title>Aligning Information Theory and Formal Verification: A Lean Formalization of Rate-Distortion Theory</title>
+      <link>https://paperswithlean.com/paper/2610.22404.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.22404.html</guid>
+      <pubDate>Sun, 18 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Fubin Yan, Ruxuan Dong, Ruoxuan Shi, Duolei Wang, Kenneth W. Shum</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>probability</category>
+      <description>Formalizes finite-alphabet rate–distortion theory in Lean 4 on top of Mathlib, proving both the converse and achievability parts of the rate–distortion theorem.
+
+Large language models have recently demonstrated an ability to generate substantial mathematical proofs and formalizations, including machine-checked arguments for major open problems and classical theorems. These developments highlight a growing workflow in which AI systems search for proofs while proof assistants certify their correctness. Within information theory, however, formalized libraries remain limited, and existing formalized theorems focus almost exclusively on Shannon&#x27;s foundational lossless theorems. This paper presents the first Lean formalization of core components of rate-distortion theory, a central framework for lossy compression and modern machine-learning analysis. We identify the alignment challenges that arise when translating information-theoretic definitions, such as distortion measures, typicality and achievability, into a proof-assistant setting, and we develop a reusable library of definitions and lemmas faithful to textbook conventions. Our formalization provides a foundation for future AI-assisted proofs in information theory and enables subsequent mechanized developments to build on a coherent, verified infrastructure rather than generating long proofs from scratch.</description>
+    </item>
+    <item>
       <title>Degeneracy graph determinants and higher-dimensional Young diagrams</title>
       <link>https://paperswithlean.com/paper/2610.20368.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2610.20368.html</guid>
@@ -556,116 +666,6 @@ Let $G=C_2\times C_2$ and $A=\{0,1\}$. We characterize the submonoid of $\text{C
       <description>Formalizes the external-memory sorting theorem (correctness and I/O bounds) and the network-coding counterexample in Lean 4 with Mathlib, with a public repository.
 
 Network coding allows intermediate nodes to combine messages, whereas routing only forwards them. The Li-Li conjecture asserts that network coding and fractional routing have the same capacity region in undirected multiple-unicast networks. We give a counterexample to this conjecture and apply it to external-memory integer sorting. Since Aggarwal and Vitter posed the question in 1988, whether integer sorting can beat the external-memory comparison bound has remained a central and extensively studied open problem. We give a deterministic sorting algorithm: for $N$ integers of $Θ(\log N)$ bits, a memory holding $M$ integers, and block transfers of $B$ integers, where $2B\le M\le N$, the number of block transfers is $O\left(\frac{N}{B}\left[1+\frac{\log N}{(\log(M/B))^{1-\varepsilon}(\log M)^\varepsilon}\right]\right)$, where $\varepsilon&gt;0$ is an absolute constant. In a range of parameter regimes, this bound is asymptotically smaller than the classical comparison-sorting bound. We also use Lean 4 to verify the sorting algorithm&#x27;s correctness and complexity bounds, and the strict advantage of coding over routing.</description>
-    </item>
-    <item>
-      <title>Verifying deployed bytecode against executable EVM semantics, with exact gas and no added axioms</title>
-      <link>https://paperswithlean.com/paper/2610.19764.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.19764.html</guid>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Seulkee Baek</dc:creator>
-      <category>verification</category><category>tooling</category><category>ai-agents</category>
-      <description>Builds Blanc, a Lean 4 stack that verifies deployed EVM bytecode against Jaune, an executable Lean EVM semantics, using kernel-checked certificates and no added axioms.
-
-Much of Ethereum&#x27;s most consequential code is immutable bytecode: old output of unverified compilers, and protocol logic run as contract code. We show that such bytecode can be verified as it is, without trusting what produced it, without simplifying the machine it runs on, and with no axioms beyond Lean&#x27;s own. Blanc, a Lean 4 verification stack, reads fixed runtime bytes via kernel-checked certificates and states every theorem against Jaune, an executable semantics of the EVM and block processing that passes all 34,205 blockchain-test cases of Ethereum&#x27;s fixture release v20.0.2 that involve only forks that have governed mainnet since May 2025. Eight artifacts, deployed from 2017 to 2026, come from seven compiler versions and an assembler. For the EIP-7002 contract, we prove that the end-of-block call to it, whose failure would invalidate the block, succeeds whatever its storage holds, and that each block&#x27;s withdrawal requests are exactly the oldest pending submissions; mainnet met these theorems&#x27; starting premises when Prague began. For a Uniswap V2 pair, we prove that after any valid history whose hashed slots stay apart, from any checkpoint representing its Solidity model&#x27;s state, the storage represents that model replayed over exactly the committed calls, a balanced liquidity ledger stays balanced, and, under a premise on token answers, geometric-mean reserves per share fall only through the protocol fee. Exact gas makes liveness provable: a tracked WETH9 holder without code can withdraw by a transaction whose gas has a closed form, matching all 3,748 comparable mainnet receipts of its shape in 30,000 blocks. On Curve pool bytes compiled with the lock bug exploited in 2023, Jaune executes such a reentrancy from deployment; for bytes from a fixed compiler, we prove the lock excludes it. AI agents wrote the proofs in fifteen days under one author&#x27;s direction, atop an existing stack.</description>
-    </item>
-    <item>
-      <title>L3M: A Verifiable Harness and Runtime for Self-Extending and Self-Improving Agents</title>
-      <link>https://paperswithlean.com/paper/2610.19591.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.19591.html</guid>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Carson Eisenach, Robert Joseph George, Vincent Quenneville-Belair, Kate Gwimm, Dean Foster</dc:creator>
-      <category>verification</category><category>ai-agents</category><category>tooling</category>
-      <description>Implements an agent harness runtime in Lean 4, proves kernel-checked safety theorems about its code, and has agents extend it with sealed Lean programs.
-
-The lasting gains in AI have come from methods that absorb more computation, and language models already scale computation within a call. Useful work, though, happens across calls: over hours or days, through tools and external systems, among many agents and the humans they work for, and increasingly through code the agents write themselves. Whether that work compounds is enabled by the harness around it, and the harness faces a constraint the model does not: of the three participants in such a computation, the human, the model and code, only the human&#x27;s attention does not scale, so the computation can grow only if the human is not in every loop. L3M is a runtime built on that premise, written in Lean 4 so that one language implements the harness, states its invariants, and is the language agents extend it in. One computation spans humans, agents, models and code, and all of its state lives in Git: a rich state trajectory – rather than a chat conversation – is an object the runtime can resume, rewind, fork, compare and merge. Waiting, communication, delegation and undo are primitives, not patterns the model reasons through each time. When an agent works out a procedure, it can write it once as a sealed Lean program whose type is its permission request, and the harness offers it back as a tool – machinery for the model to use. To take the human out of the loop, L3M uses reversibility to decide where that is safe: a tool&#x27;s review tier follows from how far its effects can be undone, so agents act freely where the runtime can recover. Because the machinery can change, the properties that make this safe are stated as kernel-checked theorems about the code that runs. On Terminal-Bench, an untuned L3M reaches about two thirds of its (unsafe) shell-equipped pass rate using only safe (not needing human review) tools.</description>
-    </item>
-    <item>
-      <title>A short open space curve of unit width</title>
-      <link>https://paperswithlean.com/paper/2610.19585.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.19585.html</guid>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Tinko Sebastian Bartels, Dennis Kevin Choy, Ruixiang Wu, Tongxin Li</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>geometry</category>
-      <description>Supplies a Lean 4 formalization (using Mathlib and LeanCert) of the curve&#x27;s length bounds, local minimality, and interval-arithmetic width certificate, generated with AI assistance.
-
-In this work, we propose a curve to be a minimum of length among rectifiable, continuous curves of unit width in three-dimensional Euclidean space. We show that a previously conjectured minimizer of that problem is not of unit width, give the numerical derivation of a candidate family of unit width curves, prove that it admits a strict local minimum within that candidate family and that this minimum is of unit width and length $3.905124162243593\ldots$. The curve consists of eight straight segments, two cone geodesics, and three circular helices. Its parameters are specified by a uniquely isolated solution of the joining and stationarity equations. To establish unit width in every direction, we combine analytic estimates with interval arithmetic on a finite covering of the remaining directions. We conjecture that the curve is globally minimizing. We supplement this work with the programs used to identify the candidates, replicate the computer-assisted parts of our proof, as well as a formalization of our proof in Lean.</description>
-    </item>
-    <item>
-      <title>Positivity and negativity for $h$-bases for $n$</title>
-      <link>https://paperswithlean.com/paper/2610.19470.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.19470.html</guid>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Wouter van Doorn, Pietro Monticone, Melvyn B. Nathanson</dc:creator>
-      <category>formalization</category><category>ai-agents</category><category>number-theory</category><category>combinatorics</category>
-      <description>The main comparison results were first discovered and formally verified in Lean by Harmonic&#x27;s Aristotle agent; the paper gives new human proofs.
-
-A set $A$ of integers is an $h$-basis for $n$ if every integer in $[0,n] = \{0,1,2,\ldots,n\}$ belongs to the sumset $hA$, that is, can be represented as the sum of exactly $h$ not necessarily distinct elements of $A$. The classical postage stamp problem asks for the largest integer $n_h(k)$ such that $[0,n_h(k)] \subseteq hA$ for some set $A$ of nonnegative integers of size $k+1$. We consider the effect of allowing negative elements. Let $n^{\flat}_h(k)$ be the largest integer such that $[0,n^{\flat}_h(k)] \subseteq hA$ for some set $A$ of integers of size $k+1$ containing at least one negative integer. For $k=2$, we have $n^{\flat}_h(2) &lt; n_h(2)$ if $h$ is odd or $h=4$ and $n^{\flat}_h(2) = n_h(2)$ if $h$ is even and $h \neq 4$. Proofs of these comparison results were autonomously discovered and formally verified in Lean by https://aristotle.harmonic.fun/}{Aristotle}, a formal reasoning agent developed by https://www.harmonic.fun/}{Harmonic}. In this paper we give new proofs of these results.</description>
-    </item>
-    <item>
-      <title>Ternary polynomial relations and periods of cusp forms</title>
-      <link>https://paperswithlean.com/paper/2610.19309.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.19309.html</guid>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Vasily Ilin, Ken Ono</dc:creator>
-      <category>formalization</category><category>number-theory</category><category>ai-agents</category><category>mathlib</category>
-      <description>The main theorems (1.1, 1.2) and essential argument are formalized in Lean 4 with Mathlib by AxiomProver, with no admissions and only standard axioms.
-
-Bachmann and van Ittersum conjectured that every polynomial $f\in\mathbb{Q}[x,y,z]$ satisfying $$ f(x,y,z)=f(y,z,x),\qquad f(x,y,z)+f(-y,x-y,z)+f(y-x,-x,z)=0 $$ is a sum of polynomials in two variables. We prove this conjecture over every field of characteristic zero and determine all homogeneous solutions. Moreover, restriction to $z=0$ identifies the degree $n$ solution space with the space of binary period polynomials of degree $n$ normalized to vanish on both coordinate axes. The solution corresponding to such a polynomial $q$ is $$ f(x,y,z)=q(x,y)+q(y,z)+q(z,x). $$ There are no nonzero homogeneous solutions of odd degree. For even degrees $n$, the symmetric and alternating solution spaces are each isomorphic over $\mathbb{C}$ to the space of weight $n+2$ cusp forms on $SL_2(\mathbb{Z})$. The proof connects the polynomial relations with the cohomology of arithmetic groups through the rational Tits building for $GL_3$. Cusp forms enter both the description of the solutions and the proof that there are no others. The main theorems and the essential argument are formalized unconditionally in Lean 4 by AxiomProver.</description>
-    </item>
-    <item>
-      <title>Definition Grounding in Theory-Level Auto-formalization</title>
-      <link>https://paperswithlean.com/paper/2610.19223.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.19223.html</guid>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Leyan Pan, Christian Szegedy, Frederick Rajasekaran, Robi Bhattacharjee, Gregory Constantine, Wenke Lee</dc:creator>
-      <category>autoformalization</category><category>benchmark</category><category>ai-agents</category><category>mathlib</category>
-      <description>Introduces ReuseBench, in which LLM agents formalize definitions and layered statements of textbook theories in Lean 4 on top of Mathlib, and evaluates definition reusability.
-
-LLM-based auto-formalization systems can now generate formally verified Lean code at unprecedented rates. However, a formalization advances mathematical research only when further mathematical results can be built on it, especially when its definitions and helper lemmas are general enough to be imported and used idiomatically. We propose definition grounding, where definition formalizations are continuously judged and revised, as a method to ensure formalization quality. We find that agents formalizing definitions from textbook text often produce definitions that later statements cannot use, and only 25%-50% of their definition sets are compatible with all later statements. However, clarifying the informal definitions can improve this rate up to 77.5% averaged over all models. Furthermore, stating a small set of basic properties without proving them can improve model judges&#x27; capability to detect definitions with compatibility issues, at only about 11% of the definition formalization cost. These results are verified with ReuseBench, a benchmark we curated for formalizing new mathematical fields and theories.</description>
-    </item>
-    <item>
-      <title>Majority and Torus Polynomials: Bounded-Lift Lower Bounds and Explicit Constructions</title>
-      <link>https://paperswithlean.com/paper/2610.19174.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.19174.html</guid>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Saint Wesonga</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>ai-agents</category><category>combinatorics</category>
-      <description>Lower bounds and explicit torus polynomial constructions for Majority are formalized in Lean 4 with Mathlib, including Paturi&#x27;s approximate-degree characterization, with a public repository.
-
-Bhrushundi et al. (2019) introduced torus polynomial approximation as an approach to separating Majority from $ACC^0$. In this model, approximation is measured modulo integers. Krishan and Vishwanathan (2026) developed a duality framework for lower bounds and posed five open problems. We resolve two of these, concerning integer lifts and explicit polynomial approximations. An integer lift records the integer shifts that turn a torus approximation into an ordinary real approximation. We show that a degree-d torus polynomial approximating Majority with error at most 1/8 and lift contained in an interval of width $B$ must satisfy $d(B + 1) = Ω(n)$. This rules out low-degree approximating polynomials with lifts in {-1, 0, 1}, answering their Open Problem 2. We also answer Open Problem 5 by giving, for every Boolean function on $n \geq 1$ variables, an explicit torus polynomial approximation of degree at most $n - 1$. Its error is optimal: zero when the accepting set has even cardinality and $2^{-n-1}$ otherwise. The results presented were discovered and formalized in Lean using GPT-6 Astra.</description>
-    </item>
-    <item>
-      <title>Transmission representation of the Josephson free energy beyond the short-junction limit</title>
-      <link>https://paperswithlean.com/paper/2610.18980.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.18980.html</guid>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Anton R. Akhmerov</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>physics</category><category>ai-agents</category>
-      <description>Every numbered equation is printed from a theorem or definition checked in Lean 4 with Mathlib, formalized by AI agents and released on Zenodo.
-
-Beenakker&#x27;s formula, $U(\varphi)-U(0)=Δ\sum_n\bigl(1-\sqrt{1-τ_n\sin^2(\varphi/2)}\bigr)$, expresses the zero-temperature energy-phase relation of a short Josephson junction through its normal-state transmission eigenvalues. We generalize this transmission representation beyond the short-junction limit and express the phase-dependent free energy of a time-reversal-symmetric $s$-wave junction as a Matsubara sum over channels with frequency-dependent transmissions. The representation constrains the small-phase expansion of the free energy. In particular, we prove that the normalized ratio of its quartic and quadratic coefficients satisfies $-1\leα_r\le7/80$ at finite temperature. We also construct a four-site junction with $α_r&gt;0$, which disproves the conjectured upper bound $α_r\le0$. So that these results can be trusted without repeating the derivations, every numbered equation is formally verified in the Lean proof assistant.</description>
-    </item>
-    <item>
-      <title>Improved Sidorenko bound for hypergraph Turan densities</title>
-      <link>https://paperswithlean.com/paper/2610.18944.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.18944.html</guid>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Shuyan Chen, Xinmin Hou, Xizhi Liu</dc:creator>
-      <category>formalization</category><category>combinatorics</category>
-      <description>The main Turán density bound, the finite embedding assertion used in its proof, and the existence of the Turán density are formalized in Lean 4.
-
-For every fixed integer $r\ge3$, we prove that the Turán density of every $r$-uniform hypergraph $F$ with $m\ge1$ edges satisfies $π(F)\le1-c_rm^{-(r-1)/r}$, where $c_r&gt;0$ depends only on $r$. This improves Sidorenko&#x27;s general bound, whose gap from $1$ is of order $m^{-1}$. Complete $r$-uniform hypergraphs show that the exponent $(r-1)/r$ is optimal. The proof combines a potential argument for partial embeddings with the Lovász Local Lemma.</description>
-    </item>
-    <item>
-      <title>Certifying non-existence of integer points on curves</title>
-      <link>https://paperswithlean.com/paper/2610.18916.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.18916.html</guid>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Bogdan Grechuk, Eugene Go</dc:creator>
-      <category>formalization</category><category>number-theory</category><category>ai-agents</category>
-      <description>Insolubility proofs for 209 Diophantine equations, including large cubic-reciprocity certificates, are formalized in Lean 4, with Lean code partly generated by ChatGPT.
-
-We present an elementary but powerful method for proving that a two-variable equation has no integer solutions. The method produces quadratic identities which every integer solution must satisfy. Once these identities are established, a standard quadratic reciprocity argument finishes the proof. We illustrate the power of the method by resolving $25$ out of $30$ two-variable equations of size up to $34$ for which the problem of integer solubility remained open. We also resolve the remaining $5$ equations by deeper methods, and further determine the integer solubility of all two-variable equations of size up to $35$ and of length up to $12$, with two exceptions. Before this work, there were $211$ equations in this category that resisted the previously known methods, and we proved that $209$ of them have no integer solutions, with all proofs formalized in Lean. In addition, we show that our method can be used to solve certain two-variable equations whose integer solution set is non-empty.</description>
     </item>
   </channel>
 </rss>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repair, Retry, and the Cost of Hindsight: Verifier Feedback in Formal Theorem Proving · Papers With Lean</title>
+<meta name="description" content="Verifier-guided self-repair conditions a model on feedback from failed attempts before it tries again, without weight updates. Yet two findings in prior work are in tension: verifier feedback can improve repair of failures, but self-repair itself can provide little-to-no…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Repair, Retry, and the Cost of Hindsight: Verifier Feedback in Formal Theorem Proving">
+<meta property="og:description" content="Verifier-guided self-repair conditions a model on feedback from failed attempts before it tries again, without weight updates. Yet two findings in prior work are in tension: verifier feedback can improve repair of failures, but self-repair itself can provide little-to-no…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.22698.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.22698.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.22698v1" target="_blank" rel="noopener"><img src="../thumbs/2610.22698.jpg" alt="First page of Repair, Retry, and the Cost of Hindsight: Verifier Feedback in Formal Theorem Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Repair, Retry, and the Cost of Hindsight: Verifier Feedback in Formal Theorem Proving</h1>
+        <p class="authors">Jack Li, Sophia Li</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 15, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.22698v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.22698" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/mathingleft/repair-retry-hindsight" target="_blank" rel="noopener" title="mathingleft/repair-retry-hindsight">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Studies verifier-guided self-repair for Lean 4 proof generation on MiniF2F, using Lean compiler errors as feedback and Lean verification as the success criterion.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Verifier-guided self-repair conditions a model on feedback from failed attempts before it tries again, without weight updates. Yet two findings in prior work are in tension: verifier feedback can improve repair of failures, but self-repair itself can provide little-to-no advantage over independent resampling. We reconcile these findings in Lean theorem proving through controlled one-step experiments that hold the preceding failure fixed while varying whether the failed proof is shown, whether the compiler error corresponds to that failure, and the retry instruction. We test frozen Qwen3.6-27B, a general-purpose model, and DeepSeek-Prover-V2-7B, a specialized prover, on difficult MiniF2F problems. We find two opposing effects. Showing the model its failed predecessor reduces success and sharply increases copying of it, while on Qwen adding that attempt&#x27;s compiler error recovers the loss, to the level of the diagnostic alone. Replacing the predecessor with another theorem&#x27;s failed proof largely removes the degradation on both models; on Qwen, replacing the diagnostic with another problem&#x27;s error substantially reduces the recovery. Without the failed proof, correct diagnostics show no resolved advantage over wrong-diagnostic controls on either model. The failed-proof penalty persists with and without the retry instruction, whereas Qwen&#x27;s diagnostic recovery is weaker without it. In 11-problem sequential experiments through 64 attempts, Qwen retains a correct-diagnostic benefit within failed-proof histories, while DeepSeek-Prover shows no resolved recovery. However, no tested one-step feedback condition establishes an advantage over instruction-only resampling, nor does 64-attempt sequential repair with failed proofs and correct diagnostics at equal token budgets. Verifier feedback can thus improve repair without overcoming the performance loss from conditioning on a failed attempt.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Prior work disagrees on whether verifier feedback helps LLM self-repair. Some studies find diagnostics crucial, while others find self-repair barely beats independent resampling. The aim is to reconcile these findings for Lean theorem proving.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Controlled one-step experiments hold a failed predecessor proof fixed. They vary the retry instruction, the failure notice, exposure of the failed proof, and whether the Lean compiler error corresponds to that failure. Controls swap in shuffled or class/length-matched wrong diagnostics and replace the proof with another theorem&#x27;s failed proof. Frozen Qwen3.6-27B and DeepSeek-Prover-V2-7B are tested on difficult MiniF2F problems, plus 11-problem sequential experiments through 64 attempts.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.22698/fig1_decomposition.png" alt=""><figcaption>Figure 3: One-step pass@4 for the central arms, and prompt anatomy. Dashed lines mark instruction-only performance; hatching denotes shuffled wrong diagnostics, and the bracket gives the F_{CE}-F_{C} difference in problems solved. Whiskers are marginal 95% problem-bootstrap intervals, not paired contrasts. The predecessor-replacement and matched-diagnostic controls are summarized in Fig. 1 and Tab</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Showing the model its own failed proof lowers success and increases copying. On Qwen, correct diagnostics recover this loss, mostly on Lean 3-syntax predecessors; DeepSeek-Prover shows no resolved diagnostic benefit. No feedback condition beats instruction-only resampling, either in one step or over 64 sequential attempts.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.22698/results_onestep.png" alt=""><figcaption>Figure 1: Controlled one-step pass@4. Dashed lines mark instruction-only performance. s : shuffled wrong diagnostic; m : class/length-matched wrong diagnostic; o : another theorem’s failed proof. Whiskers are marginal 95% problem-bootstrap intervals; paired contrast intervals are reported in text.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.22698/fig_sequential_final.png" alt=""><figcaption>Figure 2: Sequential repair and diagnostic-content effects on both models. Qwen (top) and DeepSeek-Prover (bottom) each use their own 11-problem bank. Left: success by attempt k for memoryless instruction-only resampling ( I ), failed-proof history alone ( C ), failed-proof histories with correct ( CE ), ordinary-shuffled ( CE_{s} ), or matched-wrong ( CE_{m} ) diagnostics, and code-free diagnosti</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Model</th><th>Contrast</th><th>Δ (pp)</th><th>95% CI</th></tr></thead><tbody><tr><td>Qwen</td><td>F_CE − I</td><td>-3.0</td><td>[-8.4, +2.4]</td></tr><tr><td>DeepSeek</td><td>F_CE − I</td><td>-16.1</td><td>[-22.6, -10.2]</td></tr><tr><td>Qwen</td><td>CE − I (k=64)</td><td>-18.3</td><td>[-41.8, +5.3]</td></tr><tr><td>DeepSeek</td><td>CE − I (k=64)</td><td>-50.7</td><td>[-66.4, -34.5]</td></tr><tr><td>Qwen</td><td>F_CE − F_C</td><td>+13.2</td><td>[+7.2, +19.2]</td></tr></tbody></table><div class="tbl-cap">Key contrasts (percentage points, 95% CI)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

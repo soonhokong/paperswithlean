@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Implementing the EIT complete electrode model through Robin boundary conditions · Papers With Lean</title>
+<meta name="description" content="Objective. Medical electrical impedance tomography systems prescribe electrode currents. Accurate voltages, even on passive electrodes, require the complete electrode model (CEM), the most accurate model known for skin electrodes. Its current constraints specify total electrode…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Implementing the EIT complete electrode model through Robin boundary conditions">
+<meta property="og:description" content="Objective. Medical electrical impedance tomography systems prescribe electrode currents. Accurate voltages, even on passive electrodes, require the complete electrode model (CEM), the most accurate model known for skin electrodes. Its current constraints specify total electrode…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.22944.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.22944.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.22944v1" target="_blank" rel="noopener"><img src="../thumbs/2610.22944.jpg" alt="First page of Implementing the EIT complete electrode model through Robin boundary conditions"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Implementing the EIT complete electrode model through Robin boundary conditions</h1>
+        <p class="authors">Bing-Zhou Chen, Amelia Deakin, Andy Adler, Paul D. Ledger, William R. B. Lionheart</p>
+        <div class="row">
+          <span class="badge">physics.med-ph</span>
+          <span class="date">Oct 16, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a> <a class="tag c-blue" href="../#tag=physics">physics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.22944v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.22944" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.23239050" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes in Lean 4 with Mathlib the discrete energy argument, the equivalence theorem between the augmented and Robin-transadmittance CEM, and the potential-reference results.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Objective. Medical electrical impedance tomography systems prescribe electrode currents. Accurate voltages, even on passive electrodes, require the complete electrode model (CEM), the most accurate model known for skin electrodes. Its current constraints specify total electrode currents, whereas standard finite element boundary interfaces impose local conditions. We describe how to implement the CEM through Robin boundary conditions, which are available in standard FEM packages. Approach. Prescribed electrode potentials give Robin problems whose unit-potential responses define an electrode transadmittance matrix. We prove equivalence to the conventional augmented CEM and formalise the discrete energy, equivalence and reference arguments in Lean 4. Numerical comparisons use two-dimensional P1 finite elements in DOLFINx, FreeFEM, GetFEM, MFEM and NGSolve, with the same nodal reference potential as EIDORS. Main results. For identical assembled blocks, the two procedures have the same solution set whenever the Robin matrix is invertible. Across the five packages in dimensionless test cases, maximum absolute electrode-potential differences from EIDORS were below $5\times10^{-13}$ (2692 nodes), and errors against an exact rational-arithmetic reference were below $1.1\times10^{-13}$ (2535 nodes). Significance. Standard Robin solves and consistent electrode-current integration provide a portable route to the current-driven CEM, with current constraints enforced through a small electrode system.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The complete electrode model (CEM) for electrical impedance tomography imposes total electrode-current constraints. Standard finite element packages only offer local boundary conditions, so the CEM is hard to implement with general-purpose FEM software.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Electrode potentials are prescribed, which turns the problem into standard Robin problems. Their unit-potential responses define an electrode transadmittance matrix, and a small system with that matrix enforces the prescribed currents. Equivalence to the conventional augmented CEM is proved and formalised in Lean 4.24.0 with Mathlib; this covers the discrete energy argument, the equivalence theorem, grounding/reference reduction and the zero-mean/pseudoinverse construction. The method is implemented with P1 elements in DOLFINx, FreeFEM, GetFEM, MFEM and NGSolve and compared against EIDORS and an exact rational-arithmetic reference.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.22944/figure_graphical_abstract.png" alt=""><figcaption>Figure 1: Shared contact model and equivalent CEM solution procedures. (a) An equipotential electrode is coupled to local surface potentials through a resistive layer of thickness \delta and resistivity \rho_{\ell} . The limit \delta\to 0 with z_{\ell}=\rho_{\ell}\delta fixed gives the distributed condition ( 2 ). Strips of width \Delta s_{i} illustrate resistances z_{\ell}/\Delta s_{i} per unit o</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For identical assembled blocks and an invertible Robin matrix, the two procedures have the same solution set, independent of the potential reference. Maximum electrode-potential differences from EIDORS were below 5e-13 (2692 nodes). Errors against the exact reference were below 1.1e-13 (2535 nodes).</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.22944/figure_circle16.png" alt=""><figcaption>Figure 2: 2692-node cross-platform case. (a) Common mesh and elementwise conductivity. (b) Directly computed EIDORS nodal potentials for the adjacent stimulation \bm{e}_{1}-\bm{e}_{2} , displayed using P1 interpolation. Orange segments mark the electrode chords.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Platform</th><th>max abs U diff</th><th>backward error</th></tr></thead><tbody><tr><td>DOLFINx</td><td>3.531e-14</td><td>1.301e-16</td></tr><tr><td>FreeFEM</td><td>1.910e-14</td><td>7.402e-17</td></tr><tr><td>GetFEM</td><td>2.842e-14</td><td>9.162e-17</td></tr><tr><td>MFEM</td><td>4.641e-13</td><td>3.508e-16</td></tr><tr><td>NGSolve</td><td>1.732e-14</td><td>1.016e-16</td></tr></tbody></table><div class="tbl-cap">Platform-native Robin–transadmittance vs EIDORS augmented CEM, 2692-node case: max abs electrode-potential difference</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lean4AgenticRL: Advancing Agentic RL with Verifiable Multi-level Process Rewards · Papers With Lean</title>
+<meta name="description" content="Enhancing the agentic capabilities of Large Language Models (LLMs) to tackle complex software engineering (SWE) and general terminal-usage problems is a pressing challenge. Current state-of-the-art LLMs often go through large-scale agentic Reinforcement Learning (RL). However,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lean4AgenticRL: Advancing Agentic RL with Verifiable Multi-level Process Rewards">
+<meta property="og:description" content="Enhancing the agentic capabilities of Large Language Models (LLMs) to tackle complex software engineering (SWE) and general terminal-usage problems is a pressing challenge. Current state-of-the-art LLMs often go through large-scale agentic Reinforcement Learning (RL). However,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.22448.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.22448.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.22448v1" target="_blank" rel="noopener"><img src="../thumbs/2610.22448.jpg" alt="First page of Lean4AgenticRL: Advancing Agentic RL with Verifiable Multi-level Process Rewards"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Lean4AgenticRL: Advancing Agentic RL with Verifiable Multi-level Process Rewards</h1>
+        <p class="authors">Ruida Wang, Gerald Friedland, Tong Zhang, Chris Kong</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 15, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.22448v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.22448" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/RickySkywalker/Lean4AgenticRL" target="_blank" rel="noopener" title="RickySkywalker/Lean4AgenticRL">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes agent workflows as Lean 4 specifications, building on the Lean4Agent library, and checks decidable stage predicates in Lean to supply multi-level RL rewards.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Enhancing the agentic capabilities of Large Language Models (LLMs) to tackle complex software engineering (SWE) and general terminal-usage problems is a pressing challenge. Current state-of-the-art LLMs often go through large-scale agentic Reinforcement Learning (RL). However, they mostly rely on high-level outcome rewards, with minimal consideration of low-level toolcall and mid-level workflow-stage rewards, which makes the training less effective. To overcome this limitation, we propose **Lean4AgenticRL**, which, to the best of our knowledge, is the first framework that grounds multi-level process rewards in the unified Lean4 formalization schema for open-ended agentic RL. **Lean4AgenticRL** first builds a *problem-specific workflow* system that balances the agent&#x27;s own capability and controllability during execution, laying the foundation for further verification. Subsequently, our workflow formalization and multi-level reward annotation methods enable agent behavior verification within a general harness system. It provides multi-level rewards to support more effective agentic RL with the workflow-stage-normalized GRPO algorithm. Using **Lean4AgenticRL**, we train **LAR-9B/27B**, a family of models with enhanced agentic capability. Extensive experiments indicate that our model outperforms the leading model of similar size. **LAR-27B** achieves **77.3%** on TerminalBench-2.1. On average, our models outperform the base model by **9.89%** and surpass the second-best model of comparable size we know by **5.07%**. These results indicate the potential of integrating formal methods in enhancing open-ended agentic RL.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Agentic RL for software engineering and terminal tasks mostly relies on sparse outcome rewards. These rewards cannot tell useful intermediate actions apart from redundant or harmful ones in long agent traces.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An agent first plans a problem-specific workflow and then executes it. The workflow is formalized into a Lean 4 schema built on the Lean4Agent library, with pre- and post-conditions for each stage. Trajectories are split into workflow stages, which receive stage-level rewards, while individual tool calls receive tool-call rewards. Decidable predicates, such as checks for reward-hacking patterns, are verified by Lean or Python checkers, and semantic predicates are judged by an LLM. Models are trained with a workflow-stage-normalized GRPO variant that combines outcome, stage, and tool-call rewards.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">LAR-27B reaches 84.2% on SWE-Bench-Verified, 68.2% on TerminalBench-2.0, and 77.3% on TerminalBench-2.1. On average, the LAR models beat their base models by 9.89% and the next-best comparable-size model by 5.07%. Ablations show gains from tool-call rewards and from problem-specific workflows.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.22448/SWE-Bench_LAR-GRPO.png" alt=""><figcaption>Figure 2: Lean4AgenticRL compared with GRPO in SWE by SWE-Bench-Verified and terminal usage tasks by TerminalBench-2.0.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Model</th><th>Size</th><th>SWE-Bench-Verified</th><th>TB-2.0</th><th>TB-2.1</th></tr></thead><tbody><tr><td>TMax-27B</td><td>27B</td><td>70.0%</td><td>49.9%</td><td>44.9%</td></tr><tr><td>Qwen-3.8-27B</td><td>27B</td><td>83.0%</td><td>64.7%</td><td>69.6%</td></tr><tr><td>LAR-9B</td><td>9B</td><td>64.2%</td><td>32.8%</td><td>29.5%</td></tr><tr><td>LAR-27B</td><td>27B</td><td>84.2%</td><td>68.2%</td><td>77.3%</td></tr></tbody></table><div class="tbl-cap">Selected main results</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
