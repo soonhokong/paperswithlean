@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Provable Coordination for LLM Agents via Message Sequence Charts · Papers With Lean</title>
+<meta name="description" content="Multi-agent systems built on large language models (LLMs) are difficult to reason about. Coordination errors such as deadlocks or type-mismatched messages are often hard to detect through testing. We introduce a domain-specific language for specifying agent coordination based on…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Provable Coordination for LLM Agents via Message Sequence Charts">
+<meta property="og:description" content="Multi-agent systems built on large language models (LLMs) are difficult to reason about. Coordination errors such as deadlocks or type-mismatched messages are often hard to detect through testing. We introduce a domain-specific language for specifying agent coordination based on…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2604.17612.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2604.17612.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2604.17612v3" target="_blank" rel="noopener"><img src="../thumbs/2604.17612.jpg" alt="First page of Provable Coordination for LLM Agents via Message Sequence Charts"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Provable Coordination for LLM Agents via Message Sequence Charts</h1>
+        <p class="authors">Benedikt Bollig, Matthias Függer, Thomas Nowak</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Apr 19, 2026 · v3</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2604.17612v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2604.17612" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/zippergen-io/zippergen-lean" target="_blank" rel="noopener" title="zippergen-io/zippergen-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">All definitions of the MSC-based coordination DSL and the projection&#x27;s correctness and deadlock-freedom results are formalized and machine-checked in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Multi-agent systems built on large language models (LLMs) are difficult to reason about. Coordination errors such as deadlocks or type-mismatched messages are often hard to detect through testing. We introduce a domain-specific language for specifying agent coordination based on message sequence charts (MSCs). The language separates message-passing structure from LLM calls, tool calls, and human control points, whose outcomes remain unpredictable. We define the syntax and semantics of the language and present a syntax-directed projection that generates deadlock-free local agent programs from global coordination specifications. We illustrate the approach with a diagnosis consensus protocol and show how coordination properties can be established independently of LLM nondeterminism. We also describe a runtime planning extension in which an LLM dynamically generates a coordination workflow for which the same structural guarantees apply. An open-source Python implementation of our framework is available as ZipperGen.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-based multi-agent systems are prone to coordination errors such as deadlocks and type-mismatched messages, which testing rarely uncovers. Existing agent frameworks provide no formal coordination guarantees.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors define a domain-specific language based on message sequence charts. It separates message-passing structure from opaque LLM, tool, and human actions, and gives the language a formal syntax and MSC semantics. A syntax-directed projection turns global workflows into local agent programs, using explicit control broadcasts from the owner of each decision. All definitions and correctness results are machine-checked in Lean 4, and the framework is implemented in Python as ZipperGen, including a runtime planning extension where an LLM generates the workflows.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The projection is always defined, needs no realizability check, and is deadlock-free by construction. This is illustrated on a medical diagnosis consensus protocol. In the runtime-planning experiment, GPT-4.1 and GPT-4.1 mini had all 10 generated workflows accepted and executed, while small local models and GPT-4o mini produced none that were accepted.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Accepted first</th><th>Accepted within 8</th><th>Executed</th><th>Correct</th></tr></thead><tbody><tr><td>qwen2.5:14b (local)</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>GPT-4o mini</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>GPT-4.1 mini</td><td>0</td><td>10</td><td>10</td><td>9</td></tr><tr><td>GPT-4o</td><td>7</td><td>8</td><td>8</td><td>7</td></tr><tr><td>GPT-4.1</td><td>10</td><td>10</td><td>10</td><td>6</td></tr></tbody></table><div class="tbl-cap">Runtime planning: LLM-generated workflows (10 cases each)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
