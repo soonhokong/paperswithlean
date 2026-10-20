@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proving LLM-Generated GPU Kernels Correct and Safe: Floating-Point Verification in Lean and VerCors · Papers With Lean</title>
+<meta name="description" content="Modern statistical model development begins with a high-level specification in an automatic differentiation framework such as PyTorch, JAX, or TensorFlow, which is then lowered to a target backend by a compiler or implemented manually by a research engineer. In this paper, we…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Proving LLM-Generated GPU Kernels Correct and Safe: Floating-Point Verification in Lean and VerCors">
+<meta property="og:description" content="Modern statistical model development begins with a high-level specification in an automatic differentiation framework such as PyTorch, JAX, or TensorFlow, which is then lowered to a target backend by a compiler or implemented manually by a research engineer. In this paper, we…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.24548.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.24548.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.24548v1" target="_blank" rel="noopener"><img src="../thumbs/2610.24548.jpg" alt="First page of Proving LLM-Generated GPU Kernels Correct and Safe: Floating-Point Verification in Lean and VerCors"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Proving LLM-Generated GPU Kernels Correct and Safe: Floating-Point Verification in Lean and VerCors</h1>
+        <p class="authors">Archibald Browne, Eugene Lee, Cristopher Salvi</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Oct 17, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.24548v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.24548" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses Velvet, a Lean-embedded verifier, with SMT automation and LLM-guided proofs to prove Float32 semantic equivalence between PyTorch specifications and LLM-generated CUDA kernels.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Modern statistical model development begins with a high-level specification in an automatic differentiation framework such as PyTorch, JAX, or TensorFlow, which is then lowered to a target backend by a compiler or implemented manually by a research engineer. In this paper, we study whether frontier language models can correctly perform the latter task by generating GPU kernels from high-level benchmark specifications. We introduce a framework in which a language-model agent uses Velvet, a program verifier for imperative programs embedded in Lean, to prove semantic equivalence between a high-level specification and a generated CUDA kernel under an explicit set of assumptions. It also asks the LLM to prove thread safety and data race freedom of the generated kernel in VerCors, a deductive verifier for parallel code. Our main contribution to the formal verification of LLM- generated GPU kernels is showing that a combination of Lean automation and language-model-guided proof construction can verify a broad set of basic neural- network building blocks over floating-point values, allowing LLMs to implement semantically correct and safe kernels. In our framework, floating-point verifications never rely on compiled code and are always checked via the Lean kernel.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-generated GPU kernels can pass finite correctness tests while being semantically wrong on broader inputs. Existing verification approaches often reason over reals or integers instead of floating point.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Deterministic compilers translate PyTorch specifications (via FX graphs and TorchLean) and a subset of CUDA into Lean. Velvet is used to reason about the imperative kernel code. Equivalence over Float32 is discharged by the loom_solve SMT tactic (cvc5) or by an LLM Prover agent, with transcendental functions treated as opaque symbols. VerCors separately checks thread safety and data-race freedom, and feedback from both checks is returned to a Generator agent for up to 5 rounds.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.24548/cuda_verification_pipeline.png" alt=""><figcaption>Figure 1: The basic architecture of our approach. Deterministic translators are used in order to translate both PyTorch and CUDA programs into Lean. Their semantics can then be compared either by an SMT solver (in our case, cvc5) or a Prover agent. The CUDA kernel is then checked for thread safety by VerCors.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 30 KernelBench level 1–2 problems, Opus-5-fast proved Lean semantic equivalence for all 30 and passed both checks on 23. GPT-5-fast proved equivalence for 18 and passed both checks on 11. Case studies show the checker rejecting genuine floating-point discrepancies, such as substituting the fast-math intrinsic __expf for expf.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.24548/fig_conversion.png" alt=""><figcaption>(a) Cumulative joint pass rate</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.24548/fig_outcome_grid.png" alt=""><figcaption>(b) Per-round outcome grid</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Family</th><th>n</th><th>GPT-5 Joint</th><th>GPT-5 Lean</th><th>Opus-5 Joint</th><th>Opus-5 Lean</th></tr></thead><tbody><tr><td>Elementwise</td><td>11</td><td>6</td><td>6</td><td>11</td><td>11</td></tr><tr><td>Matmul</td><td>8</td><td>4</td><td>8</td><td>5</td><td>8</td></tr><tr><td>Gemm+epilogue</td><td>7</td><td>0</td><td>1</td><td>3</td><td>7</td></tr><tr><td>Reduction</td><td>4</td><td>1</td><td>3</td><td>3</td><td>4</td></tr><tr><td>Overall</td><td>30</td><td>11 (37%)</td><td>18 (60%)</td><td>22 (73%)</td><td>30 (100%)</td></tr></tbody></table><div class="tbl-cap">Joint (Lean ∧ VerCors) and Lean pass rates within five valid attempts</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

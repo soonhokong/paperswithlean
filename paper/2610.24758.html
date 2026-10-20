@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Optimal single-track Gray codes from Gray-ordered necklaces · Papers With Lean</title>
+<meta name="description" content="A single-track Gray code of length $n$ is a cyclic Gray code of $n$-bit words in which every column is a cyclic shift of the first. For prime $n$ the longest possible period is $2^n-2$. Whether it is attained for every prime has been open since Hiltgen, Paterson and Brandestini…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Optimal single-track Gray codes from Gray-ordered necklaces">
+<meta property="og:description" content="A single-track Gray code of length $n$ is a cyclic Gray code of $n$-bit words in which every column is a cyclic shift of the first. For prime $n$ the longest possible period is $2^n-2$. Whether it is attained for every prime has been open since Hiltgen, Paterson and Brandestini…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.24758.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.24758.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.24758v1" target="_blank" rel="noopener"><img src="../thumbs/2610.24758.jpg" alt="First page of Optimal single-track Gray codes from Gray-ordered necklaces"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Optimal single-track Gray codes from Gray-ordered necklaces</h1>
+        <p class="authors">Chris Dzoba</p>
+        <div class="row">
+          <span class="badge">math.CO</span>
+          <span class="date">Oct 17, 2026 · v1</span>
+          <span class="badge">cs.DM</span> <span class="badge">cs.IT</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.24758v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.24758" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/dzoba/single-track-gray-codes" target="_blank" rel="noopener" title="dzoba/single-track-gray-codes">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes in Lean 4 with Mathlib that the Degni–Drisko property at a prime n yields an optimal single-track Gray code; n=3 and n=5 cases checked by computation.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A single-track Gray code of length $n$ is a cyclic Gray code of $n$-bit words in which every column is a cyclic shift of the first. For prime $n$ the longest possible period is $2^n-2$. Whether it is attained for every prime has been open since Hiltgen, Paterson and Brandestini introduced these codes in 1996, and optimal codes were known for primes $n\le 19$. We show that a conjecture of Degni and Drisko (2007) on the reflected Gray code order of necklaces implies optimal single-track Gray codes for every prime. Their list of necklaces, conjecturally a Gray path for prime $n$, closes into a Hamilton cycle of the necklace graph after $(n-3)/2$ explicit Pósa rotations, and such a cycle lifts to an optimal code. This implication is formalized in Lean 4. Together with computation it gives optimal single-track Gray codes for every odd prime $n\le 47$: for $n\le 37$ explicit codes checked word by word by a program independent of the generator, and for $n=41$, $43$ and $47$ codes obtained from the implication after the Degni-Drisko property was verified at these lengths by two independently written programs.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Whether optimal single-track Gray codes, with period 2^n-2, exist for every prime n has been open since 1996. Optimal codes were known only for primes n ≤ 19.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The problem reduces to Hamiltonicity of the necklace graph Q_n. The Degni–Drisko list of necklaces, ordered by first occurrence in the binary reflected Gray code, is conjectured to be a Gray path for prime n. It is closed into a Hamilton cycle by (n-3)/2 explicit Pósa rotations, and the cycle is lifted to an optimal code (Theorem A). Theorem A is formalized in Lean 4 with Mathlib as the theorem stgc_of_DD, and further codes were found by computer search and checked by independent verifiers.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The Degni–Drisko conjecture implies optimal single-track Gray codes for every prime. Optimal codes are obtained for every odd prime n ≤ 47: explicit codes checked word by word for n ≤ 37, and codes via Theorem A for n = 41, 43 and 47 after the hypothesis was verified by two independent programs.</p><div class="sum-table"><table><thead><tr><th>n</th><th>period 2^n-2</th><th>method</th><th>verification</th></tr></thead><tbody><tr><td>3</td><td>6</td><td>explicit</td><td>Lean (decide)</td></tr><tr><td>23</td><td>8,388,606</td><td>search</td><td>word by word, ≥3 checkers</td></tr><tr><td>31</td><td>2,147,483,646</td><td>search</td><td>word by word, ≥3 checkers</td></tr><tr><td>37</td><td>137,438,953,470</td><td>Theorem A</td><td>word by word, 1 checker</td></tr><tr><td>47</td><td>140,737,488,355,326</td><td>Theorem A</td><td>Conjecture 1 at n=47, 2 programs</td></tr></tbody></table><div class="tbl-cap">Optimal codes by length (selected rows)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
