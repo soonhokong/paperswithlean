@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rózsa: Certified Equational Reasoning · Papers With Lean</title>
+<meta name="description" content="When does one equation imply another? Stage 2 of the SAIR Mathematics Distillation Challenge required teams to submit solvers to answer this question for sets equipped with a binary operation. For these sets, associativity, commutativity, or any other algebraic property was not…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rózsa: Certified Equational Reasoning">
+<meta property="og:description" content="When does one equation imply another? Stage 2 of the SAIR Mathematics Distillation Challenge required teams to submit solvers to answer this question for sets equipped with a binary operation. For these sets, associativity, commutativity, or any other algebraic property was not…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.26467.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.26467.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.26467v1" target="_blank" rel="noopener"><img src="../thumbs/2610.26467.jpg" alt="First page of Rózsa: Certified Equational Reasoning"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Rózsa: Certified Equational Reasoning</h1>
+        <p class="authors">Georgios Kissas</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Oct 19, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.26467v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.26467" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/hieronimoDos/rozsa-equational-solver" target="_blank" rel="noopener" title="hieronimoDos/rozsa-equational-solver">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Python solver for magma law implications emits Lean certificates (proofs or countermodels) checked by the SAIR challenge&#x27;s Lean judge.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">When does one equation imply another? Stage 2 of the SAIR Mathematics Distillation Challenge required teams to submit solvers to answer this question for sets equipped with a binary operation. For these sets, associativity, commutativity, or any other algebraic property was not assumed. Each answer required a proof or counterexample that could be verified by Lean. Programs also had to respect fixed resource limits. We present Rózsa, a Python solver that searches for both kinds of evidence. It begins with simple tests and considers more extensive searches when those fail. To find a proof, it applies a given equation and derives any further equations as needed, keeping a record of each step. To find a counterexample, it searches for operations on finite sets. It also tests one fixed infinite model. The given equation must hold for every assignment, while the target equation must fail for at least one. In either case, Rózsa turns the evidence into a Lean certificate. The submitted solver solved 199/200 problems (99.5%) in the official main evaluation getting the 6th overall position. Additional tests show that the solver can prove many implications linked by long chains of known results, but has limited success with infinite counterexamples. We explain the search methods, how they fit together, and what the unsolved cases reveal about their limits.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Stage 2 of the SAIR Mathematics Distillation Challenge asked solvers to decide whether one magma equation implies another. Each answer had to come with a Lean-verified certificate, either a proof or a counterexample, and solvers ran under fixed time and size limits.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Rózsa runs a fixed portfolio of bounded searches that alternates proof search and countermodel search. Proofs come from direct substitution, collapse detection, rewriting, and recording completion, which keeps a derivation graph of equality steps. Countermodels come from structured formula families, exhaustive small operation tables, constraint repair, and one fixed infinite model. The evidence is checked locally in Python, then translated into Lean code (hypothesis instances, congrArg, transitivity) and submitted to the judge.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The submitted solver solved 199/200 problems in the official main evaluation, placing tied sixth. It solved 197/200 long-chain true implications but only 17.9% of finite/general boundary cases, which shows its limits with infinite counterexamples.</p><div class="sum-table"><table><thead><tr><th>Suite</th><th>Cases</th><th>Accepted</th><th>Solved rate</th><th>Unsolved</th></tr></thead><tbody><tr><td>Public qualification</td><td>1,669</td><td>1,669</td><td>100.00%</td><td>0</td></tr><tr><td>Previous-stage evaluation</td><td>800</td><td>800</td><td>100.00%</td><td>0</td></tr><tr><td>Released Stage 2 main</td><td>200</td><td>199</td><td>99.50%</td><td>1</td></tr><tr><td>Long-chain true</td><td>200</td><td>197</td><td>98.50%</td><td>3</td></tr><tr><td>Finite/general boundary</td><td>821</td><td>147</td><td>17.90%</td><td>674</td></tr></tbody></table><div class="tbl-cap">Solver results by evaluation suite</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

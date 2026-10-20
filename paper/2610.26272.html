@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bidirectionality is Necessary in Cellular Machines for Exact-Arrival Multi-Agent Path Finding · Papers With Lean</title>
+<meta name="description" content="On ranked directed acyclic graphs coupled by vertex conflicts we study exact-arrival multi-agent path finding (departure and arrival pinned in place and time) posed as a distributed output task: every cell must emit its own bit of a valid joint path-support mask. The machines…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bidirectionality is Necessary in Cellular Machines for Exact-Arrival Multi-Agent Path Finding">
+<meta property="og:description" content="On ranked directed acyclic graphs coupled by vertex conflicts we study exact-arrival multi-agent path finding (departure and arrival pinned in place and time) posed as a distributed output task: every cell must emit its own bit of a valid joint path-support mask. The machines…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.26272.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.26272.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.26272v1" target="_blank" rel="noopener"><img src="../thumbs/2610.26272.jpg" alt="First page of Bidirectionality is Necessary in Cellular Machines for Exact-Arrival Multi-Agent Path Finding"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Bidirectionality is Necessary in Cellular Machines for Exact-Arrival Multi-Agent Path Finding</h1>
+        <p class="authors">Masashi Aono</p>
+        <div class="row">
+          <span class="badge">cs.ET</span>
+          <span class="date">Oct 19, 2026 · v1</span>
+          <span class="badge">cs.CC</span> <span class="badge">cs.DC</span> <span class="badge">cs.MA</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.26272v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.26272" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://arxiv.org/src/2610.26272v1/anc" target="_blank" rel="noopener" title="arXiv ancillary files">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Finite gadget lemmas and pair-invariance contradiction forms of the impossibility theorem are machine-checked in Lean 4 via Boolean encodings; other lemmas remain paper proofs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">On ranked directed acyclic graphs coupled by vertex conflicts we study exact-arrival multi-agent path finding (departure and arrival pinned in place and time) posed as a distributed output task: every cell must emit its own bit of a valid joint path-support mask. The machines are cellular: one automaton per cell, state factored over cells, communication only along a fixed local fabric, synchronous rounds, a query-independent output round, no central decoder, and a per-topology transition code. &quot;Necessary&quot; here means: on an explicit hard topology, over all its feasible queries, no universally correct local-only architecture can renounce either temporal orientation; with global flags, impossibility becomes a bandwidth-round trade-off. The class is not vacuous: a flooding machine solves every instance in as many rounds as the diameter of the local fabric. The bound survives two concessions: we supply every agent&#x27;s exact individual cavity, which alone solves the single-agent problem in zero rounds and makes the single-agent direction theorem vacuous; and we allow $k$ one-bit global aggregate flags. On a twelve-cell, two-agent, depth-three topology no forward-only machine with $k=0$ is correct on two feasible queries, for any number of rounds; the time-reversed topology does the same to backward-only machines. Placing $p$ copies side by side gives, for forward-only machines, $J_R+kR\ge p$ at constant depth, where $J_R$ measures how much of the query reaches the targets&#x27; cones and is $0$ here. A backward-only machine solves that family in constant rounds and a flag-streaming one in $\lceil p/k\rceil+O(1)$, so the bound is tight in order; on the composite family neither orientation can be renounced. The finite lemmas of the gadget and the pair-invariance contradictions are checked in Lean 4; the semantic bridge, the cone lemma and the counting are paper proofs. We report no benchmarks.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Exact-arrival multi-agent path finding on ranked DAGs with vertex conflicts is posed as a distributed output task for cellular machines. The question is whether such machines can renounce one temporal orientation of communication, forward-only or backward-only.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors define a class of cellular machines with factored per-cell state, local channels, and k one-bit global aggregate flags. Every agent&#x27;s exact cavity is supplied as input. A twelve-cell, two-agent crossed-conflict gadget is built, along with side-by-side copies, to derive locality and counting lower bounds. The finite gadget lemmas and the pair-invariance contradictions are checked in Lean 4. The semantic bridge, the cone lemma and the counting arguments are paper proofs, cross-checked by Python enumeration.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With k=0, no forward-only or backward-only machine is correct on the gadget&#x27;s two feasible queries for any number of rounds. With flags, forward-only machines must satisfy J_R+kR≥p, and this bound is tight in order. On a composite family, neither orientation can be dropped.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

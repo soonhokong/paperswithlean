@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Function Contracts for Bounded Model Checking of C Programs · Papers With Lean</title>
+<meta name="description" content="Bounded model checking unrolls a program into a single formula, so a function holding a loop costs the solver a fresh copy of that loop at every call site. Function contracts break that coupling. Verify the body once against its contract, then replace each call by a stub derived…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Function Contracts for Bounded Model Checking of C Programs">
+<meta property="og:description" content="Bounded model checking unrolls a program into a single formula, so a function holding a loop costs the solver a fresh copy of that loop at every call site. Function contracts break that coupling. Verify the body once against its contract, then replace each call by a stub derived…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.26089.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.26089.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.26089v1" target="_blank" rel="noopener"><img src="../thumbs/2610.26089.jpg" alt="First page of Function Contracts for Bounded Model Checking of C Programs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Function Contracts for Bounded Model Checking of C Programs</h1>
+        <p class="authors">Weiqi Wang, Marie Farrell, Liping Zhao, Lucas C. Cordeiro</p>
+        <div class="row">
+          <span class="badge">cs.SE</span>
+          <span class="date">Oct 19, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.26089v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.26089" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/LukeW1999/esbmc-function-contracts" target="_blank" rel="noopener" title="LukeW1999/esbmc-function-contracts">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Machine-checks the algebraic soundness skeleton of the Enforce/Replace contract pipeline and observational frame rule in Lean 4 over an abstract state-transformer model.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Bounded model checking unrolls a program into a single formula, so a function holding a loop costs the solver a fresh copy of that loop at every call site. Function contracts break that coupling. Verify the body once against its contract, then replace each call by a stub derived from it. CBMC supports this through dynamic frame condition checking, applied at industrial scale, but with no formal account of why the replacement is sound and no characterisation of what the frame check costs. We present the function-contract framework for ESBMC. The clause syntax, both phases, and the first assigns enforcement the tool has had are all introduced here. Its technical core is an observational frame rule: snapshot the locations the contract does not permit the function to write, then compare them at exit. The encoding emits a number of verification conditions set by how many globals the program has, not by how many writes the body performs, while dynamic frame condition checking grows with the write count. That is a property of the encoding rather than a timing, so it moves with neither the machine nor the solver. The rule itself is the classical one; what we add is its bounded form inside a BMC encoding, with the pipeline&#x27;s algebraic skeleton machine-checked in Lean 4 and the limits of that model stated. We evaluate on synthetic sweeps, SV-COMP tasks, an ANSSI X.509 parser, the FreeRTOS heap_1 allocator, and the ML-KEM reference implementation whose CBMC contracts we reuse unchanged. At the coefficient count FIPS-203 mandates, neither tool finishes on the monolithic route inside ten minutes, and both finish on the modular one. The framework is merged into ESBMC master. Contracts are what is left when unrolling runs out of room.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Bounded model checking of C programs scales as O(N×K) when a looping function is called K times. Function contracts address this, but CBMC&#x27;s dynamic frame condition checking has no formal soundness account, and its cost grows with the number of writes. ESBMC had no contract support.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors build a full function-contract framework for ESBMC with Enforce and Replace phases. Assigns clauses are enforced by an observational frame rule: snapshot the non-assigned globals at entry and compare them at exit. The algebraic skeleton of the pipeline is machine-checked in Lean 4. This covers enforce soundness, call-site abstraction, havoc soundness, Hoare frame embedding, contract substitution and a pointer extension, with no sorry or axioms. The Lean proofs cover the algorithm, not the ESBMC C++ code.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The encoding emits (G−M)+E verification conditions, independent of the write count, versus 20+W+E for CBMC&#x27;s DFCC. That gives up to a 6.2× speedup at W=500 and a 23× speedup for modular over direct verification at N=K=10. The framework handles X.509, FreeRTOS heap_1 and ML-KEM, where at N=256 only the modular route finishes in both tools. It is merged into ESBMC master.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.26089/fig3a_vcc_counts_w.png" alt=""><figcaption>Figure 9. Left: VCC counts vs. W ( G=5 , M=1 , E=1 ). ESBMC is constant at (G{-}M)+E=5 , while CBMC grows linearly as 20+W+E . Right: large-scale timing ( W up to 500); the dashed line (right axis) gives the CBMC/ESBMC speedup ratio, reaching 6.2{\times} at W=500 .</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.26089/fig7_soundness_boundary.png" alt=""><figcaption>Figure 11. Semantic boundary (Exp 3), the temporary-write pattern. The non-assigned global h spikes to 99 mid-execution and is restored to 0 before exit. ESBMC’s observational rule reports pass ( h_{\mathit{post}}=h_{\mathit{pre}} ); CBMC/DFCC reports fail , as the intermediate write to h is intercepted.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Approach</th><th>VCCs</th><th>Scales with</th><th>Indep. of</th></tr></thead><tbody><tr><td>ESBMC (Observational)</td><td>(G-M)+E</td><td>G (globals)</td><td>W (writes)</td></tr><tr><td>CBMC (DFCC)</td><td>20+W+E</td><td>W (writes)</td><td>G (globals)</td></tr></tbody></table><div class="tbl-cap">VCC complexity (G globals, M assigns targets, W writes, E ensures clauses)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
