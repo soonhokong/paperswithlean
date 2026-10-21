@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eliciting Specifications: When Does Interactive Clarification Help? · Papers With Lean</title>
+<meta name="description" content="LLMs can generate Lean specifications from task descriptions, but those descriptions are often underspecified or ambiguous and may omit verifier-relevant edge cases, yielding imperfect formal specifications. We study whether an elicitation agent (EA) can improve verifier-checked…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eliciting Specifications: When Does Interactive Clarification Help?">
+<meta property="og:description" content="LLMs can generate Lean specifications from task descriptions, but those descriptions are often underspecified or ambiguous and may omit verifier-relevant edge cases, yielding imperfect formal specifications. We study whether an elicitation agent (EA) can improve verifier-checked…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.22382.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.22382.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.22382v1" target="_blank" rel="noopener"><img src="../thumbs/2610.22382.jpg" alt="First page of Eliciting Specifications: When Does Interactive Clarification Help?"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Eliciting Specifications: When Does Interactive Clarification Help?</h1>
+        <p class="authors">Mowafak Allaham, Aditya Vempaty, Ashish Jagmohan, Prasenjit Dey, Ravi Kokku</p>
+        <div class="row">
+          <span class="badge">cs.SE</span>
+          <span class="date">Oct 5, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.CL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-amber" href="../#tag=verification">verification</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.22382v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.22382" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">LLM agents clarify task descriptions before formalizing them into Lean 4 pre/postcondition specifications, evaluated on the Verina benchmark with Lean compilation and soundness/completeness checks.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">LLMs can generate Lean specifications from task descriptions, but those descriptions are often underspecified or ambiguous and may omit verifier-relevant edge cases, yielding imperfect formal specifications. We study whether an elicitation agent (EA) can improve verifier-checked Lean specifications by seeking clarification from a reference-grounded simulated developer before formalization. The agent decomposes the task, identifies unresolved decisions, asks bounded clarification questions, and uses the answers to write a refined natural-language specification that an LLM formalizer then translates into Lean. On 189 Verina Lean 4 specification-generation tasks, we compare single-shot generation with elicitation under question budgets of k=3 and k=10, allowing at most three or ten EA questions per task, across same-model and cross-model configurations. The same-model Claude Sonnet 4.6 pipeline has negative strict pass@1 estimates at both budgets, showing elicitation is not a uniform accuracy booster. In contrast, the Sonnet 4.6-to-GPT-5.6 and Sonnet 4.6-to-Gemini 3.8 Flash pipelines have positive strict estimates. The largest strict result reaches 65.6%, a +6.3-point change (+12 tasks), in the Sonnet 4.6-to-GPT-5.6 pipeline. Six of eight conditions have positive compile-conditional estimates, with a maximum cross-model difference of +4.9 points among compiling outputs. Treatment estimates also differ across the basic and advanced splits; the largest advanced-task change occurs in the Sonnet 4.6-to-GPT-5.6 configuration at k=10, from 42.0% to 50.6%. Failure analysis identifies postconditions as the largest source of degradation. These findings suggest future autoformalization systems should treat elicited natural-language specifications as intermediate artifacts and optimize jointly for semantic correctness among compiling outputs and reliable translation of clarified information into Lean.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Task descriptions given to LLMs for Lean specification generation are often underspecified or ambiguous. The resulting Lean pre/postconditions can be imperfect because the model must silently guess at edge cases and representation choices.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An elicitation agent decomposes each task and identifies unresolved decisions. It then asks a reference-grounded simulated developer at most k=3 or k=10 clarification questions and writes a refined natural-language specification. A downstream LLM formalizer translates that refined specification into Lean 4. Single-shot generation is compared with elicitation on all 189 Verina SpecGen tasks, across same-model and cross-model pipelines, using strict pass@1 (compiles and passes soundness/completeness checks).</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Effects depend on the configuration. The same-model Sonnet 4.6 pipeline loses accuracy, while the cross-model pipelines to GPT-5.6 and Gemini 3.8 Flash gain up to +6.3 points (reaching 65.6%). Postconditions are the largest source of degradation.</p><div class="sum-table"><table><thead><tr><th>Configuration</th><th>Baseline</th><th>k=3</th><th>k=10</th></tr></thead><tbody><tr><td>Sonnet 4.6 same-model</td><td>60.3%</td><td>57.7%</td><td>56.1%</td></tr><tr><td>Sonnet 4.6 → GPT-5.6</td><td>59.3%</td><td>65.6%</td><td>65.6%</td></tr><tr><td>Sonnet 4.6 → Gemini 3.8 Flash</td><td>59.8%</td><td>64.6%</td><td>64.6%</td></tr><tr><td>Sonnet 4.6 → Claude Sonnet 5</td><td>63.5%</td><td>64.0%</td><td>60.3%</td></tr></tbody></table><div class="tbl-cap">Strict pass@1 on Verina SpecGen (n=189)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

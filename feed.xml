@@ -6,7 +6,18 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 20 Oct 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2026 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Eliciting Specifications: When Does Interactive Clarification Help?</title>
+      <link>https://paperswithlean.com/paper/2610.22382.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.22382.html</guid>
+      <pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Mowafak Allaham, Aditya Vempaty, Ashish Jagmohan, Prasenjit Dey, Ravi Kokku</dc:creator>
+      <category>autoformalization</category><category>ai-agents</category><category>verification</category>
+      <description>LLM agents clarify task descriptions before formalizing them into Lean 4 pre/postcondition specifications, evaluated on the Verina benchmark with Lean compilation and soundness/completeness checks.
+
+LLMs can generate Lean specifications from task descriptions, but those descriptions are often underspecified or ambiguous and may omit verifier-relevant edge cases, yielding imperfect formal specifications. We study whether an elicitation agent (EA) can improve verifier-checked Lean specifications by seeking clarification from a reference-grounded simulated developer before formalization. The agent decomposes the task, identifies unresolved decisions, asks bounded clarification questions, and uses the answers to write a refined natural-language specification that an LLM formalizer then translates into Lean. On 189 Verina Lean 4 specification-generation tasks, we compare single-shot generation with elicitation under question budgets of k=3 and k=10, allowing at most three or ten EA questions per task, across same-model and cross-model configurations. The same-model Claude Sonnet 4.6 pipeline has negative strict pass@1 estimates at both budgets, showing elicitation is not a uniform accuracy booster. In contrast, the Sonnet 4.6-to-GPT-5.6 and Sonnet 4.6-to-Gemini 3.8 Flash pipelines have positive strict estimates. The largest strict result reaches 65.6%, a +6.3-point change (+12 tasks), in the Sonnet 4.6-to-GPT-5.6 pipeline. Six of eight conditions have positive compile-conditional estimates, with a maximum cross-model difference of +4.9 points among compiling outputs. Treatment estimates also differ across the basic and advanced splits; the largest advanced-task change occurs in the Sonnet 4.6-to-GPT-5.6 configuration at k=10, from 42.0% to 50.6%. Failure analysis identifies postconditions as the largest source of degradation. These findings suggest future autoformalization systems should treat elicited natural-language specifications as intermediate artifacts and optimize jointly for semantic correctness among compiling outputs and reliable translation of clarified information into Lean.</description>
+    </item>
     <item>
       <title>A Complete Dichotomy for $L_\infty$ Permutation Removal</title>
       <link>https://paperswithlean.com/paper/2610.28271.html</link>
@@ -655,17 +666,6 @@ Autoformalization (AF) requires more than compilation: formal statements must pr
       <description>The paper&#x27;s two propositions on Flow Matching density tracking and the equivalence of CET minimizers are formally verified in Lean 4.
 
 Diffusion models and Flow Matching can represent flexible distributions over robot actions, but many reinforcement learning algorithms also require the probability of each action. We introduce PrT-Flow (Probability-Tractable Flow Matching), which computes probability density while retaining multimodal, multi-step action generation. Its Jacobian-Tractable Transformer (JTT) makes each sampling step invertible and enables efficient computation of its Jacobian determinant. We train these finite steps with Conditional Euler-step Training (CET), which supervises their displacement over one step during sampling rather than their instantaneous velocity. We prove that, under certain assumptions, CET has the same minimizers as fitting the Euler-solver updates of Flow Matching. PrT-Flow achieves 96% success on Robomimic Lift after 300 epochs of imitation learning, matching the diffusion policy reference, and 96% success on OGBench Cube-Triple after 600k online steps. These results demonstrate that invertible networks with tractable probability densities can learn effective robot policies and support SAC-style actor-critic training. Our code is available at https://github.com/Sunlight-zero/PrT-Flow .</description>
-    </item>
-    <item>
-      <title>Scaling Multi-Agent Intelligence with Substrate-Centric Coordination</title>
-      <link>https://paperswithlean.com/paper/2610.16120.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.16120.html</guid>
-      <pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Zhenting Qi, Zhuokai Zhao, Rulin Shao, Kerem Oktar, Zhiyuan Yao, Himabindu Lakkaraju, Wen-tau Yih, Ansong Ni, Bhargavi Paranjape, Yilun Du</dc:creator>
-      <category>ai-agents</category><category>theorem-proving-ml</category><category>algebra</category>
-      <description>Uses the FATE-M and FATE-H Lean 4/Mathlib abstract-algebra benchmarks as one of four tasks, with agents searching Mathlib and compiling proofs.
-
-Existing large language model (LLM) based multi-agent systems have been shown to scale poorly, and we identify three problems: reading burden that grows with the group, useful information diluted by shared work of unknown quality, and fragility to failed agents. We argue that the problems are largely due to agent-centric designs: the coordination structure is wired into fixed workflows, central coordinators, or peer-to-peer messaging, and recent blackboard-style methods that move the coordination into a shared medium relieve only the last problem. To close the gaps, we build ScaleMAS, where asynchronous agents interact with a shared datastore of linked messages via three operations: publishing messages with optional references to earlier ones that they build on, searching for messages by content, and visiting messages by address. Search returns at most $k$ messages, so an agent&#x27;s read stays bounded at any group size; results are ranked by relevance and by how often they are cited, which we find to be an effective proxy for quality; and messages persist after their producers leave, so the group carries on when individual agents fail. Across four agentic tasks, ScaleMAS outperforms agent-centric and blackboard-style baselines at lower inference compute, continues to scale up to 128 agents, and tolerates losing agents midway.</description>
     </item>
   </channel>
 </rss>
