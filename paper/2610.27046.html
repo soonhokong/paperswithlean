@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ReuF2F: Benchmarking Coding Agents on Formalized Undergraduate Research Problems · Papers With Lean</title>
+<meta name="description" content="As AI systems begin to resolve open research problems, reliable verification becomes increasingly important. Formal mathematics provides a trusted framework for mathematical reasoning, enabling agents to produce machine-checkable proofs while conducting mathematical exploration.…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ReuF2F: Benchmarking Coding Agents on Formalized Undergraduate Research Problems">
+<meta property="og:description" content="As AI systems begin to resolve open research problems, reliable verification becomes increasingly important. Formal mathematics provides a trusted framework for mathematical reasoning, enabling agents to produce machine-checkable proofs while conducting mathematical exploration.…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.27046.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.27046.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.27046v1" target="_blank" rel="noopener"><img src="../thumbs/2610.27046.jpg" alt="First page of ReuF2F: Benchmarking Coding Agents on Formalized Undergraduate Research Problems"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">ReuF2F: Benchmarking Coding Agents on Formalized Undergraduate Research Problems</h1>
+        <p class="authors">Zeyu Zheng, Yiyang Liu, Yuyang Zhao, Congmin Zheng, Jiachen Zhu, Jianian Chen, Kangning Zhang, Kayue Daniel Wong, Lingyu Yang, Rong Shan, Shihao Chen, Thomas Zhu, Wentao Zhang, Xiaopeng Li, Yan Hu, Yongxi Lin, Yuxiang Chen, Zhuoying Ou, Jianghao Lin, Jeremy Avigad, Prasad Tetali, Jingbang Chen, Sean Welleck</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 19, 2026 · v1</span>
+          <span class="badge">cs.CL</span> <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.27046v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.27046" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/cmu-l3/reuF2F" target="_blank" rel="noopener" title="cmu-l3/reuF2F">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces a Lean 4 benchmark of 244 formalized REU open problems, with agent submissions checked by Comparator, the Lean kernel, and nanoda.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">As AI systems begin to resolve open research problems, reliable verification becomes increasingly important. Formal mathematics provides a trusted framework for mathematical reasoning, enabling agents to produce machine-checkable proofs while conducting mathematical exploration. Existing formal mathematics benchmarks often focus on known results or a small set of prominent open problems, which can become difficult to evaluate reliably once solutions are discovered and widely disseminated. Existing evaluation protocols are also not always aligned with how modern coding agents operate. We therefore introduce ReuF2F, a Lean 4 benchmark of 244 formalized open problems drawn from Research Experiences for Undergraduates (REU), spanning entry-level open research problems across a broad range of mathematical subfields. We expect these less prominent open problems, which tend to attract less attention and may remain unsolved for longer, to be better suited for held-out evaluation of end-to-end open problem resolution in Lean. We adopt a standard coding-agent evaluation setting, placing each problem and its logical negation into a Lean project in a Docker container. We also build Leanimum-agent on mini-SWE-agent to provide a unified harness for fair comparisons across models. Our evaluation finds that even the best-performing model resolves only  40% of the problems, leaving substantial room for improvement on formalized open research problems.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Existing formal mathematics benchmarks focus on known results or a few prominent open problems. These are prone to leakage once the problems are solved. Their evaluation protocols also do not match how modern coding agents operate.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors build reuF2F, a set of 244 open conjectures drawn from Research Experiences for Undergraduates programs and formalized in Lean 4 with Mathlib. Each problem and its logical negation are placed in a Lean project inside a Docker container, so either a proof or a refutation counts as a resolution. All models run through a common harness, Leanimum-agent, built on mini-SWE-agent. Submissions pass layered checks: lake build, axiom checking, SafeVerify, Comparator kernel replay, and the independent kernel checker nanoda.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The best model, Gemini 4 Argon (high effort), reaches 42.42% pass@1 and 44.67% pass@2. Performance increases with test-time reasoning effort, and weaker models resolve under 10% of problems.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Effort</th><th>pass@1</th><th>pass@2</th><th>proved@2</th><th>refuted@2</th></tr></thead><tbody><tr><td>Gemini 4 Argon</td><td>high</td><td>42.42</td><td>44.67</td><td>25.00</td><td>19.67</td></tr><tr><td>Claude Opus 5.5</td><td>max</td><td>42.01</td><td>43.85</td><td>23.36</td><td>20.49</td></tr><tr><td>GPT-6.1 Sol</td><td>max</td><td>39.55</td><td>40.98</td><td>19.26</td><td>21.72</td></tr><tr><td>GPT-6 Astra</td><td>max</td><td>34.63</td><td>37.70</td><td>17.21</td><td>20.49</td></tr><tr><td>Kimi K3</td><td>max</td><td>7.17</td><td>9.84</td><td>2.87</td><td>6.97</td></tr></tbody></table><div class="tbl-cap">Top models on reuF2F (percent)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

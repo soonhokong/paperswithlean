@@ -8,6 +8,94 @@
     <language>en</language>
     <lastBuildDate>Tue, 20 Oct 2026 00:00:00 +0000</lastBuildDate>
     <item>
+      <title>Lower Bounds for Smooth Nonconvex Zeroth-Order Optimization: The Price of Determinism under Low Curvature Trace</title>
+      <link>https://paperswithlean.com/paper/2610.27550.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.27550.html</guid>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Yuxing Peng, Zhiqing Tang, Weijia Jia</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>ml-theory</category><category>analysis</category>
+      <description>Deterministic lower/upper query-complexity bounds and the three-point upper bound are formalized in Lean 4 with Mathlib, provided as ancillary files.
+
+Low curvature trace, an effective rank condition, is a common explanation for why randomized zeroth-order methods scale to high-dimensional tasks such as language model fine-tuning. Can deterministic methods achieve the same savings? We show that they cannot. We study finding $\varepsilon$-stationary points of $L$-smooth nonconvex functions on $\mathbb{R}^d$ from exact function values, assuming that below the starting value the Hessian is dominated by a fixed matrix with trace at most $LE$; this is the effective rank condition used to explain zeroth-order fine-tuning. When $ET\le d$, the Gaussian two-point method that such fine-tuning uses needs only $O(ET)$ calls if it rejects steps that raise $f$, where $T=LΔ/\varepsilon^2$ is the iteration count of gradient descent from initial gap $Δ$, and we prove that every randomized method needs $Ω(ET)$ calls, so this cost is optimal up to constants. In contrast, every deterministic method needs $\widetildeΩ(d\min\{T,\sqrt{ET}\})$ calls, and adaptive subspace search attains $O(d\min\{T,\sqrt{ET}\})$: a deterministic method pays about $d$ calls per discovered direction, and the trace budget allows about $\sqrt{ET}$ directions. Determinism thus multiplies the cost by a factor of order $d/(E+\sqrt{ET})$ up to logarithmic factors, which grows linearly with $d$ for fixed $E$ and $T$; once $E$ exceeds $T$ by a logarithmic factor, deterministic methods need $Ω(dT)$ calls, as without any trace budget. Our lower bounds hold for $C^\infty$ functions with the matrix bound on all of $\mathbb{R}^d$, even when each call also returns gradient projections priced by rank.</description>
+    </item>
+    <item>
+      <title>An orthogonality inequality in $\mathbb{RP}^{n-1}$ and the double-cap conjecture</title>
+      <link>https://paperswithlean.com/paper/2610.27523.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.27523.html</guid>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Allen Ibiapina, Carlos Gomes, Alan Pio, Samuel Belo, Ernandes Ferreira</dc:creator>
+      <category>formalization</category><category>geometry</category><category>ai-agents</category>
+      <description>The main neighborhood inequality and double-cap theorem, with rigidity, are machine-checked in Lean 4 (LeanShadow repository) via a different, largely AI-assisted proof.
+
+The orthogonal neighborhood of a set in real projective space is the union of the hyperplanes perpendicular to its points. We prove that caps minimize neighborhood measure among measurable sets of fixed measure in $\mathbb{RP}^{n-1}$, for $n \geq 3$, with rigidity up to null sets. This yields the double-cap conjecture: a measurable subset of $S^{n-1}$ containing no orthogonal pair has measure at most that of two opposite open caps of radius $π/4$. The argument combines compactness of the Funk transform, rotation comparisons, and projective variations. We also obtain qualitative stability and determine the measurable fractional chromatic number of the spherical orthogonality graph. AI played an assistive role in preparing this paper. The formalization and verification workflow for a separate Lean 4 proof of the main inequality and double-cap result, based on a different argument, were carried out almost entirely using AI-assisted tools.</description>
+    </item>
+    <item>
+      <title>Record Types Everywhere</title>
+      <link>https://paperswithlean.com/paper/2610.27519.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.27519.html</guid>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Matthew Toohey, Ara Jamalzadeh, Ningning Xie</dc:creator>
+      <category>verification</category><category>formalization</category><category>type-theory</category>
+      <description>The record calculus, its reference extension, all metatheorems, and a verified interpreter equivalent to the operational semantics are mechanized in Lean 4.
+
+This paper introduces a novel calculus that models first-class environments and function application paradigms using standard record types. By proposing new extensions to general record types, we achieve a design that is remarkably simple and principled. We formalise this design in a core calculus and prove several desirable properties, including type soundness, normalization, and a simulation of the simply typed lambda calculus. Additionally, we extend the design with mutable references. The calculus, its semantics, along with the extension, and all stated properties are fully mechanized in the Lean 4 proof assistant, alongside an interpreter formally verified to be equivalent to the operational semantics.</description>
+    </item>
+    <item>
+      <title>A 55-Addition Rank-23 Scheme for $3\times3$ Matrix Multiplication via Exact Two-Sided Minimization</title>
+      <link>https://paperswithlean.com/paper/2610.27451.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.27451.html</guid>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Greg Sidebottom</dc:creator>
+      <category>verification</category><category>mathlib</category><category>algebra</category>
+      <description>Correctness of the 55-addition 3x3 matrix multiplication scheme is machine-checked in Lean 4, using Mathlib&#x27;s Matrix API, over general non-commutative rings.
+
+We give a scheme that multiplies two $3\times3$ matrices with 23 multiplications and 55 additions over any ring, one addition below the previous record of 56 (Sun, 2026) and the first below 56 for exact non-commutative $3\times3$ multiplication without a change of basis. The scheme forms 13 signed combinations of the entries of A and 14 of B, takes 23 products, and recombines them with 28 further additions; its correctness is machine-checked in Lean 4. The previous records, from 60 down to 56, were obtained by greedy common-subexpression elimination, which only bounds each side of a scheme from above. We minimize both input sides exactly by chain covering, and the output side exactly through the transposition principle: the 9-by-23 output map costs its transpose plus 14, and the transpose is a 9-input map that the input-side minimizer solves exactly. Applied to Perminov&#x27;s cn122 scheme (class i19w225c4efh, published at 58 additions) this gives 55 = 13 + 14 + 28, where greedy elimination reaches only 29 on the output side. The same method shows that Sun&#x27;s representative is output-optimal at 56, and an exact orbit-wide computation over the Heule-Kauers-Seidl database shows that the record class is the only database class attaining 55.</description>
+    </item>
+    <item>
+      <title>On Maximum Clique and Maximum Consensus Formulations in Point Cloud Registration</title>
+      <link>https://paperswithlean.com/paper/2610.27275.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.27275.html</guid>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Abolfazl Babanazari, Kaveh Fathian</dc:creator>
+      <category>formalization</category><category>geometry</category>
+      <description>All proofs relating maximum clique, maximum consensus, and group-k consistency bounds were formally verified in Lean, with the formalization released online.
+
+Maximum clique and maximum consensus are widely used formulations for robust point cloud registration in robotics. Maximum consensus seeks one transformation that aligns as many matches as possible, while maximum clique selects matches through pairwise distance tests. Maximum clique is often used as a substitute for or an approximation to maximum consensus, with empirical evidence suggesting a close relationship. However, how closely the two formulations agree is not fully understood. We study this relationship theoretically. We show that a maximum clique can have arbitrarily large alignment error and be arbitrarily larger than the maximum consensus set at any fixed positive tolerance, and derive geometric conditions that bound this error. When rotation is fixed, we derive sharp error bounds and tests that exactly characterize maximum consensus for the translation subproblem. Finally, we study group-$k$ consistency, which tests groups of $k$ matches, and determine the smallest group sizes that guarantee alignment error bounds independent of point cloud scale and geometry. These are $d+1$ for rotations and translations and $d+2$ when reflections are allowed, in dimensions $d\ge 2$. Interactive examples and proof verification using the Lean theorem prover are available at https://ariarobotics.github.io/mc-vs-mc-registration/.</description>
+    </item>
+    <item>
+      <title>Class polynomial obstructions to canonical congruences for the smallest parts function</title>
+      <link>https://paperswithlean.com/paper/2610.27145.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.27145.html</guid>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Larry Rolen</dc:creator>
+      <category>formalization</category><category>autoformalization</category><category>number-theory</category>
+      <description>The paper&#x27;s proofs were formally verified in Lean by AxiomProver, with the formalization files posted in a public GitHub repository.
+
+We resolve an open conjecture by proving that the only &quot;canonical” Ramanujan congruence primes for the Andrews&#x27; smallest parts function, $\operatorname{spt}(n)$, are $\ell= 5, 7, 13$. Building on work of Ahlgren and Kim, we show that any such congruence forces square-index coefficients of certain weakly holomorphic forms of weight $1/2$ to vanish modulo the congruence prime. A normalized Borcherds product converts this into the vanishing of the derivative of a quotient of two oriented CM polynomials on $X_0(6)$. A quaternionic volume estimate in an Eichler order of level $6$ prevents that vanishing when a suitable inert discriminant is small. Treviño&#x27;s character estimate supplies such a discriminant for every prime at least $10^{11}$. The remaining range is covered by the previous calculations of Ahlgren and Kim. These results have been verified in Lean by AxiomProver.</description>
+    </item>
+    <item>
+      <title>ReuF2F: Benchmarking Coding Agents on Formalized Undergraduate Research Problems</title>
+      <link>https://paperswithlean.com/paper/2610.27046.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.27046.html</guid>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Zeyu Zheng, Yiyang Liu, Yuyang Zhao, Congmin Zheng, Jiachen Zhu, Jianian Chen, Kangning Zhang, Kayue Daniel Wong, Lingyu Yang, Rong Shan, Shihao Chen, Thomas Zhu, Wentao Zhang, Xiaopeng Li, Yan Hu, Yongxi Lin, Yuxiang Chen, Zhuoying Ou, Jianghao Lin, Jeremy Avigad, Prasad Tetali, Jingbang Chen, Sean Welleck</dc:creator>
+      <category>benchmark</category><category>ai-agents</category><category>theorem-proving-ml</category><category>mathlib</category>
+      <description>Introduces a Lean 4 benchmark of 244 formalized REU open problems, with agent submissions checked by Comparator, the Lean kernel, and nanoda.
+
+As AI systems begin to resolve open research problems, reliable verification becomes increasingly important. Formal mathematics provides a trusted framework for mathematical reasoning, enabling agents to produce machine-checkable proofs while conducting mathematical exploration. Existing formal mathematics benchmarks often focus on known results or a small set of prominent open problems, which can become difficult to evaluate reliably once solutions are discovered and widely disseminated. Existing evaluation protocols are also not always aligned with how modern coding agents operate. We therefore introduce ReuF2F, a Lean 4 benchmark of 244 formalized open problems drawn from Research Experiences for Undergraduates (REU), spanning entry-level open research problems across a broad range of mathematical subfields. We expect these less prominent open problems, which tend to attract less attention and may remain unsolved for longer, to be better suited for held-out evaluation of end-to-end open problem resolution in Lean. We adopt a standard coding-agent evaluation setting, placing each problem and its logical negation into a Lean project in a Docker container. We also build Leanimum-agent on mini-SWE-agent to provide a unified harness for fair comparisons across models. Our evaluation finds that even the best-performing model resolves only  40% of the problems, leaving substantial room for improvement on formalized open research problems.</description>
+    </item>
+    <item>
+      <title>Fix, Not Just Resample: Bounded Compiler-Guided Repair in Lean 4</title>
+      <link>https://paperswithlean.com/paper/2610.26942.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.26942.html</guid>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Haotian Deng, Chris Farber, Sonal Narasimha, Samskrithi Sivakumar, Yexiang Xue</dc:creator>
+      <category>theorem-proving-ml</category><category>tactic-automation</category>
+      <description>Adds compiler-error-guided tactic repair to a Lean 4 neural proof search, evaluated on LeanDojo and Lean Workbook benchmarks.
+
+Automated theorem provers often rely on sampling language models, but proof assistants like Lean reject each failed step with a precise error message — information that pure sampling discards. To overcome this, we introduce a bounded, online step-level repair module. Our search samples $K$ candidate tactics at each step and repairs a failed tactic at most $R$ times. Instead of discarding failed tactics, we feed the compiler&#x27;s error message to a pretrained repair model to fix individual rejected steps in place. This approach improves the solve rate over a sampling-only baseline across all tested candidate budgets ($K \in \{1,3,5,8\}$), achieving up to a $32\%$ relative gain and solving $82$ additional theorems on a $1{,}990$-theorem subset of the LeanDojo benchmark. Repair is not free: it trades extra runtime for reachable proofs. But the trade is predictable: repair pays most when sampling is constrained; its return is front-loaded, with the first repair attempt capturing $84\text{--}96\%$ of the total gain; and the gain comes almost entirely from shallow tactic-execution failures rather than structural errors such as type mismatches. This targeted repair successfully replicates on a second benchmark (Lean Workbook), nearly doubling the solve rate with zero regressions.</description>
+    </item>
+    <item>
       <title>Uniform logarithmic Sobolev inequalities for the 2D Coulomb gas at the diffusive temperature scale</title>
       <link>https://paperswithlean.com/paper/2608.24863.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2608.24863.html</guid>
@@ -578,94 +666,6 @@ Layer-wise post-training quantization methods let each layer compensate for the 
       <description>All results of the paper were formalized in Lean 4 using Mathlib, with AI assistance, and the formalization is published as a linked artifact.
 
 Splines on Weyl groups model the equivariant cohomology of regular semisimple Hessenberg varieties, and the natural group action on them encodes the monodromy action. The resulting representations are of great interest in algebraic combinatorics for their connections to Hecke algebra characters, LLT polynomials, and chromatic symmetric functions. We study the analogous construction for dihedral groups, which in general have no underlying geometry. Using purely algebraic methods, we show that these spline modules are free, construct explicit bases, and compute their Hilbert series, recovering the familiar properties of the geometric setting. We also determine the associated dihedral group representations completely. Unlike what is conjectured for the symmetric group case, these need not be permutation representations.</description>
-    </item>
-    <item>
-      <title>Robust Nonparametric Methods for $α$-Mixing Sequences via Median-of-Means</title>
-      <link>https://paperswithlean.com/paper/2610.15974.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.15974.html</guid>
-      <pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Attila Lovas, Marcell Tukora</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>probability</category>
-      <description>Main arguments (median counting, mixing transfer, covariance inequality, Theorem 2.6, Sections 3–6 bounds) were formalized in Lean 4 on Mathlib, AI-assisted with Claude.
-
-The median-of-means (MoM) estimator is a robust alternative to the sample mean for heavy-tailed or contaminated data. While its non-asymptotic properties are well understood for i.i.d.\ samples, much less is known for dependent sequences. We establish non-asymptotic deviation bounds for the MoM estimator computed from consecutive blocks of an identically distributed $α$-mixing sequence, both for a single mean and uniformly over a class of functions (the median-of-means process). All bounds remain valid, with explicitly adjusted constants, when a sufficiently small fraction of the blocks is adversarially corrupted. As applications, we obtain deviation bounds for a median-of-means Nadaraya–Watson regression estimator, for the MoM kernel density estimator, and for empirical and Bahadur-type estimators of Value-at-Risk and Conditional Value-at-Risk. Finally, we show that the sampling of bulk materials, where the measurements form a spatially dependent random field, reduces to the one-dimensional setting if the samples are taken in well-separated groups.</description>
-    </item>
-    <item>
-      <title>Translational tilings by axis-parallel polygonal sets</title>
-      <link>https://paperswithlean.com/paper/2610.15785.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.15785.html</guid>
-      <pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Jaume de Dios Pont, Jan Grebík, Rachel Greenfeld, José Madrid</dc:creator>
-      <category>formalization</category><category>combinatorics</category><category>geometry</category>
-      <description>A remark states that the paper&#x27;s results on translational tilings by axis-parallel polygonal sets have been formalized in Lean 4.
-
-The periodic tiling conjecture asserts that if a bounded set $Ω\subset \mathbb R^d$ of finite measure tiles $\mathbb R^d$ by translations, then it admits at least one fully periodic tiling. This conjecture was proved to hold in $\mathbb R$ by Lagarias and Wang, and was recently disproved by Greenfeld and Tao in sufficiently high dimensions. Its discrete analogue in $\mathbb Z^2$ was proved by Bhattacharya, whereas the conjecture in $\mathbb R^2$ remains open. In this paper, we analyze the structure of tilings by axis-parallel polygonal sets: bounded open sets in $\mathbb R^2$ whose boundary is a finite union of line segments parallel to the axes. We prove that every such tiling that is topologically minimal is weakly periodic. Moreover, we show that if an axis-parallel polygonal set $Ω$ tiles $\mathbb{R}^2$ then it admits a quasi-periodic tiling (i.e., a finite union of translated lattices). The proofs combine geometric decompositions of tilings with rational approximation and discrete tiling theory. As a consequence, we obtain that the translational tiling problem for axis-parallel polygonal sets with real algebraic vertex coordinates is decidable.</description>
-    </item>
-    <item>
-      <title>Maximum-modulus points on concentric circles</title>
-      <link>https://paperswithlean.com/paper/2610.15067.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.15067.html</guid>
-      <pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Yunpeng Li</dc:creator>
-      <category>formalization</category><category>analysis</category>
-      <description>Corollary 2 (the cofinal bound answering Erdős Problem #1117 negatively) has a cited Lean 4 formalization.
-
-We give a negative answer to the second question of Erdős Problem #1117: can the number $ν_f(r)$ of maximum-modulus points of a nonzero, non-monomial entire function on $|z|=r$ tend to infinity as $r\to\infty$? Write $f(z)=z^m g(z)$ with $g(0)\ne0$, and let $k$ be the first positive exponent with a nonzero coefficient in the Taylor expansion of $g$. We prove that $\{r&gt;0:ν_f(r)&gt;2k\}$ is locally finite in $(0,\infty)$, and that the constant $2k$ is sharp. In particular, $\liminf_{r\to\infty}ν_f(r)\le2k&lt;\infty$, without a growth assumption. The proof combines finite local parametrizations of a logarithmic-derivative correspondence with analytic continuation and a local description of stationary points.</description>
-    </item>
-    <item>
-      <title>Reducing Trust Cost in Quantum Application Development Using AI</title>
-      <link>https://paperswithlean.com/paper/2610.14665.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.14665.html</guid>
-      <pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Katsuhiro Endo</dc:creator>
-      <category>verification</category><category>quantum</category><category>ai-agents</category>
-      <description>Writes mathematical specifications, quantum circuits, and AI-generated correspondence proofs in Lean to verify quantum circuits against block-encoding specifications.
-
-Generative AI can be a powerful tool for supporting the design and implementation of quantum applications, whereas the burden of checking whether generated circuits realize the intended computation increases. In this study, we regard this burden of human understanding, checking, and judgment as “trust cost,” and propose a development methodology that integrates AI and formal verification to reduce it. In the proposed development methodology, the implementation is divided into three components: a target mathematical specification, a quantum circuit, and a correspondence theorem and its proof that prove the agreement between the two. This division separates the specifications and theorem statements checked by humans from the theorem proofs entrusted to mechanical checking. As a concrete development example of this proposal, we describe an implementation for the time evolution of a stochastic particle system and its results.</description>
-    </item>
-    <item>
-      <title>Zero-Crossing Time Lower Bounds for the Homogeneous Super-Twisting Algorithm</title>
-      <link>https://paperswithlean.com/paper/2610.14285.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.14285.html</guid>
-      <pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Diego Gutiérrez-Oribio, Ioannis Stefanou</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>analysis</category>
-      <description>The algebraic theorem chain behind the excursion-time, cumulative, and accumulation bounds is formalized and machine-checked in Lean 4 with Mathlib, with a public repository.
-
-High-frequency switching and chattering are well-known problems in sliding-mode control. Although the super-twisting algorithm produces a continuous control input, the sliding variable may still cross zero repeatedly near the sliding manifold. This paper studies how fast these crossings can occur and whether they can accumulate in finite time for the scalar homogeneous super-twisting algorithm. Two lower bounds on the time required to return to zero are derived, together with a bound on the time needed to complete a full excursion. These results give minimum separation times and upper bounds on the number of crossings associated with excursions above a prescribed amplitude. Although zero crossings may accumulate in finite time, the amplitudes of the complete excursions considered here must vanish and satisfy a summability condition. Thus, crossings associated with excursions above any prescribed nonzero amplitude cannot accumulate in finite time. When the perturbation-rate bound is zero, the estimates recover the scaling imposed by homogeneity. For the classical super-twisting algorithm, the square-root scaling also holds for nonzero perturbation-rate bounds. Numerical simulations illustrate the results.</description>
-    </item>
-    <item>
-      <title>Global Convergence and Reliable Stopping in a Safeguarded Modified Anderson–Björck Method</title>
-      <link>https://paperswithlean.com/paper/2610.14193.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.14193.html</guid>
-      <pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Latchezar Tomov, Nedelcho Ganchovski</dc:creator>
-      <category>verification</category><category>formalization</category><category>mathlib</category><category>analysis</category>
-      <description>Global convergence, bracket invariants, and binary64 rounding-error bounds of the switching criterion are formalized in Lean 4 using mathlib and FloatLib.
-
-The modified Anderson-Bjorck (modAB) method was first proposed in 2023 by Ganchovski and Traykov for solving nonlinear equations in structural mechanics. It was improved further in 2026 by introducing better switching criteria with account to function symmetry, and bisection fallback based on measuring the bracket reduction rate. Although the algorithm demonstrated superior performance across a great variety of functions, it lacked formal mathematical analysis and proof of convergence. In addition, some discrepancies were noted by L. Tomov in the latest version that need to be addressed: premature application of the Anderson-Bjorck (AB) correction on the first AB step, caused by retaining the endpoint-update record from the preceding bisection step, and using the corrected endpoint ordinates in symmetry factor calculation instead of the true residuals. The purpose of the present paper is to provide rigorous mathematical proof of global convergence in exact arithmetic, remove the above discrepancies, and provide floating-point safeguards for interpolation, switching and stopping, with explicit treatment of infinite and NaN values, underflow, overflow and round-off errors. These safeguards do not certify the accuracy of the supplied function values. Additional performance improvement was introduced by allowing for early bisection fallback when AB fails to make progress on reducing either the bracket width or the residual, while retaining a finite bound on consecutive exceptions to the prescribed width condition.</description>
-    </item>
-    <item>
-      <title>The Future of AI-assisted Physics: Discovering, Verifying and Organizing Results via Formalization</title>
-      <link>https://paperswithlean.com/paper/2610.14059.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.14059.html</guid>
-      <pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Sven Krippendorf, Leopoldo Sarra, Joseph Tooby-Smith</dc:creator>
-      <category>formalization</category><category>meta-study</category><category>physics</category><category>ai-agents</category>
-      <description>Perspective on AI-assisted physics formalization that uses Lean as its reference prover for examples and centers the Lean-based Physlib and Mathlib libraries.
-
-Rapid advances in AI have opened a new era for physics, enabling unprecedented capabilities in research and discovery. However, these advances also bring challenges in verifying, trusting, and reusing the results they so rapidly produce. Formalization is a necessary part of the solution to these challenges. In this paper, as well as giving an overview of the role of AI and formalization in physics, we make the case that: (1) formalization is an essential layer for AI-driven discoveries in both computational and theoretical physics; (2) AI is lowering the barrier to, and increasing the efficiency of, formalization in physics, though it remains weaker at choosing definitions and designing libraries than at writing proofs; (3) the speed AI brings to formalization in physics currently comes at the cost of trust, credit, and community; (4) shared, community-reviewed formal libraries such as Physlib should be central in making progress in this field, both as a trusted, reusable foundation for physics results and as the environment in which AI systems can reason about physics; (5) formalizing physics raises challenges beyond those in mathematics, most importantly that a checked proof does not establish that its definitions faithfully capture the intended physics. We also give our perspectives on near-term and long-term directions in these areas.</description>
-    </item>
-    <item>
-      <title>Upper bounds for Jung constants of $\ell_1^d$</title>
-      <link>https://paperswithlean.com/paper/2610.14055.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.14055.html</guid>
-      <pubDate>Fri, 16 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Xiao Li</dc:creator>
-      <category>formalization</category><category>geometry</category><category>combinatorics</category>
-      <description>The general upper bound on Jung constants of ℓ_1^{4k+1} and the five-dimensional sharpness result are formalized in Lean, with an axiom audit, in a public repository.
-
-For every integer $k\ge1$, we prove that each nonempty bounded set in real $\ell_1^{4k+1}$ has an ambient enclosing ball of radius at most $(4k-1)/(4k)$ times its diameter. The bound is sharp in dimension five: $J(\ell_1^5)=3/4$. If a Hadamard matrix of order $4k$ exists, then $J(\ell_1^{4k-1})=J(\ell_1^{4k})=J(\ell_1^{4k+1})=(4k-1)/(4k)$. The upper bound for every $k\ge1$ has been formalized in Lean.</description>
     </item>
   </channel>
 </rss>

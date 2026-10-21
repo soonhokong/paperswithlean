@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A 55-Addition Rank-23 Scheme for $3\times3$ Matrix Multiplication via Exact Two-Sided Minimization · Papers With Lean</title>
+<meta name="description" content="We give a scheme that multiplies two $3\times3$ matrices with 23 multiplications and 55 additions over any ring, one addition below the previous record of 56 (Sun, 2026) and the first below 56 for exact non-commutative $3\times3$ multiplication without a change of basis. The…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A 55-Addition Rank-23 Scheme for $3\times3$ Matrix Multiplication via Exact Two-Sided Minimization">
+<meta property="og:description" content="We give a scheme that multiplies two $3\times3$ matrices with 23 multiplications and 55 additions over any ring, one addition below the previous record of 56 (Sun, 2026) and the first below 56 for exact non-commutative $3\times3$ multiplication without a change of basis. The…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.27451.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.27451.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.27451v1" target="_blank" rel="noopener"><img src="../thumbs/2610.27451.jpg" alt="First page of A 55-Addition Rank-23 Scheme for $3\times3$ Matrix Multiplication via Exact Two-Sided Minimization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A 55-Addition Rank-23 Scheme for $3\times3$ Matrix Multiplication via Exact Two-Sided Minimization</h1>
+        <p class="authors">Greg Sidebottom</p>
+        <div class="row">
+          <span class="badge">cs.MS</span>
+          <span class="date">Oct 20, 2026 · v1</span>
+          <span class="badge">cs.CC</span> <span class="badge">cs.DS</span> <span class="badge">cs.SC</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.27451v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.27451" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/gsidebottom/logic" target="_blank" rel="noopener" title="gsidebottom/logic">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Correctness of the 55-addition 3x3 matrix multiplication scheme is machine-checked in Lean 4, using Mathlib&#x27;s Matrix API, over general non-commutative rings.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We give a scheme that multiplies two $3\times3$ matrices with 23 multiplications and 55 additions over any ring, one addition below the previous record of 56 (Sun, 2026) and the first below 56 for exact non-commutative $3\times3$ multiplication without a change of basis. The scheme forms 13 signed combinations of the entries of A and 14 of B, takes 23 products, and recombines them with 28 further additions; its correctness is machine-checked in Lean 4. The previous records, from 60 down to 56, were obtained by greedy common-subexpression elimination, which only bounds each side of a scheme from above. We minimize both input sides exactly by chain covering, and the output side exactly through the transposition principle: the 9-by-23 output map costs its transpose plus 14, and the transpose is a 9-input map that the input-side minimizer solves exactly. Applied to Perminov&#x27;s cn122 scheme (class i19w225c4efh, published at 58 additions) this gives 55 = 13 + 14 + 28, where greedy elimination reaches only 29 on the output side. The same method shows that Sun&#x27;s representative is output-optimal at 56, and an exact orbit-wide computation over the Heule-Kauers-Seidl database shows that the record class is the only database class attaining 55.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The known record for exact non-commutative 3x3 matrix multiplication with 23 multiplications and no change of basis was 56 additions. Earlier records came from greedy common-subexpression elimination, which only gives upper bounds on each side&#x27;s additive cost.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Both input sides are minimized exactly as addition-chain covering problems, using iterative deepening over helper values in a closure normal form. The output side is minimized exactly through the transposition principle, A(W)=A(W^T)+14, which turns it into an instance the input-side minimizer can solve. This is applied to Perminov&#x27;s cn122 scheme. The resulting program is fuzz-tested and proved equal to A*B over any non-commutative ring in Lean 4 with Mathlib, sorry-free.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">A rank-23 scheme with 55 = 13+14+28 additions is obtained. Sun&#x27;s 56-addition representative is shown to be output-optimal. An exhaustive GF(2)-bound sweep over the Heule-Kauers-Seidl database shows that no published class reaches 54 and that only class i19w225c4efh attains 55.</p><div class="sum-table"><table><thead><tr><th>Class</th><th>Published</th><th>Exact (A+B+C)</th></tr></thead><tbody><tr><td>i19w225c4efh (Perminov cn122)</td><td>58</td><td>55 = 13+14+28</td></tr><tr><td>i46w213c23ci (Sun)</td><td>56</td><td>56 = 13+13+30</td></tr><tr><td>i12w219c23ci (Perminov cn119)</td><td>58</td><td>56 = 13+14+29</td></tr><tr><td>i19w203c23ci (MWS)</td><td>59</td><td>58 = 14+15+29</td></tr><tr><td>i2w201c26fi (Stapleton)</td><td>60</td><td>60 = 16+16+28</td></tr></tbody></table><div class="tbl-cap">Exact additive totals per de Groote class (selected)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
