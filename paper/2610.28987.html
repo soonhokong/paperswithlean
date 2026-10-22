@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PerMIT: Securing Persistent Memory for LLM Agents via Machine-Checked Integrity Theorems and Scalable Community Trust · Papers With Lean</title>
+<meta name="description" content="Persistent memory is a largely undefended surface for injection and poisoning, and the same risk limits memory sharing among agents. We present PerMIT, a memory architecture with provable integrity guarantees under an explicit trust assumption: only user-typed inputs and values…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PerMIT: Securing Persistent Memory for LLM Agents via Machine-Checked Integrity Theorems and Scalable Community Trust">
+<meta property="og:description" content="Persistent memory is a largely undefended surface for injection and poisoning, and the same risk limits memory sharing among agents. We present PerMIT, a memory architecture with provable integrity guarantees under an explicit trust assumption: only user-typed inputs and values…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.28987.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.28987.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.28987v1" target="_blank" rel="noopener"><img src="../thumbs/2610.28987.jpg" alt="First page of PerMIT: Securing Persistent Memory for LLM Agents via Machine-Checked Integrity Theorems and Scalable Community Trust"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">PerMIT: Securing Persistent Memory for LLM Agents via Machine-Checked Integrity Theorems and Scalable Community Trust</h1>
+        <p class="authors">Tanqiu Jiang, Min Bai, Sadat Shahriar, Wanyu Du, Sandesh Swamy</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 20, 2026 · v1</span>
+          <span class="badge">cs.CR</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-amber" href="../#tag=cryptography">cryptography</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.28987v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.28987" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Two integrity theorems (Action Integrity and Reasoning Integrity as noninterference) for the single-user memory interface are machine-checked in Lean 4 with Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Persistent memory is a largely undefended surface for injection and poisoning, and the same risk limits memory sharing among agents. We present PerMIT, a memory architecture with provable integrity guarantees under an explicit trust assumption: only user-typed inputs and values confirmed at a gate are trusted. PerMIT mediates the release and use of untrusted environment-derived values through a finite memory interface, while preserving agent-driven multi-turn planning and tool choice. Over this finite interface, we prove two integrity theorems that are also machine-checked in Lean 4, which together ensure that environment-derived memory reaches a sensitive action only if confirmed at the gate and influences the agent&#x27;s behavior only through what the gate displays. Every attack in our threat model thereby reduces to a single auditable decision, which a human, an LLM verifier, or both can make in practice. On Trojan Hippo, PerMIT records zero observed attack success with self-verification and lightweight verifiers. Because each confirmation is a logged verdict on exact content, endorsements accumulate across users, and sufficiently endorsed items become community-confirmed with no further verification required. Under explicit assumptions, we prove and corroborate in simulation a co-scaling property: as the community grows, the risks of promoting poison and of wrongly evicting benign knowledge fall, while per-user verification effort does not rise. On $τ^2$-bench, communities of up to 90 autonomous agents use PerMIT to build shared knowledge bases with no direct memory injection promoted, and the resulting knowledge significantly improves new agents on held-out tasks, suggesting a path toward agents that safely self-improve at test time.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Persistent memory in LLM agents can be poisoned through environment-derived content such as tool outputs and webpages. This turns one-shot prompt injection into a persistent compromise and makes memory sharing between agents risky. Existing memory defenses give no formal security guarantees.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">PerMIT mediates untrusted environment-derived values through a finite memory interface. Only user-typed inputs and values confirmed at a gate are trusted. Over this interface the authors prove Action Integrity, an authorization property, and Reasoning Integrity, noninterference modulo the display transcript, and machine-check the single-user core in Lean 4 pinned with Mathlib. A federated tier aggregates exact-content endorsements so that items become community-confirmed, with probabilistic bounds on promoting poison and on wrongly evicting benign knowledge.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.28987/permit-system-overview-refined.png" alt=""><figcaption>Figure 1: PerMIT mediates observations and data flows at the persistent-memory interface while leaving planning and tool choice to the protected agent.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">PerMIT records zero attack success on Trojan Hippo with oracle, self-verification and lightweight Qwen verifiers, while largely preserving benign utility. On τ²-bench telecom, communities of up to 90 agents promoted none of 12 direct injection payloads. The resulting shared knowledge significantly improved held-out task scores for Claude-Sonnet-4.6 and Kimi-K2.5, but not for GLM-5.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.28987/fig2_coupled_plane.png" alt=""><figcaption>Figure 2: Reviewer quality, not quorum size, sets the federated safety floor (deployed geometry of Section 3.3 , q_{\mathrm{pan}}=q_{\mathrm{pre}}=q ). (a) Certified ceiling B_{\mathrm{att}} of Equation 1 over reviewer miss rate 1-q and quorum N ; the contours are near-vertical because the panel term contains no N . (b) Correlated verdicts (pairwise \rho ) raise both the promotion ceiling and wron</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Builder and agent</th><th>Pooled PerMIT</th><th>Δ vs. A0 [95% CI]</th></tr></thead><tbody><tr><td>Claude-Sonnet-4.6</td><td>0.7856</td><td>+0.1363 [+0.0651, +0.2092]</td></tr><tr><td>Kimi-K2.5</td><td>0.9037</td><td>+0.1120 [+0.0339, +0.1979]</td></tr><tr><td>GLM-5</td><td>0.9635</td><td>+0.0052 [-0.0521, +0.0781]</td></tr></tbody></table><div class="tbl-cap">Held-out telecom utility: pooled PerMIT score and effect vs. no-knowledge baseline (95% CI)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

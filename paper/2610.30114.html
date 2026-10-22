@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The End of Consensus Research? · Papers With Lean</title>
+<meta name="description" content="Consensus is a fundamental problem in distributed computing and at the core of state machine replication (SMR). Despite decades of active human research, discovering practical low-latency solutions to the problem is still open, as it requires combining protocol knowledge,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The End of Consensus Research?">
+<meta property="og:description" content="Consensus is a fundamental problem in distributed computing and at the core of state machine replication (SMR). Despite decades of active human research, discovering practical low-latency solutions to the problem is still open, as it requires combining protocol knowledge,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.30114.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.30114.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.30114v1" target="_blank" rel="noopener"><img src="../thumbs/2610.30114.jpg" alt="First page of The End of Consensus Research?"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">The End of Consensus Research?</h1>
+        <p class="authors">Clément Burgelin, Rachid Guerraoui, Zicong Hong, Yinan Hu, Anne-Marie Kermarrec, Rafael Pires, Rasmus Moorits Veski, Martijn de Vos</p>
+        <div class="row">
+          <span class="badge">cs.DC</span>
+          <span class="date">Oct 21, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.30114v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.30114" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">An AI agent harness formalizes consensus protocols in Lean and proves linearizability, using about 135K lines of Lean that include proofs for a new protocol and counterexamples for existing ones.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Consensus is a fundamental problem in distributed computing and at the core of state machine replication (SMR). Despite decades of active human research, discovering practical low-latency solutions to the problem is still open, as it requires combining protocol knowledge, correctness reasoning, implementation, and experimental evaluation. We report on how AI helped us discover A-greement, a new consensus protocol for geo-replicated state machines that significantly outperforms state-of-the-art solutions. Averaged across six deployments with 5 or 9 replicas, A-greement reduces the mean latency of a geo-distributed key-value store over the fastest baseline by 12.2% and 33.3% on write-heavy and read-heavy workloads, respectively, and matches the fastest baseline on read-only workloads. A-greement combines lease-authorized local reads, direct client learning for leader-ordered writes, and a fast fixed-quorum per-key write path, selected according to network topology and workload. At the heart of our discovery lies AI-greement, an agent harness for the &quot;autonomous&quot; discovery, implementation, experimentation, and verification of candidate protocols. AI-greement integrates (1) a concept-oriented protocol knowledge base, (2) a modular implementation skeleton, and (3) a Lean-based verification framework with reusable safety definitions, reference specifications, and proofs. AI-greement is of independent interest: its Lean formalization uncovers several previously unreported vulnerabilities in existing consensus protocols, and it provides guidelines on how domain-specific harnesses can turn general-purpose coding agents into effective tools for (distributed) computing research. Yet we argue that human consensus experts remain essential before, during, and after the search: agents reshape the researcher&#x27;s role rather than end consensus research.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Designing consensus protocols for geo-replicated state machine replication that are both correct and low-latency requires combining protocol knowledge, correctness reasoning, implementation, and evaluation. The paper asks whether AI agents can help discover such protocols.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">AI-greement is an agent harness built around a general-purpose coding agent. It combines a concept-oriented protocol knowledge base, a modular Go implementation skeleton, and a Lean verification framework. The Lean framework provides a shared execution model, a linearizability definition, and reference specifications and proofs for Multi-Paxos, FastPaxos, SwiftPaxos, EPaxos*, and Bodega. The agent iterates as researcher, developer, and verifier: it designs candidates, benchmarks them, and formalizes and proves their safety in Lean, with humans reviewing the results to remove benchmark-hacking.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.30114/llm_agent.drawio.png" alt=""><figcaption>Figure 1: The workflow of an LLM agent.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The discovered protocol, A-greement, is proved linearizable in about 98K lines of Lean. It reduces mean latency over the fastest baseline by 12.2% on write-heavy and 33.3% on read-heavy workloads, and matches it on read-only workloads. The Lean formalization also uncovered four previously unreported vulnerabilities in EPaxos Revisited and Bodega.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
