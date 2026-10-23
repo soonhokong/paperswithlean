@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Global Convergence of Detailed Balanced Mass Action Systems · Papers With Lean</title>
+<meta name="description" content="We give a self-contained proof that, for a finite detailed balanced mass-action system with positive rate constants, each positive stoichiometric compatibility class contains exactly one positive equilibrium and every positive trajectory converges to it, together with a Lean 4…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Global Convergence of Detailed Balanced Mass Action Systems">
+<meta property="og:description" content="We give a self-contained proof that, for a finite detailed balanced mass-action system with positive rate constants, each positive stoichiometric compatibility class contains exactly one positive equilibrium and every positive trajectory converges to it, together with a Lean 4…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.30808.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.30808.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.30808v1" target="_blank" rel="noopener"><img src="../thumbs/2610.30808.jpg" alt="First page of Global Convergence of Detailed Balanced Mass Action Systems"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Global Convergence of Detailed Balanced Mass Action Systems</h1>
+        <p class="authors">Haoran Lv, Chengjin Ni, Manqin Wang, Shenli He</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Oct 22, 2026 · v1</span>
+          <span class="badge">math.DS</span> <span class="badge">q-bio.MN</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.30808v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.30808" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/BitMiracle-AI/detailed-balance-gac" target="_blank" rel="noopener" title="BitMiracle-AI/detailed-balance-gac">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes in Lean 4 with Mathlib the full proof of global convergence for detailed balanced mass-action systems, about 9,300 lines, written with AI agents.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We give a self-contained proof that, for a finite detailed balanced mass-action system with positive rate constants, each positive stoichiometric compatibility class contains exactly one positive equilibrium and every positive trajectory converges to it, together with a Lean 4 formalization of the complete argument from persistence to convergence. Boundedness and persistence come from the barrier argument of OpenAI (2026) for weakly reversible systems: an arbitrary-tolerance affine approximation yields a finite-minimum barrier whose superlevel sets confine trajectories and give one logarithmic bound for all solutions from a given initial state. The Horn-Jackson dissipation identity identifies the positive equilibria as an exponential family with parameters in the orthogonal complement of the stoichiometric subspace, which gives uniqueness in each class. A bounded-speed descent argument replaces LaSalle&#x27;s invariance principle; it uses neither uniqueness of solutions nor continuous dependence on initial data, and it places every cluster point in that family. The route given here is direct and elementary, and its main theorem is checked by the Lean kernel against explicit definitions. The proofs, the Lean development, and the manuscript were produced in ClawsGO Science, an agent harness that packages a complete research environment: Claude Opus 5.5 made the research decisions, GPT 6 Astra carried them out, and the Lean kernel checked every formal step.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Proves that every positive trajectory of a finite detailed balanced mass-action system converges to the unique positive equilibrium in its stoichiometric compatibility class. This is the detailed-balance case of the global attractor conjecture. The paper aims for a self-contained, machine-checked proof.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Boundedness and persistence come from a barrier argument for weakly reversible systems, adapted from OpenAI&#x27;s prior Lean work. The Horn–Jackson dissipation identity identifies the positive equilibria as an exponential family, which gives uniqueness in each class. A bounded-speed descent argument replaces LaSalle&#x27;s invariance principle and does not need uniqueness of solutions. The whole chain is formalized in Lean 4 with Mathlib; Claude Opus 5.5 and GPT 6 Astra produced the proofs and the code in the ClawsGO Science agent harness.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The main theorem and every numbered step are checked by the Lean kernel. The development has about 9,300 lines, about 7,900 of them adapted from the persistence formalization, and is released publicly. A numerical example with A+B⇌C and 2A⇌B illustrates convergence to the equilibrium (1/2,1/2,1/2).</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.30808/image1.png" alt=""><figcaption>Figure 1: Trajectories for A+B\rightleftharpoons C and 2A\rightleftharpoons B in the class x_{A}+2x_{B}+3x_{C}=3 . (a) Projection onto the \left(x_{A},x_{B}\right) plane; dots mark initial states and the star marks \overline{x}=\left(\frac{1}{2},\frac{1}{2},\frac{1}{2}\right) . (b) A logarithmic plot of V\left(x(t)\right) ; the entropy panel is plotted down to 10^{-12} .</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

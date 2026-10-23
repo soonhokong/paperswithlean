@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formal-Informal Mathematical Alignment through and beyond Human Annotations · Papers With Lean</title>
+<meta name="description" content="Formalized mathematics libraries such as Lean&#x27;s mathlib provide machine-verifiable representations of mathematical knowledge, including definitions, theorems, and their relationships. If effectively connected to informal mathematical resources, formal mathematics could help…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Formal-Informal Mathematical Alignment through and beyond Human Annotations">
+<meta property="og:description" content="Formalized mathematics libraries such as Lean&#x27;s mathlib provide machine-verifiable representations of mathematical knowledge, including definitions, theorems, and their relationships. If effectively connected to informal mathematical resources, formal mathematics could help…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.31011.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.31011.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.31011v1" target="_blank" rel="noopener"><img src="../thumbs/2610.31011.jpg" alt="First page of Formal-Informal Mathematical Alignment through and beyond Human Annotations"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Formal-Informal Mathematical Alignment through and beyond Human Annotations</h1>
+        <p class="authors">Noah Gießing, Ankit Satpute, Hamid Rahkooy, André Greiner-Petter, Moritz Schubotz</p>
+        <div class="row">
+          <span class="badge">cs.IR</span>
+          <span class="date">Oct 22, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.31011v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.31011" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/AnkitSatpute/Formal-Informal-Mathematical-Alignment" target="_blank" rel="noopener" title="AnkitSatpute/Formal-Informal-Mathematical-Alignment">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a dataset linking Stacks Project tags to Mathlib statements via the @[stacks] attribute, and evaluates LeanSearch retrieval plus LLM judging.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Formalized mathematics libraries such as Lean&#x27;s mathlib provide machine-verifiable representations of mathematical knowledge, including definitions, theorems, and their relationships. If effectively connected to informal mathematical resources, formal mathematics could help uncover previously implicit links between mathematical concepts and improve access to existing formalizations. However, connections between informal and formal mathematics libraries are currently sparse and unsystematic. In this paper, we make first strides towards better formal integration. We construct a dataset linking informal statements from the Stacks Project to their formalizations in mathlib by exploiting expert annotations. We evaluate retrieval, LLM-based reranking, and LLM-assisted verification to discover new unannotated informal-to-formal links. To facilitate exploration and reuse of formalized knowledge, we integrated the newly discovered alignments into the MaRDI knowledge graph, enabling mathematicians to find formal counterparts to informal mathematical content. We discuss the difficulties and challenges in using LLMs for linking formal and informal mathematical content. All code and data necessary for reproducing this paper can be found at: <a href="https://github.com/AnkitSatpute/Formal-Informal-Mathematical-Alignment" target="_blank" rel="noopener">https://github.com/AnkitSatpute/Formal-Informal-Mathematical-Alignment</a></div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Connections between informal mathematics resources and formal libraries such as Mathlib are sparse and unsystematic. This makes existing formalizations hard to find and reuse.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors extract the 482 expert-annotated @[stacks] attribute links in Mathlib, which point to 325 Stacks Project tags, and assemble them into the SPmathlib dataset. They evaluate LeanSearch retrieval and Qwen-based LLM reranking on recovering these links from informal queries. They then use an LLM-as-judge to classify retrieved candidates (Exact, Generalization, Equivalent, Implies, No, Invalid) as a way to discover unannotated links. The alignments are integrated into the MaRDI knowledge graph.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Reranking improves LeanSearch R@1 from 0.36 to 0.46 and MRR@10 from 0.56 to 0.67. LLM judgments reach about 72–77% accuracy for Exact matches, and accuracy rises with agreement across repeated runs. Generalization and Equivalence judgments remain unreliable, which the authors attribute to unclear rules for what counts as a canonical formalization.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>R@1</th><th>R@5</th><th>R@10</th><th>MRR@10</th></tr></thead><tbody><tr><td>LeanSearch</td><td>0.36</td><td>0.65</td><td>0.73</td><td>0.56</td></tr><tr><td>LeanSearch (Reranked)</td><td>0.46</td><td>0.69</td><td>0.72</td><td>0.67</td></tr></tbody></table><div class="tbl-cap">Retrieval of annotated Stacks–Mathlib links</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

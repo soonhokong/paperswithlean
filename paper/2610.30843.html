@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lean Finder V2: Semantic Search for Mathlib That Disambiguates User Queries · Papers With Lean</title>
+<meta name="description" content="We introduce Lean Finder V2, a semantic search framework for Mathlib that disambiguates user queries through complementary model-level adversarial training and input-level query rewriting. Human mathematicians and coding agents rarely search Mathlib by providing detailed…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lean Finder V2: Semantic Search for Mathlib That Disambiguates User Queries">
+<meta property="og:description" content="We introduce Lean Finder V2, a semantic search framework for Mathlib that disambiguates user queries through complementary model-level adversarial training and input-level query rewriting. Human mathematicians and coding agents rarely search Mathlib by providing detailed…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.30843.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.30843.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.30843v1" target="_blank" rel="noopener"><img src="../thumbs/2610.30843.jpg" alt="First page of Lean Finder V2: Semantic Search for Mathlib That Disambiguates User Queries"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Lean Finder V2: Semantic Search for Mathlib That Disambiguates User Queries</h1>
+        <p class="authors">Jialin Lu, Xiaoyu Liu, Hengrui Luo, Rodrigo Stehling, Linxi Liu, Weiran Sun, Yuepeng Wang, Wuyang Chen</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 22, 2026 · v1</span>
+          <span class="badge">cs.IR</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.30843v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.30843" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/delta-lab-ai/lean-finder-v2" target="_blank" rel="noopener" title="delta-lab-ai/lean-finder-v2">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a semantic search engine over Mathlib declarations, trained with adversarially generated ambiguous queries, and integrates it with Claude Code for Lean theorem proving.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We introduce Lean Finder V2, a semantic search framework for Mathlib that disambiguates user queries through complementary model-level adversarial training and input-level query rewriting. Human mathematicians and coding agents rarely search Mathlib by providing detailed context. In practice, they query short properties, notation, aliases, or hypotheses, leaving much of the intended mathematics implicit. In contrast, existing Mathlib search engines unrealistically assume context-rich queries. The scarcity of real-world short queries paired with ground-truth Mathlib statements makes this ambiguity even more intractable. We argue that this is essentially a data problem. Through adversarial training, we scale up the generation of labeled short and ambiguous queries, and learn to disambiguate user queries at both model-level fine-tuning and input-level query rewriting. On the human-curated MathlibQR benchmark, our Lean Finder V2 sets a new state of the art, with at least 11% relative improvement over the previous best Mathlib semantic search engines. On top of our state-of-the-art retriever, optimized query rewriting further improves MathlibQR retrieval. On unlabeled queries from human and coding-agent interactions, Lean Finder V2 is ranked as the strongest system. Integrated with Claude Code, Lean Finder V2 improves proof success on downstream theorem-proving task. Lean Finder V2 is available at: <a href="https://leanfinder.github.io/" target="_blank" rel="noopener">https://leanfinder.github.io/</a></div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Mathematicians and coding agents usually search Mathlib with short, ambiguous queries such as properties, notation, aliases or hypotheses. Existing Mathlib search engines assume context-rich queries. Labeled short queries paired with ground-truth declarations are scarce.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A query generator (Qwen3-4B) is trained with RL plus SFT, using a reward that combines retrieval difficulty from the current retriever with query-declaration alignment judged by an LLM. Its faithful but ambiguous queries are used to fine-tune a Qwen3-Embedding-8B retriever, and the generator and retriever alternate over two rounds. The same synthetic pairs are used to optimize a query-rewriting prompt with GEPA, which makes implicit intent explicit before retrieval.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.30843/lean-finder-v2-pipeline-updated.png" alt=""><figcaption>Figure 2: Lean Finder V2 disambiguates Mathlib queries at two complementary levels. Model-level adversarial training (Section 3.1 ) uses a hybrid objective that combines reinforcement learning and supervised fine-tuning with retriever-guided difficulty rewards to incentivize the query generator LLM to generate faithful, challenging, and ambiguous queries for Mathlib declarations. Contrastive learn</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On the MathlibQR benchmark, nDCG@1 reaches 0.558 versus 0.470 for the best prior system, at least an 11% relative gain. The system is ranked best by LLM judges on unlabeled human and agent queries. When integrated with Claude Code, it raises the downstream proof pass rate to 39.3%, compared with 34.0% using no semantic retrieval tool.</p><div class="sum-table"><table><thead><tr><th>System</th><th>nDCG@1</th><th>nDCG@10</th><th>Recall@10</th></tr></thead><tbody><tr><td>LeanSearch V2 (retriever+reranker)</td><td>0.470</td><td>0.623</td><td>0.780</td></tr><tr><td>Lean Finder</td><td>0.370</td><td>0.533</td><td>0.698</td></tr><tr><td>Lean Finder V2</td><td>0.558</td><td>0.732</td><td>0.893</td></tr></tbody></table><div class="tbl-cap">MathlibQR retrieval (selected systems)</div></div><div class="sum-table"><table><thead><tr><th>Retrieval tool</th><th>Pass rate (%)</th></tr></thead><tbody><tr><td>No semantic retrieval tool</td><td>34.0 ± 1.0</td></tr><tr><td>LeanSearch V2 (retriever+reranker)</td><td>36.0 ± 1.0</td></tr><tr><td>Lean Finder V2</td><td>39.3 ± 1.2</td></tr></tbody></table><div class="tbl-cap">Claude Code proof pass rate by retrieval tool</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

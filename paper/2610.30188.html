@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentic Verified Optimization of Real-World Software · Papers With Lean</title>
+<meta name="description" content="Program optimization aims to improve performance while preserving behavior. Coding agents can already make programs faster by changing algorithms, data structures, and execution strategies. However, existing equivalence checks mostly rely on tests, which agents have been shown…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Agentic Verified Optimization of Real-World Software">
+<meta property="og:description" content="Program optimization aims to improve performance while preserving behavior. Coding agents can already make programs faster by changing algorithms, data structures, and execution strategies. However, existing equivalence checks mostly rely on tests, which agents have been shown…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.30188.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.30188.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.30188v1" target="_blank" rel="noopener"><img src="../thumbs/2610.30188.jpg" alt="First page of Agentic Verified Optimization of Real-World Software"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Agentic Verified Optimization of Real-World Software</h1>
+        <p class="authors">Zhe Ye, Udaya Ghai, Zhizhen Qin, Dawn Song, Soonho Kong</p>
+        <div class="row">
+          <span class="badge">cs.SE</span>
+          <span class="date">Oct 20, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.LG</span> <span class="badge">cs.LO</span> <span class="badge">cs.PL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.30188v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.30188" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Agents write faster Lean 4 implementations with kernel-checked equivalence proofs against reference functions, including C/C++/Go/Rust programs migrated into Lean.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Program optimization aims to improve performance while preserving behavior. Coding agents can already make programs faster by changing algorithms, data structures, and execution strategies. However, existing equivalence checks mostly rely on tests, which agents have been shown to exploit, passing the tests without preserving the intended behavior. We propose agentic verified optimization, in which an agent produces a faster implementation together with a machine-checked proof of equivalence to the existing one. Because the existing implementation serves as the specification, the task avoids the specification-writing bottleneck of verified code generation, and recent advances in theorem proving make the proofs attainable. We formulate the task at the function and repository levels in Lean 4, where programs can be both executed and reasoned about. Few real-world applications are written in Lean, so we develop Aqueduct, an agentic framework that migrates C, C++, Go, and Rust programs into native Lean, validates each port by differential testing against its original. On the 189 reference implementations in Verina, agents produce faster proved rewrites for 156, including algorithmic changes such as replacing exponential recursion with dynamic programming. On 17 migrated applications, their 92 proved rewrites speed up 47 of 51 application scenarios. These application-level gains are smaller than the function-level ones, making the choice of functions to optimize an important problem. Current agents can thus already carry out verified optimization on both standalone functions and applications migrated from real programs. We discuss the remaining challenges and the steps toward verified optimization in production.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Coding agents can speed up programs, but correctness is usually checked with tests. Agents can exploit those tests and produce faster code that does not preserve the intended behavior.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The task is posed as agentic verified optimization in Lean 4. An agent produces a faster replacement f&#x27; together with a machine-checked proof that f = f&#x27;, with the existing implementation serving as the specification. It is evaluated at function level on all 189 Verina reference implementations. For repository level, the authors build Aqueduct, an agentic framework that migrates C, C++, Go, and Rust programs into native Lean and validates each port by differential testing against the original.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Agents (Codex with GPT-5.6) produce faster proved rewrites for 156 of 189 Verina functions, with a geometric mean speedup of 1.851x. On 17 migrated applications, 92 proved rewrites speed up 47 of 51 scenarios, with a geometric mean of 1.120x over the migrated Lean ports. Application-level gains are smaller than function-level gains.</p><div class="sum-table"><table><thead><tr><th>Suite</th><th>Targets</th><th>Improved</th><th>Geom. mean</th><th>Median</th></tr></thead><tbody><tr><td>Basic</td><td>108</td><td>93</td><td>1.959x</td><td>1.109x</td></tr><tr><td>Advanced</td><td>81</td><td>63</td><td>1.716x</td><td>1.163x</td></tr><tr><td>All</td><td>189</td><td>156</td><td>1.851x</td><td>1.117x</td></tr></tbody></table><div class="tbl-cap">Function-level verified optimization on Verina</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rank Ceiling for Twiddle-Perturbation Faults on the Forward NTT · Papers With Lean</title>
+<meta name="description" content="NIST standardised ML-KEM and ML-DSA in 2024 for post-quantum key establishment and digital signatures. Both compute forward number-theoretic transforms (NTTs) on secret polynomials. Published attacks zero every fixed multiplier, or twiddle, during Kyber key generation with a…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rank Ceiling for Twiddle-Perturbation Faults on the Forward NTT">
+<meta property="og:description" content="NIST standardised ML-KEM and ML-DSA in 2024 for post-quantum key establishment and digital signatures. Both compute forward number-theoretic transforms (NTTs) on secret polynomials. Published attacks zero every fixed multiplier, or twiddle, during Kyber key generation with a…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.30383.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.30383.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.30383v1" target="_blank" rel="noopener"><img src="../thumbs/2610.30383.jpg" alt="First page of Rank Ceiling for Twiddle-Perturbation Faults on the Forward NTT"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Rank Ceiling for Twiddle-Perturbation Faults on the Forward NTT</h1>
+        <p class="authors">Chakshu Gupta</p>
+        <div class="row">
+          <span class="badge">cs.CR</span>
+          <span class="date">Oct 21, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-amber" href="../#tag=cryptography">cryptography</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.30383v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.30383" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ChakshuGupta13/lab" target="_blank" rel="noopener" title="ChakshuGupta13/lab">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A Lean 4 and Mathlib artifact certifies the one-fault-per-layer rank-and-kernel theorem for the forward NTT at n=256 with arbitrary replacement values, plus inverse-NTT kernel equalities.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">NIST standardised ML-KEM and ML-DSA in 2024 for post-quantum key establishment and digital signatures. Both compute forward number-theoretic transforms (NTTs) on secret polynomials. Published attacks zero every fixed multiplier, or twiddle, during Kyber key generation with a single fault, or individual twiddles in one Dilithium signing variant; countermeasures detect or mask these faults. Nonzero replacements preserve invertibility, but the uncompressed correct-minus-faulted transform difference can still expose input information. This paper characterises the linear map from a secret polynomial to this difference under arbitrary static twiddle replacements, including bit-flips. For one fault, rank equals the number of butterflies sharing its twiddle, halving by layer from 128 to 2 for ML-KEM and to 1 for ML-DSA. Known positions, replacement values and the difference determine that many independent linear combinations of input coefficients. With one fault per layer, all but the constant and linear coefficients for ML-KEM, or the constant for ML-DSA, are determined; Lean 4 certifies this rank-and-kernel result. Those coefficients cancel for every fault set and choice of replacement values. NIST permits seed storage, motivating comparison of a known correct key with a released faulty key from the same seed. If only one ML-KEM secret-polynomial NTT is faulted, the key difference is a known matrix column times the transform difference; an invertible column entry reconstructs the latter. For ML-DSA, neither reconstruction nor the number of secret-polynomial candidates from compressed key differences is established. The per-layer ranks give a closed-form measure of raw exposure for countermeasure design.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Fault attacks on ML-KEM and ML-DSA can replace twiddle factors in the forward NTT applied to secret polynomials. Published attacks zero the twiddles, and no general rank-and-kernel law was known for the correct-minus-faulted transform difference under arbitrary static replacements, including nonzero values and bit-flips.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The forward NTT is factored into butterfly layers, and the difference map is written as an invertible suffix composed with a layer difference and an invertible prefix. This gives the rank for single faults. For one fault per layer, the paper proves rank saturation and a universal kernel inclusion spanned by the constant (and, for ML-KEM, linear) basis vectors. Results are checked numerically by Gaussian elimination over F_q, and the one-per-layer kernel claims are machine-checked in Lean 4.27.0 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">A single fault gives rank equal to the number of butterflies sharing the twiddle, halving by layer from 128 to 2 for ML-KEM and to 1 for ML-DSA. With one fault per layer the rank is 254 for ML-KEM and 255 for ML-DSA, and the kernel is exactly span(b0,b1) or span(b0). For ML-KEM, paired same-seed public keys reveal the raw difference when the affected public-matrix column has an invertible entry; reconstruction for ML-DSA from compressed keys is not established.</p><div class="sum-table"><table><thead><tr><th>Layer</th><th>ML-KEM (n=256)</th><th>Complete shape (n=32)</th></tr></thead><tbody><tr><td>0</td><td>128</td><td>16</td></tr><tr><td>1</td><td>64</td><td>8</td></tr><tr><td>2</td><td>32</td><td>4</td></tr><tr><td>3</td><td>16</td><td>2</td></tr><tr><td>4</td><td>8</td><td>1</td></tr></tbody></table><div class="tbl-cap">Singleton zeroing ranks by layer</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

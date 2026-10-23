@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LLM2Cert: LLM Synthesis of Certificates with SMT/Lean Verification · Papers With Lean</title>
+<meta name="description" content="Lyapunov functions and barrier certificates give state-space guarantees of stability and safety, but synthesizing and verifying them—especially for nonlinear, high-dimensional systems—remains an open challenge. Existing pipelines verify candidates with numerical solvers…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LLM2Cert: LLM Synthesis of Certificates with SMT/Lean Verification">
+<meta property="og:description" content="Lyapunov functions and barrier certificates give state-space guarantees of stability and safety, but synthesizing and verifying them—especially for nonlinear, high-dimensional systems—remains an open challenge. Existing pipelines verify candidates with numerical solvers…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.30524.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.30524.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.30524v1" target="_blank" rel="noopener"><img src="../thumbs/2610.30524.jpg" alt="First page of LLM2Cert: LLM Synthesis of Certificates with SMT/Lean Verification"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">LLM2Cert: LLM Synthesis of Certificates with SMT/Lean Verification</h1>
+        <p class="authors">Zhipeng Cao, Peiyang Song, Nikolaus Vertovec, Weiru Cui, Zhihao Yang, Mingkang Liu, Luxia Lin, Bai Xue, Alessandro Abate</p>
+        <div class="row">
+          <span class="badge">eess.SY</span>
+          <span class="date">Oct 21, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.LG</span> <span class="badge">math.OC</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.30524v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.30524" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/FormalCert-AI/llm2cert" target="_blank" rel="noopener" title="FormalCert-AI/llm2cert">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">An LLM Proof-Repair agent writes kernel-checked Lean proofs for Lyapunov/barrier certificate obligations that SMT solvers cannot discharge or cannot encode.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Lyapunov functions and barrier certificates give state-space guarantees of stability and safety, but synthesizing and verifying them—especially for nonlinear, high-dimensional systems—remains an open challenge. Existing pipelines verify candidates with numerical solvers (sum-of-squares programs), interval methods, or satisfiability-modulo-theories (SMT) solvers, which often require relaxations, are conservative, or scale poorly with model dimension and nonlinearity. These limitations have also shaped benchmark design: standard test suites are dominated by low-dimensional polynomial systems chosen to suit what solvers can handle rather than what engineering applications require. We address both sides of this challenge. First, we introduce DynaCertBench, a benchmark of 105 instances: 80 non-redundant systems curated from the literature, extended with high-dimensional and control-constrained variants and new nonlinearly coupled systems, comprehensively spanning stability, region-of-attraction, forward-invariance, and safety tasks. Second, we present LLM2Cert, an LLM-driven framework that synthesizes candidate certificates and verifies them against their proof obligations: each obligation is routed to an SMT solver or directly to the Lean Proof-Repair agent. On DynaCertBench, LLM2Cert verifies 81 of 105 instances ($77.1\%$), a $17.1$ percentage point improvement over one-shot proposal without feedback. On the 81 fixed certificates, LLM2Cert verifies 22 that All-SMT leaves unresolved. Code and data are available at <a href="https://github.com/FormalCert-AI/llm2cert" target="_blank" rel="noopener">https://github.com/FormalCert-AI/llm2cert</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Synthesizing and verifying Lyapunov functions and barrier certificates for nonlinear, high-dimensional systems is hard. SOS, interval, and SMT verifiers rely on relaxations, are conservative, or scale poorly. Existing benchmarks are biased toward low-dimensional polynomial systems that suit these solvers.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">DynaCertBench contains 105 instances covering stability, region-of-attraction, forward-invariance, and safety tasks, each posed with its exact, unrelaxed conditions. LLM2Cert uses an LLM Proposal Agent to propose candidate certificates and policies, which induce proof obligations and are first screened by sampling. A router sends each obligation to an SMT solver or to a Lean Proof-Repair Agent. Obligations unresolved by SMT, or with no SMT encoding, are escalated to Lean, and counterexamples are fed back to the Proposal Agent.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.30524/framework.png" alt=""><figcaption>Figure 1: LLM2Cert framework. The Proposal Agent proposes a candidate certificate (and policy), which induces a list of proof obligations. Obligations without a compatible SMT encoding go directly to Lean. For the remaining obligations, the router selects either direct SMT or direct Lean. Obligations left unresolved by SMT are escalated to the Lean Proof-Repair Agent. Counterexamples and unresolve</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">LLM2Cert verifies 81 of 105 instances (77.1%), 17.1 percentage points more than one-shot proposal without feedback. On the 81 fixed certificates, routing verifies 22 that All-SMT leaves unresolved. Structured repair fixes 21 of 26 failing Lean obligations.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Literature</th><th>Extended</th><th>New</th><th>Overall</th></tr></thead><tbody><tr><td>One-shot Proposal</td><td>54/80</td><td>4/11</td><td>5/14</td><td>63/105</td></tr><tr><td>LLM2Cert (SMT only)</td><td>53/80</td><td>3/11</td><td>1/14</td><td>57/105</td></tr><tr><td>LLM2Cert (Lean only)</td><td>57/80</td><td>2/11</td><td>1/14</td><td>60/105</td></tr><tr><td>LLM2Cert (Full)</td><td>66/80</td><td>7/11</td><td>8/14</td><td>81/105</td></tr></tbody></table><div class="tbl-cap">End-to-end ablations for LLM2Cert</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
