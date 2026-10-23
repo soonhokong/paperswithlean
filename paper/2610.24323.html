@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Computing Multi-Slot First-Price Pacing Equilibria at Scale via Entropic Smoothing · Papers With Lean</title>
+<meta name="description" content="Pacing equilibria describe how budget-constrained advertisers clear an ad market, but computing one at production scale is hard when every request fills several slots: the allocation jumps whenever two campaigns&#x27; scores cross. We consider the first-price pacing equilibrium…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computing Multi-Slot First-Price Pacing Equilibria at Scale via Entropic Smoothing">
+<meta property="og:description" content="Pacing equilibria describe how budget-constrained advertisers clear an ad market, but computing one at production scale is hard when every request fills several slots: the allocation jumps whenever two campaigns&#x27; scores cross. We consider the first-price pacing equilibrium…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.24323.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.24323.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.24323v1" target="_blank" rel="noopener"><img src="../thumbs/2610.24323.jpg" alt="First page of Computing Multi-Slot First-Price Pacing Equilibria at Scale via Entropic Smoothing"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Computing Multi-Slot First-Price Pacing Equilibria at Scale via Entropic Smoothing</h1>
+        <p class="authors">Yuchen Xie, Shenyinying Tu, Yuan Gao, Yi Zhang, Deepak Kumar</p>
+        <div class="row">
+          <span class="badge">math.OC</span>
+          <span class="date">Oct 16, 2026 · v1</span>
+          <span class="badge">cs.GT</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-lime" href="../#tag=economics">economics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.24323v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.24323" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">All lemmas, propositions, theorems and corollaries of Sections 3–5 are machine-checked in Lean 4 using Mathlib and the Optlib optimization library.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Pacing equilibria describe how budget-constrained advertisers clear an ad market, but computing one at production scale is hard when every request fills several slots: the allocation jumps whenever two campaigns&#x27; scores cross. We consider the first-price pacing equilibrium (FPPE) of auctions with $K$ homogeneous slots and unit-demand campaigns, whose Eisenberg-Gale dual reduces, via a TopK identity, to a convex program over bids. Regularizing each request&#x27;s allocation with the binary (Fermi-Dirac) entropy gives a smooth, strictly convex dual whose gradient is exactly spend minus budget and whose evaluation splits into independent one-dimensional threshold solves, one per request. The smoothed equilibrium converges to the hard one at an explicit $O(\sqrt{T})$ rate, and a duality gap certifies how far any bids are from the hard equilibrium. We implement an efficient multi-GPU solver and test it on a production ad workload. We use it to compute an equilibrium price anchor: each campaign&#x27;s hindsight equilibrium cost per key result.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Computing first-price pacing equilibria for budget-constrained advertisers is hard at production scale when each request fills several slots. The top-K allocation is piecewise constant in the bids, so first-order methods oscillate near score ties.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A TopK identity reduces the multi-slot Eisenberg-Gale dual to a convex program over bids. Each request&#x27;s allocation is regularized with the binary (Fermi-Dirac) entropy, which gives a smooth, strictly convex dual whose gradient is exactly spend minus budget. Each gradient evaluation splits into one-dimensional threshold root solves per request, implemented as a multi-GPU solver. The theoretical results of Sections 3–5 are formalized in Lean 4 with Mathlib and Optlib, with no unproved steps.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The smoothed equilibrium converges to the hard equilibrium at an O(√T) rate, and a duality gap certifies the distance of any bids from it. On a LinkedIn feed-ad workload the solver met its stopping rule in 174 iterations, about one minute on four H100 GPUs, with median relative spend deviation 4.0e-5. Under hard top-K allocation with the same update, 56% of active campaigns stayed more than 1% from budget.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

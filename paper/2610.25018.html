@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Structure-Aware Equivalence for Evaluating Autoformalized Statements · Papers With Lean</title>
+<meta name="description" content="Evaluating autoformalized mathematical statements requires determining whether a candidate preserves the mathematical claim intended by a trusted reference. Existing methods approach this problem from complementary directions: reference-free learned evaluators estimate semantic…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Structure-Aware Equivalence for Evaluating Autoformalized Statements">
+<meta property="og:description" content="Evaluating autoformalized mathematical statements requires determining whether a candidate preserves the mathematical claim intended by a trusted reference. Existing methods approach this problem from complementary directions: reference-free learned evaluators estimate semantic…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.25018.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.25018.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.25018v3" target="_blank" rel="noopener"><img src="../thumbs/2610.25018.jpg" alt="First page of Structure-Aware Equivalence for Evaluating Autoformalized Statements"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Structure-Aware Equivalence for Evaluating Autoformalized Statements</h1>
+        <p class="authors">Yi Yu, Yu-Hsuan Wu, Guang Lin, Yuhui Zhang, Yuxiang Peng</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Oct 18, 2026 · v3</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.25018v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.25018" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">ACE normalizes and aligns Lean statement pairs, generates Lean proof obligations, and certifies equivalence or inequivalence only when Lean checks the proofs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Evaluating autoformalized mathematical statements requires determining whether a candidate preserves the mathematical claim intended by a trusted reference. Existing methods approach this problem from complementary directions: reference-free learned evaluators estimate semantic agreement but are not constrained to a formal equivalence relation, while reference-based proof methods typically employ whole-statement logical equivalence to provide formal certificates, which is too coarse for translation fidelity and may identify mathematically unrelated statements. We introduce Structure-Aware Equivalence (SAE), a role-preserving formal equivalence relation between syntactic and whole-statement logical equivalence that allows formally justified reformulations while preserving translation-relevant mathematical structure. We operationalize SAE in the Autoformalization Correctness Evaluator (ACE), which provides certified equivalence or inequivalence judgments and reports Inconclusive otherwise. On ProofNetVerif, a benchmark introduced with BEq+, ACE retains substantial equivalent-case coverage while remaining highly conservative in certifying disputed or inequivalent pairs. On targeted diagnostics, BEq+ accepts 94-96% of unrelated but whole-statement logically equivalent pairs, while Mathesis LeanScorer accepts 42% of localized meaning-changing perturbations; ACE accepts none of either set as equivalent.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Evaluating whether an autoformalized Lean statement preserves the claim of a trusted reference is hard. Learned evaluators are not tied to a formal relation. Whole-statement logical equivalence, as used by BEq+, is too coarse and can accept mathematically unrelated statements.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Structure-Aware Equivalence (SAE) is a role-preserving equivalence relation that sits between syntactic and whole-statement logical equivalence. It normalizes statements to a prenex-style form and preserves binder correspondence, the premise–conclusion boundary, and relational structure. The Autoformalization Correctness Evaluator (ACE) elaborates and aligns statement pairs and encodes the resulting obligations as synthetic Lean theorems. Proof-search backends (Aesop, Aristotle, an LLM) then attempt them, yielding Certified Equivalent, Certified Inequivalent, or Inconclusive.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On ProofNetVerif, ACE certifies about 56-59% of consensus-equivalent pairs and almost no disputed or inequivalent pairs as equivalent. On targeted diagnostics, BEq+ accepts 94-96% of unrelated but logically equivalent pairs and LeanScorer accepts 42% of meaning-changing perturbations, while ACE accepts none of either set.</p><div class="sum-table"><table><thead><tr><th>Evaluator</th><th>Config</th><th>Consensus-Equiv Eq</th><th>Disagreement-Equiv Eq</th><th>Inequivalent Eq</th></tr></thead><tbody><tr><td>ACE</td><td>Aesop</td><td>56.5%</td><td>0.3%</td><td>0.1%</td></tr><tr><td>ACE</td><td>GPT-5.6 Luna</td><td>58.6%</td><td>0.3%</td><td>0.2%</td></tr><tr><td>BEq+</td><td>Default</td><td>60.7%</td><td>2.4%</td><td>0.1%</td></tr><tr><td>LeanScorer</td><td>GPT-5.6 Luna</td><td>81.4%</td><td>43.8%</td><td>5.1%</td></tr></tbody></table><div class="tbl-cap">Equivalence-acceptance rate (Eq) by ProofNetVerif subset (selected configurations)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

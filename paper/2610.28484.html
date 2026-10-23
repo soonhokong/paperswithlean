@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proof-Carrying Contracts: Commitments AI Agents Cannot Break · Papers With Lean</title>
+<meta name="description" content="AI agents increasingly act on behalf of people or other agents, purchasing services, exchanging information and delegating work. What an agent must respect is written in instructions, policies or agreements, but text alone cannot make it comply. It may make mistakes, be…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Proof-Carrying Contracts: Commitments AI Agents Cannot Break">
+<meta property="og:description" content="AI agents increasingly act on behalf of people or other agents, purchasing services, exchanging information and delegating work. What an agent must respect is written in instructions, policies or agreements, but text alone cannot make it comply. It may make mistakes, be…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.28484.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.28484.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.28484v1" target="_blank" rel="noopener"><img src="../thumbs/2610.28484.jpg" alt="First page of Proof-Carrying Contracts: Commitments AI Agents Cannot Break"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Proof-Carrying Contracts: Commitments AI Agents Cannot Break</h1>
+        <p class="authors">Carlo Ciliberto, Alessandro Rudi, Enrico Tassi</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 20, 2026 · v1</span>
+          <span class="badge">cs.CR</span> <span class="badge">cs.LO</span> <span class="badge">cs.MA</span> <span class="badge">eess.SY</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.28484v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.28484" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/consequential-ai/proof-carrying-contracts" target="_blank" rel="noopener" title="consequential-ai/proof-carrying-contracts">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Provides a Lean 4 mechanization of the PC2 framework and its compliance theorems; agents submit Lean proofs checked by the Lean kernel before tool calls run.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">AI agents increasingly act on behalf of people or other agents, purchasing services, exchanging information and delegating work. What an agent must respect is written in instructions, policies or agreements, but text alone cannot make it comply. It may make mistakes, be redirected by what it reads, or pursue different interests. For an economy of such agents to function, parties need agreements they can rely on without inspecting or trusting one another&#x27;s agents. We introduce Proof-Carrying Contracts (PC2), a framework for making agreed constraints enforceable throughout an agent&#x27;s interactions with a system. Before a requested operation can run, the agent must supply a machine-checkable proof that it preserves the agreed constraints in every case allowed by its model. An execution system called the Airlock checks the proof and controls access to the operation. The parties specify the conditions to preserve, while the agent supplies the reasoning needed to justify its decisions and remains free to adapt its strategy. This avoids having to design a separate permission policy and prove that every decision it permits is safe. We prove that the constraints hold at every instant during execution, even for an adversarial agent, and identify when this implies safety in the world. Reusable capability modules provide tools and guarantees from which contracts can be constructed. PC2 provides a foundation for an agent economy whose agreements protect both those delegating work and those carrying it out.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">AI agents acting for people or other parties must respect agreed constraints, but written instructions and policies cannot force them to comply. This is a problem when agents make mistakes, are manipulated by injected content, or serve conflicting interests.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Proof-Carrying Contracts (PC2) require an agent to supply a machine-checkable proof that each requested tool call preserves the contract&#x27;s clauses in every case allowed by the tool&#x27;s model. An execution system called the Airlock checks the proof, using the Lean kernel as the checker, and runs the operation only if the proof is accepted. Reusable capability modules supply tool models and guarantees from which contracts can be built. Conditions are also identified under which compliance of the recorded state implies safety in the real world.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.28484/airlock-overview.png" alt=""><figcaption>Figure 1: How PC2 works. Two parties sign a contract. The agent that does the work runs inside the Airlock and keeps its usual loop of reasoning and tool calls, but each tool call carries a proof that the contract holds throughout the operation. The Airlock checks the proof before the call runs. If the proof is correct, the call is performed and its result returned; if not, nothing runs, and the a</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The authors prove that contract constraints hold at every instant of execution, even when the agent is adversarial, under stated assumptions such as sound proof checking. The definitions and proofs are mechanized in Lean 4 in a public repository.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

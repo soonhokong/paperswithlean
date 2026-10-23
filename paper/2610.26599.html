@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Type System for Communication-Safe Hardware Design · Papers With Lean</title>
+<meta name="description" content="Hardware components communicate through clock-cycle-sensitive protocols. Hardware Description Languages (HDLs), however, provide limited support for expressing these protocols or for checking that independently developed components agree on them. When components disagree, the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Type System for Communication-Safe Hardware Design">
+<meta property="og:description" content="Hardware components communicate through clock-cycle-sensitive protocols. Hardware Description Languages (HDLs), however, provide limited support for expressing these protocols or for checking that independently developed components agree on them. When components disagree, the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.26599.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.26599.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.26599v1" target="_blank" rel="noopener"><img src="../thumbs/2610.26599.jpg" alt="First page of A Type System for Communication-Safe Hardware Design"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Type System for Communication-Safe Hardware Design</h1>
+        <p class="authors">Aditya Ranjan Jha, Jason Zhijingcheng Yu, Umang Mathur, Prateek Saxena</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Oct 19, 2026 · v1</span>
+          <span class="badge">cs.AR</span> <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=type-theory">type-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.26599v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.26599" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.23301148" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The Pact type system&#x27;s metatheory proofs are mechanized in Lean 4, with the mechanization archived on Zenodo alongside the compiler.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Hardware components communicate through clock-cycle-sensitive protocols. Hardware Description Languages (HDLs), however, provide limited support for expressing these protocols or for checking that independently developed components agree on them. When components disagree, the composed design can perform unsynchronized exchanges or stop making progress. We call these failures communication-safety violations. Communication safety is therefore a global property, determined by interactions between multiple components. This makes it difficult to check modularly. This paper presents Pact, a typed extension of Anvil for modular verification of communication safety in synchronous hardware. Pact types describe message-passing, control-flow, and clock-cycle behaviour. Each component is checked against its type. Compatible types then guarantee that the components compose into a communication-safe system. Pact also supports incremental design. It can check a subsystem before the full system context is available. The check produces a summary type that captures the communication behaviour left for future compositions. To reduce annotation burden, Pact infers types by abstracting payload values while preserving communication, timing, control, and fairness. These inferred types are optimal for the checker: whenever some checker-accepted types can prove compatibility, the inferred types can prove it as well. Type inference and type checking are decidable, and compatibility is decided by a sound and complete algorithm. We implement Pact by extending the Anvil compiler and evaluate it along four dimensions: detecting communication errors during incremental design, expressiveness on ten clock-cycle-accurate translations of open-source hardware IPs, compatibility-checking time, and generated hardware overhead. Pact expresses realistic protocols and verifies all ten benchmarks in reasonable time.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Hardware components talk to each other through clock-cycle-sensitive protocols, and HDLs give little support for checking that independently designed components agree on them. When they disagree, the result is a communication-safety violation: unsynchronized exchanges or loss of progress. Communication safety is a global property, which makes it hard to check modularly.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Pact is a typed extension of the Anvil HDL. Its types describe message-passing, control-flow, and clock-cycle behaviour. Each component is checked against its type, and type compatibility is decided by a sound and complete algorithm that reduces the question to games on finite graphs. Types are inferred by abstracting payload values, and the inferred types are optimal for the checker. The proofs are mechanized in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Type inference and type checking are decidable. Pact reproduces and detects real AXI communication errors from open-source RTL during incremental design. It expresses and verifies ten clock-cycle-accurate translations of open-source hardware IPs in reasonable time, and the evaluation also measures synthesized-hardware overhead.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
