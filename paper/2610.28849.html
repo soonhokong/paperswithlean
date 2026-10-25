@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When Do Gaussian Priors Fail? A Latent Geometry Investigation of RL Fine-Tuning · Papers With Lean</title>
+<meta name="description" content="Latent diffusion models almost universally place a Gaussian prior on the VAE latent space. For base generation this default is unproblematic; under reinforcement-learning fine-tuning, however, it carries a structural limitation. The standard VAE&#x27;s KL term does not merely ignore…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="When Do Gaussian Priors Fail? A Latent Geometry Investigation of RL Fine-Tuning">
+<meta property="og:description" content="Latent diffusion models almost universally place a Gaussian prior on the VAE latent space. For base generation this default is unproblematic; under reinforcement-learning fine-tuning, however, it carries a structural limitation. The standard VAE&#x27;s KL term does not merely ignore…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.28849.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.28849.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.28849v1" target="_blank" rel="noopener"><img src="../thumbs/2610.28849.jpg" alt="First page of When Do Gaussian Priors Fail? A Latent Geometry Investigation of RL Fine-Tuning"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">When Do Gaussian Priors Fail? A Latent Geometry Investigation of RL Fine-Tuning</h1>
+        <p class="authors">Wang Ru</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 20, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.28849v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.28849" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 with Mathlib machine-checks the algebraic skeleton of the paper&#x27;s theory, including the width-center formula, the crossover identity and the limit claims.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Latent diffusion models almost universally place a Gaussian prior on the VAE latent space. For base generation this default is unproblematic; under reinforcement-learning fine-tuning, however, it carries a structural limitation. The standard VAE&#x27;s KL term does not merely ignore mode structure - it actively taxes separation and tightness. When data are multimodal, the ELBO optimum compresses distinct modes into an overlapping latent. RL fine-tuning amplifies this overlap: the score network is under-resolved on the saddle region between modes, dynamic-to-variational amplification rises sharply, and the collapse boundary beta_c is pushed far above its variational scale. On the real alanine-dipeptide Boltzmann distribution, a Gaussian-prior VAE collapses at beta_c = 0.224 while a mode-tracked Gaussian-mixture prior collapses at 0.00316, a 71x gap from the same pipeline. We trace this gap to a single geometric mediator, d_min/(2 sigma_0), and verify the causal chain through controlled interventions: moving geometry at fixed prior, and switching prior at matched geometry (full mediation; prior-label coefficient 0.995x, 95% CI [0.79, 1.25]). A three-source decomposition localises the amplification to the learned policy (zero ODE-solver contribution, bounded anchor mismatch); the coverage plateau is an unconditional benefit of mode-separating priors that no amount of RL capacity recovers. The remedy is conditional: a non-Gaussian prior is necessary precisely when the latent geometry would fall into overlap and the task is coverage-sensitive. A machine-checked theory skeleton supports the KL pricing structure - a divergent compactness tax under a Gaussian prior versus a finite assignment fee under a mixture - and the position-versus-plateau distinction delimits what is finite-resource from what requires changing the prior.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Latent diffusion models place a Gaussian prior on the VAE latent space by default. Under RL fine-tuning with a KL anchor, this prior can compress multimodal data into overlapping latents and shift the collapse boundary beta_c. The question is when and why this limitation matters.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Closed-form reverse-KL analysis of a Gaussian-mixture reference under a quadratic reward gives the tilted optimum and the crossover beta_cross = 2 lambda sigma_0^2. Controlled experiments, including on the real alanine-dipeptide Boltzmann distribution, test the separation-to-width ratio d_min/(2 sigma_0) as the mediator. Interventions either move the latent geometry at a fixed prior or switch the prior at matched geometry. The algebraic skeleton of the main theorem, propositions and decomposition is formalised in Lean 4 with Mathlib (v4.3.0), and the paper reports zero build errors.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.28849/fig_exp7.png" alt=""><figcaption>Figure 8: Exp7: Latent geometry and coverage for alanine dipeptide. Top left : Real MD data in (\phi,\psi) torsion space, coloured by KDE basin assignment (beta/C5, C7eq, alpha_R). Top middle : Gaussian prior VAE latent space (seed 0) — the three basins overlap ( d_{\min}/(2\sigma_{0})=0.81 , cls_acc =0.875 ). Top right : GMM prior VAE latent space (seed 0) — the three basins form clearly separate</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On alanine dipeptide, the Gaussian-prior VAE collapses at beta_c = 0.224 versus 0.00316 for a mode-tracked GMM prior, a 71x gap that is fully mediated by latent geometry. Empirical beta_c scales linearly with lambda (slope 0.96 against a predicted 1.0). Mode-separating priors give a coverage-plateau benefit that additional RL capacity does not recover.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.28849/fig_exp6_K30.png" alt=""><figcaption>Figure 7: Exp6 K=30: Latent geometry and coverage in the crowded regime. Top : VAE latent space projections (2D, seed 0) for Gaussian (left) and GMM (right) priors, coloured by true mode identity. The Gaussian prior compresses K=30 modes into an overlapping envelope ( d_{\min}/(2\sigma_{0})=0.79 ), while the GMM prior — shown here as an illustrative example of a mode-separating prior — maintains s</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Quantity</th><th>Gaussian</th><th>GMM</th><th>Ratio</th></tr></thead><tbody><tr><td>beta_c^var (analytic)</td><td>2.41e-5</td><td>3.49e-5</td><td>0.69x</td></tr><tr><td>beta_c^dyn (empirical)</td><td>0.224</td><td>3.16e-3</td><td>70.8x</td></tr></tbody></table><div class="tbl-cap">Variational vs. dynamic collapse boundary on alanine dipeptide</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
