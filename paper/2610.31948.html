@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sharp Bounds on the Winner&#x27;s Bias under Independent and Nonnegatively Correlated Noise · Papers With Lean</title>
+<meta name="description" content="Reporting the best of $M$ noisy, unbiased scores overstates the winner&#x27;s value by up to $c\sqrt{V}$, where $V$ is the total noise variance and the sharp constant $c$ depends on how the noise is dependent. It was known only at the two extremes, arbitrary dependence…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sharp Bounds on the Winner&#x27;s Bias under Independent and Nonnegatively Correlated Noise">
+<meta property="og:description" content="Reporting the best of $M$ noisy, unbiased scores overstates the winner&#x27;s value by up to $c\sqrt{V}$, where $V$ is the total noise variance and the sharp constant $c$ depends on how the noise is dependent. It was known only at the two extremes, arbitrary dependence…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.31948.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.31948.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.31948v1" target="_blank" rel="noopener"><img src="../thumbs/2610.31948.jpg" alt="First page of Sharp Bounds on the Winner&#x27;s Bias under Independent and Nonnegatively Correlated Noise"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Sharp Bounds on the Winner&#x27;s Bias under Independent and Nonnegatively Correlated Noise</h1>
+        <p class="authors">Ivan Viakhirev, Kirill Borodin, Grach Mkrtchian</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 22, 2026 · v1</span>
+          <span class="badge">math.ST</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.31948v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.31948" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">All theorems, corollaries and lemmas on sharp winner&#x27;s-bias constants are machine-checked in Lean 4 with Mathlib, in about 7,900 lines with no sorry.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Reporting the best of $M$ noisy, unbiased scores overstates the winner&#x27;s value by up to $c\sqrt{V}$, where $V$ is the total noise variance and the sharp constant $c$ depends on how the noise is dependent. It was known only at the two extremes, arbitrary dependence ($\sqrt{(M-1)/M}$) and i.i.d. noise. We determine it for two classes in between: for independent, not identically distributed noise it is $\sqrt{(M-1)/(2M)}$, and for pairwise nonnegatively correlated noise it is $(M-1)/M$; for uncorrelated noise this answers the maximum version of an open question about the expected range. Explicit finite constructions attain both. As a corollary, the bias of the cross-validation estimator is bounded sharply within each class. All theorems are formally verified in Lean 4. Across 448 language-model and classifier selection pipelines, designs with per-candidate items realize a median 0.75 of the independent-class ceiling. At a fixed item budget, scoring all candidates on shared items is markedly less optimistic than giving each candidate its own items.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Reporting the best of M noisy, unbiased scores overstates the winner&#x27;s value by up to c√V. The sharp constant c was known only for arbitrary dependence and for i.i.d. noise. The intermediate classes of independent non-identically distributed noise and pairwise nonnegatively correlated noise were open.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A centered master bound (Aven&#x27;s bound applied to deviations from the mean, proved via Samuelson&#x27;s inequality and Cauchy–Schwarz) isolates a covariance correction term. Explicit finite extremal constructions (a one-up law plus a common shock, and a cascade law) show the bounds are sharp. A transfer lemma carries the bounds to the cross-validation estimator. All results are formalized in Lean 4 with Mathlib (11 files, no axioms beyond the standard three), and an empirical study covers 448 language-model and classifier selection pipelines.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The sharp constant is √((M-1)/(2M)) for independent noise and (M-1)/M for pairwise nonnegatively correlated noise. This settles van Hasselt&#x27;s conjecture on cross-validation bias and the uncorrelated case of Papadatos&#x27;s question. Per-candidate evaluation designs realize a median 0.75 of the independent-class ceiling, and shared-item designs are markedly less optimistic at a fixed item budget.</p><div class="sum-table"><table><thead><tr><th>M</th><th>arbitrary</th><th>Cov≥0</th><th>independent</th><th>i.i.d. worst</th></tr></thead><tbody><tr><td>2</td><td>0.707</td><td>0.500</td><td>0.500</td><td>0.408</td></tr><tr><td>3</td><td>0.816</td><td>0.667</td><td>0.577</td><td>0.516</td></tr><tr><td>10</td><td>0.949</td><td>0.900</td><td>0.671</td><td>0.653</td></tr><tr><td>50</td><td>0.990</td><td>0.980</td><td>0.700</td><td>0.696</td></tr></tbody></table><div class="tbl-cap">Sharp constants c_M by dependence class</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verified Pauli-Product Measurement Compilation for Fault-Tolerant Quantum Computation · Papers With Lean</title>
+<meta name="description" content="Fault-tolerant quantum compilers implement gates through Pauli-product measurements and classical feedback. Verifying such a compiler requires reasoning about the quantum state and the recorded outcomes together: a correction reads an outcome, a gate&#x27;s internal outcomes must be…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Verified Pauli-Product Measurement Compilation for Fault-Tolerant Quantum Computation">
+<meta property="og:description" content="Fault-tolerant quantum compilers implement gates through Pauli-product measurements and classical feedback. Verifying such a compiler requires reasoning about the quantum state and the recorded outcomes together: a correction reads an outcome, a gate&#x27;s internal outcomes must be…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.31694.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.31694.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.31694v1" target="_blank" rel="noopener"><img src="../thumbs/2610.31694.jpg" alt="First page of Verified Pauli-Product Measurement Compilation for Fault-Tolerant Quantum Computation"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Verified Pauli-Product Measurement Compilation for Fault-Tolerant Quantum Computation</h1>
+        <p class="authors">John Zhuoyang Ye, Jens Palsberg</p>
+        <div class="row">
+          <span class="badge">quant-ph</span>
+          <span class="date">Oct 20, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-purple" href="../#tag=quantum">quantum</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.31694v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.31694" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Mechanizes QPPM semantics, Hoare logic, verified lowering and optimization, and approximation bounds in Lean with Mathlib, and uses Lean kernel-checked certificates on benchmarks.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Fault-tolerant quantum compilers implement gates through Pauli-product measurements and classical feedback. Verifying such a compiler requires reasoning about the quantum state and the recorded outcomes together: a correction reads an outcome, a gate&#x27;s internal outcomes must be hidden from its caller, and an application&#x27;s outcomes must survive optimization. We introduce QPPM, a language for Pauli-product measurement programs, with a weakest-precondition semantics over store-indexed matrix assertions, following quantum Hoare logic with classical variables. Every program terminates, so the Hoare logic is a syntactic presentation of weakest preconditions whose soundness and relative completeness are immediate. Its value is that component specifications compose. All results are mechanized in Lean. We verify lowering of Clifford+$T$ circuits to QPPM with private outcomes and supplied magic states, and an optimizer that eliminates measurements, fuses and reorders rotations, and schedules logical rounds while preserving every outcome that subsequent code can read. A compositional approximation relation bounds the effect of synthesis error on specifications and on output trace distance, and a certificate-checked pipeline selects, among synthesized circuits that meet the user&#x27;s error limit, the one with the lowest certified depth bound. On QASMBench, verified fusion and scheduling reduce logical measurement depth by a median of 17.9%, and complete source-to-QPPM allowances are certified for all 35 valid selected small-suite inputs.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Fault-tolerant quantum compilers implement gates through Pauli-product measurements with classical feedback. Verifying them requires reasoning jointly about quantum state and measurement outcomes, including hiding gate-internal outcomes and preserving outcomes through optimization.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors define QPPM, a language for Pauli-product measurement programs. Its weakest-precondition semantics uses store-indexed matrix assertions, and a compositional Hoare logic is built on it. Lowering of Clifford+T circuits with private outcomes and magic states is verified, along with an optimizer that eliminates measurements, fuses and reorders rotations, and schedules rounds. A compositional approximation relation bounds synthesis error. All results are mechanized in Lean 4 with Mathlib, and a certificate-checked pipeline selects the synthesized circuit with the lowest certified depth.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On QASMBench, verified fusion and scheduling reduce logical measurement depth by a median of 17.9%. Complete source-to-QPPM allowances are certified for all 35 valid small-suite inputs. The build audits 1,476 theorems and accepts only standard axioms.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

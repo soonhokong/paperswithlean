@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SemantEq: Faithful Bidirectional Equivalence of Formal Statements · Papers With Lean</title>
+<meta name="description" content="Statement autoformalization translates mathematics from natural language into a proof assistant such as Lean 4, and models now do it at scale. As provers get stronger, the burden of correctness shifts from the proof to the statement, that is, to whether the formal statement…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SemantEq: Faithful Bidirectional Equivalence of Formal Statements">
+<meta property="og:description" content="Statement autoformalization translates mathematics from natural language into a proof assistant such as Lean 4, and models now do it at scale. As provers get stronger, the burden of correctness shifts from the proof to the statement, that is, to whether the formal statement…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.32919.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.32919.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.32919v1" target="_blank" rel="noopener"><img src="../thumbs/2610.32919.jpg" alt="First page of SemantEq: Faithful Bidirectional Equivalence of Formal Statements"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">SemantEq: Faithful Bidirectional Equivalence of Formal Statements</h1>
+        <p class="authors">Xinrui Li, Pawan Sasanka Ammanamanchi, Siddharth Bhat, Rianna Jamdar, Yongxi Lin, Stella Biderman</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 23, 2026 · v1</span>
+          <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.32919v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.32919" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/hlxr89/SemantEq" target="_blank" rel="noopener" title="hlxr89/SemantEq">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Implements a deterministic Lean 4 metaprogram and a proof-term auditor that judge equivalence of autoformalized Mathlib statements on ProofNetVerif.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Statement autoformalization translates mathematics from natural language into a proof assistant such as Lean 4, and models now do it at scale. As provers get stronger, the burden of correctness shifts from the proof to the statement, that is, to whether the formal statement faithfully translates its source. Given a trusted reference formalization, the natural test is logical equivalence, and it proves too much. $P \leftrightarrow Q$ holds trivially for any two statements $P$ and $Q$ that the library proves, because a prover can prove each separately and pass through $P \leftrightarrow \mathrm{True} \leftrightarrow Q$. The stronger the prover, the more unrelated pairs pass. Earlier methods restrict the prover and check that each proof names the other statement. We introduce SemantEq, a more principled relation that instead requires each statement to turn into the other only through a chain of allowed steps, such as logical rearrangement and rewriting with the library&#x27;s own equations. Our programs judge a proof by the proof term Lean checks, not by its tactic script. SemantEq-Eval, a search without a model, reaches 100% precision and 65.6% recall on the ProofNetVerif test split under our adjudicated labels, against 95.8% and 61.8% for BEq+, and an 8.9-fold increase in its CPU time adds at most three pairs. A language model finds more proofs, but under two of four prompts it proves both directions of about two in five of the non-equivalent pairs. SemantEq-ProofAudit audits each model-written proof under a policy derived from the relation and accepts none of the 104 non-equivalent pairs, and it raises recall on 407 equivalent pairs from 65.4% to 81.1% under the best prompt. Separating the generation of equivalence proofs from their acceptance lets a stronger prover raise recall without changing what an acceptance means. We release code and data at: <a href="https://github.com/hlxr89/SemantEq" target="_blank" rel="noopener">https://github.com/hlxr89/SemantEq</a></div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Autoformalization evaluators that test logical equivalence against a reference formalization accept unrelated pairs, because any two library-provable statements are trivially equivalent. Earlier methods such as BEq+ restrict the prover and check that the antecedent&#x27;s name appears in the script, which still admits false acceptances.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">SemantEq defines equivalence as a chain of allowed steps, such as logical rearrangement and rewriting with library equations, in each direction. SemantEq-Eval is a model-free Lean metaprogram that searches for such chains and audits the resulting proof term rather than the tactic script. SemantEq-ProofAudit checks proofs supplied by a language model against a policy derived from the relation. It assigns each proof-term position a role: goal derivation, antecedent argument, or rewrite justification.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.32919/checker_term_v2.png" alt=""><figcaption>Figure 4: The auditor gives each position in a proof term a role. The same library fact can be admitted as the justification of a rewrite and refused when it proves the goal directly.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On the ProofNetVerif test split under adjudicated labels, SemantEq-Eval reaches 100% precision and 65.6% recall, against 95.8% and 61.8% for BEq+. With LLM-written proofs, ProofAudit accepts none of the 104 non-equivalent pairs and raises recall on 407 equivalent pairs to 81.1%.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.32919/recall_vs_runtime_equivset.png" alt=""><figcaption>Figure 3: (A) Recall attainable when each pair is allowed at most \tau seconds, computed from the uncapped runs on the equivalent set . \texttt{BEq}+ leads below roughly 15 s per pair, and the curves level off at 65.4\% for SemantEq-Eval and at 61.4\% and 60.2\% for \texttt{BEq}+ on Lean v4.8 and on our toolchain. (B) Recall against mean cost per pair for each search configuration (Appendix I ).</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>System</th><th>TP</th><th>FP</th><th>Precision</th><th>Recall</th><th>F1</th></tr></thead><tbody><tr><td>SemantEq-Eval</td><td>242</td><td>0</td><td>100.0</td><td>65.6</td><td>79.2</td></tr><tr><td>BEq+</td><td>228</td><td>10</td><td>95.8</td><td>61.8</td><td>75.1</td></tr></tbody></table><div class="tbl-cap">ProofNetVerif test split, adjudicated labels (1,303 pairs)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
