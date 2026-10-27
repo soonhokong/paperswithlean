@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PastaLean: Deterministic transpilation from Python to Lean for Verification · Papers With Lean</title>
+<meta name="description" content="We present PastaLean, an extensible system for deterministic translation from Python to Lean via the Abstract Syntax Tree of Python. This allows for verification of Python code, especially auxiliary code used by AI. Every program is translated into a provable twin written in the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PastaLean: Deterministic transpilation from Python to Lean for Verification">
+<meta property="og:description" content="We present PastaLean, an extensible system for deterministic translation from Python to Lean via the Abstract Syntax Tree of Python. This allows for verification of Python code, especially auxiliary code used by AI. Every program is translated into a provable twin written in the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.34205.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.34205.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.34205v1" target="_blank" rel="noopener"><img src="../thumbs/2610.34205.jpg" alt="First page of PastaLean: Deterministic transpilation from Python to Lean for Verification"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">PastaLean: Deterministic transpilation from Python to Lean for Verification</h1>
+        <p class="authors">Anirudh Gupta, Petros Markopoulos, Siddhartha Gadgil</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Oct 25, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.34205v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.34205" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/siddhartha-gadgil/PastaLean" target="_blank" rel="noopener" title="siddhartha-gadgil/PastaLean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Transpiles Python into shallow Lean 4 embeddings via Lean metaprogramming, producing a provable twin with contract theorems and a runnable twin for execution.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present PastaLean, an extensible system for deterministic translation from Python to Lean via the Abstract Syntax Tree of Python. This allows for verification of Python code, especially auxiliary code used by AI. Every program is translated into a provable twin written in the form Lean&#x27;s verification tooling can reason about, and a runnable twin that gives a fast and correct computation support. We also introduce our Type Inference engine TypeInfer which provides static typing support for untyped Python code. Our tool provides coverage of more than 92% for LeetCode and HumanEval\textsuperscript{+} and more than 98% for LiveCodeBench ground truth Python files. Further, at least 97% of each dataset&#x27;s (numerical) test cases pass, with 100% on HumanEval\textsuperscript{+} and LiveCodeBench. The TypeInfer engine is the best-scoring tool on the TypeEvalPy static leaderboard, and on a repository-level TypyBench benchmark it scores above every competing repository-level inference tool.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Code produced by AI agents is mostly Python, while formal verification is done in languages such as Lean 4. Python&#x27;s dynamic typing, mutable state and object model make translating it into a verifiable form difficult.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">PastaLean parses Python with the built-in ast module, serializes the nodes to JSON, and recursively generates typed Lean syntax using extensible translation functions registered in a Lean environment extension. The Lean code is a shallow embedding with two twins: a provable twin for verification and a computable twin for execution. Contracts written in Python are translated into Lean theorems. A type inference engine, TypeInfer, supplies static types for untyped Python.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The generated Lean elaborates for 92.1% of HumanEval+, 92.4% of LeetCode and 98.5% of LiveCodeBench programs. Test agreement with CPython on elaborated programs is 100%, 97.0% and 100% respectively. TypeInfer scores best on the TypeEvalPy static leaderboard and on the repository-level TypyBench benchmark, and the translator outperforms direct LLM translation into Lean.</p><div class="sum-table"><table><thead><tr><th>Dataset</th><th>Problems</th><th>Elaborated (%)</th><th>Tests</th><th>Passed (%)</th></tr></thead><tbody><tr><td>HumanEval+</td><td>164</td><td>151 (92.1)</td><td>7,007</td><td>7,007 (100.0)</td></tr><tr><td>LeetCode</td><td>2,589</td><td>2,391 (92.4)</td><td>215,126</td><td>208,736 (97.0)</td></tr><tr><td>LiveCodeBench</td><td>476</td><td>469 (98.5)</td><td>10,213</td><td>10,213 (100.0)</td></tr></tbody></table><div class="tbl-cap">Code generation and execution (elaborated programs and passed tests)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

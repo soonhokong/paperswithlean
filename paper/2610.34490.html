@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Efficient Proof Generation for Lean Statements with Multiple Candidate Answers · Papers With Lean</title>
+<meta name="description" content="In formal systems such as Lean 4, efficiently finding answers to mathematical problems and generating verifiable proofs is an important task in automated mathematical reasoning. In the traditional way where an upstream solver provides multiple candidate answers, the common…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Efficient Proof Generation for Lean Statements with Multiple Candidate Answers">
+<meta property="og:description" content="In formal systems such as Lean 4, efficiently finding answers to mathematical problems and generating verifiable proofs is an important task in automated mathematical reasoning. In the traditional way where an upstream solver provides multiple candidate answers, the common…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.34490.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.34490.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.34490v1" target="_blank" rel="noopener"><img src="../thumbs/2610.34490.jpg" alt="First page of Efficient Proof Generation for Lean Statements with Multiple Candidate Answers"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Efficient Proof Generation for Lean Statements with Multiple Candidate Answers</h1>
+        <p class="authors">Pengzhen Lin, Ke Zhang, Maziar Raissi, Zhouxing Shi</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Oct 25, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.34490v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.34490" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Linppz/Gobble-Prover" target="_blank" rel="noopener" title="Linppz/Gobble-Prover">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Trains Lean 4 provers that select or propose candidate answers and prove them jointly in one call, verified by Lean 4.26.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">In formal systems such as Lean 4, efficiently finding answers to mathematical problems and generating verifiable proofs is an important task in automated mathematical reasoning. In the traditional way where an upstream solver provides multiple candidate answers, the common workflow requires searching for proofs for each candidate separately, incurring redundant computational cost. To this end, we propose a joint proof framework that integrates candidate answer selection, answer supplementation, and formal proof generation into a unified reasoning process. At its core is a trained prover that selects given or proposes new answers and generates a proof for at least one answer in a single call. Joint proof can also reuse generated proofs to check for faithfulness errors. For problems with a unique answer, if two distinct answers both obtain verifiable proofs under the same formal statement, this confirms the statement does not faithfully preserve the original problem semantics. On MATH-500, AMC 2023, and AIME 2024/2025/2026, our framework achieves the same formal proof success rate as per-candidate proof generation with about one sixth of the token cost, and identifies at least 6.1% of the formalized statements as unfaithful without requiring additional judges. Our model and code are available at <a href="https://github.com/Linppz/Gobble-Prover" target="_blank" rel="noopener">https://github.com/Linppz/Gobble-Prover</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">For answer-construction problems with several candidate answers from an upstream solver, standard pipelines autoformalize and prove each candidate separately in Lean. This multiplies prover and verifier cost. Unfaithful formalizations also often go undetected.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A joint proof framework gives the prover a single formal statement with an empty answer slot plus all the candidates. The prover selects provable candidates or proposes new ones, declares them, and writes one proof that covers them; Lean checks only the declared values. Gobble-Prover-1.7B and Gobble-Prover-4B are trained from Kimina-Prover-Distill-1.7B and Pythagoras-Prover-4B using SFT on 5,000 NuminaMath-LEAN-derived examples followed by GRPO. If two distinct answers to a unique-answer problem both pass Lean, the formal statement is flagged as unfaithful.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.34490/efficiency_n_to_1.png" alt=""><figcaption>Figure 1: Our joint proof framework versus the original per-candidate pipeline. For k candidates, the number of prover and Lean calls drops from O(k) to O(1) , and the prover can explore a larger space (answer E). Left: each formal statement is specific to a candidate answer for answer-construction problems. Right: candidates combined.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.34490/pathology_example.png" alt=""><figcaption>Figure 2: An unfaithful formal statement lets two values pass Lean. The problem asks how many kids share 12 candies when each gets 4, so the answer is 3, but the formalizer only asks which number divides 12 (dropping the condition that each kid gets 4), so every divisor of 12 becomes provable. Code A proves the statement with 3 (since 12=3\cdot 4 ) and Code B with 6 (since 12=6\cdot 2 ), two proof</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On MATH-500, AMC 2023, and AIME 2024-2026, the framework matches the formal proof success rate of per-candidate proving at about one sixth of the token cost. It flags at least 6.1% of formalized statements as unfaithful without extra judges.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.34490/budget_curves.png" alt=""><figcaption>Figure 3: Answer selection results ( Section 4.2 ). The first two panels plot accuracy (y-axis) against average prover output tokens per problem (x-axis). Accuracy is the fraction of problems whose correct answer Lean accepts within eight attempts. Markers indicate upstream solvers. Arrows go from each base prover (per-candidate) to our Gobble-Prover (joint proof). The third panel plots accuracy u</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Solver</th><th>Kimina-1.7B</th><th>Gobble-1.7B</th><th>Pythagoras-4B</th></tr></thead><tbody><tr><td>Gemma 4B</td><td>38.7</td><td>41.0</td><td>40.2</td></tr><tr><td>Qwen 0.8B</td><td>34.6</td><td>40.5</td><td>37.5</td></tr><tr><td>Qwen 2B</td><td>41.3</td><td>42.4</td><td>42.4</td></tr><tr><td>Qwen 9B</td><td>42.9</td><td>43.7</td><td>45.2</td></tr></tbody></table><div class="tbl-cap">Accuracy (%) on all benchmarks combined, per-candidate base prover vs. joint-proof Gobble-Prover, by upstream solver</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speculative Decoding for Mixture-of-Experts Models: Expert Bytes, Kernel Bandwidth and the Best Draft Length · Papers With Lean</title>
+<meta name="description" content="Speculative decoding checks several drafted tokens in one verification pass. On a mixture-of-experts (MoE) model, consecutive tokens often select the same experts. A deduplicating engine reads each selected expert once per pass, so it requests fewer bytes than a per-slot engine,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Speculative Decoding for Mixture-of-Experts Models: Expert Bytes, Kernel Bandwidth and the Best Draft Length">
+<meta property="og:description" content="Speculative decoding checks several drafted tokens in one verification pass. On a mixture-of-experts (MoE) model, consecutive tokens often select the same experts. A deduplicating engine reads each selected expert once per pass, so it requests fewer bytes than a per-slot engine,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.34440.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.34440.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.34440v1" target="_blank" rel="noopener"><img src="../thumbs/2610.34440.jpg" alt="First page of Speculative Decoding for Mixture-of-Experts Models: Expert Bytes, Kernel Bandwidth and the Best Draft Length"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Speculative Decoding for Mixture-of-Experts Models: Expert Bytes, Kernel Bandwidth and the Best Draft Length</h1>
+        <p class="authors">Yuzheng Lan</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 25, 2026 · v1</span>
+          <span class="badge">cs.DC</span> <span class="badge">cs.PF</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.34440v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.34440" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Theorems on when speculative decoding beats plain decoding, the optimal draft length, and bandwidth-error bounds are proved in Lean 4 against Mathlib (package MoESpec).</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Speculative decoding checks several drafted tokens in one verification pass. On a mixture-of-experts (MoE) model, consecutive tokens often select the same experts. A deduplicating engine reads each selected expert once per pass, so it requests fewer bytes than a per-slot engine, which reads it once per token. We write a step&#x27;s time as the bytes each kernel requests over its effective bandwidth, plus fixed time. Under geometric acceptance, we derive from this step time when speculation is faster than plain decoding. The best draft length is a monotone staircase in the acceptance rate. We bound how a bandwidth error moves each result, and we check the main steps in Lean. Deduplication is faster exactly where its share $\bar u(n)$ of the per-slot bytes is below its ratio $r(n)$ of the per-slot bandwidth. On llama.cpp Metal, MLX-LM and llama.cpp CUDA, which we modified to deduplicate, the per-slot kernel has the higher effective bandwidth (r = 0.32 to 0.75). Thus deduplication is faster only from 5 to 8 tokens per pass, or never. We fit the bandwidths on one layer&#x27;s expert operation, run alone, in under an hour per model. Bytes from routing traces over these bandwidths predict the time that deduplication saves. The measured saving lies inside its error bound at every point on CUDA and MLX-LM and at 36 of 48 points on Metal. The crossover is the first pass size at which deduplication is faster. The prediction places it within one pass size in 10 of 12 configurations of engine, model and depth. We computed these predictions after the measurements. On DeepSeek-V2-Lite, operation times measured before its speculative runs give the best draft length on CUDA within one at all 22 acceptance values.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Speculative decoding on mixture-of-experts models gives inconsistent speedups because verification-pass cost depends on expert reuse across tokens and on kernel bandwidth. The open questions are when speculation and expert deduplication are faster, and which draft length is best.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Step time is modeled as the bytes each kernel requests divided by its effective bandwidth, plus fixed time. Under geometric acceptance, the paper derives conditions for speculation to beat plain decoding, shows the best draft length is a monotone staircase in acceptance rate, and bounds the effect of bandwidth errors. The main steps are machine-checked in a Lean 4/Mathlib package called MoESpec. Predictions are tested on llama.cpp Metal, MLX-LM and llama.cpp CUDA, with engines modified to deduplicate.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The per-slot kernel has the higher effective bandwidth everywhere measured (r = 0.32 to 0.75), so deduplication is faster only from 5 to 8 tokens per pass, or never. The predicted crossover lies within one pass size in 10 of 12 configurations. On DeepSeek-V2-Lite, operation times measured before its speculative runs give the CUDA best draft length within one at all 22 acceptance values.</p><div class="sum-table"><table><thead><tr><th>engine</th><th>model</th><th>β_slot</th><th>β_dedup</th><th>r</th><th>ū</th></tr></thead><tbody><tr><td>llama.cpp CUDA</td><td>OLMoE</td><td>618</td><td>464</td><td>0.75</td><td>0.82</td></tr><tr><td>llama.cpp CUDA</td><td>gpt-oss</td><td>654</td><td>346</td><td>0.53</td><td>0.72</td></tr><tr><td>llama.cpp Metal</td><td>Qwen3</td><td>131</td><td>65</td><td>0.50</td><td>0.77</td></tr><tr><td>MLX-LM</td><td>OLMoE</td><td>129</td><td>75</td><td>0.58</td><td>0.82</td></tr></tbody></table><div class="tbl-cap">Effective bandwidths (GB/s), bandwidth ratio r and byte share ū at n=2 (subset)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

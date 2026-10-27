@@ -6,7 +6,128 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 25 Oct 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 26 Oct 2026 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Rainbow maps and the number of graceful labelings of trees</title>
+      <link>https://paperswithlean.com/paper/2610.34877.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.34877.html</guid>
+      <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Shisheng Li</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>combinatorics</category>
+      <description>The main asymptotic theorem is formalized in Lean 4 with Mathlib, provided as ancillary files. The combinatorial half is axiom-free and two Gamma-function identities are taken as axioms.
+
+Let $τ(N)$ be the number of graceful labelings of trees with $N$ edges, that is, the number of spanning trees of the complete graph on $\{0,1,\dots,N\}$ whose edges have distinct lengths. The answer to exercise 7.2.2.3-106 of The Art of Computer Programming states that, if an empirical observation of Anick is true, then $τ(n)=\exp(n\ln n-n\ln(e/b)+O(\log n))$ with $b\approx0.636$, and that rigorous proofs are unknown. We prove that $|\logτ(N)-(N\log N-N\log(e/b))|\le152(1+\log(N+1))^4$ for every $N\ge3$, with $b=2/π$. A rainbow map of order $N$ sends each vertex $k\in\{1,\dots,N-1\}$ to a vertex $f(k)\in\{0,\dots,N\}$ so that the lengths $|f(k)-k|$ are $1,\dots,N-1$ in some order. Acyclic rainbow maps are exactly the graceful labelings, and all rainbow maps are counted by the Whitty numbers $W(N)$ (OEIS A134983). We show that $τ(N)\le W(N)\leτ(N)e^{151(1+\log(N+1))^4}$ by a combinatorial argument: for fixed directions, rainbow maps are rook placements on a Ferrers board; a swap injection shows that a uniformly random rainbow map has $O(\log^2N)$ cycles on average; and an inequality on the periods of a word shows that the $c$ cycles of a rainbow map can be removed by changing $O(c\log N)$ edges. We also show that $W(N)$ is the total weight of a family of weighted Motzkin paths. This yields exact enumerations, an alternating sum for $W(N)$, and a representation of $W(N)$ as a moment of a continuous dual Hahn weight, from which $|\log W(N)-(N\log(2N/π)-N)|\le5(1+\log(N+1))$. The main theorem has been formalized in Lean 4; its combinatorial half uses no axioms beyond those of Lean.</description>
+    </item>
+    <item>
+      <title>When is greedy exact for weighted minimum 3-cut?</title>
+      <link>https://paperswithlean.com/paper/2610.34851.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.34851.html</guid>
+      <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Armando Rodado Amaris</dc:creator>
+      <category>formalization</category><category>combinatorics</category>
+      <description>Formalizes the greedy-exactness theorem, the 4/3 bound, the merge lemmas, and a 7-vertex counterexample (checked by kernel evaluation) in Lean 4.
+
+The greedy algorithm for minimum 3-cut splits a global minimum-weight cut and then the cheaper of its two sides; it is a tight $4/3$-approximation. We show that it is exact, from every global minimum-weight cut, whenever some optimal 3-partition has two parts joined by total weight at least the weighted edge connectivity $λ$. This extends both theorems of Hochbaum and Shmoys from unweighted planar graphs to all weighted graphs, recovers the $4/3$ bound, and generalizes to minimum $k$-cut with a one-paragraph proof. The remaining hard instances have all pair weights below $λ$; for them we prove a merge lemma for Gomory-Hu sides. Finally, we give a 7-vertex graph with a unique Gomory-Hu tree whose unique optimal 3-partition contains no side of that tree, so the first stage of Kapoor&#x27;s algorithm does not suffice on its own. The main theorem, the 4/3 bound, the merge lemmas and the counterexample are verified in the Lean 4 proof assistant.</description>
+    </item>
+    <item>
+      <title>Bounds for the univalent Bloch-Landau constant</title>
+      <link>https://paperswithlean.com/paper/2610.34580.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.34580.html</guid>
+      <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Frank Wikström</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>analysis</category>
+      <description>A Lean 4 formalization, using Mathlib&#x27;s exponential and logarithm bounds, proves the analytic bound U ≥ 0.592 with the Grunsky and Fekete–Szegő inequalities as hypotheses.
+
+The univalent Bloch-Landau constant $\mathcal{U}$ is the largest number such that, for every univalent function $f$ on the unit disk, $f(\mathbb{D})$ contains a disk of radius $\mathcal{U} |f&#x27;(0)|$. We prove $0.612242\le\mathcal{U}&lt;0.6562681$. The previous lower bound, $0.57088586$, came from growth estimates, which control disks centered at $f(0)$. Our improvement rests on a different mechanism. After Landau&#x27;s normalization, a $2\times2$ compression of the Grunsky matrix constrains every omitted value through the same two coefficients, and choosing the center of the disk from these coefficients exploits this shared information. A short analytic proof based on this idea gives $\mathcal{U}\ge0.592$; it has been formalized in Lean, with the classical Grunsky and Fekete-Szegő inequalities as the only external inputs. Retaining complex quadratic forms of the matrix gives $\mathcal{U}\ge0.612242$ through a finite interval certificate, and this bound holds for every normalized univalent function with $a_2=0$ and $|a_3|\le1/3$. We also show that no argument based on disks centered at $f(0)$ can give a bound above $0.6$. For the upper bound we construct an explicit domain, bounded by Goodman&#x27;s first two slit generations, thirty analytic arcs and a circle. We certify $\mathcal{U}&lt;0.6562681$ with a capacity estimate for almost critical arcs, improving the best published bound $0.6563937$.</description>
+    </item>
+    <item>
+      <title>Efficient Proof Generation for Lean Statements with Multiple Candidate Answers</title>
+      <link>https://paperswithlean.com/paper/2610.34490.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.34490.html</guid>
+      <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Pengzhen Lin, Ke Zhang, Maziar Raissi, Zhouxing Shi</dc:creator>
+      <category>theorem-proving-ml</category><category>autoformalization</category>
+      <description>Trains Lean 4 provers that select or propose candidate answers and prove them jointly in one call, verified by Lean 4.26.
+
+In formal systems such as Lean 4, efficiently finding answers to mathematical problems and generating verifiable proofs is an important task in automated mathematical reasoning. In the traditional way where an upstream solver provides multiple candidate answers, the common workflow requires searching for proofs for each candidate separately, incurring redundant computational cost. To this end, we propose a joint proof framework that integrates candidate answer selection, answer supplementation, and formal proof generation into a unified reasoning process. At its core is a trained prover that selects given or proposes new answers and generates a proof for at least one answer in a single call. Joint proof can also reuse generated proofs to check for faithfulness errors. For problems with a unique answer, if two distinct answers both obtain verifiable proofs under the same formal statement, this confirms the statement does not faithfully preserve the original problem semantics. On MATH-500, AMC 2023, and AIME 2024/2025/2026, our framework achieves the same formal proof success rate as per-candidate proof generation with about one sixth of the token cost, and identifies at least 6.1% of the formalized statements as unfaithful without requiring additional judges. Our model and code are available at https://github.com/Linppz/Gobble-Prover.</description>
+    </item>
+    <item>
+      <title>Speculative Decoding for Mixture-of-Experts Models: Expert Bytes, Kernel Bandwidth and the Best Draft Length</title>
+      <link>https://paperswithlean.com/paper/2610.34440.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.34440.html</guid>
+      <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Yuzheng Lan</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>ml-theory</category>
+      <description>Theorems on when speculative decoding beats plain decoding, the optimal draft length, and bandwidth-error bounds are proved in Lean 4 against Mathlib (package MoESpec).
+
+Speculative decoding checks several drafted tokens in one verification pass. On a mixture-of-experts (MoE) model, consecutive tokens often select the same experts. A deduplicating engine reads each selected expert once per pass, so it requests fewer bytes than a per-slot engine, which reads it once per token. We write a step&#x27;s time as the bytes each kernel requests over its effective bandwidth, plus fixed time. Under geometric acceptance, we derive from this step time when speculation is faster than plain decoding. The best draft length is a monotone staircase in the acceptance rate. We bound how a bandwidth error moves each result, and we check the main steps in Lean. Deduplication is faster exactly where its share $\bar u(n)$ of the per-slot bytes is below its ratio $r(n)$ of the per-slot bandwidth. On llama.cpp Metal, MLX-LM and llama.cpp CUDA, which we modified to deduplicate, the per-slot kernel has the higher effective bandwidth (r = 0.32 to 0.75). Thus deduplication is faster only from 5 to 8 tokens per pass, or never. We fit the bandwidths on one layer&#x27;s expert operation, run alone, in under an hour per model. Bytes from routing traces over these bandwidths predict the time that deduplication saves. The measured saving lies inside its error bound at every point on CUDA and MLX-LM and at 36 of 48 points on Metal. The crossover is the first pass size at which deduplication is faster. The prediction places it within one pass size in 10 of 12 configurations of engine, model and depth. We computed these predictions after the measurements. On DeepSeek-V2-Lite, operation times measured before its speculative runs give the best draft length on CUDA within one at all 22 acceptance values.</description>
+    </item>
+    <item>
+      <title>PastaLean: Deterministic transpilation from Python to Lean for Verification</title>
+      <link>https://paperswithlean.com/paper/2610.34205.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.34205.html</guid>
+      <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Anirudh Gupta, Petros Markopoulos, Siddhartha Gadgil</dc:creator>
+      <category>verification</category><category>tooling</category>
+      <description>Transpiles Python into shallow Lean 4 embeddings via Lean metaprogramming, producing a provable twin with contract theorems and a runnable twin for execution.
+
+We present PastaLean, an extensible system for deterministic translation from Python to Lean via the Abstract Syntax Tree of Python. This allows for verification of Python code, especially auxiliary code used by AI. Every program is translated into a provable twin written in the form Lean&#x27;s verification tooling can reason about, and a runnable twin that gives a fast and correct computation support. We also introduce our Type Inference engine TypeInfer which provides static typing support for untyped Python code. Our tool provides coverage of more than 92% for LeetCode and HumanEval\textsuperscript{+} and more than 98% for LiveCodeBench ground truth Python files. Further, at least 97% of each dataset&#x27;s (numerical) test cases pass, with 100% on HumanEval\textsuperscript{+} and LiveCodeBench. The TypeInfer engine is the best-scoring tool on the TypeEvalPy static leaderboard, and on a repository-level TypyBench benchmark it scores above every competing repository-level inference tool.</description>
+    </item>
+    <item>
+      <title>BFGS can converge to non-Clarke-stationary points with positive probability</title>
+      <link>https://paperswithlean.com/paper/2610.34087.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.34087.html</guid>
+      <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Lexiao Lai</dc:creator>
+      <category>formalization</category><category>analysis</category>
+      <description>The main result, that BFGS converges to a non-Clarke-stationary point, is formalized in Lean in an accompanying GitHub repository.
+
+We construct a coercive, locally Lipschitz, semialgebraic function on $\mathbb R^2$ for which BFGS with Armijo–Wolfe line search converges to a non-Clarke-stationary point from a nonempty open set of initial points and inverse-Hessian estimates. This disproves the almost-sure stationarity assertion in the 2013 challenge of Lewis and Overton. The construction and proof combine analytical arguments with computer-assisted verification of explicit inequalities.</description>
+    </item>
+    <item>
+      <title>Numina Fuse: Interactive Autoformalization in Lean 4</title>
+      <link>https://paperswithlean.com/paper/2610.33860.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.33860.html</guid>
+      <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Justin Asher, Yichuan Cao, Ruichen Qiu, Pietro Pellegrino, Jia Li</dc:creator>
+      <category>autoformalization</category><category>ai-agents</category><category>tooling</category><category>theorem-proving-ml</category>
+      <description>Builds an agent-based application for autoformalization of mathematics in Lean 4 with blueprints, and evaluates LLM prover models on Lean lemmas.
+
+Numina Fuse is an agent-native application for formalizing mathematics in Lean 4. Since Lean can compile while not representing its intended informal meaning, and agents now write Lean faster than people can read it, we built Fuse around human supervision of agent work. A user works with an AI orchestrator on a Lean project and supervises it through views of the blueprint, the dependency graph, and the Lean code, while the backend keeps the project&#x27;s derived state and runs agents for hours without the user present. We describe the development of Fuse throughout 2026, as it moved from a prescribed pipeline of agents paced by human review to an orchestrator that dispatches specialists, provers, and parallel children on its own. We designed for this shift, keeping project state, tooling, and interface design separate from orchestration so that agents could take over more of the work as models improved. We report Fuse&#x27;s use in a formalization of the three-dimensional Kakeya conjecture and a study of prover models. We close with lessons for the next generation of autoformalization systems. Fuse Desktop, an open-source local version, is available at https://github.com/project-numina/fuse-desktop.</description>
+    </item>
+    <item>
+      <title>Coordinate systems and maximal order complexity in Banach lattices</title>
+      <link>https://paperswithlean.com/paper/2610.33462.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.33462.html</guid>
+      <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>A. Avilés, C. Rosendal, M. A. Taylor, P. Tradacete</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>analysis</category><category>logic</category>
+      <description>The paper&#x27;s results on order bases and coanalytic complexity in Banach lattices are formalized in Lean 4 using Mathlib and the BanLat library, with LLM assistance.
+
+We resolve three questions arising from the study of coordinate systems and order convergence in Banach lattices. Firstly, every order (respectively, $σ$-order) basis $(e_n)$ for a Banach lattice $X=[e_n]$ is automatically a Schauder basis. In fact, the associated partial sum projections satisfy a maximal inequality, and hence every such basis is uniform. Secondly, we show that there is a separable Banach lattice $X$ in which the set $$ X_{\downarrow0}=\{(x_n)\in X^{\mathbb N}:x_1\geqslant x_2\geqslant\ldots\geqslant 0=\inf_nx_n\} $$ is $\mathbfΠ^1_1$-complete. Finally, we construct a separable Banach lattice $Y$ for which the set $Y^{\uparrow\infty}$ of increasing positive sequences which are not order bounded is $\mathbfΠ^1_1$-complete. It follows that neither $X_{\downarrow0}$ nor $Y^{\uparrow\infty}$ can be described in any simpler way than by the nonexistence of positive lower and upper bounds, respectively.</description>
+    </item>
+    <item>
+      <title>The Cost of an Unknown Horizon for the Last Iterate of Clipped SGD under Heavy-Tailed Noise</title>
+      <link>https://paperswithlean.com/paper/2610.33381.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.33381.html</guid>
+      <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Yuxing Peng, Zhiqing Tang, Weijia Jia</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>ml-theory</category><category>probability</category>
+      <description>Machine-checked proofs in Lean 4 with Mathlib of the lower bounds (Theorems 5, 11(i)) and the known-horizon last-iterate bound for clipped SGD.
+
+Training is often stopped at a data-dependent time, as in early stopping, and the last iterate is kept. Guarantees valid at such times must hold at all times simultaneously. We determine the optimal time-uniform rate for the last iterate of clipped SGD on smooth convex objectives under heavy-tailed noise with a bounded central $p$th moment, $1&lt;p\le2$. A schedule without horizon or confidence inputs attains $\tilde O(t^{-β_p})$ at all times, with $β_p=2(p-1)/(3p-1)$, also almost surely, and no rule that steps along the stochastic gradient at its current iterate attains $\tilde O(t^{-r})$ for any $r&gt;β_p$, even with adaptive step sizes and thresholds. This rate lies between the optimal rate $O(T^{-α_p})$ for a known horizon $T$, $α_p=(p-1)/p$, and the previous time-uniform rate $\tilde O(t^{-2(p-1)/(3p)})$ (Chezhegov et al., ICLR 2026); under finite variance, the exponents are $1/2$, $2/5$, and $1/3$. Their conjecture that a better schedule reaches the optimal rate thus holds with a known horizon, as shown by Liu and by Jiang et al., but fails without one. Querying gradients at the running average of the iterates attains $\tilde O(t^{-α_p})$ at all times, whereas heavy-ball momentum with geometric forgetting and polynomially bounded steps cannot improve on $β_p$.</description>
+    </item>
+    <item>
+      <title>Formalising John Dee&#x27;s Monas Hieroglyphica in Lean 4</title>
+      <link>https://paperswithlean.com/paper/2610.33104.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.33104.html</guid>
+      <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Ivan Matychyn</dc:creator>
+      <category>formalization</category><category>number-theory</category>
+      <description>Formalises the theorems of John Dee&#x27;s Monas Hieroglyphica in Lean 4 core (no Mathlib), including a constructive proof that the cube root of 2 is irrational.
+
+John Dee&#x27;s Monas Hieroglyphica (Antwerp, 1564) contains twenty-four numbered theorems about a single composite alchemical glyph, presented in the manner of Euclid: theorem, demonstration, corollary. In this note the following question is considered: which of Dee&#x27;s theorems can be stated precisely in a proof assistant, and which of them can then be proved? Working in Lean 4 (v4.35.0) with the core library only (without Mathlib), we divide the treatise into three layers: the syntax of the glyph, encoded as inductive data; Dee&#x27;s arithmetic, verified by kernel computation; and the geometry of the final theorems, in connection with which we prove a classical result not stated by Dee: no ratio of whole numbers doubles the cube, that is, the cube root of two is irrational (the Delian obstruction). The accompanying file Monas.lean compiles with no errors and no sorry. Two observations are made. The cabalistic computation of Theorem XVII, according to which the Cross, &quot;by the best kabbalistic computation,&quot; signifies the number 252, is verified, and its proof depends on no axioms: it is a pure computation. The only theorem of the formalisation with genuine mathematical content, the Delian obstruction, is proved constructively and depends only on the axioms propext and Quot.sound.</description>
+    </item>
     <item>
       <title>SemantEq: Faithful Bidirectional Equivalence of Formal Statements</title>
       <link>https://paperswithlean.com/paper/2610.32919.html</link>
@@ -453,10 +574,10 @@ It is known, by works of Werner and Carneiro, that the type theory of Lean (and 
       <guid isPermaLink="true">https://paperswithlean.com/paper/2610.30383.html</guid>
       <pubDate>Thu, 22 Oct 2026 00:00:00 +0000</pubDate>
       <dc:creator>Chakshu Gupta</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>cryptography</category><category>algebra</category>
-      <description>A Lean 4 and Mathlib artifact certifies the one-per-layer rank-and-kernel theorem for 256-coefficient forward NTT shapes over fields with 2≠0, plus inverse kernel equalities.
+      <category>verification</category><category>formalization</category><category>cryptography</category><category>mathlib</category>
+      <description>Lean 4 with Mathlib certifies the one-per-layer kernel equalities of the forward (and inverse) NTT difference maps at n=256 for ML-KEM and ML-DSA shapes.
 
-NIST standardised ML-KEM and ML-DSA in 2024 for post-quantum key establishment and digital signatures. Both compute forward number-theoretic transforms (NTTs) on secret polynomials. Published attacks zero every fixed multiplier, or twiddle, during Kyber key generation with a single fault, or individual twiddles in one Dilithium signing variant; countermeasures detect or mask these faults. Nonzero replacements preserve invertibility, but the uncompressed correct-minus-faulted transform difference can still expose input information. This paper characterises the linear map from a secret polynomial to this difference under arbitrary static twiddle replacements, including bit-flips. For one fault, rank equals the number of butterflies sharing its twiddle, halving by layer from 128 to 2 for ML-KEM and to 1 for ML-DSA. Known positions, replacement values and the difference determine that many independent linear combinations of input coefficients. With one fault per layer, all but the constant and linear coefficients for ML-KEM, or the constant for ML-DSA, are determined; Lean 4 certifies this rank-and-kernel result. Those coefficients cancel for every fault set and choice of replacement values. NIST permits seed storage, motivating comparison of a known correct key with a released faulty key from the same seed. If only one ML-KEM secret-polynomial NTT is faulted, the key difference is a known matrix column times the transform difference; an invertible column entry reconstructs the latter. For ML-DSA, neither reconstruction nor the number of secret-polynomial candidates from compressed key differences is established. The per-layer ranks give a closed-form measure of raw exposure for countermeasure design.</description>
+NIST-standardised ML-KEM and ML-DSA use forward number-theoretic transforms on secret polynomials. This paper characterises the linear map from a polynomial to the difference between its correct and faulted transforms under static twiddle replacements. Each selected twiddle takes a fixed changed field value at every use during one call, including zeroing, nonzero replacements and qualifying bit flips. For one replacement, the difference-map rank equals the number of butterflies sharing that twiddle, halving by layer from 128 to 2 for ML-KEM and to 1 for ML-DSA. With one replacement per layer and the map and difference known, every coefficient is determined except the constant and linear coefficients for ML-KEM, or the constant for ML-DSA. Lean 4 certifies the corresponding kernel equalities for both 256-coefficient network shapes over fields of characteristic other than two with all original twiddles nonzero. The unresolved coefficients cancel from the transform difference for every allowed fault set. NIST permits seed storage, motivating comparison of a known correct public key with a released faulty key from the same seed. If only one ML-KEM secret-polynomial transform is affected and all other computations are unchanged, the decoded key difference is a known public-matrix column times the transform difference. An invertible column entry reconstructs the latter. For ML-DSA, reconstruction and exact candidate counts from paired compressed public keys are not established.</description>
     </item>
     <item>
       <title>Lean-QuantumAlg: A Framework for AI Agents to Produce Quantum Algorithms that Humans Can Trust</title>
@@ -545,127 +666,6 @@ We revisit the problem of depth separation for neural networks, as studied by El
       <description>The proof of the Erdős–Szemerédi sunflower conjecture was machine-verified in Lean 4, with the formalization to be released in the Palomar repository.
 
 In the 1970s, Erdős and Szemerédi conjectured that for any $n \ge k-1\ge 2$, any collection of subsets of $[n]$ not containing a $k$-sunflower has size at most $c_k^n$ for some $c_k&lt;2$. In the $k=3$ case, this follows from the work of Croot, Lev, and Pach and Ellenberg and Gijswijt on the cap-set problem, through a reduction due to Alon, Shpilka, and Umans. We prove the conjecture for every $k \ge 3$.</description>
-    </item>
-    <item>
-      <title>Eliciting Specifications: When Does Interactive Clarification Help?</title>
-      <link>https://paperswithlean.com/paper/2610.22382.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.22382.html</guid>
-      <pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Mowafak Allaham, Aditya Vempaty, Ashish Jagmohan, Prasenjit Dey, Ravi Kokku</dc:creator>
-      <category>autoformalization</category><category>ai-agents</category><category>verification</category>
-      <description>LLM agents clarify task descriptions before formalizing them into Lean 4 pre/postcondition specifications, evaluated on the Verina benchmark with Lean compilation and soundness/completeness checks.
-
-LLMs can generate Lean specifications from task descriptions, but those descriptions are often underspecified or ambiguous and may omit verifier-relevant edge cases, yielding imperfect formal specifications. We study whether an elicitation agent (EA) can improve verifier-checked Lean specifications by seeking clarification from a reference-grounded simulated developer before formalization. The agent decomposes the task, identifies unresolved decisions, asks bounded clarification questions, and uses the answers to write a refined natural-language specification that an LLM formalizer then translates into Lean. On 189 Verina Lean 4 specification-generation tasks, we compare single-shot generation with elicitation under question budgets of k=3 and k=10, allowing at most three or ten EA questions per task, across same-model and cross-model configurations. The same-model Claude Sonnet 4.6 pipeline has negative strict pass@1 estimates at both budgets, showing elicitation is not a uniform accuracy booster. In contrast, the Sonnet 4.6-to-GPT-5.6 and Sonnet 4.6-to-Gemini 3.8 Flash pipelines have positive strict estimates. The largest strict result reaches 65.6%, a +6.3-point change (+12 tasks), in the Sonnet 4.6-to-GPT-5.6 pipeline. Six of eight conditions have positive compile-conditional estimates, with a maximum cross-model difference of +4.9 points among compiling outputs. Treatment estimates also differ across the basic and advanced splits; the largest advanced-task change occurs in the Sonnet 4.6-to-GPT-5.6 configuration at k=10, from 42.0% to 50.6%. Failure analysis identifies postconditions as the largest source of degradation. These findings suggest future autoformalization systems should treat elicited natural-language specifications as intermediate artifacts and optimize jointly for semantic correctness among compiling outputs and reliable translation of clarified information into Lean.</description>
-    </item>
-    <item>
-      <title>A Complete Dichotomy for $L_\infty$ Permutation Removal</title>
-      <link>https://paperswithlean.com/paper/2610.28271.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.28271.html</guid>
-      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Viet Hung Le, Ruilin Shi, Fan Wei</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>combinatorics</category><category>ai-agents</category>
-      <description>All theorems, lemmas and constructions are formalized in Lean 4 with Mathlib, with the Lean code produced by an AI (Claude) formalize-paper workflow; repository provided.
-
-We study the removal problem for permutation patterns under the normalized $L_\infty$ earth mover&#x27;s distance. We prove a complete dichotomy. Let \[ \mathcal E =\{(12),(21),(132),(213),(231),(312)\}. \] If $σ\in\mathcal E$, then every permutation of length $n$ that is $\varepsilon$-far from being $σ$-free contains at least $\varepsilon(n-1)$ copies of $σ$; for $0&lt;\varepsilon\le 1/16$, this is sharp up to a constant factor for all sufficiently large $n$. If $σ\in S_k\setminus\mathcal E$, then for every sufficiently large $n$ there is a permutation of length $n$ that is $1/(8k)$-far from being $σ$-free and contains exactly one copy of $σ$. Thus the usual positive-density removal conclusion fails for every nontrivial permutation pattern, but the sparse behavior is completely characterized: the minimum number of copies is linear for exactly six patterns and is one for all others. Consequently, no canonical one-sided tester that rejects only after finding a forbidden copy can have query complexity independent of the permutation length.</description>
-    </item>
-    <item>
-      <title>Non-expansive maps between unit balls that send the sphere onto the sphere are linear isometries</title>
-      <link>https://paperswithlean.com/paper/2610.28111.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.28111.html</guid>
-      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Kaarel August Kurik</dc:creator>
-      <category>formalization</category><category>analysis</category>
-      <description>The main theorem and the key rigidity lemma were formally proved in Lean, with statements and proofs hosted on the Prove2Me platform.
-
-Let $X$, $Y$ be real Banach spaces with closed unit balls $B_X$, $B_Y$ and unit spheres $S_X$, $S_Y$. We prove that every non-expansive map $F\colon B_X\to B_Y$ with $F(S_X)\subseteq S_Y\subseteq F(B_X)$ is the restriction of a surjective linear isometry $X\to Y$. Consequently, a non-expansive bijection of $B_X$ onto itself that fails to be an isometry must map some point of $S_X$ into the open unit ball, so the plasticity of $B_X$ reduces to showing that non-expansive bijections preserve norm 1. The proof shows that $F$ is Fréchet differentiable at $0$ with a surjective linear isometry $T$ as its derivative, and then proves $T^{-1}F=\mathrm{id}$ using a quantitative rigidity lemma for non-expansive self-maps $H$ of $B_X$ satisfying $\|a+H(a)\|=2$ for $a\in S_X$; the latter relies on the Baillon-Bruck rate of asymptotic regularity for Krasnosel&#x27;skii-Mann iterations. As a corollary, the identity is extremal in the set of non-expansive self-maps of $B_X$ for every Banach space $X$, which together with a result of Bargetz, Dymond and Pirk shows that all surjective isometries of $B_X$ are extremal, answering a question of theirs, including the case of $L^1[0,1]$.</description>
-    </item>
-    <item>
-      <title>Irrationality exponents of logarithmic numbers: Values, quotients, and graded approximation</title>
-      <link>https://paperswithlean.com/paper/2610.28079.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.28079.html</guid>
-      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Gregory V. Chudnovsky</dc:creator>
-      <category>formalization</category><category>number-theory</category>
-      <description>Supplies a Lean supplement checking endpoints for all 62 numbered results: 53 directly checked endpoints or compositions, and nine relying on named classical theorem inputs.
-
-We establish degree-dependent irrationality-exponent bounds for logarithms at algebraic arguments and sharper bounds when conjugate logarithms match. A two-torus construction gives an upper bound of three for ratios of logarithms of multiplicatively independent positive rational numbers. We also treat normalized quadratic logarithms and circular logarithms. The rational-logarithm and rational-power exponent-two cases were treated earlier by Liu, Jiang and Zhang; we retain them within the broader framework and its Lean verification. Starting from the interpolation and determinant method in OpenAI&#x27;s September 24, 2026 preprint on the irrationality exponent of $π$, we track the arithmetic cost of algebraic embeddings and the effects of matching conjugate logarithms. A second, graded Pade construction gives near-optimal measures for powers and bounded-degree polynomial values at sufficiently small logarithmic arguments, with estimates uniform in both coefficient height and rational denominator. We state the branch, independence, parameter-order, and approximation-field hypotheses explicitly. The Lean supplement has reviewed endpoint correspondences for all 62 numbered results: 53 direct checked endpoints or compositions, and nine applications with named classical theorem inputs. Native proofs of those inputs and separate formalizations of every unnumbered assertion are not supplied. Appendix A gives the exact declarations, hypotheses, and verification evidence.</description>
-    </item>
-    <item>
-      <title>Lower Bounds for Smooth Nonconvex Zeroth-Order Optimization: The Price of Determinism under Low Curvature Trace</title>
-      <link>https://paperswithlean.com/paper/2610.27550.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.27550.html</guid>
-      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Yuxing Peng, Zhiqing Tang, Weijia Jia</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>ml-theory</category><category>analysis</category>
-      <description>Deterministic lower and upper bounds (Theorem 3.2, Corollary 3.3) and the three-point upper bound are formalized in Lean 4 with Mathlib, provided as an ancillary artifact.
-
-Low curvature trace, an effective rank condition, is a common explanation for why randomized zeroth-order methods scale to high-dimensional tasks such as language model fine-tuning. Can deterministic methods achieve the same savings? We show that they cannot. We study finding $\varepsilon$-stationary points of $L$-smooth nonconvex functions on $\mathbb{R}^d$ from exact function values, assuming that below the starting value the Hessian is dominated by a fixed matrix with trace at most $LE$; this is a fixed-matrix form of the effective rank condition used to explain zeroth-order fine-tuning. When $ET\le d$, the Gaussian two-point method that such fine-tuning uses needs only $O(ET)$ calls if it rejects steps that raise $f$, where $T=LΔ/\varepsilon^2$ is the iteration count of gradient descent from initial gap $Δ$, and we prove that every randomized method needs $Ω(ET)$ calls, so this cost is optimal up to constants. In contrast, every deterministic method needs $\widetildeΩ(d\min\{T,\sqrt{ET}\})$ calls, and adaptive subspace search attains $O(d\min\{T,\sqrt{ET}\})$: a deterministic method pays about $d$ calls per discovered direction, and the trace budget allows about $\sqrt{ET}$ directions. Determinism thus multiplies the cost by a factor of order $d/(E+\sqrt{ET})$ up to logarithmic factors, which grows linearly with $d$ for fixed $E$ and $T$; once $E$ exceeds $T$ by a logarithmic factor, deterministic methods need $Ω(dT)$ calls, as without any trace budget. Our lower bounds hold for $C^\infty$ functions with the matrix bound on all of $\mathbb{R}^d$, even when each call also returns gradient projections priced by rank.</description>
-    </item>
-    <item>
-      <title>An orthogonality inequality in $\mathbb{RP}^{n-1}$ and the double-cap conjecture</title>
-      <link>https://paperswithlean.com/paper/2610.27523.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.27523.html</guid>
-      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Allen Ibiapina, Carlos Gomes, Alan Pio, Samuel Belo, Ernandes Ferreira</dc:creator>
-      <category>formalization</category><category>geometry</category><category>ai-agents</category>
-      <description>The main neighborhood inequality and double-cap theorem, with rigidity, are machine-checked in Lean 4 (LeanShadow repository) via a different, largely AI-assisted proof.
-
-The orthogonal neighborhood of a set in real projective space is the union of the hyperplanes perpendicular to its points. We prove that caps minimize neighborhood measure among measurable sets of fixed measure in $\mathbb{RP}^{n-1}$, for $n \geq 3$, with rigidity up to null sets. This yields the double-cap conjecture: a measurable subset of $S^{n-1}$ containing no orthogonal pair has measure at most that of two opposite open caps of radius $π/4$. The argument combines compactness of the Funk transform, rotation comparisons, and projective variations. We also obtain qualitative stability and determine the measurable fractional chromatic number of the spherical orthogonality graph. AI played an assistive role in preparing this paper. The formalization and verification workflow for a separate Lean 4 proof of the main inequality and double-cap result, based on a different argument, were carried out almost entirely using AI-assisted tools.</description>
-    </item>
-    <item>
-      <title>Record Types Everywhere</title>
-      <link>https://paperswithlean.com/paper/2610.27519.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.27519.html</guid>
-      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Matthew Toohey, Ara Jamalzadeh, Ningning Xie</dc:creator>
-      <category>verification</category><category>formalization</category><category>type-theory</category>
-      <description>The record calculus, its reference extension, all metatheorems, and a verified interpreter equivalent to the operational semantics are mechanized in Lean 4.
-
-This paper introduces a novel calculus that models first-class environments and function application paradigms using standard record types. By proposing new extensions to general record types, we achieve a design that is remarkably simple and principled. We formalise this design in a core calculus and prove several desirable properties, including type soundness, normalization, and a simulation of the simply typed lambda calculus. Additionally, we extend the design with mutable references. The calculus, its semantics, along with the extension, and all stated properties are fully mechanized in the Lean 4 proof assistant, alongside an interpreter formally verified to be equivalent to the operational semantics.</description>
-    </item>
-    <item>
-      <title>A 55-Addition Rank-23 Scheme for $3\times3$ Matrix Multiplication via Exact Two-Sided Minimization</title>
-      <link>https://paperswithlean.com/paper/2610.27451.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.27451.html</guid>
-      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Greg Sidebottom</dc:creator>
-      <category>verification</category><category>mathlib</category><category>algebra</category>
-      <description>Correctness of the 55-addition 3x3 matrix multiplication scheme is machine-checked in Lean 4, using Mathlib&#x27;s Matrix API, over general non-commutative rings.
-
-We give a scheme that multiplies two $3\times3$ matrices with 23 multiplications and 55 additions over any ring, one addition below the previous record of 56 (Sun, 2026) and the first below 56 for exact non-commutative $3\times3$ multiplication without a change of basis. The scheme forms 13 signed combinations of the entries of A and 14 of B, takes 23 products, and recombines them with 28 further additions; its correctness is machine-checked in Lean 4. The previous records, from 60 down to 56, were obtained by greedy common-subexpression elimination, which only bounds each side of a scheme from above. We minimize both input sides exactly by chain covering, and the output side exactly through the transposition principle: the 9-by-23 output map costs its transpose plus 14, and the transpose is a 9-input map that the input-side minimizer solves exactly. Applied to Perminov&#x27;s cn122 scheme (class i19w225c4efh, published at 58 additions) this gives 55 = 13 + 14 + 28, where greedy elimination reaches only 29 on the output side. The same method shows that Sun&#x27;s representative is output-optimal at 56, and an exact orbit-wide computation over the Heule-Kauers-Seidl database shows that the record class is the only database class attaining 55.</description>
-    </item>
-    <item>
-      <title>On Maximum Clique and Maximum Consensus Formulations in Point Cloud Registration</title>
-      <link>https://paperswithlean.com/paper/2610.27275.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.27275.html</guid>
-      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Abolfazl Babanazari, Kaveh Fathian</dc:creator>
-      <category>formalization</category><category>geometry</category>
-      <description>All proofs relating maximum clique, maximum consensus, and group-k consistency bounds were formally verified in Lean, with the formalization released online.
-
-Maximum clique and maximum consensus are widely used formulations for robust point cloud registration in robotics. Maximum consensus seeks one transformation that aligns as many matches as possible, while maximum clique selects matches through pairwise distance tests. Maximum clique is often used as a substitute for or an approximation to maximum consensus, with empirical evidence suggesting a close relationship. However, how closely the two formulations agree is not fully understood. We study this relationship theoretically. We show that a maximum clique can have arbitrarily large alignment error and be arbitrarily larger than the maximum consensus set at any fixed positive tolerance, and derive geometric conditions that bound this error. When rotation is fixed, we derive sharp error bounds and tests that exactly characterize maximum consensus for the translation subproblem. Finally, we study group-$k$ consistency, which tests groups of $k$ matches, and determine the smallest group sizes that guarantee alignment error bounds independent of point cloud scale and geometry. These are $d+1$ for rotations and translations and $d+2$ when reflections are allowed, in dimensions $d\ge 2$. Interactive examples and proof verification using the Lean theorem prover are available at https://ariarobotics.github.io/mc-vs-mc-registration/.</description>
-    </item>
-    <item>
-      <title>Class polynomial obstructions to canonical congruences for the smallest parts function</title>
-      <link>https://paperswithlean.com/paper/2610.27145.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.27145.html</guid>
-      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Larry Rolen</dc:creator>
-      <category>formalization</category><category>autoformalization</category><category>number-theory</category>
-      <description>The paper&#x27;s proofs were formally verified in Lean by AxiomProver, with the formalization files posted in a public GitHub repository.
-
-We resolve an open conjecture by proving that the only &quot;canonical” Ramanujan congruence primes for the Andrews&#x27; smallest parts function, $\operatorname{spt}(n)$, are $\ell= 5, 7, 13$. Building on work of Ahlgren and Kim, we show that any such congruence forces square-index coefficients of certain weakly holomorphic forms of weight $1/2$ to vanish modulo the congruence prime. A normalized Borcherds product converts this into the vanishing of the derivative of a quotient of two oriented CM polynomials on $X_0(6)$. A quaternionic volume estimate in an Eichler order of level $6$ prevents that vanishing when a suitable inert discriminant is small. Treviño&#x27;s character estimate supplies such a discriminant for every prime at least $10^{11}$. The remaining range is covered by the previous calculations of Ahlgren and Kim. These results have been verified in Lean by AxiomProver.</description>
-    </item>
-    <item>
-      <title>ReuF2F: Benchmarking Coding Agents on Formalized Undergraduate Research Problems</title>
-      <link>https://paperswithlean.com/paper/2610.27046.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.27046.html</guid>
-      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Zeyu Zheng, Yiyang Liu, Yuyang Zhao, Congmin Zheng, Jiachen Zhu, Jianian Chen, Kangning Zhang, Kayue Daniel Wong, Lingyu Yang, Rong Shan, Shihao Chen, Thomas Zhu, Wentao Zhang, Xiaopeng Li, Yan Hu, Yongxi Lin, Yuxiang Chen, Zhuoying Ou, Jianghao Lin, Jeremy Avigad, Prasad Tetali, Jingbang Chen, Sean Welleck</dc:creator>
-      <category>benchmark</category><category>ai-agents</category><category>theorem-proving-ml</category><category>mathlib</category>
-      <description>Introduces a Lean 4 benchmark of 244 formalized REU open problems, with agent submissions checked by Comparator, the Lean kernel, and nanoda.
-
-As AI systems begin to resolve open research problems, reliable verification becomes increasingly important. Formal mathematics provides a trusted framework for mathematical reasoning, enabling agents to produce machine-checkable proofs while conducting mathematical exploration. Existing formal mathematics benchmarks often focus on known results or a small set of prominent open problems, which can become difficult to evaluate reliably once solutions are discovered and widely disseminated. Existing evaluation protocols are also not always aligned with how modern coding agents operate. We therefore introduce ReuF2F, a Lean 4 benchmark of 244 formalized open problems drawn from Research Experiences for Undergraduates (REU), spanning entry-level open research problems across a broad range of mathematical subfields. We expect these less prominent open problems, which tend to attract less attention and may remain unsolved for longer, to be better suited for held-out evaluation of end-to-end open problem resolution in Lean. We adopt a standard coding-agent evaluation setting, placing each problem and its logical negation into a Lean project in a Docker container. We also build Leanimum-agent on mini-SWE-agent to provide a unified harness for fair comparisons across models. Our evaluation finds that even the best-performing model resolves only  40% of the problems, leaving substantial room for improvement on formalized open research problems.</description>
     </item>
   </channel>
 </rss>

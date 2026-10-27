@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rainbow maps and the number of graceful labelings of trees · Papers With Lean</title>
+<meta name="description" content="Let $τ(N)$ be the number of graceful labelings of trees with $N$ edges, that is, the number of spanning trees of the complete graph on $\{0,1,\dots,N\}$ whose edges have distinct lengths. The answer to exercise 7.2.2.3-106 of The Art of Computer Programming states that, if an…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rainbow maps and the number of graceful labelings of trees">
+<meta property="og:description" content="Let $τ(N)$ be the number of graceful labelings of trees with $N$ edges, that is, the number of spanning trees of the complete graph on $\{0,1,\dots,N\}$ whose edges have distinct lengths. The answer to exercise 7.2.2.3-106 of The Art of Computer Programming states that, if an…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.34877.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.34877.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.34877v1" target="_blank" rel="noopener"><img src="../thumbs/2610.34877.jpg" alt="First page of Rainbow maps and the number of graceful labelings of trees"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Rainbow maps and the number of graceful labelings of trees</h1>
+        <p class="authors">Shisheng Li</p>
+        <div class="row">
+          <span class="badge">math.CO</span>
+          <span class="date">Oct 26, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.34877v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.34877" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://arxiv.org/src/2610.34877v1/anc" target="_blank" rel="noopener" title="arXiv ancillary files">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The main asymptotic theorem is formalized in Lean 4 with Mathlib, provided as ancillary files. The combinatorial half is axiom-free and two Gamma-function identities are taken as axioms.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Let $τ(N)$ be the number of graceful labelings of trees with $N$ edges, that is, the number of spanning trees of the complete graph on $\{0,1,\dots,N\}$ whose edges have distinct lengths. The answer to exercise 7.2.2.3-106 of The Art of Computer Programming states that, if an empirical observation of Anick is true, then $τ(n)=\exp(n\ln n-n\ln(e/b)+O(\log n))$ with $b\approx0.636$, and that rigorous proofs are unknown. We prove that $|\logτ(N)-(N\log N-N\log(e/b))|\le152(1+\log(N+1))^4$ for every $N\ge3$, with $b=2/π$. A rainbow map of order $N$ sends each vertex $k\in\{1,\dots,N-1\}$ to a vertex $f(k)\in\{0,\dots,N\}$ so that the lengths $|f(k)-k|$ are $1,\dots,N-1$ in some order. Acyclic rainbow maps are exactly the graceful labelings, and all rainbow maps are counted by the Whitty numbers $W(N)$ (OEIS A134983). We show that $τ(N)\le W(N)\leτ(N)e^{151(1+\log(N+1))^4}$ by a combinatorial argument: for fixed directions, rainbow maps are rook placements on a Ferrers board; a swap injection shows that a uniformly random rainbow map has $O(\log^2N)$ cycles on average; and an inequality on the periods of a word shows that the $c$ cycles of a rainbow map can be removed by changing $O(c\log N)$ edges. We also show that $W(N)$ is the total weight of a family of weighted Motzkin paths. This yields exact enumerations, an alternating sum for $W(N)$, and a representation of $W(N)$ as a moment of a continuous dual Hahn weight, from which $|\log W(N)-(N\log(2N/π)-N)|\le5(1+\log(N+1))$. The main theorem has been formalized in Lean 4; its combinatorial half uses no axioms beyond those of Lean.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Knuth&#x27;s TAOCP exercise 7.2.2.3-106 asks for the asymptotics of τ(N), the number of graceful labelings of trees with N edges. An empirical prediction exists, but no rigorous proof was known.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Graceful labelings are compared with rainbow maps, which are counted by the Whitty numbers W(N). A swap injection shows that a random rainbow map has O(log² N) cycles on average. An exchange argument then removes the cycles by changing O(c log N) edges. W(N) is also expressed as the total weight of weighted Motzkin paths and as a moment of a continuous dual Hahn weight, which gives sharp estimates.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For N ≥ 3, |log τ(N) − (N log N − N log(e/b))| ≤ 152(1+log(N+1))⁴ with b = 2/π, confirming Anick&#x27;s constant b ≈ 0.636. The main theorem is formalized in Lean 4 with Mathlib.</p><div class="sum-table"><table><thead><tr><th>N</th><th>τ(N)</th><th>W(N)</th><th>τ(N)/W(N)</th></tr></thead><tbody><tr><td>6</td><td>164</td><td>168</td><td>0.9762</td></tr><tr><td>10</td><td>155632</td><td>171168</td><td>0.9092</td></tr><tr><td>15</td><td>6502948232</td><td>7697178880</td><td>0.8448</td></tr><tr><td>20</td><td>1366258578159064</td><td>1714108476337152</td><td>0.7971</td></tr></tbody></table><div class="tbl-cap">Graceful labelings τ(N) versus Whitty numbers W(N)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formalising John Dee&#x27;s Monas Hieroglyphica in Lean 4 · Papers With Lean</title>
+<meta name="description" content="John Dee&#x27;s Monas Hieroglyphica (Antwerp, 1564) contains twenty-four numbered theorems about a single composite alchemical glyph, presented in the manner of Euclid: theorem, demonstration, corollary. In this note the following question is considered: which of Dee&#x27;s theorems can…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Formalising John Dee&#x27;s Monas Hieroglyphica in Lean 4">
+<meta property="og:description" content="John Dee&#x27;s Monas Hieroglyphica (Antwerp, 1564) contains twenty-four numbered theorems about a single composite alchemical glyph, presented in the manner of Euclid: theorem, demonstration, corollary. In this note the following question is considered: which of Dee&#x27;s theorems can…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.33104.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.33104.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.33104v1" target="_blank" rel="noopener"><img src="../thumbs/2610.33104.jpg" alt="First page of Formalising John Dee&#x27;s Monas Hieroglyphica in Lean 4"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Formalising John Dee&#x27;s Monas Hieroglyphica in Lean 4</h1>
+        <p class="authors">Ivan Matychyn</p>
+        <div class="row">
+          <span class="badge">math.HO</span>
+          <span class="date">Oct 22, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.33104v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.33104" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://arxiv.org/src/2610.33104v1/anc" target="_blank" rel="noopener" title="arXiv ancillary files">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalises the theorems of John Dee&#x27;s Monas Hieroglyphica in Lean 4 core (no Mathlib), including a constructive proof that the cube root of 2 is irrational.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">John Dee&#x27;s Monas Hieroglyphica (Antwerp, 1564) contains twenty-four numbered theorems about a single composite alchemical glyph, presented in the manner of Euclid: theorem, demonstration, corollary. In this note the following question is considered: which of Dee&#x27;s theorems can be stated precisely in a proof assistant, and which of them can then be proved? Working in Lean 4 (v4.35.0) with the core library only (without Mathlib), we divide the treatise into three layers: the syntax of the glyph, encoded as inductive data; Dee&#x27;s arithmetic, verified by kernel computation; and the geometry of the final theorems, in connection with which we prove a classical result not stated by Dee: no ratio of whole numbers doubles the cube, that is, the cube root of two is irrational (the Delian obstruction). The accompanying file Monas.lean compiles with no errors and no sorry. Two observations are made. The cabalistic computation of Theorem XVII, according to which the Cross, &quot;by the best kabbalistic computation,&quot; signifies the number 252, is verified, and its proof depends on no axioms: it is a pure computation. The only theorem of the formalisation with genuine mathematical content, the Delian obstruction, is proved constructively and depends only on the axioms propext and Quot.sound.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">John Dee&#x27;s 1564 Monas Hieroglyphica presents twenty-four Euclid-style theorems about an alchemical glyph. The question is which of these theorems can be stated precisely in a proof assistant, and which of those can then be proved.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Using Lean 4 (v4.35.0) with only the core library, the treatise is split into three layers. In the first, the glyph&#x27;s syntax is encoded as an inductive type, with compositional claims proved by rfl or simp. In the second, Dee&#x27;s arithmetic and numerology identities are checked by the kernel using decide. In the third, motivated by a reading that links the final proportions to doubling the cube, a result Dee did not state is proved: that p^3 = 2q^3 has no solution with q nonzero, by infinite descent using omega and ac_rfl.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Monas.lean (324 lines) compiles with no errors, warnings, or sorry. The 252 computation of Theorem XVII depends on no axioms. The irrationality of the cube root of 2 is proved constructively, depending only on propext and Quot.sound.</p><div class="sum-table"><table><thead><tr><th>Theorem(s)</th><th>Content</th><th>Status</th></tr></thead><tbody><tr><td>VIII</td><td>tetraktys; X is the 21st letter</td><td>verified arithmetic</td></tr><tr><td>XI</td><td>Aries is two semicircles</td><td>definitional (rfl)</td></tr><tr><td>XII</td><td>planetary signs from Moon, Sun, Elements, Aries</td><td>verified (computation)</td></tr><tr><td>XIV</td><td>the magistery depends on Sun and Moon</td><td>not formalised (alchemical)</td></tr><tr><td>XVII</td><td>the Cross signifies 252</td><td>verified arithmetic (no axioms)</td></tr></tbody></table><div class="tbl-cap">Status of selected theorems in Monas.lean</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

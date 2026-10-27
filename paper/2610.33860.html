@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Numina Fuse: Interactive Autoformalization in Lean 4 · Papers With Lean</title>
+<meta name="description" content="Numina Fuse is an agent-native application for formalizing mathematics in Lean 4. Since Lean can compile while not representing its intended informal meaning, and agents now write Lean faster than people can read it, we built Fuse around human supervision of agent work. A user…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Numina Fuse: Interactive Autoformalization in Lean 4">
+<meta property="og:description" content="Numina Fuse is an agent-native application for formalizing mathematics in Lean 4. Since Lean can compile while not representing its intended informal meaning, and agents now write Lean faster than people can read it, we built Fuse around human supervision of agent work. A user…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.33860.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.33860.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.33860v1" target="_blank" rel="noopener"><img src="../thumbs/2610.33860.jpg" alt="First page of Numina Fuse: Interactive Autoformalization in Lean 4"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Numina Fuse: Interactive Autoformalization in Lean 4</h1>
+        <p class="authors">Justin Asher, Yichuan Cao, Ruichen Qiu, Pietro Pellegrino, Jia Li</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 24, 2026 · v1</span>
+          <span class="badge">cs.LG</span> <span class="badge">cs.LO</span> <span class="badge">cs.SE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.33860v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.33860" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/project-numina/fuse-desktop" target="_blank" rel="noopener" title="project-numina/fuse-desktop">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds an agent-based application for autoformalization of mathematics in Lean 4 with blueprints, and evaluates LLM prover models on Lean lemmas.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Numina Fuse is an agent-native application for formalizing mathematics in Lean 4. Since Lean can compile while not representing its intended informal meaning, and agents now write Lean faster than people can read it, we built Fuse around human supervision of agent work. A user works with an AI orchestrator on a Lean project and supervises it through views of the blueprint, the dependency graph, and the Lean code, while the backend keeps the project&#x27;s derived state and runs agents for hours without the user present. We describe the development of Fuse throughout 2026, as it moved from a prescribed pipeline of agents paced by human review to an orchestrator that dispatches specialists, provers, and parallel children on its own. We designed for this shift, keeping project state, tooling, and interface design separate from orchestration so that agents could take over more of the work as models improved. We report Fuse&#x27;s use in a formalization of the three-dimensional Kakeya conjecture and a study of prover models. We close with lessons for the next generation of autoformalization systems. Fuse Desktop, an open-source local version, is available at <a href="https://github.com/project-numina/fuse-desktop" target="_blank" rel="noopener">https://github.com/project-numina/fuse-desktop</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Lean code can compile without faithfully representing its intended informal mathematics, and AI agents now write Lean faster than humans can review it. Large formalization projects need humans to supervise agent work on faithfulness, reuse, and drift.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Numina Fuse is an agent-native web application built on GitHub-hosted Lean and leanblueprint projects. A user works with an AI orchestrator (Claude Code or Codex sessions) that dispatches specialist, prover, and child-orchestrator agents through MCP tool servers for blueprints, builds, the Lean LSP, Mathlib search, and source papers. The backend caches the project&#x27;s derived state and runs sessions persistently. Project state and tooling are kept separate from orchestration, so the orchestration evolved from a fixed human-paced pipeline to autonomous dispatch as models improved.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.33860/fuse-desktop.png" alt=""><figcaption>Figure 2: Fuse Desktop ( https://github.com/project-numina/fuse-desktop ), the open-source local version, on the Kakeya formalization. Left: the chat with the orchestrator, which narrates its plan, groups its tool calls, and shows provers running as Claude Code subagents ( Prove ml2thick , Prove ml2slab ). Right: the rendered blueprint, with each definition’s label, linked Lean declaration, and fo</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.33860/fuse-graph.png" alt=""><figcaption>Figure 9: The dependency graph in Fuse Desktop, colored by declaration status (unformalized, formalized, complete), with each node showing its linked Lean declaration.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Fuse was used for much of a formalization of the three-dimensional Kakeya conjecture, where human reviewers caught statement errors introduced by agents. In a study of seven prover models on 52 lemmas, all solved 45–52, while cost per solved lemma varied by more than an order of magnitude. This motivated routing proof search to inexpensive models while a frontier model orchestrates.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Solved</th><th>Hard (of 13)</th><th>$ per solved lemma</th></tr></thead><tbody><tr><td>Doubao Seed 2.1 Turbo</td><td>52/52</td><td>13</td><td>0.080</td></tr><tr><td>Claude Sonnet 4.6</td><td>51/52</td><td>12</td><td>0.421</td></tr><tr><td>Claude Opus 4.8</td><td>49/52</td><td>12</td><td>0.526</td></tr><tr><td>DeepSeek V4 Flash</td><td>47/52</td><td>10</td><td>0.041</td></tr><tr><td>DeepSeek V4 Pro</td><td>45/52</td><td>10</td><td>0.218</td></tr></tbody></table><div class="tbl-cap">Prover models on 52 lemmas, one attempt each (selected rows)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
