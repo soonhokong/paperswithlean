@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MechAlign: Evaluating Semantic Alignment at the Project Level in Mathematical Formalization · Papers With Lean</title>
+<meta name="description" content="Lean verifies that a formal proof establishes its stated proposition under declared assumptions, but does not check whether that proposition faithfully expresses the mathematical claim in a manuscript. Assessing this correspondence requires interpreting the main theorem through…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MechAlign: Evaluating Semantic Alignment at the Project Level in Mathematical Formalization">
+<meta property="og:description" content="Lean verifies that a formal proof establishes its stated proposition under declared assumptions, but does not check whether that proposition faithfully expresses the mathematical claim in a manuscript. Assessing this correspondence requires interpreting the main theorem through…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.35269.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.35269.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.35269v1" target="_blank" rel="noopener"><img src="../thumbs/2610.35269.jpg" alt="First page of MechAlign: Evaluating Semantic Alignment at the Project Level in Mathematical Formalization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">MechAlign: Evaluating Semantic Alignment at the Project Level in Mathematical Formalization</h1>
+        <p class="authors">Hao Shen, Ruichen Qiu, Lihong Zhi, Xiao-Shan Gao</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Oct 26, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.35269v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.35269" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds LeanTrace, which extracts statement dependency graphs from elaborated Lean 4 declarations, enabling LLM review of semantic alignment and a benchmark from Lean projects.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Lean verifies that a formal proof establishes its stated proposition under declared assumptions, but does not check whether that proposition faithfully expresses the mathematical claim in a manuscript. Assessing this correspondence requires interpreting the main theorem through its project dependencies, which may be scattered throughout a large development. We introduce MechAlign, a framework for project-level semantic alignment review that combines formal dependency extraction with LLM-based assessment. Its extraction tool, LeanTrace, constructs a statement dependency graph from elaborated declarations, retaining definition bodies and structure constraints while excluding proof bodies and stopping at an explicit library boundary. The reviewer uses this context to investigate alignment and report discrepancies with localized evidence. We conduct a preliminary review of 201 main results from 173 OpenAI Math projects, using supplied informal descriptions and available paper context. A hyperbolic-group case illustrates how dependency inspection localizes a missing dimensional constraint relative to the manuscript, consistent with the upstream declaration of formalization scope. We also construct LeanReviewBench, comprising 501 fixed claim-statement-context triples from OpenAI Math, Fermat&#x27;s Last Theorem, and Kakeya, with description provenance recorded. The resource supports controlled comparisons of more project-level semantic alignment evaluations.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Lean checks that a proof establishes its stated proposition. It does not check whether that formal statement faithfully expresses the informal claim in a manuscript. Judging this correspondence requires interpreting project-specific definitions and constraints scattered across large developments.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">MechAlign combines formal dependency extraction with LLM-based review. Its extractor, LeanTrace, starts from a theorem&#x27;s elaborated type and follows declaration types and non-proof definition bodies, including constructors and structure constraints. It excludes proofs and stops at an explicit library boundary. A Reviewer agent navigates the resulting graph to label each target aligned, misaligned, or undetermined, citing localized evidence.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.35269/magnifier.png" alt=""><figcaption>Figure 1: Overview of MechAlign. The Selector obtains the paper and formal statements, LeanTrace extracts the formal dependency context, and the Reviewer assesses alignment using both formal and paper context.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">A preliminary review covered 201 main results from 173 OpenAI Math Lean projects. A hyperbolic-group case shows dependency inspection localizing a missing dimensional constraint relative to the manuscript. LeanReviewBench provides 501 fixed claim-statement-context triples from OpenAI Math (201), Fermat&#x27;s Last Theorem (200), and Kakeya (100). Controlled comparisons of review strategies are still planned.</p><div class="sum-table"><table><thead><tr><th>Collection</th><th>Def.</th><th>Theorem</th><th>Abbrev.</th><th>Total</th></tr></thead><tbody><tr><td>OpenAI</td><td>3,382</td><td>2,830</td><td>1,594</td><td>8,767</td></tr><tr><td>FLT</td><td>1,039</td><td>1,604</td><td>385</td><td>3,404</td></tr><tr><td>Kakeya</td><td>900</td><td>700</td><td>730</td><td>2,914</td></tr></tbody></table><div class="tbl-cap">Retained declarations by kind per collection (subset of columns)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

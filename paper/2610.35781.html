@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Persistence Pays: Square-root condition-number dependence for Metropolis-adjusted kinetic Langevin Monte Carlo with a non-reversibly updated accept/reject uniform · Papers With Lean</title>
+<meta name="description" content="We prove accelerated mixing for a Metropolis-adjusted kinetic Langevin sampler: the OBABO splitting with friction $2\sqrt m$, adjusted with Neal&#x27;s non-reversibly updated uniform, which is redrawn after every epoch of $E$ steps. For targets $e^{-U}$ on $\mathbb{R}^d$ with…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Persistence Pays: Square-root condition-number dependence for Metropolis-adjusted kinetic Langevin Monte Carlo with a non-reversibly updated accept/reject uniform">
+<meta property="og:description" content="We prove accelerated mixing for a Metropolis-adjusted kinetic Langevin sampler: the OBABO splitting with friction $2\sqrt m$, adjusted with Neal&#x27;s non-reversibly updated uniform, which is redrawn after every epoch of $E$ steps. For targets $e^{-U}$ on $\mathbb{R}^d$ with…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.35781.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.35781.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.35781v1" target="_blank" rel="noopener"><img src="../thumbs/2610.35781.jpg" alt="First page of Persistence Pays: Square-root condition-number dependence for Metropolis-adjusted kinetic Langevin Monte Carlo with a non-reversibly updated accept/reject uniform"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Persistence Pays: Square-root condition-number dependence for Metropolis-adjusted kinetic Langevin Monte Carlo with a non-reversibly updated accept/reject uniform</h1>
+        <p class="authors">Nawaf Bou-Rabee</p>
+        <div class="row">
+          <span class="badge">math.PR</span>
+          <span class="date">Oct 26, 2026 · v1</span>
+          <span class="badge">math.NA</span> <span class="badge">stat.CO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.35781v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.35781" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/nawafbourabee/persistence-pays-lean" target="_blank" rel="noopener" title="nawafbourabee/persistence-pays-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Main theorems and key propositions, with their supporting definitions, are formalized and checked in Lean 4 against Mathlib; sources are in a public repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We prove accelerated mixing for a Metropolis-adjusted kinetic Langevin sampler: the OBABO splitting with friction $2\sqrt m$, adjusted with Neal&#x27;s non-reversibly updated uniform, which is redrawn after every epoch of $E$ steps. For targets $e^{-U}$ on $\mathbb{R}^d$ with $mI\preceq\nabla^2U\preceq LI$ and an $L_H$-Lipschitz Hessian, started from a Gaussian at an approximate minimizer, the chain reaches total variation accuracy $\varepsilon$ after $\tilde O\big(\sqrt{κd}+\sqrt{L_H}(d/m)^{3/4}\big)$ gradient evaluations, where $κ=L/m$ and $\tilde O$ hides logarithmic factors. The $\sqrtκ$ term is necessary, already on Gaussian targets. The proof discretizes Lu&#x27;s entropic hypocoercivity by means of an entropy inequality for free transport, so that the relative entropy of the unadjusted chain decays at a rate of order $\sqrt m$ up to a discretization bias. With the non-reversibly updated uniform, the leading energy errors of velocity Verlet telescope along a path. A coupling argument combines the two. On Bayesian logistic regression posteriors for two standard data sets, which satisfy these assumptions, the gradient cost of the chain with the non-reversibly updated uniform grows roughly like the square root of the condition number at the posterior mode, and that of standard adjusted OBABO roughly like its $3/4$ power.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">It is an open question whether the square-root condition-number acceleration of kinetic Langevin dynamics survives numerical discretization with Metropolis adjustment for strongly log-concave targets. The work addresses this for Metropolis-adjusted OBABO under a Lipschitz-Hessian assumption, started from a warm start.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The sampler uses OBABO with friction 2√m and Neal&#x27;s non-reversibly updated accept/reject uniform, redrawn once per epoch. The proof discretizes Lu&#x27;s entropic hypocoercivity using a new entropy inequality for free transport. It exploits the fact that leading velocity Verlet energy errors telescope along a path under the persistent uniform, and combines this with a coupling argument. The main theorems and Propositions 2.4 and 3.1 are formalized in Lean 4 with Mathlib, using only the standard axioms.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The chain reaches total variation accuracy ε after Õ(√(κd) + √L_H (d/m)^{3/4}) gradient evaluations, and the √κ term is shown to be necessary. On Bayesian logistic regression posteriors, the measured cost grows roughly like √κ, compared with κ^{3/4} for standard adjusted OBABO.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

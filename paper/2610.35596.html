@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KAPPA: Checking the Proofs in Statistics Papers with Lean 4 and Language Model Agents · Papers With Lean</title>
+<meta name="description" content="Papers in statistical theory rest on long proofs that few readers check line by line. We present KAPPA (Kit of Agents for Proof-checking Papers with a proof Assistant), open-source software that organizes language model agents, run by Claude Code, to translate the proofs of a…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KAPPA: Checking the Proofs in Statistics Papers with Lean 4 and Language Model Agents">
+<meta property="og:description" content="Papers in statistical theory rest on long proofs that few readers check line by line. We present KAPPA (Kit of Agents for Proof-checking Papers with a proof Assistant), open-source software that organizes language model agents, run by Claude Code, to translate the proofs of a…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.35596.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.35596.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.35596v1" target="_blank" rel="noopener"><img src="../thumbs/2610.35596.jpg" alt="First page of KAPPA: Checking the Proofs in Statistics Papers with Lean 4 and Language Model Agents"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">KAPPA: Checking the Proofs in Statistics Papers with Lean 4 and Language Model Agents</h1>
+        <p class="authors">Zihua She, Xiao Wang</p>
+        <div class="row">
+          <span class="badge">stat.CO</span>
+          <span class="date">Oct 26, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.35596v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.35596" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ziwaa-se/kappa" target="_blank" rel="noopener" title="ziwaa-se/kappa">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Language model agents translate statistics papers&#x27; statements and proofs into Lean 4 with Mathlib, which then checks each result along the paper&#x27;s own route.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Papers in statistical theory rest on long proofs that few readers check line by line. We present KAPPA (Kit of Agents for Proof-checking Papers with a proof Assistant), open-source software that organizes language model agents, run by Claude Code, to translate the proofs of a LaTeX paper into the proof assistant Lean 4 with its library Mathlib and check them there, result by result. Each numbered result receives one of four verdicts: verified unconditionally; verified conditionally, with every cited or unproved input stated as a named hypothesis; issue recorded, with its place in the paper and the side at fault; or unfinished, with the reason. The kit follows the paper&#x27;s own proof step by step, rather than finding a new one. Separate agents write and review, each statement is compared with the paper before it is proved and fingerprinted afterwards, and every verdict rests on evidence that can be rerun without a language model. The kit runs unattended for hours, waits out usage limits, re-checks only what a revision changed and reports its cost by role, model and result. We describe the design, walk through a complete run, and apply the kit to four example papers with answer keys and to three published statistical papers, checked blind in their versions from before public corrections. In all three, the kit found the published error at the step that the correction names, together with further problems that we confirmed by hand. Given the same papers directly, the same language model working with Lean classified fewer results correctly on the longest paper and reported some statements narrower than the paper&#x27;s as proved; no verdict of the kit claimed more than its Lean evidence showed.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Statistics papers rest on long appendix proofs that few readers check line by line, and published errors often sit in a single checkable step. Expert formalization takes weeks, and a language model&#x27;s informal review is just another argument that someone has to check.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">KAPPA is open-source software that organizes Claude Code agents to translate each numbered result of a LaTeX paper, and the paper&#x27;s own proof, into Lean 4 with Mathlib. Separate agents draft, gate-review statements against the paper, prove, audit, and confirm issues, and each statement is fingerprinted after review. Each result receives one of four verdicts: verified unconditionally, verified conditionally with cited inputs as named hypotheses, issue recorded with a class and the side at fault, or unfinished. Every verdict rests on Lean evidence and mechanical audits that can be replayed offline without a language model.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The kit reached the expected verdicts on four example papers with answer keys. On three published statistics papers, checked blind in their versions from before public corrections, it found the published error at the step the correction names, plus further problems confirmed by hand. Compared with the same model used directly as an agent or a chat, the kit classified all 23 results correctly and never claimed more than its Lean evidence showed.</p><div class="sum-table"><table><thead><tr><th>Paper (results)</th><th>Correctly classified</th><th>Faithful in Lean</th><th>Hidden or without Lean evidence</th></tr></thead><tbody><tr><td>A (5)</td><td>5 / 5 / 5</td><td>3 / 3 / 0</td><td>0 / 2 / 3</td></tr><tr><td>B (12)</td><td>12 / 9 / 10</td><td>10 / 5 / 0</td><td>0 / 4 / 8</td></tr><tr><td>C (6)</td><td>6 / 6 / 6</td><td>2 / 4 / 0</td><td>0 / 0 / 2</td></tr><tr><td>Total (23)</td><td>23 / 20 / 21</td><td>15 / 12 / 0</td><td>0 / 6 / 13</td></tr></tbody></table><div class="tbl-cap">Kit / direct agent / direct chat on three published papers</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
