@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Stable Are LLM-Generated Proofs Under Program Refactoring? A Stress Test for Verifiable Code Generation · Papers With Lean</title>
+<meta name="description" content="Benchmarks for verifiable code generation usually test a proof against one fixed implementation. We ask whether the same proof remains valid after a program refactoring that preserves behavior. We introduce RefactorProof, which derives 458 Lean-certified variants from the 185…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How Stable Are LLM-Generated Proofs Under Program Refactoring? A Stress Test for Verifiable Code Generation">
+<meta property="og:description" content="Benchmarks for verifiable code generation usually test a proof against one fixed implementation. We ask whether the same proof remains valid after a program refactoring that preserves behavior. We introduce RefactorProof, which derives 458 Lean-certified variants from the 185…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.36328.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.36328.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.36328v1" target="_blank" rel="noopener"><img src="../thumbs/2610.36328.jpg" alt="First page of How Stable Are LLM-Generated Proofs Under Program Refactoring? A Stress Test for Verifiable Code Generation"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">How Stable Are LLM-Generated Proofs Under Program Refactoring? A Stress Test for Verifiable Code Generation</h1>
+        <p class="authors">Aravind Mandiga, Guoming Li</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 26, 2026 · v1</span>
+          <span class="badge">cs.LO</span> <span class="badge">cs.SE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.36328v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.36328" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/aravind-mandiga/refactorproof" target="_blank" rel="noopener" title="aravind-mandiga/refactorproof">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a benchmark of Lean-certified behavior-preserving refactorings of VERINA tasks and re-checks fixed Lean proofs against them to measure proof survival.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Benchmarks for verifiable code generation usually test a proof against one fixed implementation. We ask whether the same proof remains valid after a program refactoring that preserves behavior. We introduce RefactorProof, which derives 458 Lean-certified variants from the 185 VERINA tasks that compile in our pinned environment while holding the specification and evaluated proof fixed byte-for-byte. VERINA supplies reference proofs for 46 tasks, all from its basic split; the primary model-versus-reference comparisons further match on 21-25 short, non-recursive tasks. Structural refactorings expose substantial brittleness across proof sources: task-normalized structural PSR is 4.3% for the supplied references and 13.3-26.8% for the specialized provers. On the matched tasks, specialized prover proofs nevertheless have higher overall unchanged-proof survival than the supplied reference artifacts: +15.6 points for DeepSeek-Prover-V2-7B, +18.8 for Goedel-Prover-V2-32B, and +20.3 for Goedel-Prover-V2-8B; all three 95% CIs exclude zero. The ordering persists after excluding universally survived T1 variants, under family-balanced aggregation, and under alternative deployable valid-proof selection rules. However, unchanged-proof failure is not the same as high repair cost: predefined one-identifier edits repair 51/54 eligible reference structural failures and 58/85 eligible prover failures. RefactorProof therefore measures unchanged-proof stability under program refactoring, not the cost of maintaining a proof after it breaks.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Benchmarks for verifiable code generation check a proof against one fixed implementation. It is unclear whether LLM-generated and reference proofs stay valid after behavior-preserving refactorings of the program.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">RefactorProof applies five deterministic transformation families (let-introduction, helper extraction, commutative swap, condition inversion, branch extraction) to the implementations of VERINA tasks. Each variant is kept only if Lean proves its equivalence to the original in a separate file. The specification and proof are held byte-identical, and the unchanged proof is then re-checked against the new implementation. Proof survival rate (PSR) is compared across reference proofs and specialized provers, with sensitivity analyses and a mechanical one-identifier repair experiment.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.36328/refactorproof_evaluation.png" alt=""><figcaption>Figure 1: RefactorProof evaluation design and a T2 helper-extraction example. (a) Each candidate refactoring C^{\prime} is kept only if Lean separately proves \forall\bar{x}.\,C(\bar{x})=C^{\prime}(\bar{x}) ; candidates for which the fixed automatic certificate search finds no proof are excluded and are not thereby shown incorrect. The specification S and proof P remain byte-identical, the certifi</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The benchmark contains 458 certified variants from 185 tasks. Structural refactorings break most proofs: structural PSR is 4.3% for reference proofs and 13.3–26.8% for provers. On matched tasks, DeepSeek-Prover-V2-7B and Goedel-Prover-V2 proofs survive 15.6–20.3 points more often than the references. One-identifier edits repair 51/54 eligible reference structural failures and 58/85 eligible prover failures.</p><div class="sum-table"><table><thead><tr><th>Proof source</th><th>Tasks</th><th>Overall PSR (%)</th><th>D</th><th>S</th><th>E</th></tr></thead><tbody><tr><td>DeepSeek-Prover-V2-7B</td><td>31</td><td>59.3</td><td>100.0</td><td>13.3</td><td>72.2</td></tr><tr><td>Goedel-Prover-V2-32B</td><td>26</td><td>64.5</td><td>100.0</td><td>26.0</td><td>67.6</td></tr><tr><td>Goedel-Prover-V2-8B</td><td>29</td><td>64.6</td><td>100.0</td><td>26.8</td><td>72.4</td></tr><tr><td>reference</td><td>46</td><td>47.9</td><td>100.0</td><td>4.3</td><td>44.2</td></tr></tbody></table><div class="tbl-cap">Overall PSR by proof source and transformation class</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

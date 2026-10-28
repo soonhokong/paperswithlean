@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Counting by the Book: Verifying Alaska&#x27;s Ranked-Choice Elections · Papers With Lean</title>
+<meta name="description" content="We present Alaska&#x27;s ranked-choice elections as a case study in Formally Verified Democracy, a program to establish election results through formally checked proofs. We formalize an interpretation of Alaska&#x27;s tabulation rules in Lean, verify its implementation, and prove…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Counting by the Book: Verifying Alaska&#x27;s Ranked-Choice Elections">
+<meta property="og:description" content="We present Alaska&#x27;s ranked-choice elections as a case study in Formally Verified Democracy, a program to establish election results through formally checked proofs. We formalize an interpretation of Alaska&#x27;s tabulation rules in Lean, verify its implementation, and prove…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.36494.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.36494.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.36494v1" target="_blank" rel="noopener"><img src="../thumbs/2610.36494.jpg" alt="First page of Counting by the Book: Verifying Alaska&#x27;s Ranked-Choice Elections"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Counting by the Book: Verifying Alaska&#x27;s Ranked-Choice Elections</h1>
+        <p class="authors">Lucy Horowitz</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Oct 27, 2026 · v1</span>
+          <span class="badge">cs.CY</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-lime" href="../#tag=economics">economics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.36494v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.36494" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/lucyhorowitz/FVDemocracy" target="_blank" rel="noopener" title="lucyhorowitz/FVDemocracy">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes Alaska&#x27;s ranked-choice tabulation statute in Lean 4, proves a tabulator implementation correct against the specification, and kernel-checks the tabulation results of 115 contests.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present Alaska&#x27;s ranked-choice elections as a case study in Formally Verified Democracy, a program to establish election results through formally checked proofs. We formalize an interpretation of Alaska&#x27;s tabulation rules in Lean, verify its implementation, and prove election-specific results. Across 115 ranked-choice contests in Alaska since 2022, we identify 75 ballot records across 10 contests that were counted differently from this interpretation by a program reproducing the published results, without changing any winners. We trace these differences to overvotes and duplicate rankings and examine their legal justification, showing how formal verification can expose consequential choices in translating election law into software.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Election results should come with machine-checkable evidence that the reported winners follow from the ballots and the legal tabulation rules. Alaska&#x27;s ranked-choice voting statute leaves room for interpretation in how it treats malformed ballots, such as overvotes and duplicate rankings.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors formalize a statutory model of AS 15.15.350 in Lean 4 in three layers: statutory vocabulary, a declarative specification of permitted outcomes, and an implementation that computes a tree of defeat sequences. They prove the implementation computes exactly the permitted outcomes. They also build a reproduction model that matches the published round-by-round tallies, selected by testing combinations of ballot-reading rules. Using Lean-checked computations, they compare the two models on published cast vote records.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Across 115 contests, kernel-checked complete tabulation trees are established for both models. 75 ballots in 10 contests were counted differently from the statutory interpretation, and no winners changed. The differences trace to overvote handling (Truncate vs. Stop) and duplicate-ranking handling, and the authors analyze the legal justification for each reading.</p><div class="sum-table"><table><thead><tr><th>Change from reproduction model</th><th>Matched on candidate votes</th><th>Matched on all counts</th></tr></thead><tbody><tr><td>none (Truncate, Hybrid)</td><td>22</td><td>22</td></tr><tr><td>Stop instead of Truncate</td><td>20</td><td>19</td></tr><tr><td>Retain instead of Hybrid</td><td>13</td><td>11</td></tr><tr><td>Remove instead of Hybrid</td><td>14</td><td>14</td></tr><tr><td>statutory model (Stop, Retain)</td><td>13</td><td>11</td></tr></tbody></table><div class="tbl-cap">Published reports matched by rule variants (of 22 multi-round contests)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

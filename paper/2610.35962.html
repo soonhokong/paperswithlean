@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>h1: A Taste of the Bitter Lesson in Automated Theorem Proving · Papers With Lean</title>
+<meta name="description" content="While progress in informal mathematics has come largely from scaling the chain-of-thought and agentic reasoning of frontier language models, formal theorem proving has increasingly relied on human-designed workflows around these models, such as planning, decomposition, and…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="h1: A Taste of the Bitter Lesson in Automated Theorem Proving">
+<meta property="og:description" content="While progress in informal mathematics has come largely from scaling the chain-of-thought and agentic reasoning of frontier language models, formal theorem proving has increasingly relied on human-designed workflows around these models, such as planning, decomposition, and…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.35962.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.35962.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.35962v1" target="_blank" rel="noopener"><img src="../thumbs/2610.35962.jpg" alt="First page of h1: A Taste of the Bitter Lesson in Automated Theorem Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">h1: A Taste of the Bitter Lesson in Automated Theorem Proving</h1>
+        <p class="authors">Skander Moalla, Ahmad Rammal, Niket Patel, Remi Munos, Julia Kempe</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 25, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.35962v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.35962" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds h1, an agentic harness giving LLMs an efficient Lean 4/Mathlib interface, evaluated on Lean benchmarks and used to settle open FormalConjectures problems.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">While progress in informal mathematics has come largely from scaling the chain-of-thought and agentic reasoning of frontier language models, formal theorem proving has increasingly relied on human-designed workflows around these models, such as planning, decomposition, and orchestrating specialized provers. This raises a bitter-lesson question: can a simple agentic loop that scales test-time compute match these workflows? The answer matters as formal verification must scale to keep up with frontier models producing research mathematics, yet new workflows rarely settle it, as their gains are often confounded with stronger models or more compute. We study this question with h1, a simple harness that gives a model an efficient interface to Lean 4 and keeps it working through verifier feedback and self-reflection, without imposing a decomposition or search structure. h1 reaches state-of-the-art results on PutnamBench, FATE-X, and FormalConjectures100-Solved, settles eight open problems in FormalConjectures, and, at matched models, matches or outperforms specialized workflows such as Goedel-Architect and AlphaProof Nexus, surprisingly showing that a single attempt (pass@1) can often scale to solve open problems. Through ablations and matched-model comparisons with Claude Code and AxProverBase, we find that simplicity alone is not enough: an efficient Lean interface largely determines cost and solve rate. We thus recommend that future work evaluate frontier models with efficient execution feedback before prescribing workflows, at the risk of bitter lessons.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Formal theorem proving has come to rely on hand-designed workflows such as planning, decomposition, and orchestration of specialized provers. It is unclear whether a simple agentic loop that scales test-time compute can match these workflows at the same model and comparable cost.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">h1 is a simple harness in which an LLM agent edits a persistent Lean 4 file that imports all of Mathlib. It gets compiler feedback and open goals after each edit, along with library search, scratch execution, and undo tools. Periodic self-reflection compacts the context so work can continue, and no decomposition or search structure is imposed. Final proofs are checked with SafeVerify in isolated sandboxes, and ablations vary tools, prompts, reflection frequency, and reasoning effort.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">h1 reaches state-of-the-art results with single runs per problem: 670/672 on PutnamBench (GPT-5.5), 90/100 on FATE-X and 78/100 on FC100-solved (GPT-5.6 Sol), and all six IMO 2026 problems. It also settles eight open FormalConjectures problems. At matched models it matches or beats Goedel-Architect and AlphaProof Nexus, and the efficiency of the Lean interface largely determines cost and solve rate.</p><div class="sum-table"><table><thead><tr><th>Benchmark</th><th>Model</th><th>Solved</th></tr></thead><tbody><tr><td>FATE-X</td><td>GPT-5.6 Sol</td><td>90/100</td></tr><tr><td>FC100-solved</td><td>GPT-5.6 Sol</td><td>78/100</td></tr><tr><td>FormalQualBench</td><td>GPT-5.6 Sol</td><td>14/23</td></tr><tr><td>PutnamBench</td><td>GPT-5.5</td><td>670/672</td></tr><tr><td>IMO 2026</td><td>GPT-5.6 Sol</td><td>6/6</td></tr></tbody></table><div class="tbl-cap">Selected results with GPT-5.6 Sol / GPT-5.5 in h1 (single run per problem)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

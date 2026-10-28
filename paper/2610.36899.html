@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Depositing More Should Not Earn Less: Supplier Income Monotonicity and Rate Curve Design in Pooled Lending Markets · Papers With Lean</title>
+<meta name="description" content="In utilization dependent interest rate models, adding liquidity can reduce a supplier&#x27;s total interest income even as the supplier&#x27;s balance increases. A supplier holding a fraction $α$ of final pool supply keeps income nondecreasing with a marginal deposit exactly when…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Depositing More Should Not Earn Less: Supplier Income Monotonicity and Rate Curve Design in Pooled Lending Markets">
+<meta property="og:description" content="In utilization dependent interest rate models, adding liquidity can reduce a supplier&#x27;s total interest income even as the supplier&#x27;s balance increases. A supplier holding a fraction $α$ of final pool supply keeps income nondecreasing with a marginal deposit exactly when…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.36899.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.36899.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.36899v1" target="_blank" rel="noopener"><img src="../thumbs/2610.36899.jpg" alt="First page of Depositing More Should Not Earn Less: Supplier Income Monotonicity and Rate Curve Design in Pooled Lending Markets"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Depositing More Should Not Earn Less: Supplier Income Monotonicity and Rate Curve Design in Pooled Lending Markets</h1>
+        <p class="authors">Ahzam Khan, Cavey Cool</p>
+        <div class="row">
+          <span class="badge">q-fin.TR</span>
+          <span class="date">Oct 27, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-lime" href="../#tag=economics">economics</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.36899v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.36899" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/0xahzam/supplier-monotonicity" target="_blank" rel="noopener" title="0xahzam/supplier-monotonicity">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Most of the paper&#x27;s results on supplier income monotonicity and admissible rate curves are formalized in a Lean 4 library, released with a coverage record.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">In utilization dependent interest rate models, adding liquidity can reduce a supplier&#x27;s total interest income even as the supplier&#x27;s balance increases. A supplier holding a fraction $α$ of final pool supply keeps income nondecreasing with a marginal deposit exactly when $α(1+η)\leq1$, where $η$ is the elasticity of the borrow rate with respect to utilization. When the condition fails, the supplier can instead raise its income by withdrawing, which pushes utilization further up. On two public Drift markets, a lender held more of the pool than the curve protected in at least one hour in nine on SOL and one in thirteen on USDC. A protocol turns this into a design constraint by choosing, at each utilization, the largest supplier share it intends to protect. That choice caps the elasticity, and integrating the cap describes every admissible curve. Protecting the same share at every utilization gives a power law boundary, and protecting every fresh depositor gives a hyperbolic one. On a multiple kink USDT market, compliant repairs can lower or raise supplier income, because the constraint governs how income responds to a deposit and not the price level.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">In utilization-dependent interest rate models for pooled lending, a supplier&#x27;s extra deposit lowers utilization and therefore the rate. Because that lower rate applies to the whole balance, depositing more can reduce the supplier&#x27;s total income. The paper asks when this happens and which rate curves rule it out.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors derive the marginal income identity dI/dδ = U R_b(U)[1 − α(1+η)], where η is the elasticity of the borrow rate with respect to utilization. A protocol-chosen protection profile caps η, and integrating that cap characterizes every admissible curve. Constant-share and fresh-depositor profiles give power-law and hyperbolic boundary curves, and an endpoint bound limits how much protection is feasible. They measure real exposure using onchain Drift market data and formalize most results in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Income is nondecreasing under a marginal deposit exactly when α(1+η) ≤ 1. On Drift, a lender was exposed in at least one hour in nine on SOL and one in thirteen on USDC. For the illustrative endpoints, no curve can protect a supplier holding more than about 6.93% of the pool.</p><div class="sum-table"><table><thead><tr><th></th><th>Balance</th><th>U</th><th>Borrow rate</th><th>Income</th></tr></thead><tbody><tr><td>Start</td><td>$1,000,000</td><td>83%</td><td>19.25%</td><td>$159,775</td></tr><tr><td>Deposit $375,000</td><td>$1,375,000</td><td>80%</td><td>5%</td><td>$55,000</td></tr><tr><td>Withdraw $302,000</td><td>$698,000</td><td>85.6%</td><td>31.5%</td><td>$188,300</td></tr></tbody></table><div class="tbl-cap">The 10% supplier at three balances, with borrowings fixed at $8.3 million (income annualized)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

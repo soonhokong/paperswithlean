@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>count-catcher: Lean Theorems from Model Counting Certificates · Papers With Lean</title>
+<meta name="description" content="We present count-catcher, a tool that turns a CPOG certificate of a count by the exact model counter d4 into a Lean theorem that a CNF formula defined in Lean has exactly N models over V variables. With an encoding lemma, this theorem becomes a theorem about the number of…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="count-catcher: Lean Theorems from Model Counting Certificates">
+<meta property="og:description" content="We present count-catcher, a tool that turns a CPOG certificate of a count by the exact model counter d4 into a Lean theorem that a CNF formula defined in Lean has exactly N models over V variables. With an encoding lemma, this theorem becomes a theorem about the number of…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.36196.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.36196.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.36196v1" target="_blank" rel="noopener"><img src="../thumbs/2610.36196.jpg" alt="First page of count-catcher: Lean Theorems from Model Counting Certificates"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">count-catcher: Lean Theorems from Model Counting Certificates</h1>
+        <p class="authors">Johannes K. Fichte, Stefan Szeider</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Oct 26, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.36196v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.36196" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/leansolving/count-catcher" target="_blank" rel="noopener" title="leansolving/count-catcher">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a Lean tool that checks CPOG model-counting certificates in Lean, yielding verified count theorems combined with Mathlib results such as Burnside&#x27;s lemma.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present count-catcher, a tool that turns a CPOG certificate of a count by the exact model counter d4 into a Lean theorem that a CNF formula defined in Lean has exactly N models over V variables. With an encoding lemma, this theorem becomes a theorem about the number of combinatorial objects. A CPOG certificate consists of a Boolean circuit equivalent to the formula and a proof of equivalence. count-catcher checks in Lean that the formula implies the circuit (forward check) and the circuit implies the formula (reverse check). For the forward check, lrat-catcher streams a refutation through the LRAT checker of Lean&#x27;s standard library. The reverse check and the validity check of the circuit are computations proved correct in Lean. Lean runs all three checks as compiled code, so the theorem depends on Lean&#x27;s kernel, compiler and runtime, as does CPOG&#x27;s verified checker. We combine the theorem with results from Mathlib, for instance with Burnside&#x27;s lemma to count graphs up to isomorphism. We prove the number of Latin squares of order 8 as a weighted sum of hundreds of certified counts from about eight terabytes of certificates. We turn about half of the 2022 Model Counting Competition formulas into theorems, with the three checks taking about a quarter of the time of CPOG&#x27;s verified checker. We found that CPOG&#x27;s unverified checker reported wrong counts, and removed its verified checker&#x27;s dependence on two unproved lemmas. End to end, a theorem costs about the same as a checked count.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Exact counts of combinatorial objects are often obtained with unverified model counters, and published counts have historically been wrong. Earlier certified counting either ends in a checked output number rather than a theorem, or relies on enumeration, which does not scale to large counts.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">count-catcher turns a CPOG certificate from the d4 model counter into a Lean theorem stating that a CNF formula, given as a Lean term, has exactly N models over V variables. Three checks run in Lean as compiled code: a forward check that streams an LRAT refutation through Lean&#x27;s standard-library checker, and a reverse check and a circuit validity check, both proved correct in Lean. User-supplied encoding lemmas then turn model counts into theorems about objects. Counts can be composed with Mathlib results, for example Burnside&#x27;s lemma for counting graphs up to isomorphism.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The tool proves the number of Latin squares of order 8 from 737 certified counts (about 8 TB of certificates), along with Dedekind&#x27;s number M(7) and several OEIS values. It turns about half of the 2022 Model Counting Competition formulas into theorems, with checks taking about a quarter of the time of CPOG&#x27;s verified checker. The work also found wrong counts reported by CPOG&#x27;s unverified checker and removed two unproved lemmas from its verified checker.</p><div class="sum-table"><table><thead><tr><th>Theorem</th><th>Summands</th><th>Count</th><th>Lean (s)</th></tr></thead><tbody><tr><td>Triangle-free graphs on 10 vertices</td><td>42</td><td>12,172</td><td>74.8</td></tr><tr><td>Latin squares of order 7</td><td>4</td><td>6.15e13</td><td>64.0</td></tr><tr><td>Latin squares of order 8</td><td>737</td><td>1.09e20</td><td>325,252</td></tr><tr><td>Dedekind&#x27;s number M(7)</td><td>1</td><td>2.41e12</td><td>88.8</td></tr></tbody></table><div class="tbl-cap">Selected theorems about mathematical objects</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
