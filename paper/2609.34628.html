@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CLAD: Constrained Abstract Domain for Neural Network Verification · Papers With Lean</title>
+<meta name="description" content="Neural network verification (NNV) formally verifies that a network satisfies a specified property for all inputs within a defined region. Modern NNV tools employ abstract domains to compute a sound over-approximation of the network&#x27;s behavior from the given input region, thus…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CLAD: Constrained Abstract Domain for Neural Network Verification">
+<meta property="og:description" content="Neural network verification (NNV) formally verifies that a network satisfies a specified property for all inputs within a defined region. Modern NNV tools employ abstract domains to compute a sound over-approximation of the network&#x27;s behavior from the given input region, thus…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.34628.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.34628.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.34628v2" target="_blank" rel="noopener"><img src="../thumbs/2609.34628.jpg" alt="First page of CLAD: Constrained Abstract Domain for Neural Network Verification"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">CLAD: Constrained Abstract Domain for Neural Network Verification</h1>
+        <p class="authors">Hai Duong, Thanh Le, ThanhVu Nguyen</p>
+        <div class="row">
+          <span class="badge">cs.SE</span>
+          <span class="date">Sep 28, 2026 · v2</span>
+          <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.34628v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.34628" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Soundness (weak duality) and tightness (strong duality via Sion&#x27;s minimax theorem) of the CLAD bounds are mechanized sorry-free in Lean 4 with Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Neural network verification (NNV) formally verifies that a network satisfies a specified property for all inputs within a defined region. Modern NNV tools employ abstract domains to compute a sound over-approximation of the network&#x27;s behavior from the given input region, thus the tightness of these abstractions essentially determines efficiency. A long line of increasingly precise domains has been developed, but they all describe the valid input region in the same restrictive way, e.g., an Lp-norm ball. A practical input region is rarely a simple Lp ball, but rather a combination Lp ball with additional constraints. Verifying a network over such a region with existing abstraction produces a loose over-approximation, which results in either failing to verify a property or spurious counterexamples. We introduce Constrained Lagrangian Abstract Domain (CLAD), a new abstract domain that computes a sound over-approximation of neural networks over input regions defined by a combination of convex constraints. CLAD propagates these constraints and tightens bounds over the true feasible region. However, bounding a neuron over the intersection of these constraints has no closed-form solution, so CLAD relaxes each constraint into the objective with a Lagrange multiplier and solves the resulting max-min problem with a projected primal-dual method, alternating a projected gradient step on the input with a multiplier update. CLAD supports any convex constraint with a subgradient, e.g., from automatic differentiation. We evaluate CLAD on 1,944 instances across four convolutional networks with motion-blur structured perturbations with halfspace or L2-ball constraints. On standard unconstrained Linf property, CLAD verifies as many instances as GCPCROWN at a similar runtime. On constrained properties, CLAD verifies 60% more instances than GCPCROWN on L2-ball properties, and 22% more in total.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Abstract domains for neural network verification describe the input region as an Lp-norm ball. Practical regions combine an Lp ball with extra convex constraints, and over-approximating these with existing domains gives loose bounds. The result is failed verifications or spurious counterexamples.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">CLAD keeps symbolic polyhedral bounds and concrete bounds for each neuron. It computes the concrete bounds by optimizing over the full feasible region: each convex constraint is relaxed into the objective with a Lagrange multiplier. The resulting max-min problem is solved by a projected primal-dual method. Soundness (weak duality) and tightness under the Slater condition (strong duality via Sion&#x27;s minimax theorem) are mechanized sorry-free in Lean 4 against Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The evaluation covers 1,944 motion-blur instances on four convolutional networks. On unconstrained Linf properties, CLAD matches GCP-CROWN in verified instances at similar runtime. On constrained properties it verifies 60% more instances on L2-ball properties and 22% more in total.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
