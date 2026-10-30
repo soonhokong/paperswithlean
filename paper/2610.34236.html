@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Truthful-in-Expectation 2-Approximation for Pair-Specific Cascade Auctions in AI-Generated Content · Papers With Lean</title>
+<meta name="description" content="Generative AI interfaces can insert sponsored content at multiple points in an answer, where click-through rates (CTRs) depend on the advertiser-position pair. Under the cascade model, users read ads sequentially and stop after their first click, so both ad assignment and…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Truthful-in-Expectation 2-Approximation for Pair-Specific Cascade Auctions in AI-Generated Content">
+<meta property="og:description" content="Generative AI interfaces can insert sponsored content at multiple points in an answer, where click-through rates (CTRs) depend on the advertiser-position pair. Under the cascade model, users read ads sequentially and stop after their first click, so both ad assignment and…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.34236.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.34236.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.34236v1" target="_blank" rel="noopener"><img src="../thumbs/2610.34236.jpg" alt="First page of A Truthful-in-Expectation 2-Approximation for Pair-Specific Cascade Auctions in AI-Generated Content"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Truthful-in-Expectation 2-Approximation for Pair-Specific Cascade Auctions in AI-Generated Content</h1>
+        <p class="authors">Tao Jiang, Minbo Gao, Shaowei Cai</p>
+        <div class="row">
+          <span class="badge">cs.GT</span>
+          <span class="date">Oct 25, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-lime" href="../#tag=economics">economics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.34236v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.34236" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">An anonymous artifact includes a Lean 4 formalization that machine-checks key steps of the mechanism&#x27;s theoretical proofs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Generative AI interfaces can insert sponsored content at multiple points in an answer, where click-through rates (CTRs) depend on the advertiser-position pair. Under the cascade model, users read ads sequentially and stop after their first click, so both ad assignment and display order affect welfare. For arbitrary pair-specific CTRs, Balseiro et al. (WWW 2026) gave a $4/(1-\varepsilon)$-approximation whose monotonicity has not been established, and a monotone $O(\log m)$-approximation for $m$ candidate positions. Earlier truthful constant-factor mechanisms require factorized CTR models and do not apply. Whether monotonicity is compatible with a constant-factor approximation in this general setting was left open by that work. We give a polynomial-time mechanism for arbitrary pair-specific CTRs and any limit on displayed ads that is truthful and individually rational in expectation and achieves a 2-approximation to optimal cascade welfare. Our mechanism selects an advertiser-position matching and a designated last ad, then randomly thins earlier ads so that each selected ad&#x27;s expected cascade CTR is the same fraction of its standalone CTR. This yields an exact closed-form expression for expected welfare, which we maximize over a bid-independent lottery range using linear programming. Exact optimization ensures monotonicity, while a random-prefix decomposition proves the factor-two guarantee, which is tight for this range. We also show that exactly optimizing the previous welfare surrogate can violate monotonicity, and evaluate welfare and running time on synthetic instances.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">In generative-AI ad auctions under the cascade model with arbitrary advertiser-position CTRs, no known mechanism is both truthful and constant-factor approximate. Prior work achieved either a 4/(1-ε) approximation without established monotonicity or a monotone O(log m) approximation.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The mechanism picks an advertiser-position matching and a designated last ad, then randomly thins the earlier ads. Each selected ad&#x27;s expected cascade CTR is then the same fraction of its standalone CTR, which gives a closed-form expected welfare. This welfare is maximized exactly over a bid-independent lottery range using a Charnes–Cooper linearized LP over the integral matching polytope. A random-prefix decomposition proves the approximation bound, and key proof steps are machine-checked in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The mechanism runs in polynomial time, is truthful and individually rational in expectation, and achieves a 2-approximation to optimal cascade welfare, which is tight for this lottery range. A counterexample shows that exactly optimizing the earlier restricted-welfare surrogate is not monotone. Synthetic experiments compare welfare and running time against prior methods.</p><div class="sum-table"><table><thead><tr><th>Work</th><th>Incentive guarantee</th><th>Factor</th></tr></thead><tbody><tr><td>Gatti–Rocco 2013 (factorized)</td><td>monotone; TIE</td><td>4/(1-ε)</td></tr><tr><td>Farina–Gatti 2017 (equal prominences)</td><td>MIR; DSIC</td><td>2</td></tr><tr><td>Balseiro et al. 2026 (restricted welfare)</td><td>not established</td><td>4/(1-ε)</td></tr><tr><td>Balseiro et al. 2026 (CTR buckets)</td><td>monotone</td><td>O(log m)</td></tr><tr><td>This work</td><td>TIE; IR in expectation</td><td>2</td></tr></tbody></table><div class="tbl-cap">Comparison of incentive guarantees and approximation factors</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

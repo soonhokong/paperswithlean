@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OS-Wizard: Scaling Computer-Using Agents to Specialized Software via Knowledge-Guided Exploration · Papers With Lean</title>
+<meta name="description" content="Computer-using agents are increasingly capable of performing complex tasks in the digital world. However, high-quality interaction trajectories remain scarce for specialized desktop applications, where limited application knowledge, cumbersome GUI workflows, and incomplete…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OS-Wizard: Scaling Computer-Using Agents to Specialized Software via Knowledge-Guided Exploration">
+<meta property="og:description" content="Computer-using agents are increasingly capable of performing complex tasks in the digital world. However, high-quality interaction trajectories remain scarce for specialized desktop applications, where limited application knowledge, cumbersome GUI workflows, and incomplete…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.33907.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.33907.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.33907v1" target="_blank" rel="noopener"><img src="../thumbs/2610.33907.jpg" alt="First page of OS-Wizard: Scaling Computer-Using Agents to Specialized Software via Knowledge-Guided Exploration"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">OS-Wizard: Scaling Computer-Using Agents to Specialized Software via Knowledge-Guided Exploration</h1>
+        <p class="authors">Zhoumianze Liu, Zichen Ding, Bowen Yang, Zehao Li, Zhenyu Wu, Yibo Zhao, Kanzhi Chen, Yian Wang, Yanan Sun, Qiushi Sun, Yu Qiao</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 24, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.33907v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.33907" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 is one of the target desktop applications; agent trajectories are built by replaying compiled Lean reference proofs for ScienceBoard&#x27;s ATP tasks.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Computer-using agents are increasingly capable of performing complex tasks in the digital world. However, high-quality interaction trajectories remain scarce for specialized desktop applications, where limited application knowledge, cumbersome GUI workflows, and incomplete exploration hinder automated collection. We introduce OS-Wizard, an automated trajectory collection framework. It combines tutorial-guided exploration with a hybrid GUI–Code action space, providing application-specific knowledge and simplifying GUI workflows through direct execution of application-native commands. The framework also checkpoints and revisits pivotal states during tree exploration to explore alternative workflows, complementing linear rollouts for broader coverage. We collect 10.9K trajectories comprising 54.9K state–action samples. Fine-tuning open-source base models on this corpus yields a best-performing model that improves performance on a benchmark of specialized desktop workflows by 58.2 percentage points to 64.1%, surpassing reported human performance of 59.8% and establishing a new state of the art. The fine-tuned model also improves performance on general desktop workflows using GUI actions only, suggesting that the collected supervision benefits general desktop tasks as well. Comparative experiments and ablations demonstrate the efficiency of trajectory collection and the importance of code actions.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Computer-using agents lack high-quality interaction trajectories for specialized desktop applications such as ChimeraX, GRASS GIS, KAlgebra and Lean 4. Limited application knowledge, cumbersome GUI workflows and incomplete exploration make automated collection hard.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">OS-Wizard collects trajectories using tutorial-guided exploration over a hybrid GUI–Code action space, in which code actions directly execute application-native commands or file edits. Tree exploration checkpoints scored pivotal states with VM snapshots and revisits them to explore alternative workflows. Independent linear rollouts complement the tree search. For Lean 4, file read/write adapters let the agent edit source files, and trajectories are built by replaying existing Lean proofs that passed pre-collection compilation checks, using linear rollouts only.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.33907/method.png" alt=""><figcaption>Figure 2: Overview of trajectory collection in OS-Wizard. Left: Tutorials guide exploration with GUI and code actions. Center: Cold-start navigation builds an initial tree and checkpoints pivotal states. Right: Parallel tree exploration and linear rollouts collect trajectories. Bottom: Execution checks and reward-model verification ensure trajectory quality.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The framework collected 10.9K trajectories with 54.9K state–action samples, including 1,486 Lean 4 trajectories. A fine-tuned model reaches 64.1% on ScienceBoard, a gain of 58.2 points that exceeds the reported human score of 59.8%. On OSWorld with GUI-only actions, Qwen3.5-27B improves from 39.1% to 42.9%. Ablations show that code supervision and both collection strategies each contribute.</p><div class="sum-table"><table><thead><tr><th>Configuration</th><th>Samples</th><th>ScienceBoard (%)</th></tr></thead><tbody><tr><td>OS-Wizard Full</td><td>–</td><td>64.1</td></tr><tr><td>OS-Wizard (mixed)</td><td>20K</td><td>55.0</td></tr><tr><td>w/o code supervision</td><td>20K</td><td>26.6</td></tr><tr><td>w/o linear rollouts</td><td>20K</td><td>41.4</td></tr><tr><td>w/o tree exploration</td><td>20K</td><td>30.7</td></tr></tbody></table><div class="tbl-cap">ScienceBoard ablations (Qwen3.5-27B)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
