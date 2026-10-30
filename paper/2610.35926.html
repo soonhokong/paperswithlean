@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Has Actually Been Proved? Auditable Paper-to-Lean Alignment with LeanTrail · Papers With Lean</title>
+<meta name="description" content="Compiler feedback certifies that Lean accepts a declaration, not that the declaration captures the intended result: a repository can compile while a central theorem is weakened, merely auxiliary, or transitively dependent on sorry. Formalization progress should instead be…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What Has Actually Been Proved? Auditable Paper-to-Lean Alignment with LeanTrail">
+<meta property="og:description" content="Compiler feedback certifies that Lean accepts a declaration, not that the declaration captures the intended result: a repository can compile while a central theorem is weakened, merely auxiliary, or transitively dependent on sorry. Formalization progress should instead be…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.35926.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.35926.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.35926v1" target="_blank" rel="noopener"><img src="../thumbs/2610.35926.jpg" alt="First page of What Has Actually Been Proved? Auditable Paper-to-Lean Alignment with LeanTrail"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">What Has Actually Been Proved? Auditable Paper-to-Lean Alignment with LeanTrail</h1>
+        <p class="authors">Fabricio Venturim, Leighton Estrada, Claudio Silva, Jorge Poco</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Oct 14, 2026 · v1</span>
+          <span class="badge">cs.PL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.35926v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.35926" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a tool that aligns paper items with Lean repository declarations and Blueprints, auditing transitive sorry dependencies to assign coverage states.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Compiler feedback certifies that Lean accepts a declaration, not that the declaration captures the intended result: a repository can compile while a central theorem is weakened, merely auxiliary, or transitively dependent on sorry. Formalization progress should instead be measured against the source paper, in terms of its paper items: definitions, lemmas, and theorems. LeanTrail implements this view as a post-hoc, tool-agnostic audit: deterministic retrieval proposes candidate counterparts for each paper item in the Lean repository and, when available, the Blueprint; a language model judges statement-level correspondence, only among those candidates; and proof completeness comes from a deterministic transitive dependency audit never exposed to the model. Fusion assigns each item one of five coverage states, from Formalized to Missing, each backed by inspectable evidence. On consensus annotations of 98 items from three Lean projects, with three runs of each of two judge models, LeanTrail assigns the correct coverage state to 91.8% (Gemini 3.8 Flash) and 92.5% (GPT-6 Sol) of items. 96-97 of the 98 states are identical across runs, and GPT-6 Sol never reports a Partial item as Formalized. Uncovered items form a natural task queue for formalization agents, anchored to the specification rather than the compiler.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Lean compiler feedback certifies that declarations typecheck, not that they faithfully capture a source paper&#x27;s results. A repository can compile while central theorems are weakened, merely auxiliary, or transitively dependent on sorry.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">LeanTrail extracts theorem-like items from the paper&#x27;s LaTeX source and indexes Lean declarations, their dependency graphs, and optional Blueprint nodes. For each paper item, BM25 and identifier-similarity rankings are fused with reciprocal rank fusion to retrieve the top-20 candidates. A language model judges statement-level correspondence only among those candidates. A separate deterministic transitive audit checks for sorryAx dependencies, and a fusion step assigns each item one of five coverage states (Formalized, Statement only, Partial, Blueprint only, Missing).</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Evaluation used 98 consensus-annotated items from three Lean projects (FinEqs, APAP, Ringel), with three runs of each judge model. LeanTrail assigned the correct coverage state to 91.8% of items with Gemini 3.8 Flash and 92.5% with GPT-6 Sol. 96-97 of the 98 states were identical across runs, and retrieval recall at 20 was 100%. Uncovered items are exported as agent-ready formalization tasks.</p><div class="sum-table"><table><thead><tr><th>Project</th><th>Gemini 3.8 Flash</th><th>GPT-6 Sol</th></tr></thead><tbody><tr><td>FinEqs</td><td>100.0</td><td>85.7</td></tr><tr><td>APAP</td><td>87.4</td><td>82.8</td></tr><tr><td>Ringel</td><td>93.0</td><td>97.8</td></tr><tr><td>Overall</td><td>91.8 ± 1.0</td><td>92.5 ± 0.6</td></tr></tbody></table><div class="tbl-cap">Coverage-state accuracy (%) per project, mean over three runs</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
