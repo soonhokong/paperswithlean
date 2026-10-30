@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenFrontiers: A Collection of Open Research Problems and a Benchmark for Scientific Rediscovery · Papers With Lean</title>
+<meta name="description" content="Large language models (LLMs) have shown increasing promise in research-level problem solving, yet a comprehensive collection of such problems is still missing, and evaluating them on research-level problems remains challenging. We introduce OpenFrontiers, a cross-disciplinary…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenFrontiers: A Collection of Open Research Problems and a Benchmark for Scientific Rediscovery">
+<meta property="og:description" content="Large language models (LLMs) have shown increasing promise in research-level problem solving, yet a comprehensive collection of such problems is still missing, and evaluating them on research-level problems remains challenging. We introduce OpenFrontiers, a cross-disciplinary…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.37739.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.37739.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.37739v1" target="_blank" rel="noopener"><img src="../thumbs/2610.37739.jpg" alt="First page of OpenFrontiers: A Collection of Open Research Problems and a Benchmark for Scientific Rediscovery"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">OpenFrontiers: A Collection of Open Research Problems and a Benchmark for Scientific Rediscovery</h1>
+        <p class="authors">Jiarui Yao, Ruida Wang, Tong Zhang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 27, 2026 · v1</span>
+          <span class="badge">cs.CL</span> <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.37739v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.37739" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Benchmark of 200 research-level math problems with checked Lean 4 statements; LLM agent proofs are graded by two independent Lean checkers with Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language models (LLMs) have shown increasing promise in research-level problem solving, yet a comprehensive collection of such problems is still missing, and evaluating them on research-level problems remains challenging. We introduce OpenFrontiers, a cross-disciplinary resource that combines a structured corpus of open research problems with a retrospective benchmark of recently resolved problems in mathematics. The corpus records problem statements, context, progress, and other information for 12,151 problems. The benchmark contains 200 problems, 110 resolved in 2026 and 90 still open, each with a Lean 4 statement checked by automated probes and two independent reviews; a subset HQ-50 further filters based on quality score, etc. Our evaluation protocol grades formal proofs with two independent checkers in an isolated sandbox under closed-book, frozen-retrieval, and live-web conditions. Evaluating seven LLM agents on the HQ-50 subset under a standardized budget, we find that closed-book rediscovery is rare, at most 7 of 40 resolved problems, whereas live-web success mostly reflects retrieval of published solutions. By linking a broad research-problem corpus to a formally graded evaluation subset with documented solutions, OpenFrontiers provides a foundation for measuring research-level rediscovery and studying progress toward solving currently open scientific problems. The dataset and benchmark could be found in <a href="https://huggingface.co/collections/FlippyDora/openfrontiers" target="_blank" rel="noopener">https://huggingface.co/collections/FlippyDora/openfrontiers</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">No comprehensive collection of open research problems exists, and grading LLMs on research-level problems is hard because such problems lack reference answers and solutions may leak into training data.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors build a corpus of 12,151 open-problem records from 62 sources, 1,946 of which carry Lean 4 statements. From it they curate OpenFrontiers-Bench: 200 mathematics problems with compiled, reviewed Lean 4 statements, split into 110 problems resolved in 2026 and 90 still open. They also define an HQ-50 subset. Agents work in sandboxed Lean workspaces with prebuilt Mathlib under closed-book, frozen-retrieval and live-web conditions, and only proofs accepted by two independent Lean checkers count.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Seven LLM agents rarely rediscover solutions closed-book, solving at most 7 of the 40 resolved HQ-50 items. Live-web success mostly reflects retrieval of published solutions, and no open problems were solved under the native protocol.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Closed-book</th><th>Frozen retrieval</th><th>Live web</th></tr></thead><tbody><tr><td>Claude Sonnet 5.5</td><td>4</td><td>3</td><td>24</td></tr><tr><td>GPT-6.1-sol</td><td>7</td><td>5</td><td>27</td></tr><tr><td>Kimi-K3</td><td>3</td><td>2</td><td>15</td></tr><tr><td>DeepSeek-V4.1-Flash</td><td>3</td><td>3</td><td>15</td></tr></tbody></table><div class="tbl-cap">Solved items of 40 resolved HQ-50 problems (continuation protocol, all items)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

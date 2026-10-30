@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scaling Lean Theorem Proving for Real-World Code Verification · Papers With Lean</title>
+<meta name="description" content="We present EasyProver, a Lean proving system built from recursive agents with isolated contexts, asynchronous search, parallel tactic probing, and an elastic elaboration service. Using an off-the-shelf frontier model with no additional training, it proves 669/672 PutnamBench…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scaling Lean Theorem Proving for Real-World Code Verification">
+<meta property="og:description" content="We present EasyProver, a Lean proving system built from recursive agents with isolated contexts, asynchronous search, parallel tactic probing, and an elastic elaboration service. Using an off-the-shelf frontier model with no additional training, it proves 669/672 PutnamBench…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.38174.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.38174.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.38174v1" target="_blank" rel="noopener"><img src="../thumbs/2610.38174.jpg" alt="First page of Scaling Lean Theorem Proving for Real-World Code Verification"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Scaling Lean Theorem Proving for Real-World Code Verification</h1>
+        <p class="authors">Debargha Ganguly, Divya Raghunathan, Dejan Jovanović, Vikash Singh, Soonho Kong, Aaron Tomb, Aman Goel, Ferhat Erata, Sam Bayless</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Oct 28, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.LO</span> <span class="badge">cs.SE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.38174v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.38174" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds an agentic Lean prover with a stateless Lean elaboration service, and generates Lean verification tasks from Rust code translated with Aeneas.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present EasyProver, a Lean proving system built from recursive agents with isolated contexts, asynchronous search, parallel tactic probing, and an elastic elaboration service. Using an off-the-shelf frontier model with no additional training, it proves 669/672 PutnamBench problems and all six IMO 2026 formalizations and resolves 597/600 NTP4VC verification conditions and all 189 VERINA tasks by proof or refutation. Because these benchmarks are close to saturation, we also introduce Aegis, which converts competitive programming problems into much harder verification tasks over real implementations. The pipeline writes safe Rust solutions, translates them into Lean with Aeneas, generates specifications, and labels each frozen statement with a kernel-checked proof or refutation. It produces 2,045 differentially validated Rust-Lean program pairs and 11,533 candidate specifications. Unlike hand-written benchmarks, these tasks carry implementation-level obligations from fixed-width arithmetic, explicit failure, generated loops, casts, and functionalized mutation. On a stratified sample of 2,000 statements, EasyProver proves 1,054 (52.7%) within a 30-minute budget per statement. The same tasks can also be used to benchmark other provers and as rewards for reinforcement learning.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-based provers need effective agent harnesses, and established Lean benchmarks for mathematics and code verification are nearly saturated. Existing verified-programming benchmarks are small because they are hand-written.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">EasyProver wraps an off-the-shelf frontier model, with no additional training, in recursive agents that have isolated contexts. It adds asynchronous search, parallel tactic probing, and InfiniLean, a load-balanced stateless Lean elaboration service with Mathlib-preloaded workers. Aegis converts competitive programming problems into verification tasks: it writes safe Rust, translates it to Lean via Aeneas, generates specifications, and labels each statement with a kernel-checked proof or refutation.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.38174/Slide1.png" alt=""><figcaption>Figure 1: EasyProver architecture. Left: An asynchronous agent loop alternates model responses with coding and Lean tool calls. Right: Agents recursively delegate work to children with separate contexts and workspaces. Completed results return to the parent without waiting for unfinished siblings, which keep running; the search ends when the first candidate proof is accepted.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.38174/rl-environment.png" alt=""><figcaption>Figure 4: The Aegis pipeline. The coding agent writes safe Rust that passes the retained reference tests, translates through Aeneas , and produces matching Lean outputs. The specification agent writes a property requested to hold or to fail, and a separate proving agent proves or refutes the frozen statement. The resulting tasks serve as a benchmark; used as an RL environment, checked outcomes rew</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">EasyProver proves 669/672 PutnamBench problems and all six IMO 2026 formalizations, and resolves 597/600 NTP4VC verification conditions and all 189 VERINA tasks by proof or refutation. Aegis yields 2,045 validated Rust-Lean program pairs and 11,533 candidate specifications. On a sample of 2,000 Aegis statements, EasyProver proves 52.7% within 30 minutes each.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.38174/ntp4vc-cost.png" alt=""><figcaption>Figure 5: NTP4VC time and cost. Left/middle: cumulative time and cost distributions, normalized separately over 588 proofs and nine refutations. Right: proof cost versus time, grouped by subagent use. Unresolved tasks are excluded.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Source</th><th>miniF2F</th><th>PutnamBench</th><th>Putnam &#x27;25</th><th>IMO &#x27;26</th></tr></thead><tbody><tr><td>Chen et al. (2025b) (initial)</td><td>99.6</td><td>50.4</td><td>–</td><td>–</td></tr><tr><td>Chung et al. (2026) (+NL)</td><td>100.0</td><td>88.8</td><td>11/12</td><td>–</td></tr><tr><td>Zhang et al. (2026)</td><td>–</td><td>100.0</td><td>–</td><td>6/6</td></tr><tr><td>EasyProver (one run)</td><td>99.6</td><td>99.6</td><td>12/12</td><td>6/6</td></tr></tbody></table><div class="tbl-cap">Selected competition-math benchmark results (EasyProver vs. prior work)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

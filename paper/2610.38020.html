@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Random Centres and the $\varepsilon$-Dependence of Constant-Round Planar Domination · Papers With Lean</title>
+<meta name="description" content="It was recently shown (arXiv:2610.09618) that the infimum of the approximation ratios of deterministic constant-round LOCAL algorithms for minimum dominating set on planar graphs is 7. The $(7+\varepsilon)$-approximation given there runs in $T_0+O((c_0/\varepsilon)^κ)$ rounds…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Random Centres and the $\varepsilon$-Dependence of Constant-Round Planar Domination">
+<meta property="og:description" content="It was recently shown (arXiv:2610.09618) that the infimum of the approximation ratios of deterministic constant-round LOCAL algorithms for minimum dominating set on planar graphs is 7. The $(7+\varepsilon)$-approximation given there runs in $T_0+O((c_0/\varepsilon)^κ)$ rounds…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.38020.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.38020.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.38020v1" target="_blank" rel="noopener"><img src="../thumbs/2610.38020.jpg" alt="First page of Random Centres and the $\varepsilon$-Dependence of Constant-Round Planar Domination"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Random Centres and the $\varepsilon$-Dependence of Constant-Round Planar Domination</h1>
+        <p class="authors">Sebastian Senge</p>
+        <div class="row">
+          <span class="badge">cs.DC</span>
+          <span class="date">Oct 27, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.38020v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.38020" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ssenge/MinimumDominatingSetOnPlanarGraphs" target="_blank" rel="noopener" title="ssenge/MinimumDominatingSetOnPlanarGraphs">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Key lemmas, level bounds, exponent estimates and the path lower bound are machine-checked in Lean 4 with Mathlib, in a public repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">It was recently shown (arXiv:2610.09618) that the infimum of the approximation ratios of deterministic constant-round LOCAL algorithms for minimum dominating set on planar graphs is 7. The $(7+\varepsilon)$-approximation given there runs in $T_0+O((c_0/\varepsilon)^κ)$ rounds with $κ=\ln 3/\ln(24/23)\approx 25.81$, and it is asked there whether this exponent can be substantially reduced. We replace the heaviest-edge star selection in its clustering step by a random-centre rule: every part becomes a centre independently with probability $p$, and every non-centre joins its heaviest centre neighbour. For planar graphs this gives $κ&lt;5.89$ with $p=3/8$ (three fair coins per part and level) and $κ&lt;6.7$ with $p=1/2$. An analysis that counts only the join edges cannot go below $5.74$. For every proper minor-closed class of density $a$, the new exponent is never worse, and with about $\frac12\log_2 a$ fair coins per part and level it is smaller by a factor that tends to $8$ as the density grows. This is optimal for the rule when $a$ is an integer and the class contains all $K_{a,n}$. The planar bounds hold verbatim on the torus, the projective plane and the Klein bottle. We then turn to the dependence on $\varepsilon$. On paths, every deterministic $r$-round algorithm for fractional domination, and every randomized one that always outputs a dominating set, has (expected) ratio at least $1+1/(r+4)$. So these approximations need $Ω(1/\varepsilon)$ rounds on every minor-closed class that contains all paths, and on paths this is tight up to an additive constant. On forests and on outerplanar graphs, with no bound on the degree, $O(1/\varepsilon)$ rounds suffice, so there the optimal number of rounds is $Θ(1/\varepsilon)$. The planar level bounds, the bounds on paths and the deterministic bound on forests are machine-checked in Lean 4 with Mathlib.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">A known (7+ε)-approximation for minimum dominating set on planar graphs, running in a constant number of LOCAL rounds, needs (c0/ε)^κ rounds with κ≈25.81. The open question is whether this exponent can be reduced and what the optimal dependence on ε is.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The heaviest-edge star selection in the clustering step is replaced by a random-centre rule: each part becomes a centre with probability p, and each non-centre joins its heaviest centre neighbour. The expected contracted weight per level is analysed for planar and general minor-closed classes. Lower bounds on paths are proved for deterministic fractional and randomized algorithms. Section 2&#x27;s lemmas, the level bounds and certificates, the exponent bounds, the path lower bound and the forest upper bound are formalized in Lean 4 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For planar graphs the exponent drops to κ&lt;5.89 with p=3/8, and an analysis counting only join edges cannot go below 5.74. On paths, r-round algorithms have ratio at least 1+1/(r+4), so Ω(1/ε) rounds are needed, and on forests and outerplanar graphs the optimal number of rounds is Θ(1/ε).</p><div class="sum-table"><table><thead><tr><th>a</th><th>prior q=1-1/(8a)</th><th>ours, p=1/2</th><th>ours, best dyadic p</th><th>improvement</th></tr></thead><tbody><tr><td>1</td><td>8.23</td><td>3.82</td><td>3.82</td><td>2.15×</td></tr><tr><td>3 (planar)</td><td>25.81</td><td>6.97</td><td>6.42</td><td>4.02×</td></tr><tr><td>10</td><td>87.34</td><td>21.44</td><td>14.81</td><td>5.89×</td></tr><tr><td>100</td><td>878.34</td><td>219.18</td><td>115.67</td><td>7.59×</td></tr></tbody></table><div class="tbl-cap">Exponent κ by density a: prior work versus the random-centre rule</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
