@@ -8,6 +8,17 @@
     <language>en</language>
     <lastBuildDate>Fri, 30 Oct 2026 00:00:00 +0000</lastBuildDate>
     <item>
+      <title>A direct proof of Infinity in NF-0</title>
+      <link>https://paperswithlean.com/paper/2610.35928.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.35928.html</guid>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Zuhair A. Al-Johar</dc:creator>
+      <category>formalization</category><category>logic</category><category>mathlib</category>
+      <description>A companion Lean 4 project (Lean 4.24.0, Mathlib v4.24.0) encodes NF-0 as a structure and kernel-checks the Infinity theorem.
+
+We give a direct proof of Infinity in the no-empty version of New Foundations, denoted NF-0, by establishing that every model of the specified theory contains an object that is not finite in a precise, internally defined sense. The version considered has extensionality, at least two distinct objects, no empty objects, and inhabited stratified comprehension: a stratified extension is supplied whenever it has a member. Finiteness combines a two-sided internally represented well-order with the exclusion of internally represented nonterminating strict transitive relations on inhabited subsets. Assuming all objects finite, partial bijections yield comparison and finite extrema of positive Frege cardinals. Positive exponentiation, singleton type-raising, and the least orbit of the genuine two-cardinal lead to the equation n = T(n) + 1. We prove separately, and in detail, that adjoining one point reverses internally defined parity: the key ingredients are a graph-rewiring proof of invariance under adjoining two points and one instance of stratified induction derived from the all-finite assumption. Since type-raising preserves parity, the cardinal equation is impossible. We identify the corresponding Lean 4 declarations and make explicit the scope of the formal verification. No model-existence or consistency theorem for ordinary NF is claimed.</description>
+    </item>
+    <item>
       <title>The Schur positivity of Lucas binomial differences</title>
       <link>https://paperswithlean.com/paper/2610.35465.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2610.35465.html</guid>
@@ -655,17 +666,6 @@ The univalent Bloch-Landau constant $\mathcal{U}$ is the largest number such tha
       <description>Trains Lean 4 provers that select or propose candidate answers and prove them jointly in one call, verified by Lean 4.26.
 
 In formal systems such as Lean 4, efficiently finding answers to mathematical problems and generating verifiable proofs is an important task in automated mathematical reasoning. In the traditional way where an upstream solver provides multiple candidate answers, the common workflow requires searching for proofs for each candidate separately, incurring redundant computational cost. To this end, we propose a joint proof framework that integrates candidate answer selection, answer supplementation, and formal proof generation into a unified reasoning process. At its core is a trained prover that selects given or proposes new answers and generates a proof for at least one answer in a single call. Joint proof can also reuse generated proofs to check for faithfulness errors. For problems with a unique answer, if two distinct answers both obtain verifiable proofs under the same formal statement, this confirms the statement does not faithfully preserve the original problem semantics. On MATH-500, AMC 2023, and AIME 2024/2025/2026, our framework achieves the same formal proof success rate as per-candidate proof generation with about one sixth of the token cost, and identifies at least 6.1% of the formalized statements as unfaithful without requiring additional judges. Our model and code are available at https://github.com/Linppz/Gobble-Prover.</description>
-    </item>
-    <item>
-      <title>Speculative Decoding for Mixture-of-Experts Models: Expert Bytes, Kernel Bandwidth and the Best Draft Length</title>
-      <link>https://paperswithlean.com/paper/2610.34440.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.34440.html</guid>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Yuzheng Lan</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>ml-theory</category>
-      <description>Theorems on when speculative decoding beats plain decoding, the optimal draft length, and bandwidth-error bounds are proved in Lean 4 against Mathlib (package MoESpec).
-
-Speculative decoding checks several drafted tokens in one verification pass. On a mixture-of-experts (MoE) model, consecutive tokens often select the same experts. A deduplicating engine reads each selected expert once per pass, so it requests fewer bytes than a per-slot engine, which reads it once per token. We write a step&#x27;s time as the bytes each kernel requests over its effective bandwidth, plus fixed time. Under geometric acceptance, we derive from this step time when speculation is faster than plain decoding. The best draft length is a monotone staircase in the acceptance rate. We bound how a bandwidth error moves each result, and we check the main steps in Lean. Deduplication is faster exactly where its share $\bar u(n)$ of the per-slot bytes is below its ratio $r(n)$ of the per-slot bandwidth. On llama.cpp Metal, MLX-LM and llama.cpp CUDA, which we modified to deduplicate, the per-slot kernel has the higher effective bandwidth (r = 0.32 to 0.75). Thus deduplication is faster only from 5 to 8 tokens per pass, or never. We fit the bandwidths on one layer&#x27;s expert operation, run alone, in under an hour per model. Bytes from routing traces over these bandwidths predict the time that deduplication saves. The measured saving lies inside its error bound at every point on CUDA and MLX-LM and at 36 of 48 points on Metal. The crossover is the first pass size at which deduplication is faster. The prediction places it within one pass size in 10 of 12 configurations of engine, model and depth. We computed these predictions after the measurements. On DeepSeek-V2-Lite, operation times measured before its speculative runs give the best draft length on CUDA within one at all 22 acceptance values.</description>
     </item>
   </channel>
 </rss>
