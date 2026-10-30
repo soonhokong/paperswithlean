@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Algebraic World Model: From Exploration to Proofs · Papers With Lean</title>
+<meta name="description" content="AI has made remarkable progress in mathematics, solving challenging problems with machine-checkable proofs in Lean, yet typically relying on predefined mathematical definitions and formal specifications. This raises a natural question: can it reason rigorously about an unknown…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Algebraic World Model: From Exploration to Proofs">
+<meta property="og:description" content="AI has made remarkable progress in mathematics, solving challenging problems with machine-checkable proofs in Lean, yet typically relying on predefined mathematical definitions and formal specifications. This raises a natural question: can it reason rigorously about an unknown…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.40503.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.40503.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.40503v1" target="_blank" rel="noopener"><img src="../thumbs/2610.40503.jpg" alt="First page of Algebraic World Model: From Exploration to Proofs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Algebraic World Model: From Exploration to Proofs</h1>
+        <p class="authors">Guancheng Pan, Qixin Tan, Yang Yuan, Andrew Chi-Chih Yao</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 29, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=category-theory">category-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.40503v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.40503" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://arxiv.org/src/2610.40503v1/anc" target="_blank" rel="noopener" title="arXiv ancillary files">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">LLM agent formalizes learned game world models in Lean 4, replaying winning trajectories and proving reachability and impossibility with kernel-checked proofs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">AI has made remarkable progress in mathematics, solving challenging problems with machine-checkable proofs in Lean, yet typically relying on predefined mathematical definitions and formal specifications. This raises a natural question: can it reason rigorously about an unknown world? We introduce the Algebraic World Model (AWM), a framework that turns interaction with unfamiliar environments into explicit mathematical models supporting formal reasoning. AWM explores the environment and develops executable Python hypotheses, continually testing and revising them against observations. It then structures these hypotheses into typed objects and shared rules, simplifies their structure through category-theory-guided transformations, and formalizes the resulting model in Lean 4 to prove reachability and impossibility. AWM can formally prove that a goal is unreachable, even beyond explored trajectories. On two impossible game levels, it constructs closed, kernel-checked Lean proofs excluding every legal winning sequence in all six runs, while Claude Opus 5.5 and GPT-6 Astra, equipped with coding tools, produce none in twelve baseline runs. Four of AWM&#x27;s six initial bounds are correct, compared with one for Opus 5.5 and none for GPT-6 Astra; given only feedback that a cheaper win exists, AWM revises its rules and constructs new proofs, reaching six of six correct bounds. Moreover, AWM produces interpretable mathematical models whose rules can be inspected and tested step by step. Across all 25 public ARC-AGI-3 games, these models enable Lean to replay the winning trajectories of all 183 levels and generalize beyond observed play, predicting unseen transitions and detecting changes in game mechanics. With Claude Opus 5, AWM clears all levels with a score of 99.9, while its certified winning trajectories use only 43% of the human baseline&#x27;s actions.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">AI systems produce machine-checked proofs in Lean, but typically from predefined definitions and formal specifications. The question addressed is whether an agent can learn the rules of an unfamiliar environment and then reason rigorously about it, including proving that a goal is unreachable.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The Algebraic World Model (AWM) has three stages. First, it explores the environment and maintains executable Python hypotheses, testing them against observed transitions. Second, it organizes these hypotheses into typed objects and shared rules, simplifying them through category-theory-guided transformations checked in Lean via projective and inductive limits. Third, it formalizes the model in Lean 4 and proves reachability using winning witnesses, and impossibility using invariants or cost lower bounds.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.40503/figure1-preprint.png" alt=""><figcaption>Figure 1: AWM’s three-stage pipeline: interactive exploration builds a provisional executable model, algebraic transformations reveal and simplify its structure, and Lean 4 formalization enables certified proofs of reachability or impossibility.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.40503/figure3-preprint.png" alt=""><figcaption>Figure 3: From shared structure to formal proofs in lp85 . (a) Eleven concepts describing four button mechanisms are generalized into a shared permutation rule. Each before/after pair shows a recorded press, with the pressed button circled and changed tiles outlined. (b) A five-click sequence witnesses reachability. (c) Recoloring the only yellow tile makes the goal unreachable, since every press </figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On all 25 public ARC-AGI-3 games (183 levels), Lean replays every winning trajectory, using 220 formalized rules and 1,374 theorems with only standard axioms. With Claude Opus 5, AWM scores 99.9 using 43% of the human baseline&#x27;s actions. On two sealed impossible sc25 levels, AWM produces kernel-checked impossibility proofs in all six runs, while baselines produce none in twelve runs. AWM&#x27;s bounds become 6 of 6 correct after feedback.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.40503/figure4-preprint.png" alt=""><figcaption>Figure 4: Sealed sc25 level 4. AWM proves in Lean that the minimum winning cost under its learned model is 19, one unit above the budget, and verifies a route at that cost; GPT-6 Astra claims 22 without a proof.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>System</th><th>Code</th><th>Mean score</th><th>Games at 100</th><th>Actions / human</th></tr></thead><tbody><tr><td>Claude Opus 5</td><td>no</td><td>40.7</td><td>5</td><td>—</td></tr><tr><td>GPT-6 Astra</td><td>no</td><td>68.3</td><td>10</td><td>—</td></tr><tr><td>Rodionov (2026a)</td><td>yes</td><td>99.0</td><td>23</td><td>0.49</td></tr><tr><td>Memento 3</td><td>yes</td><td>100.0</td><td>25</td><td>0.44</td></tr><tr><td>AWM (ours)</td><td>yes</td><td>99.9</td><td>23</td><td>0.43</td></tr></tbody></table><div class="tbl-cap">Official scores on 25 public ARC-AGI-3 games (subset)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

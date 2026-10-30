@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>crush: Extensible Proof Automation for Lean · Papers With Lean</title>
+<meta name="description" content="Lean&#x27;s rich expressiveness supports higher-order functions, inductive datatypes, and user-defined abstractions, making it challenging to translate proof obligations into first-order Satisfiability Modulo Theory (SMT) queries and reconstruct kernel checked proofs. We present…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="crush: Extensible Proof Automation for Lean">
+<meta property="og:description" content="Lean&#x27;s rich expressiveness supports higher-order functions, inductive datatypes, and user-defined abstractions, making it challenging to translate proof obligations into first-order Satisfiability Modulo Theory (SMT) queries and reconstruct kernel checked proofs. We present…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.40538.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.40538.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.40538v1" target="_blank" rel="noopener"><img src="../thumbs/2610.40538.jpg" alt="First page of crush: Extensible Proof Automation for Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">crush: Extensible Proof Automation for Lean</h1>
+        <p class="authors">Mike He, Dexin Zhang, Aarti Gupta</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Oct 29, 2026 · v1</span>
+          <span class="badge">cs.PL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-amber" href="../#tag=verification">verification</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.40538v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.40538" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/AD1024/lean-crush" target="_blank" rel="noopener" title="AD1024/lean-crush">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Implements crush, an SMT-backed Lean tactic using defunctionalization, with soundness formalized in Lean and kernel-checked proof reconstruction from solver certificates.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Lean&#x27;s rich expressiveness supports higher-order functions, inductive datatypes, and user-defined abstractions, making it challenging to translate proof obligations into first-order Satisfiability Modulo Theory (SMT) queries and reconstruct kernel checked proofs. We present crush, an extensible SMT-backed proof automation framework for Lean. To bridge the gap between Lean&#x27;s higher-order constructs and the solver&#x27;s first-order logic, crush uses defunctionalization to encode function values and their applications. We formalize this translation for a supported higher-order fragment and prove its soundness. Moreover, crush provides metaprogramming interfaces for extending both Lean-to-SMT translation and the reconstruction of Lean proofs from solver certificates without modifying the translation pipeline. We implement crush as both a tactic and a backend for other third-party automation systems. We show that across four such use cases that target verification and general proof automation, crush discharges more obligations than the competing backends and reconstructs more kernel-checked proofs than the baselines.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Lean goals use higher-order functions, inductive types and user abstractions, which makes them hard to translate into first-order SMT queries. Reconstructing kernel-checked proofs from solver outputs is also difficult.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">crush negates the goal, collects hypotheses and lemmas, and runs normalization, monomorphization and bounded quantifier instantiation before translating to SMT-LIB. Higher-order functions are encoded through defunctionalization, and the soundness of this encoding is formalized in Lean for a monomorphic, nondependent fragment. Users can extend the translation and the proof reconstruction through metaprogramming attributes. On UNSAT, crush rebuilds a proof either by core-guided search with tactics such as omega and grind, or by replaying Alethe proof steps.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.40538/lean-crush.png" alt=""><figcaption>Figure 1 : The crush pipeline.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The evaluation covers 754 verification conditions from four suites (Curated, Cashmere, Velvet, PLean), the last three generated through Loom. crush solves 709 (94.0%) when trusting the solver and 693 (91.9%) with kernel-checked reconstruction. Both figures exceed the baselines lean-auto, Duper, lean-smt and grind.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Order Maintenance in Worst-Case Constant Time, Verified · Papers With Lean</title>
+<meta name="description" content="Order maintenance asks for a data structure that keeps a sequence of elements under insertions and deletions and tells which of two elements comes first. We give an algorithm, assembled from published components, that performs each operation in worst-case constant time, and…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Order Maintenance in Worst-Case Constant Time, Verified">
+<meta property="og:description" content="Order maintenance asks for a data structure that keeps a sequence of elements under insertions and deletions and tells which of two elements comes first. We give an algorithm, assembled from published components, that performs each operation in worst-case constant time, and…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.38616.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.38616.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.38616v1" target="_blank" rel="noopener"><img src="../thumbs/2610.38616.jpg" alt="First page of Order Maintenance in Worst-Case Constant Time, Verified"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Order Maintenance in Worst-Case Constant Time, Verified</h1>
+        <p class="authors">Denis Firsov</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Oct 28, 2026 · v1</span>
+          <span class="badge">cs.DS</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.38616v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.38616" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/dfirsov/order_maintenance" target="_blank" rel="noopener" title="dfirsov/order_maintenance">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Verifies a worst-case constant-time order-maintenance algorithm in Lean 4. It uses a deeply embedded step-counting RAM, a verified compiler, and a word-size bound, about 78,000 lines in total.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Order maintenance asks for a data structure that keeps a sequence of elements under insertions and deletions and tells which of two elements comes first. We give an algorithm, assembled from published components, that performs each operation in worst-case constant time, and verify it in Lean 4. The algorithm is a program for a random-access machine deeply embedded in Lean, whose interpreter counts every instruction. We prove that the program answers every query as a simple reference specification does, that each operation takes at most a fixed number of steps, independent of the number of elements and of the history, and that after $t$ operations no value it has computed has more than $O(\log t)$ bits, so it runs unchanged on a machine with words of that size. A verified translation that preserves step counts exactly connects the high-level proofs to the machine program, so the interpreter is the only cost model to trust. An unverified native implementation shows the algorithm&#x27;s practical cost.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Order maintenance in worst-case O(1) time per operation has been known since 1987, but the published algorithms are intricate. None had been implemented, and no order-maintenance algorithm had been verified in a proof assistant.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An algorithm is assembled from published components (Dietz–Sleator, Bender et al., Kopelowitz) and adapted for proof. Every write is guarded, and top-tree labels are never changed in place. The algorithm is written as a program for a random-access machine deeply embedded in Lean 4, whose interpreter counts every instruction. A verified, step-count-preserving translation through an intermediate language links a functional Level F to the machine program (Level M).</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Lean proofs establish three things: answers match a reference list specification, each operation takes a fixed bounded number of steps, and after t operations stored values have O(log t) bits, so the program runs unchanged on a word RAM of that word size. An unverified native Rust implementation stays within a small factor of an AVL tree on insertions, and its cold queries are 2.2–6.3 times faster.</p><div class="sum-table"><table><thead><tr><th>Workload</th><th>native (unverified)</th><th>AVL</th><th>amortized</th></tr></thead><tbody><tr><td>Random insertion</td><td>1.00 / 5.3 / 12.1</td><td>0.77 / 5.5 / 7.2</td><td>0.54 / 12.3 / 15.3</td></tr><tr><td>Clustered insertion</td><td>0.085 / 2.9 / 6.3</td><td>0.030 / 3.2 / 3.6</td><td>0.022 / 3.4 / 5,050</td></tr><tr><td>Cold order query</td><td>0.93 / – / 1.4</td><td>5.9 / – / 8.4</td><td>0.50 / – / 0.88</td></tr><tr><td>Memory (bytes/element)</td><td>112</td><td>13</td><td>21</td></tr></tbody></table><div class="tbl-cap">Selected measurements in μs (mean / 99.99th percentile / slowest repeatable time)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

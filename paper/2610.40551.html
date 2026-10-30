@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ramanujan Challenge Results: AI-Assisted Evaluation Pipeline for Multi-Format Proofs · Papers With Lean</title>
+<meta name="description" content="As AI&#x27;s mathematical capabilities rapidly improve, meaningful benchmarks are shifting from university-level problems and math olympiads to research-level mathematics. The Ramanujan Challenge is a benchmark comprised of research-level problems in number theory, including…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ramanujan Challenge Results: AI-Assisted Evaluation Pipeline for Multi-Format Proofs">
+<meta property="og:description" content="As AI&#x27;s mathematical capabilities rapidly improve, meaningful benchmarks are shifting from university-level problems and math olympiads to research-level mathematics. The Ramanujan Challenge is a benchmark comprised of research-level problems in number theory, including…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.40551.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.40551.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.40551v1" target="_blank" rel="noopener"><img src="../thumbs/2610.40551.jpg" alt="First page of Ramanujan Challenge Results: AI-Assisted Evaluation Pipeline for Multi-Format Proofs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Ramanujan Challenge Results: AI-Assisted Evaluation Pipeline for Multi-Format Proofs</h1>
+        <p class="authors">Alan Sorani, Ashvni Narayanan, Michael Shalyt, Tali Monderer, Rotem Kalisch, Hila Barkan, Elyasheev Leibtag, Shachar Weinbaum, Carsten Schneider, John Campbell, Ido Kaminer</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 29, 2026 · v1</span>
+          <span class="badge">cs.CL</span> <span class="badge">cs.SC</span> <span class="badge">math.NT</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.40551v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.40551" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Evaluates challenge submissions that include Lean formalizations, using an AI-assisted pipeline that judges Lean and CAS code alongside natural-language proofs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">As AI&#x27;s mathematical capabilities rapidly improve, meaningful benchmarks are shifting from university-level problems and math olympiads to research-level mathematics. The Ramanujan Challenge is a benchmark comprised of research-level problems in number theory, including unpublished results and open conjectures. It presented concrete formulas for mathematical constants whose correctness can be checked numerically, while their proofs may require non-obvious mathematics. Here, we analyze the Challenge submissions, measuring the relative success of different AI models, Computer Algebra Systems (CAS), and formal tools. We find correct submissions that are conceptually distinct from the official solutions, and a proof of one of the published open conjectures. Evaluating the submissions exposed a second challenge: judging complex proofs reliably at scale. We introduce an AI-assisted evaluation pipeline for natural language proofs, CAS code, and Lean formalizations that assesses semantic and logical correctness. Compared with the conventional one-shot LLM judgment, our pipeline reduces false-positive verdicts on natural language proofs from 23% to 6% and improves judgment accuracy on supporting code from 46% to 58%. This approach provides a methodology for evaluating research-level mathematics at scale, with potential applications across mathematics and AI for science.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The Ramanujan Challenge posed ten research-level number theory problems: eight unpublished results and two open conjectures about formulas for mathematical constants. It drew 228 multi-format submissions. Judging these proofs reliably at scale is difficult, and one-shot LLM judging produces many false positives.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Submissions are analysed by AI model and tool used (CAS such as Python, Mathematica and Sage, or Lean) and placed on a &#x27;trust spectrum&#x27;: numerical, then symbolic CAS, then formal Lean verification. The multi-step evaluation pipeline works as follows. Python scripts are executed and given a basic grade. A GPT agent summarises the natural-language proof, and separately a Claude agent summarises the CAS/Lean files. A third agent compares the two summaries, and a human reviewer uses the results to give the final verdict.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.40551/trust_spectrum.png" alt=""><figcaption>Figure 2 : The trust spectrum.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The pipeline cut false-positive verdicts from 23% to 6% on natural-language proofs and from 38% to 3% on CAS/Lean code. It raised agreement with human verdicts on code from 46% to 58%. Lean-only code had the highest code correctness, and submissions combining Lean with CAS had the most correct natural-language proofs; one open conjecture was proved.</p><div class="sum-table"><table><thead><tr><th>Verdict comparison</th><th>NL proof (without)</th><th>NL proof (with)</th><th>CAS/Lean (without)</th><th>CAS/Lean (with)</th></tr></thead><tbody><tr><td>Agreement</td><td>65.7%</td><td>66.4%</td><td>45.8%</td><td>58.3%</td></tr><tr><td>Claude stricter than human</td><td>2.9%</td><td>15.3%</td><td>4.2%</td><td>29.2%</td></tr><tr><td>Human stricter than Claude</td><td>31.4%</td><td>18.2%</td><td>50.0%</td><td>12.5%</td></tr></tbody></table><div class="tbl-cap">Agreement of Claude Opus 5 with human verdicts, without vs. with the pipeline</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
