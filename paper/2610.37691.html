@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two-Colour Zig-Zag Numberlink on Rectangles: A Forbidden-Pattern Characterization, a Constructive Polynomial-Time Algorithm, and a Lean Verification · Papers With Lean</title>
+<meta name="description" content="In Zig-Zag Numberlink, pairs of endpoints in a grid must be joined by vertex-disjoint paths that together visit every cell. The problem is NP-complete when the number of pairs is un- bounded (Adcock et al.). For a single pair it is the Hamiltonian path problem in rectangular…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Two-Colour Zig-Zag Numberlink on Rectangles: A Forbidden-Pattern Characterization, a Constructive Polynomial-Time Algorithm, and a Lean Verification">
+<meta property="og:description" content="In Zig-Zag Numberlink, pairs of endpoints in a grid must be joined by vertex-disjoint paths that together visit every cell. The problem is NP-complete when the number of pairs is un- bounded (Adcock et al.). For a single pair it is the Hamiltonian path problem in rectangular…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.37691.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.37691.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.37691v1" target="_blank" rel="noopener"><img src="../thumbs/2610.37691.jpg" alt="First page of Two-Colour Zig-Zag Numberlink on Rectangles: A Forbidden-Pattern Characterization, a Constructive Polynomial-Time Algorithm, and a Lean Verification"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Two-Colour Zig-Zag Numberlink on Rectangles: A Forbidden-Pattern Characterization, a Constructive Polynomial-Time Algorithm, and a Lean Verification</h1>
+        <p class="authors">Zzyv Zzyzek</p>
+        <div class="row">
+          <span class="badge">cs.DS</span>
+          <span class="date">Oct 19, 2026 · v1</span>
+          <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.37691v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.37691" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">About 27,000 lines of Lean 4 with Mathlib verify both directions of the characterization and the thin-case DP; finite case checks use native_decide.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">In Zig-Zag Numberlink, pairs of endpoints in a grid must be joined by vertex-disjoint paths that together visit every cell. The problem is NP-complete when the number of pairs is un- bounded (Adcock et al.). For a single pair it is the Hamiltonian path problem in rectangular grid graphs, solved by Itai, Papadimitriou and Szwarcfiter. Two pairs on a rectangle form the paired 2-disjoint path cover problem. We settle the case of two pairs on rectangles with the endpoints anywhere in the grid. If both sides of the rectangle are at least 11, an instance is solvable if and only if no entry of a finite catalogue of forbidden patterns occurs. The catalogue consists of a parity condition, an alternation condition on the border, a handful of local corner and edge patterns, 65 listed corner configurations, and a rule that propagates forced routes out of the corners before testing alternation. If a side is at most 10, a frontier dynamic programming algorithm decides the instance in time linear in the long side. The characterization is construc- tive. Solutions are built by deleting empty lines, splitting the rectangle by straight cuts, and splicing the pieces back together, in time O((R+C) RC). Both directions of the characterization and the correctness of the dynamic programming algorithm are verified in Lean 4. The finite case analyses, which are window certificates for the corner configurations and a check of all irreducible instances with sides 11-22, are carried out by the Lean compiler via native decide. We describe the algorithm, the catalogue, the proof structure, the compromises made in the formalization, and implementations in Python, JavaScript and C that produce identical output.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The paper decides when two-colour Zig-Zag Numberlink instances on R×C rectangles are solvable, with endpoints allowed anywhere in the grid. This is the paired 2-disjoint path cover problem, and it extends the single-pair Hamiltonian path characterization of Itai, Papadimitriou and Szwarcfiter.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">For rectangles with both sides at least 11, solvability is characterized by a finite catalogue of forbidden patterns: parity, border alternation, local corner and edge patterns, listed corner configurations, and forced-route propagation. Completeness is proved by induction on area, using line-deletion reductions undone by band extension and straight-cut moves whose pieces glue back together. Rectangles with a side of at most 10 are decided by a frontier (plug) dynamic programming algorithm. Both directions and the DP&#x27;s correctness are formalized in Lean 4 with Mathlib, and the finite case analyses run through native_decide.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The characterization yields a constructive O((R+C)RC) algorithm, and the thin case is decided in time linear in the long side. The Lean development has about 27,000 lines, including 10 window-certificate theorems and 144 base-case theorems for boxes with sides 11–22. The polynomial time bound is not formalized. Python, JavaScript and C implementations produce identical output and agree with the Lean definitions in randomized tests.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
