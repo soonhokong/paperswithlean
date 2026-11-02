@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maxwell&#x27;s equations are universal for sparse linear algebra · Papers With Lean</title>
+<meta name="description" content="Optical and wave-based analog computing has re-emerged as a route to accelerating linear algebra, with metamaterials and photonic circuits shown to invert matrices and solve integral equations. However, it has remained unclear which problems such passive structures can…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maxwell&#x27;s equations are universal for sparse linear algebra">
+<meta property="og:description" content="Optical and wave-based analog computing has re-emerged as a route to accelerating linear algebra, with metamaterials and photonic circuits shown to invert matrices and solve integral equations. However, it has remained unclear which problems such passive structures can…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.38913.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.38913.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.38913v2" target="_blank" rel="noopener"><img src="../thumbs/2610.38913.jpg" alt="First page of Maxwell&#x27;s equations are universal for sparse linear algebra"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Maxwell&#x27;s equations are universal for sparse linear algebra</h1>
+        <p class="authors">Yannick Augenstein</p>
+        <div class="row">
+          <span class="badge">physics.optics</span>
+          <span class="date">Oct 28, 2026 · v2</span>
+          <span class="badge">cs.CC</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=physics">physics</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.38913v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.38913" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/yaugenst/maxwell-universality" target="_blank" rel="noopener" title="yaugenst/maxwell-universality">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes the continuum Maxwell construction in Lean, covering operator, spectral, defect, leakage and residual-to-solution recovery proofs, with a public Lean development.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Optical and wave-based analog computing has re-emerged as a route to accelerating linear algebra, with metamaterials and photonic circuits shown to invert matrices and solve integral equations. However, it has remained unclear which problems such passive structures can represent, and at what cost, once encoding, precision, conditioning and readout are accounted for. Here, we show that every polynomially conditioned sparse linear system can be compiled into a three-dimensional dielectric – a cavity filled with lossless, isotropic material of bounded permittivity – whose time-harmonic response encodes its solution. For $m$ nonzero coefficients, the volume of the structure and the cost of writing it down and reading out the answer scale as $\tilde O(m^{3/2})$, coefficients require only $O(\log m)$ bits, and every field that approximately satisfies Maxwell&#x27;s equations decodes to an approximate solution. We prove the construction for the continuum equations and give a computer-assisted version for the Yee discretization underlying finite-difference solvers. Read in reverse, it implies that electromagnetic simulation is, up to this overhead, as hard as general sparse linear algebra: a sufficiently fast general-purpose Maxwell solver would yield a faster sparse linear solver.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">It has been unclear which linear-algebra problems passive wave-based analog structures can represent, and at what cost, once encoding, precision, conditioning and readout are counted. The question is whether every well-conditioned sparse linear system can be encoded in a physical dielectric.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A sparse system is compiled into a degree-three logical network with a fixed coupling alphabet. The network is routed through a 3D cubic grid, and each site is realized as a localized electromagnetic mode in a bounded-permittivity dielectric cavity. Proofs cover the continuum Maxwell equations, with computer-assisted certificates for the Yee discretization. A Lean formalization of the continuum construction is described as substantially complete and is published in a companion repository.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.38913/spectral_setting.png" alt=""><figcaption>Figure S2: Certified spectral setting and analytic interaction mechanism. (a) The exact scalar permittivity in cell layer r_{3}=4 (cell centers at r_{3}=9/2 ) of the period- 20 background. Each pixel is one scalar cell; the fixed perturbation is p_{c}/2^{21} , 0\leq p_{c}\leq 2046 . (b) Certified intervals for the two low positive eigenvalues of A_{\rm per}=C_{\rm Y}^{\mathsf{T}}C_{\rm Y}-D_{\vare</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Every polynomially conditioned sparse system with m nonzeros is encoded in a structure of volume and I/O cost Õ(m^{3/2}), with O(log m)-bit coefficients. Every approximate Maxwell solution decodes to an approximate solution of the original system. Consequently, a sufficiently fast general Maxwell solver would yield a faster sparse linear solver.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.38913/fig_numerical.png" alt=""><figcaption>Figure 3: Calibrated cavities and reusable components give two numerical realizations. a , A prescribed signed matrix is encoded by six smooth spherical dielectric defects in an 8\times 6\times 8 PEC cavity. The left block shows the target system \Gamma x=b ; blue, red and gray cells mark positive, negative and zero entries. The plotted section is the signed electric-field phasor E_{z} at y=0 for </figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Quantity</th><th>Guarantee</th></tr></thead><tbody><tr><td>Size of the structure</td><td>Õ(m^{3/2})</td></tr><tr><td>Encoding and decoding</td><td>Õ(m^{3/2}) bit operations</td></tr><tr><td>Coefficients and readout</td><td>O(log m) bits each</td></tr><tr><td>Permittivity</td><td>Real, scalar, 1 ≤ ε ≤ 25</td></tr><tr><td>Conditioning</td><td>Polynomial in m</td></tr></tbody></table><div class="tbl-cap">Guarantees of the compiler</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

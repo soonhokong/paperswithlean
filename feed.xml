@@ -8,6 +8,127 @@
     <language>en</language>
     <lastBuildDate>Sun, 01 Nov 2026 00:00:00 +0000</lastBuildDate>
     <item>
+      <title>Fluctuation bounds for rotationally invariant first-passage percolation</title>
+      <link>https://paperswithlean.com/paper/2610.42124.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.42124.html</guid>
+      <pubDate>Sun, 01 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Scott Armstrong, Ahmed Bou-Rabee</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>probability</category><category>ai-agents</category>
+      <description>All results are formalized in Lean 4 with Mathlib, developed with AI agents, in a public repository that also covers the companion lattice paper.
+
+We prove that in rotationally invariant first-passage percolation on $\mathbb{R}^d$ with $d\geq2$, the passage time $T_n$ over a distance $n$ satisfies $\mathbb{E}[\exp(|T_n-μn|/n^{\frac{1}{2}(1-\varepsilon)})]\leq C$ for some $\varepsilon&gt;0$, where $μ$ is the time constant. This implies that its variance is at most a constant times $n^{1-\varepsilon}$, the bound that Basu, Sidoravicius and Sly proved in the planar case. As in their work, our argument is an induction on the scale, but in place of their proof that the geodesic is chaotic, we use the averaging argument of Benjamini, Kalai and Schramm together with a logarithmic improvement of the Efron-Stein inequality due to Benaïm and Rossignol.</description>
+    </item>
+    <item>
+      <title>Proof-Carrying Evolution: Black-Box Search, White-Box Flight</title>
+      <link>https://paperswithlean.com/paper/2610.42043.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.42043.html</guid>
+      <pubDate>Sun, 01 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Amit Jain, Sergio Sanchez-Hurtado, Victor Rodriguez-Fernandez, Richard Linares</dc:creator>
+      <category>verification</category><category>ai-agents</category><category>tooling</category>
+      <description>A certificate compiler generates Lean 4 proofs of stability, safety, docking, capture and SO(3) decrease properties for the champion controllers, checked by the Lean kernel.
+
+We study whether a language model can help design controllers whose behavior can be formally checked. In proof-carrying evolution (PCE), a search proposes controllers together with their certificates. Their mathematical forms are fixed; a proposer chooses their numerical parameters together. Certificate checks guide selection, and only a certified candidate can be returned. The deployed artifact is a control law and its certificate; the language model is used only during design. We compare four language models with classical search and synthesis on docking under a speed limit, pursuit of a maneuvering target, and attitude control on SO(3), using paired runs and shared proposal allowances. Certificates are checked in exact rational arithmetic during search on the linear problems. On SO(3), the search uses floating-point checks, followed by exact re-verification of every reported champion. The best run of each method also receives Lean 4 proofs of its stated control properties. On the linear problems, the strongest models beat the standard classical baselines on every run, but a classical optimizer that chooses certificates for the same objective closes most of that lead. Among the cited pursuit champions, the ranking does not survive a change from Euler to zero-order-hold dynamics. On SO(3), no model detectably outperforms CMA-ES when mixed with classical mutation. When models write every proposal, one tested model improves on CMA-ES and the other performs worse than its mixed variant. All search medians remain below the hand-tuned law. In a docking control with the objective and mutation operator held fixed, retaining certified candidates yields new certified designs in every run; removing this rule yields none.</description>
+    </item>
+    <item>
+      <title>On sign patterns of Fourier coefficients of theta quotients</title>
+      <link>https://paperswithlean.com/paper/2610.41569.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.41569.html</guid>
+      <pubDate>Sun, 01 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Koustav Banerjee, Kathrin Bringmann, Bernhard Heim, Ben Kane</dc:creator>
+      <category>formalization</category><category>number-theory</category><category>ai-agents</category>
+      <description>The paper&#x27;s asymptotic and sign-pattern results were formalized and verified in Lean by AxiomProver, with files in a public GitHub repository.
+
+Motivated by conjectures of Schlosser and Zhou on sign patterns of Fourier coefficients of infinite products, we study two families of theta quotients and their positive integral powers. We determine asymptotic formulas for their Fourier coefficients and use them to obtain explicit eventual periodic sign patterns. Our results provide new instances of the sign phenomena observed by Schlosser and Zhou and illustrate how dominant cusps determine the resulting sign patterns. These results were formalized and verified in Lean by AxiomProver.</description>
+    </item>
+    <item>
+      <title>DAPS: Dependency-Aware Premise Selection for LLM Theorem Proving</title>
+      <link>https://paperswithlean.com/paper/2610.41536.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.41536.html</guid>
+      <pubDate>Sun, 01 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Zixuan Chen, Wenyuan Jiang, Junling Wang, Mrinmaya Sachan, Yinya Huang</dc:creator>
+      <category>theorem-proving-ml</category><category>mathlib</category><category>dataset</category><category>benchmark</category>
+      <description>Extracts typed dependency graphs from Mathlib4 and 53 Lean Blueprint projects to train a premise selector for Lean 4 LLM provers.
+
+LLM-based theorem proving in Lean 4 has advanced rapidly, but provers are difficult to leverage newly contributed lemmas, because retrieval skews toward popular foundational lemmas, leaving the right premises buried among hundreds of thousands of candidates. Existing neural selectors rank candidates by semantic similarity, with three intrinsic limitations: frequency-skewed retrieval, isolated pairwise ranking, and degradation on out-of-distribution queries such as competition problems and informal language. Given that mathematics is structured by dependencies rather than similarities, we restore this signal to both the training data and the model. We curate two underused dependency resources. We conduct the first systematic mining of 53 Lean Blueprint projects, a previously untapped corpus of 3,805 manually curated informal+formal nodes that capture rare, research-level premises absent from Mathlib4. We further pair it with the extraction of comprehensive, typed, multi-level Mathlib4 dependencies. We then introduce DAPS, a dependency-aware premise selector with a structural neighborhood encoder, a group-level contrastive objective, and a Mathlib-then-Blueprint adaptation procedure. DAPS reaches mean Recall@32 of 89.25 on Mathlib4-Heldout (+11.41 over the strong selector LeanHammer), and maintains this lead on two out-of-distribution benchmarks. Further experiments demonstrate that DAPS premises improve theorem proving on miniF2F and IMO-ProofBench. Project page: https://daps-eth.github.io/.</description>
+    </item>
+    <item>
+      <title>Faster-than-power-law decay of order parameter correlations in the two-dimensional RP$^2$ model: a rigorous result by vibe-proving</title>
+      <link>https://paperswithlean.com/paper/2610.41256.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.41256.html</guid>
+      <pubDate>Sun, 01 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Masaki Oshikawa</dc:creator>
+      <category>formalization</category><category>ai-agents</category><category>mathlib</category><category>physics</category>
+      <description>AI-generated proof of super-polynomial correlation decay in RP^2 and RP^3 lattice models, fully formalized in Lean 4 against pinned Mathlib and archived on Zenodo.
+
+We consider the RP$^2$ model on the two-dimensional square lattice with nearest-neighbor interactions. It is obtained by replacing the spin in the standard classical Heisenberg model with a director, which does not distinguish two opposite directions. Unlike the standard classical Heisenberg model or the O(3) nonlinear sigma model, the RP$^2$ (and its cousin RP$^3$) model allows point vortex defects classified by $π_1(RP^2)= Z_2$ in two dimensions. It is tempting to expect the $Z_2$ vortices to induce a phase transition analogous to the well-established Berezinskii-Kosterlitz-Thouless transition in the O(2) model (XY model) in two dimensions. Indeed, the possibilities of a critical phase or a critical point with power-law correlations of the order parameter in the RP$^2$ and RP$^3$ models have been discussed in the literature. However, the challenging nature of the problem has prevented a definitive conclusion on the phase diagram so far. In this paper, we report a rigorous mathematical proof by Artificial Intelligence (ChatGPT 6 Astra) that the absolute value of the two-point correlation function of order parameters at distance $r$ in the RP$^2$ and RP$^3$ models on the two-dimensional square lattice is bounded above by $C_β\exp{(-c_β[\log(2+r)]^2)}$ for any finite inverse temperature $β\ge0$, with positive constants $C_β$ and $c_β$ depending only on $β$. Namely, the correlation function decays faster than any power of $r$. The proof is formalized and verified in Lean; the formalization is publicly available at doi:10.5281/zenodo.23548847 . A heuristic argument based on a one-parameter effective theory ansatz at large distances combined with the rigorous correlation bound suggests (but does not prove) that the $Z_2$ vortices are always unbound at any nonzero temperature.</description>
+    </item>
+    <item>
+      <title>Iris on Indirection Theory: Lightweight Higher-order Ghost State</title>
+      <link>https://paperswithlean.com/paper/2610.41202.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.41202.html</guid>
+      <pubDate>Sun, 01 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Darius Foo, Viet-Anh Nguyen, Wei-Ngan Chin</dc:creator>
+      <category>verification</category><category>formalization</category><category>logic</category><category>type-theory</category>
+      <description>Mechanises Indirection Theory in Lean with Iris-style resource algebra functors, reconstructs the Iris base logic, and builds logical relations and a program logic.
+
+Today, semantic models of languages with concurrency and higher-order state are constructed using step-indexed predicates over resources and higher-order ghost state. There are two main lines of work for constructing such models. On the one hand, Iris provides these in full generality, at the cost of a large body of mechanised domain theory that is difficult to learn and port to new proof assistants. On the other hand, Indirection Theory is much simpler through the use of ordinary dependent types, but its foundation in separation algebra limits the expressiveness of its resource model compared to Iris-style higher-order ghost state. We resolve this conundrum by showing that Indirection Theory can be as expressive as Iris. To that end, we give a lightweight mechanisation of Indirection Theory in Lean, generalised so knots contain resources from an Iris-style resource algebra functor. We then reconstruct the Iris base logic on top of it. The advantage of this approach is in the elementary metatheory: a user can follow the whole construction without domain theory. We conduct two case studies to show that the base logic is expressive and faithful to Iris: a biorthogonal logical relation for higher-order state, and an Iris-style program logic with invariants and user-definable ghost state, complete enough to verify concurrent and higher-order programs.</description>
+    </item>
+    <item>
+      <title>Researcher-in-the-Loop Evolutionary Discovery of Entanglement-Assisted Quantum Code Families</title>
+      <link>https://paperswithlean.com/paper/2610.41183.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.41183.html</guid>
+      <pubDate>Sun, 01 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Jae-Hyun Baek, Byung-Sun Won, Jon-Lark Kim</dc:creator>
+      <category>formalization</category><category>quantum</category><category>algebra</category>
+      <description>Lean formally checks the algebraic certificate behind the main prime-power EAQECC family theorem; Lean sources with pinned dependencies and kernel/Comparator records are released.
+
+LLM-guided program evolution can produce mathematical constructions, but validity, generality, and reproducibility require distinct evidence. We develop a researcher-in-the-loop discovery pipeline that combines program evolution, exact evaluation, mathematical generalization, certified nonexistence checks, and formal proof checking. We apply it to entanglement-assisted quantum error-correcting codes (EAQECCs). Starting from tasks that did not specify a family formula, evolved programs produced finite qubit constructions whose structure researchers generalized to the family $[[n,1,n-1;n-q-1]]_q$ for prime powers $q\ge3$ at $n\ge2q+1$ and for $q=2$ at odd $n\ge5$. Lean checks the algebraic certificate underlying this family. Together with entanglement lifting, the family closes 54 gaps in archived EAQECC tables. The released evidence includes 115 verified code records, ten nonexistence results with checked DRAT proofs, family implementations, and preserved search programs for exact checks and seeded replay. In a controlled cohort of eight paired generation blocks, validation-selected iterative programs achieve success in 46.1% and 31.6% of held-out executions at unseen lengths $n=13,15$, compared with 19.5% and 3.1% for independently generated programs. In this setting, program evolution and researcher analysis turn finite computational discoveries into a proved family with independently checkable evidence.</description>
+    </item>
+    <item>
+      <title>The Cranston–Li–Su–Wang–Xu (2026) conjecture is true</title>
+      <link>https://paperswithlean.com/paper/2610.40863.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.40863.html</guid>
+      <pubDate>Sun, 01 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Dave Goel</dc:creator>
+      <category>formalization</category><category>combinatorics</category>
+      <description>All results, including both parts of the flow-reconfiguration theorem, are formalized in Lean 4 from standard axioms, with a public repository.
+
+Let $A$ be a finite abelian group. A nowhere-zero $A$-flow of a graph gives every edge a direction and a non-zero value in $A$, so that at every vertex the sum of the values on the entering edges equals the sum on the leaving edges. Such a flow can be changed along a cycle: going around the cycle, add a fixed non-zero element of $A$ to the value of every edge that points forward and subtract it from the value of every edge that points backward. The Cranston–Li–Su–Wang–Xu (2026) conjecture states that if $A$ has at least four elements, then in every graph in which all degrees are even, any two nowhere-zero $A$-flows are joined by a chain of such changes through nowhere-zero $A$-flows. It also states that, for every integer $k\ge 4$, the same holds for integer flows whose values are between $1$ and $k-1$ in absolute value, where each change adds a non-zero integer. We prove this conjecture. The core of the proof is an induction on the number of edges: if a flow enters a vertex $v$ along an edge $uv$ and leaves $v$ along an edge $vw$ with the same value, the two edges can be replaced by one edge $uw$, and the induction hypothesis applies to the smaller graph. So the main task is to change every flow into a flow with such a pair of edges. For nowhere-zero $A$-flows with $|A|\ge 4$, replacing vertices of degree more than $4$ by triangles reduces the problem to graphs with all degrees at most $4$. For integer flows, a counting argument joins any two nowhere-zero flows with values in the cyclic group $\mathbb{Z}_k$, $k\ge 4$, by changes that add $1$, $-1$, $2$ or $-2$; every such chain gives a chain of integer flows with values between $1$ and $k-1$ in absolute value, and every integer flow of this chain reduces modulo $k$ to a flow of the given chain. All results of this paper are also proved in the Lean 4 proof assistant, from Lean&#x27;s standard axioms alone.</description>
+    </item>
+    <item>
+      <title>The Hibi–Li (2016) conjecture is fully resolved</title>
+      <link>https://paperswithlean.com/paper/2610.40703.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.40703.html</guid>
+      <pubDate>Sun, 01 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Dave Goel</dc:creator>
+      <category>formalization</category><category>combinatorics</category><category>geometry</category>
+      <description>All results are formally verified in Lean 4, with published results and two results from Fourier&#x27;s preprint taken as axioms. A public repository is provided.
+
+Hibi and Li conjectured that the order polytope $\mathcal{O}(P)$ of a finite poset $P$ has at most as many faces of each dimension as its chain polytope $\mathcal{C}(P)$, and that equality in some dimension $k$ with $1\leq k\leq|P|-1$ forces the two polytopes to be unimodularly equivalent. Fourier proved the inequality in a 2026 preprint. Let $X$ be the five-element poset in which an element lies above two incomparable elements and below two other incomparable elements. Building on Fourier&#x27;s proof, we show that if an $n$-element poset contains $X$ as an induced subposet, then, for every $k$ with $2\leq k\leq n-1$, its chain polytope has at least $\binom{n-3}{k-2}$ more $k$-dimensional faces than its order polytope, and that for every $n\geq5$ some $n$-element poset containing $X$ attains all these bounds at once. Since Hibi and Li showed that $\mathcal{O}(P)$ and $\mathcal{C}(P)$ are unimodularly equivalent exactly when $P$ does not contain $X$, this proves the equality statement for these $k$. For $k=1$ the equality statement is false: $\mathcal{O}(X)$ and $\mathcal{C}(X)$ have equally many edges (Hibi, Li, Sahara and Shikama) but are not unimodularly equivalent. With Fourier&#x27;s inequality, these results settle the conjecture. Every result is formally verified in Lean 4, with only published results and two results of Fourier&#x27;s preprint as axioms.</description>
+    </item>
+    <item>
+      <title>A Winner Classification for Rooted Partizan Edge Geography on Heterogeneous Bouquets of Cycles</title>
+      <link>https://paperswithlean.com/paper/2610.40683.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.40683.html</guid>
+      <pubDate>Sun, 01 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Adam Tilèpe</dc:creator>
+      <category>formalization</category><category>combinatorics</category><category>mathlib</category>
+      <description>The winner classification for rooted partizan edge geography on bouquets of cycles is fully formalized and machine-checked in Lean 4 with Mathlib, using an accompanying source file.
+
+We consider an undirected edge-traversal game on a finite bouquet of simple cycles. Each of two players controls a token, both tokens begin at the common root, and the players alternate traversing edges that have not been used by either token. A player with no legal move loses. We prove that the first player wins precisely when the number of cycles of odd edge-length is odd, without assuming equal cycle lengths. The proof uses a simultaneous induction on root and defense configurations, with an exact analysis of the forced race between two opened cycles. We also explain how the classification corresponds to a completed Lean 4 formalization of the underlying game on finite edge sets.</description>
+    </item>
+    <item>
+      <title>Maxwell&#x27;s equations are universal for sparse linear algebra</title>
+      <link>https://paperswithlean.com/paper/2610.38913.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.38913.html</guid>
+      <pubDate>Sun, 01 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Yannick Augenstein</dc:creator>
+      <category>formalization</category><category>verification</category><category>physics</category><category>analysis</category>
+      <description>Formalizes the continuum Maxwell construction in Lean, covering operator, spectral, defect, leakage and residual-to-solution recovery proofs, with a public Lean development.
+
+Optical and wave-based analog computing has re-emerged as a route to accelerating linear algebra, with metamaterials and photonic circuits shown to invert matrices and solve integral equations. However, it has remained unclear which problems such passive structures can represent, and at what cost, once encoding, precision, conditioning and readout are accounted for. Here, we show that every polynomially conditioned sparse linear system can be compiled into a three-dimensional dielectric – a cavity filled with lossless, isotropic material of bounded permittivity – whose time-harmonic response encodes its solution. For $m$ nonzero coefficients, the volume of the structure and the cost of writing it down and reading out the answer scale as $\tilde O(m^{3/2})$, coefficients require only $O(\log m)$ bits, and every field that approximately satisfies Maxwell&#x27;s equations decodes to an approximate solution. We prove the construction for the continuum equations and give a computer-assisted version for the Yee discretization underlying finite-difference solvers. Read in reverse, it implies that electromagnetic simulation is, up to this overhead, as hard as general sparse linear algebra: a sufficiently fast general-purpose Maxwell solver would yield a faster sparse linear solver.</description>
+    </item>
+    <item>
       <title>Two-Colour Zig-Zag Numberlink on Rectangles: A Forbidden-Pattern Characterization, a Constructive Polynomial-Time Algorithm, and a Lean Verification</title>
       <link>https://paperswithlean.com/paper/2610.37691.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2610.37691.html</guid>
@@ -545,127 +666,6 @@ A planar graph is rectilinear planar if it admits a planar orthogonal drawing wi
       <description>Main theorems on the generic BP degree, edge-incidence ring resolutions, and minimum real fixed-point counts are formalized in Lean 4 with Mathlib, with Lean source released.
 
 How many fixed points does belief propagation have on a binary pairwise model? Over complex parameters, the admissible equations of a finite loopless multigraph form an algebraic family whose generic degree we determine: it is a graph state sum over edge sets without vertices of degree one, each vertex of positive degree contributing one less than its degree. We give two geometric realizations of this state sum. The first is the total Betti number of a universal edge-incidence ring constructed without parameters. Its full graded Betti table is the state sum, its Tor algebra is natural for noncontracting graph maps, the alternating numerator recovers the graph polynomial of Watanabe and Fukumizu, and an Artin reduction by a regular sequence realizes the one-variable specialization, corrected for tree components. The second lies in the actual family: at the strong-field boundary each state factor is a ramification index, and at sufficiently strong field the state charts exhaust the admissible complex fiber. For fixed nonzero real couplings, every Eulerian message-sign sector contains a real fixed point at every external field, and strong fields attain this lower bound: one admissible real fixed point per element of the binary cycle space and one positive fixed point. For graphs of maximum degree at most three, this minimum equals the number of minimal module generators of the edge-incidence ring. One state decomposition connects the complex degree, graded syzygies, and an attained minimum real count. The degree, selected ring and resolution statements, and the real counts are formalized in Lean 4.</description>
-    </item>
-    <item>
-      <title>Depositing More Should Not Earn Less: Supplier Income Monotonicity and Rate Curve Design in Pooled Lending Markets</title>
-      <link>https://paperswithlean.com/paper/2610.36899.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.36899.html</guid>
-      <pubDate>Tue, 27 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Ahzam Khan, Cavey Cool</dc:creator>
-      <category>formalization</category><category>economics</category><category>analysis</category>
-      <description>Most of the paper&#x27;s results on supplier income monotonicity and admissible rate curves are formalized in a Lean 4 library, released with a coverage record.
-
-In utilization dependent interest rate models, adding liquidity can reduce a supplier&#x27;s total interest income even as the supplier&#x27;s balance increases. A supplier holding a fraction $α$ of final pool supply keeps income nondecreasing with a marginal deposit exactly when $α(1+η)\leq1$, where $η$ is the elasticity of the borrow rate with respect to utilization. When the condition fails, the supplier can instead raise its income by withdrawing, which pushes utilization further up. On two public Drift markets, a lender held more of the pool than the curve protected in at least one hour in nine on SOL and one in thirteen on USDC. A protocol turns this into a design constraint by choosing, at each utilization, the largest supplier share it intends to protect. That choice caps the elasticity, and integrating the cap describes every admissible curve. Protecting the same share at every utilization gives a power law boundary, and protecting every fresh depositor gives a hyperbolic one. On a multiple kink USDT market, compliant repairs can lower or raise supplier income, because the constraint governs how income responds to a deposit and not the price level.</description>
-    </item>
-    <item>
-      <title>An upper bound of 61 for the Ramsey number $R(3,3,3,3)$</title>
-      <link>https://paperswithlean.com/paper/2610.36648.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.36648.html</guid>
-      <pubDate>Tue, 27 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Milos Tatarevic</dc:creator>
-      <category>formalization</category><category>combinatorics</category><category>mathlib</category>
-      <description>Lean 4 formalizes the combinatorial reductions to 56,723 SAT formulas, checks the template-classification certificates, and emits the CNF formulas. The SAT refutations themselves are an unverified premise.
-
-We improve the upper bound on the classical Ramsey number $R(3,3,3,3)$ from 62 to 61. The proof is based on a global incidence count, classifications of small neighborhoods and exhaustive SAT computations. We formalize the mathematical reductions in Lean and refute every resulting formula with two SAT solvers.</description>
-    </item>
-    <item>
-      <title>Resolvent Components of Completely Normal Elements and the Morgan-Mullen Conjecture</title>
-      <link>https://paperswithlean.com/paper/2610.36534.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.36534.html</guid>
-      <pubDate>Tue, 27 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Florian Hellwig</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>number-theory</category><category>algebra</category>
-      <description>The proof of the Morgan–Mullen conjecture for n&gt;q and two corollaries, including all computer-assisted steps, is formalised in Lean 4 with Mathlib, with two cited results as axioms.
-
-We study completely normal elements of $\mathbb{F}_{q^n}$ over $\mathbb{F}_q$, that is, elements that are normal over every intermediate field, through partial Lagrange resolvents. In these coordinates, complete normality splits into independent components, in a way closely related to Hachenberger&#x27;s decomposition theory. Our main tool is a structure theorem for the components; together with a finite computation, it shows that every component has weight (the sum of the probabilities that its conditions fail) at most $3/4$, uniformly in $n$. Combined with the classical character-sum method, this gives an explicit sufficient criterion for the existence of a primitive completely normal element. We verify the criterion for all $n&gt;q$ except $70$ pairs $(q,n)$, which we settle with explicit elements found by computer. Since the case $n\le q$ is due to Garefalakis and Kapetanakis, this confirms the conjecture of Morgan and Mullen (1996) that every $\mathbb{F}_{q^n}$ contains a primitive element that is completely normal over $\mathbb{F}_q$. The same estimates give two further results. First, Hachenberger&#x27;s conjectured lower bound $(q-1)^{n&#x27;}q^{(p^a-1)n&#x27;}$ for the number of completely normal elements, where $p$ is the characteristic and $n=p^an&#x27;$ with $p\nmid n&#x27;$, holds for all pairs $(q,n)$; it was known for regular pairs. Second, primitivity and complete normality are asymptotically independent: as $q^n\to\infty$, the number of primitive completely normal elements is $(1+o(1))\,\varphi(q^n-1)/(q^n-1)$ times the number of completely normal elements (for fixed $n$ this was known). Our arguments for $n&gt;q$ and for both further results, including every computer-assisted step, are formalised in Lean 4 with Mathlib; the formalisation takes the case $n\le q$ and an explicit bound of Rosser and Schoenfeld as axioms and relies on Lean&#x27;s compiler and interpreter for the large computations.</description>
-    </item>
-    <item>
-      <title>Counting by the Book: Verifying Alaska&#x27;s Ranked-Choice Elections</title>
-      <link>https://paperswithlean.com/paper/2610.36494.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.36494.html</guid>
-      <pubDate>Tue, 27 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Lucy Horowitz</dc:creator>
-      <category>verification</category><category>formalization</category><category>economics</category>
-      <description>Formalizes Alaska&#x27;s ranked-choice tabulation statute in Lean 4, proves a tabulator implementation correct against the specification, and kernel-checks the tabulation results of 115 contests.
-
-We present Alaska&#x27;s ranked-choice elections as a case study in Formally Verified Democracy, a program to establish election results through formally checked proofs. We formalize an interpretation of Alaska&#x27;s tabulation rules in Lean, verify its implementation, and prove election-specific results. Across 115 ranked-choice contests in Alaska since 2022, we identify 75 ballot records across 10 contests that were counted differently from this interpretation by a program reproducing the published results, without changing any winners. We trace these differences to overvotes and duplicate rankings and examine their legal justification, showing how formal verification can expose consequential choices in translating election law into software.</description>
-    </item>
-    <item>
-      <title>Automatic Certified Differentiation in Lean</title>
-      <link>https://paperswithlean.com/paper/2610.36396.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.36396.html</guid>
-      <pubDate>Tue, 27 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Ramy Shahin</dc:creator>
-      <category>tactic-automation</category><category>mathlib</category><category>analysis</category><category>tooling</category>
-      <description>Implements certified automatic differentiation via Lean metaprogramming, composing Mathlib derivative theorems into step-wise correctness certificates.
-
-Automatic differentiation (the automatic computation of numerical function derivatives) has many applications, especially in scientific computing and machine learning. Several approaches to automate the calculation of derivatives have been presented. Common challenges facing those approaches include (1) having to define derivative rules for different classes of functions, (2) having to manipulate program symbols to understand the semantics of the function being differentiated, and construct the derivative function, and (3), more importantly, ensuring that the calculated derivative is correct. In this paper, we present an approach for automatic certified differentiation using the Lean proof assistant. By certified, we mean a correctness certificate is computed together with the derivative function and a domain on which the derivative is guaranteed to be valid. Our approach leverages existing derivative theorems included in the Mathlib Lean library instead of having to define our own rules. We also utilize Lean metaprogramming to manipulate the symbolic structure of the input function, and to construct the derivative function. The correctness certificate is computed step-wise as we apply Mathlib theorems. To make the search efficient, we index the derivative theorems by the function they differentiate. We evaluate our approach on 500 randomly generated functions: with the index, all of them are differentiated, with a median time of 0.18\,s per function, 8.6 times faster than without the index.</description>
-    </item>
-    <item>
-      <title>Reasoning about the Genetic Code in Lean</title>
-      <link>https://paperswithlean.com/paper/2610.36343.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.36343.html</guid>
-      <pubDate>Tue, 27 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Colin T. Jones, Tyler R. Josephson</dc:creator>
-      <category>formalization</category><category>verification</category>
-      <description>Formalizes transcription, translation, replication and mutation in Lean 4 with Mathlib, proving redundancy and injectivity properties of the genetic code.
-
-The genetic code exhibits redundancy, meaning that multiple distinct nucleotide sequences can encode the same amino acid sequence, a property mathematically characterized as non-injectivity. While this phenomenon is well studied in molecular biology, its rigorous verification within a computational framework remains limited. In this work, we present a machine-verified model of the central dogma of molecular biology using the Lean 4 interactive theorem prover. We formalize nucleic acid bases and amino acids as inductive types and define transcription and translation as functions mapping DNA sequences to RNA and subsequently to polypeptides. Within this framework, we prove key properties of these biological processes, including the redundancy of the genetic code, injectivity of transcription, and the non-injectivity of translation. Additionally, we formalize auxiliary processes such as DNA replication and mutation, and verify properties such as length conservation under transcription and point mutations. Finally, we demonstrate how Lean 4 helps prevent semantic errors in our code, showing its effectiveness as a tool for advancing reliable, bug-free scientific computing, particularly within the life sciences.</description>
-    </item>
-    <item>
-      <title>How Stable Are LLM-Generated Proofs Under Program Refactoring? A Stress Test for Verifiable Code Generation</title>
-      <link>https://paperswithlean.com/paper/2610.36328.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.36328.html</guid>
-      <pubDate>Tue, 27 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Aravind Mandiga, Guoming Li</dc:creator>
-      <category>benchmark</category><category>verification</category><category>theorem-proving-ml</category>
-      <description>Builds a benchmark of Lean-certified behavior-preserving refactorings of VERINA tasks and re-checks fixed Lean proofs against them to measure proof survival.
-
-Benchmarks for verifiable code generation usually test a proof against one fixed implementation. We ask whether the same proof remains valid after a program refactoring that preserves behavior. We introduce RefactorProof, which derives 458 Lean-certified variants from the 185 VERINA tasks that compile in our pinned environment while holding the specification and evaluated proof fixed byte-for-byte. VERINA supplies reference proofs for 46 tasks, all from its basic split; the primary model-versus-reference comparisons further match on 21-25 short, non-recursive tasks. Structural refactorings expose substantial brittleness across proof sources: task-normalized structural PSR is 4.3% for the supplied references and 13.3-26.8% for the specialized provers. On the matched tasks, specialized prover proofs nevertheless have higher overall unchanged-proof survival than the supplied reference artifacts: +15.6 points for DeepSeek-Prover-V2-7B, +18.8 for Goedel-Prover-V2-32B, and +20.3 for Goedel-Prover-V2-8B; all three 95% CIs exclude zero. The ordering persists after excluding universally survived T1 variants, under family-balanced aggregation, and under alternative deployable valid-proof selection rules. However, unchanged-proof failure is not the same as high repair cost: predefined one-identifier edits repair 51/54 eligible reference structural failures and 58/85 eligible prover failures. RefactorProof therefore measures unchanged-proof stability under program refactoring, not the cost of maintaining a proof after it breaks.</description>
-    </item>
-    <item>
-      <title>count-catcher: Lean Theorems from Model Counting Certificates</title>
-      <link>https://paperswithlean.com/paper/2610.36196.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.36196.html</guid>
-      <pubDate>Tue, 27 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Johannes K. Fichte, Stefan Szeider</dc:creator>
-      <category>verification</category><category>tooling</category><category>formalization</category><category>combinatorics</category>
-      <description>Builds a Lean tool that checks CPOG model-counting certificates in Lean, yielding verified count theorems combined with Mathlib results such as Burnside&#x27;s lemma.
-
-We present count-catcher, a tool that turns a CPOG certificate of a count by the exact model counter d4 into a Lean theorem that a CNF formula defined in Lean has exactly N models over V variables. With an encoding lemma, this theorem becomes a theorem about the number of combinatorial objects. A CPOG certificate consists of a Boolean circuit equivalent to the formula and a proof of equivalence. count-catcher checks in Lean that the formula implies the circuit (forward check) and the circuit implies the formula (reverse check). For the forward check, lrat-catcher streams a refutation through the LRAT checker of Lean&#x27;s standard library. The reverse check and the validity check of the circuit are computations proved correct in Lean. Lean runs all three checks as compiled code, so the theorem depends on Lean&#x27;s kernel, compiler and runtime, as does CPOG&#x27;s verified checker. We combine the theorem with results from Mathlib, for instance with Burnside&#x27;s lemma to count graphs up to isomorphism. We prove the number of Latin squares of order 8 as a weighted sum of hundreds of certified counts from about eight terabytes of certificates. We turn about half of the 2022 Model Counting Competition formulas into theorems, with the three checks taking about a quarter of the time of CPOG&#x27;s verified checker. We found that CPOG&#x27;s unverified checker reported wrong counts, and removed its verified checker&#x27;s dependence on two unproved lemmas. End to end, a theorem costs about the same as a checked count.</description>
-    </item>
-    <item>
-      <title>h1: A Taste of the Bitter Lesson in Automated Theorem Proving</title>
-      <link>https://paperswithlean.com/paper/2610.35962.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.35962.html</guid>
-      <pubDate>Tue, 27 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Skander Moalla, Ahmad Rammal, Niket Patel, Remi Munos, Julia Kempe</dc:creator>
-      <category>theorem-proving-ml</category><category>ai-agents</category><category>tooling</category><category>benchmark</category>
-      <description>Builds h1, an agentic harness giving LLMs an efficient Lean 4/Mathlib interface, evaluated on Lean benchmarks and used to settle FormalConjectures open problems.
-
-While progress in informal mathematics has come largely from scaling the chain-of-thought and agentic reasoning of frontier language models, formal theorem proving has increasingly relied on human-designed workflows around these models, such as planning, decomposition, and orchestrating specialized provers. This raises a bitter-lesson question: can a simple agentic loop that scales test-time compute match these workflows? The answer matters as formal verification must scale to keep up with frontier models producing research mathematics, yet new workflows rarely settle it, as their gains are often confounded with stronger models or more compute. We study this question with h1, a simple harness that gives a model an efficient interface to Lean 4 and keeps it working through verifier feedback and self-reflection, without imposing a decomposition or search structure. h1 reaches state-of-the-art results on PutnamBench, FATE-X, and FormalConjectures100-Solved, settles eight open problems in FormalConjectures, and, at matched models, matches or outperforms specialized workflows such as Goedel-Architect and AlphaProof Nexus, surprisingly showing that a single attempt (pass@1) can often scale to solve open problems. Through ablations and matched-model comparisons with Claude Code and AxProverBase, we find that simplicity alone is not enough: an efficient Lean interface largely determines cost and solve rate. We thus recommend that future work evaluate frontier models with efficient execution feedback before prescribing workflows, at the risk of bitter lessons.</description>
-    </item>
-    <item>
-      <title>Conditional Stable Laws and Rare-Event Limits for Absorbing Markov Chains</title>
-      <link>https://paperswithlean.com/paper/2609.22499.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.22499.html</guid>
-      <pubDate>Tue, 27 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Bernat Bassols Cornudella, Matheus M Castro</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>probability</category>
-      <description>Main theorems A–F and nine remarks on conditional limit laws for absorbing Markov chains are formalised in Lean 4 using Mathlib.
-
-We establish conditional limit theorems, pointwise in the initial state, for absorbing Markov chains on a compact metric space $M$. We assume $L^1(M,ρ)$-continuous transition densities, irreducibility and aperiodicity. For the observable $f_β(x)=d_M(x,x_0)^{-β}$, with suitable $x_0$ satisfying $ρ(B_r(x_0))\sim C_d(x_0)r^d$, we prove that the point-process of normalised observations converges to a Poisson random measure. This yields totally right-skewed $α$-stable laws for $α=d/β\in(0,2)$ and, at the boundary value $α=2$, a Gaussian limit with the non-standard normalisation $\sqrt{n\log n}$. We also establish a conditional central limit theorem for $L^2$ observables, exponential deviation bounds for bounded observables and a conditional Poisson law for visits to shrinking targets. The results and remarks have been formalised in Lean 4.</description>
-    </item>
-    <item>
-      <title>Parabolic Rectifiable Reifenberg for Measures</title>
-      <link>https://paperswithlean.com/paper/2610.35809.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.35809.html</guid>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Robert Koirala</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>analysis</category>
-      <description>All theorems, corollaries and a key example are formalized in Lean 4 with Mathlib ( 176k lines), checked against a Mathlib-only specification via Comparator and nanoda.
-
-We announce a structure theory for measures on $\mathbb{R}^n\times\mathbb{R}$ equipped with the parabolic distance. Our results include a parabolic rectifiable Reifenberg theorem for arbitrary Radon measures, qualitative and quantitative characterizations of regular parabolic rectifiability by Jones square functions, and sharp results for $L^p$ beta numbers. The results hold in every parabolic dimension and extend the theories of Edelen–Naber–Valtorta, Azzam–Tolsa and David–Semmes to space-time. The stated theorems and corollaries, together with their proofs, are formalized in Lean 4 with Mathlib.</description>
     </item>
   </channel>
 </rss>

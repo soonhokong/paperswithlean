@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DAPS: Dependency-Aware Premise Selection for LLM Theorem Proving · Papers With Lean</title>
+<meta name="description" content="LLM-based theorem proving in Lean 4 has advanced rapidly, but provers are difficult to leverage newly contributed lemmas, because retrieval skews toward popular foundational lemmas, leaving the right premises buried among hundreds of thousands of candidates. Existing neural…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DAPS: Dependency-Aware Premise Selection for LLM Theorem Proving">
+<meta property="og:description" content="LLM-based theorem proving in Lean 4 has advanced rapidly, but provers are difficult to leverage newly contributed lemmas, because retrieval skews toward popular foundational lemmas, leaving the right premises buried among hundreds of thousands of candidates. Existing neural…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.41536.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.41536.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.41536v1" target="_blank" rel="noopener"><img src="../thumbs/2610.41536.jpg" alt="First page of DAPS: Dependency-Aware Premise Selection for LLM Theorem Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">DAPS: Dependency-Aware Premise Selection for LLM Theorem Proving</h1>
+        <p class="authors">Zixuan Chen, Wenyuan Jiang, Junling Wang, Mrinmaya Sachan, Yinya Huang</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Oct 30, 2026 · v1</span>
+          <span class="badge">cs.CL</span> <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.41536v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.41536" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Extracts typed dependency graphs from Mathlib4 and 53 Lean Blueprint projects to train a premise selector for Lean 4 LLM provers.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">LLM-based theorem proving in Lean 4 has advanced rapidly, but provers are difficult to leverage newly contributed lemmas, because retrieval skews toward popular foundational lemmas, leaving the right premises buried among hundreds of thousands of candidates. Existing neural selectors rank candidates by semantic similarity, with three intrinsic limitations: frequency-skewed retrieval, isolated pairwise ranking, and degradation on out-of-distribution queries such as competition problems and informal language. Given that mathematics is structured by dependencies rather than similarities, we restore this signal to both the training data and the model. We curate two underused dependency resources. We conduct the first systematic mining of 53 Lean Blueprint projects, a previously untapped corpus of 3,805 manually curated informal+formal nodes that capture rare, research-level premises absent from Mathlib4. We further pair it with the extraction of comprehensive, typed, multi-level Mathlib4 dependencies. We then introduce DAPS, a dependency-aware premise selector with a structural neighborhood encoder, a group-level contrastive objective, and a Mathlib-then-Blueprint adaptation procedure. DAPS reaches mean Recall@32 of 89.25 on Mathlib4-Heldout (+11.41 over the strong selector LeanHammer), and maintains this lead on two out-of-distribution benchmarks. Further experiments demonstrate that DAPS premises improve theorem proving on miniF2F and IMO-ProofBench. Project page: <a href="https://daps-eth.github.io/" target="_blank" rel="noopener">https://daps-eth.github.io/</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Neural premise selectors for Lean 4 LLM provers rank candidates by semantic similarity. As a result, retrieval favors popular foundational lemmas, ranks each lemma in isolation rather than as a usable set, and degrades on out-of-distribution queries such as competition problems and informal text.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors build a typed, multi-level dependency DAG from mathlib-4.22.0 with 15 edge categories and 6.5M edges. They also mine 53 Lean Blueprint projects, giving 3,805 informal and formal nodes, and derive four retrieval benchmarks from these resources. DAPS combines a structural neighborhood encoder with a group-level contrastive objective over premise sets. It is trained on Mathlib first, then continually adapted on Blueprint dependencies.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.41536/fig1.png" alt=""><figcaption>Figure 1 : One dependency graph spanning Mathlib4 (left) and a representative Blueprint project (right). The two resources differ in density and composition. Mathlib4 averages 24 edges per node with strong directional asymmetry across node types, while Blueprint dependencies are much sparser, averaging 1.2, but carry research-level out-of-Mathlib4 declarations and informal L a T e X signals.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">DAPS reaches a mean Recall@32 of 89.25 on Mathlib4-Heldout, 11.41 points above LeanHammer, and also leads on the DAPS-Collection and DAPS-Blueprint benchmarks. Supplying DAPS premises improves pass@k on miniF2F with Goedel-Prover-V2 and DeepSeek-Prover-V2, and raises informal proving scores on IMO-ProofBench.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Mathlib4-R</th><th>Mathlib4-H</th><th>DAPS-Coll.</th><th>DAPS-BP</th></tr></thead><tbody><tr><td>ReProver</td><td>36.97</td><td>43.48</td><td>1.24</td><td>32.04</td></tr><tr><td>LeanHammer</td><td>73.99</td><td>77.84</td><td>3.19</td><td>40.42</td></tr><tr><td>Qwen3-Embedding-8B</td><td>15.25</td><td>9.92</td><td>0.36</td><td>13.07</td></tr><tr><td>DAPS</td><td>80.68</td><td>89.25</td><td>23.53</td><td>50.08</td></tr></tbody></table><div class="tbl-cap">Recall@32 (mean over three runs) across the four benchmarks</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
