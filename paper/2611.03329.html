@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentic Pipelines for Mapping Topological Codes to Quantum Hardware · Papers With Lean</title>
+<meta name="description" content="Mapping a prescribed many-body Hamiltonian to a particular quantum hardware is generally an approximate process, resulting in both intended and unwanted quantum dynamics. We introduce an AI-agent-assisted workflow that uses Lean to establish whether an effective device…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Agentic Pipelines for Mapping Topological Codes to Quantum Hardware">
+<meta property="og:description" content="Mapping a prescribed many-body Hamiltonian to a particular quantum hardware is generally an approximate process, resulting in both intended and unwanted quantum dynamics. We introduce an AI-agent-assisted workflow that uses Lean to establish whether an effective device…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.03329.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.03329.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.03329v1" target="_blank" rel="noopener"><img src="../thumbs/2611.03329.jpg" alt="First page of Agentic Pipelines for Mapping Topological Codes to Quantum Hardware"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Agentic Pipelines for Mapping Topological Codes to Quantum Hardware</h1>
+        <p class="authors">Arpit Arora, Adam Holmes, Krysta M. Svore, Taylor L. Patti</p>
+        <div class="row">
+          <span class="badge">quant-ph</span>
+          <span class="date">Nov 2, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-purple" href="../#tag=quantum">quantum</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.03329v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.03329" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">AI agents generate Lean 4 proofs of toric-code Hamiltonian properties and spectral-gap perturbation bounds certifying that a superconducting device Hamiltonian retains the code space.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Mapping a prescribed many-body Hamiltonian to a particular quantum hardware is generally an approximate process, resulting in both intended and unwanted quantum dynamics. We introduce an AI-agent-assisted workflow that uses Lean to establish whether an effective device Hamiltonian retains the intended low-energy subspace of the target many-body Hamiltonian. We demonstrate this approach with topological quantum error correction (QEC), providing, to our knowledge, the first Lean-verified pipeline connecting a code space to low-energy states of a device model. Starting from qubits and parity checks, the pipeline constructs the ideal Hamiltonian whose lowest energy states form the intended code space, and determines the excitation gap that protects that code space. It then tests if the device retains the required number of isolated low-energy states and quantifies how closely their subspace matches the intended code space. We compare three bounds on unwanted energy shifts obtained by: summing the interaction strengths, grouping the anticommuting Pauli interactions, and diagonalizing the Hamiltonian. Pauli grouping yields a bound that is tighter than the conventional sum and closer to the diagonalization result, avoiding overly conservative compensation requirements. The workflow also identifies the strongest unwanted interactions and the qubits they affect, providing specific targets for improving device couplings and controls. We demonstrate our framework using an eight-qubit toric-code array on a superconducting device, where the same driven device generates both the required four-qubit interactions as well as unwanted dynamics. An AI agent identifies viable device parameters within a prescribed leakage budget, and Lean verifies four isolated low-energy states close to the ideal code space. Our workflow supports predictive hardware engineering for analog implementations of QEC codes.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Mapping a topological QEC code Hamiltonian onto analog quantum hardware is approximate and introduces unwanted interactions. It is unclear whether the device&#x27;s effective Hamiltonian keeps the intended low-energy code space with the correct degeneracy and gap.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An AI-agent workflow, governed by a human-specified research contract, constructs the ideal toric-code Hamiltonian from stabilizer checks. It formalizes the Hamiltonian&#x27;s properties in Lean 4, including Hermiticity, Pauli algebra, commutation, and code distance. The agents derive and formalize a gap-versus-residual theorem and a tighter bound based on grouping anticommuting Pauli terms. Numerical residual norms are converted to rational certified bounds that Lean checks, and an agent searches device parameters for a driven dc-SQUID architecture.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.03329/fig1.png" alt=""><figcaption>Figure 1: From a topological-code request to a certified physical low-energy sector. (a) Cell-complex incidence data specify the periodic toric-code Hamiltonian, its four-dimensional code sector, and its gap. (b) A driven dc-SQUID connected to an array of four qubits ( Q_{1.2.3.4} ) generates the requested four-body checks together with thousands of non-target residual terms, producing an effectiv</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For an eight-qubit L=2 toric code on driven-SQUID couplers, Lean verifies four isolated low-energy states close to the ideal code space. The Pauli-grouping bound is tighter than the sum-of-strengths bound and closer to the diagonalization result. The workflow also identifies the dominant unwanted interactions and the qubits they affect.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.03329/fig2.png" alt=""><figcaption>Figure 2: Map of L=2 toric code on a SQUID coupled eight qubits. (a) Periodic qubit layout for L=2 toric code where brown diamonds represent the SQUID device. (b) Theorem 1 tested on H_{\rm eff} of the selected circuit with criterion described in Eq. 7 - 9 . It establishes that retaining the interaction algebra [Eq. 8 , Theorem 2 ] gives a bound closer to the dense witness [Eq. 9 ]. For circuit de</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asymptotically Optimal Weighted Edge Colorings via Local Bin Packing · Papers With Lean</title>
+<meta name="description" content="We study weighted edge coloring, where each edge of a graph $G$ has a weight in $(0,1]$, and colors are assigned so that the incident weight of each color at every vertex is at most one. The objective is to minimize the number of colors, denoted by $χ&#x27;_w(G)$. This generalizes…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Asymptotically Optimal Weighted Edge Colorings via Local Bin Packing">
+<meta property="og:description" content="We study weighted edge coloring, where each edge of a graph $G$ has a weight in $(0,1]$, and colors are assigned so that the incident weight of each color at every vertex is at most one. The objective is to minimize the number of colors, denoted by $χ&#x27;_w(G)$. This generalizes…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.03190.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.03190.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.03190v1" target="_blank" rel="noopener"><img src="../thumbs/2611.03190.jpg" alt="First page of Asymptotically Optimal Weighted Edge Colorings via Local Bin Packing"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Asymptotically Optimal Weighted Edge Colorings via Local Bin Packing</h1>
+        <p class="authors">Rishikesh Gajjala, Arindam Khan</p>
+        <div class="row">
+          <span class="badge">math.CO</span>
+          <span class="date">Nov 2, 2026 · v1</span>
+          <span class="badge">cs.DM</span> <span class="badge">cs.DS</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.03190v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.03190" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/rishigajjala/weighted-edge-coloring-challenges" target="_blank" rel="noopener" title="rishigajjala/weighted-edge-coloring-challenges">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The five upper-bound existence statements for weighted edge coloring are formalized in Lean 4 with Mathlib, AI-assisted, in a companion repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We study weighted edge coloring, where each edge of a graph $G$ has a weight in $(0,1]$, and colors are assigned so that the incident weight of each color at every vertex is at most one. The objective is to minimize the number of colors, denoted by $χ&#x27;_w(G)$. This generalizes classical edge coloring (all weights are one) and bin packing ($G$ is a star). Two natural lower bounds are the maximum weighted degree $Δ_w(G)$ and the maximum local bin-packing number $\mathrm{bp}(G)$: the maximum, over vertices, of the minimum number of unit bins needed to pack the incident weights. We have $\lceilΔ_w(G)\rceil\le\mathrm{bp}(G)\leχ&#x27;_w(G)$. How closely these local lower bounds approximate the global optimum is a longstanding open problem. Our main result establishes an asymptotic weighted analogue of Vizing&#x27;s theorem: every simple graph admits a coloring using at most $(1+o(1))\mathrm{bp}(G)$ colors. Thus local bin packings can be made globally consistent with asymptotically vanishing relative loss, even in nonbipartite graphs. Our local-to-global rounding framework coordinates feasible local packing distributions into a partial coloring, leaving only $o(\mathrm{bp}(G))$ uncolored weight at every vertex. For bipartite multigraphs, we prove $χ&#x27;_w(G)\le(2+o(1))Δ_w(G)$, establishing the Chung–Ross conjecture [SICOMP&#x27;91] asymptotically. For loopless multigraphs, we obtain the exact bound $χ&#x27;_w(G)\le3\lceilΔ_w(G)\rceil$. Both leading coefficients are optimal, giving weighted analogues of the classical Kőnig–Shannon bounds. Further upper and lower bounds show that the classical factor-$3/2$ separation does not persist with the local bin-packing benchmark. We also disprove the exact weighted-degree conjecture of Feige and Singh [ESA&#x27;08]. Our upper bounds have polynomial-time algorithms, and their existence statements are formalized in Lean 4.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Weighted edge coloring assigns colors to edges with weights in (0,1] so that the incident weight of each color at every vertex is at most one, and asks for the minimum number of colors. It was open how closely the local lower bounds, maximum weighted degree Δ_w and local bin-packing number bp(G), approximate this optimum.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A local-to-global rounding framework combines feasible local bin-packing distributions at each vertex into a consistent partial coloring, leaving only o(bp(G)) uncolored weight per vertex, which fresh colors then cover. Further tools are grouping of parallel edges, a skeleton-plus-insertion argument based on Shannon&#x27;s theorem, and harmonic charges from bin packing. The five existence statements of the main theorem are formalized in Lean 4 and Mathlib with AI assistance; the running-time analyses are not.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Simple graphs need at most (1+o(1))bp(G) colors, bipartite multigraphs at most (2+o(1))Δ_w (the Chung–Ross conjecture, asymptotically), and loopless multigraphs at most 3⌈Δ_w⌉. Improved bin-packing bounds are 1.62 for bipartite and 1.999 for loopless multigraphs, and an explicit counterexample disproves the Feige–Singh exact total-weight conjecture.</p><div class="sum-table"><table><thead><tr><th>Graph class</th><th>Upper bound</th></tr></thead><tbody><tr><td>Simple graphs</td><td>(1+o(1)) bp(G)</td></tr><tr><td>Bipartite multigraphs</td><td>(2+o(1)) Δ_w(G)</td></tr><tr><td>Loopless multigraphs</td><td>3⌈Δ_w(G)⌉</td></tr><tr><td>Bipartite multigraphs</td><td>(1.62+o(1)) bp(G)</td></tr><tr><td>Loopless multigraphs</td><td>(1.999+o(1)) bp(G)</td></tr></tbody></table><div class="tbl-cap">Upper bounds on χ&#x27;_w(G) (all formalized in Lean 4)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

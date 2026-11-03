@@ -6,7 +6,29 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 02 Nov 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 03 Nov 2026 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Agentic Pipelines for Mapping Topological Codes to Quantum Hardware</title>
+      <link>https://paperswithlean.com/paper/2611.03329.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.03329.html</guid>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Arpit Arora, Adam Holmes, Krysta M. Svore, Taylor L. Patti</dc:creator>
+      <category>verification</category><category>ai-agents</category><category>formalization</category><category>quantum</category>
+      <description>AI agents generate Lean 4 proofs of toric-code Hamiltonian properties and spectral-gap perturbation bounds certifying that a superconducting device Hamiltonian retains the code space.
+
+Mapping a prescribed many-body Hamiltonian to a particular quantum hardware is generally an approximate process, resulting in both intended and unwanted quantum dynamics. We introduce an AI-agent-assisted workflow that uses Lean to establish whether an effective device Hamiltonian retains the intended low-energy subspace of the target many-body Hamiltonian. We demonstrate this approach with topological quantum error correction (QEC), providing, to our knowledge, the first Lean-verified pipeline connecting a code space to low-energy states of a device model. Starting from qubits and parity checks, the pipeline constructs the ideal Hamiltonian whose lowest energy states form the intended code space, and determines the excitation gap that protects that code space. It then tests if the device retains the required number of isolated low-energy states and quantifies how closely their subspace matches the intended code space. We compare three bounds on unwanted energy shifts obtained by: summing the interaction strengths, grouping the anticommuting Pauli interactions, and diagonalizing the Hamiltonian. Pauli grouping yields a bound that is tighter than the conventional sum and closer to the diagonalization result, avoiding overly conservative compensation requirements. The workflow also identifies the strongest unwanted interactions and the qubits they affect, providing specific targets for improving device couplings and controls. We demonstrate our framework using an eight-qubit toric-code array on a superconducting device, where the same driven device generates both the required four-qubit interactions as well as unwanted dynamics. An AI agent identifies viable device parameters within a prescribed leakage budget, and Lean verifies four isolated low-energy states close to the ideal code space. Our workflow supports predictive hardware engineering for analog implementations of QEC codes.</description>
+    </item>
+    <item>
+      <title>Asymptotically Optimal Weighted Edge Colorings via Local Bin Packing</title>
+      <link>https://paperswithlean.com/paper/2611.03190.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.03190.html</guid>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Rishikesh Gajjala, Arindam Khan</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>combinatorics</category>
+      <description>The five upper-bound existence statements for weighted edge coloring are formalized in Lean 4 with Mathlib, AI-assisted, in a companion repository.
+
+We study weighted edge coloring, where each edge of a graph $G$ has a weight in $(0,1]$, and colors are assigned so that the incident weight of each color at every vertex is at most one. The objective is to minimize the number of colors, denoted by $χ&#x27;_w(G)$. This generalizes classical edge coloring (all weights are one) and bin packing ($G$ is a star). Two natural lower bounds are the maximum weighted degree $Δ_w(G)$ and the maximum local bin-packing number $\mathrm{bp}(G)$: the maximum, over vertices, of the minimum number of unit bins needed to pack the incident weights. We have $\lceilΔ_w(G)\rceil\le\mathrm{bp}(G)\leχ&#x27;_w(G)$. How closely these local lower bounds approximate the global optimum is a longstanding open problem. Our main result establishes an asymptotic weighted analogue of Vizing&#x27;s theorem: every simple graph admits a coloring using at most $(1+o(1))\mathrm{bp}(G)$ colors. Thus local bin packings can be made globally consistent with asymptotically vanishing relative loss, even in nonbipartite graphs. Our local-to-global rounding framework coordinates feasible local packing distributions into a partial coloring, leaving only $o(\mathrm{bp}(G))$ uncolored weight at every vertex. For bipartite multigraphs, we prove $χ&#x27;_w(G)\le(2+o(1))Δ_w(G)$, establishing the Chung–Ross conjecture [SICOMP&#x27;91] asymptotically. For loopless multigraphs, we obtain the exact bound $χ&#x27;_w(G)\le3\lceilΔ_w(G)\rceil$. Both leading coefficients are optimal, giving weighted analogues of the classical Kőnig–Shannon bounds. Further upper and lower bounds show that the classical factor-$3/2$ separation does not persist with the local bin-packing benchmark. We also disprove the exact weighted-degree conjecture of Feige and Singh [ESA&#x27;08]. Our upper bounds have polynomial-time algorithms, and their existence statements are formalized in Lean 4.</description>
+    </item>
     <item>
       <title>Reap: Uncovering Monte Carlo proof search with a lightweight model</title>
       <link>https://paperswithlean.com/paper/2611.02678.html</link>
@@ -644,28 +666,6 @@ Let $D(n)$ be the maximum number of unit-square diagonals in an $n\times n$ squa
       <description>Main theorem, propositions, corollaries, lemmas and Algorithm 1 correctness are formalized in Lean 4 with Mathlib; Algorithm 2 is implemented in Lean.
 
 Topological Calderbank-Shor-Steane (CSS) codes in more than two spatial dimensions offer features useful for fault-tolerant quantum computation, such as transversal non-Clifford gates and single-shot decoding, but a systematic understanding of them is still lacking. One approach is to decouple a code: map it to a stack of higher-form toric codes by a finite-depth local CSS-preserving Clifford circuit, possibly after adding ancillas. For translation-invariant $p$-ary CSS codes, where $p$ is prime ($p=2$ for qubits), we require the circuit to commute with the translations of a superlattice. In two dimensions, such a decoupling exists once these translations act trivially on every anyon type. In higher dimensions, excitations are sorted by their dimension into superselection layers, which can remain glued together even when translations act trivially on each layer. We show that this gluing is the only remaining obstruction: a code can be decoupled on a superlattice exactly when, after coarse-graining to it, translations act trivially on every layer and the gluing vanishes. Moreover, for a code with finitely many excitation types in each layer and $m$ nonzero layers, once translations act trivially on every layer, further coarse-graining by a factor of $p^{m-1}$ in every direction removes the aforementioned gluing. Physically, the same criterion determines when the code encodes the maximal number of logical qudits on a finite torus. Finally, we give an explicit algorithm that constructs the decoupling as a circuit of SUM (qudit CNOT) and SWAP gates.</description>
-    </item>
-    <item>
-      <title>Classical communication over quantum channels: does entanglement help in nature?</title>
-      <link>https://paperswithlean.com/paper/2610.40585.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.40585.html</guid>
-      <pubDate>Thu, 29 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Peixue Wu</dc:creator>
-      <category>formalization</category><category>quantum</category>
-      <description>All results, including the Schur-weighted block entropy inequality and strong additivity theorems, are fully verified in Lean with an accompanying repository.
-
-Can entangling codewords across independent uses of a quantum channel improve the rate of classical communication? An old conjecture states that there is no such entanglement advantage for all channels. Although Hastings&#x27;s result and follow-up works disproved this conjecture, it turns out that enormous dimension is required to construct a channel where entanglement enhances classical communication. This indicates that there might be no entanglement advantage for many physical channels, or for all low dimensional channels. Motivated by recent progress on (generalized) amplitude damping channels, we propose a general Schur-weighted block entropy inequality, and show that there is no entanglement advantage for all phase-covariant channels including multi-level amplitude damping channels, generalized dephasing channels, and damping-dephasing channels. As a by-product, we also recover the recently established result that there is no entanglement advantage for all qubit channels.</description>
-    </item>
-    <item>
-      <title>FARMS: A Verifiable Foundation for Automated Computational Science</title>
-      <link>https://paperswithlean.com/paper/2610.40560.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.40560.html</guid>
-      <pubDate>Thu, 29 Oct 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Di Wu, Ling Liang, Haizhao Yang</dc:creator>
-      <category>autoformalization</category><category>ai-agents</category><category>mathlib</category><category>analysis</category>
-      <description>An LLM-agent pipeline formalizes numerical linear algebra and PDE textbook statements as Lean declarations, then chains them via Lean-checked implications using Mathlib.
-
-Automated computational science could accelerate discovery by selecting, adapting and developing numerical methods. This prospect requires mathematical knowledge that AI systems can interpret and reuse with explicit guarantees. Here we present FARMS, a faithful and efficient foundation that transforms computational mathematics into AI-ready computing knowledge. FARMS connects formal statements to source context, algorithmic meaning and quantitative guarantees through source preparation, reusable representations and semantic review. Across 171 targets in randomized numerical linear algebra and numerical partial differential equations, 157 were accepted by the pipeline, with mean estimated costs of US \$0.85-2.29 per target across sources. Lean-checked implications from explicit source premises connect selected statements to computational skills, illustrated by a heat-flow solve and wave-response compression. FARMS therefore supports an affordable, reusable knowledge foundation for trustworthy automated computational science.</description>
     </item>
   </channel>
 </rss>
