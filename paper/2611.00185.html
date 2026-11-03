@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blazing-Fast SMT-LIB Parsing for Rust and Lean · Papers With Lean</title>
+<meta name="description" content="SMT-LIB is a standard input format for Satisfiability Modulo Theories (SMT) solvers. However, parsing the format is non-trivial and can become a bottleneck, e.g. when retrieving benchmark metadata or normalising the input for solvers. We introduce blazing-smtlib, a Rust parsing…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Blazing-Fast SMT-LIB Parsing for Rust and Lean">
+<meta property="og:description" content="SMT-LIB is a standard input format for Satisfiability Modulo Theories (SMT) solvers. However, parsing the format is non-trivial and can become a bottleneck, e.g. when retrieving benchmark metadata or normalising the input for solvers. We introduce blazing-smtlib, a Rust parsing…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.00185.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.00185.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.00185v1" target="_blank" rel="noopener"><img src="../thumbs/2611.00185.jpg" alt="First page of Blazing-Fast SMT-LIB Parsing for Rust and Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Blazing-Fast SMT-LIB Parsing for Rust and Lean</h1>
+        <p class="authors">Jan Onderka, Armin Biere, Henrik Böving</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Oct 30, 2026 · v1</span>
+          <span class="badge">cs.PL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.00185v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.00185" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/onderjan/blazing-smtlib" target="_blank" rel="noopener" title="onderjan/blazing-smtlib">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Ports a Rust SMT-LIB parser to Lean (BSmtLib) and proves its optimised lexer and parser match a Lean formalisation of SMT-LIB syntax.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">SMT-LIB is a standard input format for Satisfiability Modulo Theories (SMT) solvers. However, parsing the format is non-trivial and can become a bottleneck, e.g. when retrieving benchmark metadata or normalising the input for solvers. We introduce blazing-smtlib, a Rust parsing library for SMT-LIB, and BSmtLib, its port to Lean. We outline the library API we designed for composability and extensibility (including non-standard SMT-LIB commands), and discuss our implementation decisions for fast lexing and parsing. We proved that our lexing and parsing with Lean-specific optimisations match our formalised reading of the SMT-LIB syntax. We measured performance on a representative sample from the 2025 SMT-LIB corpus and found that blazing-smtlib is more than 6 times faster on the geometric mean than previous parsing libraries and BSmtLib is faster or comparable to them.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Parsing SMT-LIB 2 is non-trivial and can bottleneck tasks such as benchmark metadata retrieval and input normalisation. Existing parsing libraries lack extensibility for non-standard commands and are not optimised for speed. Lean had no verified SMT-LIB parser.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors built blazing-smtlib, a zero-dependency push-style streaming Rust library with a composable, extensible API, using batch processing and zero-copy dispatch. They ported it to Lean as BSmtLib, a panic-free library, and applied Lean-specific optimisations. They proved that the ported and optimised lexers and parsers match a Lean formalisation of SMT-LIB syntax. The proofs use only the standard axioms and are checked with leanchecker and nanoda.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 9,201 files from the 2025 SMT-LIB corpus, blazing-smtlib is more than 6 times faster on the geometric mean than previous parsing libraries. BSmtLib is faster than or comparable to those libraries.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.00185/summary.png" alt=""><figcaption>Figure 5 : Measurements of our tools against other lexers, parsers, and executable tools that can be used to check well-formedness of SMT-LIB scripts. The left column shows the geometric-mean throughput. The right column shows the percentage of files that are processed with at least the given throughput, with time-axis differences corresponding to a speedup/slowdown by a ratio. Most tools have a h</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.00185/ratios.png" alt=""><figcaption>Figure 6 : Ratio of time taken by blazing-smtlib , BSmtLib , and the well-formedness checkers against other lexers, parsers, and executable tools. Each file/solver combination is shown separately. The files are sorted by the average number of bytes per token. Speedups tend to be consistent, longer tokens exhibiting slight trends in some comparisons. On files with very long tokens, some tools becom</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

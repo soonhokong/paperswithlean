@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LARK: Lean-Assisted Reasoning for LLM-Generated GPU Kernels · Papers With Lean</title>
+<meta name="description" content="Efficient GPU kernels are typically low-level and hardware-specific, and LLM agents can now generate them faster than experts can verify. Existing approaches rely on testing, which provides evidence but not a guarantee of correctness. We introduce LARK, an agentic framework that…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LARK: Lean-Assisted Reasoning for LLM-Generated GPU Kernels">
+<meta property="og:description" content="Efficient GPU kernels are typically low-level and hardware-specific, and LLM agents can now generate them faster than experts can verify. Existing approaches rely on testing, which provides evidence but not a guarantee of correctness. We introduce LARK, an agentic framework that…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.02028.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.02028.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.02028v1" target="_blank" rel="noopener"><img src="../thumbs/2611.02028.jpg" alt="First page of LARK: Lean-Assisted Reasoning for LLM-Generated GPU Kernels"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">LARK: Lean-Assisted Reasoning for LLM-Generated GPU Kernels</h1>
+        <p class="authors">Zixi Zhang, Jiayi Nie, Haoran Wu, Yujie Yan, Yann Herklotz, Rika Antonova, Robert Mullins, Yiren Zhao, George A. Constantinides, Jianyi Cheng</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 1, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.02028v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.02028" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes a GPU machine model and PTX/CUDA/HIP operation semantics in Lean 4; LLM agents write Lean proofs of kernel equivalence to PyTorch specifications.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Efficient GPU kernels are typically low-level and hardware-specific, and LLM agents can now generate them faster than experts can verify. Existing approaches rely on testing, which provides evidence but not a guarantee of correctness. We introduce LARK, an agentic framework that automatically and formally verifies GPU kernels against their PyTorch reference implementations. LARK proves equivalence in functional and memory behavior under exact arithmetic and establishes a new trust boundary: human effort is only needed to verify operator-level Lean semantics ahead of kernel generation time, instead of checking every single line of generated code. LARK formalizes the GPU machine model and the semantics of each operation in Lean 4 once per target language, and the Lean 4 semantics of any incoming kernel is derived from these pre-built definitions. LLM agents then automate the proof in two steps. First, an agent decomposes the whole kernel semantics into smaller segments and Lean 4 verifies this segmentation, which addresses the intractability of proving equivalence for large kernels directly. Second, agents write Lean proofs that each kernel segment matches its high-level PyTorch counterpart. Together, the two steps give whole-program equivalence. We demonstrate that LARK can be used 1) to ensure correctness in existing code-generation agents and 2) to automatically verify human-written kernel libraries. On the KernelCraft GPU tasks, combined with a simple ReAct agent, LARK enables GLM 5.3 to fully verify 10 of 12 Level-1 kernels and Opus 5.5 all 5 Level-2 kernels. Moreover, over 10 production kernels randomly sampled from popular open-source LLM serving frameworks, LARK verifies 9 and identifies a new data race bug in the tenth. We believe LARK represents a significant step toward verifiable code generation in the agentic era.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM agents can generate GPU kernels faster than experts can verify them. Existing checks rely on testing, which gives evidence of correctness but no guarantee.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">LARK formalizes a GPU machine model and per-operation semantics in Lean 4 once per target language (PTX, CUDA, HIP). A translator derives each incoming kernel&#x27;s Lean semantics from these fixed definitions. Agents then segment the kernel semantics, and Lean checks that the segmentation is correct. Agents next prove each segment equivalent to the tensor-level PyTorch reference under exact arithmetic, with race freedom, fault freedom and termination proved as obligations.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.02028/flowchart.drawio.png" alt=""><figcaption>Figure 3: The LARK pipeline. Offline, the machine model and per-operation semantics are formalized once per target language and measured against the hardware, and the Torch module once per module. Per kernel, the translator composes the flat whole-kernel semantics in Lean, then three Lean-checked stages follow: (1) the race-freedom check; (2) an agent segments the flat model and proves the segment</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On KernelCraft, GLM 5.3 fully verifies 10 of 12 Level-1 kernels and Opus 5.5 verifies all 5 Level-2 fused kernels on PTX. Of 10 production kernels sampled from open-source LLM serving frameworks, 9 verify. The tenth, a softmax kernel from llm.c, is rejected because of a previously unknown data race.</p><div class="sum-table"><table><thead><tr><th>Target</th><th>GLM 5.3</th><th>GLM 5.3 Flash</th><th>DeepSeek V4.1 Flash</th><th>GPT-6 Luna</th></tr></thead><tbody><tr><td>PTX</td><td>83%</td><td>58%</td><td>25%</td><td>25%</td></tr><tr><td>CUDA</td><td>75%</td><td>50%</td><td>25%</td><td>25%</td></tr><tr><td>HIP</td><td>83%</td><td>50%</td><td>25%</td><td>25%</td></tr></tbody></table><div class="tbl-cap">KernelCraft Level 1 pass rates by target language and model</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

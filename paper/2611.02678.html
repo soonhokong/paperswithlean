@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reap: Uncovering Monte Carlo proof search with a lightweight model · Papers With Lean</title>
+<meta name="description" content="We present Reap, an open framework for learning and analyzing formal proof search in Lean4. Reap implements policy-value-guided Monte Carlo Tree Search directly in Lean, sharing proof-state transitions, AND-OR search, and replay verification between inference and training…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reap: Uncovering Monte Carlo proof search with a lightweight model">
+<meta property="og:description" content="We present Reap, an open framework for learning and analyzing formal proof search in Lean4. Reap implements policy-value-guided Monte Carlo Tree Search directly in Lean, sharing proof-state transitions, AND-OR search, and replay verification between inference and training…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.02678.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.02678.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.02678v1" target="_blank" rel="noopener"><img src="../thumbs/2611.02678.jpg" alt="First page of Reap: Uncovering Monte Carlo proof search with a lightweight model"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Reap: Uncovering Monte Carlo proof search with a lightweight model</h1>
+        <p class="authors">Yutong Wang, Xuanzhi Ren, Tianyi Xu, Ruitong Liu, Jingda Xu, Peihao Wu, Bryan Dai, Bin Dong</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 2, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.02678v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.02678" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/frenzymath/reap" target="_blank" rel="noopener" title="frenzymath/reap">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Implements policy-value-guided MCTS proof search as a Lean 4 tactic via Lean metaprogramming, then trains and evaluates a 1.7B prover on Lean benchmarks.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present Reap, an open framework for learning and analyzing formal proof search in Lean4. Reap implements policy-value-guided Monte Carlo Tree Search directly in Lean, sharing proof-state transitions, AND-OR search, and replay verification between inference and training rollouts. Structured action logs expose how neural predictions and tactic execution interact during search. Using this framework, we train Reaper-1, a 1.7B-parameter policy-value model, through continued pre-training, supervised tactic learning, and iterative search-based reinforcement learning. Using a separate premise selector, the final system solves 79.9% of miniF2F-test at pass@32, establishing state-of-the-art performance among open provers of comparable size while remaining competitive with substantially larger models. Beyond improved solve rates, our results suggest that RL strengthens the prover&#x27;s ability to organize proofs around useful intermediate results, favoring substantial advances over repeated local adjustments. This more directed proof construction is accompanied by increasingly elaborate tactic programs: fewer explicit search decisions are needed, while more work is performed within each decision. The resulting trade-off between search effort and tactic execution cost provides insight into how learning changes the prover&#x27;s problem-solving strategy.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Recent high-performing neural provers are hard to study because their implementations are inaccessible or need heavy compute. It is unclear how training changes the mechanism of proof search, beyond solve rates.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Reap runs policy-value-guided Monte Carlo Tree Search with AND-OR search directly inside Lean 4&#x27;s tactic monad. It uses native proof-state save/restore, proof reconstruction, replay verification, and structured action logs. Neural policy and value predictions are served externally. The same tactic serves as the inference engine and as the RL rollout engine. Using the Scythe-rl pipeline, the authors train Reaper-1, a 1.7B policy-value model, in three stages: continued pre-training, supervised tactic learning, and iterative MCTS-based RL with a separate premise selector.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.02678/fig_method.png" alt=""><figcaption>Figure 2: Overview of Reap’s training pipeline and Lean-native MCTS. In the backup rule, OR/AND labels refer to the successor node’s type. Both Q(s,a) and the return v account for the edge cost: one for tactic edges and zero for synthetic focus edges. Here, M(s) counts direct policy–value evaluations.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Reaper-1 solves 79.9% of miniF2F-test at pass@32, the best among open provers of comparable size, and is also evaluated on ProofNet, FATE-M, PutnamBench and CombiBench. Over RL stages, proofs get shorter and search trees smaller, while individual tactic actions grow more elaborate and slower to execute.</p><div class="sum-table"><table><thead><tr><th>Metric</th><th>SFT</th><th>RL4</th><th>RL5</th></tr></thead><tbody><tr><td>Pass@32</td><td>62.3%</td><td>78.3%</td><td>79.9%</td></tr><tr><td>Mean proof steps</td><td>21.7</td><td>11.2</td><td>5.2</td></tr><tr><td>Mean search-tree nodes</td><td>2,368</td><td>162</td><td>119</td></tr><tr><td>Median evaluation latency (ms)</td><td>12.0</td><td>15.2</td><td>43.2</td></tr></tbody></table><div class="tbl-cap">Search and proof statistics across training stages (miniF2F-test)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

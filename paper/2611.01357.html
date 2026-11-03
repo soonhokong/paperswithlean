@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ProofPatch: Reviewing Lean Statements and Keeping the Reviews Valid as Formalizations Evolve · Papers With Lean</title>
+<meta name="description" content="The kernel of the Lean proof assistant checks that a proof establishes its statement. Whether the statement says what was intended is left to human reviewers. This is the old problem of validating a specification, and it grows more pressing as language models write formal…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ProofPatch: Reviewing Lean Statements and Keeping the Reviews Valid as Formalizations Evolve">
+<meta property="og:description" content="The kernel of the Lean proof assistant checks that a proof establishes its statement. Whether the statement says what was intended is left to human reviewers. This is the old problem of validating a specification, and it grows more pressing as language models write formal…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.01357.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.01357.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.01357v1" target="_blank" rel="noopener"><img src="../thumbs/2611.01357.jpg" alt="First page of ProofPatch: Reviewing Lean Statements and Keeping the Reviews Valid as Formalizations Evolve"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">ProofPatch: Reviewing Lean Statements and Keeping the Reviews Valid as Formalizations Evolve</h1>
+        <p class="authors">Xujun Che, Depeng Xu, Jian Xiang, Taufiqua Khan</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Oct 31, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.SE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.01357v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.01357" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a Lean 4 tool that fingerprints elaborated statements, runs kernel-checked challenges on them, and gates patches; it is evaluated on Mathlib revisions and LLM agents.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The kernel of the Lean proof assistant checks that a proof establishes its statement. Whether the statement says what was intended is left to human reviewers. This is the old problem of validating a specification, and it grows more pressing as language models write formal statements in bulk and agents edit formal developments continuously. We present ProofPatch, a tool that helps reviewers judge Lean statements and keeps their judgments valid while the development changes. A reviewer can ask the kernel targeted questions about a statement, such as whether a hypothesis is needed or whether a counterexample exists. Each decision is stored with fingerprints of the statement as Lean elaborated it and of the definitions it depends on, and any declaration can be pinned so that a patch changing it is blocked, whether a person or an agent built on a large language model (LLM) wrote the patch. Working on elaborated terms rather than source text is the central design choice: notation and formatting changes leave a decision intact, and a changed definition reaches every theorem that uses it. On 229 pairs of consecutive revisions of Mathlib, Lean&#x27;s mathematics library, ProofPatch sends 118 of 12,898 synthetic decisions back for review. Every text-based alternative misses at least 38 of these or sends back at least 13 times as many. On 1,527 labeled statements, kernel evidence flags unfaithful ones with precision 0.88 to 0.96, and in 344 runs of an LLM agent no change to a pinned statement got through.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The Lean kernel checks proofs but not whether a statement means what was intended. Review decisions on statements also go stale silently as formal developments change, a problem made worse by LLMs that generate statements in bulk and agents that edit code continuously.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ProofPatch stores review decisions as receipts. Each receipt carries fingerprints of the canonicalized elaborated statement and of the definitions it depends on, so it survives notation changes but is invalidated when a dependency changes. Kernel-backed challenges mutate statements (drop or weaken hypotheses, strengthen conclusions, vacuity checks, refutation) to produce evidence for reviewers. A gate blocks patches that violate locks on pinned declarations, whether a person or an LLM agent wrote them.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.01357/demo-statement.png" alt=""><figcaption>Figure 6: Statement screen for clamp_le_hi . Left: the informal statement above the formal one, split into its parts. Right: the evidence of the challenge that drops h , ending with the grade’s fixed wording, and alice’s receipt, which cites it. Bottom: the form that records a decision.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.01357/demo-gate.png" alt=""><figcaption>Figure 9: Gate report on the patch that rewrites clamp : the source diff, the effect on every declaration, the lock results, and the six receipts sent back for re-review.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 229 Mathlib revision pairs, the gate sent back 118 of 12,898 synthetic receipts with no needless or missed ones, while every text-based method missed at least 38 or sent back at least 13 times as many. On 1,527 labeled statements, kernel evidence flagged unfaithful ones with precision 0.88 to 0.96. Across 344 LLM agent runs, no change to a locked statement got through.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>sent back</th><th>needless</th><th>missed</th></tr></thead><tbody><tr><td>statement diff</td><td>94</td><td>54</td><td>78</td></tr><tr><td>file diff</td><td>12,898</td><td>12,780</td><td>0</td></tr><tr><td>text closure on the kernel&#x27;s graph</td><td>290</td><td>210</td><td>38</td></tr><tr><td>gate, statement fingerprints only</td><td>62</td><td>0</td><td>56</td></tr><tr><td>gate</td><td>118</td><td>0</td><td>0</td></tr></tbody></table><div class="tbl-cap">Receipts sent back on 229 Mathlib revision pairs (12,898 synthetic receipts)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VeriBase: Automated Construction of Theorem Libraries for Software Verification · Papers With Lean</title>
+<meta name="description" content="Software verification is typically more challenging than coding. Software developers routinely build on mature libraries and APIs, but turning successful verification solutions into reusable libraries still requires substantial expert effort. In this paper, we propose VeriBase,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VeriBase: Automated Construction of Theorem Libraries for Software Verification">
+<meta property="og:description" content="Software verification is typically more challenging than coding. Software developers routinely build on mature libraries and APIs, but turning successful verification solutions into reusable libraries still requires substantial expert effort. In this paper, we propose VeriBase,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.01743.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.01743.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.01743v1" target="_blank" rel="noopener"><img src="../thumbs/2611.01743.jpg" alt="First page of VeriBase: Automated Construction of Theorem Libraries for Software Verification"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">VeriBase: Automated Construction of Theorem Libraries for Software Verification</h1>
+        <p class="authors">Zihao Zhang, Zenan Li, Taolue Chen, Zhe Zhou, Tao Xie, Yuan Yao</p>
+        <div class="row">
+          <span class="badge">cs.SE</span>
+          <span class="date">Nov 1, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.01743v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.01743" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/zzhisthebest/Veribase" target="_blank" rel="noopener" title="zzhisthebest/Veribase">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds Lean 4 software-verification libraries from LLM-generated, Lean-checked solutions, and evaluates them on Lean benchmarks (Verina, FVAPPS, VeriContest, VeriSoftBench).</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Software verification is typically more challenging than coding. Software developers routinely build on mature libraries and APIs, but turning successful verification solutions into reusable libraries still requires substantial expert effort. In this paper, we propose VeriBase, a framework for automatically constructing software-verification libraries by jointly generalizing code and its associated theorems from successful verification solutions. The key challenge is to generalize implementations together with the theorem statements and proofs that depend on these implementations, and reconcile overlapping components across verification tasks. To this end, VeriBase treats code and its associated theorems as declaration families, and designs a three-phase pipeline, which proves seed tasks, generalizes code and associated theorems, and harvests the resulting families into shared interfaces. VeriBase updates dependent declarations as interface change and uses Lean to check the resulting code and proofs. We evaluate VeriBase across four benchmarks with three backend LLMs. The results show that the general-purpose library built from independent 4,191 programs increases the average task success rate by up to 17.0% and meanwhile reduces the proof completion time by up to 21.4%. When VeriBase constructs a benchmark-specific library, further improvement can be observed.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Software verification takes more effort than coding, and turning successful verification solutions into reusable libraries still requires substantial expert work. The difficulty is generalizing implementations together with the theorems and proofs that depend on them, and reconciling overlapping components across tasks.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">VeriBase treats code and its associated theorems as code-centered declaration families. It runs a three-phase LLM-agent pipeline (Claude Code harness): proving seed tasks to get Lean-validated solutions, generalizing code and theorems, and harvesting families into shared interfaces by adding, skipping, merging, and refactoring. Dependent declarations are updated as interfaces change, and Lean 4 checks all code and proofs, including checks for sorry and new axioms. A general library was built from 4,191 LeetCode/OpenCodeInstruct tasks translated to Lean 4, alongside benchmark-specific libraries.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.01743/veribase_framework.png" alt=""><figcaption>Figure 2. Overview of VeriBase . VeriBase proves software-verification tasks to obtain Lean-validated solutions, generalizes them into code-centered declaration families, and integrates these families into a coherent library through addition, skipping, merging, and library-level refactoring. A workflow diagram showing \namecompleting tasks selected for library construction, generalizing successful</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The general library has about 54K lines of Lean 4 (4,848 declarations in 74 modules). It raises average task success by up to 17.0% and cuts proof completion time by up to 21.4% across three backend LLMs. Benchmark-specific libraries give further gains, e.g., up to 88.9% on Verina with GLM 5.2.</p><div class="sum-table"><table><thead><tr><th>Benchmark</th><th>Baseline</th><th>+Gen.</th><th>+Gen. &amp; Spec.</th></tr></thead><tbody><tr><td>Verina</td><td>66.7</td><td>80.2</td><td>77.8</td></tr><tr><td>FVAPPS</td><td>54.0</td><td>71.0</td><td>74.0</td></tr><tr><td>VeriContest</td><td>70.0</td><td>76.0</td><td>85.0</td></tr></tbody></table><div class="tbl-cap">Task success rate (%) with DeepSeek V4 Pro</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

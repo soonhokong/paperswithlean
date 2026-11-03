@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monotone Local Search with Sample-Dependent Running Times · Papers With Lean</title>
+<meta name="description" content="Monotone Local Search turns an algorithm that extends a given partial solution into an algorithm that finds a solution from scratch: sample a few elements, hope that they lie in an unknown solution, and complete them. Its known analyses bound every call of the extension…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Monotone Local Search with Sample-Dependent Running Times">
+<meta property="og:description" content="Monotone Local Search turns an algorithm that extends a given partial solution into an algorithm that finds a solution from scratch: sample a few elements, hope that they lie in an unknown solution, and complete them. Its known analyses bound every call of the extension…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.01774.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.01774.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.01774v1" target="_blank" rel="noopener"><img src="../thumbs/2611.01774.jpg" alt="First page of Monotone Local Search with Sample-Dependent Running Times"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Monotone Local Search with Sample-Dependent Running Times</h1>
+        <p class="authors">Serge Gaspers</p>
+        <div class="row">
+          <span class="badge">cs.DS</span>
+          <span class="date">Nov 1, 2026 · v1</span>
+          <span class="badge">cs.DM</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.01774v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.01774" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.23851002" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Parts of the running-time analysis, including the certificates and the correctness of the Steiner extension, are formally checked in Lean 4 with Mathlib in the ancillary files.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Monotone Local Search turns an algorithm that extends a given partial solution into an algorithm that finds a solution from scratch: sample a few elements, hope that they lie in an unknown solution, and complete them. Its known analyses bound every call of the extension algorithm by a worst-case time that depends only on the number of sampled elements, and Esmer et al. (SODA 2024) showed that no algorithm that uses the extension algorithm as a black box with this running time beats the original form by more than a polynomial factor. We let this running time depend on the actual sample. If the extension algorithm decides in time $O^*(2^{g(I,X,k)})$, for a polynomial-time computable $g$, whether a sample $X$ can be completed to a solution with at most $k$ elements, our main theorem gives a randomized algorithm with one-sided error in time $O^*(2^{ψn})$ whenever, for some solution $S$ of size $k$ and some $t$, the exponential moment $\sum_{X\subseteq S,|X|=t}2^{-g(I,X,k)}$ is at least $2^{-ψn}\binom{n}{t}$. A corollary, multivariate Monotone Local Search, generalizes the theorems of Fomin et al. (STOC 2016, J. ACM 2019) and of Gaspers and Lee (ICALP 2017). For Max Leaf Spanning Tree and, equivalently, Connected Dominating Set, the previous best polynomial-space bound is $O^*(1.8619^n)$. Completing a sample is a Steiner tree problem, solved in time exponential in the number of terminals, which varies strongly with the sample. We obtain a randomized polynomial-space algorithm in time $O(1.6991^n)$ and a deterministic one in time $(\sqrt5-\frac12)^n 2^{o(n)}=O(1.7361^n)$. For connectivity problems in which the extension algorithm&#x27;s running time doubles with every component of the sample, an analysis through a partition function gives randomized polynomial-space algorithms in time $O^*(1.8^n)$ for Connected Feedback Vertex Set and $O(1.6444^n)$ for Connected Vertex Cover.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Monotone Local Search bounds every extension call by a worst-case running time that depends only on the sample size, and a known black-box barrier prevents improvement beyond that model. The paper studies what can be gained when the extension algorithm&#x27;s running time depends on the actual sample, with Max Leaf Spanning Tree / Connected Dominating Set as the main application.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A main theorem gives a randomized one-sided-error algorithm whose running time is governed by exponential moments of the running-time exponent over subsets of a solution. Samples above a threshold exponent are discarded. For Connected Dominating Set the extension step is a Steiner tree computation by inclusion–exclusion. The moments are bounded with tree potentials, three-state recursions and antinorm certificates, and closure sampling refines the bound. Certificates and parts of the analysis are verified in Lean 4 with Mathlib, mostly by the kernel alone, with the RSC certificate data checked by compiled evaluation.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Polynomial-space algorithms for Connected Dominating Set / Max Leaf Spanning Tree run in randomized time O(1.6991^n) and deterministic time O(1.7361^n), improving on O(1.8619^n). Connected Feedback Vertex Set is solved in randomized O*(1.8^n) and Connected Vertex Cover in randomized O(1.6444^n). A multivariate Monotone Local Search generalizing earlier theorems is also obtained.</p><div class="sum-table"><table><thead><tr><th>Bound</th><th>Type</th><th>Source</th></tr></thead><tbody><tr><td>1.8619^n</td><td>deterministic</td><td>AKML11 (previous best)</td></tr><tr><td>1.7449^n</td><td>randomized</td><td>Theorem 6.4</td></tr><tr><td>1.7361^n</td><td>deterministic</td><td>Theorem 10.4</td></tr><tr><td>1.7204^n</td><td>randomized</td><td>Theorem 7.2</td></tr><tr><td>1.6991^n</td><td>randomized</td><td>Theorem 8.1</td></tr></tbody></table><div class="tbl-cap">Polynomial-space bounds for Connected Dominating Set / Max Leaf Spanning Tree</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

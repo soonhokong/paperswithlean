@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LEANGUARD: Lean-Verified Guardrails for Tool-Using Agents · Papers With Lean</title>
+<meta name="description" content="Tool-using language-model agents often execute actions that their domain policies forbid. We present LeanGuard, a runtime that checks every proposed tool call against a policy written in Lean4 before the call reaches the environment. Policies combine state predicates with scoped…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LEANGUARD: Lean-Verified Guardrails for Tool-Using Agents">
+<meta property="og:description" content="Tool-using language-model agents often execute actions that their domain policies forbid. We present LeanGuard, a runtime that checks every proposed tool call against a policy written in Lean4 before the call reaches the environment. Policies combine state predicates with scoped…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.02332.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.02332.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.02332v1" target="_blank" rel="noopener"><img src="../thumbs/2611.02332.jpg" alt="First page of LEANGUARD: Lean-Verified Guardrails for Tool-Using Agents"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">LEANGUARD: Lean-Verified Guardrails for Tool-Using Agents</h1>
+        <p class="authors">Sreehari Sankar, Debargha Ganguly, Vikash Singh, Mohsen Hariri, Weicong Chen, Yanyan Zhang, Shouren Wang, Wang Yang, Chaoda Song, Alexander Nemecek, Osama Zafar, Idan Davidovich, Yuting Shao, Kai Ye, Biyao Zhang, Xinpeng Li, Joe Stubbs, Erman Ayday, Jing Ma, Vipin Chaudhary</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 2, 2026 · v1</span>
+          <span class="badge">cs.CL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.02332v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.02332" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/DebarghaG/LeanGuard" target="_blank" rel="noopener" title="DebarghaG/LeanGuard">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Implements a Lean 4 runtime that checks agent tool calls against Lean policies, proves the decision procedure equivalent to LeanLTL semantics, and uses metaprogramming for proof-guided repair.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Tool-using language-model agents often execute actions that their domain policies forbid. We present LeanGuard, a runtime that checks every proposed tool call against a policy written in Lean4 before the call reaches the environment. Policies combine state predicates with scoped past-time temporal operators over the execution history, evaluation is fail-closed, and the decision procedure is proved equivalent to a LeanLTL semantics. A denied call can be corrected in two ways. With feedback, the agent receives the violated rule and a hint; with proof-guided repair, Lean metaprogramming searches for a nearby call that preserves the user&#x27;s intent and proves that the policy admits it, without the model. On Tau-Bench with five Qwen models (0.8B-27B), unguarded agents execute at least 33 calls that the Lean policy forbids, while LeanGuard executes none; with feedback, task success does not change significantly. On DTap, LeanGuard reduces direct prompt-injection success from 57.9% to 5.9%, and in telecom, where benign tasks need no writes, benign success is unchanged. Feedback reduces repeated blocked calls and raises task success for four of five models over a bare denial. On replayed denials, repair proves an admissible edit for 88 of 252 denials caused by argument values, in a median of 2,ms.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Tool-using language-model agents often execute actions that their domain policies forbid, especially state-changing calls. Prompt injection through tool outputs makes this worse.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">LeanGuard is a Lean 4 runtime that sits between the agent and its tools and checks each proposed call against policies written in Lean. Policies combine state predicates with scoped past-time temporal operators over the execution history, and evaluation is fail-closed. The admission procedure is proved equivalent to a LeanLTL temporal semantics. A denied call is corrected in one of two ways: the agent receives feedback naming the violated rule plus a hint, or Lean metaprogramming searches for a nearby intent-preserving call and returns it with a kernel-checked proof that the policy admits it.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On tau^2-bench with five Qwen models (0.8B-27B), unguarded agents execute at least 33 policy-forbidden calls while LeanGuard executes none, and task success with feedback does not change significantly. On DTap, LeanGuard cuts direct prompt-injection success from 57.9% to 5.9%. In offline replay, proof-guided repair proves an admissible edit for 88 of 252 argument-value denials, with a median time of 2 ms.</p><div class="sum-table"><table><thead><tr><th>Metric</th><th>None</th><th>LG+F</th></tr></thead><tbody><tr><td>tau^2-bench task success (%)</td><td>72.7</td><td>70.9</td></tr><tr><td>tau^2-bench judge-flagged (%)</td><td>9.7</td><td>6.5</td></tr><tr><td>DTap direct attack success (%)</td><td>57.9</td><td>5.9</td></tr><tr><td>DTap indirect attack success (%)</td><td>22.3</td><td>3.8</td></tr></tbody></table><div class="tbl-cap">Aggregate results across all models (None = unguarded, LG+F = LeanGuard with feedback)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

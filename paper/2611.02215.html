@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Discrimination, Calibration, and Ranking: A Unified Matrix Framework · Papers With Lean</title>
+<meta name="description" content="Discrimination, calibration, and ranking are the three pillars of classifier evaluation, yet no single algebraic language spans all three. A recent indicator-matrix account unifies discrimination measures (precision, recall, F1, Matthews correlation) across binary, multiclass,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Discrimination, Calibration, and Ranking: A Unified Matrix Framework">
+<meta property="og:description" content="Discrimination, calibration, and ranking are the three pillars of classifier evaluation, yet no single algebraic language spans all three. A recent indicator-matrix account unifies discrimination measures (precision, recall, F1, Matthews correlation) across binary, multiclass,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.02215.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.02215.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.02215v1" target="_blank" rel="noopener"><img src="../thumbs/2611.02215.jpg" alt="First page of Discrimination, Calibration, and Ranking: A Unified Matrix Framework"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Discrimination, Calibration, and Ranking: A Unified Matrix Framework</h1>
+        <p class="authors">Ronaldo Cristiano Prati, Farangis Johari</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Nov 1, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.02215v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.02215" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/rcprati/discrimination-calibration-ranking" target="_blank" rel="noopener" title="rcprati/discrimination-calibration-ranking">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Many calibration and ranking results, including skew-invariance characterizations and Brier collapse, are machine-checked in Lean 4 against Mathlib; the proofs are in a public repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Discrimination, calibration, and ranking are the three pillars of classifier evaluation, yet no single algebraic language spans all three. A recent indicator-matrix account unifies discrimination measures (precision, recall, F1, Matthews correlation) across binary, multiclass, multilabel and related settings, using Boolean cell operations on indicator label matrices, generalised to soft labels by t-norms. Calibration measures (Brier score, log-loss) and ranking measures (nDCG, AUC) fall outside it. We close the gap with two further classes of cell operators: deviation operators phi(y - yhat), which give a Calibration Framework, and rank- and slice-dependent operators (positional gains for DCG, column concordance cells for AUC), which give a Ranking Framework. Both inherit the micro/macro/exemplar aggregation architecture. For calibration, the three Brier aggregations collapse to one scalar; the Murphy decomposition holds in matrix form (unbinned, binned and isotonic); and, within the Brier-type class-indexed family, a measure is skew-invariant if and only if it depends only on the class-conditional errors alpha_j and beta_j, the calibration analogues of recall and specificity. For ranking, raw DCG collapses across aggregations while nDCG does not; per-class nDCG and per-class AUC are related by a row-column duality; micro-AUC differs from pooled ROC-AUC; raw positional scores are never strictly proper, and nDCG and AUC need not be proper. The skew-invariant per-class building blocks share one class-conditional expectation template. Experiments on two multilabel benchmarks illustrate the distinctions. Many of the results are machine-checked in Lean 4; the proofs, the experiments and the aggmetrics.scores package are public: <a href="https://github.com/rcprati/discrimination-calibration-ranking" target="_blank" rel="noopener">https://github.com/rcprati/discrimination-calibration-ranking</a></div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Classifier evaluation rests on discrimination, calibration, and ranking measures. An existing indicator-matrix framework covers only discrimination measures. Calibration measures (Brier, log-loss) and ranking measures (nDCG, AUC) lack a common algebraic language with it.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The paper introduces two new classes of cell operators on label matrices. Deviation operators phi(y - yhat) yield a Calibration Framework, and rank- and slice-dependent positional operators yield a Ranking Framework. Both reuse the micro/macro/exemplar aggregation operators. Structural theorems are proved, many of them machine-checked in Lean 4 with Mathlib, and illustrated on the Emotions and Yeast multilabel benchmarks.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The three Brier aggregations collapse to one scalar, and the Murphy decomposition holds in matrix form. Within the Brier-type class-indexed family, a measure is skew-invariant iff it depends only on the class-conditional errors. For ranking, raw DCG collapses across aggregations while nDCG does not; per-class nDCG and per-class AUC are related by a row-column duality; and raw positional scores are never strictly proper. Experiments show the frameworks produce different classifier orderings.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.02215/exp1_ranking_disagreement.png" alt=""><figcaption>Figure 2: Experiment 1 (Emotions). (a) Scores across frameworks for five classifiers. (b) Rank heatmap (green = 1st, red = last). No two metrics produce the same classifier ordering.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.02215/exp4_murphy_heatmap.png" alt=""><figcaption>Figure 6: Experiment 5 (Yeast, 14 labels, 5 classifiers). Per-class binned Murphy decomposition \widehat{\mathrm{BS}}_{j}=\mathrm{UNC}_{j}-\widehat{\mathrm{RES}}_{j}+\widehat{\mathrm{REL}}_{j} . Top row: \widehat{\mathrm{REL}}_{j} (miscalibration, Reds) and \widehat{\mathrm{RES}}_{j} (resolution, Greens) heatmaps. Bottom: \mathrm{UNC}_{j} bar chart, identical across classifiers (data property only</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
