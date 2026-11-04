@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Verification Failures to Reusable Guidance for Coding Agents · Papers With Lean</title>
+<meta name="description" content="Coding agents need to establish that a program satisfies a specification and that the specification captures the requested behavior. We study how expert diagnosis of verification failures can become reusable guidance for this work. Our approach combines executable language…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="From Verification Failures to Reusable Guidance for Coding Agents">
+<meta property="og:description" content="Coding agents need to establish that a program satisfies a specification and that the specification captures the requested behavior. We study how expert diagnosis of verification failures can become reusable guidance for this work. Our approach combines executable language…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.39022.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.39022.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.39022v3" target="_blank" rel="noopener"><img src="../thumbs/2609.39022.jpg" alt="First page of From Verification Failures to Reusable Guidance for Coding Agents"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">From Verification Failures to Reusable Guidance for Coding Agents</h1>
+        <p class="authors">Yuqing Zhai, Xiaohong Chen, Lingming Zhang, Sriram Vishwanath, Grigore Rosu</p>
+        <div class="row">
+          <span class="badge">cs.SE</span>
+          <span class="date">Sep 30, 2026 · v3</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.LO</span> <span class="badge">cs.PL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.39022v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.39022" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Residual mathematical domain lemmas from K-framework proofs are exported by the klean tool as Lean 4 theorems, then proved by agents and kernel-checked.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Coding agents need to establish that a program satisfies a specification and that the specification captures the requested behavior. We study how expert diagnosis of verification failures can become reusable guidance for this work. Our approach combines executable language definitions in the K framework with a kit of procedures for constructing specifications, repairing proofs, and auditing their adequacy. A human-guided development campaign on HumanEval, a benchmark of 164 Python programming tasks, achieves a 164/164 success rate with the semantics and the kit, measured by final AI audit Pass verdicts after two targeted repairs. To examine whether auditing detects problems that successful proofs leave unresolved, we construct 12 author-reviewed pairs of clean and defective packages. Every package passes its K proofs, and completed audits identify all defects and accept all clean packages. We then use KleverBench to test specification and proof construction for 31 programs with changed operator meanings. Comparisons with complete acceptance rules and equally long generic advice yield mixed results across two model and budget settings, motivating further work on selecting useful guidance within resource limits. Human-reviewed Optimism proofs establish expected pause reverts for six operations within declared input bounds under London semantics with unbounded gas. We report progress, difficulties, and lessons toward agents that deliver programs with checkable correctness arguments.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Coding agents need to show both that a program satisfies a specification and that the specification captures the requested behavior. Lessons from diagnosing verification failures are usually not retained for later agents.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors combine executable language semantics in the K framework with a curated verification kit. The kit holds procedures for building specifications, repairing proofs, and auditing adequacy. Experts diagnose failures and record revised semantic rules or procedures, which agents use at inference time. In the HumanEval workflow, K handles program reasoning, and residual domain lemmas are exported via klean to Lean 4, where agents prove them and Lean checks the proofs.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">A human-guided campaign on HumanEval reaches 164/164 final AI audit Pass verdicts after two targeted repairs, one of which adds a Lean theorem. Audits detect all defects in 12 clean/defective package pairs that all pass their K proofs. On KleverBench, comparisons of the kit against complete acceptance rules and generic advice give mixed results across two models; separate smart-contract case studies (DSToken and others, Optimism) are also reported.</p><div class="sum-table"><table><thead><tr><th>Semantics / kit</th><th>Pass</th><th>Concerns</th><th>Fail</th><th>Pass rate</th><th>Legit rate</th></tr></thead><tbody><tr><td>Agent-authored / no kit</td><td>23</td><td>41</td><td>100</td><td>14.0%</td><td>39.0%</td></tr><tr><td>Supplied / no kit</td><td>37</td><td>36</td><td>91</td><td>22.6%</td><td>44.5%</td></tr><tr><td>Supplied / kit</td><td>97</td><td>67</td><td>0</td><td>59.1%</td><td>100.0%</td></tr></tbody></table><div class="tbl-cap">Historical HumanEval audits at Stage 2 (164 tasks per arm)</div></div><div class="sum-table"><table><thead><tr><th>Defect category</th><th>Original</th><th>After retries</th><th>Clean accepted</th></tr></thead><tbody><tr><td>Weak postcondition</td><td>3/3</td><td>3/3</td><td>3/3</td></tr><tr><td>Unsupported bridge</td><td>2/3</td><td>3/3</td><td>3/3</td></tr><tr><td>Source/proof mismatch</td><td>3/3</td><td>3/3</td><td>3/3</td></tr><tr><td>Incorrect semantics</td><td>2/3</td><td>3/3</td><td>3/3</td></tr><tr><td>Total</td><td>10/12</td><td>12/12</td><td>12/12</td></tr></tbody></table><div class="tbl-cap">Audit challenge: defects detected across 12 clean/defective pairs</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
