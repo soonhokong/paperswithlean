@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transformer-based In-Context Score Operator Learning for Diffusion Models · Papers With Lean</title>
+<meta name="description" content="Diffusion models typically learn the generative dynamics of a single target distribution or a family of distributions indexed by conditioning variables fixed during training. This limits their ability to adapt to a previously unseen distribution from only a small set of…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Transformer-based In-Context Score Operator Learning for Diffusion Models">
+<meta property="og:description" content="Diffusion models typically learn the generative dynamics of a single target distribution or a family of distributions indexed by conditioning variables fixed during training. This limits their ability to adapt to a previously unseen distribution from only a small set of…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.13690.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.13690.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.13690v1" target="_blank" rel="noopener"><img src="../thumbs/2610.13690.jpg" alt="First page of Transformer-based In-Context Score Operator Learning for Diffusion Models"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Transformer-based In-Context Score Operator Learning for Diffusion Models</h1>
+        <p class="authors">Wuzhe Xu, Zhaiming Shen, Yulong Lu, Wenjing Liao, Rongjie Lai</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 9, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.13690v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.13690" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/woodssss/Transformer-based-In-Context-Score-Operator-Learning-for-Diffusion-Models" target="_blank" rel="noopener" title="woodssss/Transformer-based-In-Context-Score-Operator-Learning-for-Diffusion-Models">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The accompanying repository includes a Lean 4 formalization of the paper&#x27;s Theorem 1, a theoretical result on the in-context score operator.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Diffusion models typically learn the generative dynamics of a single target distribution or a family of distributions indexed by conditioning variables fixed during training. This limits their ability to adapt to a previously unseen distribution from only a small set of examples. We introduce an in-context solution operator learning framework for diffusion models, in which each target distribution is treated as a task drawn from a meta-distribution and is specified at inference time by an empirical context set. Our method learns an in-context score operator that maps the context samples, a noisy query point, and the diffusion time to the task-dependent score, enabling reverse-diffusion sampling on unseen tasks without retraining or parameter updates. A key observation is that the task-dependent score admits a Gaussian-kernel conditional-mean representation. Its empirical Nadaraya–Watson approximation can be represented exactly by a model in our constructed transformer class, providing a principled foundation for the proposed query-dependent attention architecture. The operator is trained through amortized denoising score matching across task distributions. We establish generalization-error bounds that quantify the effects of the context size, the numbers of training tasks and within-task samples, model complexity, and intrinsic and ambient dimensions. Numerically, we evaluate the method on a range of scientific and visual datasets, including Navier-Stokes, ERA5 climate data, QuickDraw sketches, and Food-101. The results show that the proposed method performs well on relatively simple task families, while its performance degrades as task complexity increases, thereby illustrating both the promise and the limitations of in-context learning for diffusion models.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Standard and conditional diffusion models learn a single target distribution, or a family indexed by conditioning variables fixed at training time. They cannot adapt to an unseen distribution given only a small set of example samples without retraining.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Each target distribution is treated as a task drawn from a meta-distribution and specified at inference time by an empirical context set. A transformer-based in-context score operator maps the context samples, a noisy query and the diffusion time to the task-dependent score. It is trained by amortized denoising score matching across tasks. The architecture is motivated by a Gaussian-kernel conditional-mean representation of the score, whose Nadaraya–Watson approximation is exactly representable in the constructed transformer class. Generalization-error bounds are derived, and Theorem 1 is formalized in Lean 4 in the repository.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The bounds separate the effects of context size, number of tasks and episodes, model complexity, and intrinsic versus ambient dimension. Experiments on Navier–Stokes, ERA5, QuickDraw and Food-101 show good in-distribution and modest out-of-distribution performance on simpler task families. Performance degrades on more complex visual task families.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2610.13690/IND_NS_K_100_B_1000_n_100_m_100_np_1_epoch_150_idx_50_idx_50.png" alt=""><figcaption>(b) \nu=2.2\times 10^{-3}</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2610.13690/IND_Era5_K_100_B_1000_n_100_m_100_np_1_epoch_150_idx_0_idx_0.png" alt=""><figcaption>Figure 5: In-distribution generation for ERA5 temperature at 150 hPa. The upper panel shows 9 prompt samples followed by 9 samples generated by ICL DM, Cond DM, and SNO, respectively. The lower-left panel compares the scalar-valued empirical PDFs, where blue denotes the reference distribution, while red, green, and purple denote ICL DM, Cond DM, and SNO, respectively. The lower right panel reports</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
