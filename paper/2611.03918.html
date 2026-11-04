@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Handling JAX · Papers With Lean</title>
+<meta name="description" content="Languages that target hardware accelerators typically expose a restricted, first-order core without recursion or first-class functions, leaving programmers without a principled way to express computational effects. This paper presents a technique for compiling effect handlers to…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Handling JAX">
+<meta property="og:description" content="Languages that target hardware accelerators typically expose a restricted, first-order core without recursion or first-class functions, leaving programmers without a principled way to express computational effects. This paper presents a technique for compiling effect handlers to…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.03918.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.03918.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.03918v1" target="_blank" rel="noopener"><img src="../thumbs/2611.03918.jpg" alt="First page of Handling JAX"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Handling JAX</h1>
+        <p class="authors">Oghenevwogaga Ebresafe, Daniel Zheng, Gordon Plotkin, Ningning Xie</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Nov 2, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=type-theory">type-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.03918v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.03918" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The jaxpr effect-handler calculus and the proofs that its handler-eliminating translation preserves typing and semantics are mechanized in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Languages that target hardware accelerators typically expose a restricted, first-order core without recursion or first-class functions, leaving programmers without a principled way to express computational effects. This paper presents a technique for compiling effect handlers to such a constrained target. We introduce a novel translation that statically eliminates effect handlers, and prove that it preserves both typing and semantics. Moreover, we address the challenges of integrating effect handlers with structured control flow, where continuations cannot be constructed statically. The calculus and all our results are fully mechanized in the Lean 4 proof assistant. Finally, we implement our design as a library for JAX, a Python domain-specific language for accelerator programming, and demonstrate its expressiveness through practical case studies.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Accelerator-oriented languages such as JAX&#x27;s jaxprs expose a first-order core without recursion or first-class functions. This leaves programmers with no principled way to express computational effects like mutable state and exceptions. JAX libraries therefore rely on ad-hoc, mutually incompatible mechanisms.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors define a calculus formalizing core jaxprs extended with algebraic effect handlers. They give a novel translation that statically eliminates handlers into the handler-free subset. For unbounded loops, where continuations cannot be built statically, tail-resumptive handlers are handled in place and abortive handlers by a source-level rewrite. The calculus and the type- and semantics-preservation proofs are mechanized in Lean 4, and the design is implemented as the JAX library effecax.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The translation is proven to preserve typing and semantics, and every paper result has a Lean counterpart. Case studies refactor Diffrax&#x27;s ODE integration core and probabilistic programming patterns with effecax. These were evaluated for expressiveness, composition with JAX control flow, and performance on an A100 GPU.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
