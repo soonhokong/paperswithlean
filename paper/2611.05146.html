@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Path Decompositions of Sparse Graphs via Gaussian Sweeps and Faster Exponential Algorithms · Papers With Lean</title>
+<meta name="description" content="Using the bisection bound of Monien and Preis, Fomin and Høie proved in 2006 that every graph of maximum degree 3 on $n$ vertices has pathwidth at most $n/6+o(n)$. We prove that the pathwidth, bisection width and cutwidth of these graphs are at most $c_3 n+o(n)$, where…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Path Decompositions of Sparse Graphs via Gaussian Sweeps and Faster Exponential Algorithms">
+<meta property="og:description" content="Using the bisection bound of Monien and Preis, Fomin and Høie proved in 2006 that every graph of maximum degree 3 on $n$ vertices has pathwidth at most $n/6+o(n)$. We prove that the pathwidth, bisection width and cutwidth of these graphs are at most $c_3 n+o(n)$, where…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.05146.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.05146.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.05146v1" target="_blank" rel="noopener"><img src="../thumbs/2611.05146.jpg" alt="First page of Path Decompositions of Sparse Graphs via Gaussian Sweeps and Faster Exponential Algorithms"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Path Decompositions of Sparse Graphs via Gaussian Sweeps and Faster Exponential Algorithms</h1>
+        <p class="authors">Serge Gaspers</p>
+        <div class="row">
+          <span class="badge">cs.DS</span>
+          <span class="date">Nov 3, 2026 · v1</span>
+          <span class="badge">cs.DM</span> <span class="badge">math.CO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.05146v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.05146" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.23883489" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Main pathwidth theorem for max-degree-3 graphs is fully formalized in Lean 4 with Mathlib; other bounds are formalized conditionally, and a Lean port of the algorithms is verified.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Using the bisection bound of Monien and Preis, Fomin and Høie proved in 2006 that every graph of maximum degree 3 on $n$ vertices has pathwidth at most $n/6+o(n)$. We prove that the pathwidth, bisection width and cutwidth of these graphs are at most $c_3 n+o(n)$, where $c_3=\frac{3}{4π}\arccos\frac56\approx0.1398$. For bisection width this improves the bound $n/6+o(n)$ of Monien and Preis (2006) and extends to all such graphs the bound that Lichev and Mitsche (2023) obtained for random cubic graphs. For maximum degree 4, we prove that bisection width and cutwidth are at most $n/3+o(n)$, improving the bound $2n/5+o(n)$ of Monien and Preis for 4-regular graphs, and that pathwidth is at most $0.2458n$, improving the bound $n/3$ of Fomin, Gaspers, Saurabh and Stepanov (2009). We show that every graph with $m$ edges has pathwidth at most $7m/48+o(n)$, improving the bound $13m/75$ of Scott and Sorkin (2007), and we give further bounds of the form $\sum_{d\ge3}a_d n_d+o(n)$ with $a_d&lt;1$, where $n_d$ is the number of vertices of degree $d$. The path decompositions, and linear orderings of the stated cutwidth, can be computed in polynomial time. Instead of deriving pathwidth bounds from bisection width, we give each vertex a Gaussian label, a weighted sum of independent standard normal variables over a ball around it, and sweep a threshold through the labels; the bags are frontiers, the vertices above the threshold with a neighbor below it. We bound the probability that a vertex lies in a frontier by comparison with an explicit Gaussian model of a vertex and its neighbors. Faster exact algorithms follow: for feedback vertex set and the traveling salesperson problem on graphs of bounded maximum or average degree, and on general graphs for minimum weight dominating set (by branching until the instance is sparse), Max 2-CSP and counting subgraphs with $k$ edges (by the bound in $m$).</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Twenty-year-old upper bounds on the pathwidth, bisection width and cutwidth of sparse graphs (e.g. n/6 for maximum degree 3) limit the running times of exact exponential algorithms built on path decompositions.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Each vertex gets a Gaussian label, a weighted sum of independent standard normals over a ball around it. A threshold is swept through the labels, and the frontiers at each threshold are taken as bags. Frontier probabilities are bounded by comparison with explicit Gaussian star models, and concentration then yields a good realization of the labels. Theorem 8.1 is proved unconditionally in Lean 4 with Mathlib, and further results are formalized conditional on computer-certified inputs. A Lean port of the algorithms is proved to output decompositions meeting the bounds.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Graphs of maximum degree 3 have pathwidth, bisection width and cutwidth at most 0.1398n+o(n). For maximum degree 4, pathwidth is at most 0.2458n, and graphs with m edges have pathwidth at most 7m/48+o(n). These bounds give faster exact algorithms for feedback vertex set, TSP, dominating set, Max 2-CSP and subgraph counting.</p><div class="sum-table"><table><thead><tr><th>Class</th><th>Δ≤3</th><th>Δ≤4</th><th>d=5 (per vertex)</th><th>per edge</th></tr></thead><tbody><tr><td>previous</td><td>1/6</td><td>1/3</td><td>13/30</td><td>13/75</td></tr><tr><td>this paper</td><td>0.1398</td><td>0.2458</td><td>11/32</td><td>7/48</td></tr></tbody></table><div class="tbl-cap">Pathwidth bound coefficients: previous vs. this paper</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

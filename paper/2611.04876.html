@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leakage-Resilient Computation via Matrix Refreshing · Papers With Lean</title>
+<meta name="description" content="Leakage-resilient cryptography protects secrets against side-channel attacks, in which a physical implementation reveals partial information about its internal state. A fundamental primitive in this area is a leakage-resilient storage, which allows a secret to be stored in a way…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leakage-Resilient Computation via Matrix Refreshing">
+<meta property="og:description" content="Leakage-resilient cryptography protects secrets against side-channel attacks, in which a physical implementation reveals partial information about its internal state. A fundamental primitive in this area is a leakage-resilient storage, which allows a secret to be stored in a way…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.04876.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.04876.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.04876v1" target="_blank" rel="noopener"><img src="../thumbs/2611.04876.jpg" alt="First page of Leakage-Resilient Computation via Matrix Refreshing"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Leakage-Resilient Computation via Matrix Refreshing</h1>
+        <p class="authors">Stefan Dziembowski, Sebastian Faust</p>
+        <div class="row">
+          <span class="badge">cs.CR</span>
+          <span class="date">Nov 3, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=cryptography">cryptography</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.04876v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.04876" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/sdziembowski/MatrixRefresh" target="_blank" rel="noopener" title="sdziembowski/MatrixRefresh">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes the continual matrix-refreshing security bound, NAND circuit compiler composition theorem, and expected-work simulator in Lean 4 with Mathlib, checked via Lean comparator.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Leakage-resilient cryptography protects secrets against side-channel attacks, in which a physical implementation reveals partial information about its internal state. A fundamental primitive in this area is a leakage-resilient storage, which allows a secret to be stored in a way that remains secure even if an adversary learns some information about the storage&#x27;s internal state. A popular approach represents a secret as the inner product of two $n$-bit vectors, called shares. The shares are stored and processed separately by two parts of the implementation, called the left and right parties. Because leakage accumulates over time, the shares must be refreshed repeatedly. We prove that a simple refresh, in which the left party multiplies its share by a uniform invertible matrix $M$ and the right party multiplies its share by $M^{-1}$, is secure under continual local leakage. After $T$ refreshes, each allowing at most $λ$ bits of leakage per party, the transcripts for two stored secrets are at statistical distance at most $C\cdot T\cdot 2^{6λ-n/9}$ for an absolute constant $C$. We also obtain a Boolean-circuit compiler with statistical privacy error at most $C\cdot S\cdot 2^{18λ-n/27}$ for $S$ operations and at most $λ$ bits of local leakage per party per operation. The guarantee covers repeated stateful evaluations with adaptively chosen public inputs, with $S$ counting all operations across invocations. Thus, for polynomial-size circuits, a constant leakage fraction is tolerated with share length depending only on the security parameter. We formalize the refreshing bound, the composition and compiler guarantees, and the expected-work bounds in Lean 4. Our results also provide efficient simulation: the leakage can be reproduced from the public inputs and the circuit outputs alone, with expected polynomial overhead.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Leakage-resilient storage encodes a secret as the inner product of two n-bit shares held by separate parties. The shares must be refreshed repeatedly because leakage accumulates. The open question is whether a simple matrix-based refresh is secure under continual local leakage, and whether it supports a circuit compiler with no leak-free components.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">In each refresh the left share is multiplied by a uniform invertible matrix M and the right share by M^{-1}. Security is proved by approximating per-round leakage with signed real-valued tables, bounding errors through nuclear-norm and Cauchy–Schwarz arguments, and running a hybrid argument over state labels. The refresh is then used to compile NAND circuits into two-party gadget protocols, including stateful circuits with adaptive public inputs. The main theorems for deterministic strategies are formalized in Lean 4 with Mathlib; the paper states that ChatGPT wrote the formalization.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">After T refreshes with λ bits of leakage per party per refresh, the transcripts for two secrets differ in statistical distance by at most C·T·2^{6λ−n/9}. The compiler achieves privacy error at most C·S·2^{18λ−n/27}, with an efficient simulator of expected polynomial overhead. Lean checks the refreshing bound, the compiler composition, the expected-work simulator, and continual stateful privacy.</p><div class="sum-table"><table><thead><tr><th>Application</th><th>Statistical-distance bound</th><th>Sufficient leakage fraction</th></tr></thead><tbody><tr><td>Continual refreshing (Thm. 4.1)</td><td>δ ≤ C·T·2^{6λ−n/9}</td><td>α &lt; 1/54</td></tr><tr><td>Circuit compilation, hidden output shares (Thm. 5.2)</td><td>δ ≤ C·S·2^{18λ−n/27}</td><td>α &lt; 1/486</td></tr></tbody></table><div class="tbl-cap">Security bounds and tolerated leakage fractions</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

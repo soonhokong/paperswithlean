@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>On the Complexity of Finite-Sum Nonconvex-Strongly-Concave Minimax Optimization with Exact Proximal Oracles · Papers With Lean</title>
+<meta name="description" content="Finite-sum nonconvex-strongly-concave minimax problems arise in adversarial training and distributionally robust learning. Their known lower bounds cover only linear-span algorithms, zero-respecting algorithms, or a restricted proximal protocol. They leave open the power of…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="On the Complexity of Finite-Sum Nonconvex-Strongly-Concave Minimax Optimization with Exact Proximal Oracles">
+<meta property="og:description" content="Finite-sum nonconvex-strongly-concave minimax problems arise in adversarial training and distributionally robust learning. Their known lower bounds cover only linear-span algorithms, zero-respecting algorithms, or a restricted proximal protocol. They leave open the power of…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.04806.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.04806.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.04806v1" target="_blank" rel="noopener"><img src="../thumbs/2611.04806.jpg" alt="First page of On the Complexity of Finite-Sum Nonconvex-Strongly-Concave Minimax Optimization with Exact Proximal Oracles"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">On the Complexity of Finite-Sum Nonconvex-Strongly-Concave Minimax Optimization with Exact Proximal Oracles</h1>
+        <p class="authors">Yuxing Peng, Zhiqing Tang, Weijia Jia</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Nov 3, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.04806v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.04806" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://arxiv.org/src/2611.04806v1/anc" target="_blank" rel="noopener" title="arXiv ancillary files">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A Lean supplement in the arXiv ancillary files machine-checks the existential lower-bound assertions of the main theorem, including key lemmas, using a finite Rademacher construction.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Finite-sum nonconvex-strongly-concave minimax problems arise in adversarial training and distributionally robust learning. Their known lower bounds cover only linear-span algorithms, zero-respecting algorithms, or a restricted proximal protocol. They leave open the power of exact component proximal steps, whose responses are global saddle points of regularized component problems and can expose directions that gradients do not reveal. We show that neither unrestricted adaptivity nor exact proximal access improves the polynomial complexity. We consider $n$ components with joint mean-squared smoothness $L$ and condition number $κ$, started from a point with primal gap at most $Δ$ and joint gradient norm at most $\sqrt{2LΔ}$. For $\varepsilon^2/(LΔ)$ below a universal constant, every randomized adaptive algorithm with exact component values, gradients, and proximal responses needs $Ω(n+\min\{\sqrt n\,κ,n^{3/4}\sqrtκ\}LΔ/\varepsilon^2)$ component queries in the worst case to find an $\varepsilon$-stationary point of the value function. A method using only component gradients attains this rate up to a factor $\log^2(2+κ)$, including initialization. Zhou (arXiv:2610.04944) concurrently proves the same rate for zero-respecting first-order methods. In our hard instances, every component admits proximal steps with the same step sizes, and a response for a component reveals hidden directions only up to the first one assigned to another component.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Known lower bounds for finite-sum nonconvex-strongly-concave minimax optimization cover only linear-span, zero-respecting, or restricted proximal algorithms. It was open whether exact component proximal steps or unrestricted adaptivity can improve the oracle complexity.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors build hard instances that chain nonconvex primal stages through dual paths. The internal edges of each path are owned by random components, and flat edge penalties hide hidden directions even from exact saddle-proximal responses. A matching upper bound combines SPDE updates, recursive variance-reduced gradients, L-SVRE steps and Catalyst acceleration. The lower-bound existential assertions are formalized in Lean, with a finite Rademacher construction replacing the Haar-distributed axes.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Every randomized adaptive algorithm with exact values, gradients and proximal responses needs Ω(n + min{√n κ, n^{3/4}√κ} LΔ/ε²) component queries. A gradient-only method matches this up to a log²(2+κ) factor. The Lean proof covers expected and fixed-confidence complexity in all three condition-number ranges.</p><div class="sum-table"><table><thead><tr><th>Algorithm class</th><th>Component gradients</th><th>Exact values, gradients, proximal</th><th>Source</th></tr></thead><tbody><tr><td>Linear-span or restricted protocol</td><td>Ω(n+√(nκ) S), κ≥2n</td><td>Ω(n+√(nκ) S), κ=Ω(n)</td><td>Zhang et al.; Han et al.</td></tr><tr><td>Zero-respecting</td><td>Ω(n+hS)</td><td>–</td><td>Zhou</td></tr><tr><td>Arbitrary randomized adaptive</td><td>Ω(n+hS)</td><td>Ω(n+hS)</td><td>Thm. 1</td></tr><tr><td>Matching upper bound</td><td>O((n+hS) log²(2+κ))</td><td></td><td>Thm. 2</td></tr></tbody></table><div class="tbl-cap">Lower and upper bounds by algorithm class (S = LΔ/ε², h = min{√n κ, n^{3/4}√κ})</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

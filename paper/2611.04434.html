@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sketchpad: certified exact arithmetic with a small vision-language model · Papers With Lean</title>
+<meta name="description" content="Language models are accurate on most long-arithmetic problems, but their accuracy is estimated on samples and carries no guarantee for an unseen input; tool use is exact but moves the computation outside the network. We show that exactness at all input lengths becomes a finite,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sketchpad: certified exact arithmetic with a small vision-language model">
+<meta property="og:description" content="Language models are accurate on most long-arithmetic problems, but their accuracy is estimated on samples and carries no guarantee for an unseen input; tool use is exact but moves the computation outside the network. We show that exactness at all input lengths becomes a finite,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.04434.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.04434.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.04434v1" target="_blank" rel="noopener"><img src="../thumbs/2611.04434.jpg" alt="First page of Sketchpad: certified exact arithmetic with a small vision-language model"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Sketchpad: certified exact arithmetic with a small vision-language model</h1>
+        <p class="authors">Mostafa &#x27;Neo&#x27; Mohsenvand</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Nov 3, 2026 · v1</span>
+          <span class="badge">cs.CL</span> <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.04434v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.04434" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/NeoVand/sketchpad" target="_blank" rel="noopener" title="NeoVand/sketchpad">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Theorems on exactness over finite views, impossibility of finite tests with history, perturbation robustness and composition are proved in Lean 4 with Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Language models are accurate on most long-arithmetic problems, but their accuracy is estimated on samples and carries no guarantee for an unseen input; tool use is exact but moves the computation outside the network. We show that exactness at all input lengths becomes a finite, checkable property of a network when each of its steps reads only a bounded view of an external working memory. In Sketchpad, Qwen3.5-0.8B with a low-rank adapter executes arithmetic procedures on a rendered sheet. Each forward pass reads a three-cell view and emits one step: a digit, a carry or borrow, and the next operation. A fixed runtime moves the view and writes no digit of a result. We prove in Lean that the model is then exact on all inputs of any length if and only if it is exact on the finite set of views the runtime presents, that no finite test suffices when steps also read earlier steps, and that the guarantee tolerates bounded numerical perturbation and extends to compositions of procedures. All 2,446 views pass on the deployment device, a laptop GPU running the model in a web browser. The certified model performs signed addition and subtraction, long multiplication and division, square roots and greatest common divisors at arbitrary length. It solved 200 of 200 pre-registered problems in the browser, and 220 of 220 sums of up to 1,000 digits and products of up to 20 digits, of which GPT-6.1 Sol, the strongest of ten other models, solved 217. A symbolic runtime built on these procedures solves, expands and factors polynomials with every number computed by the model, and a multiplicative gate on the adapter recovers the base model exactly when the sheet is not in use.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Language-model accuracy on long arithmetic is estimated from samples and gives no guarantee for unseen inputs. Tool use is exact but moves the computation outside the network. The goal is a network-level guarantee of exactness at every input length.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Qwen3.5-0.8B with a LoRA adapter executes pencil-and-paper arithmetic on a rendered sheet. Each forward pass reads a three-cell view and emits a digit, a carry or borrow, and the next operation, while a fixed runtime moves the view. Lean 4 proofs (with Mathlib) show that the model is exact at all lengths iff it is exact on the finite set of 2,446 views, that no finite test suffices when steps read earlier steps, and that the guarantee tolerates bounded perturbation and composes across procedures. The finite check is then run on the deployment hardware.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.04434/fig1.png" alt=""><figcaption>Fig. 1 | Overview. a , One step of the long multiplication 74,829 \times 6,153 (step 33 of 56). The view (three cells, 32 \times 96 pixels) enters Qwen3.5-0.8B as three image tokens after the operation token MUL ; the outputs, read at = and two placeholder positions, are the digit, the carry and the next operation. Below: the operation sequence of the full product. b , Margins of all 2,446 views o</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.04434/fig2.png" alt=""><figcaption>Fig. 2 | The sheet machine. a , One view and its outputs for each calculator table. b , Left: the division 4,100 \div 59; the borrow out of the leading column indicates that the estimate 8 is too high. Right: the operation sequence of the same division (Knuth’s Algorithm D) and of the square root of 2,000,000 (56 forward passes). c , Batching four independent procedures: 32 forward passes instead </figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">All 2,446 views pass on an M4 laptop GPU in the browser with a minimum margin of 3.02 logits. The model solved 200/200 pre-registered problems and 220/220 sums and products, against 217 for the best of ten other models. Certified procedures support polynomial algebra, and a multiplicative gate on the adapter recovers the base model exactly when the sheet is not in use.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.04434/fig4.png" alt=""><figcaption>Fig. 4 | Algebra. a , Factorisation of x^{3}-6x^{2}+11x-6 . Numbers in rose were computed by the model; each is linked to the column operation that produced it. b , Rejection rates under fault injection: incorrect roots (200 of 200 for both routes) and one corrupted arithmetic result (185 of 200 for the textbook route, 173 of 200 for evaluation). c , Time per benchmark problem: textbook route meas</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Operation</th><th>Rows</th><th>Server</th><th>M4</th></tr></thead><tbody><tr><td>SUM</td><td>242</td><td>3.96</td><td>3.02</td></tr><tr><td>MUL</td><td>1,100</td><td>6.39</td><td>6.52</td></tr><tr><td>ADD</td><td>220</td><td>9.37</td><td>9.50</td></tr><tr><td>ADZ</td><td>220</td><td>8.41</td><td>8.00</td></tr></tbody></table><div class="tbl-cap">Minimum margins (logits) by table, selected rows</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

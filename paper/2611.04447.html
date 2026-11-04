@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formalizing PTX in Lean to Prove GPU Kernel Correctness · Papers With Lean</title>
+<meta name="description" content="We present an approach to mathematically formalizing PTX, an approach that allows modeling and reasoning about patterns common in GPU kernels for Deep Learning, including acquire-release, tensor cores, proxies, async operations, multi-kernel pipelines and data-dependent control…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Formalizing PTX in Lean to Prove GPU Kernel Correctness">
+<meta property="og:description" content="We present an approach to mathematically formalizing PTX, an approach that allows modeling and reasoning about patterns common in GPU kernels for Deep Learning, including acquire-release, tensor cores, proxies, async operations, multi-kernel pipelines and data-dependent control…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.04447.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.04447.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.04447v1" target="_blank" rel="noopener"><img src="../thumbs/2611.04447.jpg" alt="First page of Formalizing PTX in Lean to Prove GPU Kernel Correctness"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Formalizing PTX in Lean to Prove GPU Kernel Correctness</h1>
+        <p class="authors">Luk Koska, Tom Koska, Ben Koska</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 3, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.04447v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.04447" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes PTX semantics and memory model in Lean 4 with Mathlib and proves correctness of several GPU kernels, using LLM-assisted proofs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present an approach to mathematically formalizing PTX, an approach that allows modeling and reasoning about patterns common in GPU kernels for Deep Learning, including acquire-release, tensor cores, proxies, async operations, multi-kernel pipelines and data-dependent control flow. We implement it in Lean and use it to prove the correctness of simple implementations of a WGMMA GEMM kernel, FlashAttention, and a 3-kernel MoE pipeline.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">GPU kernels for deep learning, increasingly written by LLMs, need correctness guarantees without extensive human review. Existing verifiers cover only restricted kernel classes and exclude features such as asynchronous operations and data-dependent control flow.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors build a formal model of PTX in Lean 4, combining an interpreter covering 81 instruction forms with the axiomatic PTX memory model, including mixed-proxy semantics. The model supports acquire-release, tensor cores, proxies, async operations, and multi-kernel pipelines. Kernel correctness theorems state that every consistent, complete execution produces the specified output, and a constructed execution establishes non-vacuity. LLM coding agents assisted in writing the model and the proofs.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Correctness is proved for 9 hand-written PTX entry points totaling 454 instructions, including elementwise, scalar, Ampere and Hopper (WGMMA) matmuls, FlashAttention, and a 3-kernel MoE pipeline. The proofs total 34,034 lines, average about 75 proof lines per instruction, and contain no sorry or custom axioms. They are checked by Lean 4 v4.35.0 with Mathlib.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
