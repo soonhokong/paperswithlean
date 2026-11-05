@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Polynomial-Time Differentially Private Synthetic Graph Release with Nearly-Linear Additive Error · Papers With Lean</title>
+<meta name="description" content="We give a polynomial-time $(\varepsilon, δ)$-edge-differentially private algorithm that releases a synthetic graph approximately preserving all cut values of a nonnegative weighted input graph $G$. Our algorithm outputs a nonnegative weighted graph $H$ such that, with…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Polynomial-Time Differentially Private Synthetic Graph Release with Nearly-Linear Additive Error">
+<meta property="og:description" content="We give a polynomial-time $(\varepsilon, δ)$-edge-differentially private algorithm that releases a synthetic graph approximately preserving all cut values of a nonnegative weighted input graph $G$. Our algorithm outputs a nonnegative weighted graph $H$ such that, with…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.06670.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.06670.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.06670v1" target="_blank" rel="noopener"><img src="../thumbs/2611.06670.jpg" alt="First page of Polynomial-Time Differentially Private Synthetic Graph Release with Nearly-Linear Additive Error"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Polynomial-Time Differentially Private Synthetic Graph Release with Nearly-Linear Additive Error</h1>
+        <p class="authors">Marek Eliáš, Gautam Kamath, Janardhan Kulkarni, George Z. Li, Jingcheng Liu, Sepideh Mahabadi, Pan Peng, Jakub Tarnawski, Hangyu Xu, Zongrui Zou</p>
+        <div class="row">
+          <span class="badge">cs.DS</span>
+          <span class="date">Nov 4, 2026 · v1</span>
+          <span class="badge">math.ST</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-orange" href="../#tag=probability">probability</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.06670v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.06670" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/XhyDds/LEAN_DPCutRelease_NearlyLinear" target="_blank" rel="noopener" title="XhyDds/LEAN_DPCutRelease_NearlyLinear">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The main differential-privacy synthetic graph theorem, including its polynomial running time, and a second theorem are formalized in Lean without unproven assumptions, with AI-assisted generation.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We give a polynomial-time $(\varepsilon, δ)$-edge-differentially private algorithm that releases a synthetic graph approximately preserving all cut values of a nonnegative weighted input graph $G$. Our algorithm outputs a nonnegative weighted graph $H$ such that, with probability at least $1-β$, simultaneously for all $S\subseteq V$, \[ \left|w_G(S,V\setminus S)-w_H(S,V\setminus S)\right| \leq γw_G(S,V\setminus S) + O\left(\frac{n}{γ\varepsilon} \log^7 \frac{n}{δβγ\varepsilon}\right). \] For fixed $γ, \varepsilon$ and $δ= β= n^{-10}$, the additive error is $n \operatorname{polylog} n$, improving upon the previous efficient bound of $n^{13/12 + o(1)}$. Furthermore, we establish an $Ω(n/γ\varepsilon)$ lower bound for the relevant parameter regime, showing that our result is tight up to polylogarithmic factors. Our algorithm uses a log-det-regularized SDP to generate fractional queries for multiplicative-weights updates and certify accuracy for all cuts. The privacy analysis charges privacy loss only fractionally per mechanism call, based on the amount of mass on edge coordinates retired from subsequent iterations. Our synthetic graph release yields improved error bounds for several downstream tasks in private graph analysis including correlation clustering, Max-Cut, Max-$k$-Cut, constrained cut problems and hierarchical clustering. Most notably, for unweighted complete-graph correlation clustering, we achieve the optimal $\widetilde O(n)$ additive error while reducing the best previously known approximation ratio for this additive error from several thousand to $1.387$. We also provide a formalization of our results in Lean.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Release a synthetic weighted graph under edge differential privacy that approximately preserves all cut values. The goal is a polynomial-time algorithm with nearly linear additive error, improving the previous efficient bound of n^{13/12+o(1)}.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A log-det-regularized SDP produces fractional cut witnesses. These are aggregated to drive multiplicative-weights updates inside a PREM-style framework that proceeds over progressively smaller scales. The privacy analysis uses success-charged composition, charging privacy loss fractionally according to the mass retired on edge coordinates. Theorem 1, including its running time, and Theorem 38 are formalized in Lean, with the formalization generated with the help of AI systems.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The additive error is O(n/(γε) log^7(n/(δβγε))), which is n polylog n. A matching Ω(n/(γε)) lower bound shows this is tight up to polylogarithmic factors. Downstream bounds improve for correlation clustering (1.387 ratio with Õ(n) additive error), Max-Cut, Max-k-Cut, and hierarchical clustering.</p><div class="sum-table"><table><thead><tr><th>Result</th><th>Privacy</th><th>Running time</th><th>Guarantee</th></tr></thead><tbody><tr><td>[27]</td><td>approximate</td><td>polynomial</td><td>w_G(S) ± Õ(√(‖w‖₁ n))</td></tr><tr><td>[1]</td><td>approximate</td><td>polynomial</td><td>(1±γ)w_G(S) ± n^{5/4+o(1)}</td></tr><tr><td>[28]</td><td>approximate</td><td>polynomial</td><td>(1±γ)w_G(S) ± n^{13/12+o(1)}</td></tr><tr><td>This work</td><td>approximate</td><td>polynomial</td><td>(1±γ)w_G(S) ± n polylog n</td></tr></tbody></table><div class="tbl-cap">Comparison of efficient private cut-approximating synthetic graph releases</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

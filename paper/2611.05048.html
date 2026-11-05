@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Graph Similarity Meets Optimal Transport · Papers With Lean</title>
+<meta name="description" content="A natural way to compare two graphs is to align their vertex sets by a bijection and to measure the difference of the aligned adjacency matrices in a matrix norm. Depending on the norm, this yields, for example, the edit distance, the cut distance, the spectral distance, and the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Graph Similarity Meets Optimal Transport">
+<meta property="og:description" content="A natural way to compare two graphs is to align their vertex sets by a bijection and to measure the difference of the aligned adjacency matrices in a matrix norm. Depending on the norm, this yields, for example, the edit distance, the cut distance, the spectral distance, and the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.05048.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.05048.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.05048v2" target="_blank" rel="noopener"><img src="../thumbs/2611.05048.jpg" alt="First page of Graph Similarity Meets Optimal Transport"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Graph Similarity Meets Optimal Transport</h1>
+        <p class="authors">Jens Breitung, Timo Gervens, Martin Grohe</p>
+        <div class="row">
+          <span class="badge">cs.DM</span>
+          <span class="date">Nov 3, 2026 · v2</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.05048v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.05048" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/jensbreitung/graph-similarity-meets-optimal-transport" target="_blank" rel="noopener" title="jensbreitung/graph-similarity-meets-optimal-transport">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The authors provide Lean certificates for all their proofs on integrality gaps of optimal-transport graph distances, in a public GitHub repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A natural way to compare two graphs is to align their vertex sets by a bijection and to measure the difference of the aligned adjacency matrices in a matrix norm. Depending on the norm, this yields, for example, the edit distance, the cut distance, the spectral distance, and the local edit distance. To make these distances applicable to graphs of different order, one can consider blowups of the graphs or, equivalently, relax bijections to fractional alignments, that is, optimal transport plans between the uniform distributions on the vertex sets, in the spirit of Gromov-Wasserstein distances. We investigate how much the optimal transport versions can differ from their bijective counterparts, that is, we quantify their integrality gaps. For the edit distance, we improve the best known upper bound on the integrality gap from 3 to 2 and the lower bound from 6/5 to 4/3. For the cut distance, we approach Lovász&#x27;s conjecture that $δ_\square \le 2δ_\square^{\rm OT}$ from both sides. We improve the previously best known upper bound $δ_\square \le 32 \cdot (δ_\square^{\rm OT})^{1/67}$ (Borgs, Chayes, Lovász, Sós and Vesztergombi, Adv. Math. 2008) to $δ_\square \le C_\varepsilon \cdot (δ_\square^{\rm OT})^{1-\varepsilon}$ for every $\varepsilon &gt; 0$, and we construct graphs $G,H$ with $δ_\square(G,H) = 2δ_\square^{\rm OT}(G,H)$, establishing a factor-2 lower bound that matches Lovász&#x27;s conjecture. For the local edit and spectral distances, we obtain upper bounds of order $\sqrt{t\ln(1/t)}$ and $\sqrt{t}$, respectively, where $t$ is the corresponding optimal transport distance, and we show that, unlike for the edit and cut distances, no linear upper bounds are possible. Finally, we show that computing the optimal transport distances is NP-hard, and we give hardness of approximation results for the cut, spectral, and local edit distances.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Graph distances defined by aligning vertex sets with bijections (edit, cut, spectral, and local edit distances) can be relaxed to fractional alignments, i.e. optimal transport plans. The question is how far these optimal transport versions can differ from their bijective counterparts, which is the size of their integrality gaps.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Upper bounds are obtained by rounding an optimal fractional alignment to a bijection. Three schemes are used: Birkhoff decomposition for edit distance, dependent rounding with cycle-breaking for local edit distance, and thin perfect matchings with iterated merging for cut distance. Lower bounds come from constructions using core vertices and degree-separated markers. The authors also give NP-hardness reductions from Three-Partition, report that AI (ChatGPT) contributed substantially to the Section 3 results, and supply Lean certificates for all their proofs.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For edit distance the upper bound on the integrality gap improves from 3 to 2 and the lower bound from 6/5 to 4/3. For cut distance the upper bound becomes C_ε·t^{1-ε}, and a factor-2 lower bound matches Lovász&#x27;s conjecture. Bounds of order sqrt(t ln(1/t)) and sqrt(t) hold for local edit and spectral distance, with no linear bounds possible, and computing the optimal transport distances is NP-hard.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
