@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Unbalanced Must a Latin Rectangle Be? · Papers With Lean</title>
+<meta name="description" content="We view a $k\times n$ Latin rectangle as $n$ points in the grid $[n]^k$. Each symbol gives one point, whose coordinates are the columns it occupies. The rectangle is balanced when these points are pairwise equidistant in the $\ell_1$ metric. Its imbalance measures the distance…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How Unbalanced Must a Latin Rectangle Be?">
+<meta property="og:description" content="We view a $k\times n$ Latin rectangle as $n$ points in the grid $[n]^k$. Each symbol gives one point, whose coordinates are the columns it occupies. The rectangle is balanced when these points are pairwise equidistant in the $\ell_1$ metric. Its imbalance measures the distance…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.06003.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.06003.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.06003v1" target="_blank" rel="noopener"><img src="../thumbs/2611.06003.jpg" alt="First page of How Unbalanced Must a Latin Rectangle Be?"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">How Unbalanced Must a Latin Rectangle Be?</h1>
+        <p class="authors">Zhengyu Li, Vijay Ganesh</p>
+        <div class="row">
+          <span class="badge">cs.DM</span>
+          <span class="date">Nov 4, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">math.CO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.06003v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.06003" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/BrianLi009/Balanced-Latin-Rectangles" target="_blank" rel="noopener" title="BrianLi009/Balanced-Latin-Rectangles">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 kernel certifies all reported Latin rectangles against a 74-line core-only specification, and the pigeonhole cubic lower bound is proved with Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We view a $k\times n$ Latin rectangle as $n$ points in the grid $[n]^k$. Each symbol gives one point, whose coordinates are the columns it occupies. The rectangle is balanced when these points are pairwise equidistant in the $\ell_1$ metric. Its imbalance measures the distance from this ideal. We study the minimum imbalance from three sides. Constructively, we use a simulated annealing that moves symbols within rows and only penalises column clashes. Against the reference table of Voboril et al. (2025), it improves 33 of the 51 non-square values for $8\le n\le 13$, by up to 39.4%, and matches the rest. A cheap invariant, the row group, certifies that none of the 33 new rectangles is isotopic to rows of a group table, so the earlier column-swapping local search cannot reach any of them. Exactly, a computer-assisted branch and bound proves that the minimum imbalance of a $3\times 9$ rectangle is $56$. Díaz et al. found this value, but its optimality was open. A sharper pruning bound, derived from the identity $I=2\sum(d-t)^+$, reduces the search tree by a factor of $2.4$ to $3.3$ on the instances with $k\ge3$ that we solve. Asymptotically, the minimum imbalance is $Θ(n^3)$ for every fixed $k$. A pigeonhole argument gives a lower constant of order $k\,4^{-k}$, and random rectangles give an upper constant of order $\sqrt k$. For $k=2$, the limit of $\min I/n^3$ exists, a permuton attains it, and it lies between $4/375$ and $0.1196$. Perfect balance is an $\ell_1$-equilateral problem, so it forces $k=Ω(n/\log n)$ rows. For $2\times n$ rectangles, single two-minute annealing runs improve five of the seven six-hour MIP upper bounds for $14\le n\le 20$. Finally, the Lean 4 kernel checks every rectangle reported in this paper against a 74-line specification that imports only Lean&#x27;s core library. We also prove the pigeonhole lower bound in Lean with Mathlib.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">A k×n Latin rectangle can be viewed as n points in [n]^k, and its imbalance measures how far these points are from being pairwise ℓ1-equidistant. The minimum imbalance is known only for small cases, and its optimality and growth rate were open for many sizes.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Simulated annealing keeps each row a permutation and turns column clashes into an adaptive penalty. A branch and bound with a sharper pruning bound, derived from I=2∑(d−t)^+, proves exact optima. A row-group invariant certifies that the new rectangles are not isotopic to rows of a group table. A pigeonhole argument gives asymptotic bounds; the Lean 4 kernel checks all 62 reported rectangles without Mathlib or native_decide, and the identity and lower bound are formalized with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Annealing improves 33 of 51 benchmark values for 8≤n≤13 (by up to 39.4%) and matches the rest. The minimum imbalance of a 3×9 rectangle is proven to be 56. The minimum imbalance is Θ(n^3) for every fixed k, and annealing improves five of seven 2×n MIP upper bounds for 14≤n≤20.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.06003/optimum3x9.png" alt=""><figcaption>Figure 1: A 3\times 9 rectangle of imbalance 56 , which Theorem 2 proves optimal. (a) The rectangle, one colour per symbol. (b) The deviation d(u,v)-t of every pair from the average distance t=10 . Blue pairs are too far apart and red pairs too close. (c) Histogram of the 36 deviations. They sum to zero, and I=\sum\lvert d-t\rvert=56 .</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.06003/rowgroups.png" alt=""><figcaption>Figure 3: Row groups of our best rectangles in the benchmark range. Shading shows the improvement over the previous best value, and grey cells are matched records. Each label gives the row group: \mathrm{S}_{n} or \mathrm{A}_{n} , otherwise its order. For k=2 the row group is cyclic, generated by one permutation. It still certifies non-group structure when its order does not divide n .</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>n</th><th>14</th><th>16</th><th>18</th><th>20</th></tr></thead><tbody><tr><td>upper bound [10]</td><td>268.0</td><td>427.3</td><td>617.3</td><td>816.0</td></tr><tr><td>annealing</td><td>268.0</td><td>422.0</td><td>610.6</td><td>832.0</td></tr></tbody></table><div class="tbl-cap">2×n rectangles: best prior MIP upper bounds vs. 2-minute annealing (selected n)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
