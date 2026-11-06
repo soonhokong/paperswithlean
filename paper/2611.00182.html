@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grassmann: The Coordinate-Independent Linear Algebra Programming Language · Papers With Lean</title>
+<meta name="description" content="Scientists, engineers, and mathematicians often formulate algorithms using coordinate-independent linear algebra because its tools are composable and harder to misuse. For numerical processing, however, users must translate these ideas into coordinate-dependent array code. Most…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Grassmann: The Coordinate-Independent Linear Algebra Programming Language">
+<meta property="og:description" content="Scientists, engineers, and mathematicians often formulate algorithms using coordinate-independent linear algebra because its tools are composable and harder to misuse. For numerical processing, however, users must translate these ideas into coordinate-dependent array code. Most…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.00182.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.00182.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.00182v1" target="_blank" rel="noopener"><img src="../thumbs/2611.00182.jpg" alt="First page of Grassmann: The Coordinate-Independent Linear Algebra Programming Language"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Grassmann: The Coordinate-Independent Linear Algebra Programming Language</h1>
+        <p class="authors">Theadora Fields Collin, Gilbert Bernstein, Oded Stein, Saman Amarasinghe</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Oct 30, 2026 · v1</span>
+          <span class="badge">cs.MS</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.00182v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.00182" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/wraith1995/GlangLean" target="_blank" rel="noopener" title="wraith1995/GlangLean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The language&#x27;s metatheory (soundness of denotational semantics, adequacy of operational semantics, SVD/spectral results) is mechanized in Lean 4 with Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Scientists, engineers, and mathematicians often formulate algorithms using coordinate-independent linear algebra because its tools are composable and harder to misuse. For numerical processing, however, users must translate these ideas into coordinate-dependent array code. Most practitioners do so prematurely because tools such as NumPy lack coordinate-independent representations, while existing languages with such constructs do not model enough linear algebra for the situations where they matter. We propose Grassmann, a small language bridging coordinate-independent linear algebra and coordinate-dependent implementations. It uses dependent types, linear types, and partially (pseudo-)invertible computation to model situations arising in exterior algebra and differential geometry. It targets the linear algebra at a point on a manifold, a prerequisite for many specifications in scientific computing and computer graphics. A language for coordinates lets users move between these representations. We give a denotational semantics assigning meaning without coordinates and an operational semantics translating Grassmann to array code under a choice of coordinates. Our main metatheoretic result shows that operational evaluations agree with the denotational semantics under an arbitrary choice of coordinates. This models how practitioners translate linear algebra for computers and suggests an approach to algorithmic optimization at a high level of abstraction. Our optimized implementation generates code for exterior algebra operations with overheads no more than 10%.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Practitioners write algorithms using coordinate-independent linear algebra but must translate them into coordinate-dependent array code. NumPy-style tools lack coordinate-independent representations, and existing languages with such constructs cover too little linear algebra, particularly exterior algebra and differential geometry at a point on a manifold.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Grassmann is a small language with dependent types, linear types, and partially (pseudo-)invertible computation. A sublanguage for bases lets users move between coordinate-free and coordinate-based representations. A denotational semantics gives meaning without coordinates, and an operational semantics lowers programs to array code under a chosen basis. The metatheory is formalized in Lean 4.29.1 with Mathlib, with AI assistants (Claude, Codex) helping to generate proof code.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The main mechanized result is adequacy: operational evaluations agree with the denotational semantics for an arbitrary choice of coordinates. Spectral projection and paired SVD results are also proved in Lean. The implementation generates exterior-algebra kernels whose FLOP counts match or improve on reference implementations, with runtimes at most 10% slower.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
