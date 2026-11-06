@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rigorously Certified Neural-Network Computation of Nonlinear Water Waves at Near-Machine Precision · Papers With Lean</title>
+<meta name="description" content="We present a computational framework that combines machine-learning-based discovery with rigorous computer-assisted numerical certification and formal verification for strongly nonlinear partial differential equations. We demonstrate the approach for periodic gravity-capillary…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rigorously Certified Neural-Network Computation of Nonlinear Water Waves at Near-Machine Precision">
+<meta property="og:description" content="We present a computational framework that combines machine-learning-based discovery with rigorous computer-assisted numerical certification and formal verification for strongly nonlinear partial differential equations. We demonstrate the approach for periodic gravity-capillary…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.07395.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.07395.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.07395v1" target="_blank" rel="noopener"><img src="../thumbs/2611.07395.jpg" alt="First page of Rigorously Certified Neural-Network Computation of Nonlinear Water Waves at Near-Machine Precision"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Rigorously Certified Neural-Network Computation of Nonlinear Water Waves at Near-Machine Precision</h1>
+        <p class="authors">Michal Shavit, Yongji Wang, Tristan Buckmaster</p>
+        <div class="row">
+          <span class="badge">math.AP</span>
+          <span class="date">Nov 5, 2026 · v1</span>
+          <span class="badge">cs.LG</span> <span class="badge">physics.flu-dyn</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.07395v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.07395" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/michalshavitNYU/Rigorously-certified-water-waves" target="_blank" rel="noopener" title="michalshavitNYU/Rigorously-certified-water-waves">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 with Mathlib formalizes the certification argument, machine-checking deductions from interval-arithmetic numerical bounds (encoded as rational literals) to the residual theorem.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present a computational framework that combines machine-learning-based discovery with rigorous computer-assisted numerical certification and formal verification for strongly nonlinear partial differential equations. We demonstrate the approach for periodic gravity-capillary traveling water waves. Physics-informed neural networks are used as a search mechanism, with the wave profile, wave speed and, in continuation experiments, surface tension learned directly from the governing equations without training data. Through a staged training and refinement procedure, the neural networks achieve near-machine-precision residuals of the governing equations, even in strongly nonlinear regimes. A single formulation recovers high-amplitude Stokes waves, Crapper waves and Wilton ripples. Continuation from a high-amplitude Wilton ripple in surface tension reveals new high-amplitude candidate solutions. We freeze one candidate as an explicit finite representation and rigorously certify a uniform bound on its governing-equation residual using interval arithmetic, accounting for floating-point roundoff, Fourier truncation, aliasing and grid-to-continuum errors. This independently validates the neural-network accuracy. We formalize the certification argument in Lean, which machine-checks the deductions from certified numerical bounds to the residual theorem. Both the interval certification and formalization were developed with substantial assistance from a large language model, while the validity of the result remains independent of the language model: the numerical bounds are rigorously enclosed by interval arithmetic and the subsequent mathematical deductions are checked by the Lean kernel. Together, these steps provide a pipeline from neural discovery to rigorous numerical certification and machine-checked verification with auditable mathematical guarantees.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Neural-network PDE solvers can reach very small residuals at sample points, but this gives no rigorous bound on the continuous residual. The question is whether machine-learned solutions of strongly nonlinear gravity-capillary water waves can be turned into rigorously certified, machine-checkable statements.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Physics-informed neural networks solve the Babenko formulation of periodic traveling water waves, learning the wave profile, wave speed and, in some runs, surface tension. Staged training, Fourier projection and Newton polishing bring residuals near machine precision. One candidate is frozen as a degree-150 cosine polynomial, and Julia/Arb interval arithmetic bounds its uniform residual, accounting for roundoff, truncation, aliasing and grid-to-continuum errors. Lean 4 with Mathlib then machine-checks the deductions from these certified numerical bounds to the final residual theorem, with the interval bounds as the stated trust boundary.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.07395/stage1_vs_final_scalar_residual.png" alt=""><figcaption>Figure 6: Reduction of the scalar Babenko residual. Absolute residual as a function of the conformal coordinate u for the first-stage neural profile (blue) and the final trigonometric polynomial (black), obtained after successive neural corrections, Fourier projection, and Newton polishing. Both curves evaluate the scalar Babenko equation with the auxiliary fields eliminated, at the physical param</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">A single formulation recovers Stokes waves, Crapper waves and Wilton ripples, and continuation in surface tension finds new high-amplitude candidate solutions. A uniform residual bound of 1.78e-13 is certified for the N=150 candidate, and the deductions are checked by the Lean kernel. The certificate bounds the residual only and does not by itself prove that an exact solution exists nearby.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.07395/water_wave_three_regime_benchmark.png" alt=""><figcaption>Figure 2: Three high-amplitude regimes reproduced by the PINN. a, Pure-gravity Stokes branch with \beta=0 , plotted in the (\sqrt{\mu},a) plane, where a=(\max y-\min y)/(2\pi) . The panel shows the selected Stokes files, including the low-amplitude main-branch runs, that satisfy \max|\mathcal{B}(y_{N})|\leq 10^{-7} , with the grey curve joining the retained runs. b, Five representative retained St</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.07395/wilton_beta_continuation_four.png" alt=""><figcaption>Figure 3: Continuation near a high-amplitude Wilton ripple. a , Selected points on the continuation branch, shown in the amplitude– \beta plane. b , Corresponding free-surface profiles over one period, plotted against the physical horizontal coordinate x(u)=u+\hat{H}y(u) and colored by the same \beta values as in a . The separately displayed degree-150 polynomial in Fig. 5 is the candidate used fo</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

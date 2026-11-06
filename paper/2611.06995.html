@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Autonomous AI Agents Systematically Diverge From Human Preferences in Proof Formalization · Papers With Lean</title>
+<meta name="description" content="Artificial intelligence (AI) systems have ushered in a new age of proof abundance, but helping humans understand these proofs requires new attention to the differences in how AI agents and humans pursue a proof-making task. We present &quot;simulated collaboration&quot;, a methodology…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Autonomous AI Agents Systematically Diverge From Human Preferences in Proof Formalization">
+<meta property="og:description" content="Artificial intelligence (AI) systems have ushered in a new age of proof abundance, but helping humans understand these proofs requires new attention to the differences in how AI agents and humans pursue a proof-making task. We present &quot;simulated collaboration&quot;, a methodology…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.06995.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.06995.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.06995v1" target="_blank" rel="noopener"><img src="../thumbs/2611.06995.jpg" alt="First page of Autonomous AI Agents Systematically Diverge From Human Preferences in Proof Formalization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Autonomous AI Agents Systematically Diverge From Human Preferences in Proof Formalization</h1>
+        <p class="authors">Bálint Gyevnár, Simon DeDeo</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 4, 2026 · v1</span>
+          <span class="badge">cs.HC</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-slate" href="../#tag=meta-study">meta-study</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.06995v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.06995" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/gyevnarb/proof-divergence" target="_blank" rel="noopener" title="gyevnarb/proof-divergence">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Replays commit histories of nine Lean formalization repositories, comparing AI coding agents&#x27; edit choices with human edits using syntactic, dependency-graph, and surprise features.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Artificial intelligence (AI) systems have ushered in a new age of proof abundance, but helping humans understand these proofs requires new attention to the differences in how AI agents and humans pursue a proof-making task. We present &quot;simulated collaboration&quot;, a methodology that allows us to examine two key questions: (1) the relative attention AI agents pay to surface syntax or, conversely, deeper underlying semantics, and (2) how and where AI agent preferences for what to do next diverge from human preferences. On a set of nine major human collaborations in Lean with 4.7M definitions across more than 6K commits, we find that, over the course of proof construction, AI agents (1) are far more strongly drawn than humans to explicitly marked gaps; (2) show a relative aversion to densely connected proof centers and to complex or surprising proof goals; and (3) are relatively attracted to surprising proof bodies, which they tend to regularize toward baseline. Our results highlight important blind spots and potential interventions for future human-AI collaboration in mathematics.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">AI systems increasingly produce formal proofs, but little is known about how AI agents&#x27; choices during proof construction differ from those of human collaborators, or whether those choices support human understanding.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors introduce &quot;simulated collaboration&quot;: at each human commit in nine major Lean formalization projects (e.g., FLT, PFR, sphere packing, PDL), Claude Code, Codex, and Gemini CLI are asked to take the next step from the human parent commit. Edits are characterized by syntactic features (sorry markers, length), semantic network position in a lexically parsed dependency graph, and per-token surprise of signatures and bodies measured with Lean provers (DeepSeek-Prover-V2, Goedel-Prover-V2, Kimina-Prover). Logistic regressions then compare which definitions each actor chooses to edit.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Across 4.7M definitions and more than 6K commits, at least 59% of each agent&#x27;s modifications touch definitions containing sorry, compared with about a fifth of human modifications. Agents avoid densely connected proof centers and surprising signatures, are drawn to surprising bodies, and push body surprise down toward baseline. The dataset and code are publicly released.</p><div class="sum-table"><table><thead><tr><th>Actor</th><th>Added %</th><th>Modified %</th><th>Removed %</th></tr></thead><tbody><tr><td>Human</td><td>0.90</td><td>0.59</td><td>0.41</td></tr><tr><td>Claude</td><td>0.39</td><td>0.52</td><td>0.03</td></tr><tr><td>Gemini</td><td>0.17</td><td>0.42</td><td>0.05</td></tr><tr><td>Codex</td><td>0.17</td><td>0.12</td><td>0.00</td></tr></tbody></table><div class="tbl-cap">Share of definitions added and modified per actor (aggregated over all commits)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

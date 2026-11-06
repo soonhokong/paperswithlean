@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formalizing inverse problems in the age of AI: possibilities, pitfalls, and an invitation · Papers With Lean</title>
+<meta name="description" content="Proof assistants such as Lean check mathematical proofs down to the axioms, and AI agents have recently made writing such proofs cheap. We describe AutoIP, a Lean library in which classical linear regularization theory, together with the functional analysis it rests on, has been…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Formalizing inverse problems in the age of AI: possibilities, pitfalls, and an invitation">
+<meta property="og:description" content="Proof assistants such as Lean check mathematical proofs down to the axioms, and AI agents have recently made writing such proofs cheap. We describe AutoIP, a Lean library in which classical linear regularization theory, together with the functional analysis it rests on, has been…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.06962.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.06962.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.06962v1" target="_blank" rel="noopener"><img src="../thumbs/2611.06962.jpg" alt="First page of Formalizing inverse problems in the age of AI: possibilities, pitfalls, and an invitation"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Formalizing inverse problems in the age of AI: possibilities, pitfalls, and an invitation</h1>
+        <p class="authors">Christian Clason, Tapio Helin, Medet Nursultanov, Lauri Oksanen</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 4, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.06962v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.06962" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/l-oksanen/autoip" target="_blank" rel="noopener" title="l-oksanen/autoip">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Presents AutoIP, a Lean 4 library built on Mathlib in which AI agents autoformalized linear regularization theory and functional analysis.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Proof assistants such as Lean check mathematical proofs down to the axioms, and AI agents have recently made writing such proofs cheap. We describe AutoIP, a Lean library in which classical linear regularization theory, together with the functional analysis it rests on, has been autoformalized by AI agents. A machine-checked proof certifies only the formal statement it proves, so the remaining human task is to confirm that each formal statement says what was intended. We organize the library around this task: a reviewer compares the formal statements with their natural-language counterparts and never needs to read a proof. Our experience is that the risks lie in the statements rather than in the proofs, and that simple automated tests on the statements can expose problems even in the established literature. We illustrate this with a textbook theorem whose hypothesis is more restrictive than asserted. We invite the inverse problems community to extend and build on the library.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">AI agents have made machine-checked proofs cheap, but a Lean proof certifies only its formal statement. The remaining human task is to confirm that each formal statement says what was intended, and this task is hard to organize for a library that has no single main result.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors wrote a LaTeX blueprint of classical linear regularization theory for inverse problems, and AI agents (Claude Opus models) wrote the Lean code on top of Mathlib. The library includes singular systems of compact operators and the infinite-dimensional Moore–Penrose inverse. Each blueprint node maps to one Lean specification file containing only its formal statement, so reviewers compare statements and never read proofs. Programmatic checks forbid axioms and unused code, and hashed review records expire whenever a statement or anything it depends on changes.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The library has about 22k lines of Lean in 523 files, with 51 definitions, 73 theorems and 503 non-vacuity obligations. Restructuring into delimited nodes made AI statement-review far more consistent, falling from 17 judged mismatches to a single mismatch over three rounds. Automated statement tests exposed a textbook theorem whose hypothesis is more restrictive than asserted.</p><div class="sum-table"><table><thead><tr><th>Item</th><th>Count</th></tr></thead><tbody><tr><td>Definitions (cited from Mathlib / constructions)</td><td>51 (14 / 22)</td></tr><tr><td>Theorems (cited from Mathlib / stated in Lean)</td><td>73 (22 / 51)</td></tr><tr><td>Lean files (library / tests)</td><td>523 / 152</td></tr><tr><td>Lines of Lean (library / tests)</td><td>22312 / 13250</td></tr><tr><td>Non-vacuity obligations</td><td>503</td></tr></tbody></table><div class="tbl-cap">AutoIP library statistics (selected)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
