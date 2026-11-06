@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeanContext: Disentangling Mathematical Resources from Local Formal Context in Lean Whole-Proof Generation · Papers With Lean</title>
+<meta name="description" content="Neural theorem proving increasingly uses retrieved premises and project context to support proof generation. Evaluating these resources requires measuring the advantage of target-selected declarations over comparable alternatives and how this advantage depends on training. We…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeanContext: Disentangling Mathematical Resources from Local Formal Context in Lean Whole-Proof Generation">
+<meta property="og:description" content="Neural theorem proving increasingly uses retrieved premises and project context to support proof generation. Evaluating these resources requires measuring the advantage of target-selected declarations over comparable alternatives and how this advantage depends on training. We…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.08277.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.08277.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.08277v1" target="_blank" rel="noopener"><img src="../thumbs/2611.08277.jpg" alt="First page of LeanContext: Disentangling Mathematical Resources from Local Formal Context in Lean Whole-Proof Generation"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">LeanContext: Disentangling Mathematical Resources from Local Formal Context in Lean Whole-Proof Generation</h1>
+        <p class="authors">Hang Zhang, Qihao Ye, Litong Liu, Yunbei Zhang, Yugyung Lee, Yue Zhou, Bowen Liu, Emily First, Cheng Han, Qiao Zhuang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 5, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.08277v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.08277" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/haaaardcvZ/LeanContext" target="_blank" rel="noopener" title="haaaardcvZ/LeanContext">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a 129,826-problem Lean whole-proof generation benchmark from a Mathlib4 snapshot and verifies generated proofs in the original Lean environment.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Neural theorem proving increasingly uses retrieved premises and project context to support proof generation. Evaluating these resources requires measuring the advantage of target-selected declarations over comparable alternatives and how this advantage depends on training. We introduce LeanContext, a benchmark of 129,826 Lean whole-proof generation problems, to investigate these questions. We group selected complete preceding mathematical declarations as Mathematical Context (MC) and the remaining selected local source commands as Environment Context (EC). Four aligned input views support crossed training and inference evaluations with shared targets and original Lean verification environments. For both diffusion- and autoregressive-based models, selected declarations outperform comparable alternatives by a larger margin when training includes MC. Final-input audits identify omitted declarations referenced by the target. Prioritizing these dependencies improves Pass@32 by 1.40% and 1.70% for LLaDA and Llama, respectively, on 2,000 targets. The selection experiment operates without access to target reference proofs and holds checkpoints, EC, and inference budgets constant. The code and dataset are available at <a href="https://github.com/haaaardcvZ/LeanContext" target="_blank" rel="noopener">https://github.com/haaaardcvZ/LeanContext</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Neural provers increasingly draw on retrieved premises and project context. It is unclear how much target-selected mathematical declarations help compared with comparable alternatives, and how that benefit depends on training.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">LeanContext splits the preceding source context into Mathematical Context (MC: definitions, lemmas, structures, classes, instances) and Environment Context (EC: variable, namespace, open, notation commands). It provides four aligned input views (C0, CMath, CEnv, CFull) for crossed training and inference experiments with LLaDA-8B and Llama-3.1-8B. Proofs are sampled 32 times per target and checked at their original locations in Lean. Matched-replacement and dependency-coverage audits measure what selected declarations contribute.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Checkpoints trained with MC gain more from supplied declarations: CFull training reaches 48.7% (LLaDA) and 49.6% (Llama) Pass@32. Selected declarations beat matched replacements by up to 7.2 points. A dependency-prioritizing selection policy raises Pass@32 by 1.40 (LLaDA) and 1.70 (Llama) points on 2,000 targets without using reference proofs.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.08277/cka_heatmaps_block32.png" alt=""><figcaption>Figure 3: Block-32 representation dissimilarity on 4,000 shared test targets under reference-proof conditioning. Rows identify backbones, and columns identify training views. Both axes within each panel are inference views. Cells report 1-\mathrm{CKA} with a shared color scale. Larger values indicate lower representation similarity.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Model</th><th>C0</th><th>CMath</th><th>CEnv</th><th>CFull</th></tr></thead><tbody><tr><td>LLaDA (CFull train)</td><td>31.2</td><td>40.1</td><td>41.6</td><td>48.7</td></tr><tr><td>Llama (CFull train)</td><td>32.8</td><td>41.8</td><td>41.1</td><td>49.6</td></tr></tbody></table><div class="tbl-cap">Pass@32 (%) on 11,064 targets for CFull-trained checkpoints across inference views</div></div><div class="sum-table"><table><thead><tr><th>Model</th><th>Policy</th><th>Pass@1</th><th>Pass@32</th><th>Coverage</th></tr></thead><tbody><tr><td>LLaDA</td><td>Baseline</td><td>5.94</td><td>43.90</td><td>47.70</td></tr><tr><td>LLaDA</td><td>Priority</td><td>6.17</td><td>45.30</td><td>72.26</td></tr><tr><td>Llama</td><td>Baseline</td><td>6.25</td><td>44.55</td><td>48.88</td></tr><tr><td>Llama</td><td>Priority</td><td>6.53</td><td>46.25</td><td>73.48</td></tr></tbody></table><div class="tbl-cap">Dependency-priority selection policy vs baseline on 2,000 targets</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

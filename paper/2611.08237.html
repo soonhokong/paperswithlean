@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terminal-style Mathematical Modeling Bench: The First Agentic and Verifiable Benchmark for Mathematical Modeling · Papers With Lean</title>
+<meta name="description" content="Mathematical modeling turns an open-ended real-world problem into assumptions, a model, a solution, and a defended recommendation, and its answers matter only if they are both close to a credible reference and physically feasible; existing benchmarks either score solver…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Terminal-style Mathematical Modeling Bench: The First Agentic and Verifiable Benchmark for Mathematical Modeling">
+<meta property="og:description" content="Mathematical modeling turns an open-ended real-world problem into assumptions, a model, a solution, and a defended recommendation, and its answers matter only if they are both close to a credible reference and physically feasible; existing benchmarks either score solver…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.08237.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.08237.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.08237v1" target="_blank" rel="noopener"><img src="../thumbs/2611.08237.jpg" alt="First page of Terminal-style Mathematical Modeling Bench: The First Agentic and Verifiable Benchmark for Mathematical Modeling"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Terminal-style Mathematical Modeling Bench: The First Agentic and Verifiable Benchmark for Mathematical Modeling</h1>
+        <p class="authors">Xiaojun Wu, Cehao Yang, Xuhui Jiang, Chengjin Xu, Jia Li, Jian Guo</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Nov 5, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.08237v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.08237" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/wxj630/terminal-bench-math-modeling" target="_blank" rel="noopener" title="wxj630/terminal-bench-math-modeling">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses Lean 4 as a second verification layer, re-proving feasibility invariants of agent answers as 624 kernel-checked obligations without Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Mathematical modeling turns an open-ended real-world problem into assumptions, a model, a solution, and a defended recommendation, and its answers matter only if they are both close to a credible reference and physically feasible; existing benchmarks either score solver fragments or grade reports with an LLM judge, leaving those numbers unchecked. We introduce TB-MathModel (the Terminal-style Mathematical Modeling Bench), the first benchmark to make complete contest-style modeling problems agentic, verifiable, and terminal at once, over 18 real CUMCM and MCM problems (2023–2025). Each task ships the verbatim statement, official attachments, and figures in a containerized terminal; the agent returns one JSON artifact, scored on the numeric core of the final question against a reproduction of the Outstanding-award paper. Two design choices distinguish it: direction-aware, one-sided scoring, which never penalises beating the anchor, and two-layer feasibility verification—a programmatic gate over six decidable invariant forms plus 624 Lean 4 obligations—with a hard gate that zeroes infeasible answers. Each task is scored against a panel of human outstanding papers rather than one, so a model must be close to many accepted answers; across seven multimodal entries (three seeds each) the strongest reach a multi-reference O-Eval of 64.58%, while the \$2.54 open model holds 59.81\% at $1/100$ the cost. TB-MathModel turns the numeric core of modeling into a reproducible, machine-checkable signal for measuring long-horizon modeling competence and for collecting agent trajectories. The source code is available at <a href="https://github.com/wxj630/terminal-bench-math-modeling" target="_blank" rel="noopener">https://github.com/wxj630/terminal-bench-math-modeling</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Benchmarks for mathematical modeling either score narrow solver fragments or grade reports with an LLM judge. In both cases the reported numbers are never checked for correctness or physical feasibility.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">TB-MathModel packages 18 real CUMCM and MCM problems (2023–2025) as containerized terminal tasks with the verbatim statements, attachments and figures. Agents return one JSON artifact. The artifact is scored with direction-aware, one-sided scoring against a panel of Outstanding-award paper reproductions. Feasibility is checked in two layers: a programmatic gate over six decidable invariant forms, then Lean 4 theorems that re-prove those invariants on integer-scaled values, giving 624 kernel-checked obligations. An infeasible answer zeroes the task.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.08237/architecture.png" alt=""><figcaption>Figure 2: The TB-MathModel construction and evaluation pipeline. Build : official statements, attachments, and PDF figures are compiled into a task directory. Run : the agent works inside a network-isolated terminal container and writes one JSON artifact. Evaluate : the artifact is scored by a direction-aware, one-sided panel against an O-award reproduction, and independently checked by a programm</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Across seven multimodal model/harness entries, each run with three seeds, the best entry reaches a multi-reference O-Eval of 64.58%. An open model costing $2.54 reaches 59.81%, at about 1/100 the cost of the leaders. The Lean layer turns two soft warnings into proofs and demonstrates non-vacuity of its predicates.</p><div class="sum-table"><table><thead><tr><th>Model + harness</th><th>O-Eval (%)</th><th>Multi-BO</th><th>Cost (USD)</th></tr></thead><tbody><tr><td>GPT-6 Astra + codex</td><td>64.58±2.93</td><td>1.132±0.02</td><td>246.41</td></tr><tr><td>Fable 5.1 + claude-code</td><td>63.11±1.33</td><td>1.081±0.05</td><td>272.80</td></tr><tr><td>DeepSeek-Flash + opencode</td><td>59.81±1.25</td><td>1.000</td><td>2.54</td></tr><tr><td>GPT-5.5 xhigh + codex</td><td>59.75±1.55</td><td>0.998±0.01</td><td>99.37</td></tr><tr><td>Qwen3.8 Flash + opencode</td><td>52.66±1.17</td><td>0.803±0.04</td><td>8.30</td></tr></tbody></table><div class="tbl-cap">Main leaderboard (selected entries)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
