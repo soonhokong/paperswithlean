@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Old Is Not False: Valid-Time Memory for Interactive Video World Models · Papers With Lean</title>
+<meta name="description" content="Interactive video world models draw each frame from a memory bank of earlier frames stamped with their capture times. With frames, weights and noise fixed, reversing the timestamps of two views flips the state that generators of two families draw: they take the newest timestamp…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Old Is Not False: Valid-Time Memory for Interactive Video World Models">
+<meta property="og:description" content="Interactive video world models draw each frame from a memory bank of earlier frames stamped with their capture times. With frames, weights and noise fixed, reversing the timestamps of two views flips the state that generators of two families draw: they take the newest timestamp…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.00758.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.00758.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.00758v1" target="_blank" rel="noopener"><img src="../thumbs/2611.00758.jpg" alt="First page of Old Is Not False: Valid-Time Memory for Interactive Video World Models"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Old Is Not False: Valid-Time Memory for Interactive Video World Models</h1>
+        <p class="authors">Ziming Wang, Chuyue Gong, Hongliang Cao, Jingmin Zhu, Chutian Wang, Yuheng He, Xiuyu Li</p>
+        <div class="row">
+          <span class="badge">cs.CV</span>
+          <span class="date">Oct 31, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.00758v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.00758" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The deterministic theoretical results about timestamp rules and valid-time memory are machine-checked in Lean 4 in a supplementary file, ReDate.lean.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Interactive video world models draw each frame from a memory bank of earlier frames stamped with their capture times. With frames, weights and noise fixed, reversing the timestamps of two views flips the state that generators of two families draw: they take the newest timestamp as the truth. That reading is right as long as states never return. After an agent undoes an action, the newest view of a region is outdated and the only view of the present is older; memories for changing worlds delete that older view, and memories that keep it hand the generator the past. Temporal databases separate when a record is stored from when its content holds, its valid time. ReDate keeps every frame and dates each retrieved token by its valid time, read from the agent&#x27;s action log. The frozen generator then reads a reverted region as one that has just reached a new state, so ReDate needs no training. We prove that trusting the newest timestamp is right exactly when every current view is dated after every outdated one, that without a view taken after the return only the action log tells a reverted region from an up-to-date one, and that a generator able to draw from its own prediction gains more from re-dating than from deletion when the moved tokens keep little weight. After an undo, ReDate raises the share of FAR&#x27;s steps showing the current state from 0.36 to 0.62 and HY-WorldPlay&#x27;s from 0.003 to 0.19. We also propose a calibrated state metric to test any memory after undos.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Interactive video world models retrieve past frames stamped with capture times, and frozen generators treat the newest timestamp as truth. After an agent undoes an action, the newest view of a region is outdated and only an older view shows the present state, so existing memories either delete that view or hand the generator the past.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Timestamp-swapping probes with fixed frames, weights and noise show that generators like FAR and HY-WorldPlay follow a soft last-writer-wins rule. ReDate borrows the temporal-database notion of valid time: it reads the agent&#x27;s action log to re-date retrieved frames and tokens by when their content holds, with no retraining of the frozen generator. Theorems characterize when newest-timestamp trust is correct, when only the action log can distinguish reverted regions, and when re-dating beats deletion. The deterministic results are checked in Lean 4.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.00758/003-chronicle-method.png" alt=""><figcaption>Figure 3 : (a) The state tracker reads the action log and re-dates the frames of the target pose: a frame whose region is as at capture (tick) moves to 2 s after the restoring action, and the boxed tokens of a changed region (cross) move 2 s before the oldest retrieved frame. (b) The re-dated frame and the views after the last two actions join FAR’s context.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.00758/002-chronicle-timestamps.png" alt=""><figcaption>Figure 2 : FAR with fixed frames, weights and noise: (a) outputs under kept, one-time and reversed timestamps, (b) current and outdated shares under eight timestamp conditions on the 1,478 steps of subset A, and (c) outcomes on reverted and new-state steps at seed 1.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">After an undo, ReDate raises the share of FAR&#x27;s steps showing the current state from 0.36 to 0.62 and HY-WorldPlay&#x27;s from 0.003 to 0.19. A calibrated state metric is proposed for evaluating memories after undos.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.00758/004-chronicle-examples.png" alt=""><figcaption>Figure 4 : Reverted steps at seed 1, with accuracy on all 352 steps (yellow reads the simulator). FAR draws the outdated state, frame deletion by pose leaves a ghost, and ReDate draws the current state.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.00758/011-chronicle-worldplay.png" alt=""><figcaption>Figure 11 : HY-WorldPlay on the 218 seen reverted steps of seed 1 with both views. The earlier target-pose view is current and the latest is outdated; bars give the current share under five histories.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Memory rule</th><th>Acc.</th><th>At 0.2</th><th>Seen</th><th>Unseen</th></tr></thead><tbody><tr><td>FAR</td><td>0.36</td><td>0.32</td><td>0.54</td><td>0.05</td></tr><tr><td>Decay by age</td><td>0.40</td><td>0.37</td><td>0.61</td><td>0.06</td></tr><tr><td>Sink at the present</td><td>0.52</td><td>0.49</td><td>0.80</td><td>0.05</td></tr><tr><td>Frame deletion by pose</td><td>0.11</td><td>0.03</td><td>0.15</td><td>0.05</td></tr></tbody></table><div class="tbl-cap">Memory rules inside FAR at seed 1 on reverted steps (partial)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
