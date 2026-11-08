@@ -30,6 +30,17 @@ Computer-use agents for scientific software require application-specific experti
 Interactive video world models draw each frame from a memory bank of earlier frames stamped with their capture times. With frames, weights and noise fixed, reversing the timestamps of two views flips the state that generators of two families draw: they take the newest timestamp as the truth. That reading is right as long as states never return. After an agent undoes an action, the newest view of a region is outdated and the only view of the present is older; memories for changing worlds delete that older view, and memories that keep it hand the generator the past. Temporal databases separate when a record is stored from when its content holds, its valid time. ReDate keeps every frame and dates each retrieved token by its valid time, read from the agent&#x27;s action log. The frozen generator then reads a reverted region as one that has just reached a new state, so ReDate needs no training. We prove that trusting the newest timestamp is right exactly when every current view is dated after every outdated one, that without a view taken after the return only the action log tells a reverted region from an up-to-date one, and that a generator able to draw from its own prediction gains more from re-dating than from deletion when the moved tokens keep little weight. After an undo, ReDate raises the share of FAR&#x27;s steps showing the current state from 0.36 to 0.62 and HY-WorldPlay&#x27;s from 0.003 to 0.19. We also propose a calibrated state metric to test any memory after undos.</description>
     </item>
     <item>
+      <title>Matrix Multiplication from Polynomial Packings: A Constructive and Elementary Proof of $ω\le9/4$</title>
+      <link>https://paperswithlean.com/paper/2610.28627.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.28627.html</guid>
+      <pubDate>Sat, 07 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Rafael Pass</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>algebra</category>
+      <description>Aristotle generated an approximately 3,600-line Lean 4 formalization of the matrix-multiplication identities and the operation bound, using Mathlib&#x27;s matrix definitions.
+
+We give a self-contained constructive proof that the matrix multiplication exponent satisfies $ω\le9/4$. In a recent breakthrough, OpenAI \cite{original} established this bound in the model of exact scalar arithmetic over the complex numbers, using non-constructive arguments in Strassen&#x27;s asymptotic spectral framework. We explicitly construct a Strassen-style matrix multiplication identity and obtain the bound by ordinary block recursion. For every $γ&gt;0$, the resulting algorithm multiplies two $n\times n$ integer matrices using $O(n^{9/4+γ})$ integer arithmetic operations. As an independent contribution, we develop a framework of polynomial packings—methods for reducing many polynomial multiplications to fewer ones using linear operations. We isolate and generalize a construction of OpenAI \cite{original} to obtain a simple packing, and show how packings can be composed to amplify their “compression rate&quot;, which finally yields Strassen-like identities.</description>
+    </item>
+    <item>
       <title>What makes a theorem interesting? Operationalizing interestingness for open-ended exploration</title>
       <link>https://paperswithlean.com/paper/2611.02905.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2611.02905.html</guid>
@@ -655,17 +666,6 @@ For every \(c&gt;1\) sufficiently close to \(1\), we prove that there is \(κ&gt
       <description>Exact identities and leading-order inequalities about the first-price auction operator are machine-checked in Lean 4 with Mathlib, in a released lean/FirstPriceCertificates development.
 
 The Bayes-Nash equilibria of an auction are the solutions of a variational inequality, and for standard auctions its operator fails every monotonicity notion, so the theory of monotone operators is unavailable to learning in auctions. We show what replaces monotonicity for the first-price auction: a certificate that is strong but local. For uniform values the single-population operator has an exact closed form and an exact Minty identity at the equilibrium; for two bidders its Gateaux derivative there is $L^2$-coercive with best constant exactly one in every piecewise-linear bid space with $m$ pieces, while the Minty inequality holds only on a ball whose radius decays like $m^{-5/2}$. The decay is exact: $m^{5/2}$ times the radius converges to $1/(8 \cdot 3^{1/4})$, and the worst perturbations converge to an alternating geometric profile with ratio $-(2-\sqrt{3})$. Refinement shrinks the ball, not the constant; independent learners see the same constant. For a general prior and bidder count there are two certificates, at the true equilibrium and at the equilibrium of the finite-dimensional bid space a learning algorithm runs in. The first is an explicit weight $w_F$, positive for every log-concave prior, equal to the second exactly for the value distributions $F(v)=v^a$. Otherwise the learners&#x27; certificate differs by knot masses, because the discretized equilibrium&#x27;s slopes oscillate with a law proved for two and three bidders, and for four under a computer-verified bottom layer. The limit of the learners&#x27; certificate is proved in closed form, a function of the prior alone, and characterizes positivity: positive uniformly in $m$ in the limit exactly when that minimum is positive, with a known rate; for one prior at every $m$ by interval arithmetic. For more bidders the limit is conjectured. The exact identities and leading-order inequalities are machine-checked in Lean.</description>
-    </item>
-    <item>
-      <title>Formalizing PTX in Lean to Prove GPU Kernel Correctness</title>
-      <link>https://paperswithlean.com/paper/2611.04447.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.04447.html</guid>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Luk Koska, Tom Koska, Ben Koska</dc:creator>
-      <category>verification</category><category>tooling</category><category>mathlib</category><category>ai-agents</category>
-      <description>Formalizes PTX semantics and memory model in Lean 4 with Mathlib and proves correctness of several GPU kernels, using LLM-assisted proofs.
-
-We present an approach to mathematically formalizing PTX, an approach that allows modeling and reasoning about patterns common in GPU kernels for Deep Learning, including acquire-release, tensor cores, proxies, async operations, multi-kernel pipelines and data-dependent control flow. We implement it in Lean and use it to prove the correctness of simple implementations of a WGMMA GEMM kernel, FlashAttention, and a 3-kernel MoE pipeline.</description>
     </item>
   </channel>
 </rss>
