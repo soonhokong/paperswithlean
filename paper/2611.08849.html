@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lea: An Agent Backbone for Mathematician-Controlled Formalization in Lean · Papers With Lean</title>
+<meta name="description" content="Agentic systems now formalize research-level mathematics in Lean, but they are built for autonomy: the mathematician states a target and inspects a result. The alternative, a general-purpose coding harness, is domain-neutral and must be assembled into a formalization workspace…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lea: An Agent Backbone for Mathematician-Controlled Formalization in Lean">
+<meta property="og:description" content="Agentic systems now formalize research-level mathematics in Lean, but they are built for autonomy: the mathematician states a target and inspects a result. The alternative, a general-purpose coding harness, is domain-neutral and must be assembled into a formalization workspace…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.08849.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.08849.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.08849v1" target="_blank" rel="noopener"><img src="../thumbs/2611.08849.jpg" alt="First page of Lea: An Agent Backbone for Mathematician-Controlled Formalization in Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Lea: An Agent Backbone for Mathematician-Controlled Formalization in Lean</h1>
+        <p class="authors">Shaswat Patel, Daniel Aarao Reis Arturi, Kevin Gomez, Jaume de Dios Pont, Jorge Poco, Eduardo V. Teixeira, Sam Westrick, Claudio Silva, Chinmay Hegde</p>
+        <div class="row">
+          <span class="badge">cs.HC</span>
+          <span class="date">Nov 6, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.08849v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.08849" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/VIDA-NYU/Lea" target="_blank" rel="noopener" title="VIDA-NYU/Lea">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds an open-source Lean-specific agent backbone with LSP, Loogle, blueprints and SafeVerify, and uses it to formalize the Durfee square generating function from Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Agentic systems now formalize research-level mathematics in Lean, but they are built for autonomy: the mathematician states a target and inspects a result. The alternative, a general-purpose coding harness, is domain-neutral and must be assembled into a formalization workspace before any mathematics begins. Mathematicians, however, report wanting to keep high-level control over how an argument is decomposed and established. We present $\textbf{Lea}$, a Lean-specific agent backbone for mathematician-facing software rather than a single interface. Lea exposes runs, sessions, and typed events through one application-neutral API, and ships with Lean tooling (blueprints, LSP, Loogle, SafeVerify) already wired. We report two applications built on it: $\textbf{LeaChat}$, a web client for interactive proof authoring, and $\textbf{LeaOverleaf}$, which formalizes theorems annotated directly in an Overleaf document; a session begun in either continues in the other. In a case study, a mathematician outlined a proof of the Durfee square generating function in a few natural-language messages, and Lea produced a complete Lean development from Mathlib alone, following the intended decomposition closely and requiring substantive correction at a single point. Lea and both applications are released as open source so that further mathematician-facing tools can be built on the same backbone.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Existing agentic Lean formalization systems are built for autonomy, so the mathematician only states targets and inspects results. Surveyed mathematicians instead want to keep high-level control over how an argument is decomposed while delegating the mechanical work.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Lea is a backend that runs formalization agents through an application-neutral HTTP API exposing runs, sessions, and typed events. It provides a persistent blueprint dependency graph, concurrent sub-agents with roles declared in YAML, and a persistent Lean language server. It distinguishes proofs that are formalized (elaborate without sorry) from proofs that are verified (also pass SafeVerify kernel replay and an axiom whitelist). Two clients are built on it: LeaChat, which allows interactive mid-run intervention, and LeaOverleaf, which formalizes theorems annotated in an Overleaf document.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.08849/motivation.png" alt=""><figcaption>Figure 1: (a) Existing systems are autonomy-first provers or general-purpose harnesses. (b) Lea makes the run itself the surface the mathematician acts on. (c) One application-neutral service boundary carries every client; Lean tooling ships wired, while skills, sub-agent roles, tools, and MCP servers remain user-editable.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.08849/lea_overleaf.png" alt=""><figcaption>Figure 2: The LeaOverleaf interface. Left: an Overleaf document whose L a T e X source contains Lea annotations that identify a theorem, dependencies, and audit status. Center: the item detail card, from which the author can rerun the formalization, continue it in LeaChat, or open it in the Lean pane. Right: the Lean pane, which organizes annotated items as a blueprint, displays the statement extr</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">In a case study using GPT-5.5, a mathematician outlined the proof in colloquial chat, and Lea produced a complete Lean proof of the Durfee square generating function identity from Mathlib alone. The work spanned three sessions, 38 sub-agent invocations, and 28 mathematician messages, with one point needing substantive correction. The output still needs stylistic clean-up before it would meet Mathlib&#x27;s standards.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.08849/leachat_ui.png" alt=""><figcaption>Figure 3: The LeaChat interface. Left: projects and their blueprints, the user-editable library of skills, sub-agent roles, tools, and MCP servers, and the roster of sub-agents spawned in the session. Center: the run transcript, where the agent’s reasoning, tool calls, and file writes appear as they happen. Right: the Lean canvas, which shows each edit as it lands, stays editable mid-run, and repo</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
