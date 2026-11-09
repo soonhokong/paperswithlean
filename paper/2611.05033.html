@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Whose Effect Is It? How Objectives Inflate Learned Subspace Interventions · Papers With Lean</title>
+<meta name="description" content="Interpretability often locates concepts by copying part of a language model&#x27;s state from one input into another (activation patching). A larger output change counts as stronger evidence that this part carries the concept. Methods that learn which part to copy often change the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Whose Effect Is It? How Objectives Inflate Learned Subspace Interventions">
+<meta property="og:description" content="Interpretability often locates concepts by copying part of a language model&#x27;s state from one input into another (activation patching). A larger output change counts as stronger evidence that this part carries the concept. Methods that learn which part to copy often change the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.05033.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.05033.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.05033v1" target="_blank" rel="noopener"><img src="../thumbs/2611.05033.jpg" alt="First page of Whose Effect Is It? How Objectives Inflate Learned Subspace Interventions"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Whose Effect Is It? How Objectives Inflate Learned Subspace Interventions</h1>
+        <p class="authors">Toygar Tanyel, Serkan Ayvaz</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Nov 3, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.05033v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.05033" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/tanyelai/whose-effect" target="_blank" rel="noopener" title="tanyelai/whose-effect">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The paper&#x27;s first-order theoretical results on activation-patching effects are machine-checked in Lean 4 with Mathlib, with sources released on GitHub.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Interpretability often locates concepts by copying part of a language model&#x27;s state from one input into another (activation patching). A larger output change counts as stronger evidence that this part carries the concept. Methods that learn which part to copy often change the output more than the whole state does. By that reading, learned parts isolate the concept more cleanly. Yet the whole contains the part. So whose effect is this excess, the network&#x27;s or the method&#x27;s? Copying the whole state learns nothing, so it shows what the network produces. We prove that, to first order, the effects of orthogonal parts add up to that of the whole. A part therefore exceeds the whole exactly when the rest moves the output back, which does not require isolating the concept more cleanly. Objectives that reward a larger effect select such parts. Distributed alignment search with cross-entropy, for example, exceeds the whole-state copy just before the output on almost all tasks, and inside the network at most sites. In both, changing only its objective to target what the network produces removes most of the excess. It therefore comes largely from the objective, so a larger learned effect alone is not stronger evidence.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Learned subspace interventions such as distributed alignment search (DAS) often change a language model&#x27;s output more than patching the whole state does. This raises the question of whether the excess comes from the network or from the training objective.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors prove that whole-state patching at a complete cut gives exactly the total effect, and that to first order the effects of orthogonal parts add up to the whole. A part can therefore exceed the whole only when the remaining part pushes the output back, and objectives that reward larger effects select such parts. These first-order statements are machine-checked in Lean 4 with Mathlib. They then evaluate DAS with four objectives on 90 tasks across 14 models, at the readout and at sites inside the network, and re-examine published benchmark results.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With cross-entropy, DAS exceeds the whole-state effect in 1096 of 1124 eligible readout cases, at a median of 1.64–3.00 times the total effect per model. Per-pair squared-error objectives bring it to a median of 3% from the total effect, which shows that most of the excess comes from the objective. The authors propose a reporting check that compares each learned effect with whole-state patching at the same site.</p><div class="sum-table"><table><thead><tr><th>source</th><th>n</th><th>ce &gt; T</th><th>ce / T</th><th>sq%</th></tr></thead><tbody><tr><td>CausalGym</td><td>404</td><td>404</td><td>2.79</td><td>2.4</td></tr><tr><td>Kumon &amp; Yanaka</td><td>210</td><td>183</td><td>1.61</td><td>4.0</td></tr><tr><td>RAVEL</td><td>270</td><td>255</td><td>2.35</td><td>3.7</td></tr><tr><td>all</td><td>1168</td><td>1096</td><td>2.34</td><td>3.0</td></tr></tbody></table><div class="tbl-cap">Readout results by source (cases, cases with margin above T, cross-entropy DAS above T, CE effect / T, squared-error distance from T in %)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

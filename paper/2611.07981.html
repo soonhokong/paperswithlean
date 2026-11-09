@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A stability order barrier and SSP bound for Runge–Kutta methods with non-negative coefficients: AI-assisted proofs · Papers With Lean</title>
+<meta name="description" content="We prove three results about Runge–Kutta methods with non-negative coefficients. First, every $s$-stage implicit Runge–Kutta method of order at least two has SSP coefficient at most $2s$; the bound is sharp and is attained by a known diagonally implicit method, so full…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A stability order barrier and SSP bound for Runge–Kutta methods with non-negative coefficients: AI-assisted proofs">
+<meta property="og:description" content="We prove three results about Runge–Kutta methods with non-negative coefficients. First, every $s$-stage implicit Runge–Kutta method of order at least two has SSP coefficient at most $2s$; the bound is sharp and is attained by a known diagonally implicit method, so full…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.07981.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.07981.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.07981v1" target="_blank" rel="noopener"><img src="../thumbs/2611.07981.jpg" alt="First page of A stability order barrier and SSP bound for Runge–Kutta methods with non-negative coefficients: AI-assisted proofs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A stability order barrier and SSP bound for Runge–Kutta methods with non-negative coefficients: AI-assisted proofs</h1>
+        <p class="authors">Sigal Gottlieb, Zachary Grant, Lior Horesh, Lajos Lóczi, Avraham Shinnar, Barry Trager</p>
+        <div class="row">
+          <span class="badge">math.NA</span>
+          <span class="date">Nov 5, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.07981v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.07981" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/RKProofs/Lean-Files" target="_blank" rel="noopener" title="RKProofs/Lean-Files">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The paper&#x27;s SSP bounds, phase-type moment inequalities and algebraic-stability order barrier are formalized in Lean 4 with Mathlib, with no sorry and only standard axioms.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We prove three results about Runge–Kutta methods with non-negative coefficients. First, every $s$-stage implicit Runge–Kutta method of order at least two has SSP coefficient at most $2s$; the bound is sharp and is attained by a known diagonally implicit method, so full implicitness gives no advantage over DIRK at second order. This extends the second-order DIRK result of Kocsis &amp; Németh to full coefficient matrices and settles a conjecture of Ketcheson, Macdonald &amp; Gottlieb. These proofs were found with the assistance of AI tools, which uncovered an interesting relationship between the Butcher matrices for SSP methods and phase-type distributions, and led to the proof of the second result: a bound on the SSP coefficient of $s$-stage implicit Runge–Kutta method of order at least three. The third result in this work is a proof that a third-order Runge–Kutta method with entrywise non-negative $A$ and $b$ cannot be algebraically stable. This algebraically intensive proof was also AI-assisted. This paper describes the iterative process of AI-assisted results, and presents an approach that centers human understanding and creativity in the AI-assisted mathematical endeavor.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Several conjectured results about Runge–Kutta methods with non-negative coefficients lacked proofs. These include the bound SSP coefficient ≤ 2s for second-order s-stage implicit methods, a sharp bound for third-order methods, and the incompatibility of third-order accuracy with algebraic stability.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors used ChatGPT, Claude and Gemini to explore candidate proofs. The AI tools surfaced a dictionary between SSP conditions and absorbing Markov chains / phase-type distributions, which turns order conditions into moment inequalities (Aldous–Shepp, Osogami, and a new moment-ratio hierarchy). Human-digested proofs were then formalized in Lean 4 with Mathlib, and the formalization exposed unnecessary hypotheses.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The 2s bound is proved sharp for all implicit second-order methods, settling a conjecture of Ketcheson, Macdonald and Gottlieb. A third-order SSP bound and an order-three barrier for algebraic stability with non-negative coefficients are also proved. All elementary results are machine-checked in Lean, and the r ≤ 2s result is verified end to end.</p><div class="sum-table"><table><thead><tr><th>Result</th><th>Lean identifier</th><th>Status</th></tr></thead><tbody><tr><td>Theorem 2</td><td>ssp_bound_of_conditions</td><td>Verified</td></tr><tr><td>Theorem 4</td><td>aldous_shepp</td><td>Verified</td></tr><tr><td>Theorem 7</td><td>cyclic_hierarchy</td><td>Verified</td></tr><tr><td>Theorem 8</td><td>order3_bound_of_invMat</td><td>Verified</td></tr><tr><td>Theorem 9</td><td>barrier_unsorted</td><td>Verified</td></tr></tbody></table><div class="tbl-cap">Selected correspondences between results and Lean formalizations (namespace SSP.MainRevised)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
