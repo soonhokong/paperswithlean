@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeanDojo-v2: A Comprehensive Library for AI-Assisted Theorem Proving in Lean · Papers With Lean</title>
+<meta name="description" content="Building on recent progress in machine learning for formal theorem proving in Lean, we introduce LeanDojo-v2: an end-to-end framework that unifies repository data extraction, LLM fine-tuning, proof search, AI autocompletion, and LLM-assisted theorem proving in a single software…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeanDojo-v2: A Comprehensive Library for AI-Assisted Theorem Proving in Lean">
+<meta property="og:description" content="Building on recent progress in machine learning for formal theorem proving in Lean, we introduce LeanDojo-v2: an end-to-end framework that unifies repository data extraction, LLM fine-tuning, proof search, AI autocompletion, and LLM-assisted theorem proving in a single software…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.09048.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.09048.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.09048v1" target="_blank" rel="noopener"><img src="../thumbs/2611.09048.jpg" alt="First page of LeanDojo-v2: A Comprehensive Library for AI-Assisted Theorem Proving in Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">LeanDojo-v2: A Comprehensive Library for AI-Assisted Theorem Proving in Lean</h1>
+        <p class="authors">Ryan Hsiang, William Adkisson, Robert Joseph George, Anima Anandkumar</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Nov 6, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.09048v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.09048" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/lean-dojo/LeanDojo-v2" target="_blank" rel="noopener" title="lean-dojo/LeanDojo-v2">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Provides a Lean 4 library unifying repository data extraction, LLM fine-tuning, proof search, and tactic suggestion, plus a Lean-native VSCodium-based IDE.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Building on recent progress in machine learning for formal theorem proving in Lean, we introduce LeanDojo-v2: an end-to-end framework that unifies repository data extraction, LLM fine-tuning, proof search, AI autocompletion, and LLM-assisted theorem proving in a single software library. In addition, we provide Lean4Code, a lightweight IDE that integrates the various features of LeanDojo-v2 through a simple, mathematician-friendly UI. These tools will enable mathematicians and researchers to easily fine-tune language models on domain-specific Lean codebases and experiment with LLM-assisted theorem proving without a complex setup.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Existing tools that combine machine learning with Lean (LeanDojo, ReProver, LeanCopilot, LeanAgent, REPLs) are separate research projects. They can be outdated and hard to maintain, and they require nontrivial setup, which makes AI-assisted theorem proving hard for mathematicians to adopt.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">LeanDojo-v2 is an end-to-end library with a three-stage pipeline: data collection, training, and proving. Data collection traces user-specified Lean repositories to extract ASTs, dependencies, theorems, proofs, and premises. Training uses either LeanAgent-style progressive (curriculum) training of ReProver&#x27;s retriever, ordered by proof-length difficulty, or HuggingFace fine-tuning on state-tactic pairs, with supervised, parameter-efficient, and reinforcement-learning options. Lean4Code is a VSCodium-based editor that bundles the Lean4 extension with LeanDojo tracing, LeanCopilot tactic suggestions, and Agent-TARS assistance.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.09048/LeanLibrary.png" alt=""><figcaption>Figure 1: Overview of the LeanDojo-v2 architecture</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.09048/LeanDojoFlowchart.drawio.png" alt=""><figcaption>Figure 3: Overview of using LeanDojo in Lean4Code</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The framework lets users fine-tune models on domain-specific Lean codebases and run LLM-assisted proving with a few lines of code or through a GUI. No quantitative proving benchmarks are reported in the provided text.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.09048/LeanCopilotDemo.png" alt=""><figcaption>Figure 6: Prompting LeanCopilot for tactic suggestions</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Extension</th><th>Purpose</th></tr></thead><tbody><tr><td>Lean4 (modified)</td><td>Downloads and configures Lean4/LeanDojo-v2</td></tr><tr><td>LeanDojo</td><td>Supports one-click LeanDojo tracing</td></tr><tr><td>LeanCopilot</td><td>Calls models to complete theorems</td></tr><tr><td>Agent-TARS</td><td>General agentic AI assistance</td></tr></tbody></table><div class="tbl-cap">Lean4Code extensions</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
