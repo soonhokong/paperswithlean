@@ -8,6 +8,39 @@
     <language>en</language>
     <lastBuildDate>Mon, 09 Nov 2026 00:00:00 +0000</lastBuildDate>
     <item>
+      <title>Factor Rank: A Canonical Algebraic Generalization of Tree Decision Diagrams</title>
+      <link>https://paperswithlean.com/paper/2611.10842.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.10842.html</guid>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Alexis de Colnet, Stefan Szeider</dc:creator>
+      <category>formalization</category><category>verification</category><category>logic</category>
+      <description>Core theorems on ATDD canonicity, cut-space nesting, and vtree rotation are formalized and kernel-checked in Lean 4, with sources on Zenodo.
+
+Tree decision diagrams (TDDs), recently introduced by Capelli et al. (SAT 2026), are representations of Boolean functions. They generalize OBDDs by replacing variable orders with vtrees. The width of a TDD counts the distinct subfunctions across each vtree cut. Counting subfunctions is blind to linear structure. We introduce algebraic tree decision diagrams (ATDDs) by replacing this count with the rank of the cut matrix. The maximum of these ranks over all cuts, the factor rank, is exactly the width of the ATDD. Every TDD can be converted into an ATDD of no greater width. An ATDD is a tree tensor network in canonical form. ATDDs are exponentially more succinct than TDDs, and quasi-polynomially more succinct than structured deterministic DNNFs. Our main result is that this gain in succinctness does not cost canonicity. ATDDs are the first strict canonical form for a rank-based representation over arbitrary vtrees. For each function and vtree there is exactly one ATDD, over the rationals and without any genericity assumption. The canonicity admits a local characterization. Whether a tree tensor network is the ATDD of the Boolean function it computes can be checked in polynomial time from its tensors alone. Equivalence checking becomes a test of syntactic equality. The operation set includes polynomial-time model counting, weighted model counting, and a test whether a tree tensor network represents a Boolean function. Capelli et al. asked for the complexity of changing the vtree of a TDD and suggested local vtree changes. We answer the question. After a rotation of the vtree at one node, the new ATDD differs from the old one in two tensors only. Vtree change runs in output-polynomial time both for TDDs and for ATDDs. We formalize and verify our core results in Lean. We provide a prototype implementation of TDD and ATDD compilers as a first empirical validation.</description>
+    </item>
+    <item>
+      <title>Extending DBLog-Based Incremental Snapshots to Handle Orphan Rows in CDC Pipelines</title>
+      <link>https://paperswithlean.com/paper/2611.10810.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.10810.html</guid>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Andreas Andreakis</dc:creator>
+      <category>verification</category>
+      <description>Safety and convergence of the DBLog orphan-row deletion extensions are mechanically verified in Lean 4 alongside Isabelle/HOL, with published sources.
+
+Applications use heterogeneous datastores where a source feeds sinks such as search indexes or data warehouses via change data capture (CDC). As transaction logs have limited retention, CDC alone cannot bootstrap sinks, and traditional approaches either stall source writes or hold back log events. DBLog-based incremental snapshots, adopted by Debezium and Flink CDC, read tables in chunks interleaved with the log without blocking writes or long log stalls and resume where they stopped. After the initial bootstrap, a sink can drift when losing change events or receiving unintended writes. Even a repeated bootstrap can leave orphan rows that exist in the sink and not at the source. A common remedy is to populate a new empty sink, but repairing an existing sink avoids parallel pipelines, a switch and serving traffic from a drifted sink until the new sink is ready. In DBLog&#x27;s original design, each chunk only emits the latest state of the rows the table still contains, so it does not handle orphan rows. We extend DBLog to delete them using what a chunk read already knows, namely the keys that the range select did not return, emitting a new kind of event that sinks apply as deletes. We also add a repair request that an external process calls with orphan candidates, which the connector checks with its own read, emitting these events for keys confirmed absent. This enables three modes. In the fully integrated mode, every chunk pass removes the orphans it finds during full or periodic repairs. In the second mode, an external drift process hands suspected orphans to the connector. The third mode combines both and is what we recommend. Together, they turn DBLog into a complete data synchronization engine whether a sink catches up on live changes or missing rows, holds wrong column values, or contains orphan rows. Their safety and convergence are formally verified in Isabelle/HOL and Lean 4.</description>
+    </item>
+    <item>
+      <title>Formal Proof of an Anisotropic Calderón Uniqueness Theorem</title>
+      <link>https://paperswithlean.com/paper/2611.10537.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.10537.html</guid>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cătălin I. Cârstea, Lauri Oksanen</dc:creator>
+      <category>formalization</category><category>autoformalization</category><category>mathlib</category><category>analysis</category>
+      <description>Formalizes in Lean 4, using Mathlib and Tau Ceti, a special case of the anisotropic Calderón uniqueness theorem, checked via a comparator challenge.
+
+We announce a Lean 4 formal proof of a special case of the smooth anisotropic Calderón uniqueness theorem released by OpenAI on October 6, 2026. We consider smooth Riemannian metrics on the three-dimensional unit ball, with full boundary measurements and Euclidean extensions outside the ball. OpenAI&#x27;s release did not include a Lean proof of their uniqueness result. Our formalization uses results from Mathlib and Tau Ceti, and it is given as a solution to a Lean comparator challenge whose check permits only the standard axioms of Lean. The Lean proof is not a line-by-line translation of the OpenAI manuscript.</description>
+    </item>
+    <item>
       <title>A trace costs one quantifier: the exact complexity of perfect play in nonlocal games</title>
       <link>https://paperswithlean.com/paper/2611.10481.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2611.10481.html</guid>
@@ -633,39 +666,6 @@ Mutually unbiased bases (MUBs) describe complementary quantum measurements: cert
       <description>Lean files formalizing the main theorem, the deterministic n^{O(log n)} graph isomorphism bound, are released in a GitHub repository.
 
 We give a deterministic $n^{O(\log n)}$-time algorithm for graph isomorphism. To our knowledge, this is the first proof of such a worst-case bound for general graphs. The algorithm uses the local-certificate and color-refinement steps of Babai&#x27;s quasipolynomial algorithm, but retains the decomposition of each recursive instance when it solves an auxiliary coloring problem. There are two reasons for retaining this information. First, a local test can make progress without removing many vertices: it can eliminate a layer of permutation symmetry. A logarithmic bound on the total weight of these layers allows tests of constant size. Second, the auxiliary bipartite graphs arising in the symmetry-breaking step can be represented inside the current instance, after retaining a row decomposition when necessary. These recursive calls inherit the progress already made. The analysis gives a recurrence with quadratic logarithmic cost and a fixed power decrease in every fresh recursive call, improving the explicit cubic logarithmic exponent in the analysis of the corrected Luks–Babai algorithm. We present the algorithm through colorings, partitions, and bipartite graphs, and collect the permutation-group ingredients in one appendix. The result extends to string isomorphism and returns one isomorphism and generators for the full automorphism group.</description>
-    </item>
-    <item>
-      <title>Comments on &quot;Multidimensional Costas Arrays and Their Periodicity&quot;</title>
-      <link>https://paperswithlean.com/paper/2611.00098.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.00098.html</guid>
-      <pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Shiv Munagala</dc:creator>
-      <category>formalization</category><category>combinatorics</category><category>ai-agents</category>
-      <description>The counterexample to the Rubio–Torres conjecture is formalized in Lean 4 and checked by kernel evaluation (decide +kernel), with the Lean proof written by Claude.
-
-Rubio and Torres conjectured that a multidimensional Costas array, defined by a bijection between two boxes of integer points whose domain has at least as many dimensions as its image, can stay Costas in every window of its periodic extension only if its order is a power of two fixed by the dimension of the domain. We give a four-dimensional periodic Costas array of order $6$, with a two-dimensional domain and a two-dimensional image, so the conjecture is false. The verification reduces to $36$ windows. It has been confirmed by computer and in the Lean proof assistant. The array also meets with equality the pigeonhole bound that Rubio and Torres use for their non-existence results, so that bound is tight.</description>
-    </item>
-    <item>
-      <title>Persistence of Unitary Almost Mathieu Operator Gaps Ten Dry Martinis, Five on the Rim</title>
-      <link>https://paperswithlean.com/paper/2610.42120.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.42120.html</guid>
-      <pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Dan S. Borgnia, Matthew Faust, Long Li</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>analysis</category><category>physics</category>
-      <description>The main gap-labeling theorem is stated in Lean using Mathlib definitions and formally verified, with a Lean statement and verification index in Appendix C.
-
-We determine exactly which gap labels are realized by open spectral gaps for the unitary almost Mathieu operator at every irrational frequency and all coupling constants ($0&lt;λ_1,λ_2\leq1$). When both couplings are strictly less than one, every permitted gap label is realized by an open gap, including in the critical case ($λ_1=λ_2$). When at least one coupling equals one, both lifts of every odd winding label are realized by open gaps, whereas all even winding labels are collapsed. The proof combines quantitative almost reducibility and Aubry duality with a monotonicity principle for gap heights.</description>
-    </item>
-    <item>
-      <title>An explicit bound on the extremal function for complete graph minors</title>
-      <link>https://paperswithlean.com/paper/2610.41060.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.41060.html</guid>
-      <pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>David R. Wood</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>combinatorics</category>
-      <description>The main theorem, including all numerical computations, is formally verified in Lean 4 with Mathlib, and the Lean files are provided as arXiv ancillary files.
-
-Kostochka and Thomason independently proved that every graph with density at least $β\,t\sqrt{\log t}$ has a $K_t$ minor, for some constant $β$. Thomason later proved that the least such density is $(0.319\ldots+o(1))\,t\sqrt{\log t}$. However, the $o(1)$ term in this formula is not explicit, so the formula gives no bound for any specific value of $t$. The goal of this paper is a bound of the form $β\,t\sqrt{\log t}$ that holds for every $t$, with $β$ small. We prove that, for every integer $t\geqslant2$, every graph with density at least $4.5\,t\sqrt{\log t}$ has a $K_t$ minor.</description>
     </item>
   </channel>
 </rss>

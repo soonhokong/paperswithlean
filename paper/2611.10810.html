@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Extending DBLog-Based Incremental Snapshots to Handle Orphan Rows in CDC Pipelines · Papers With Lean</title>
+<meta name="description" content="Applications use heterogeneous datastores where a source feeds sinks such as search indexes or data warehouses via change data capture (CDC). As transaction logs have limited retention, CDC alone cannot bootstrap sinks, and traditional approaches either stall source writes or…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Extending DBLog-Based Incremental Snapshots to Handle Orphan Rows in CDC Pipelines">
+<meta property="og:description" content="Applications use heterogeneous datastores where a source feeds sinks such as search indexes or data warehouses via change data capture (CDC). As transaction logs have limited retention, CDC alone cannot bootstrap sinks, and traditional approaches either stall source writes or…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.10810.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.10810.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.10810v1" target="_blank" rel="noopener"><img src="../thumbs/2611.10810.jpg" alt="First page of Extending DBLog-Based Incremental Snapshots to Handle Orphan Rows in CDC Pipelines"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Extending DBLog-Based Incremental Snapshots to Handle Orphan Rows in CDC Pipelines</h1>
+        <p class="authors">Andreas Andreakis</p>
+        <div class="row">
+          <span class="badge">cs.DB</span>
+          <span class="date">Nov 7, 2026 · v1</span>
+          <span class="badge">cs.DC</span> <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.10810v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.10810" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.24035424" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Safety and convergence of the DBLog orphan-row deletion extensions are mechanically verified in Lean 4 alongside Isabelle/HOL, with published sources.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Applications use heterogeneous datastores where a source feeds sinks such as search indexes or data warehouses via change data capture (CDC). As transaction logs have limited retention, CDC alone cannot bootstrap sinks, and traditional approaches either stall source writes or hold back log events. DBLog-based incremental snapshots, adopted by Debezium and Flink CDC, read tables in chunks interleaved with the log without blocking writes or long log stalls and resume where they stopped. After the initial bootstrap, a sink can drift when losing change events or receiving unintended writes. Even a repeated bootstrap can leave orphan rows that exist in the sink and not at the source. A common remedy is to populate a new empty sink, but repairing an existing sink avoids parallel pipelines, a switch and serving traffic from a drifted sink until the new sink is ready. In DBLog&#x27;s original design, each chunk only emits the latest state of the rows the table still contains, so it does not handle orphan rows. We extend DBLog to delete them using what a chunk read already knows, namely the keys that the range select did not return, emitting a new kind of event that sinks apply as deletes. We also add a repair request that an external process calls with orphan candidates, which the connector checks with its own read, emitting these events for keys confirmed absent. This enables three modes. In the fully integrated mode, every chunk pass removes the orphans it finds during full or periodic repairs. In the second mode, an external drift process hands suspected orphans to the connector. The third mode combines both and is what we recommend. Together, they turn DBLog into a complete data synchronization engine whether a sink catches up on live changes or missing rows, holds wrong column values, or contains orphan rows. Their safety and convergence are formally verified in Isabelle/HOL and Lean 4.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">DBLog-based incremental snapshots, as used in Debezium and Flink CDC, bootstrap and repair CDC sinks. Each chunk emits only the rows the source table still contains, so orphan rows that exist in the sink but not at the source are never removed. Repairing an existing drifted sink avoids the cost of building and switching to a new sink.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">DBLog is extended so that each chunk read emits a new delete-type event for keys absent from the range select. A repair request lets an external drift-detection process submit orphan candidates, which the connector confirms with its own read before deleting. This yields three modes: integrated, external, and combined. The extensions are modeled on the Generalized DBLog formal model. Safety and convergence are proved over all event histories and initial sink states in Isabelle/HOL, with the main results proved again in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The extended protocol handles missing rows, wrong column values and orphan rows, so DBLog can serve as a complete data synchronization engine. All proofs are complete without custom axioms. Every theory except the Flink CDC range merge is proved in both Isabelle/HOL and Lean 4.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

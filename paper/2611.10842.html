@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Factor Rank: A Canonical Algebraic Generalization of Tree Decision Diagrams · Papers With Lean</title>
+<meta name="description" content="Tree decision diagrams (TDDs), recently introduced by Capelli et al. (SAT 2026), are representations of Boolean functions. They generalize OBDDs by replacing variable orders with vtrees. The width of a TDD counts the distinct subfunctions across each vtree cut. Counting…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Factor Rank: A Canonical Algebraic Generalization of Tree Decision Diagrams">
+<meta property="og:description" content="Tree decision diagrams (TDDs), recently introduced by Capelli et al. (SAT 2026), are representations of Boolean functions. They generalize OBDDs by replacing variable orders with vtrees. The width of a TDD counts the distinct subfunctions across each vtree cut. Counting…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.10842.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.10842.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.10842v1" target="_blank" rel="noopener"><img src="../thumbs/2611.10842.jpg" alt="First page of Factor Rank: A Canonical Algebraic Generalization of Tree Decision Diagrams"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Factor Rank: A Canonical Algebraic Generalization of Tree Decision Diagrams</h1>
+        <p class="authors">Alexis de Colnet, Stefan Szeider</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 7, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.10842v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.10842" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.24008836" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Core theorems on ATDD canonicity, cut-space nesting, and vtree rotation are formalized and kernel-checked in Lean 4, with sources on Zenodo.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Tree decision diagrams (TDDs), recently introduced by Capelli et al. (SAT 2026), are representations of Boolean functions. They generalize OBDDs by replacing variable orders with vtrees. The width of a TDD counts the distinct subfunctions across each vtree cut. Counting subfunctions is blind to linear structure. We introduce algebraic tree decision diagrams (ATDDs) by replacing this count with the rank of the cut matrix. The maximum of these ranks over all cuts, the factor rank, is exactly the width of the ATDD. Every TDD can be converted into an ATDD of no greater width. An ATDD is a tree tensor network in canonical form. ATDDs are exponentially more succinct than TDDs, and quasi-polynomially more succinct than structured deterministic DNNFs. Our main result is that this gain in succinctness does not cost canonicity. ATDDs are the first strict canonical form for a rank-based representation over arbitrary vtrees. For each function and vtree there is exactly one ATDD, over the rationals and without any genericity assumption. The canonicity admits a local characterization. Whether a tree tensor network is the ATDD of the Boolean function it computes can be checked in polynomial time from its tensors alone. Equivalence checking becomes a test of syntactic equality. The operation set includes polynomial-time model counting, weighted model counting, and a test whether a tree tensor network represents a Boolean function. Capelli et al. asked for the complexity of changing the vtree of a TDD and suggested local vtree changes. We answer the question. After a rotation of the vtree at one node, the new ATDD differs from the old one in two tensors only. Vtree change runs in output-polynomial time both for TDDs and for ATDDs. We formalize and verify our core results in Lean. We provide a prototype implementation of TDD and ATDD compilers as a first empirical validation.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Tree decision diagrams (TDDs) represent Boolean functions over vtrees, and their width counts distinct subfunctions at each cut. That count ignores linear structure. Capelli et al. also left open the complexity of changing the vtree of a TDD.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Algebraic TDDs (ATDDs) replace the subfunction count with the rank of the cut matrix over the rationals. The resulting width, the factor rank, is the maximum cut rank. ATDDs are defined as canonical tree tensor networks built from canonical tests and interpolators. Vtree rotation is handled by contracting two tensors and computing a reduced row echelon form. Core results (statements marked with a dagger) are proved in Lean 4 using only the standard axioms and no native_decide. Prototype Rust compilers for TDDs and ATDDs serve as empirical validation.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">ATDDs are exponentially more succinct than TDDs and quasi-polynomially more succinct than structured d-DNNFs. They are strictly canonical, admit a polynomial-time local canonicity check, and support model counting and weighted model counting. A rotation changes only two tensors, and vtree change runs in output-polynomial time for both TDDs and ATDDs.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
