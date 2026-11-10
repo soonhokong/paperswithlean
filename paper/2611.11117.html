@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keel: A Verified In-Kernel Proof Checker for Proof Carrying BPF · Papers With Lean</title>
+<meta name="description" content="Recent systems such as the eBPF Certificate Framework (BCF) and Proof-Carrying BPF address the imprecision in the Linux eBPF verifier with proof-carrying code. When the verifier&#x27;s abstract domains cannot prove a safety condition, an in-kernel proof checker checks an untrusted…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Keel: A Verified In-Kernel Proof Checker for Proof Carrying BPF">
+<meta property="og:description" content="Recent systems such as the eBPF Certificate Framework (BCF) and Proof-Carrying BPF address the imprecision in the Linux eBPF verifier with proof-carrying code. When the verifier&#x27;s abstract domains cannot prove a safety condition, an in-kernel proof checker checks an untrusted…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.11117.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.11117.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.11117v1" target="_blank" rel="noopener"><img src="../thumbs/2611.11117.jpg" alt="First page of Keel: A Verified In-Kernel Proof Checker for Proof Carrying BPF"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Keel: A Verified In-Kernel Proof Checker for Proof Carrying BPF</h1>
+        <p class="authors">Yalu Cai, Tung-Che Chang, Santosh Nagarakatte</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Nov 8, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.11117v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.11117" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Specifies and proves sound an eBPF proof-certificate checker in Lean 4, with a deeply embedded C fragment (EmbC) proven to refine it.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Recent systems such as the eBPF Certificate Framework (BCF) and Proof-Carrying BPF address the imprecision in the Linux eBPF verifier with proof-carrying code. When the verifier&#x27;s abstract domains cannot prove a safety condition, an in-kernel proof checker checks an untrusted user-space refutation proof. A single bug in this checker can compromise the security of the entire kernel. While formalizing BCF&#x27;s in-kernel checker, we discovered 13 bugs such as unsound rewrite rules, silently unchecked proof steps, and memory safety errors. We demonstrate that forged certificates can trick the kernel to accept arbitrary unsafe eBPF programs. To address this problem, we propose Keel, a formally verified in-kernel proof checker for the Linux eBPF verifier. First, we specify the checker as a pure functional program in Lean and prove its soundness against bit-vector semantics. We decouple the steps of the proof certificate checker from the mathematical rewrite rules, which enables us to extend the rewrite rules without the need to change the checker. Second, we implement the checker in EmbC, a deeply embedded C fragment, and prove that our C implementation refines the functional specification without undefined behavior or memory leaks. Third, using an amortized potential argument, we prove linear time and memory bounds for the C checker. Keel is correct-by-construction while also being faster than the BCF checker inside the kernel, 1.3X in total and 2.0X on the slowest 1.4% of certificates.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The BCF and Proof-Carrying BPF frameworks use an in-kernel proof checker to validate untrusted refutation certificates for the Linux eBPF verifier, so a bug in that checker compromises the whole kernel. While formalizing BCF&#x27;s checker, the authors found 13 bugs, including unsound rewrite rules, unchecked proof steps and memory safety errors, and showed that forged certificates can get unsafe eBPF programs accepted.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Keel is a pure functional certificate checker written in Lean 4 and proved sound against bit-vector semantics. Its rewrite rules sit in a declarative table, so adding a rule only requires proving that rule valid. The checker is reimplemented in EmbC, a deeply embedded C fragment in Lean that is validated against CompCert Clight, and proved to refine the specification without undefined behavior or memory leaks. An amortized potential argument over work and memory budgets proves linear time and memory bounds.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The development produces a verified C checker of 6,616 lines that accepts BCF&#x27;s certificates in Linux 6.19. It is 1.3x faster than BCF&#x27;s checker overall and 2.0x faster on the slowest 1.4% of certificates. Differential testing used 64 million fuzzed certificates.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

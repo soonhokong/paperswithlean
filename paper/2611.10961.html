@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Improving Analytic Constants via Interpretable AI-Guided Lean Proof Refinement · Papers With Lean</title>
+<meta name="description" content="AI agents are increasingly capable of discovering new mathematical results, yet their reasoning and generated proofs can be difficult to understand and verify. We introduce an interpretable framework for AI-guided mathematical discovery, focused on improving quantitative bounds…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Improving Analytic Constants via Interpretable AI-Guided Lean Proof Refinement">
+<meta property="og:description" content="AI agents are increasingly capable of discovering new mathematical results, yet their reasoning and generated proofs can be difficult to understand and verify. We introduce an interpretable framework for AI-guided mathematical discovery, focused on improving quantitative bounds…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.10961.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.10961.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.10961v1" target="_blank" rel="noopener"><img src="../thumbs/2611.10961.jpg" alt="First page of Improving Analytic Constants via Interpretable AI-Guided Lean Proof Refinement"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Improving Analytic Constants via Interpretable AI-Guided Lean Proof Refinement</h1>
+        <p class="authors">Rahul Saha, Alan Li, Anton Xue, Swarat Chaudhuri, Adam Klivans, Pravesh K. Kothari, Raghu Meka</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 7, 2026 · v1</span>
+          <span class="badge">cs.LG</span> <span class="badge">math.NA</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.10961v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.10961" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/alan2326/proof-refinement" target="_blank" rel="noopener" title="alan2326/proof-refinement">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">An AI agent iteratively refines Lean code inside partially formalized Lean blueprints, with Lean checking the proof obligations alongside certified interval-arithmetic numerics, to tighten analytic constant bounds.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">AI agents are increasingly capable of discovering new mathematical results, yet their reasoning and generated proofs can be difficult to understand and verify. We introduce an interpretable framework for AI-guided mathematical discovery, focused on improving quantitative bounds on analytic constants. Our key insight is that existing proofs often contain slack in intermediate lemmas, which can be tightened without reconstructing the entire argument. To exploit this structure, we represent proofs as partially-formalized Lean blueprints: human-interpretable dependency graphs of definitions, lemmas, and theorems. An AI agent then iteratively refines the Lean code while preserving the blueprint&#x27;s dependency structure, allowing local improvements to automatically propagate to a verified final bound. This interpretable structure allows humans to inspect the agent&#x27;s refinements and understand how local improvements propagate to the final theorem. For Grothendieck&#x27;s constant ($\mathcal{K}_G$), we obtain $$ \mathcal{K}_G \leq \fracπ{2\log(1+\sqrt{2})} - 10^{-17}, $$ an explicit numerical improvement over Krivine&#x27;s 1977 bound. For Korenblum&#x27;s constant ($\mathcal{K}_K$), we obtain $$ \mathcal{K}_K \geq 0.356565, $$ improving Wang&#x27;s 2025 bound of $0.3554$. Our experiments demonstrate the potential of both partial formalization and iterative agentic refinement for interpretable mathematical discovery.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Many proofs of bounds on analytic constants contain slack in intermediate lemmas, and AI-generated mathematics can be hard to interpret and verify. The goal is to tighten quantitative bounds on the Grothendieck and Korenblum constants through verified local refinements that humans can inspect.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Proofs are represented as partially formalized Lean blueprints, which are dependency graphs of definitions, lemmas and theorems. A planner/generator/evaluator agent proposes local edits to intermediate estimates and leaves the graph structure unchanged. A verifier checks the Lean obligations and the interval-arithmetic certificates from an Arb-based numerics backend. The verification result is fed back as the optimization signal, so local improvements propagate to the final bound.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.10961/grothendieck_proof_graph.png" alt=""><figcaption>Figure 9: Lean Blueprint for Grothendieck’s constant</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The method proves K_G ≤ π/(2 log(1+√2)) − 10^{-17}, an explicit improvement over Krivine&#x27;s bound and over the 9.56·10^{-33} baseline derived from Braverman et al. It also proves K_K ≥ 0.356565, improving Wang&#x27;s 2025 bound of 0.3554. Ablations show that the full framework reduces C_r by 400,000×, compared with 250× for a basic agent.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.10961/kg_improvement.png" alt=""><figcaption>Figure 5: Magnitude of bound improvements over refinement iterations, with red entries denoting the discovery of “interesting” strategies, as judged by domain experts.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Configuration</th><th>Grothendieck C_r</th><th>C_r Reduction</th><th>Korenblum c</th><th>c Gain</th></tr></thead><tbody><tr><td>Checkpoint (start)</td><td>1</td><td>–</td><td>0.35646</td><td>–</td></tr><tr><td>Full framework</td><td>2.5e-6</td><td>400,000×</td><td>0.35658</td><td>+1.2e-4</td></tr><tr><td>Basic agent</td><td>4.0e-3</td><td>250×</td><td>0.35648</td><td>+2.0e-5</td></tr><tr><td>No agent</td><td>7.1e-2</td><td>14×</td><td>–</td><td>–</td></tr></tbody></table><div class="tbl-cap">Ablation of the refinement framework</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
