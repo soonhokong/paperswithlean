@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Attention Is Only as Good as Its Witnesses: When Higher-Order Layers Help, and When They Do Not · Papers With Lean</title>
+<meta name="description" content="Transformers stop learning graph search as graphs grow, and learn the card game SET only after many distinct questions, although attention can represent both. We read these failures, and the uneven record of higher-order attention, from what a layer sums over: each layer we…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Attention Is Only as Good as Its Witnesses: When Higher-Order Layers Help, and When They Do Not">
+<meta property="og:description" content="Transformers stop learning graph search as graphs grow, and learn the card game SET only after many distinct questions, although attention can represent both. We read these failures, and the uneven record of higher-order attention, from what a layer sums over: each layer we…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.11937.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.11937.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.11937v1" target="_blank" rel="noopener"><img src="../thumbs/2611.11937.jpg" alt="First page of Attention Is Only as Good as Its Witnesses: When Higher-Order Layers Help, and When They Do Not"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Attention Is Only as Good as Its Witnesses: When Higher-Order Layers Help, and When They Do Not</h1>
+        <p class="authors">Mostafa &#x27;Neo&#x27; Mohsenvand</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Nov 9, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.NE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.11937v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.11937" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/NeoVand/witnesses" target="_blank" rel="noopener" title="NeoVand/witnesses">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Theorems on the depth-law construction, the size law, and the character-based SET pair counting are machine-checked in Lean 4 with Mathlib and released with the code.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Transformers stop learning graph search as graphs grow, and learn the card game SET only after many distinct questions, although attention can represent both. We read these failures, and the uneven record of higher-order attention, from what a layer sums over: each layer we study computes the partition function of a family of witnesses and reads it at a temperature. Two laws follow. The depth law is a known result of logic, which we state for these layers: L layers over two-step walks reach exactly 2^L - 1 steps, just as a logical statement with L nested clauses of the form &quot;there is a vertex such that&quot; sees exactly that far. We build a construction that reaches this far, checked in Lean, and, when vertices carry no names, no such network reaches further. The size law is the cost of reading at a temperature, which logic does not have: existence is read correctly at every size, in the worst case, if and only if inverse temperature times margin is at least the logarithm of the number of candidates. Layers built on these laws, and on two principles that we test, learn where Transformers fail. One propagator layer trained on 49-vertex graphs answers every question at every search depth on 250-vertex graphs. Given the modulus 3, exponential Newton computes the softmax of 2-simplicial attention over pairs exactly in 3^d n operations for d clocks; with six clocks it learns SET from as few deals as 2-simplicial attention and transfers from 8- to 20-card tables. On CLRS-30 without hints, a 186,000-parameter block of OR-join and power-mean channels matches (within half a point) or beats a model of at least 73 million parameters on 9 of 12 graph tasks of the official test set, and on 8 of 12 with freshly drawn test graphs. The same account explains where pair layers did not help and where parallel layers must loop.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Transformers fail to learn graph search on larger graphs and learn the card game SET only after many deals, and the uneven benefit of higher-order attention has no predictive account.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Each attention-like layer is modeled as computing the partition function of a family of witnesses (tokens, pairs, walks, subsets), read through a link at a temperature. Two laws are derived and proved: a depth law (L layers over two-step walks reach exactly 2^L-1 steps) and a size law (existence is read correctly at every size iff inverse temperature times margin is at least log of the number of candidates). The depth-law construction, the size law, and a character identity for counting SET pairs are formalized in Lean 4 with Mathlib, with no sorry. New layers (propagator, Newton attention, exponential Newton) are built from these principles and tested.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.11937/fig1.png" alt=""><figcaption>Fig. 1 | What a layer sums over. Hand-set layers, nothing trained, on one 49-vertex search question (top; towns are vertices, roads directed edges) and one eight-card SET deal (bottom). a , A lookup sums over single witnesses: the start weighs every town by its own score (circle area, softmax weight: 0.100 for each of the eight children, 0.005 for every other town), and the card in hand weighs eac</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">A propagator layer trained on 49-vertex graphs answers every question at every lookahead on 250-vertex graphs. Exponential Newton learns SET from as few deals as 2-simplicial attention and transfers from 8- to 20-card tables. A 186K-parameter looped block matches or beats a 73M-parameter model on 9 of 12 CLRS-30 graph tasks.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.11937/fig2.png" alt=""><figcaption>Fig. 2 | One trained propagator layer searches graphs five times larger than any in training. a , Part of a 250-vertex test question (lookahead 31), lit by the walks to the goal of a propagator trained on graphs of up to 49 vertices. b , The circled spot: each road’s learned gate for walking back (bars), and one between towns with no road. c , Every learned gate of the working channel in three tra</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.11937/fig3.png" alt=""><figcaption>Fig. 3 | SET: who learns the rule, how the join decides, why exponential gates hold as tables grow. a , Accuracy on new deals against training deals (mean of three seeds; exponential Newton with four clocks); right, accuracy with a card in hand never held, after 55,296 deals with 27 cards in hand (filled; six clocks) and 221,184 (open; Transformers). b , One trained join: each attribute’s clock ov</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
