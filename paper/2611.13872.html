@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LongTails: Automated Research in Optimization · Papers With Lean</title>
+<meta name="description" content="We introduce LongTails, a framework for discovering and improving oracle-complexity bounds with formal verification in Lean 4. Using LongTails, we have already obtained more than 100 new results across a broad range of optimization problems, including generalized smoothness,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LongTails: Automated Research in Optimization">
+<meta property="og:description" content="We introduce LongTails, a framework for discovering and improving oracle-complexity bounds with formal verification in Lean 4. Using LongTails, we have already obtained more than 100 new results across a broad range of optimization problems, including generalized smoothness,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.13872.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.13872.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.13872v1" target="_blank" rel="noopener"><img src="../thumbs/2611.13872.jpg" alt="First page of LongTails: Automated Research in Optimization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">LongTails: Automated Research in Optimization</h1>
+        <p class="authors">Alexander Tyurin, QuocViet Pham, Valentin Khrulkov, Ivan Oseledets</p>
+        <div class="row">
+          <span class="badge">math.OC</span>
+          <span class="date">Nov 10, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.13872v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.13872" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/k3nfalt/longtails" target="_blank" rel="noopener" title="k3nfalt/longtails">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a Lean 4 framework formalizing optimization Setups and oracle Complexities; AI agents prove over 100 new convergence bounds, which Comparator checks.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We introduce LongTails, a framework for discovering and improving oracle-complexity bounds with formal verification in Lean 4. Using LongTails, we have already obtained more than 100 new results across a broad range of optimization problems, including generalized smoothness, heavy-tailed noise, finite-sum and composite optimization, and higher-order and zeroth-order methods. Our goal is to scale discovery and continually develop new methods with non-trivial and valuable theoretical guarantees using modern agentic systems. The framework is specialized for optimization, where we separate a Setup, specifying the problem class, assumptions, available information, and success criterion, from a Complexity, specifying a sufficient oracle-call budget. Once a Setup is fixed (e.g., $L$-smooth convex optimization with the goal of finding $x_{\mathrm{out}}$ such that $f(x_{\mathrm{out}}) - f(x^\star) \leq \varepsilon$), agents search for better Complexities (e.g., $O(\sqrt{L R^2 / \varepsilon})$, where $R \geq \|x_0 - x^\star\|$) by designing algorithms and proving their convergence. The framework then checks the proofs and guarantees that every accepted Complexity can indeed be attained under the given Setup. This turns the search for new methods into an ongoing effort to improve their theoretical guarantees. To the best of our knowledge, LongTails is the first framework to scale automated research in optimization across such a broad range of problems with formally verified theoretical guarantees.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Discovering new optimization methods with provably better oracle-complexity bounds is slow, and claimed guarantees need trustworthy verification. The authors want a reusable framework that lets agentic systems search for improved complexities at scale while every accepted result stays formally correct.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">In Lean 4, a Setup specifies the problem class, assumptions, oracle access, public information and success criterion, and is kept separate from a Complexity, an oracle-call budget. A Convergence proposition asserts that an algorithm constructor exists. Using only public inputs, that constructor must succeed within the budget for every admissible instance and oracle. Codex and Claude Code agents, working in researcher/reviewer pairs, design algorithms and prove Convergence theorems. Comparator checks the proofs against the fixed Setup and rejects incomplete proofs or unpermitted axioms.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The authors report more than 100 new formally verified results covering generalized smoothness, heavy-tailed noise, finite-sum and composite problems, and higher-order and zeroth-order methods. One example is a gradient-only Õ(1+√(L0R²/ε)+(L1R)^{2/3}) bound for (L0,L1)-smooth convex optimization. It improves the L1R term of the earlier gradient-only bound and removes the exact line-search cost from another prior result.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
