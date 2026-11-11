@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parametric Proof-Carrying Compilation for Quantum Error-Correction · Papers With Lean</title>
+<meta name="description" content="We present PC-QEC, a proof-carrying compilation framework for quantum error correction parameterized by both code distance and syndrome-extraction scheme. It covers all four schemes—Standard, Flag, Shor and Knill—with circuit-level distance guarantees for every legal code…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Parametric Proof-Carrying Compilation for Quantum Error-Correction">
+<meta property="og:description" content="We present PC-QEC, a proof-carrying compilation framework for quantum error correction parameterized by both code distance and syndrome-extraction scheme. It covers all four schemes—Standard, Flag, Shor and Knill—with circuit-level distance guarantees for every legal code…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.12985.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.12985.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.12985v1" target="_blank" rel="noopener"><img src="../thumbs/2611.12985.jpg" alt="First page of Parametric Proof-Carrying Compilation for Quantum Error-Correction"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Parametric Proof-Carrying Compilation for Quantum Error-Correction</h1>
+        <p class="authors">John Zhuoyang Ye, Jens Palsberg</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Nov 8, 2026 · v1</span>
+          <span class="badge">quant-ph</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-purple" href="../#tag=quantum">quantum</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.12985v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.12985" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 mechanizes the framework&#x27;s metatheory (soundness) and exact circuit-level distances for canonical Surface, hypergraph-product and Toric code families.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present PC-QEC, a proof-carrying compilation framework for quantum error correction parameterized by both code distance and syndrome-extraction scheme. It covers all four schemes—Standard, Flag, Shor and Knill—with circuit-level distance guarantees for every legal code distance in each proved family under the declared fault and readout contracts. The circuit-level model permits single-wire Pauli faults at every operation&#x27;s qubit operands, capturing data errors, readout errors and ancilla faults that propagate into multi-qubit hook errors. For each family and scheme, code-algebra proofs and fault-aware Hoare proofs compose into a finite symbolic certificate whose size is independent of code distance. We demonstrate family-wide guarantees for five code families across all four schemes. For rotated Surface code, one Standard Scheme certificate proves a distance lower bound $d$ for every odd $d\ge3$ and checks in 214\,s on average. Lean 4 mechanizes the metatheory and exact circuit-level distances for canonical Surface, hypergraph-product (HGP) and Toric code families.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Circuit-level code distance of quantum error-correction circuits is NP-hard to compute. Proofs for a single code distance do not carry over to other sizes, and gate-by-gate proofs grow with d. A single finite proof is needed that covers whole code families and multiple syndrome-extraction schemes, including hook errors from ancilla faults.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">PC-QEC is a proof-carrying compilation framework built from three layers. CodeML specifies a parametric code family together with its ordered extraction schedule. QStab is an intermediate representation that tracks residual data errors, readout offsets and the fault budget. QClifford is a target language with fault-aware Hoare logic. Code-algebra proofs and Hoare proofs compose into a symbolic certificate whose size is independent of d. Certificates are checked by an OCaml verifier, and Lean 4 mechanizes the metatheory and exact distances for canonical Surface, HGP and Toric codes.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Family-wide distance guarantees are shown for five code families across the Standard, Flag, Shor and Knill schemes. For the rotated Surface code, one Standard-scheme certificate proves distance d for every odd d≥3 and checks in 214 s on average. Lean proofs establish soundness and exactness for the canonical Surface, HGP and Toric families.</p><div class="sum-table"><table><thead><tr><th>Approach</th><th>Hook error analysis</th><th>All-size circuit-level distance proof</th><th>Proof reuse across schemes</th></tr></thead><tbody><tr><td>QuantumSE</td><td>✗</td><td>✗</td><td>✗</td></tr><tr><td>Veri-QEC</td><td>✗</td><td>✗</td><td>✗</td></tr><tr><td>Chen et al. (2025)</td><td>✓</td><td>✗</td><td>✗</td></tr><tr><td>AutoQ-Para</td><td>✗</td><td>✗</td><td>✗</td></tr><tr><td>PC-QEC</td><td>✓</td><td>✓</td><td>✓</td></tr></tbody></table><div class="tbl-cap">Comparison with prior QEC verification approaches</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

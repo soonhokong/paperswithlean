@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trust, but verify, audit and attribute: a human-in-the-loop framework for checking AI-produced research results · Papers With Lean</title>
+<meta name="description" content="Artificial intelligence (AI) systems now produce research results in bulk: in October 2026 a single laboratory released more than 700 AI-generated mathematics manuscripts, only part of them with machine-checked proofs. Such volumes will be checked mostly by AI agents that call…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Trust, but verify, audit and attribute: a human-in-the-loop framework for checking AI-produced research results">
+<meta property="og:description" content="Artificial intelligence (AI) systems now produce research results in bulk: in October 2026 a single laboratory released more than 700 AI-generated mathematics manuscripts, only part of them with machine-checked proofs. Such volumes will be checked mostly by AI agents that call…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.13042.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.13042.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.13042v1" target="_blank" rel="noopener"><img src="../thumbs/2611.13042.jpg" alt="First page of Trust, but verify, audit and attribute: a human-in-the-loop framework for checking AI-produced research results"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Trust, but verify, audit and attribute: a human-in-the-loop framework for checking AI-produced research results</h1>
+        <p class="authors">György Eigner, Patrik P. Süli, Roland Hollós</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 9, 2026 · v1</span>
+          <span class="badge">cs.CY</span> <span class="badge">cs.HC</span> <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.13042v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.13042" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.24051280" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 with Mathlib, called through the lean-lsp MCP server, is the formal-proof tool in an agentic math-checking toolchain alongside Wolfram Language and MATLAB.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Artificial intelligence (AI) systems now produce research results in bulk: in October 2026 a single laboratory released more than 700 AI-generated mathematics manuscripts, only part of them with machine-checked proofs. Such volumes will be checked mostly by AI agents that call specialised software. A passing check certifies only the artefact that was checked. For proofs translated into the proof assistant Lean, it has been shown that this artefact may state something other than the author&#x27;s text, and that deciding whether a translation is faithful is undecidable in general. The human researcher therefore stays in the loop, and human and AI contributions must be recorded. We propose a domain-independent, human-in-the-loop framework for checking AI-produced results. Validated, agent-usable tools with different grounds of trust check the results; a fidelity audit asks whether each check addressed the claim as stated; the human decides at fixed points; and a dialog report attributes the work to the human and to the AI. We describe two automatic implementations of the tool layer, for mathematics (Wolfram Language, MATLAB, Lean) and statistics (Python and R), and run the mathematical one on a two-claim example. An ambiguous claim was split into two readings, one refuted and one proved.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">AI systems now produce research results in volume, and those results are increasingly checked by AI agents calling software such as Lean. A passing check certifies only the artefact checked, which may not faithfully state the author&#x27;s claim. For Lean translations, whether a translation is faithful is undecidable in general.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors propose a domain-independent human-in-the-loop framework. Validated tools with different grounds of trust check the results. A fidelity audit then asks whether each check addressed the claim as stated, using frozen targets, forbidden acts and a deviation protocol. Humans decide at four fixed points, and a dialog report attributes contributions to the human and the AI. Two agent-skill implementations are described: math-prove-tool (Wolfram Language, MATLAB, Lean 4 + Mathlib via MCP) and stat-prove-tool (Python and R).</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">math-prove-tool was run on two claims. The divisibility claim was confirmed by all three tools. The ambiguous maximum-value claim was split into two readings: Wolfram and Lean refuted the exact reading and confirmed the rounded one, while MATLAB was inconclusive on both.</p><div class="sum-table"><table><thead><tr><th>Claim</th><th>Wolfram Language</th><th>MATLAB</th><th>Lean</th><th>Agreement</th></tr></thead><tbody><tr><td>P01</td><td>general proof, confirmed</td><td>general proof, confirmed (back-translation partial)</td><td>general proof, confirmed</td><td>agree</td></tr><tr><td>P02a</td><td>general proof, refuted</td><td>symbolic instance, inconclusive</td><td>general proof, refuted</td><td>partial</td></tr><tr><td>P02b</td><td>general proof, confirmed</td><td>symbolic instance, inconclusive</td><td>general proof, confirmed</td><td>partial</td></tr></tbody></table><div class="tbl-cap">Results of the example run per claim and tool</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

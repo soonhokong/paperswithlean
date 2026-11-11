@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Fast Algorithm for Subspace Convolution · Papers With Lean</title>
+<meta name="description" content="A cornerstone result in Boolean lattice theory is the subset-zeta transform, which computes the $f$-weighted subset summation problem $(Z f)(B)=\sum_{A\subseteq B}f(A)$ for all $ B\subseteq[n]$ in $O(N \log N)$ additions instead of the naïve $O(3^n) = O(N^{\log_2 3})$, where…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Fast Algorithm for Subspace Convolution">
+<meta property="og:description" content="A cornerstone result in Boolean lattice theory is the subset-zeta transform, which computes the $f$-weighted subset summation problem $(Z f)(B)=\sum_{A\subseteq B}f(A)$ for all $ B\subseteq[n]$ in $O(N \log N)$ additions instead of the naïve $O(3^n) = O(N^{\log_2 3})$, where…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.13134.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.13134.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.13134v1" target="_blank" rel="noopener"><img src="../thumbs/2611.13134.jpg" alt="First page of A Fast Algorithm for Subspace Convolution"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Fast Algorithm for Subspace Convolution</h1>
+        <p class="authors">Shlomo A. Perles, Omri Weinstein</p>
+        <div class="row">
+          <span class="badge">cs.DS</span>
+          <span class="date">Nov 9, 2026 · v1</span>
+          <span class="badge">cs.CC</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.13134v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.13134" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/shlomi-perles/subspace-convolution" target="_blank" rel="noopener" title="shlomi-perles/subspace-convolution">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A companion repository contains Lean 4 proofs, built on Mathlib, of the transform identities, arithmetic operation bounds, and graph-coloring constructions, with an axiom audit.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A cornerstone result in Boolean lattice theory is the subset-zeta transform, which computes the $f$-weighted subset summation problem $(Z f)(B)=\sum_{A\subseteq B}f(A)$ for all $ B\subseteq[n]$ in $O(N \log N)$ additions instead of the naïve $O(3^n) = O(N^{\log_2 3})$, where $N=2^n$. This paper studies the algebraic analogue of this problem–the subspace summation problem–where subsets are replaced by linear subspaces in $\mathbb{F}_q^n$. Surprisingly, we show that this problem admits a similar $Θ_q(N_q \log N_q)$-time algorithm, where $N_q$ is the number of subspaces. This improves substantially (in both theory and practice) over lattice-based algorithms ([BHK+16, KKW16]), which are known to be optimal for addition-only algorithms over $\mathbb R$. We prove similar runtimes for inversion, rank-constrained sums and span convolution. We describe two main applications: Fast linear algebra on Grassmann graphs: Matrix–vector multiplication for arbitrary distance-invariant kernels on $N$-vertex Grassmann graphs in $O_q(N\log N)$ arithmetic operations, together with fast spectral projections and exact solutions of the corresponding linear systems. Graph coloring of low binary cut-rank graphs: An $n^{2^{r^2/4+O(1)}}$-time algorithm for computing the chromatic number and chromatic polynomial of an $n$-vertex graph, given a rank-decomposition of width $r$. We also give quantitative reductions from satisfiability and monotone constraint problems. Experiments show speedups in measured running time of up to $18$ over the covering-pair algorithm for the zeta transform, $190$ over Poisson summation for rank-constrained sums, and $22$ over the distance-matrix recurrence for Grassmann kernel multiplication. Lean 4 formalizations of the transform identities, arithmetic operation bounds, and graph-coloring constructions accompany the paper [PW26].</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The subset-zeta transform computes subset sums over the Boolean lattice in O(N log N) additions. The paper studies the analogous subspace summation problem over the lattice of subspaces of F_q^n, where existing covering-pair (lattice-based) algorithms are much slower.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A recursion cuts F_q^n at a hyperplane and splits subspaces into those inside the hyperplane and those crossing it. Crossing contributions are handled with finite Fourier transforms on quotient spaces, which reduce them to smaller subproblems at each frequency. The same technique gives inversion, two-dimension incidence sums, span convolution, and Grassmann-graph kernel multiplication. Subspace profiles of color classes yield a coloring algorithm for graphs of bounded binary cut-rank. The transform identities, operation-count bounds, and coloring constructions are formalized in Lean 4 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The zeta transform runs in Θ_q(N_q log N_q) arithmetic operations, where N_q is the number of subspaces. The chromatic number and chromatic polynomial of an n-vertex graph can be computed in n^{2^{r^2/4+O(1)}} time given a rank-decomposition of width r. Measured speedups reach 18x for the zeta transform, 190x for incidence/rank-constrained sums, and 22x for Grassmann kernel multiplication.</p><div class="sum-table"><table><thead><tr><th>Operation</th><th>Size</th><th>Speedup</th><th>Op count ratio</th></tr></thead><tbody><tr><td>Zeta transform Z_n</td><td>1.2e6 – 6.7e8</td><td>1.5 – 18</td><td>0.45 – 4.1</td></tr><tr><td>Incidence I_n^{a,b}</td><td>1.8e6 – 8.2e8</td><td>4.5 – 190</td><td>4.3 – 170</td></tr><tr><td>Grassmann kernel Kf</td><td>2.6e6 – 1.6e8</td><td>4.8 – 22</td><td>0.81 – 4.6</td></tr></tbody></table><div class="tbl-cap">Measured speedup and operation-count ratio (comparison algorithm divided by the new algorithm)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
