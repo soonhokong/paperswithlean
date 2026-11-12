@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RidgeFill: Training-Free Late-Layer Cache Fill for Faster Prefill · Papers With Lean</title>
+<meta name="description" content="RidgeFill shortens prefill by not computing most of a model&#x27;s upper layers for the prompt. The lower layers run exactly up to a split; from the split layer&#x27;s state a per-layer map predicts every later layer&#x27;s input, and each late layer writes its cache from that prediction. The…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RidgeFill: Training-Free Late-Layer Cache Fill for Faster Prefill">
+<meta property="og:description" content="RidgeFill shortens prefill by not computing most of a model&#x27;s upper layers for the prompt. The lower layers run exactly up to a split; from the split layer&#x27;s state a per-layer map predicts every later layer&#x27;s input, and each late layer writes its cache from that prediction. The…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.09709.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.09709.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.09709v1" target="_blank" rel="noopener"><img src="../thumbs/2611.09709.jpg" alt="First page of RidgeFill: Training-Free Late-Layer Cache Fill for Faster Prefill"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">RidgeFill: Training-Free Late-Layer Cache Fill for Faster Prefill</h1>
+        <p class="authors">Dylan Johnston, Robert P. Smith</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Nov 6, 2026 · v1</span>
+          <span class="badge">cs.CL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.09709v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.09709" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Approximate-Science/ridgefill-data" target="_blank" rel="noopener" title="Approximate-Science/ridgefill-data">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Supporting statements listed in an appendix table are proved in Lean 4 against Mathlib, in the KvaLean project shipped in the data repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">RidgeFill shortens prefill by not computing most of a model&#x27;s upper layers for the prompt. The lower layers run exactly up to a split; from the split layer&#x27;s state a per-layer map predicts every later layer&#x27;s input, and each late layer writes its cache from that prediction. The design follows YOCO and DeepSeek-V4.1-Flash, where the projection is trained into the model. RidgeFill retrofits it onto models that were never trained for it: the map is a ridge regression fitted once in closed form from one pass over calibration text, the layer&#x27;s own projections run unchanged, and a chosen set of rows, the last few thousand tokens, and every decoding step run the full model. Nothing is trained and no token is dropped. Most of the work was in measurement, finding a repeatable methodology. Loss averaged over all tokens hides RidgeFill&#x27;s error. Needle retrieval in the filled region, loss on tokens that depend on distant context, and splice tests that swap filled keys or values for exact ones show which component carries it: the keys on Llama-3.1-8B, half of it in their scale, and the values and the recurrent state on Qwen3.5-9B. On Qwen3.8-27B in a llama.cpp fork on an A100, time to first token is 1.25 to 1.31x faster at 16K to 120K tokens with the maps in VRAM; RULER changes by -1.2 and -1.4 points and LongBench v2 by -1.4; the 95 % intervals include zero but do not rule out losses of a few points. On Qwen3.8-Flash-Next in vLLM it is 1.50 to 1.60x faster than exact at 9K to 32K tokens, with RULER&#x27;s needle tasks at 99.8 against 100.0 and perplexity on novel tokens 2.65 % higher [-0.02 %, +4.93 %]. On three 8 to 9B reference models, at the same split and tail as the identity fill, the fitted map retrieves 49.1 and 49.6 more filled-region RULER points on the two dense models (at that split Llama&#x27;s loss is worse), and its long-document loss is +/-0.03 nats of the released SwiftKV checkpoint&#x27;s.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Prefill for long prompts is slow because every prompt token runs through every layer. Earlier methods that skip late layers either require training or lose quality once more than half the layers are skipped.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">RidgeFill runs layers up to a split exactly. From the split layer&#x27;s hidden state, a per-layer ridge-regression map, fitted in closed form on calibration text, predicts each later layer&#x27;s input. Late layers then compute only their KV cache or recurrent-state update for filled rows. The last few thousand tokens, selected rows, and all decoding steps run the full model. Evaluation uses filled-region needle retrieval, key-token loss, and splice tests, and some supporting statements are proved in Lean 4 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On Qwen3.8-27B in llama.cpp, time to first token is 1.25–1.31x faster at 16K–120K tokens, with RULER and LongBench v2 changes of about -1.2 to -1.4 points. On Qwen3.8-Flash-Next in vLLM, prefill is 1.50–1.60x faster, with RULER needle tasks at 99.8 versus 100.0. On the dense reference models, the fitted map retrieves 39.7 to 49.6 more filled-region points than the identity fill.</p><div class="sum-table"><table><thead><tr><th>Depth</th><th>S</th><th>RidgeFill</th><th>Identity</th><th>No fill</th></tr></thead><tbody><tr><td>1/4</td><td>8</td><td>+0.804</td><td>+0.409</td><td>+1.983</td></tr><tr><td>3/8</td><td>12</td><td>+1.006</td><td>+0.505</td><td>+1.591</td></tr><tr><td>1/2</td><td>16</td><td>+0.085</td><td>+0.563</td><td>+1.471</td></tr><tr><td>5/8</td><td>20</td><td>+0.030</td><td>+0.406</td><td>+1.225</td></tr></tbody></table><div class="tbl-cap">Novel-token ΔNLL vs exact on Llama-3.1-8B by split depth (nats/token)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

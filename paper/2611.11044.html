@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exact sampling beyond Fock inputs and linear optics: photon-number superpositions, photonic matrix-product states, adaptive and non-linear circuits · Papers With Lean</title>
+<meta name="description" content="Clifford and Clifford&#x27;s algorithm samples single-photon boson sampling exactly, one output mode at a time, by adding the input photons in a uniformly random order. We extend this construction to other input states and to adaptive and non-linear circuits. It applies whenever…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Exact sampling beyond Fock inputs and linear optics: photon-number superpositions, photonic matrix-product states, adaptive and non-linear circuits">
+<meta property="og:description" content="Clifford and Clifford&#x27;s algorithm samples single-photon boson sampling exactly, one output mode at a time, by adding the input photons in a uniformly random order. We extend this construction to other input states and to adaptive and non-linear circuits. It applies whenever…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.11044.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.11044.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.11044v1" target="_blank" rel="noopener"><img src="../thumbs/2611.11044.jpg" alt="First page of Exact sampling beyond Fock inputs and linear optics: photon-number superpositions, photonic matrix-product states, adaptive and non-linear circuits"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Exact sampling beyond Fock inputs and linear optics: photon-number superpositions, photonic matrix-product states, adaptive and non-linear circuits</h1>
+        <p class="authors">Jean Senellart, Stephen Wein, Pierre-Emmanuel Emeriau</p>
+        <div class="row">
+          <span class="badge">quant-ph</span>
+          <span class="date">Nov 8, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-purple" href="../#tag=quantum">quantum</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.11044v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.11044" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Quandela/photonic-engines" target="_blank" rel="noopener" title="Quandela/photonic-engines">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The set-chain lemma, Propositions 1 and 2, and the adaptive sampler&#x27;s conditioning step are formalised in Lean 4 with Mathlib, archived on Zenodo.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Clifford and Clifford&#x27;s algorithm samples single-photon boson sampling exactly, one output mode at a time, by adding the input photons in a uniformly random order. We extend this construction to other input states and to adaptive and non-linear circuits. It applies whenever non-negative weights on output prefixes and input sets satisfy one marginal identity, a set-chain lemma: the random-order sampler is then exact at one weight evaluation per candidate mode, and it gives the posterior over the hidden input set. We build four exact samplers on it. For sources in a superposition of vacuum and one photon, the weights are rectangular permanents on an offset input set, and the cost has the exponent of single photons under loss. For photonic matrix-product states of bond dimension $χ$, a gap-by-gap Kraus contraction turns each weight into a short sum of squared amplitudes. For adaptive linear optics, the chain starts from the posterior given the adaptive counts and rejects chains that contradict them. For a single-mode non-linear phase the identity fails, and rejection from linear branches is exact with acceptance $1/\|c\|_1^2$. All four samplers agree with strong simulation on small instances, and cost models put adaptive sampling with up to three adaptive modes within $10\%$ of single photons and a non-linear site at $\varphi=π/2$ at about $4\times$.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Clifford and Clifford&#x27;s exact boson-sampling algorithm covers only single-photon Fock inputs in linear interferometers. Realistic photonic devices use superposed or entangled sources, adaptive feed-forward, and non-linear elements, and these need their own exact classical samplers.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A set-chain lemma gives a single marginal identity on non-negative weights over output prefixes and input sets. When the identity holds, a random-order sampler is exact at one weight evaluation per candidate mode and yields the posterior over the hidden input set. Four samplers are built on it: vacuum/one-photon superposed sources, photonic matrix-product states, adaptive linear optics, and single-mode non-linear phases, the last handled by rejection from linear branches. The lemma, key propositions, and the adaptive conditioning step are machine-checked in Lean 4 with Mathlib, using only standard axioms.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">All four samplers agree with strong simulation on 19 small instances, with TVD within 1.7 standard deviations of an exact draw. Cost models place adaptive sampling with up to three adaptive modes within 10% of single photons. A non-linear site at φ=π/2 costs about 4× single photons.</p><div class="sum-table"><table><thead><tr><th>sampler</th><th>instance</th><th>relative cost</th></tr></thead><tbody><tr><td>superposed sources</td><td>n=30, sin²α=1</td><td>time 1.05–1.15</td></tr><tr><td>superposed sources</td><td>n=34, sin²α=0.9</td><td>time 0.52</td></tr><tr><td>adaptive</td><td>n=38, K=1/2/3</td><td>model time 1.03/1.07/1.10</td></tr></tbody></table><div class="tbl-cap">Cost relative to the single-photon sampler (selected rows)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
