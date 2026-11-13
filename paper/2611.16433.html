@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>daVinci-Prover: Agent-Native Mid-Training for Formal Theorem Proving · Papers With Lean</title>
+<meta name="description" content="Advances in large language models (LLMs) are rapidly transforming formal theorem proving. Yet further progress remains constrained by the lack of a transparent and effective data recipe for systematically improving theorem-proving models. In this work, we argue that effective…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="daVinci-Prover: Agent-Native Mid-Training for Formal Theorem Proving">
+<meta property="og:description" content="Advances in large language models (LLMs) are rapidly transforming formal theorem proving. Yet further progress remains constrained by the lack of a transparent and effective data recipe for systematically improving theorem-proving models. In this work, we argue that effective…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.16433.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.16433.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.16433v1" target="_blank" rel="noopener"><img src="../thumbs/2611.16433.jpg" alt="First page of daVinci-Prover: Agent-Native Mid-Training for Formal Theorem Proving"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">daVinci-Prover: Agent-Native Mid-Training for Formal Theorem Proving</h1>
+        <p class="authors">Wenhong Zhu, Xuefeng Li, Jiashuo Zhang, Yu Chen, Tiantian Mi, Qipeng Guo, Pengfei Liu</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Nov 12, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.16433v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.16433" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/GAIR-NLP/daVinci-prover" target="_blank" rel="noopener" title="GAIR-NLP/daVinci-prover">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Trains LLM provers through mid-training and SFT on Lean agent trajectories, using a harness with Lean verification and Mathlib retrieval tools, evaluated on Lean 4 benchmarks.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Advances in large language models (LLMs) are rapidly transforming formal theorem proving. Yet further progress remains constrained by the lack of a transparent and effective data recipe for systematically improving theorem-proving models. In this work, we argue that effective agentic provers require strong mathematical skill priors to ground theorem proving and agentic trajectories to enable long-horizon, interactive proof construction. To this end, we synthesize an agent-native 33.7B-token mid-training corpus covering decomposition, search, self-verification, and revision, together with verifier-grounded agentic trajectories. We further introduce the daVinci-Prover harness, which enables models to construct proofs and interact with a Lean verifier in an isolated workspace, and use it to collect approximately 36K high-quality agent trajectories for supervised fine-tuning. Our mid-training recipe yields an average improvement of 13.7 points over the matched Qwen3-8B SFT-only baseline across MiniF2F, FATE-M, and ProofNet. When applied to the Qwen3.5 series, our approach also yields strong performance across theorem-proving benchmarks and achieves near-saturating MiniF2F performance with memory compaction. The results highlight agent-native mid-training as an effective foundation for developing stronger interactive theorem-proving agents.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Agentic LLM theorem provers lack a transparent, effective data recipe. Existing formal corpora are dominated by whole-proof trajectories and rarely expose decomposition, search, self-verification and revision behaviors.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors synthesize a 33.7B-token agent-native mid-training corpus. It combines Lean skill-prior data (decomposition/assembly, verified tactic search, revision, self-verification) with environment-native agent trajectories. A SWE-agent-style harness gives models a workspace with file tools, Mathlib retrieval and a Lean verifier, and is used to collect about 36K trajectories for SFT. Qwen3.5-9B and Qwen3.5-35B-A3B base models are mid-trained, then fine-tuned.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.16433/midtrain_data_example_cards_editable.png" alt=""><figcaption>Figure 2: Overview of our midtrain data generation pipeline.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.16433/davinci_prover_harness_swe_agent_style.png" alt=""><figcaption>Figure 3: daVinci-Prover agent harness</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Mid-training improves results by an average of 13.7 points over a matched Qwen3-8B SFT-only baseline across MiniF2F, FATE-M and ProofNet. Mid-trained Qwen3.5 models outperform base+SFT counterparts on MiniF2F, ProofNet, PutnamBench and other benchmarks. With memory compaction, MiniF2F reaches 97.1%.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.16433/midtrain_data_and_benchmarks_davinci_palette_no_outer_frames.png" alt=""><figcaption>Figure 1: Mid-training data design and benchmark performance. Left: The mid-training data incorporates mathematical skill priors and iterative agent trajectories. Right: Mid-training leads to consistent performance gains on benchmarks across different model families.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.16433/minif2f_qwen9b_35b_avg5.png" alt=""><figcaption>(b) miniF2F \mathrm{avg}@5</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Model</th><th>MathOlympiad</th><th>MiniF2F</th><th>ProofNet</th><th>Putnam</th></tr></thead><tbody><tr><td>Qwen3.5-9B-Base + SFT</td><td>32.3</td><td>92.6</td><td>51.1</td><td>22.3</td></tr><tr><td>Qwen3.5-9B-Midtrain + SFT</td><td>35.3</td><td>93.9</td><td>52.7</td><td>24.9</td></tr><tr><td>Qwen3.5-35B-Base + SFT</td><td>35.8</td><td>93.0</td><td>52.7</td><td>24.3</td></tr><tr><td>Qwen3.5-35B-Midtrain + SFT</td><td>36.1</td><td>94.3</td><td>53.8</td><td>26.5</td></tr></tbody></table><div class="tbl-cap">Pass@8 with daVinci-Prover harness</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
