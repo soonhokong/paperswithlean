@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Talagrand&#x27;s Convolution Bound for Tensor Powers of Finite-State Markov Semigroups · Papers With Lean</title>
+<meta name="description" content="Talagrand&#x27;s convolution conjecture, recently proven by J. Lu, S. Guo, and E. Fang, concerns the smoothing properties of the heat semigroup on $\{-1,1\}^N$. We follow their perturbed coupled reverse-heat approach to generalize the theorem to tensor powers of irreducible…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Talagrand&#x27;s Convolution Bound for Tensor Powers of Finite-State Markov Semigroups">
+<meta property="og:description" content="Talagrand&#x27;s convolution conjecture, recently proven by J. Lu, S. Guo, and E. Fang, concerns the smoothing properties of the heat semigroup on $\{-1,1\}^N$. We follow their perturbed coupled reverse-heat approach to generalize the theorem to tensor powers of irreducible…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.14869.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.14869.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.14869v1" target="_blank" rel="noopener"><img src="../thumbs/2611.14869.jpg" alt="First page of Talagrand&#x27;s Convolution Bound for Tensor Powers of Finite-State Markov Semigroups"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Talagrand&#x27;s Convolution Bound for Tensor Powers of Finite-State Markov Semigroups</h1>
+        <p class="authors">Alexander Marsh</p>
+        <div class="row">
+          <span class="badge">math.PR</span>
+          <span class="date">Nov 11, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.14869v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.14869" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/AMarsh00/TalagrandConvolutionExtension" target="_blank" rel="noopener" title="AMarsh00/TalagrandConvolutionExtension">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The main theorem, a generalization of Talagrand&#x27;s convolution bound to finite-state Markov semigroups, is formally verified in Lean 4 with a public formalization produced with AI assistance.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Talagrand&#x27;s convolution conjecture, recently proven by J. Lu, S. Guo, and E. Fang, concerns the smoothing properties of the heat semigroup on $\{-1,1\}^N$. We follow their perturbed coupled reverse-heat approach to generalize the theorem to tensor powers of irreducible continuous-time Markov semigroups on finite state spaces. Specifically, let $(S_t)_{t\geq0}$ be the semigroup of an irreducible continuous-time Markov chain on a finite state space $G_0$ with stationary distribution $π$. Then, for every $τ&gt;0$, there exists a finite constant $C_{τ,S,π}&lt;\infty$ such that, for every $N\geq1$, every nonnegative function $f:G_0^N\to[0,\infty)$, and every $η&gt;1$, \begin{align*} π^{\otimes N}\left(S_τ^{\otimes N}f&gt;η\int_{G_0^N}f\,dπ^{\otimes N}\right)\leq\frac{C_{τ,S,π}}{η\sqrt{\logη}}, \end{align*} where the constant is independent of $N$, $f$, and $η$. Most of the machinery developed by Lu, Guo, and Fang transfers cleanly, but since probability distributions on $|G_0|$ elements are not determined by their mean for $|G_0|&gt;2$, we must use explicit terminal bridge laws to find a dimension-independent bound for the terminal-discrepancy estimate. We have formalized our result in Lean 4. The formalization is publicly available.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Talagrand&#x27;s convolution conjecture, recently proven by Lu, Guo, and Fang for the heat semigroup on {-1,1}^N, gives a dimension-free tail bound of order 1/(η√log η) for smoothed functions. The question is whether the same bound holds for tensor powers of general irreducible continuous-time Markov semigroups on finite state spaces.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors first prove the bound for a π-refresh semigroup, in which each coordinate is independently resampled from π. They follow Lu–Guo–Fang&#x27;s perturbed coupled reverse-heat approach, using anti-concentration profiles, a general log-Sobolev inequality, band contraction and stopped score bounds. Explicit terminal bridge laws are needed because distributions on more than two states are not determined by their mean. The general case follows by factoring any semigroup through the π-refresh semigroup, and the main theorem is formalized in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For every τ&gt;0 there is a constant C, independent of N, f and η, such that π^{⊗N}(S_τ^{⊗N} f &gt; η∫f) ≤ C/(η√log η). The main theorem is formally verified in Lean 4, with larger constants allowed in intermediate lemmas, and the formalization is publicly available.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

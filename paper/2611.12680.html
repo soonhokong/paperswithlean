@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wolfe&#x27;s Minimum-Norm-Point Method Generalizes the Simplex Method · Papers With Lean</title>
+<meta name="description" content="Wolfe&#x27;s method computes the point of minimum Euclidean norm in the convex hull of finitely many points. The method is parameterized by an insertion rule and it has been an open problem whether Wolfe&#x27;s original rule guarantees a polynomial number of iterations (De Loera, Haddock,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wolfe&#x27;s Minimum-Norm-Point Method Generalizes the Simplex Method">
+<meta property="og:description" content="Wolfe&#x27;s method computes the point of minimum Euclidean norm in the convex hull of finitely many points. The method is parameterized by an insertion rule and it has been an open problem whether Wolfe&#x27;s original rule guarantees a polynomial number of iterations (De Loera, Haddock,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.12680.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.12680.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.12680v2" target="_blank" rel="noopener"><img src="../thumbs/2611.12680.jpg" alt="First page of Wolfe&#x27;s Minimum-Norm-Point Method Generalizes the Simplex Method"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Wolfe&#x27;s Minimum-Norm-Point Method Generalizes the Simplex Method</h1>
+        <p class="authors">Yann Disser, Nils Mosis</p>
+        <div class="row">
+          <span class="badge">math.OC</span>
+          <span class="date">Nov 9, 2026 · v2</span>
+          <span class="badge">cs.DS</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.12680v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.12680" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.24136107" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The main theorem, corollaries and all numbered supporting statements were formally verified in Lean 4, with the artifact archived on Zenodo.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Wolfe&#x27;s method computes the point of minimum Euclidean norm in the convex hull of finitely many points. The method is parameterized by an insertion rule and it has been an open problem whether Wolfe&#x27;s original rule guarantees a polynomial number of iterations (De Loera, Haddock, and Rademacher; STOC&#x27;18). We resolve this question by proving an exponential lower bound. In fact, we establish a tight connection to the simplex method for linear programming that allows us to transfer many lower bounds for simplex pivot rules to corresponding insertion rules of Wolfe&#x27;s method. These include not only Wolfe&#x27;s linopt rule via Dantzig&#x27;s pivot rule, but also many other classical, randomized and history-based rules. As a corollary, we obtain the first exponential example for the Lawson-Hanson algorithm for nonnegative least squares, as well as PSPACE-hardness of deciding whether the linopt rule ever uses a given point.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">It was open whether Wolfe&#x27;s minimum-norm-point method with Wolfe&#x27;s original linopt insertion rule runs in a polynomial number of iterations. The question was posed by De Loera, Haddock, and Rademacher at STOC&#x27;18.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A linear program satisfying integrality, boundedness and nondegeneracy is transformed into a minimum-norm-point instance. Simplex executions on the LP then correspond one-to-one with executions of Wolfe&#x27;s method on the new instance. This correspondence carries lower bounds for simplex pivot rules over to the matching insertion rules of Wolfe&#x27;s method. The main theorem, corollaries and supporting statements were formally verified in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Wolfe&#x27;s linopt rule takes exponentially many iterations, through Dantzig&#x27;s pivot rule. Exponential or subexponential lower bounds also follow for least-index, least-inserted, round-robin and random insertion rules. Corollaries give the first exponential example for the Lawson-Hanson nonnegative least squares algorithm, and PSPACE-hardness of deciding whether linopt ever uses a given point.</p><div class="sum-table"><table><thead><tr><th>Insertion rule</th><th>Pivot rule</th><th>Lower bound</th></tr></thead><tbody><tr><td>linopt</td><td>Dantzig</td><td>Ω(2^{n/2})</td></tr><tr><td>least-index</td><td>Bland</td><td>Ω(2^{n/2})</td></tr><tr><td>least inserted</td><td>Zadeh</td><td>2^{Ω(n)}</td></tr><tr><td>round-robin</td><td>Cunningham</td><td>2^{Ω(n)}</td></tr><tr><td>random</td><td>Random-Edge</td><td>2^{Ω̃(n^{1/4})}</td></tr></tbody></table><div class="tbl-cap">Insertion rules and transferred lower bounds (partial)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

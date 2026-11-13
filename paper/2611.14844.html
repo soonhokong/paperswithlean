@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AutoAssumption: Searching over Assumptions Discovers ML-Systems Algorithms · Papers With Lean</title>
+<meta name="description" content="Many advances in ML systems came from breaking an assumption that earlier methods took for granted: speculative decoding dropped the assumption that a model needs one forward pass per token. Yet algorithms rarely state their assumptions, so experts and discovery harnesses search…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AutoAssumption: Searching over Assumptions Discovers ML-Systems Algorithms">
+<meta property="og:description" content="Many advances in ML systems came from breaking an assumption that earlier methods took for granted: speculative decoding dropped the assumption that a model needs one forward pass per token. Yet algorithms rarely state their assumptions, so experts and discovery harnesses search…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.14844.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.14844.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.14844v1" target="_blank" rel="noopener"><img src="../thumbs/2611.14844.jpg" alt="First page of AutoAssumption: Searching over Assumptions Discovers ML-Systems Algorithms"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">AutoAssumption: Searching over Assumptions Discovers ML-Systems Algorithms</h1>
+        <p class="authors">Igor Sadalski, Minghao Guo, Benjamin Jones, Wojciech Matusik</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 10, 2026 · v1</span>
+          <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-amber" href="../#tag=verification">verification</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.14844v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.14844" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">LLM agents formalize 89 ML-systems algorithms as Lean-checked proof graphs; variants that relax one assumption must re-prove in Lean before benchmarking.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Many advances in ML systems came from breaking an assumption that earlier methods took for granted: speculative decoding dropped the assumption that a model needs one forward pass per token. Yet algorithms rarely state their assumptions, so experts and discovery harnesses search over programs, where one edit changes several design choices and gains are difficult to attribute. Searching over the assumptions themselves remains largely unexplored. Writing algorithms as proofs makes their assumptions explicit and turns algorithm design into a search over a small, structured space that an LLM can explore and a proof checker can audit. We formalize 89 algorithms from KV-cache eviction, weight pruning and speculative decoding as proof graphs with explicit assumptions, checked in Lean. Our harness, AutoAssumption, relaxes one assumption of a published method, re-derives and re-proves it, and generates its code. In KV-cache eviction and weight pruning, this search improved on every published algorithm we ran and produced state-of-the-art algorithms. The eviction algorithm has the highest RULER-4K score of the published methods we ran, and the pruning algorithm the lowest perplexity of thirteen on four LLaMA models. At equal budget, the harness scores within a point of OpenEvolve, an open-source implementation of AlphaEvolve, with a lower standard deviation across repeats. Future work will formalize more fields and combine them through the principal assumptions they share.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Advances in ML-systems algorithms often come from breaking an implicit assumption. Code-level discovery harnesses edit programs, where a single edit changes several design choices at once, so gains are hard to attribute.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Each published algorithm is written as a proof graph of assumptions, definitions and theorems that ends in a formal problem statement (the contract). LLM agents produce the proof from the paper and code, transcribe it into Lean, and check it completely, along with a coverage test mapping code lines to proof statements. The AutoAssumption harness relaxes one pooled assumption of a parent algorithm, re-proves only the dependent statements in Lean, generates code, and benchmarks the variants that pass.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">89 algorithms were formalized: 44 in KV-cache eviction, 26 in speculative decoding and 19 in weight pruning. Starting from 26 parents, the search found a higher-scoring variant for every one. RestoreKV GM reached the best RULER-4K score among the published eviction methods run (77.0 vs 73.9 for its parent on Llama-3.1-8B), and Pruner-Zero LG had the lowest perplexity of thirteen pruning methods on four LLaMA models. At equal budget the harness scored within a point of OpenEvolve, with lower variance across repeats.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>RULER 4K Llama</th><th>RULER 8K Llama</th><th>RULER 16K Llama</th><th>RULER 4K Qwen3</th><th>LongBench Llama</th></tr></thead><tbody><tr><td>RestoreKV</td><td>73.9</td><td>74.8</td><td>73.3</td><td>72.1</td><td>37.8</td></tr><tr><td>RestoreKV GM (ours)</td><td>77.0</td><td>77.9</td><td>76.5</td><td>74.5</td><td>39.2</td></tr></tbody></table><div class="tbl-cap">RestoreKV vs. RestoreKV GM: RULER and LongBench scores</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

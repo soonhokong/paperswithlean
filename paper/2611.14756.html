@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stability of equilibria in discrete-time modified-gradient systems and the multivariate breeder&#x27;s equation · Papers With Lean</title>
+<meta name="description" content="The multivariate breeder&#x27;s equation $Δ\bar z=G\nabla\ln\bar W$ is a widely used discrete-time modified-gradient system describing the evolution of continuous traits in organisms. This system could more conventionally be expressed as $x_{k+1}=x_k+P_k\nabla f(x_k)$. For its…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stability of equilibria in discrete-time modified-gradient systems and the multivariate breeder&#x27;s equation">
+<meta property="og:description" content="The multivariate breeder&#x27;s equation $Δ\bar z=G\nabla\ln\bar W$ is a widely used discrete-time modified-gradient system describing the evolution of continuous traits in organisms. This system could more conventionally be expressed as $x_{k+1}=x_k+P_k\nabla f(x_k)$. For its…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.14756.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.14756.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.14756v1" target="_blank" rel="noopener"><img src="../thumbs/2611.14756.jpg" alt="First page of Stability of equilibria in discrete-time modified-gradient systems and the multivariate breeder&#x27;s equation"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Stability of equilibria in discrete-time modified-gradient systems and the multivariate breeder&#x27;s equation</h1>
+        <p class="authors">Benjamin J. Ridenhour</p>
+        <div class="row">
+          <span class="badge">math.DS</span>
+          <span class="date">Nov 10, 2026 · v1</span>
+          <span class="badge">math.OC</span> <span class="badge">q-bio.PE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.14756v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.14756" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/magbenji/discrete-modified-gradient-lean" target="_blank" rel="noopener" title="magbenji/discrete-modified-gradient-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The main lemma, stability theorems, corollary, and basin-of-attraction theorem are machine-checked in Lean 4 with Mathlib, with a public GitHub/Zenodo artifact.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The multivariate breeder&#x27;s equation $Δ\bar z=G\nabla\ln\bar W$ is a widely used discrete-time modified-gradient system describing the evolution of continuous traits in organisms. This system could more conventionally be expressed as $x_{k+1}=x_k+P_k\nabla f(x_k)$. For its continuous-time counterpart $x&#x27;=P(t)\nabla f(x)$, it has been proven that an isolated local maximum of $f$ is uniformly stable whenever $P(t)$ is positive semidefinite, as is the case for the &quot;$G$-matrix.&quot; Furthermore, the continuous time system is uniformly asymptotically stable when the maximum is an isolated critical point and $\int_0^\inftyλ_1(P(t))\,dt=\infty$. We show that the literal discrete analog of this result is false: with constant positive definite $P$ the iterates can oscillate or diverge. The result is restored by a single additional hypothesis, a uniform bound on the largest eigenvalue of $P_k$, $λ_n$, such that $λ_n(P_k)\le 2/L$ where $L$ is a local Lipschitz constant of $\nabla f$. Under this bound the maximum is uniformly stable; under a stricter version together with $\sum_kλ_1(P_k)=\infty$, the maximum is uniformly asymptotically stable. Given these hypotheses, a level-set estimate of the basin of attraction carries over. Both bounds are sharp, and each remaining hypothesis is shown to be necessary. Biologically, the bound says that genetic variance in every direction must be small relative to the curvature of log mean fitness; outside this regime the mean phenotype can overshoot a fitness peak as hypothesized by Fisher&#x27;s geometric model. As further application of our results, the same conditions apply to the mean update of Gaussian evolutionary optimization algorithms, in which the covariance of the search population plays the role of $G$.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">For the continuous-time modified-gradient system x&#x27;=P(t)∇f(x) with positive semidefinite P, isolated local maxima of f are known to be uniformly stable. The question is whether this carries over to the discrete-time recursion x_{k+1}=x_k+P_k∇f(x_k), which models the multivariate breeder&#x27;s equation.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A one-dimensional quadratic counterexample shows that the discrete analog can converge, oscillate, or diverge. A matrix-step descent lemma for Lipschitz gradients serves as a discrete Lyapunov decrease. With it, stability is proved under a step-size bound λ_n(P_k) ≤ 2/L, and asymptotic stability under a stricter bound plus divergence of Σλ_1(P_k). A level-set basin-of-attraction estimate is also proved, and the key results are formalized in Lean 4 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Uniform stability holds when LΛ≤2, and uniform asymptotic stability holds when LΛ≤2−η together with Σλ_1(P_k)=∞. Both bounds are sharp, and each remaining hypothesis is shown to be necessary by counterexamples. The results are interpreted for genetic variance relative to the curvature of log mean fitness and for Gaussian evolutionary optimization algorithms.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.14756/example_rings_eps.png" alt=""><figcaption>Figure 5: Iterates of Example 7.2 . (a) Level curves of f(x)=p(|x|) on the unit disk; dashed circles are the rings of critical points r=R_{n}=2^{-n} , n=0,\dots,4 . + marks the maximum \bar{x}=0 . In this example P_{k}=\frac{1}{114}\bigl(\begin{smallmatrix}10&amp;9\\ 9&amp;10\end{smallmatrix}\bigr) , and dotted lines are the eigendirections of P (eigenvalues 1/6 and 1/114 ). Each trajectory starts just in</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>pa = LΛ</th><th>Behavior of x_k</th><th>Dynamics</th></tr></thead><tbody><tr><td>0&lt;pa&lt;2</td><td>x_k→0 geometrically</td><td>Uniformly asymptotically stable</td></tr><tr><td>pa=2</td><td>period-2 orbit</td><td>Uniformly stable, not asymptotically stable</td></tr><tr><td>pa&gt;2</td><td>\</td><td>x_k\</td><td>→∞</td><td>Unstable</td></tr></tbody></table><div class="tbl-cap">Dynamics of the 1D quadratic example x_{k+1}=(1-pa)x_k</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
