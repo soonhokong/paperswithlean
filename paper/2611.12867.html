@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Optimal Injectivity of the SparseStack · Papers With Lean</title>
+<meta name="description" content="An Oblivious Subspace Injection (OSI) is a random sketching matrix that reliably preserves the minimum singular value of any fixed subspace with high constant probability, requiring only a one-sided spectral lower bound without controlling upper singular values. While classical…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Optimal Injectivity of the SparseStack">
+<meta property="og:description" content="An Oblivious Subspace Injection (OSI) is a random sketching matrix that reliably preserves the minimum singular value of any fixed subspace with high constant probability, requiring only a one-sided spectral lower bound without controlling upper singular values. While classical…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.12867.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.12867.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.12867v1" target="_blank" rel="noopener"><img src="../thumbs/2611.12867.jpg" alt="First page of Optimal Injectivity of the SparseStack"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Optimal Injectivity of the SparseStack</h1>
+        <p class="authors">Lorenzo Beretta, Simone Bombari, Margalit Glasgow, Raphael Arkady Meyer, Kijun Shin, David P. Woodruff</p>
+        <div class="row">
+          <span class="badge">cs.DS</span>
+          <span class="date">Nov 9, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.12867v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.12867" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/sharaelong/optimal-injectivity-sparsestack" target="_blank" rel="noopener" title="sharaelong/optimal-injectivity-sparsestack">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The main injectivity results for the SparseStack sketch are accompanied by a machine-checked formal proof in Lean 4, released on GitHub.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">An Oblivious Subspace Injection (OSI) is a random sketching matrix that reliably preserves the minimum singular value of any fixed subspace with high constant probability, requiring only a one-sided spectral lower bound without controlling upper singular values. While classical Oblivious Subspace Embeddings (OSEs) fundamentally require row sparsity $Ω(\log r)$ at linear sketch dimension $k = O(r)$, we show that one-sided injectivity permits strictly sparser sketches, establishing matching (up to $\log\log r$ factors) upper and lower bounds of $\tildeΘ(\sqrt{\log r})$. First, we prove that the SparseStack sketch achieves constant injectivity at linear dimension $k = Θ(r)$ with row sparsity only $ζ= O(\sqrt{\log r})$, well below the $Θ(\log r)$ barrier where standard operator-norm concentration fails. Second, we establish a matching lower bound: any isotropic random sketching matrix satisfying a mild row-overlap condition requires row sparsity $ζ= Ω(\sqrt{\log r / \log \log r})$ to achieve linear-dimension injectivity, confirming that the $\sqrt{\log r}$ scale is fundamental. To bypass the lack of an operator-norm upper bound when $ζ= O(\sqrt{\log r})$, we decouple the sketch into two independent halves and introduce three techniques: (i) a uniform lower bound for flat vectors via randomized rounding, controlling discretization error using solely the Frobenius norm; (ii) a Gaussian truncation and minimax duality argument showing that all non-flat vectors escaping injectivity in the first half concentrate on a single universal coordinate subset $I \subseteq [n]$ of size $O(r/ζ)$, bypassing union bounds over supports; and (iii) a two-tier coordinate isolation analysis in the second half that suppresses collisions to $e^{-Ω(ζ^2)} \ll 1/r$, reliably preserving these heavy coordinates.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The question is how sparse a random sketching matrix with linear embedding dimension k=O(r) can be while still reliably preserving the minimum singular value of a fixed r-dimensional subspace. This one-sided guarantee is called an oblivious subspace injection (OSI), in contrast to two-sided oblivious subspace embeddings (OSEs), which require row sparsity Ω(log r).</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The SparseStack sketch is split into two independent halves. The first half handles flat vectors through a uniform lower bound proved by randomized rounding. A Gaussian truncation and minimax duality argument then shows that all failing spiky vectors concentrate on one common coordinate subset. A two-tier coordinate isolation analysis in the second half preserves these heavy coordinates. The lower bound uses bipartite graph preprocessing and C4-free subgraph arguments. The proofs are machine-checked in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">SparseStack achieves constant injectivity at k=Θ(r) with row sparsity O(√log r). A matching lower bound shows that any isotropic sketch satisfying a mild row-overlap condition needs sparsity Ω(√(log r/log log r)). A formal Lean 4 proof is publicly available.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

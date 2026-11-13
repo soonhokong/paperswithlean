@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>51 Additions per Recursive Step for Rank-23 $3\times3$ Matrix Multiplication, Machine-Checked over Arbitrary Rings · Papers With Lean</title>
+<meta name="description" content="We present a rank-23 bilinear scheme for $3\times3$ matrix multiplication that uses 51 additions per recursive step in the alternative-basis (Karstadt-Schwartz) cost model, one below Nielsen&#x27;s 52 (arXiv:2609.06588). The count 51 itself was first posted, on a different scheme, by…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="51 Additions per Recursive Step for Rank-23 $3\times3$ Matrix Multiplication, Machine-Checked over Arbitrary Rings">
+<meta property="og:description" content="We present a rank-23 bilinear scheme for $3\times3$ matrix multiplication that uses 51 additions per recursive step in the alternative-basis (Karstadt-Schwartz) cost model, one below Nielsen&#x27;s 52 (arXiv:2609.06588). The count 51 itself was first posted, on a different scheme, by…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.12907.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.12907.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.12907v1" target="_blank" rel="noopener"><img src="../thumbs/2611.12907.jpg" alt="First page of 51 Additions per Recursive Step for Rank-23 $3\times3$ Matrix Multiplication, Machine-Checked over Arbitrary Rings"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">51 Additions per Recursive Step for Rank-23 $3\times3$ Matrix Multiplication, Machine-Checked over Arbitrary Rings</h1>
+        <p class="authors">Greg Sidebottom</p>
+        <div class="row">
+          <span class="badge">cs.MS</span>
+          <span class="date">Oct 17, 2026 · v1</span>
+          <span class="badge">cs.CC</span> <span class="badge">cs.DS</span> <span class="badge">cs.SC</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.12907v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.12907" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/gsidebottom/logic" target="_blank" rel="noopener" title="gsidebottom/logic">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4/Mathlib kernel-checked proofs that the 51-addition rank-23 3x3 scheme computes AB over arbitrary rings, plus a class-optimality proof via decide.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present a rank-23 bilinear scheme for $3\times3$ matrix multiplication that uses 51 additions per recursive step in the alternative-basis (Karstadt-Schwartz) cost model, one below Nielsen&#x27;s 52 (arXiv:2609.06588). The count 51 itself was first posted, on a different scheme, by Stapleton and Perminov (arXiv:2609.32388), found by heuristic sparse-basis search; the present work is independent and complementary: exactness and breadth rather than a single construction. The scheme is valid over every ring, so it recurses on block matrices, and its correctness is machine-checked in Lean 4/Mathlib. The count is exactly optimal for the scheme&#x27;s equivalence class: we introduce an exact free-basis minimization procedure whose negative answers are exhaustion proofs, and use it to show that 51 is the minimum for this class, that 52 is exactly optimal both for Nielsen&#x27;s class and for the class of the current flat-model record, and to sweep the complete Heule-Kauers-Seidl database of rank-23 classes. The sweep is complete: exactly four classes attain 51, all in a single HKS invariant family. We machine-check Stapleton and Perminov&#x27;s scheme as well, and prove in Lean that their 51 is optimal for its class. Separately, we document a systematic gap between $\mathbb{F}_2$ and signed optima: the $\mathbb{F}_2$-optimal chains of a class typically admit no sign assignment under most of the class&#x27;s integer sign models, and certificate lifting fails where a direct signed search succeeds.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Rank-23 bilinear schemes for 3x3 matrix multiplication are compared by their additive cost per recursive step in the alternative-basis (Karstadt-Schwartz) model. Two questions are open: whether fewer than 52 additions is achievable over arbitrary rings, and what is exactly optimal for each equivalence class.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An exact free-basis minimization procedure computes optimal leg addition chains. Its negative answers are finite exhaustion proofs, and its positive answers emit certificates that an independent checker replays. Integer sign models are found by SAT so that schemes are valid over rings. The resulting scheme, and Stapleton and Perminov&#x27;s scheme, are machine-checked in Lean 4 against Mathlib&#x27;s matrix product. A separate Lean proof shows the class optimality of Stapleton and Perminov&#x27;s 51 by counting sum triples, with finite facts checked by decide.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The scheme found uses 51 additions per step (legs 12, 13, 12) and is optimal for its class. A full sweep of the Heule-Kauers-Seidl database finds exactly four classes attaining 51, all in one invariant family. The work also documents a systematic gap between F2-optimal and signed (ring-valid) optima.</p><div class="sum-table"><table><thead><tr><th>class</th><th>legs</th><th>ring-valid</th><th>conversions</th><th>one-shot</th><th>Lean</th></tr></thead><tbody><tr><td>i12w211c23fg</td><td>(12,13,12)</td><td>yes (sign model 21)</td><td>11</td><td>62</td><td>Ring51.lean</td></tr><tr><td>i12w219c23fg</td><td>(11,13,13)</td><td>open (F2 only)</td><td>—</td><td>—</td><td>—</td></tr><tr><td>i12w219c23ci-008</td><td>(13,12,12)</td><td>yes (published)</td><td>5</td><td>56</td><td>SP51.lean</td></tr><tr><td>i12w227c23ci-012</td><td>(14,12,11)</td><td>yes (sign model 15)</td><td>17</td><td>68</td><td>—</td></tr></tbody></table><div class="tbl-cap">The four 51-addition classes</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

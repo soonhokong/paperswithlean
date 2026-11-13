@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>On the estimation of linear-optical amplitudes and probabilities with entangled input state · Papers With Lean</title>
+<meta name="description" content="Most proposed applications of boson samplers, including photonic machine-learning models, do not use the samples themselves but estimates of output probabilities, marginals or overlaps, obtained to additive precision from a finite number of shots. For product inputs such as…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="On the estimation of linear-optical amplitudes and probabilities with entangled input state">
+<meta property="og:description" content="Most proposed applications of boson samplers, including photonic machine-learning models, do not use the samples themselves but estimates of output probabilities, marginals or overlaps, obtained to additive precision from a finite number of shots. For product inputs such as…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.10500.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.10500.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.10500v1" target="_blank" rel="noopener"><img src="../thumbs/2611.10500.jpg" alt="First page of On the estimation of linear-optical amplitudes and probabilities with entangled input state"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">On the estimation of linear-optical amplitudes and probabilities with entangled input state</h1>
+        <p class="authors">Jean Senellart, Pierre-Emmanuel Emeriau</p>
+        <div class="row">
+          <span class="badge">quant-ph</span>
+          <span class="date">Nov 7, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-purple" href="../#tag=quantum">quantum</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.10500v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.10500" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.24023358" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalises the Gaussian/Rademacher permanent identity, the importance-sampled estimator&#x27;s unbiasedness and variance, and the exactness of the sequential MPS sampler in Lean 4 with Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Most proposed applications of boson samplers, including photonic machine-learning models, do not use the samples themselves but estimates of output probabilities, marginals or overlaps, obtained to additive precision from a finite number of shots. For product inputs such as single photons, these quantities can already be estimated classically with Gurvits&#x27;s algorithm and its generalisations. We ask whether entangled inputs change this picture. For any $n$-photon input that is a matrix-product state of bond dimension $χ$, with one photon per site and $L$ modes per site, we give an unbiased estimator of any output amplitude of an $m$-mode interferometer, whose mean-square error after $N$ draws is at most $\|ψ\|^2/N$ whatever the interferometer, the output pattern and the entanglement of the state. Each draw costs $O(nLχ^2+nL^3+mn)$ operations after $O(nLχ^3)$ preprocessing, and an additive error $\varepsilon$ with probability at least $1-δ$ requires $O(\|ψ\|^2\varepsilon^{-2}\log(1/δ))$ draws, with memory of the order of the input size. The main application is to light emitted sequentially by quantum emitters, such as spin-based sources of photonic cluster states, for which $χ$ is bounded by the dimension of the source&#x27;s retained quantum memory: one spin gives $χ=2$ at any length, and a memory of $k$ qubits, held in emitters or in photons stored in a delay line, gives $χ\le2^k$, so the cost stays polynomial as long as $k=O(\log n)$. The same sampler also estimates traced-memory probabilities, overlaps and individual marginal probabilities. All guarantees are additive: the estimator gives neither relative estimates of exponentially small probabilities nor a sampler of the output distribution.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Applications of boson samplers mostly rely on additive-precision estimates of output amplitudes, probabilities, marginals or overlaps. Gurvits-type algorithms make these classically estimable for product inputs. It was open whether entangled inputs, such as photonic cluster states emitted sequentially by quantum emitters, change this.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Inputs are modelled as photonic matrix-product states of bond dimension χ. Each amplitude is written as a Gaussian (or Rademacher) average, and an importance-sampled estimator is built whose variance bound does not depend on the state. An exact sequential sampler, in the style of Ferris–Vidal perfect sampling with Gaussian product vectors, draws from the importance distribution site by site. The key identities, unbiasedness and variance results, sampler exactness, and the vacuum rejection step are formalised in Lean 4 using Mathlib measures.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The unbiased amplitude estimator has mean-square error at most ‖ψ‖²/N. Each draw costs O(nLχ²+nL³+mn) after O(nLχ³) preprocessing, which stays polynomial when the emitter&#x27;s quantum memory has k=O(log n) qubits. The same sampler also estimates traced-memory probabilities, overlaps and marginals; an open-source package and the Lean proofs are archived on Zenodo.</p><div class="sum-table"><table><thead><tr><th>State</th><th>memory k (qubits)</th><th>χ</th><th>cost</th></tr></thead><tbody><tr><td>Fock or product input</td><td>0</td><td>1</td><td>poly(n)</td></tr><tr><td>GHZ, linear cluster (one spin)</td><td>1</td><td>2</td><td>poly(n)</td></tr><tr><td>2D cluster strip, w=O(log n)</td><td>O(log n)</td><td>poly(n)</td><td>poly(n)</td></tr><tr><td>Square lattice, w=√n</td><td>Θ(√n)</td><td>2^Θ(√n)</td><td>2^O(√n)</td></tr><tr><td>Generic n-qubit state</td><td>Θ(n)</td><td>2^Θ(n)</td><td>2^O(n)</td></tr></tbody></table><div class="tbl-cap">Bond dimension and classical cost by input state (emission order)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
