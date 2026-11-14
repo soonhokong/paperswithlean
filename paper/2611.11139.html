@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Graphene: A Lightweight Transformer with Ising Mean-Field Refinement for Image Super-Resolution · Papers With Lean</title>
+<meta name="description" content="This paper proposes Graphene, a lightweight image super-resolution architecture with two complementary feature refinement mechanisms: Ising-model-inspired local feature refinement using an Ising Refinement Block (IRB) and stage-history-based feature refinement using a History…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Graphene: A Lightweight Transformer with Ising Mean-Field Refinement for Image Super-Resolution">
+<meta property="og:description" content="This paper proposes Graphene, a lightweight image super-resolution architecture with two complementary feature refinement mechanisms: Ising-model-inspired local feature refinement using an Ising Refinement Block (IRB) and stage-history-based feature refinement using a History…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.11139.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.11139.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.11139v1" target="_blank" rel="noopener"><img src="../thumbs/2611.11139.jpg" alt="First page of Graphene: A Lightweight Transformer with Ising Mean-Field Refinement for Image Super-Resolution"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Graphene: A Lightweight Transformer with Ising Mean-Field Refinement for Image Super-Resolution</h1>
+        <p class="authors">Seungki Hong, Taekwang Jang</p>
+        <div class="row">
+          <span class="badge">cs.CV</span>
+          <span class="date">Nov 8, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.11139v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.11139" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/skethz/Graphene" target="_blank" rel="noopener" title="skethz/Graphene">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A companion Lean 4 development with Mathlib checks the IRB coupling algebra, mean-field stationarity, gate bounds, fixed-point convergence, and history-fusion properties.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">This paper proposes Graphene, a lightweight image super-resolution architecture with two complementary feature refinement mechanisms: Ising-model-inspired local feature refinement using an Ising Refinement Block (IRB) and stage-history-based feature refinement using a History Attention (HistAttn) module. The IRB reuses attention output features and pre-softmax attention logits to construct signed pairwise token couplings within each local window, applies unrolled mean-field updates, and refines features through a gated residual correction. These signed couplings allow alignment and opposition between latent spins to modulate local feature refinement. HistAttn attends over the current stage output and earlier representations at the same token position and adaptively blends the current stage output with a history-weighted feature aggregate without adding spatial pairwise attention. On Urban100 at $\times4$, Graphene and Graphene-light improve over IET and IET-light by 0.24 dB and 0.38 dB, respectively, with 34.3%/13.7% fewer parameters, 44.8%/44.4% fewer FLOPs, 78.4%/71.5% lower latency, and 76.0%/85.5% lower peak memory. Real-world SR comparisons further show that Graphene recovers fine details and preserves textures across diverse degradations. Code and reference checkpoints are available at <a href="https://github.com/skethz/Graphene" target="_blank" rel="noopener">https://github.com/skethz/Graphene</a></div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Lightweight image super-resolution must improve reconstruction quality while limiting parameters, FLOPs, latency, and peak memory. Windowed Transformers already compute attention logits and intermediate stage outputs, but these quantities are not reused for further feature refinement.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Graphene adds an Ising Refinement Block that turns pre-softmax PSA attention logits into signed, symmetric window-local spin couplings. It runs unrolled mean-field updates whose magnetizations gate residual corrections. A History Attention module blends each stage output with a learned, softmax-weighted aggregate of earlier stage features at the same token position. The mathematical properties, including coupling algebra, stationarity, magnetization and gate bounds, conditional convergence, and history aggregation, are checked in a companion Lean 4.33.1 and Mathlib development that passes an axiom audit.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.11139/graphene_iclr27.png" alt=""><figcaption>Figure 2: Overall architecture of Graphene. Top: Given an LR input, Graphene applies shallow feature extraction with a convolutional stem, deep feature extraction through six Graphene stages, each containing six Graphene Blocks (GBLKs), followed by a trunk convolution, and HR reconstruction with a PixelShuffle head ( Shi et al., 2016 ) and a long residual connection. Bottom-left: Each GBLK applies</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On Urban100 at ×4, Graphene and Graphene-light gain 0.24 dB and 0.38 dB PSNR over IET and IET-light. They use 34.3%/13.7% fewer parameters, 44.8%/44.4% fewer FLOPs, and 78.4%/71.5% lower latency. Ablations show that the signed, symmetric couplings and HistAttn each contribute to the gains.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.11139/u100_045_iclr27.png" alt=""><figcaption>Figure 5: Top: \times 4 SR on Urban100 img_045. Graphene preserves the repeated line structure visible in the HR crop. Bottom: Local Attribution Maps for the outlined output region, with Diffusion Index (DI) values rounded to integers.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Window</th><th>IRB</th><th>HistAttn</th><th>Params (M)</th><th>PSNR (dB)</th></tr></thead><tbody><tr><td>32</td><td>–</td><td>–</td><td>10.5</td><td>30.33</td></tr><tr><td>32</td><td>–</td><td>Enabled</td><td>10.5</td><td>30.53</td></tr><tr><td>32</td><td>Enabled</td><td>–</td><td>12.9</td><td>30.88</td></tr><tr><td>32</td><td>Enabled</td><td>Enabled</td><td>12.9</td><td>30.93</td></tr></tbody></table><div class="tbl-cap">Component ablation (PSNR in dB)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

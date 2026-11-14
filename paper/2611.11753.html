@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SpinSCI: Mask-Conditioned Spatial-Temporal Spin Transformer for Video Snapshot Compressive Imaging · Papers With Lean</title>
+<meta name="description" content="Video snapshot compressive imaging (SCI) recovers multiple frames from one spatiotemporally coded measurement. This paper proposes SpinSCI, a mask-conditioned Spatial-Temporal Spin Transformer whose Mask-Conditioned Ising Refinement Block (MC-IRB) combines attention logits and…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpinSCI: Mask-Conditioned Spatial-Temporal Spin Transformer for Video Snapshot Compressive Imaging">
+<meta property="og:description" content="Video snapshot compressive imaging (SCI) recovers multiple frames from one spatiotemporally coded measurement. This paper proposes SpinSCI, a mask-conditioned Spatial-Temporal Spin Transformer whose Mask-Conditioned Ising Refinement Block (MC-IRB) combines attention logits and…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.11753.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.11753.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.11753v1" target="_blank" rel="noopener"><img src="../thumbs/2611.11753.jpg" alt="First page of SpinSCI: Mask-Conditioned Spatial-Temporal Spin Transformer for Video Snapshot Compressive Imaging"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">SpinSCI: Mask-Conditioned Spatial-Temporal Spin Transformer for Video Snapshot Compressive Imaging</h1>
+        <p class="authors">Seungki Hong, Zhishuai Zhang, Taekwang Jang</p>
+        <div class="row">
+          <span class="badge">cs.CV</span>
+          <span class="date">Nov 9, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.11753v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.11753" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/skethz/SpinSCI" target="_blank" rel="noopener" title="skethz/SpinSCI">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A companion Lean 4 project using Mathlib machine-checks the paper&#x27;s sensing identities, coupling symmetry, bounded magnetizations and gates, and measurement-residual reduction results.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Video snapshot compressive imaging (SCI) recovers multiple frames from one spatiotemporally coded measurement. This paper proposes SpinSCI, a mask-conditioned Spatial-Temporal Spin Transformer whose Mask-Conditioned Ising Refinement Block (MC-IRB) combines attention logits and sensing information to form signed spin couplings. Finite mean-field updates gate residual feature refinement. Physics-guided initialization and final data consistency incorporate the measurement model. Compared with HiSViT$_9$, SpinSCI achieves average PSNR gains of 0.51 dB, 0.23 dB, and 0.04 dB on small-scale gray, mid-scale color, and large-scale color benchmarks, respectively, with 16.9% fewer parameters, 21.0-21.6% fewer FLOPs, 17.1-49.9% lower latency, and 62.3-63.3% lower peak memory. Relative to DU-9stg, average PSNR differs by at most 0.13 dB across these benchmarks, with 28.2-28.7% fewer FLOPs, 64.6-71.7% lower inference latency, and 30.1-35.0% lower peak memory. Qualitative comparisons on the real benchmark further show recovery of fine details and textures. Code and reference checkpoints are available at <a href="https://github.com/skethz/SpinSCI" target="_blank" rel="noopener">https://github.com/skethz/SpinSCI</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Video snapshot compressive imaging recovers multiple frames from a single coded measurement, which is a severely underdetermined inverse problem. Existing attention-based reconstructors struggle with detail recovery and frame separation under spatial masking and temporal integration.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">SpinSCI is a Spatial-Temporal Spin Transformer whose Mask-Conditioned Ising Refinement Block builds signed spin couplings from pre-softmax attention logits and sensing inputs (masks, normalized initial estimate, mask normalizer). Finite mean-field updates produce magnetizations that gate residual feature corrections in parallel spatial and temporal branches. Physics-guided initialization and final data consistency incorporate the measurement model. Supporting properties, including coupling symmetry, bounded gates and binary-mask residual nonincrease, are proved, and selected ones are checked in Lean 4.33.1 with Mathlib.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.11753/arch_iclr27.png" alt=""><figcaption>Figure 3: Overall architecture of SpinSCI. (a) The snapshot \mathbf{y} and coding masks \mathbf{\Phi} provide a physics-guided initialization \widehat{\mathbf{x}}^{(0)} . Token generation is followed by Z STSFormer blocks and video reconstruction, with a full-resolution stem skip supplied to the decoder. A final data-consistency correction maps the decoder output \widetilde{\mathbf{x}} to the reco</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.11753/intro_iclr27.png" alt=""><figcaption>Figure 2: Illustration of the SpinSCI video SCI pipeline. A single snapshot encoded by CACTI ( Llull et al., 2013 ) is input to SpinSCI. In the Spatial-Temporal Spin Transformer (STSFormer), token features \mathbf{p}_{i} are extracted, and the Mask-Conditioned Ising Refinement Block (MC-IRB) performs differentiable mean-field inference for K_{\mathrm{mf}} steps to estimate magnetizations m_{i}\!\i</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Compared with HiSViT_9, SpinSCI gains 0.51/0.23/0.04 dB average PSNR on small gray, mid color and large color benchmarks. It uses 16.9% fewer parameters, about 21% fewer FLOPs and 62-63% lower peak memory. It stays within 0.13 dB of DU-9stg with 64.6-71.7% lower latency.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.11753/color_zoom_only.png" alt=""><figcaption>Figure 5: Qualitative comparison on frame 4 of the Bosphorus sequence from the mid-scale color benchmark. The first panel shows the full ground-truth frame with the selected region marked in cyan. Subsequent panels show enlarged crops using nearest-neighbor interpolation.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.11753/b7_mcirb_maps.png" alt=""><figcaption>Figure B.2: MC-IRB states of SpinSCI-B on the six fixed mid-scale color frames of Figure B.1 , using the same central 192\times 96 crop. Columns show the ground truth, the mask value \phi_{i} on the token grid ( 1 for a measured token), the final magnetization m_{i} and the gated update g_{i}\|\mathcal{R}(\mathbf{p}_{i})\|_{2} of temporal block 3, and the gated update of spatial block 8. In tempor</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
