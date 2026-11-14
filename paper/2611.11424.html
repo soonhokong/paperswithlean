@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Query Complexity of Envy-Free Division: Cake, Chores, and Mixed Resources · Papers With Lean</title>
+<meta name="description" content="We study the query complexity of envy-free division for cake, chores, and resources with both positive and negative values. For arbitrary nonnegative nonatomic chore costs, we give a deterministic exact protocol using $2^{n\log_2 n+O(n)}$ queries and cuts. For both cake and…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Query Complexity of Envy-Free Division: Cake, Chores, and Mixed Resources">
+<meta property="og:description" content="We study the query complexity of envy-free division for cake, chores, and resources with both positive and negative values. For arbitrary nonnegative nonatomic chore costs, we give a deterministic exact protocol using $2^{n\log_2 n+O(n)}$ queries and cuts. For both cake and…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.11424.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.11424.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.11424v2" target="_blank" rel="noopener"><img src="../thumbs/2611.11424.jpg" alt="First page of The Query Complexity of Envy-Free Division: Cake, Chores, and Mixed Resources"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">The Query Complexity of Envy-Free Division: Cake, Chores, and Mixed Resources</h1>
+        <p class="authors">Alireza Farhadi, Mohammadtaghi Hajiaghayi</p>
+        <div class="row">
+          <span class="badge">cs.GT</span>
+          <span class="date">Nov 8, 2026 · v2</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-lime" href="../#tag=economics">economics</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.11424v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.11424" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/farhadi94/envy-free-division" target="_blank" rel="noopener" title="farhadi94/envy-free-division">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">An accompanying Lean 4 artifact built on Mathlib formalizes the paper&#x27;s four main query-complexity theorems on envy-free division.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We study the query complexity of envy-free division for cake, chores, and resources with both positive and negative values. For arbitrary nonnegative nonatomic chore costs, we give a deterministic exact protocol using $2^{n\log_2 n+O(n)}$ queries and cuts. For both cake and chores, a Las Vegas protocol uses $O(n^{12}\log(2n))$ expected queries and $O(n^{11}\log(2n))$ expected cuts. Conversely, every exact protocol with fixed positive success probability requires $Ω(n^2)$ expected queries in general, even with arbitrarily many output cuts at no query cost. For mixed cake and chores, no uniform finite expected-query bound exists even when every Cut returns the leftmost root or every Cut returns the rightmost root. This holds for any fixed positive multiplicative approximation factor and success probability, already when all net totals are one. An additive impossibility holds on the same normalized domain.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The paper studies how many Robertson–Webb Eval/Cut queries are needed to compute exactly envy-free allocations of cake, of chores, and of mixed resources with signed valuations. It asks how far existing bounds can be lowered, what randomization achieves for chores, and whether bounded-query guarantees extend to signed valuations.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">For chores, a deterministic protocol uses deferred compensation. Packages of partial allocations are combined through Offset SubCore calls, and a capacity-based accounting argument bounds package weights. A Las Vegas protocol handles both cake and chores, and the lower bounds use measurable randomized-protocol arguments. The four main results are formalized in Lean 4.35.0 with Mathlib and a fixed-point library.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The deterministic chore protocol uses 2^{n log2 n + O(n)} queries. The Las Vegas protocol uses O(n^12 log(2n)) expected queries and O(n^11 log(2n)) expected cuts, improving on the prior Õ(n^30) for cake. Any exact protocol with fixed positive success probability needs Ω(n^2) expected queries, and for mixed resources no uniform finite expected-query bound exists.</p><div class="sum-table"><table><thead><tr><th>Setting</th><th>Prior benchmark</th><th>This paper</th></tr></thead><tbody><tr><td>Deterministic exact chores</td><td>Bounded function of n</td><td>Q,C ≤ 2^{n log2 n + O(n)}</td></tr><tr><td>Randomized exact cake</td><td>E[Q] = Õ(n^30)</td><td>E[Q] = O(n^12 log(2n)), E[C] = O(n^11 log(2n))</td></tr><tr><td>Randomized exact chores</td><td>Bounded expected queries</td><td>Same polynomial bounds as cake</td></tr><tr><td>Exact lower bounds</td><td>Ω(n^2) deterministic cake queries</td><td>E[Q] ≥ max{n(np−1)/2, n^2 p/4 − 1}</td></tr></tbody></table><div class="tbl-cap">Comparison with prior bounds</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

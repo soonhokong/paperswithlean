@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Improved Bounds for Online Matching with Random Edge Arrivals · Papers With Lean</title>
+<meta name="description" content="We study the unweighted online matching problem with random edge arrivals, where each edge arrives at an independent time drawn uniformly from $[0,1]$, and the algorithm must immediately and irrevocably accept or reject it while maintaining a matching. Guruganesh and Singla…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Improved Bounds for Online Matching with Random Edge Arrivals">
+<meta property="og:description" content="We study the unweighted online matching problem with random edge arrivals, where each edge arrives at an independent time drawn uniformly from $[0,1]$, and the algorithm must immediately and irrevocably accept or reject it while maintaining a matching. Guruganesh and Singla…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.13571.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.13571.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.13571v1" target="_blank" rel="noopener"><img src="../thumbs/2611.13571.jpg" alt="First page of Improved Bounds for Online Matching with Random Edge Arrivals"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Improved Bounds for Online Matching with Random Edge Arrivals</h1>
+        <p class="authors">Yilong Feng, Haolong Li, Zonghan Yang</p>
+        <div class="row">
+          <span class="badge">cs.DS</span>
+          <span class="date">Nov 10, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.13571v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.13571" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/fstqwq/Random-Order-Matching-Upper-Bounds" target="_blank" rel="noopener" title="fstqwq/Random-Order-Matching-Upper-Bounds">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A Lean 4 solver computes the exact optimal-policy value for the upper-bound graph, with machine-checked correctness proofs of the recurrence and memoization invariants.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We study the unweighted online matching problem with random edge arrivals, where each edge arrives at an independent time drawn uniformly from $[0,1]$, and the algorithm must immediately and irrevocably accept or reject it while maintaining a matching. Guruganesh and Singla (IPCO, 2017) first broke the $1/2$ barrier of the naive Greedy algorithm by giving a $(1/2+\varepsilon)$-competitive algorithm for a small constant $\varepsilon&gt;0$, a guarantee that has remained the best known for nearly a decade. We give a simple three-phase algorithm that achieves a competitive ratio of $0.5445$ by deliberately rejecting selected early edges to reserve their endpoints for later matching opportunities. With a different choice of parameters, the same algorithm is $0.5535$-competitive on triangle-free graphs, including bipartite graphs. We also establish competitive ratio upper bounds below $0.6964$ for general graphs and $0.7043$ for bipartite graphs via exact rational evaluation of an optimal-policy recurrence on fixed graphs, even when the input graph is known up to isomorphism.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">In unweighted online matching with random edge arrivals, each edge arrives at an independent uniform time in [0,1] and must be accepted or rejected immediately. The best known competitive ratio had been only slightly above 1/2 for nearly a decade.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A three-phase Reserve-Retain-Recover algorithm deliberately rejects selected early edges so their endpoints stay free for later matches. The analysis uses local greedy comparisons and a polynomial expansion of survival probabilities. Upper bounds come from an exact rational dynamic program for the optimal policy on fixed graphs known up to isomorphism. This computation is implemented in Python, multithreaded C++, and Lean 4, and the recurrence and memoization correctness are proved in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The algorithm is 0.5445-competitive on general graphs and 0.5535-competitive on triangle-free graphs, including bipartite graphs. Upper bounds are below 0.6964 for general graphs and 0.7043 for bipartite graphs. The Lean solver reproduces the exact value on G_10 in about 2 hours.</p><div class="sum-table"><table><thead><tr><th>Solver</th><th>Instance</th><th>Running time</th></tr></thead><tbody><tr><td>Python (reference)</td><td>G_10</td><td>~2 min</td></tr><tr><td>Lean (verification)</td><td>G_10</td><td>~2 h</td></tr><tr><td>C++ (multithreaded)</td><td>B_{2,3,3}</td><td>~14 min (128 threads, 63 GiB)</td></tr></tbody></table><div class="tbl-cap">Running times of the three implementations</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
