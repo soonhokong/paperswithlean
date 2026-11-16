@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Combinatorial Bernoulli Factories with Polynomially Many Coins · Papers With Lean</title>
+<meta name="description" content="We provide an efficient implementation of combinatorial Bernoulli factories. Such a factory turns coins of unknown biases $x$ into a random vertex of a polytope $P$ whose mean is exactly $x$. For every affine slice of the cube (the class of polytopes that admit a factory), we…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Combinatorial Bernoulli Factories with Polynomially Many Coins">
+<meta property="og:description" content="We provide an efficient implementation of combinatorial Bernoulli factories. Such a factory turns coins of unknown biases $x$ into a random vertex of a polytope $P$ whose mean is exactly $x$. For every affine slice of the cube (the class of polytopes that admit a factory), we…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.17223.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.17223.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.17223v1" target="_blank" rel="noopener"><img src="../thumbs/2611.17223.jpg" alt="First page of Combinatorial Bernoulli Factories with Polynomially Many Coins"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Combinatorial Bernoulli Factories with Polynomially Many Coins</h1>
+        <p class="authors">Renato Paes Leme, Rad Niazadeh</p>
+        <div class="row">
+          <span class="badge">cs.DS</span>
+          <span class="date">Nov 12, 2026 · v1</span>
+          <span class="badge">cs.GT</span> <span class="badge">cs.LG</span> <span class="badge">math.PR</span> <span class="badge">stat.CO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.17223v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.17223" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/radniazadeh/bernoulli-poly" target="_blank" rel="noopener" title="radniazadeh/bernoulli-poly">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The paper&#x27;s results on efficient combinatorial Bernoulli factories were formalized in Lean 4, with a public GitHub repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We provide an efficient implementation of combinatorial Bernoulli factories. Such a factory turns coins of unknown biases $x$ into a random vertex of a polytope $P$ whose mean is exactly $x$. For every affine slice of the cube (the class of polytopes that admit a factory), we give a single algorithm whose expected number of coin flips and running time at every interior $x$ are polynomial in the dimension and in $1/{δ_*}$, where ${δ_*}=\min_i\{x_i,1-x_i\}$ is never supplied to the algorithm. For perfect matchings this gives $O(n^{8}{δ_*}^{-2}\log(n/{δ_*}))$ flips, while the factory of Niazadeh, Paes Leme, and Schneider [STOC 2021] spends at least $n^{2n-1}$ flips in expectation at the uniform doubly stochastic matrix. For other polytopes, our method rounds exactly given a point deep inside $P$ and the promise that $x$ is far from the boundary of $P$.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Combinatorial Bernoulli factories turn coins of unknown biases x into a random vertex of a polytope P whose mean is exactly x. The prior factory of Niazadeh, Paes Leme, and Schneider is very slow: on the Birkhoff polytope it uses at least n^{2n-1} flips in expectation.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Flip every coin in batches, take the empirical mean, and project it orthogonally onto the affine hull of P, which preserves unbiasedness exactly. If the projected point is feasible, round it to a vertex. If it is infeasible (a rare event), round a known interior point instead and keep the residual rather than discarding the sample. For affine slices of the cube, a pilot estimate of the margin δ* = min_i{x_i, 1-x_i} replaces any supplied promise. The results were formalized in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For every affine slice of the cube, a single algorithm is given whose expected coin flips and running time are polynomial in the dimension and 1/δ*, without δ* being supplied. For perfect matchings this gives O(n^8 δ*^{-2} log(n/δ*)) flips. For general polytopes, exact rounding is achieved given a point deep inside P and a promised margin for x.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
