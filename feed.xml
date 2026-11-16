@@ -8,6 +8,28 @@
     <language>en</language>
     <lastBuildDate>Sun, 15 Nov 2026 00:00:00 +0000</lastBuildDate>
     <item>
+      <title>How rigid is maximum cardinality search? Stability and locality of MCS orderings under edge updates, verified in Lean</title>
+      <link>https://paperswithlean.com/paper/2611.18369.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.18369.html</guid>
+      <pubDate>Sun, 15 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Md Thoriqul Islam Thonmay, Gregory Morse</dc:creator>
+      <category>formalization</category><category>verification</category><category>combinatorics</category><category>mathlib</category>
+      <description>Lean 4/Mathlib proofs of MCS ordering stability, single-edge update locality, obstructions, and refinement of a boolean-adjacency executable, re-checked by external kernels.
+
+For which sets F of edge modifications do a graph G and the modified graph share a maximum cardinality search (MCS) ordering? We prove that they do whenever, along every proper common MCS prefix, each unchosen vertex&#x27;s neighbour count in the second graph exceeds its count in the first by zero or one. In particular, inserting or deleting any matching, or flipping a single edge, preserves a common ordering, and under the same hypothesis every common MCS prefix extends to a full common ordering without backtracking. Neither part of the hypothesis can simply be dropped: inserting a triangle, a P_4 or a 2P_3 shows that the +1 bound cannot be relaxed to +2, and a disjoint mixed insert/delete pair shows that the one-directional condition is needed. For the canonical ordering (smallest-index tie-breaking) under a single-edge update, an insertion can first change the ordering only strictly between the endpoints&#x27; positions, and a deletion only at the later endpoint; when no break fires, the ordering is unchanged. A boolean-adjacency executable refines the abstract probe-then-repair update. All of these results, including the four obstructions, are proved in Lean 4 over Mathlib, re-checked by independent kernel checkers, and registered in the Palomar registry. On paper we further show that the first break of an insertion is located in O((deg(v)+1) log n) time, independent of the window length. We claim no worst-case asymptotic speedup over recomputation.</description>
+    </item>
+    <item>
+      <title>From Pen-and-Paper to Machine-Checked Proofs: Lean for System Identification</title>
+      <link>https://paperswithlean.com/paper/2611.18220.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.18220.html</guid>
+      <pubDate>Sun, 15 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Manas Mejari, Dario Piga, Marco Forgione</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>probability</category><category>analysis</category>
+      <description>Introduces Lean 4 and Mathlib to system identification researchers, formalizing identifiability, set invariance, ARX identifiability and Ljung&#x27;s noise-filter inversion lemma.
+
+Mathematical proofs in scientific papers are often long and intricate, relying on chains of references to earlier results. This makes it difficult for readers and reviewers to verify each and every step. Interactive theorem proving offers a complement: the theorem and its proof are written as code, and every inference is checked by a small, trusted piece of software called the kernel. This paper serves as an introduction to the Lean 4 proof assistant for a system identification and control audience, assuming no prior exposure to formal methods. We first show how a Lean proof is read using two elementary examples: the first on identifiability, the second on set invariance. We then illustrate how Lean can be used to analyse results from the literature, taking as example a classic lemma on the inversion of the noise filter in prediction-error identification (Ljung, 1999, Lemma 3.1). Since in Lean every step must be justified, the formalization brings to light a subtle point: the original claim of that lemma holds almost surely, although not for every realisation, as its statement may suggest. A simple counterexample makes this concrete. Finally, the paper discusses guidelines and perspectives on the use of Lean in system identification research.</description>
+    </item>
+    <item>
       <title>Goodman-type lower bounds for graph homomorphism densities</title>
       <link>https://paperswithlean.com/paper/2611.17885.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2611.17885.html</guid>
@@ -644,28 +666,6 @@ We give three principal results on weighted order ideals, cluster coefficients, 
       <description>Theorems 1 and 2, bounds on the gamma median end functions, are machine-checked in Lean 4 with Mathlib; the Lean project is an arXiv ancillary file.
 
 The median $ν_Γ(α)$ of the gamma distribution has no closed form, but its behavior at both ends is known: it is asymptotic to $2^{-1/α}e^{-γ}$ (with $γ$ being the Euler-Mascheroni constant) as the shape parameter $α\to 0$, and approaches $α- 1/3$ as $α\to \infty$. We write approximations as interpolations $(1 - g)ν_0 + gν_\infty$ between two elementary-function bounds or approximations, each exact in one limit, with an interpolator $g(α)$ going from 0 to 1, and compare three such forms: a first one between previously proven bounds, a second ending in an approximation from the beta median that is exact at $α= 1$ but does not quite approach $α- 1/3$ as $α\to \infty$, and a third one, between bounds proved here, that corrects the large-$α$ end of the second. For each form, the ideal interpolator&#x27;s slope at 0, approach to 1, and value at $α= 1$ are derived in closed form. Rational interpolators with every coefficient set in closed form from these properties, with no numerical fitting, reach a worst relative error of 0.0011 over all $α&gt; 0$, with absolute error below 0.0002. Fitting some of these or other coefficients numerically to minimize the worst absolute-or-relative error then trades accuracy against complexity: the Pareto frontier reaches 0.000087 with two fitted constants and 0.000041 with five, and from two on uses degree-4 rationals of the second form with no $α^2$ term in the numerator. The proofs that the end functions of the first and third forms are bounds are machine-checked in Lean 4.</description>
-    </item>
-    <item>
-      <title>The exponent $3/4$ for the exceptional sets of the equations $K/n=1/x+1/y+1/z$</title>
-      <link>https://paperswithlean.com/paper/2611.14167.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.14167.html</guid>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Dmytro Trybushnyi</dc:creator>
-      <category>formalization</category><category>number-theory</category><category>mathlib</category>
-      <description>Every lemma, proposition and theorem, with all explicit constants, is formalized in Lean 4 with Mathlib, plus an audit file restating headline results.
-
-For $K\ge4$ let $E_K(N)$ be the number of integers $2\le n\le N$ for which $K/n=1/x+1/y+1/z$ has no solution in positive integers; $K=4$ is the Erdős-Straus equation. We prove that $E_K(N)\le N\exp(-c((\log N)^3/K)^{1/4})$ with absolute constants $c,B&gt;0$, uniformly for $4\le K\le(\log N)^3/B$. This improves the exponent $2/3$ of Vaughan&#x27;s bound of 1970. The bound is non-trivial for $K$ up to a constant times $(\log N)^3$, which is, up to a factor $(\log\log N)^{2+o(1)}$, the scale at which, by work of Pomerance and Weingartner, exceptional primes become common. The sieve is combinatorial: a truncated inclusion-exclusion over the classes of parametric solutions, whose second moment is the partition function of a two-copy polymer gas, bounded by a real form of the Kotecký-Preiss criterion. Averaging over the residue classes of the small primes gives the family its full mass, and summing each cluster in a random order bounds the cluster sums. Since a divisor of an exception is an exception, nothing about the small primes themselves is needed, and the sieve can use the classes of the whole family of parametric solutions, one triple per class. All constants are explicit, and the whole proof has been checked in the proof assistant Lean 4.</description>
-    </item>
-    <item>
-      <title>When do all iterates of $x^2 + a$ have maximal Galois group?</title>
-      <link>https://paperswithlean.com/paper/2611.14014.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.14014.html</guid>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Michael Stoll</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>number-theory</category><category>algebra</category>
-      <description>The paper&#x27;s main results on surjectivity of arboreal Galois representations for x^2+a are formalized in Lean with Mathlib, with a blueprint on GitHub.
-
-We provide an (in our opinion) simpler proof of the main results of [Stoll1992,Li2020,Li2021] on the question for which integers $a$ the Galois groups of all iterates of $x^2 + a$ are maximal (equivalently, the associated arboreal Galois representation is surjective). At the same time, we extend the results to rational parameters $a$. The main result states that for a subset of rational numbers of relative density $1/2$ in the complement of a certain open interval, the maximality of the Galois group of the second iterate is sufficient for the arboreal Galois representation to be surjective. We also discuss experimental evidence suggesting that a similar statement involving the fourth iterate may hold in general. The results were obtained in collaboration with Claude (Anthropic&#x27;s AI model); they are also formalized in Lean (except for the experimental evidence).</description>
     </item>
   </channel>
 </rss>

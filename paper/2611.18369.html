@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How rigid is maximum cardinality search? Stability and locality of MCS orderings under edge updates, verified in Lean · Papers With Lean</title>
+<meta name="description" content="For which sets F of edge modifications do a graph G and the modified graph share a maximum cardinality search (MCS) ordering? We prove that they do whenever, along every proper common MCS prefix, each unchosen vertex&#x27;s neighbour count in the second graph exceeds its count in the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How rigid is maximum cardinality search? Stability and locality of MCS orderings under edge updates, verified in Lean">
+<meta property="og:description" content="For which sets F of edge modifications do a graph G and the modified graph share a maximum cardinality search (MCS) ordering? We prove that they do whenever, along every proper common MCS prefix, each unchosen vertex&#x27;s neighbour count in the second graph exceeds its count in the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.18369.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.18369.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.18369v1" target="_blank" rel="noopener"><img src="../thumbs/2611.18369.jpg" alt="First page of How rigid is maximum cardinality search? Stability and locality of MCS orderings under edge updates, verified in Lean"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">How rigid is maximum cardinality search? Stability and locality of MCS orderings under edge updates, verified in Lean</h1>
+        <p class="authors">Md Thoriqul Islam Thonmay, Gregory Morse</p>
+        <div class="row">
+          <span class="badge">cs.DS</span>
+          <span class="date">Nov 13, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.18369v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.18369" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/thonmay/mcs-lean" target="_blank" rel="noopener" title="thonmay/mcs-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4/Mathlib proofs of MCS ordering stability, single-edge update locality, obstructions, and refinement of a boolean-adjacency executable, re-checked by external kernels.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">For which sets F of edge modifications do a graph G and the modified graph share a maximum cardinality search (MCS) ordering? We prove that they do whenever, along every proper common MCS prefix, each unchosen vertex&#x27;s neighbour count in the second graph exceeds its count in the first by zero or one. In particular, inserting or deleting any matching, or flipping a single edge, preserves a common ordering, and under the same hypothesis every common MCS prefix extends to a full common ordering without backtracking. Neither part of the hypothesis can simply be dropped: inserting a triangle, a P_4 or a 2P_3 shows that the +1 bound cannot be relaxed to +2, and a disjoint mixed insert/delete pair shows that the one-directional condition is needed. For the canonical ordering (smallest-index tie-breaking) under a single-edge update, an insertion can first change the ordering only strictly between the endpoints&#x27; positions, and a deletion only at the later endpoint; when no break fires, the ordering is unchanged. A boolean-adjacency executable refines the abstract probe-then-repair update. All of these results, including the four obstructions, are proved in Lean 4 over Mathlib, re-checked by independent kernel checkers, and registered in the Palomar registry. On paper we further show that the first break of an insertion is located in O((deg(v)+1) log n) time, independent of the window length. We claim no worst-case asymptotic speedup over recomputation.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The paper asks when a graph and an edge-modified version of it share a maximum cardinality search (MCS) ordering. It also asks where a single-edge update can first disturb the canonical (smallest-index tie-break) MCS ordering.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A stability theorem gives a sufficient condition: along every proper common MCS prefix, each unchosen vertex&#x27;s neighbour count rises by zero or one. Certified obstructions (triangle, P_4, 2P_3, mixed insert/delete pair) show the condition cannot be relaxed. A probe-then-repair update is analysed for locality, and a boolean-adjacency executable is proved to refine it, with probe/pick counts along its control flow. Everything except the sublinear probe bound is proved in Lean 4 over Mathlib, audited to the standard axioms, re-checked by nanoda and con-ron, and registered in the Palomar registry.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Inserting or deleting any matching, or flipping a single edge, preserves a common ordering, and common prefixes extend to full common orderings without backtracking. An insertion can first change the canonical ordering only strictly between the endpoints&#x27; positions, and a deletion only at the later endpoint. The update returns exactly the from-scratch ordering, and a paper-only proof locates the first insertion break in O((deg(v)+1) log n) time. No worst-case asymptotic speedup over recomputation is claimed.</p><div class="sum-table"><table><thead><tr><th>Category</th><th>Count</th><th>Section</th></tr></thead><tbody><tr><td>update correctness</td><td>5</td><td>4</td></tr><tr><td>locality</td><td>6</td><td>4</td></tr><tr><td>probe/pick count</td><td>6</td><td>7</td></tr><tr><td>stability (matching, flip, prefix extension)</td><td>5</td><td>3</td></tr><tr><td>certified obstructions</td><td>4</td><td>3</td></tr></tbody></table><div class="tbl-cap">Comparator theorems by category (41 total; partial)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
