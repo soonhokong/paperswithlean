@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lean-PEP: Performance-Estimation Certificates to Formally Verified Algorithmic Bounds · Papers With Lean</title>
+<meta name="description" content="Performance-estimation certificates describe worst-case bounds for optimization algorithms. Turning a certificate into a formal theorem requires exact verification of its algebra and a connection between its coordinates, constraints and objective and the intended function-level…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lean-PEP: Performance-Estimation Certificates to Formally Verified Algorithmic Bounds">
+<meta property="og:description" content="Performance-estimation certificates describe worst-case bounds for optimization algorithms. Turning a certificate into a formal theorem requires exact verification of its algebra and a connection between its coordinates, constraints and objective and the intended function-level…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.17618.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.17618.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.17618v1" target="_blank" rel="noopener"><img src="../thumbs/2611.17618.jpg" alt="First page of Lean-PEP: Performance-Estimation Certificates to Formally Verified Algorithmic Bounds"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Lean-PEP: Performance-Estimation Certificates to Formally Verified Algorithmic Bounds</h1>
+        <p class="authors">Xinyuan Guo, Andersen Ang</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Nov 13, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.17618v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.17618" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/weartem13/lean-pep" target="_blank" rel="noopener" title="weartem13/lean-pep">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Implements, in Lean 4 with Mathlib, a checker that consumes exact performance-estimation certificates, plus a reusable analytic theorem that turns them into verified bounds for optimization algorithms.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Performance-estimation certificates describe worst-case bounds for optimization algorithms. Turning a certificate into a formal theorem requires exact verification of its algebra and a connection between its coordinates, constraints and objective and the intended function-level problem. Lean-PEP provides a reusable interface for this task. It checks a submitted source and exact certificate against a supported canonical finite model, and a parameterized analytic theorem transfers the resulting finite bound to every admissible algorithm trajectory. Generated computation proofs discharge the obligations that depend on each certificate. An additional capture entry checks the numerical record and reconstruction policy. The implemented two-step proximal-gradient consumer verifies a new input with normalized bound 62500/499999, and a fixed eight-configuration batch yields seven distinct payloads with accepted certificates and executed Lean proofs. PG/GD cases and one-step attainment witnesses establish the corresponding algorithmic conclusions, and a fresh installation reproduces consumption of the supplied input. These results show how new certificate data can reuse a proved analytic interface to obtain function-level bounds within the supported models.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Performance-estimation (PEP) certificates give worst-case bounds for optimization algorithms. Turning one into a formal theorem requires checking its exact algebra and connecting its coordinates, constraints and objective to the intended function-level problem. Doing this should not require a new analytic proof for each certificate.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Lean-PEP accepts a submitted source and exact rational certificate and checks them against a supported canonical finite model, using a Boolean checker whose premises are discharged by generated computation proofs. A single parameterized analytic theorem maps any admissible proximal-gradient trajectory to a feasible datum in that model, transferring the finite bound to every trajectory. An optional capture interface also checks the certificate against its numerical record and reconstruction policy. Exact certificates are built from numerical PEP output by source-affine Gaussian elimination and a bounded search.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">A two-step proximal-gradient input is verified with normalized bound 62500/499999. A fixed eight-configuration batch yields seven distinct payloads with accepted certificates and executed Lean proofs. Proximal-gradient and gradient-descent bounds are verified, exact one-step bounds are attained by analytic witnesses, and a fresh installation reproduces consumption of the supplied input.</p><div class="sum-table"><table><thead><tr><th>Case</th><th>Selected B</th><th>Reference</th><th>B - reference</th></tr></thead><tbody><tr><td>PG1</td><td>1/4</td><td>1/4</td><td>0</td></tr><tr><td>PG2, original</td><td>62497/499974</td><td>1/8</td><td>1/1999896</td></tr><tr><td>PG3</td><td>41630/499559</td><td>1/12</td><td>1/5994708</td></tr><tr><td>GD1, exact pair</td><td>1/6</td><td>1/6</td><td>0</td></tr><tr><td>PG2, new frozen input</td><td>62500/499999</td><td>1/8</td><td>1/3999992</td></tr></tbody></table><div class="tbl-cap">Normalized upper bounds vs. reference values</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
