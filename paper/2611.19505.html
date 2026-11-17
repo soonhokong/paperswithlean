@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formalizing $\mathsf{einsum}$ with Named Tensor Notation · Papers With Lean</title>
+<meta name="description" content="Einstein notation ($\mathsf{einsum}$) is a widely adopted tensor operation that has proven useful in areas such as machine learning and quantum computing. But it had no formal semantics until recently, and its properties had no mechanized verification. We formalize the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Formalizing $\mathsf{einsum}$ with Named Tensor Notation">
+<meta property="og:description" content="Einstein notation ($\mathsf{einsum}$) is a widely adopted tensor operation that has proven useful in areas such as machine learning and quantum computing. But it had no formal semantics until recently, and its properties had no mechanized verification. We formalize the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.19505.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.19505.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.19505v1" target="_blank" rel="noopener"><img src="../thumbs/2611.19505.jpg" alt="First page of Formalizing $\mathsf{einsum}$ with Named Tensor Notation"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Formalizing $\mathsf{einsum}$ with Named Tensor Notation</h1>
+        <p class="authors">Yafei Yang, Chung-chieh Shan</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Nov 14, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=type-theory">type-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.19505v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.19505" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Mechanizes a named-tensor language&#x27;s denotational semantics and einsum/expand rewriting rules in Lean 4 using Mathlib&#x27;s semiring and summation lemmas, with a partial Agda port.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Einstein notation ($\mathsf{einsum}$) is a widely adopted tensor operation that has proven useful in areas such as machine learning and quantum computing. But it had no formal semantics until recently, and its properties had no mechanized verification. We formalize the denotational semantics of a language of tensors (multi-dimensional arrays) that supports $\mathsf{einsum}$ and repeated tensors ($\mathsf{expand}$). With this semantics, we verify equational rewriting rules about $\mathsf{einsum}$ and $\mathsf{expand}$ that improve the performance of tensor computation. Whereas typical languages use unnamed tensors, whose shape is a sequence of natural numbers, we found it advantageous for mechanization to use named tensors, whose shape is a finite map from names to natural numbers. To our knowledge, this is the first time that the semantics and rewriting rules of $\mathsf{einsum}$ are mechanized in a proof assistant. Our solution is agnostic to proof assistants; we have implemented it in Lean and partially in Agda.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Einstein summation (einsum) is widely implemented, but libraries disagree on which expressions are valid. Its semantics and rewriting rules had never been mechanized in a proof assistant.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors define a tensor language with scalars, zero tensors, sums, let-bindings, expand, and einsum. They give an unnamed version on paper and mechanize a named version, in which shapes are finite maps from names to sizes; this avoids bookkeeping for renaming and permuting dimensions. A semantics-preserving translation from unnamed to named tensors is proved. Equational rewriting rules are verified in Lean 4 over an arbitrary semiring using Mathlib, with a partial development in Agda.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The work is described as the first mechanization of einsum semantics and of its rewriting rules, including expand fusion and rules that interchange einsum and expand to improve performance. All theorems are proved in Lean; one theorem (6.2) is not proved in Agda.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

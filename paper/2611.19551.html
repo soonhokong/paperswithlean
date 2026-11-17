@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TrustBound: Mechanized Completeness for Payment Epochs Initiated by AI Agents · Papers With Lean</title>
+<meta name="description" content="Payment operations requested by an AI agent may remain executable, or their outcomes unresolved, after the agent has stopped. We study when a trusted payment service can account for every payment in an epoch and exclude further payments under earlier authority. We give a Lean…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TrustBound: Mechanized Completeness for Payment Epochs Initiated by AI Agents">
+<meta property="og:description" content="Payment operations requested by an AI agent may remain executable, or their outcomes unresolved, after the agent has stopped. We study when a trusted payment service can account for every payment in an epoch and exclude further payments under earlier authority. We give a Lean…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.19551.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.19551.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.19551v1" target="_blank" rel="noopener"><img src="../thumbs/2611.19551.jpg" alt="First page of TrustBound: Mechanized Completeness for Payment Epochs Initiated by AI Agents"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">TrustBound: Mechanized Completeness for Payment Epochs Initiated by AI Agents</h1>
+        <p class="authors">Sandip Nandi, Aishwarya Bose, Apurba Bose, Soovadeep Bakshi</p>
+        <div class="row">
+          <span class="badge">cs.CR</span>
+          <span class="date">Nov 14, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.19551v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.19551" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/tokencraftdata/trustbound" target="_blank" rel="noopener" title="tokencraftdata/trustbound">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 models of a payment admission discipline and provider contract, with mechanized closure and refinement theorems; executed service histories are checked against the model in Lean.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Payment operations requested by an AI agent may remain executable, or their outcomes unresolved, after the agent has stopped. We study when a trusted payment service can account for every payment in an epoch and exclude further payments under earlier authority. We give a Lean model in which operations are recorded before they receive execution authority and both actions are serialized with an admission fence. We prove that fencing fixes a journal that covers every modeled effect and outstanding right; that discharging those rights prevents further effects; and that truthful outcomes for the recorded identities then give exact accounting. A provider-contract model, mapped to the admission model, makes created payment objects inert until registered. Premise-removal mutations confirm that each key premise is needed. We connect the models to an executable service: six service histories are checked against the model in Lean, and bounded schedules, scripted clients and concurrent workers exercise its reconciliation. The concurrent experiments uncovered a conflict caused by reordered provider reads, which serializing retrieval with journal updates removes in all tested cases. The result separates two obligations that are easily conflated in practice - preventing future payments and accounting for past ones - and states precisely which service guarantees establish each.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Payments requested by AI agents may still execute, or have unknown outcomes, after the agent is stopped. The question is what a trusted payment service must guarantee to exclude further payments under earlier authority and to account exactly for every payment in an epoch.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An admission model (journal, issued identities, remaining rights, effects, fence flag) is defined in Lean 4, and a closure theorem is proved: fencing fixes a journal covering all effects and rights, discharging the rights prevents further effects, and truthful outcomes give exact accounting. A provider-contract model inspired by Stripe manual capture is proved in Lean to refine the admission model. Premise-removal mutations test that each premise is needed. A Python/SQLite service is built, and its recorded histories are projected into model transitions and checked in Lean.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">All 14 Lean results check using only the standard axioms, and all 8 premise-removal mutations are rejected. Six service histories (64 transitions) are accepted by Lean. Concurrent testing exposed a conflict from reordered provider reads, which serializing retrieval with journal updates removed in all 84 tested cases.</p><div class="sum-table"><table><thead><tr><th>Scenario family</th><th>Cases</th><th>Resolved</th><th>Pending</th><th>Conflicts</th></tr></thead><tbody><tr><td>Contending dispatch and retries</td><td>54</td><td>36</td><td>18</td><td>0</td></tr><tr><td>Capture versus cancellation</td><td>12</td><td>12</td><td>0</td><td>0</td></tr><tr><td>Admission versus fencing</td><td>12</td><td>12</td><td>0</td><td>0</td></tr><tr><td>Overlapping provider reads</td><td>6</td><td>6</td><td>0</td><td>0</td></tr><tr><td>Total</td><td>84</td><td>66</td><td>18</td><td>0</td></tr></tbody></table><div class="tbl-cap">Concurrent worker experiments</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

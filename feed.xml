@@ -8,6 +8,72 @@
     <language>en</language>
     <lastBuildDate>Mon, 16 Nov 2026 00:00:00 +0000</lastBuildDate>
     <item>
+      <title>Latency-Preserving Rewrites and Translation Validation for Dynamic Quantum Circuits</title>
+      <link>https://paperswithlean.com/paper/2611.19618.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.19618.html</guid>
+      <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Rylan Malarchick</dc:creator>
+      <category>verification</category><category>quantum</category>
+      <description>Proves in Lean 4 with Mathlib that the compiler&#x27;s rewrite rules preserve semantics and latency, and that its translation-validation checkers are sound.
+
+A dynamic quantum circuit measures qubits during a run and chooses later operations from the outcomes. These branches make the qubits wait: the outcome must reach the classical controller, and the controller must decide. We present qlin, a compiler that reduces this waiting time. qlin moves operations out of branches without delaying the program, a property proved in Lean 4. For error-correction decoders, which branch on syndromes that are almost always zero, qlin compiles the likely syndromes into one multiway branch and keeps the original program for the rest. A cost model decides when a classically controlled gate should become a quantum-controlled gate instead. On all benchmarks, qlin checks that the compiled program computes what its source computes, and the checker is proved sound in Lean 4. At the published per-decision cost of the QICK controller (42 ns), 10 of 65 programs run at least 10% faster than the best baseline in our cost model, up to 91.2%, mostly because one multiway branch replaces a long chain of if statements. On the register-transfer logic of the QubiC controller, a compiled distance-5 repetition decoder selects its correction in 21.3 instead of 151.1 expected cycles. Timing runs on an IBM device were too noisy to confirm or reject the model&#x27;s ranking.</description>
+    </item>
+    <item>
+      <title>On the number of elite primes</title>
+      <link>https://paperswithlean.com/paper/2611.19610.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.19610.html</guid>
+      <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Ali Taheri, Amir Saleh</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>number-theory</category>
+      <description>All theorems on counting elite primes are formalized in Lean 4 with Mathlib, taking Brun–Titchmarsh and two GRH consequences as explicit hypotheses.
+
+A prime $p$ is elite if all sufficiently large Fermat numbers $F_n=2^{2^n}+1$ are quadratic nonresidues modulo $p$. Let $E(x)$ be the number of elite primes up to $x$. The best published bounds are $E(x)\ll x/(\log x)^{3/2}$ unconditionally and $E(x)\ll x^{5/6}$ under the Generalized Riemann Hypothesis (GRH), both due to Just. Just and Pollack remarked, without a written proof, that sorting primes by the exact power of $2$ dividing $p-1$ should give $x/(\log x)^{2-\varepsilon}$ and $x^{3/4+\varepsilon}$. We give complete proofs of slightly sharper statements: $E(x)\le(16+o(1))x\log\log x/(\log x)^2$ unconditionally, and $E(x)\ll x^{3/4}(\log x)^{1/2}$ under GRH. We also recall, with short proofs, known facts about the period of $(F_n\bmod p)$ that go back to Aigner: every elite prime $p$ satisfies the defining condition from the index $v_2(\operatorname{ord}_p 2)$ onwards, and the period is even unless $p\in\{3,5\}$. Finally, we show under GRH that, when the moduli involved are at most $x^{1/3}$, the set of primes bounded by the sieve argument has size $\asymp x\log\log x/(\log x)^2$. This indicates that the remaining factor $\log\log x$ cannot be removed by this method alone. All theorems of the paper have been formalized in the Lean 4 proof assistant, with the Brun–Titchmarsh inequality and two standard consequences of GRH as explicit hypotheses.</description>
+    </item>
+    <item>
+      <title>TrustBound: Mechanized Completeness for Payment Epochs Initiated by AI Agents</title>
+      <link>https://paperswithlean.com/paper/2611.19551.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.19551.html</guid>
+      <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Sandip Nandi, Aishwarya Bose, Apurba Bose, Soovadeep Bakshi</dc:creator>
+      <category>verification</category><category>ai-agents</category>
+      <description>Lean 4 models of a payment admission discipline and provider contract, with mechanized closure and refinement theorems; executed service histories are checked against the model in Lean.
+
+Payment operations requested by an AI agent may remain executable, or their outcomes unresolved, after the agent has stopped. We study when a trusted payment service can account for every payment in an epoch and exclude further payments under earlier authority. We give a Lean model in which operations are recorded before they receive execution authority and both actions are serialized with an admission fence. We prove that fencing fixes a journal that covers every modeled effect and outstanding right; that discharging those rights prevents further effects; and that truthful outcomes for the recorded identities then give exact accounting. A provider-contract model, mapped to the admission model, makes created payment objects inert until registered. Premise-removal mutations confirm that each key premise is needed. We connect the models to an executable service: six service histories are checked against the model in Lean, and bounded schedules, scripted clients and concurrent workers exercise its reconciliation. The concurrent experiments uncovered a conflict caused by reordered provider reads, which serializing retrieval with journal updates removes in all tested cases. The result separates two obligations that are easily conflated in practice - preventing future payments and accounting for past ones - and states precisely which service guarantees establish each.</description>
+    </item>
+    <item>
+      <title>Formalizing $\mathsf{einsum}$ with Named Tensor Notation</title>
+      <link>https://paperswithlean.com/paper/2611.19505.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.19505.html</guid>
+      <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Yafei Yang, Chung-chieh Shan</dc:creator>
+      <category>verification</category><category>formalization</category><category>mathlib</category><category>type-theory</category>
+      <description>Mechanizes a named-tensor language&#x27;s denotational semantics and einsum/expand rewriting rules in Lean 4 using Mathlib&#x27;s semiring and summation lemmas, with a partial Agda port.
+
+Einstein notation ($\mathsf{einsum}$) is a widely adopted tensor operation that has proven useful in areas such as machine learning and quantum computing. But it had no formal semantics until recently, and its properties had no mechanized verification. We formalize the denotational semantics of a language of tensors (multi-dimensional arrays) that supports $\mathsf{einsum}$ and repeated tensors ($\mathsf{expand}$). With this semantics, we verify equational rewriting rules about $\mathsf{einsum}$ and $\mathsf{expand}$ that improve the performance of tensor computation. Whereas typical languages use unnamed tensors, whose shape is a sequence of natural numbers, we found it advantageous for mechanization to use named tensors, whose shape is a finite map from names to natural numbers. To our knowledge, this is the first time that the semantics and rewriting rules of $\mathsf{einsum}$ are mechanized in a proof assistant. Our solution is agnostic to proof assistants; we have implemented it in Lean and partially in Agda.</description>
+    </item>
+    <item>
+      <title>Maximality of the Došen–Petrić Boolean Category</title>
+      <link>https://paperswithlean.com/paper/2611.19496.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.19496.html</guid>
+      <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Florian Lengyel</dc:creator>
+      <category>formalization</category><category>category-theory</category><category>logic</category>
+      <description>Formalizes in Lean 4 the maximality proofs for the Došen–Petrić zero-identity Boolean category, including Boolean Coherence and occurrence-substitution correspondence.
+
+We prove that the zero-identity Boolean category of Došen and Petrić, freely generated by a nonempty set of propositional variables, is maximal. Adjoining any equation between parallel morphisms that does not follow from the defining equations, and closing under the operations on morphisms and uniform formula substitution, collapses this category to a preorder. This disproves their conjecture that the category is not maximal. The proof uses Boolean Coherence to select a pair of variable occurrences on which the two morphisms differ. Composition with morphisms selecting these occurrences, uniform substitution and two isomorphisms yield equality of the product projections. We prove that any zero-identity Boolean category satisfying such an additional equation under every interpretation of the variables is a preorder. We also give a Lean formalization of these proofs and their dependencies. It includes Boolean Coherence and the correspondence between substitution on tagged occurrence sets and substitution on finite ordinals.</description>
+    </item>
+    <item>
+      <title>The cop number of the flower snarks, and the generalized Petersen graphs with cop number two</title>
+      <link>https://paperswithlean.com/paper/2611.18787.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.18787.html</guid>
+      <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Aarav Ghai</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>combinatorics</category>
+      <description>Formalizes in Lean 4 with Mathlib that the flower snark cop number is 3 for n≥5, and lower bounds for generalized Petersen graphs.
+
+We study two questions of Morris, Runte and Skelton (Australas. J. Combin. 83 (2022)) on the game of Cops and Robbers. First, we show that the flower snark $J_n$ has cop number $3$ for every $n\geq 5$, and that $J_3$ has cop number $2$. The upper bound comes from a three-cop strategy, which we call the rolling wall. It works on every connected graph whose vertices can be arranged in a cycle of columns, each dominated by a single vertex. Because only one cop moves on each turn, the same strategy also shows that the lazy cop number of $J_n$ is $3$ for $n\geq 5$. Second, we prove the conjecture of Morris, Runte and Skelton that the only generalized Petersen graphs with cop number $2$ are $\mathrm{GP}(n,1)$ and the four graphs $\mathrm{GP}(6,2)$, $\mathrm{GP}(8,2)$, $\mathrm{GP}(9,3)$ and $\mathrm{GP}(12,3)$. The new ingredient is an explicit robber strategy showing that two cops do not suffice on $\mathrm{GP}(3k,k)$ and $\mathrm{GP}(4k,k)$ for $k\geq 4$. The theorem on flower snarks and all of the new lower bounds have been formally verified in the Lean 4 proof assistant.</description>
+    </item>
+    <item>
       <title>The Submodular Secretary Problem: Tight $1-1/e$ for Monotone Objectives, and Strictly Between $1/e$ and $1/2$ in General</title>
       <link>https://paperswithlean.com/paper/2611.17292.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2611.17292.html</guid>
@@ -487,9 +553,9 @@ We study sparse matrix multiplication in the low-bandwidth model: $n$ computers 
       <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
       <dc:creator>Hans-Martin Will</dc:creator>
       <category>formalization</category><category>type-theory</category><category>logic</category>
-      <description>Mechanizes the metatheory of the Eigenius dependent type theory in Lean 4 ( 23,000 lines, 38 files, no sorry), including consistency for finite universe bounds.
+      <description>The metatheory of the Eigenius type theory (conversion, bidirectional typing, set-theoretic consistency model) is mechanized in about 23,000 lines of Lean 4 with no sorry.
 
-Mathematical proof assistants such as Coq, Agda, and Lean 4 build proof irrelevance into definitional conversion ($p \equiv q$ for $p, q : P$ with $P : Prop$), erasing which derivation established a theorem. While natural for mathematics over fixed axioms, judgmental proof irrelevance is incompatible with verified scientific stores, which must inspect and compare independent derivations of the same claim to assess consilience and compute counterfactual retractions when an assay, reagent, or model is invalidated. Moreover, combining definitional proof irrelevance with subsingleton elimination breaks strong normalization and renders algorithmic conversion non-transitive. We present the type-theoretic and institutional foundations of Eigenius, a verified knowledge substrate for science. First, we formulate a dependent kernel with cumulative universes ($Prop, Set, Type_k$), impredicative $Prop$, inductive families with index-forced subsingleton elimination, and intensional identity types, where definitional equality $\equiv$ is untyped joinability under an orthogonal CRS and proof irrelevance is a witnessed propositional axiom ($irrel : ΠP{:}Prop.\,Πp,q{:}P.\,Id\,P\,p\,q$). Second, we unify universe cumulativity, codomain-covariant $Π$-subtyping, and ontology class inclusions in a coercion-free subsumption judgment whose bidirectional fragments ($\mathcal{K}_0, \mathcal{K}_1$) satisfy subject reduction and are sound and complete for declarative typing. Third, we organize external verifiers into a three-level institutional hierarchy with explicit axiom policies (Adopt, Discharge, Relativize), internalize a justification logic with Why-provenance semiring support $supp(j,P)$, and embed Cooper&#x27;s Type Theory with Records (TTR) to type open-world knowledge graphs. Finally, we prove consistency in Grothendieck universes and mechanize the metatheory in Lean 4 with zero sorry axioms.</description>
+Mathematical proof assistants such as Coq, Agda, and Lean 4 build proof irrelevance into definitional conversion ($p \equiv q$ for $p, q : P$ with $P : Prop$), erasing which derivation established a theorem. While natural for mathematics over fixed axioms, judgmental proof irrelevance is incompatible with verified scientific stores, which must inspect and compare independent derivations of a claim to assess consilience and compute counterfactual retractions when an assay, reagent, or model is invalidated. Moreover, combining definitional proof irrelevance with subsingleton elimination breaks normalization and makes algorithmic conversion non-transitive. We present the type-theoretic and institutional foundations of Eigenius, a verified knowledge substrate for science. First, we formulate a dependent kernel with cumulative universes ($Prop, Set, Type_k$), impredicative $Prop$, inductive families with index-forced subsingleton elimination, and intensional identity types, where definitional equality $\equiv$ is untyped joinability under an orthogonal CRS and proof irrelevance is a witnessed axiom ($irrel : ΠP{:}Prop.\,Πp,q{:}P.\,Id\,P\,p\,q$). Second, we unify universe cumulativity, $Π$-covariant subtyping, and ontology class inclusions in a coercion-free subsumption judgment whose bidirectional fragments ($\mathcal{K}_0, \mathcal{K}_1$) satisfy subject reduction, compile to unification-free checkers ($\mathcal{A}_0, \mathcal{A}_1$), and match declarative typing. Third, we organize external verifiers into a three-level institutional hierarchy with explicit axiom policies (Adopt, Discharge, Relativize), internalize a justification logic with Why-provenance support $supp(j,P)$, and embed Cooper&#x27;s Type Theory with Records (TTR) for open-world knowledge graphs. Finally, we prove consistency in Grothendieck universes and mechanize the metatheory in Lean 4 with zero sorry axioms.</description>
     </item>
     <item>
       <title>Quantum unique ergodicity and the critical crossover for 1-d Gaussian band matrices</title>
@@ -600,72 +666,6 @@ Wolfe&#x27;s method computes the point of minimum Euclidean norm in the convex h
       <description>Finite-order bounds and a factorial estimate for the generalized mode-coupling hierarchy are proved as machine-checked theorems in Lean 4.
 
 How a dense liquid arrests into a glass remains a central problem in physics. Mode-coupling theory (MCT), the leading microscopic theory of the glass transition, fails to reproduce mean-field caging. Two routes are proposed to repair it: tracking more-particle correlations, or enforcing repulsion within each colliding pair. Testing both on an exact benchmark liquid, we show that MCT lets touching spheres pass through each other at all orders: adding particles dilutes memory and worsens the transition, whereas restoring pair impenetrability recovers mean-field arrest and the cage size.</description>
-    </item>
-    <item>
-      <title>On sinks and mirrors</title>
-      <link>https://paperswithlean.com/paper/2611.11660.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.11660.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Mingyuan Hu, Vivek Shende</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>geometry</category>
-      <description>The skeleton calculation in Theorem A.2 is formalized in Lean 4 using Mathlib, with a public GitHub repository.
-
-Given a full rank sink recurrent cluster $\mathcal{A}$ variety, we prove that its wrapped Fukaya category is equivalent to the category of coherent sheaves on a stacky elaboration of the dual Fock-Goncharov cluster $\mathcal{X}$ variety. In particular, braid varieties for a semisimple group are mirror to the braid varieties for the Langlands dual group. Another example: for compact surfaces with no interior marked points, a least one marked point on each boundary component, and at least two marked points in total, the Fock-Goncharov moduli for SL(2) and PGL(2) are homologically mirror. The results were obtained in communion with ChatGPT Astra.</description>
-    </item>
-    <item>
-      <title>A software infrastructure proposal for mathematical research with AI agents</title>
-      <link>https://paperswithlean.com/paper/2611.11645.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.11645.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Mario Vago Marzal, Enric Cosme Llópez</dc:creator>
-      <category>tooling</category><category>ai-agents</category>
-      <description>Proposes a self-hosted environment for groups of researchers and AI agents, with an agent-maintained Lean library as the default artifact, plus the Stemma prototype.
-
-In 2026, AI agents began to produce mathematical results. They formalize complete theorems and settle open problems faster than a research group can review the results. The difficulty is shifting to organizing that output, deciding which results to trust and understanding them as a group. Current tools address particular problems or assist individual researchers, and none of them is designed as the shared working environment of a research group. We propose the design of a self-hosted environment in which a group of people and agents does its daily mathematical work. It consists of a small open core, which each group deploys with the resources it has and adapts through extensions. The core records who did what and gives every message and result a stable address. We also outline how the formal libraries of different groups, maintained mostly by agents, can form a network. We describe Stemma, an early prototype that implements part of the proposal, and illustrate it with a synthetic example.</description>
-    </item>
-    <item>
-      <title>But It Was True When I Checked: Compiling SHOP-Style Method Preconditions into Partially-Ordered HTN Planning</title>
-      <link>https://paperswithlean.com/paper/2611.11055.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.11055.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Harrison Oates</dc:creator>
-      <category>formalization</category><category>verification</category><category>mathlib</category><category>logic</category>
-      <description>The definitions, key lemmas and main correctness theorem of the HTN precondition compilation are formalised in Lean 4 with Mathlib, with a public repository.
-
-Method preconditions specify when a method may be applied in hierarchical task network (HTN) planning, but their meaning differs under two established semantics. The SHOP planners, like the classical HTN formalism of Erol, Hendler and Nau, require the precondition to hold immediately before the method&#x27;s first action. HDDL, the input language of the International Planning Competition&#x27;s HTN track, instead introduces an auxiliary action to check it; under partial order, unrelated actions may invalidate the precondition before the method starts. HDDL&#x27;s designers adopted this weaker semantics because the first-action reading could not easily be compiled. Subsequent work has repeatedly identified its compilation under partial order as an open question, with existing transformations limited to total order. We give a compilation of the first-action semantics into standard partially ordered HTN planning without method preconditions using only two additional facts, thereby resolving a longstanding question in the HTN planning community.</description>
-    </item>
-    <item>
-      <title>Exact sampling beyond Fock inputs and linear optics: photon-number superpositions, photonic matrix-product states, adaptive and non-linear circuits</title>
-      <link>https://paperswithlean.com/paper/2611.11044.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.11044.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Jean Senellart, Stephen Wein, Pierre-Emmanuel Emeriau</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>quantum</category><category>probability</category>
-      <description>The set-chain lemma, Propositions 1 and 2, and the adaptive sampler&#x27;s conditioning step are formalised in Lean 4 with Mathlib, archived on Zenodo.
-
-Clifford and Clifford&#x27;s algorithm samples single-photon boson sampling exactly, one output mode at a time, by adding the input photons in a uniformly random order. We extend this construction to other input states and to adaptive and non-linear circuits. It applies whenever non-negative weights on output prefixes and input sets satisfy one marginal identity, a set-chain lemma: the random-order sampler is then exact at one weight evaluation per candidate mode, and it gives the posterior over the hidden input set. We build four exact samplers on it. For sources in a superposition of vacuum and one photon, the weights are rectangular permanents on an offset input set, and the cost has the exponent of single photons under loss. For photonic matrix-product states of bond dimension $χ$, a gap-by-gap Kraus contraction turns each weight into a short sum of squared amplitudes. For adaptive linear optics, the chain starts from the posterior given the adaptive counts and rejects chains that contradict them. For a single-mode non-linear phase the identity fails, and rejection from linear branches is exact with acceptance $1/\|c\|_1^2$. All four samplers agree with strong simulation on small instances, and cost models put adaptive sampling with up to three adaptive modes within $10\%$ of single photons and a non-linear site at $\varphi=π/2$ at about $4\times$.</description>
-    </item>
-    <item>
-      <title>Positive sectional curvature on all smooth 13-spheres</title>
-      <link>https://paperswithlean.com/paper/2611.10535.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.10535.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Zhiqi Chen, Shaoqiang Deng, Junna Ni</dc:creator>
-      <category>formalization</category><category>geometry</category><category>topology</category>
-      <description>Selected algebraic identities and scalar inequalities from the curvature estimates and gluing argument were checked in Lean 4, with accompanying source files.
-
-Every smooth homotopy $13$-sphere admits a Riemannian metric of strictly positive sectional curvature. We construct a special $S^3$–$S^3$ bundle over $S^{13}$ whose star quotient represents the nonzero class $\pmα_1β_1\inΘ_{13}\cong\mathbb Z/3$. The defining equivariant map factors through the Blakers–Massey map by a smooth Hopf construction representing an unstable $J$-generator. This factorisation retains the prescribed base representation and makes Schultz&#x27;s plumbing composition formula applicable; a normal-invariant computation in smoothing theory then identifies the smooth structure. On the quotient we implement the compatible-disk strategy with complete curvature estimates on arbitrary two-planes, matching boundary metrics, and a strictly positive sum of outward second fundamental forms. A direct smoothing argument completes the metric construction. Orientation reversal gives the remaining nonzero class in $Θ_{13}$.</description>
-    </item>
-    <item>
-      <title>Analysis of Supply Information, Code Bidding, and Efficiency in Repetitive Simultaneous Ascending Online Auctions: A Study of India&#x27;s eNAM Digital Agricultural Market</title>
-      <link>https://paperswithlean.com/paper/2611.10068.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.10068.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Dipankar Das, Kingshuk Sarkar, Vivek Jadhav</dc:creator>
-      <category>formalization</category><category>economics</category>
-      <description>Theorem 2, the equilibrium bidding-range result, is formalized and machine-checked in Lean 4 with mathlib4 in the artifact file CodeBidding.lean.
-
-This paper analyzes a Repetitive Simultaneous Ascending Auction (RSAA) mechanism employed in India&#x27;s eNAM digital agricultural market. RSAA is characterized by full seasonal supply transparency and a strategic seller option to reject equilibrium bids. We develop a model of the RSAA game with inter-round strategic dependence and endogenous seller entry, and we find conditions for collusion formation. Using transaction-level data, we empirically validate the emergence of code bidding, a tacit collusive strategy sustained by low bidder concentration and shared supply information. The results show that demand-side coordination systematically reduces price competition. Moreover, the coexistence of supply transparency and strategic rejection introduces significant allocative inefficiencies despite the ascending-price format. These findings offer novel insights for auctions and market design, particularly concerning collusion vulnerability and efficiency in agricultural and digital commodity markets.</description>
     </item>
   </channel>
 </rss>
