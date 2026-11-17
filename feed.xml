@@ -6,7 +6,194 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 16 Nov 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 17 Nov 2026 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Trustworthy Numerical Software in the Age of AI: What Would Turing Do?</title>
+      <link>https://paperswithlean.com/paper/2611.21570.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21570.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Kimon Fountoulakis, Maksim Melnichenko, Muhammad Fetrat Qharabagh, Georgios Alexandros Georgantzas, George Spyrou, Oleg Balabanov, Vasileios Georgiou, Riley Murray, Michael W. Mahoney</dc:creator>
+      <category>formalization</category><category>verification</category><category>ai-agents</category><category>analysis</category>
+      <description>Presents VSCL, a Lean library formalizing numerical analysis (rounding-error analysis, finite-volume methods, high-dimensional probability), built by AI agents with Lean-checked proofs.
+
+AI coding agents can now produce numerical software faster than human experts can review it, raising serious concerns about usability and reliability. These and other AI tools are already transforming mathematics and software, and they will soon transform mathematical software. These concerns motivated us to assess AI-generated numerical linear algebra (NLA) kernels, which we did through an audit of a recent public GPU QR competition. All five leading kernels passed the competition&#x27;s accuracy tests, and the winning kernel achieved a 107-fold speedup over the competition&#x27;s baseline, which calls NVIDIA&#x27;s QR routine. Yet each failed at least once on new inputs, even those from the competition&#x27;s generator, under the same checker, while the baseline passed them all. In light of this, we want to develop reusable formalizations of numerical analysis methods, which remain sparsely represented in existing formal libraries. We describe VSCL, our Lean library of mathematical foundations for numerical computing. We also propose VERNA to connect these tasks by using formalized results to guide kernel assessment against explicit specifications. Drawing on Turing&#x27;s work on rounding-error analysis and program checking, we discuss design principles for developing trustworthy numerical software when direct human checking is impractical.</description>
+    </item>
+    <item>
+      <title>Sharp High-Dimensional Gaussian Approximations over Rectangles without Covariance Restrictions</title>
+      <link>https://paperswithlean.com/paper/2611.21474.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21474.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Victor Chernozhukov, Denis Chetverikov, Kengo Kato, Yuta Koike</dc:creator>
+      <category>formalization</category><category>probability</category>
+      <description>The paper&#x27;s 31 proved statements and their substantive proof arguments were formalized and verified in Lean 4, with the formalization performed using an AI system.
+
+We study how well a sum of $n$ independent random vectors with $p$ coordinates can be approximated by a Gaussian vector with the same mean and covariance. We measure the error over rectangles, so the bounds apply to maxima and simultaneous confidence regions. The coordinates may be arbitrarily dependent, even exactly linearly dependent, and the bounds do not deteriorate as the covariance matrix becomes singular. After standardizing the coordinate variances, bounded or sub-exponential coordinates give the $n^{-1/2}$ sample-size rate up to logarithmic factors, with the size or tail bounds held fixed. The main upper bounds retain the Gaussian expected maximum, improving the rates when the coordinates are strongly dependent. Fourth-moment refinements give further improvements when large observations contribute little to individual coordinate variances. If we instead impose a fixed moment bound of order $q&gt;4$ on the largest absolute coordinate, together with a coordinate fourth-moment bound, the rate becomes $n^{-1/2+1/q}$ up to logarithmic factors. At $q=4$, the slower $n^{-1/4}$ rate is unavoidable, confirming our earlier conjecture. We also allow the bounds on observation size to grow with $n$. Lower-bound examples show that the dependence on sample size, observation size, and Gaussian width is sharp up to logarithmic factors in the regimes studied, and in several regimes the upper and lower bounds match including the logarithmic terms.</description>
+    </item>
+    <item>
+      <title>AuXSpec: Learning to Autoformalize Program Specifications via Executable Postconditions</title>
+      <link>https://paperswithlean.com/paper/2611.21421.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21421.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Haocheng Wang, Weixuan Yuan, Florian Hübler, Yinya Huang, Zhijiang Guo, Sorrachai Yingchareonthawornchai, Rasmus Kyng</dc:creator>
+      <category>autoformalization</category><category>verification</category><category>dataset</category><category>benchmark</category>
+      <description>Builds a Lean framework pairing declarative postconditions with executable Bool checks proved equivalent, and trains LLMs to autoformalize Lean program specifications using execution-based RL rewards.
+
+Formal specifications define intended program behavior and underpin verification, but writing them in theorem provers such as Lean is slow and expertise-intensive, making specification a major bottleneck to scaling formally correct code. Autoformalization from natural-language problems is promising, yet training specification models requires scalable feedback on whether generated specifications capture intended behavior. Prior approaches obtain this feedback through explicit proofs or separately implemented code with formal correspondence proofs, both expensive. We introduce AuXSpec, a Lean framework that pairs declarative postconditions with executable counterparts, obtained through type class resolution when possible and otherwise defined separately with an equivalence proof. Test cases can then evaluate declarative specifications by execution, letting us use agreement as a reinforcement-learning reward. Using AuXSpec, we synthesize 3,037 LeetCode problems and expand training to 19.5K samples through expert iteration on Codeforces. Experiments show that training Qwen3.5-9B and Qwen3.8-27B with the execution-based reward improves SpecGen pass@4 on AuXSpec-Test 0.7% $\to$ 82.7% and 14.3% $\to$ 84.3%, and the 27B model outperforms all frontier models. On the out-of-domain Verina benchmark with its original prompts, both models improve 7.0% $\to$ 90.5% and 21.9% $\to$ 90.5% and surpass VeriSpecGen-30B-A3B, the prior state of the art among open-source specification models, on pass@1 (theirs 47.6% vs. ours 73.7% and 84.5%) and pass@4 (theirs 63.9% at pass@10 vs. ours 90.5%). We release the weights of the trained 9B and 27B models and the 3,037 problems with test cases, including the 300-problem AuXSpec-Test benchmark with expert review and correctness proofs for future evaluation. Models and data: https://huggingface.co/collections/eth-algopt/auxspec. Website: https://auxspec.org</description>
+    </item>
+    <item>
+      <title>Harmonic-Mean Aggregation of Continuous-Time Markov Chains with Reachability Error Bounds</title>
+      <link>https://paperswithlean.com/paper/2611.21402.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21402.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Bingqing Hu, Landon Taylor, Zhen Zhang</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>probability</category>
+      <description>Formalizes harmonic-mean CTMC aggregation and its time-bounded reachability error bounds in Lean 4 using Mathlib, with source code released.
+
+Abstracting a continuous-time Markov chain by grouping its states into blocks raises a fundamental question: which rates should the abstract chain use when states within a block have different exit rates and transition probabilities? We study harmonic-mean aggregation, which matches the mean waiting time and next-block distribution of a local experiment that uniformly selects a state within the block and observes its next jump. Equivalently, the abstract transition rates are averages of the concrete rates with inverse-exit-rate weights. Since the aggregation does not preserve reachability probabilities in general, we derive theoretical error bounds for time-bounded reachability. We decompose the error into a blockwise mean and centered-within-block deviations, and show that the rate mismatch has zero weighted mean. Exploiting this cancellation and differences between abstract reachability values, we obtain bounds valid at every time horizon through a linear comparison system with two quantities per block, without computing concrete reachability values. All results are formalized and proven in Lean 4.</description>
+    </item>
+    <item>
+      <title>Specifying &amp; Verifying Quantum Error-Correcting Codes</title>
+      <link>https://paperswithlean.com/paper/2611.21236.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21236.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Stavan Jain, Nithin Raveendran, Aws Albarghouthi</dc:creator>
+      <category>verification</category><category>formalization</category><category>mathlib</category><category>quantum</category>
+      <description>Builds QECLean, a Lean/Mathlib library for specifying quantum error-correcting codes and machine-checking their parameters, including code distance via code combinators.
+
+Building quantum computers is challenging due to the noise that affects qubits. Quantum error correction tackles noise by encoding information in quantum error-correcting (QEC) codes. These codes are often complex, increasingly found by computational search, presented in diverse formalisms with informal arguments, and hard to reason about algorithmically. Given that the rest of the quantum computing stack relies on a QEC code&#x27;s properties for correct computation, we propose a formally verified foundation for QEC codes. We present QECLean, a Lean-based framework for formally specifying and verifying QEC codes. QECLean backs every claimed QEC-code property with a machine-checked proof, unifies the diverse presentations of codes in the literature through common abstractions, and makes new codes easy to specify. We present a new compositional technique, code combinators, for proving code distance analytically. Code combinators allow us to prove the distance of large codes that are out of reach for algorithmic techniques; for example, we show that IBM&#x27;s $[[360, 12, \leq 24]]$ code has distance 24, which was previously only known as an upper bound. Furthermore, we show how our approach allows us to formalize and prove entire code families, such as the surface code. Our work lays the foundation required for reasoning about circuit-level implementations of codes on given architectures and for building end-to-end verified compilers for quantum computers. QECLean is available at https://github.com/Stavan-Jain/QECLean</description>
+    </item>
+    <item>
+      <title>CompCert4Lean: Porting a Verified C Compiler to Lean in Six Weeks with Parallel Coding Agents</title>
+      <link>https://paperswithlean.com/paper/2611.21084.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21084.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cong Wang, Zhiyang Chen, Fan Long, Martin Rinard</dc:creator>
+      <category>verification</category><category>ai-agents</category><category>tooling</category>
+      <description>Ports CompCert&#x27;s verified C compiler and its correctness proofs from Rocq to Lean using parallel LLM coding agents.
+
+We present CompCert4Lean, a large-scale port of CompCert 3.17&#x27;s verified compiler core from Rocq to Lean, completed in approximately six weeks by one expert directing parallel LLM agents. Our migration workflow partitions the development along its dependencies, audits translated definitions and theorem statements before large-scale proof reconstruction, and then reconstructs proofs in parallel against stable interfaces. The resulting compiler covers typed CompCert C through x86-64 assembly, discharges all 4,908 recorded proof obligations without project-specific axioms, and produces executable Linux binaries. The workflow enabled the expert to concentrate on organizing the work rather than supplying technical solutions. Of 1,071 human interactions, 88.8% concerned workflow and coordination, while only three supplied technical direction. Optimization campaigns further demonstrate the benefit of the Lean port for agent-driven verified development. Under matched budgets of 24 active hours, GPT-6-astra produced a Lean candidate with 11.7% lower generated-program runtime across 29 small-tests programs, compared with 2.3% lower for its Rocq candidate, both relative to original CompCert 3.17 and while preserving the end-to-end correctness theorem. These results show that parallel LLM agents can support large-scale migration with limited human technical direction and subsequently improve the migrated compiler while retaining its formal guarantees.</description>
+    </item>
+    <item>
+      <title>Underpinning Property-Based Testing</title>
+      <link>https://paperswithlean.com/paper/2611.21058.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21058.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Ernest Ng, Segev Elazar Mittelman, Joshua M. Cohen, Katherine Hough, Michael Hicks, Harrison Goldstein</dc:creator>
+      <category>verification</category><category>tooling</category><category>probability</category>
+      <description>Implements Basalt, a Lean library of property-based testing generators that run as executable samplers and also support proofs about their distributions.
+
+As the property-based testing community strives to automate challenging parts of the process away from users — in particular, the construction of generators — it is critical that we can clearly state what it means for that automation to be correct. We present a new framework for PBT, implemented in the Lean theorem prover, that provides a more solid foundation to build on. Our generators are interpretable: interpreted one way, they can be run efficiently as programs that sample randomness; and interpreted another way, they enable a wide range of correctness proofs, including proofs about distributions that other foundational PBT models do not support. We evaluate our framework extensively, with both small and large benchmarks and case studies, arguing that the extra power brought by distributional proofs is practically important for the next generation of generator automation.</description>
+    </item>
+    <item>
+      <title>Copying along Arithmetic Progressions Cannot Simulate Interleaving with Polylogarithmic Loss</title>
+      <link>https://paperswithlean.com/paper/2611.20980.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.20980.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Matthias G. Mayer</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>ai-agents</category><category>combinatorics</category>
+      <description>All numbered definitions, statements and proof steps on ARC versus zipline program size bounds are formalised in Lean 4 with Mathlib, written by AI agents.
+
+Two classical ways to compress a word are straight-line programs (SLPs), which build it by concatenating smaller pieces, and the Lempel-Ziv 77 (LZ77) factorisation, which copies earlier parts of it; their sizes are measures of repetitiveness. LZ77 approximates the smallest SLP efficiently: it has no more factors than a smallest SLP has size, and yields an SLP at most a logarithmic factor larger in near-linear time. Motivated by online prediction, Kosoy introduced zipline programs, which are analogous to SLPs but interleave their pieces round-robin instead of concatenating them. Her generalisation of LZ77, the arithmetic repetition system, describes a word by copies from one arithmetic progression of positions to a later one. Do arithmetic repetition systems approximate the smallest zipline program as well? Kosoy proved that the least size $\mathrm{ARC}(x)$ of an arithmetic repetition system for a word $x$ of length $n$ is at most a factor $O(n^{1/3})$ larger than the least size $\mathrm{ZLC}(x)$ of a zipline program for it, and asked whether this factor is tight. Her polynomial-time next-letter predictor makes $O(\mathrm{ARC}(x)\log n)$ mistakes, so a polylogarithmic factor would bound its mistakes by $\mathrm{ZLC}(x)\,\mathrm{polylog}(n)$, which no known polynomial-time predictor achieves. We show that the optimal exponent is $1/4$, not $1/3$: $\mathrm{ARC}(x) \le 2n^{1/4}\,\mathrm{ZLC}(x)$ for every word $x$, and at every large enough length $n$ some binary word has $\mathrm{ARC}(x) \ge n^{1/4-o(1)}\,\mathrm{ZLC}(x)$.</description>
+    </item>
+    <item>
+      <title>Finite-order exponential mixing does not imply the central limit theorem for unique equilibrium states</title>
+      <link>https://paperswithlean.com/paper/2611.20966.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.20966.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Matheus M Castro</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>probability</category>
+      <description>Main theorems (A, 7.3, 8.5, Corollary 1.2) on unique equilibrium states failing the CLT are formalised in Lean 4 using Mathlib, with AI assistance.
+
+Let $M$ be a compact smooth manifold of dimension at least three, $\varphi:M\to\mathbb R$ be continuous, and $R\ge2$ be an integer. We construct a $\mathcal C^\infty$ diffeomorphism $T:M\to M$ and an observable $f\in\mathcal C^\infty(M,\mathbb R)$ such that $(T,\varphi)$ has a unique equilibrium state $μ$ and $μ(f)=0$. The system $(T,μ)$ is exponentially mixing of order $R$ but not of order $R+1$ for Hölder observables, and $n^{-1/2}\sum_{i=0}^{n-1}f\circ T^i$ does not satisfy the central limit theorem. The main results have been formalised in Lean 4.</description>
+    </item>
+    <item>
+      <title>Sharp bounds on the Eliashberg critical temperature: a comparison principle, convexity in the spectrum, and the Kiessling-Altshuler-Yuzbashyan conjectures</title>
+      <link>https://paperswithlean.com/paper/2611.20496.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.20496.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Davis Rens</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>physics</category><category>analysis</category>
+      <description>The finite-dimensional core (cone lemma, comparison principle, Einstein bound, monotonicity, a KAY conjecture) is formalized in Lean 4 with Mathlib, with sorry-free ancillary files.
+
+In Eliashberg theory of phonon-mediated superconductivity with vanishing Coulomb pseudopotential, the critical temperature $T_c$ marks the linear instability of the normal state. Kiessling, Altshuler and Yuzbashyan (KAY) characterized it through the top eigenvalue of a compact operator on Matsubara-frequency sequences. They proved that $T_c$ is unique at strong coupling and conjectured $T_c&lt;C(λ\langleω^2\rangle)^{1/2}$ for every coupling $λ$, with $\langleω^2\rangle$ the second moment of the normalized phonon spectrum and $C\approx0.1827$ sharp, a bound Leavens stated in 1977 on partly numerical grounds. A preprint by Kondratev, not yet peer reviewed, gives a proof of this bound and of all-coupling uniqueness. We give an independent proof, for every spectrum with finite second moment, based on a comparison principle that is also Kondratev&#x27;s central step and was proved to first order by Bergmann and Rainer: strengthening the pairing interaction at every Matsubara transfer, strictly at the smallest one, strictly raises the top eigenvalue. At fixed $λ$ and $\langleω^2\rangle$ a single Einstein mode maximizes $T_c$. Convexity of the top eigenvalue in the spectrum gives sharp bounds on $T_c$ by the moments $\intω^nα^2F dω$, $0\le n\le1$, including Leavens&#x27;s zeroth-moment bound $T_c\le c_0\intα^2F dω$, $c_0\approx0.231$ numerically, optimal at moderate coupling. All bounds persist under a Coulomb pseudopotential with symmetric cutoff. A prefix decomposition of non-increasing vectors proves a third KAY conjecture, not treated in the preprint. The finite-dimensional core, including that conjecture, is formalized in Lean 4, and two computer-assisted proofs independent of the comparison principle confirm the Einstein bound.</description>
+    </item>
+    <item>
+      <title>Lean-Verified No-Go Theorems for $R$-Symmetries and Modular Symmetries in 4D GUTs</title>
+      <link>https://paperswithlean.com/paper/2611.20386.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.20386.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Mu-Chun Chen, Xiang-Gan Liu, Michael Ratz, Alexander Stewart</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>physics</category><category>algebra</category>
+      <description>Formalizes in Lean 4 on top of Mathlib a no-go theorem on R-symmetries in supersymmetric SU(5) GUTs, closing a gap in the published proof.
+
+$R$-symmetries are instrumental in supersymmetric model building. However, a no-go theorem restricts us from using them in a large class of four-dimensional (4D) grand unified theories (GUTs). Specifically, it has been shown that a supersymmetric 4D GUT based on SU(5), with finitely many chiral multiplets, cannot be broken spontaneously to the exact minimal supersymmetric standard model (MSSM) while preserving a discrete $\mathbb{Z}_M^R$, with $M \geq 3$, or continuous U(1) $R$-symmetry. We use Lean 4 to formalize this proof. In the process, we identify and close a gap in the general case of the published argument. Further, we discuss the implications for GUT models with modular symmetries. We point out that modular symmetries are inevitably $R$-symmetries in a supersymmetric framework that also describes gravity. At certain critical points in moduli space, discrete $R$-symmetries are linearly realized. In the context of 4D GUTs, the no-go theorem then implies that exotic states become massless at these points, provided the GUT-breaking vacuum preserves these symmetries. In the vicinity of these critical points, these exotics are parametrically light, which may spoil gauge coupling unification.</description>
+    </item>
+    <item>
+      <title>Formally verified harness for Shor&#x27;s order finding algorithm with $O(n^{2+ε})$ gate cost</title>
+      <link>https://paperswithlean.com/paper/2611.20342.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.20342.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Anirudh Suresh, Joshua M. Courtney, Runzhou Tao, Yudong Cao</dc:creator>
+      <category>verification</category><category>formalization</category><category>quantum</category><category>ai-agents</category>
+      <description>A Lean 4 harness verifies that user-submitted recursive Toom-Cook policies yield correct Shor order-finding circuits with O(n^{2+ε}) gate cost, then exports an IR to Qualtran.
+
+It is commonly understood that factoring a general $n$-bit biprime via Shor&#x27;s order finding algorithm requires $\widetilde{O}(n^3)$ gates by leveraging schoolbook integer arithmetics for addition and multiplication. Recent developments in quantum arithmetic circuits leveraging recursive Toom-Cook schemes have improved the cost scaling to $O(n^{2+ε})$. Here $ε&gt;0$ depends on algorithm implementation details of the recursive multiplication steps, which allow for a vast number of design choices. The challenge in navigating such design space also presents an opportunity for demonstrating innovative practices in quantum software engineering in the era of open agentic science. We present a formally verified harness that ingests a design specification (namely a &quot;policy&quot; that describes a recursive circuit design scheme) from an external source, which may be an AI agent, and produces a set of formalized proofs covering mathematical correctness of the algorithm implementation, asymptotic scaling of the end-to-end gate cost, as well as the correctness of translating the verified algorithm to a detailed circuit implementation with an intermediate representation. The harness is published as an open challenge where human researchers and AI agents can search for more efficient factoring circuits while retaining machine-checked guarantees of correctness and end-to-end asymptotic complexity.</description>
+    </item>
+    <item>
+      <title>Type-Confusion Security</title>
+      <link>https://paperswithlean.com/paper/2611.20298.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.20298.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Silei Ren, Hanxi Chen, Suraaj Kanniwadi, Andrew C. Myers</dc:creator>
+      <category>verification</category><category>type-theory</category><category>cryptography</category>
+      <description>All security results of an information-flow-typed core calculus, including type-confusion security and examples, are mechanized in Lean 4 with Mathlib, sorry-free.
+
+Type systems are a lightweight way to obtain formal assurance that code upholds security properties. However, decentralized systems, such as smart contracts and Model Context Protocol ecosystems, have limited ability to constrain the behavior of untrusted code. In such systems, attackers may attempt to confuse trusted code by supplying values that do not behave according to their advertised types, an attack that we call type confusion. Well-known attacks such as confused deputy attacks, reentrancy attacks, and control-flow hijacking can be understood as instances of type confusion. We define type confusion security as the property that unrestricted attackers who need not follow the type system have no more power than limited attackers who fully obey it. We formally define type confusion security as a real–ideal emulation, and in the context of an information-flow-typed core calculus that statically enforces security against well-typed attackers, prove that its run-time checks also enforce security against ill-typed attackers. In this system, programmers can write code while reasoning about security only against well-typed attackers; the security guarantees enforced by the type system still hold. We mechanize a proof of type confusion security in Lean.</description>
+    </item>
+    <item>
+      <title>Integral zero-sum incidence identities and Davenport constants in rank three</title>
+      <link>https://paperswithlean.com/paper/2611.20197.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.20197.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Claudiu G. Pop, George C. Rad, George C. Ţurcaş</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>combinatorics</category><category>algebra</category>
+      <description>All definitions, lemmas, and main theorems, including the computer-assisted enumerations and certificate soundness, are formalized in Lean 4 with Mathlib.
+
+We study the Davenport constant of finite abelian groups through signed identities among zero-sum subsequences. An integral incidence identity of degree $t$ for a sequence assigns integer weights to its nonempty zero-sum subsequences so that the weights add up to one, while those of the subsequences containing any given nonempty set of at most $t$ terms add up to zero. Over a finite abelian $p$-group $H$, the zero-sum subsequences of a sequence of any length have an indicator polynomial of degree at most $D(H)-1$, and this gives a transfer principle: if, for each $t\ge0$, every sequence of $L(t)$ terms over $Q$ admits such an identity of degree $t$, then $D(Q\oplus H)\le L(D(H)-1)$ for every finite abelian $p$-group $H$. For $m\in\{2,3,4\}$ we construct integral identities at length $L(t)=m(t+3)-2$ over $C_m^3$, and prove that these thresholds are sharp over fields of characteristic zero or characteristic not dividing $m$. For a prime $p\nmid m$ and $0\le a\le b\le c$, we prove that \[ D(C_{mp^a}\oplus C_{mp^b}\oplus C_{mp^c}) =m(p^a+p^b+p^c)-2. \] In particular $D(C_{15}^3)=43$ and $D(C_{20}^3)=58$, which are the two smallest cases of the conjecture $D(C_n^3)=3n-2$ left open in the literature. The proofs of the base cases for $m \in \{3,4\}$ are computer-assisted. All of the results in this paper have been formalised in Lean 4.</description>
+    </item>
+    <item>
+      <title>A formally verified convergence theorem for the tug-of-war scheme of the normalized $p$-Laplacian</title>
+      <link>https://paperswithlean.com/paper/2611.20169.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.20169.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Juan J. Manfredi, Behrooz Moosavi</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>analysis</category>
+      <description>Complete Lean 4 formalization on Mathlib of the convergence of p-harmonious functions (tug-of-war scheme) to viscosity solutions of the normalized p-Laplacian.
+
+We present a complete formalization, using Lean 4, of the convergence of $p$-harmonious functions to the viscosity solution of the Dirichlet problem for the normalized $p$-Laplacian, $2 \le p &lt; \infty$, as the step size goes to zero. By $p$-harmonious functions we mean solutions of the dynamic programming principle of tug-of-war with noise. Our proof follows the argument of Barles and Souganidis and is formalized in full, depending only on Mathlib and the standard axioms of Lean. In particular, we include the asymptotic expansion of the scheme, the viscosity properties of the half-relaxed limits, existence and uniqueness for the discrete problem, the comparison principle and uniqueness for the homogeneous equation, Aleksandrov&#x27;s theorem, and Jensen&#x27;s lemma.</description>
+    </item>
+    <item>
+      <title>Strong Standard Completeness of a Hypersequent Calculus for Cyclic Involutive Residuated Lattices</title>
+      <link>https://paperswithlean.com/paper/2611.19940.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.19940.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>SanMin Wang</dc:creator>
+      <category>formalization</category><category>logic</category><category>algebra</category>
+      <description>A companion Lean 4 development machine-checks the full standard representation theorem, strong standard completeness for H_R, and an executable density-elimination procedure.
+
+We present a hypersequent calculus $H_R$ for cyclic involutive residuated lattices and prove strong standard completeness for arbitrary theories in a fixed countable propositional language. Standard models are chains on $[0,1]$; neither commutativity nor equality of the monoid unit and the dualizing constant is assumed. The chain semantics is the class $K_R$ defined by unit cyclicity and all ordered finite-history conditions. Every countable member of $K_R$ embeds into a standard chain preserving the entire signature. The construction combines central-support reconstruction, gap insertion and relative contraction. A relative comparison construction supplies the required chain countermodels. We also prove admissibility of the unrestricted density rule for theoremhood and effective elimination from finite proofs without additional assumption leaves. Elimination uses terminating enumeration of density-free proofs; ordinary Cut is retained, and no complexity bound is claimed. Further constructions give bounded standard embeddings for nontrivial countable chains of involutive uninorm logic and pseudo-uninorm logic with weak commutativity. Using ordinary chain completeness for arbitrary theories, these yield strong standard completeness for both logics. A companion Lean 4 development formalizes the main results, with its scope and external inputs stated explicitly.</description>
+    </item>
+    <item>
+      <title>Spectral Moments of the Projected Hubbard Configuration Graph: Connectivity, Exchange, and Virtual Doublons</title>
+      <link>https://paperswithlean.com/paper/2611.19929.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.19929.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>D. Souza</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>physics</category><category>combinatorics</category>
+      <description>Key exact results (second-moment theorem, four-hop permutation bound, vanishing Schrieffer-Wolff cross term, doubled doublon phase) are machine-checked in Lean 4 with Mathlib, building fermion operators from canonical anticommutation relations.
+
+At strong on-site repulsion, the lowest band of $n$ lattice fermions is the spectrum of the hopping projected onto configurations without double occupancy, $H_\infty=P_0H_tP_0$. We study its moments, for few fermions in the square-lattice Hubbard model and, where the arguments allow, on any finite graph. (1) For spin-independent Hermitian hopping (no on-site terms) on any $N\geq2$-site graph, $μ_2=\frac{n(N-n)}{N(N-1)}\sum_{i\neq j}|t_{ij}|^2$, for any spin composition. (2) On any finite graph, $μ_4$ is exactly linear in the same-spin pair count, as four hops permute particles by at most a transposition or 3-cycle; for uniform hopping on a simple graph with $N\geq4$ the slope is $α(N,n)=-8C_4(N-n)(8N-11n-2)/[N(N-1)(N-2)(N-3)]$, fixed by the number $C_4$ of 4-cycles. (3) At large finite $U$, the second-order Schrieffer-Wolff correction is Hilbert-Schmidt orthogonal to $H_\infty$ on every triangle-free graph, so the band variance has no $1/U$ term; its $U^{-2}$ coefficient, an exact trace checked by exact diagonalization, is negative at the low fillings computed. (4) Under a Peierls flux, the exchange slope $α(N,2,Φ)=-\frac{64}{N-1}\cosΦ_\square$ ($L\times L$ tori, $L=3$ or $L\geq5$) carries the ordinary charge-$e$ harmonic, while the doublon (bound-pair) hopping acquires a doubled phase, $t_de^{2iA_{ij}}$: the second-order single-doublon Hamiltonian is exactly $π$-periodic ($h/2e$) under a boundary twist, and the exact two-electron U-band follows numerically, up to $O((2λ)^L/U^{L-1})$. Result (1), the permutation bound, the orthogonality in (3) and the doubled phase are machine-checked in Lean 4. Repulsive binding and the pair charge $2e$ are known; new are the exact moment structure and the derivation of the doubled phase. We make no claim about many-pair phase stiffness, off-diagonal long-range order or superconductivity.</description>
+    </item>
     <item>
       <title>Latency-Preserving Rewrites and Translation Validation for Dynamic Quantum Circuits</title>
       <link>https://paperswithlean.com/paper/2611.19618.html</link>
@@ -479,193 +666,6 @@ We give a polynomial-time construction for a sixth-power excluded-grid theorem. 
       <description>All results, including an Evertse-Ferretti interval theorem for weight sets and three complexity bounds, are machine-verified in Lean 4 with Mathlib (GitHub repository).
 
 The interval result of Evertse and Ferretti (2013) concerns a tuple $L$ of linear forms and one tuple $c$ of weights. It says that the parameters $Q$ for which the twisted height $H_{L,c,Q}$ has a small value outside an exceptional subspace $T(L,c)$ lie in $O(δ^{-2}\logδ^{-1})$ intervals $[Q_i,Q_i^ω)$. We prove this for a whole set $\mathcal{C}$ of weights with the same forms. At most $J$ subspaces $T(L,c)$ occur, where $J$ depends only on the dimension and on the number of places, and one family of $O(δ^{-2}\logδ^{-1})$ intervals serves every $c\in\mathcal{C}$ at once. Neither count depends on $\mathcal{C}$. In applications of Bugeaud-Evertse type the solutions are sorted into about $\varepsilon^{-1}$ classes with the same forms and different weights, and one application now serves all classes. We deduce three complexity bounds. For a real algebraic irrational number $ξ$, the number $p(n,ξ,b)$ of blocks of length $n$ in its base-$b$ expansion satisfies $\limsup p(n,ξ,b)/(n(\log n)^η)=\infty$ for every $η&lt;1/2$; Bugeaud and Evertse proved this for $η&lt;1/11$. The same holds for the continued fraction expansion of an algebraic number of degree at least three, and for the steering word of $(3/2)^n$. We explain why $1/2$ is the limit of the method. All results are machine-verified in Lean 4.</description>
-    </item>
-    <item>
-      <title>daVinci-Prover: Agent-Native Mid-Training for Formal Theorem Proving</title>
-      <link>https://paperswithlean.com/paper/2611.16433.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.16433.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Wenhong Zhu, Xuefeng Li, Jiashuo Zhang, Yu Chen, Tiantian Mi, Qipeng Guo, Pengfei Liu</dc:creator>
-      <category>theorem-proving-ml</category><category>ai-agents</category><category>dataset</category>
-      <description>Trains LLM provers through mid-training and SFT on Lean agent trajectories, using a harness with Lean verification and Mathlib retrieval tools, evaluated on Lean 4 benchmarks.
-
-Advances in large language models (LLMs) are rapidly transforming formal theorem proving. Yet further progress remains constrained by the lack of a transparent and effective data recipe for systematically improving theorem-proving models. In this work, we argue that effective agentic provers require strong mathematical skill priors to ground theorem proving and agentic trajectories to enable long-horizon, interactive proof construction. To this end, we synthesize an agent-native 33.7B-token mid-training corpus covering decomposition, search, self-verification, and revision, together with verifier-grounded agentic trajectories. We further introduce the daVinci-Prover harness, which enables models to construct proofs and interact with a Lean verifier in an isolated workspace, and use it to collect approximately 36K high-quality agent trajectories for supervised fine-tuning. Our mid-training recipe yields an average improvement of 13.7 points over the matched Qwen3-8B SFT-only baseline across MiniF2F, FATE-M, and ProofNet. When applied to the Qwen3.5 series, our approach also yields strong performance across theorem-proving benchmarks and achieves near-saturating MiniF2F performance with memory compaction. The results highlight agent-native mid-training as an effective foundation for developing stronger interactive theorem-proving agents.</description>
-    </item>
-    <item>
-      <title>Infinite or indefinite: the query cost of simulating the quantum switch</title>
-      <link>https://paperswithlean.com/paper/2611.16229.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.16229.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Dantong Li</dc:creator>
-      <category>formalization</category><category>quantum</category>
-      <description>Accompanying Lean formalization of the quantum switch simulation results, built on the Lean-QIT quantum information library, is provided in the repository.
-
-The quantum switch applies two operations in a coherent superposition of their causal orders and is a simple example of indefinite causal order. No quantum circuit that uses each operation once in a definite order can even describe it, yet photonic experiments have demonstrated its physical realization. We ask how many calls to the black-box operations a quantum computer in the circuit model needs to reproduce the switch. If one of the black boxes is known to be unitary, three calls suffice. For general channels on a $d$-dimensional system, we prove three results. In all three, circuits may use classical feed-forward and unlimited ancillary quantum memory. First, no finite number of calls suffices for exact simulation in the worst case. Second, approximation to any fixed error below $1/2$, measured in half the diamond norm, requires $Ω(d^{1/4})$ calls, exponential in the number of qubits. Third, an ordinary circuit can require exponentially many calls to obtain a single bit that the switch extracts with a few uses. We consider a device whose actual noise is dephasing in a fixed unknown basis and test it against a theoretical depolarizing model. The two channels have the same entanglement and average gate fidelities, so these figures alone do not distinguish them. At fixed noise strength, the quantum switch tells them apart with a number of device uses independent of $d$, whereas the circuit model requires $Ω(d^{1/16})$ calls. Noise characterization is needed for quantum error correction, and this gives a provable query advantage of the switch in a task relevant to practical quantum computing. We invite future work that extends such advantages to more practical computing tasks.</description>
-    </item>
-    <item>
-      <title>The Wasserstein cost of the Girsanov Theorem</title>
-      <link>https://paperswithlean.com/paper/2611.16043.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.16043.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Simon Coste</dc:creator>
-      <category>formalization</category><category>probability</category><category>ai-agents</category>
-      <description>Provides a Lean 4 formalization of the main Wasserstein asymptotics, built on Mathlib plus the MathFin library for Girsanov, generated by an AI system.
-
-This is an expository note on the asymptotics of the Wasserstein distance between the empirical measure of infinite-dimensional random paths and their common distribution. We present the classical proof for these asymptotics in the case of the Wiener measure, unifying quantization arguments from Dereich and coauthors or Boissard and Le Gouic, and we adapt it for Itô diffusions sampled through the Girsanov theorem. More precisely, let $\mathbb{Q}$ be the law of the solution of a stochastic differential equation with a bounded Lipschitz drift. Let $W_1,\ldots,W_n$ be independent Brownian paths, and let $Z_i$ be their Girsanov weights for $\mathbb{Q}$. The reweighted empirical measure $$\widehatμ_n=\frac{\sum_{i=1}^n Z_iδ_{W_i}}{\sum_{i=1}^n Z_i}$$ approximates $\mathbb{Q}$ when $n$ is large. We prove that the Wasserstein cost $W_p^p(\widehatμ_n,\mathbb{Q})$ is of order $(\log n)^{-p/2}$, in expectation and almost surely, for every fixed $p\geqslant1$. In the Brownian case where $Z_i=1$ these results show that $\sqrt{\log n}W_p(\widehatμ_n,\mathbb{Q})$ is asymptotically sandwiched between $\sqrt{2λ_d}$ and $4\sqrt{2λ_d}$, where $λ_d$ is the first eigenvalue of the Laplacian operator in the unit ball. We provide numerical experiments to estimate the (conjectured) limiting constant in dimension $d=1$.</description>
-    </item>
-    <item>
-      <title>The multiplicative complexity of the three-bit low-half multiplier</title>
-      <link>https://paperswithlean.com/paper/2611.15992.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.15992.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Bshara Alhodali, Gregory Morse</dc:creator>
-      <category>formalization</category><category>combinatorics</category><category>logic</category>
-      <description>The theorem MC(M_3)=6 is fully formalized in Lean 4, with finite-computation lemmas checking individual proof steps.
-
-We prove that the multiplicative complexity of the three-bit low-half multiplier is six, giving a structural, enumeration-free lower-bound proof valid against unrestricted nonlinear reuse in Boolean XOR-AND circuits. The value was first established by SAT searches of the first author and independently confirmed by the second author. An explicit six-AND circuit supplies the upper bound. The lower bound combines derivatives, quadratic products, complementary minors, and extraction modulo a Boolean ideal. Independent finite checks accompany the arguments. $\mathrm{MC}(M_3)=6$ is fully formalized in Lean 4, using only Lean&#x27;s three standard axioms (propositional extensionality, choice and quotient soundness).</description>
-    </item>
-    <item>
-      <title>Shift-Symmetric Configurations in $d$-Dimensional Cellular Automata: Enumeration, Bounds, Irreversibility, and Detection</title>
-      <link>https://paperswithlean.com/paper/2611.15751.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.15751.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Peter Banda, John Caughman, Tobi Lehman</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>combinatorics</category><category>algebra</category>
-      <description>All numbered results, including the closed-form enumeration and the prime-tight lower bound, are formally verified in Lean 4 with Mathlib, backed by a public repository and an audit build.
-
-A configuration of a cellular automaton on the $d$-dimensional torus $\mathbb{Z}_n^d$ is shift-symmetric if it is fixed by some nonzero translation. Banda, Caughman, Cenek, and Teuscher (Chaos 29, 063120, 2019) enumerated these configurations in two dimensions and drew dynamical and algorithmic consequences. We extend their results to every dimension. We give an explicit closed-form enumeration for all $n$, $d$, and alphabet sizes $σ$, in which the two-dimensional coefficients $1$, $p+1$, and $p$ become $r_d(p,v)=p^{\binom{v}{2}}\binom{d}{v}_p$, with $\binom{d}{v}_p$ the Gaussian binomial; it extends to configurations with a prescribed number of active cells and to all finite abelian groups. The case of prime $n$ recovers, in complement form, a result of Castillo-Ramirez and Gadouleau; the multi-prime closed form and the dynamical consequences beyond the stabilizer inclusion are new. We prove a lower bound attained exactly when $n$ is prime, and upper bounds, among them $(2^d-1+2\log_2 n)\,σ^{n^d/2}$. As $d$ grows, the symmetry probability decays as $σ^{-c\,n^d}$ with $c\to1-1/p_1(n)$, set solely by the smallest prime factor of $n$, and the symmetry advantage of the side $p+1$ over a prime side $p$ inverts within an explicit window around $d_c(p)\approx p\ln 2$. Under the necessary hypothesis of translation-equivariant neighborhoods, shift-symmetry is irreversible, the per-prime symmetry ranks never decrease, and non-symmetric tasks are unsolvable from symmetric inputs. We give a detection algorithm with worst-case cost $O(n^d\sum_{p\mid n}\frac{p^d-1}{p-1})$ and an average-case analysis, exact for each subgroup test. The mathematical content of every numbered statement is formally verified in Lean 4, and the correspondence between each theorem, lemma, proposition, and corollary and its formal statement was audited by hand.</description>
-    </item>
-    <item>
-      <title>Sparse Matrix Multiplication Exponent 1.5 in the Low-bandwidth Model</title>
-      <link>https://paperswithlean.com/paper/2611.15201.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.15201.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Chetan Gupta, Jukka Suomela, Hossein Vahidi</dc:creator>
-      <category>formalization</category><category>verification</category>
-      <description>The paper&#x27;s main results were formalized in Lean with AI assistance, and the formalization is published on Zenodo.
-
-We study sparse matrix multiplication in the low-bandwidth model: $n$ computers multiply two $n\times n$ matrices, and each computer can send and receive one $O(\log n)$-bit message per round. The input matrices are uniformly sparse, meaning that there are at most $d$ nonzero entries in each row and column, and the task is to compute a uniformly sparse part of their product. In prior work, Gupta et al. (SPAA 2022) presented an $O(d^{1.907})$-round algorithm over fields for this problem when the sparsity structure is globally known in advance (this is referred to as the supported setting). The upper bound was later improved to $O(d^{1.832})$ rounds. In this work, we give a deterministic algorithm that solves this problem in $O(d^{3/2})$ rounds in the supported setting, improving the previous bounds over fields and semirings.</description>
-    </item>
-    <item>
-      <title>Typed Knowledge over Constructive Institutions: A Proof-Relevant Type Theory for Verified Science</title>
-      <link>https://paperswithlean.com/paper/2611.15108.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.15108.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Hans-Martin Will</dc:creator>
-      <category>formalization</category><category>type-theory</category><category>logic</category>
-      <description>The metatheory of the Eigenius type theory (conversion, bidirectional typing, set-theoretic consistency model) is mechanized in about 23,000 lines of Lean 4 with no sorry.
-
-Mathematical proof assistants such as Coq, Agda, and Lean 4 build proof irrelevance into definitional conversion ($p \equiv q$ for $p, q : P$ with $P : Prop$), erasing which derivation established a theorem. While natural for mathematics over fixed axioms, judgmental proof irrelevance is incompatible with verified scientific stores, which must inspect and compare independent derivations of a claim to assess consilience and compute counterfactual retractions when an assay, reagent, or model is invalidated. Moreover, combining definitional proof irrelevance with subsingleton elimination breaks normalization and makes algorithmic conversion non-transitive. We present the type-theoretic and institutional foundations of Eigenius, a verified knowledge substrate for science. First, we formulate a dependent kernel with cumulative universes ($Prop, Set, Type_k$), impredicative $Prop$, inductive families with index-forced subsingleton elimination, and intensional identity types, where definitional equality $\equiv$ is untyped joinability under an orthogonal CRS and proof irrelevance is a witnessed axiom ($irrel : ΠP{:}Prop.\,Πp,q{:}P.\,Id\,P\,p\,q$). Second, we unify universe cumulativity, $Π$-covariant subtyping, and ontology class inclusions in a coercion-free subsumption judgment whose bidirectional fragments ($\mathcal{K}_0, \mathcal{K}_1$) satisfy subject reduction, compile to unification-free checkers ($\mathcal{A}_0, \mathcal{A}_1$), and match declarative typing. Third, we organize external verifiers into a three-level institutional hierarchy with explicit axiom policies (Adopt, Discharge, Relativize), internalize a justification logic with Why-provenance support $supp(j,P)$, and embed Cooper&#x27;s Type Theory with Records (TTR) for open-world knowledge graphs. Finally, we prove consistency in Grothendieck universes and mechanize the metatheory in Lean 4 with zero sorry axioms.</description>
-    </item>
-    <item>
-      <title>Quantum unique ergodicity and the critical crossover for 1-d Gaussian band matrices</title>
-      <link>https://paperswithlean.com/paper/2611.15085.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.15085.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Promit Ghosal, Guillaume Remy</dc:creator>
-      <category>formalization</category><category>autoformalization</category><category>probability</category><category>ai-agents</category>
-      <description>Main theorems were autoformalized in Lean 4 by AxiomProver, giving a roughly 1.0-million-line development that uses only Lean&#x27;s standard axioms.
-
-We consider an $N\times N$ complex Gaussian random band matrix in one dimension with band width of order $W$, in the periodic block form of Yau and Yin. The $N$ sites are split into $n=N/W$ blocks of size $W$ on a ring, and the entries are nonzero only within a block and between adjacent blocks. The conjectured localization–delocalization transition occurs at $W\sim\sqrt N$. We prove quantum unique ergodicity for bulk eigenvectors at every deterministic rank whenever $W^2/N\to\infty$, with no power or logarithmic separation between $W^2$ and $N$. At the threshold $N/W^2\toτ\in(0,\infty)$, we show that the rescaled bulk eigenvalues and the block-mass profiles of their eigenvectors (the probability measures on the circle placing at $k/n$ the squared norm of the eigenvector on block $k$) converge jointly to a unique law. This law is encoded by a random entire function whose zeros give the limiting eigenvalues, and its derivatives there give the limiting profile integrals. The law of this function is determined by the Dorokhov–Mello–Pereyra–Kumar (DMPK) diffusion of the unitary class. In the critical law, the profiles have strictly positive variance against every nonconstant smooth test function, so they are not concentrated on the uniform profile. As $τ\to0$ this variance vanishes and the local spectrum tends to the sine process. As $τ\to\infty$ it tends to a Poisson process where both limits taken after the critical one. The critical family thus interpolates between the delocalized and localized regimes, confirming for this model the prediction of Fyodorov and Mirlin that at $W^2\asymp N$ the joint law of eigenvalues and eigenvectors depends only on $N/W^2$. The full content of this work has been autoformalized in Lean4 by AxiomProver.</description>
-    </item>
-    <item>
-      <title>Sharp partition function bound for the attractive logarithmic gas</title>
-      <link>https://paperswithlean.com/paper/2611.14914.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.14914.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Matias G. Delgadino, Matthew Rosenzweig, Rishabh Gvalani</dc:creator>
-      <category>formalization</category><category>probability</category><category>analysis</category>
-      <description>The main conditional partition-bound theorem is formalized in Lean as LogGasPaper.main_with_domain, assuming log-HLS, with sources in a public repository.
-
-For the attractive logarithmic potential, we prove that the partition function is bounded uniformly in the number of particles on every compact inverse-temperature interval $[0,\be_0]$ with $\be_0&lt;B$, where $B\in(0,2\d]$ is the sharp constant in the logarithmic Hardy–Littlewood–Sobolev inequality. The proof separates a smooth bulk, which inherits the entropy inequality, from a short-range singular interaction. The singular contribution is controlled on the event that each box of a fixed grid contains few particles. The complementary overcrowding event has exponentially small probability, which compensates a crude linear-in-$N$ bound on the log partition function. The resulting estimate supplies the partition bound that can be used recycled in a few different results. A separate Lean formalization verifies the conditional partition-bound theorem under the log-HLS assumption.</description>
-    </item>
-    <item>
-      <title>Talagrand&#x27;s Convolution Bound for Tensor Powers of Finite-State Markov Semigroups</title>
-      <link>https://paperswithlean.com/paper/2611.14869.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.14869.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Alexander Marsh</dc:creator>
-      <category>formalization</category><category>probability</category>
-      <description>The main theorem, a generalization of Talagrand&#x27;s convolution bound to finite-state Markov semigroups, is formally verified in Lean 4 with a public formalization produced with AI assistance.
-
-Talagrand&#x27;s convolution conjecture, recently proven by J. Lu, S. Guo, and E. Fang, concerns the smoothing properties of the heat semigroup on $\{-1,1\}^N$. We follow their perturbed coupled reverse-heat approach to generalize the theorem to tensor powers of irreducible continuous-time Markov semigroups on finite state spaces. Specifically, let $(S_t)_{t\geq0}$ be the semigroup of an irreducible continuous-time Markov chain on a finite state space $G_0$ with stationary distribution $π$. Then, for every $τ&gt;0$, there exists a finite constant $C_{τ,S,π}&lt;\infty$ such that, for every $N\geq1$, every nonnegative function $f:G_0^N\to[0,\infty)$, and every $η&gt;1$, \begin{align*} π^{\otimes N}\left(S_τ^{\otimes N}f&gt;η\int_{G_0^N}f\,dπ^{\otimes N}\right)\leq\frac{C_{τ,S,π}}{η\sqrt{\logη}}, \end{align*} where the constant is independent of $N$, $f$, and $η$. Most of the machinery developed by Lu, Guo, and Fang transfers cleanly, but since probability distributions on $|G_0|$ elements are not determined by their mean for $|G_0|&gt;2$, we must use explicit terminal bridge laws to find a dimension-independent bound for the terminal-discrepancy estimate. We have formalized our result in Lean 4. The formalization is publicly available.</description>
-    </item>
-    <item>
-      <title>AutoAssumption: Searching over Assumptions Discovers ML-Systems Algorithms</title>
-      <link>https://paperswithlean.com/paper/2611.14844.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.14844.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Igor Sadalski, Minghao Guo, Benjamin Jones, Wojciech Matusik</dc:creator>
-      <category>autoformalization</category><category>ai-agents</category><category>verification</category>
-      <description>LLM agents formalize 89 ML-systems algorithms as Lean-checked proof graphs; variants that relax one assumption must re-prove in Lean before benchmarking.
-
-Many advances in ML systems came from breaking an assumption that earlier methods took for granted: speculative decoding dropped the assumption that a model needs one forward pass per token. Yet algorithms rarely state their assumptions, so experts and discovery harnesses search over programs, where one edit changes several design choices and gains are difficult to attribute. Searching over the assumptions themselves remains largely unexplored. Writing algorithms as proofs makes their assumptions explicit and turns algorithm design into a search over a small, structured space that an LLM can explore and a proof checker can audit. We formalize 89 algorithms from KV-cache eviction, weight pruning and speculative decoding as proof graphs with explicit assumptions, checked in Lean. Our harness, AutoAssumption, relaxes one assumption of a published method, re-derives and re-proves it, and generates its code. In KV-cache eviction and weight pruning, this search improved on every published algorithm we ran and produced state-of-the-art algorithms. The eviction algorithm has the highest RULER-4K score of the published methods we ran, and the pruning algorithm the lowest perplexity of thirteen on four LLaMA models. At equal budget, the harness scores within a point of OpenEvolve, an open-source implementation of AlphaEvolve, with a lower standard deviation across repeats. Future work will formalize more fields and combine them through the principal assumptions they share.</description>
-    </item>
-    <item>
-      <title>Stability of equilibria in discrete-time modified-gradient systems and the multivariate breeder&#x27;s equation</title>
-      <link>https://paperswithlean.com/paper/2611.14756.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.14756.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Benjamin J. Ridenhour</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>analysis</category>
-      <description>The main lemma, stability theorems, corollary, and basin-of-attraction theorem are machine-checked in Lean 4 with Mathlib, with a public GitHub/Zenodo artifact.
-
-The multivariate breeder&#x27;s equation $Δ\bar z=G\nabla\ln\bar W$ is a widely used discrete-time modified-gradient system describing the evolution of continuous traits in organisms. This system could more conventionally be expressed as $x_{k+1}=x_k+P_k\nabla f(x_k)$. For its continuous-time counterpart $x&#x27;=P(t)\nabla f(x)$, it has been proven that an isolated local maximum of $f$ is uniformly stable whenever $P(t)$ is positive semidefinite, as is the case for the &quot;$G$-matrix.&quot; Furthermore, the continuous time system is uniformly asymptotically stable when the maximum is an isolated critical point and $\int_0^\inftyλ_1(P(t))\,dt=\infty$. We show that the literal discrete analog of this result is false: with constant positive definite $P$ the iterates can oscillate or diverge. The result is restored by a single additional hypothesis, a uniform bound on the largest eigenvalue of $P_k$, $λ_n$, such that $λ_n(P_k)\le 2/L$ where $L$ is a local Lipschitz constant of $\nabla f$. Under this bound the maximum is uniformly stable; under a stricter version together with $\sum_kλ_1(P_k)=\infty$, the maximum is uniformly asymptotically stable. Given these hypotheses, a level-set estimate of the basin of attraction carries over. Both bounds are sharp, and each remaining hypothesis is shown to be necessary. Biologically, the bound says that genetic variance in every direction must be small relative to the curvature of log mean fitness; outside this regime the mean phenotype can overshoot a fitness peak as hypothesized by Fisher&#x27;s geometric model. As further application of our results, the same conditions apply to the mean update of Gaussian evolutionary optimization algorithms, in which the covariance of the search population plays the role of $G$.</description>
-    </item>
-    <item>
-      <title>What the occupation law of a finite Markov chain determines: time reversal and principal minors</title>
-      <link>https://paperswithlean.com/paper/2611.14587.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.14587.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Arjun Pemmasani</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>probability</category><category>algebra</category>
-      <description>Finite and algebraic proof steps are formalized in Lean 4 with Mathlib in ancillary files, assuming a Perron–Frobenius null-vector hypothesis; the Lean code was AI-generated.
-
-What does the occupation law of a finite Markov chain determine about its generator $Q$? From the stationary start, the law of the occupation times at one time determines $Q$ exactly up to time reversal and reversals of memoryless blocks, the sets of states that are all left at one rate with one landing law and are entered in proportion to the stationary law. These reversals commute and give exactly $2^k$ generators, with $k$ read off a tree of memoryless blocks. This leaves only time reversal when $Q$ has no rank-one cut, when there are at most 4 states, and generically. The law at one time determines the law at every time, and a generic start determines $Q$. A renewal block is a set of states that is left at the same rates from each of its states, is entered with one law, and is charged by the start in proportion to that law. From every start the law determines $Q$ exactly up to lumped reversals, which lump disjoint renewal blocks to single states and reverse a memoryless block of the lumped chain. We also find every start that hides time reversal. At the scale of large deviations, the functional of Donsker and Varadhan determines exactly the principal minors of $-Q$.</description>
-    </item>
-    <item>
-      <title>Finite-Cadence Refresh Equilibria for Streaming Prior-Anchored Ridge: A Closed-Form Forgetting Window and Spectral Correction</title>
-      <link>https://paperswithlean.com/paper/2611.14586.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.14586.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Mrigank Shekhar Singh</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>ml-theory</category>
-      <description>The algebraic core, refresh-chain recursion, OGD/Hedge regret bounds, and coupled contraction are formalized in Lean 4 with Mathlib: 85 declarations, no sorry.
-
-Recursive estimators on drifting streams must forget stale data fast enough to track the target, yet slowly enough to average out noise. In prior-anchored ridge regression, this trade-off admits a closed-form spectral decomposition in which each eigen-direction interpolates between the data solution and the prior with pull weight $s_i = ρ/ (μ_i + ρ)$. When the anchor is refreshed every $k$ steps, we show that the moving-frame offset converges to a finite-cadence equilibrium that lags the pure-leaky path by an explicit $Δ_k(s)$ while reducing estimation variance by a factor $Ψ(s, r_k)$. Minimizing the cycle-averaged risk gives $ω^* = (4ν^2 Σ/ c&#x27;)^{1/3}$, $c&#x27; = σ^2 d_{\mathrm{eff}}(ρ)$, and the plug-in strength $ρ^* = σ^2 / (nδ^2)$. A random-matrix deterministic equivalent extends both laws to finite dimension, renormalizing the anchor to $ρ_{\mathrm{eff}} = ρ(e^{ζq} - 1) / (ζq)$; it matches simulation within 5% at fixed operating points and within 13% at the method&#x27;s own, and rank-deficient populations reduce exactly to their active subspace. The resulting method, SPAR, calibrates window and strength online from residuals. On a 27-configuration grid the calibrated window opens on drift without divergence, and the grid defaults transfer to an hourly electricity stream and to BCI IV 2b. The core algebra, refresh chain, and regret bounds are formalized in Lean 4.</description>
-    </item>
-    <item>
-      <title>The bias interval of the elephant random walk</title>
-      <link>https://paperswithlean.com/paper/2611.14576.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.14576.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Arjun Pemmasani</dc:creator>
-      <category>formalization</category><category>probability</category>
-      <description>A public repository provides Lean files that machine-check the finite sign-change arguments and the analytic threshold proof, taking the classical weak limit as a hypothesis.
-
-Guérin, Laulin, Raschel, and Simon conjectured that the initial biases giving the superdiffusive elephant random walk a bimodal limit law form an interval centered at one half, and they described the problem as challenging. We prove this. For every superdiffusive memory, strongly biased starts are unimodal, and the limit density has two local maxima exactly when the bias lies in a proper open interval. Outside it, including its endpoints, the density has a unique local maximum. The interval is nonempty exactly above a single memory threshold, numerically about $0.6688$, whose uniqueness follows from a positive-weight integral for the central curvature of the fair-start density. We control sign changes in the finite walk&#x27;s first and second differences, including those created at the boundary, and pass them to the limit. The bias boundary is continuous and tends to zero at least quadratically fast as memory tends to one.</description>
-    </item>
-    <item>
-      <title>Wolfe&#x27;s Minimum-Norm-Point Method Generalizes the Simplex Method</title>
-      <link>https://paperswithlean.com/paper/2611.12680.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.12680.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Yann Disser, Nils Mosis</dc:creator>
-      <category>formalization</category><category>combinatorics</category>
-      <description>The main theorem, corollaries and all numbered supporting statements were formally verified in Lean 4, with the artifact archived on Zenodo.
-
-Wolfe&#x27;s method computes the point of minimum Euclidean norm in the convex hull of finitely many points. The method is parameterized by an insertion rule and it has been an open problem whether Wolfe&#x27;s original rule guarantees a polynomial number of iterations (De Loera, Haddock, and Rademacher; STOC&#x27;18). We resolve this question by proving an exponential lower bound. In fact, we establish a tight connection to the simplex method for linear programming that allows us to transfer many lower bounds for simplex pivot rules to corresponding insertion rules of Wolfe&#x27;s method. These include not only Wolfe&#x27;s linopt rule via Dantzig&#x27;s pivot rule, but also many other classical, randomized and history-based rules. As a corollary, we obtain the first exponential example for the Lawson-Hanson algorithm for nonnegative least squares, as well as PSPACE-hardness of deciding whether the linopt rule ever uses a given point.</description>
-    </item>
-    <item>
-      <title>More particles or the pair? An exact test of how to improve mode-coupling theory</title>
-      <link>https://paperswithlean.com/paper/2611.11806.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.11806.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Hu Cang</dc:creator>
-      <category>formalization</category><category>physics</category>
-      <description>Finite-order bounds and a factorial estimate for the generalized mode-coupling hierarchy are proved as machine-checked theorems in Lean 4.
-
-How a dense liquid arrests into a glass remains a central problem in physics. Mode-coupling theory (MCT), the leading microscopic theory of the glass transition, fails to reproduce mean-field caging. Two routes are proposed to repair it: tracking more-particle correlations, or enforcing repulsion within each colliding pair. Testing both on an exact benchmark liquid, we show that MCT lets touching spheres pass through each other at all orders: adding particles dilutes memory and worsens the transition, whereas restoring pair impenetrability recovers mean-field arrest and the cage size.</description>
     </item>
   </channel>
 </rss>

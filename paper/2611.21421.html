@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AuXSpec: Learning to Autoformalize Program Specifications via Executable Postconditions · Papers With Lean</title>
+<meta name="description" content="Formal specifications define intended program behavior and underpin verification, but writing them in theorem provers such as Lean is slow and expertise-intensive, making specification a major bottleneck to scaling formally correct code. Autoformalization from natural-language…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AuXSpec: Learning to Autoformalize Program Specifications via Executable Postconditions">
+<meta property="og:description" content="Formal specifications define intended program behavior and underpin verification, but writing them in theorem provers such as Lean is slow and expertise-intensive, making specification a major bottleneck to scaling formally correct code. Autoformalization from natural-language…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.21421.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.21421.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.21421v1" target="_blank" rel="noopener"><img src="../thumbs/2611.21421.jpg" alt="First page of AuXSpec: Learning to Autoformalize Program Specifications via Executable Postconditions"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">AuXSpec: Learning to Autoformalize Program Specifications via Executable Postconditions</h1>
+        <p class="authors">Haocheng Wang, Weixuan Yuan, Florian Hübler, Yinya Huang, Zhijiang Guo, Sorrachai Yingchareonthawornchai, Rasmus Kyng</p>
+        <div class="row">
+          <span class="badge">cs.SE</span>
+          <span class="date">Nov 16, 2026 · v1</span>
+          <span class="badge">cs.CL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.21421v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.21421" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a Lean framework pairing declarative postconditions with executable Bool checks proved equivalent, and trains LLMs to autoformalize Lean program specifications using execution-based RL rewards.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Formal specifications define intended program behavior and underpin verification, but writing them in theorem provers such as Lean is slow and expertise-intensive, making specification a major bottleneck to scaling formally correct code. Autoformalization from natural-language problems is promising, yet training specification models requires scalable feedback on whether generated specifications capture intended behavior. Prior approaches obtain this feedback through explicit proofs or separately implemented code with formal correspondence proofs, both expensive. We introduce AuXSpec, a Lean framework that pairs declarative postconditions with executable counterparts, obtained through type class resolution when possible and otherwise defined separately with an equivalence proof. Test cases can then evaluate declarative specifications by execution, letting us use agreement as a reinforcement-learning reward. Using AuXSpec, we synthesize 3,037 LeetCode problems and expand training to 19.5K samples through expert iteration on Codeforces. Experiments show that training Qwen3.5-9B and Qwen3.8-27B with the execution-based reward improves SpecGen pass@4 on AuXSpec-Test 0.7% $\to$ 82.7% and 14.3% $\to$ 84.3%, and the 27B model outperforms all frontier models. On the out-of-domain Verina benchmark with its original prompts, both models improve 7.0% $\to$ 90.5% and 21.9% $\to$ 90.5% and surpass VeriSpecGen-30B-A3B, the prior state of the art among open-source specification models, on pass@1 (theirs 47.6% vs. ours 73.7% and 84.5%) and pass@4 (theirs 63.9% at pass@10 vs. ours 90.5%). We release the weights of the trained 9B and 27B models and the 3,037 problems with test cases, including the 300-problem AuXSpec-Test benchmark with expert review and correctness proofs for future evaluation. Models and data: <a href="https://huggingface.co/collections/eth-algopt/auxspec" target="_blank" rel="noopener">https://huggingface.co/collections/eth-algopt/auxspec</a>. Website: <a href="https://auxspec.org" target="_blank" rel="noopener">https://auxspec.org</a></div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Writing formal program specifications in Lean is slow and requires expertise. Training models to generate them needs scalable feedback on whether a specification matches the intended behavior. Existing feedback comes from per-test proofs or from separately implemented code with correspondence proofs, and both are expensive.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">AuXSpec represents each programming problem as a Lean file. The file contains a precondition, a declarative postcondition, an executable Boolean postcondition, an implementation, and theorems for postcondition equivalence and correctness. The executable postcondition comes from type class (decidability) resolution where possible; otherwise it is defined separately and proved equivalent. Test cases embedded as #guard commands can then check specifications by direct execution, and the test outcome serves as a reinforcement-learning reward. A staged plan-generate-validate-repair pipeline synthesized 3,037 LeetCode problems, and expert iteration on Codeforces and other sources expanded training data to 19.5K samples for SFT and RL of Qwen 9B and 27B models.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.21421/pipeline.png" alt=""><figcaption>Figure 12: Data synthesis pipeline for AuXSpec on a running example. Stages (1) to (3) synthesize the postcondition, the executable postcondition, and the implementation under separate plans, and stage (4) assembles the components with the theorem statements.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On AuXSpec-Test, SpecGen pass@4 rose from 0.7% to 82.7% for the 9B model and from 14.3% to 84.3% for the 27B model, with the 27B model outperforming all frontier models. On the out-of-domain Verina benchmark, both models reach 90.5% pass@4, and on pass@1 they beat VeriSpecGen-30B-A3B (73.7% and 84.5% vs. 47.6%). The authors release the models and a 300-problem expert-reviewed benchmark with correctness proofs.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>SpecGen pass@1</th><th>SpecGen pass@4</th></tr></thead><tbody><tr><td>Claude-Opus-5</td><td>57.7</td><td>81.3</td></tr><tr><td>Kimi-K3</td><td>43.8</td><td>83.7</td></tr><tr><td>Qwen3.5-9B</td><td>0.2</td><td>0.7</td></tr><tr><td>Qwen3.8-27B</td><td>4.5</td><td>14.3</td></tr></tbody></table><div class="tbl-cap">SpecGen on AuXSpec-Test (selected baselines)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

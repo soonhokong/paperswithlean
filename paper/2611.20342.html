@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formally verified harness for Shor&#x27;s order finding algorithm with $O(n^{2+ε})$ gate cost · Papers With Lean</title>
+<meta name="description" content="It is commonly understood that factoring a general $n$-bit biprime via Shor&#x27;s order finding algorithm requires $\widetilde{O}(n^3)$ gates by leveraging schoolbook integer arithmetics for addition and multiplication. Recent developments in quantum arithmetic circuits leveraging…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Formally verified harness for Shor&#x27;s order finding algorithm with $O(n^{2+ε})$ gate cost">
+<meta property="og:description" content="It is commonly understood that factoring a general $n$-bit biprime via Shor&#x27;s order finding algorithm requires $\widetilde{O}(n^3)$ gates by leveraging schoolbook integer arithmetics for addition and multiplication. Recent developments in quantum arithmetic circuits leveraging…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.20342.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.20342.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.20342v1" target="_blank" rel="noopener"><img src="../thumbs/2611.20342.jpg" alt="First page of Formally verified harness for Shor&#x27;s order finding algorithm with $O(n^{2+ε})$ gate cost"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Formally verified harness for Shor&#x27;s order finding algorithm with $O(n^{2+ε})$ gate cost</h1>
+        <p class="authors">Anirudh Suresh, Joshua M. Courtney, Runzhou Tao, Yudong Cao</p>
+        <div class="row">
+          <span class="badge">quant-ph</span>
+          <span class="date">Nov 16, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-purple" href="../#tag=quantum">quantum</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.20342v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.20342" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/VerifiedQC/ForShor" target="_blank" rel="noopener" title="VerifiedQC/ForShor">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A Lean 4 harness verifies that user-submitted recursive Toom-Cook policies yield correct Shor order-finding circuits with O(n^{2+ε}) gate cost, then exports an IR to Qualtran.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">It is commonly understood that factoring a general $n$-bit biprime via Shor&#x27;s order finding algorithm requires $\widetilde{O}(n^3)$ gates by leveraging schoolbook integer arithmetics for addition and multiplication. Recent developments in quantum arithmetic circuits leveraging recursive Toom-Cook schemes have improved the cost scaling to $O(n^{2+ε})$. Here $ε&gt;0$ depends on algorithm implementation details of the recursive multiplication steps, which allow for a vast number of design choices. The challenge in navigating such design space also presents an opportunity for demonstrating innovative practices in quantum software engineering in the era of open agentic science. We present a formally verified harness that ingests a design specification (namely a &quot;policy&quot; that describes a recursive circuit design scheme) from an external source, which may be an AI agent, and produces a set of formalized proofs covering mathematical correctness of the algorithm implementation, asymptotic scaling of the end-to-end gate cost, as well as the correctness of translating the verified algorithm to a detailed circuit implementation with an intermediate representation. The harness is published as an open challenge where human researchers and AI agents can search for more efficient factoring circuits while retaining machine-checked guarantees of correctness and end-to-end asymptotic complexity.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Shor&#x27;s order finding can reach O(n^{2+ε}) gate cost through recursive Toom-Cook PhaseProduct multiplication, but the design space of recursion policies is very large. Contributions from humans or AI agents need machine-checked guarantees of correctness and asymptotic cost.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ForShor is a Lean 4 harness that accepts a policy: a list of interpolation tables with strictly decreasing width thresholds, each carrying proofs of validity conditions C1–C4. Correctness, success-probability and gate-count theorems are proved once for all valid policies. A verified compiler lowers the Gate circuit to a LowGate circuit. An intermediate representation extracted from the same Lean definitions is translated to Qualtran for logical resource estimation, with numerical validation of each subroutine.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.20342/ForShor_Figure2_v5.png" alt=""><figcaption>Figure 3: The verified part of Figure 1 in detail. The order-finding circuit is written in Gate . Its PhaseProduct and QFT subroutines are constructed recursively once every table in the submitted policy passes C1–C4. A verified compiler produces the LowGate circuit from which the intermediate representation is extracted. Figure 2 is an expanded view of the PhaseProduct part of this schematic.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.20342/Figure_PhaseProductOpt_261026.png" alt=""><figcaption>Figure 2: Schematic recursive PhaseProduct policy. (1) An policy P=((\underline{w}_{1},T^{(1)}),(\underline{w}_{2},T^{(2)}),\ldots) (Definition 2.2 ) pairs register width thresholds \underline{w}_{1}&gt;\underline{w}_{2}&gt;\cdots with interpolation tables T=(k,\mathbf{p},\Pi) (Definition 2.1 ), specifying one recursion level number of chunks (arity) k , ordered interpolation points \mathbf{p} and a pro</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Any valid policy yields a formally verified order-finding circuit with proved O(n^{2+ε}) asymptotic gate cost. At n=2048, a varying-arity policy gives about 1.685×10^12 T-gates, compared with 1.820×10^12 for the best single arity (k=4). The harness is released as an open challenge at forshor.ai.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.20342/fig_shor_T_vs_n_broken.png" alt=""><figcaption>Figure 4: Logical T-gate count of Shor’s order-finding algorithm using a PhaseProduct construction of Toom-Cook multiplication and QFT. Following a single k -arity brings a best-found T-gate count at k=4 with 1.820\times 10^{12} T-gates, with asymptotic improvements for larger n favoring higher k . Upon using a varying- k policy for PhaseProduct (different k at different levels in the recursion), </figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

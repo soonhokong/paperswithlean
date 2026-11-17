@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Underpinning Property-Based Testing · Papers With Lean</title>
+<meta name="description" content="As the property-based testing community strives to automate challenging parts of the process away from users — in particular, the construction of generators — it is critical that we can clearly state what it means for that automation to be correct. We present a new framework for…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Underpinning Property-Based Testing">
+<meta property="og:description" content="As the property-based testing community strives to automate challenging parts of the process away from users — in particular, the construction of generators — it is critical that we can clearly state what it means for that automation to be correct. We present a new framework for…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.21058.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.21058.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.21058v1" target="_blank" rel="noopener"><img src="../thumbs/2611.21058.jpg" alt="First page of Underpinning Property-Based Testing"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Underpinning Property-Based Testing</h1>
+        <p class="authors">Ernest Ng, Segev Elazar Mittelman, Joshua M. Cohen, Katherine Hough, Michael Hicks, Harrison Goldstein</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Nov 16, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.21058v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.21058" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/hgoldstein95/basalt" target="_blank" rel="noopener" title="hgoldstein95/basalt">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Implements Basalt, a Lean library of property-based testing generators that run as executable samplers and also support proofs about their distributions.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">As the property-based testing community strives to automate challenging parts of the process away from users — in particular, the construction of generators — it is critical that we can clearly state what it means for that automation to be correct. We present a new framework for PBT, implemented in the Lean theorem prover, that provides a more solid foundation to build on. Our generators are interpretable: interpreted one way, they can be run efficiently as programs that sample randomness; and interpreted another way, they enable a wide range of correctness proofs, including proofs about distributions that other foundational PBT models do not support. We evaluate our framework extensively, with both small and large benchmarks and case studies, arguing that the extra power brought by distributional proofs is practically important for the next generation of generator automation.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Automated synthesis of property-based testing generators lacks a clear correctness foundation. Existing foundational models can prove soundness and completeness of a generator, but they cannot prove properties about the distributions generators sample from.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Basalt is a Lean library in which generators are written against a Generator type class. Interpreted in IO, a generator runs as an efficient random sampler using a C SplitMix64 PRNG and optimized combinators. Interpreted as sub-probability mass functions, it supports proofs of soundness, completeness, distributions, termination and cost. Lean&#x27;s partial_fixpoint lets generators that do not terminate structurally, such as rejection samplers, be written without fuel.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Basalt generators run at least as fast as Haskell QuickCheck and OCaml Base_quickcheck. The Palamedes and Specimen synthesis tools were retargeted to Basalt, and Specimen now derives correctness proofs for the generators it builds. In industrial case studies, Cedar generators were proved sound, complete and within requested size limits, and Strata generators helped find bugs.</p><div class="sum-table"><table><thead><tr><th>Definitions</th><th>Gen.</th><th>Enum.</th><th>Check.</th></tr></thead><tbody><tr><td>Expressions</td><td>24,425</td><td>25,352</td><td>1,060</td></tr><tr><td>Policies</td><td>1,736</td><td>0</td><td>58</td></tr><tr><td>Schemas</td><td>1,886</td><td>0</td><td>0</td></tr><tr><td>Total</td><td>28,047</td><td>25,352</td><td>1,118</td></tr></tbody></table><div class="tbl-cap">Specimen-derived Basalt code for Cedar (lines of derived code)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

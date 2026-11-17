@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trustworthy Numerical Software in the Age of AI: What Would Turing Do? · Papers With Lean</title>
+<meta name="description" content="AI coding agents can now produce numerical software faster than human experts can review it, raising serious concerns about usability and reliability. These and other AI tools are already transforming mathematics and software, and they will soon transform mathematical software.…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Trustworthy Numerical Software in the Age of AI: What Would Turing Do?">
+<meta property="og:description" content="AI coding agents can now produce numerical software faster than human experts can review it, raising serious concerns about usability and reliability. These and other AI tools are already transforming mathematics and software, and they will soon transform mathematical software.…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.21570.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.21570.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.21570v1" target="_blank" rel="noopener"><img src="../thumbs/2611.21570.jpg" alt="First page of Trustworthy Numerical Software in the Age of AI: What Would Turing Do?"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Trustworthy Numerical Software in the Age of AI: What Would Turing Do?</h1>
+        <p class="authors">Kimon Fountoulakis, Maksim Melnichenko, Muhammad Fetrat Qharabagh, Georgios Alexandros Georgantzas, George Spyrou, Oleg Balabanov, Vasileios Georgiou, Riley Murray, Michael W. Mahoney</p>
+        <div class="row">
+          <span class="badge">math.NA</span>
+          <span class="date">Nov 16, 2026 · v1</span>
+          <span class="badge">cs.MS</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.21570v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.21570" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/the-numerical-proving-ground/gpumode-kernel-audit-2026" target="_blank" rel="noopener" title="the-numerical-proving-ground/gpumode-kernel-audit-2026">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Presents VSCL, a Lean library formalizing numerical analysis (rounding-error analysis, finite-volume methods, high-dimensional probability), built by AI agents with Lean-checked proofs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">AI coding agents can now produce numerical software faster than human experts can review it, raising serious concerns about usability and reliability. These and other AI tools are already transforming mathematics and software, and they will soon transform mathematical software. These concerns motivated us to assess AI-generated numerical linear algebra (NLA) kernels, which we did through an audit of a recent public GPU QR competition. All five leading kernels passed the competition&#x27;s accuracy tests, and the winning kernel achieved a 107-fold speedup over the competition&#x27;s baseline, which calls NVIDIA&#x27;s QR routine. Yet each failed at least once on new inputs, even those from the competition&#x27;s generator, under the same checker, while the baseline passed them all. In light of this, we want to develop reusable formalizations of numerical analysis methods, which remain sparsely represented in existing formal libraries. We describe VSCL, our Lean library of mathematical foundations for numerical computing. We also propose VERNA to connect these tasks by using formalized results to guide kernel assessment against explicit specifications. Drawing on Turing&#x27;s work on rounding-error analysis and program checking, we discuss design principles for developing trustworthy numerical software when direct human checking is impractical.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">AI coding agents produce numerical linear algebra kernels faster than experts can review them, and passing competition accuracy tests does not ensure reliability. Numerical analysis is also sparsely represented in formal libraries such as Mathlib.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors audit the five top kernels of a public GPU MODE QR competition on wider inputs from the competition&#x27;s own generator, using the same checker. They describe VSCL, a Lean library formalizing material from Higham&#x27;s Accuracy and Stability of Numerical Algorithms, LeVeque&#x27;s finite-volume text, Vershynin&#x27;s High-Dimensional Probability, and optimization sources. In its workflow, AI agents write the Lean statements and proofs, other agents review the statements against the sources, and Lean checks every proof. They also propose VERNA, which would use VSCL&#x27;s formalized error bounds to test kernels against explicit specifications and issue certificates of trust.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.21570/orchestrator_prover_workflow_diagram.png" alt=""><figcaption>Figure 8: The proposed orchestrator–prover workflow separates statement construction and review from proof generation. The orchestrator prepares Lean statements and arranges their review against the source before passing accepted targets to the prover. Proof errors return to repair, while errors in statements or definitions return to review. Both roles use a shared project record. Acceptance requi</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">All five audited kernels passed the competition&#x27;s 12 scored cases but failed between 3 and 357 of 1,050 audit inputs, while the baseline failed none. VSCL covers claims from all 28 Higham chapters. In the reuse analysis, 74.9% of its declarations are used by another declaration.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.21570/qr-second-round-families.png" alt=""><figcaption>Figure 3: Audit failures by matrix family. Rows: the five audited entries by leaderboard rank, then the two controls. Each cell counts rejected outputs among the 105 audit inputs of a family. Data: audit record [ 99 ] .</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Rank</th><th>Entry</th><th>Scored failures</th><th>Audit failures</th><th>Families with failures</th></tr></thead><tbody><tr><td>1</td><td>10billiontokens</td><td>0/12</td><td>155/1,050</td><td>9/10</td></tr><tr><td>2</td><td>gau.nernst</td><td>0/12</td><td>46/1,050</td><td>2/10</td></tr><tr><td>3</td><td>dhu.randhar</td><td>0/12</td><td>327/1,050</td><td>9/10</td></tr><tr><td>5</td><td>michaelmelons</td><td>0/12</td><td>357/1,050</td><td>10/10</td></tr><tr><td>-</td><td>Baseline</td><td>0/12</td><td>0/1,050</td><td>0/10</td></tr></tbody></table><div class="tbl-cap">Audit of top QR competition entries (round 2)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

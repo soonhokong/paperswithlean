@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CompCert4Lean: Porting a Verified C Compiler to Lean in Six Weeks with Parallel Coding Agents · Papers With Lean</title>
+<meta name="description" content="We present CompCert4Lean, a large-scale port of CompCert 3.17&#x27;s verified compiler core from Rocq to Lean, completed in approximately six weeks by one expert directing parallel LLM agents. Our migration workflow partitions the development along its dependencies, audits translated…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CompCert4Lean: Porting a Verified C Compiler to Lean in Six Weeks with Parallel Coding Agents">
+<meta property="og:description" content="We present CompCert4Lean, a large-scale port of CompCert 3.17&#x27;s verified compiler core from Rocq to Lean, completed in approximately six weeks by one expert directing parallel LLM agents. Our migration workflow partitions the development along its dependencies, audits translated…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.21084.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.21084.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.21084v1" target="_blank" rel="noopener"><img src="../thumbs/2611.21084.jpg" alt="First page of CompCert4Lean: Porting a Verified C Compiler to Lean in Six Weeks with Parallel Coding Agents"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">CompCert4Lean: Porting a Verified C Compiler to Lean in Six Weeks with Parallel Coding Agents</h1>
+        <p class="authors">Cong Wang, Zhiyang Chen, Fan Long, Martin Rinard</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Nov 16, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.21084v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.21084" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/fanlong/compcert4lean" target="_blank" rel="noopener" title="fanlong/compcert4lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Ports CompCert&#x27;s verified C compiler and its correctness proofs from Rocq to Lean using parallel LLM coding agents.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We present CompCert4Lean, a large-scale port of CompCert 3.17&#x27;s verified compiler core from Rocq to Lean, completed in approximately six weeks by one expert directing parallel LLM agents. Our migration workflow partitions the development along its dependencies, audits translated definitions and theorem statements before large-scale proof reconstruction, and then reconstructs proofs in parallel against stable interfaces. The resulting compiler covers typed CompCert C through x86-64 assembly, discharges all 4,908 recorded proof obligations without project-specific axioms, and produces executable Linux binaries. The workflow enabled the expert to concentrate on organizing the work rather than supplying technical solutions. Of 1,071 human interactions, 88.8% concerned workflow and coordination, while only three supplied technical direction. Optimization campaigns further demonstrate the benefit of the Lean port for agent-driven verified development. Under matched budgets of 24 active hours, GPT-6-astra produced a Lean candidate with 11.7% lower generated-program runtime across 29 small-tests programs, compared with 2.3% lower for its Rocq candidate, both relative to original CompCert 3.17 and while preserving the end-to-end correctness theorem. These results show that parallel LLM agents can support large-scale migration with limited human technical direction and subsequently improve the migrated compiler while retaining its formal guarantees.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Much mature program-verification infrastructure, such as the CompCert verified C compiler, exists only in Rocq and cannot be reused directly in the Lean ecosystem. Porting it by hand would take years.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">One expert directed parallel LLM agents (Codex with GPT-5.6 Sol and GPT-6-astra) to migrate CompCert 3.17 from typed CompCert C to x86-64 assembly. The workflow first resolved shared migration gates such as coinductive traces, floating point, and memory injections. It then partitioned the development by dependencies, audited translated definitions and theorem statements, and reconstructed proofs in parallel against stable interfaces. A declaration map tracked correspondence between the Rocq and Lean declarations. Agent-driven optimization campaigns were then run in Lean and in Rocq under matched budgets.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The port covers 173 Lean modules and about 392k lines, discharges all 4,908 proof obligations without project-specific axioms, and produces Linux binaries that pass all selected small-tests and SPEC correctness cases. Of 1,071 human interactions, 88.8% concerned workflow and coordination. With 24 active hours, GPT-6-astra cut small-tests runtime by 11.7% in Lean versus 2.3% in Rocq while preserving the end-to-end correctness theorem.</p><div class="sum-table"><table><thead><tr><th>Benchmark</th><th>Correctness cases</th><th>O0 passed</th><th>O2 passed</th></tr></thead><tbody><tr><td>CompCert small-tests</td><td>139</td><td>139/139</td><td>139/139</td></tr><tr><td>Neutron</td><td>4</td><td>4/4</td><td>4/4</td></tr><tr><td>Zstd</td><td>1</td><td>1/1</td><td>1/1</td></tr><tr><td>SQLite</td><td>1</td><td>1/1</td><td>1/1</td></tr></tbody></table><div class="tbl-cap">Correctness results for CompCert4Lean rc-0.0.1 (passed/selected cases)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
