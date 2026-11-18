@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Unifying Metatheorem on Weak-Memory Robustness · Papers With Lean</title>
+<meta name="description" content="Memory models specify the behaviors that concurrent programs may exhibit under compiler and hardware optimizations, which often deviate from Sequential Consistency (SC). Robustness is the property of a program P not exhibiting any weak behaviors when executing under a weak…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Unifying Metatheorem on Weak-Memory Robustness">
+<meta property="og:description" content="Memory models specify the behaviors that concurrent programs may exhibit under compiler and hardware optimizations, which often deviate from Sequential Consistency (SC). Robustness is the property of a program P not exhibiting any weak behaviors when executing under a weak…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.22663.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.22663.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.22663v1" target="_blank" rel="noopener"><img src="../thumbs/2611.22663.jpg" alt="First page of A Unifying Metatheorem on Weak-Memory Robustness"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Unifying Metatheorem on Weak-Memory Robustness</h1>
+        <p class="authors">Giovanna Kobus Conrado, Stephan Spengler, Mohamed Faouzi Atig, Andreas Pavlogiannis</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Nov 17, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.22663v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.22663" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/kobusgiovanna/robustness-metatheorem-formalization" target="_blank" rel="noopener" title="kobusgiovanna/robustness-metatheorem-formalization">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The correctness of the unifying robustness metatheorem for KAT-definable memory models is formalized in Lean with a public repository; the PSPACE complexity bound is not formalized.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Memory models specify the behaviors that concurrent programs may exhibit under compiler and hardware optimizations, which often deviate from Sequential Consistency (SC). Robustness is the property of a program P not exhibiting any weak behaviors when executing under a weak memory model MM, compared to SC. As such, the algorithmic problem of deciding whether $P$ is robust against MM has been studied extensively, and has been repeatedly shown to be in PSPACE for many memory models, such as TSO, PSO, and Release/Acquire. However, each model has required its own, dedicated proof, raising the natural question of whether robustness admits a unifying treatment across memory models. In this work, we answer this question affirmatively for a broad class of memory models definable in Kleene Algebra with Tests (KAT). We prove that robustness against any prefix-closed, KAT-definable memory model is in PSPACE. This metatheorem recovers nearly all prior PSPACE robustness results, and establishes PSPACE membership for several new models, including the full RC11 and the OCaml memory model. We have further formalized the correctness of our approach in Lean. On the other hand, we prove that robustness against the KAT-definable Relaxed model is undecidable, and thus prefix-closedness cannot be dropped, in general. Finally, we implement our algorithm in a prototype tool RoboKAT, and demonstrate its flexibility by checking robustness against nine memory models, several of which are not handled by prior work.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Deciding whether a concurrent program is robust against a weak memory model (it shows no behaviors beyond Sequential Consistency) has been proven in PSPACE separately for each model. The question is whether one uniform treatment covers many memory models.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Robustness is reduced to searching for non-robustness witnesses of bounded pathwidth when the memory model is prefix-closed. A graph algebra encodes execution graphs of bounded pathwidth as words. Automata over these words check well-formedness, conformance to the program, and consistency or inconsistency under KAT-definable memory models. The correctness argument is formalized in Lean, but the space-complexity part is not, because Mathlib does not support space complexity.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Robustness against any prefix-closed KAT-definable memory model is in PSPACE. This recovers prior results and adds new ones, including full RC11 and the OCaml memory model. Robustness against the Relaxed model is undecidable, and a Spin-based prototype tool, RoboKAT, checks robustness against nine memory models.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Sorry to QED: Refining LLM Math Proofs via Angelic Execution · Papers With Lean</title>
+<meta name="description" content="Large language models (LLMs) can now generate Lean proof scripts that capture the high-level structure of many mathematical arguments. However, these scripts frequently fail on complex theorems: a single missing side condition or misapplied lemma can cause the prover to abort…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="From Sorry to QED: Refining LLM Math Proofs via Angelic Execution">
+<meta property="og:description" content="Large language models (LLMs) can now generate Lean proof scripts that capture the high-level structure of many mathematical arguments. However, these scripts frequently fail on complex theorems: a single missing side condition or misapplied lemma can cause the prover to abort…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.22103.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.22103.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.22103v1" target="_blank" rel="noopener"><img src="../thumbs/2611.22103.jpg" alt="First page of From Sorry to QED: Refining LLM Math Proofs via Angelic Execution"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">From Sorry to QED: Refining LLM Math Proofs via Angelic Execution</h1>
+        <p class="authors">Yanju Chen, Hanzhi Liu, Ruizhe Qian, Jiaming Shan, Xu Yang, Yufei Ding, Osbert Bastani, Yu Feng</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 17, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.22103v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.22103" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/shanjiaming/matheye-proof-builder" target="_blank" rel="noopener" title="shanjiaming/matheye-proof-builder">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Turns LLM-generated Lean 4/Mathlib proof drafts into verified proofs by replacing failing fragments with sorry, then resolving residual goals via MaxSAT-selected human queries.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language models (LLMs) can now generate Lean proof scripts that capture the high-level structure of many mathematical arguments. However, these scripts frequently fail on complex theorems: a single missing side condition or misapplied lemma can cause the prover to abort early and discard an otherwise viable proof outline. This paper presents MathEye, a framework that converts imperfect LLM-generated proof scripts into fully verified Lean proofs by combining symbolic reasoning with minimal human interaction. At the core of MathEye is angelic proof checking, an optimistic execution model that replaces failing proof fragments with placeholders while preserving the overall structure of the argument. This optimistic check produces an angelic proof that isolates the exact proof obligations that the LLM fails to discharge. Because these unresolved obligations are often logically interdependent, asking a mathematician to address every placeholder directly is inefficient. To minimize human effort, MathEye performs residual analysis over a proof dependence graph that captures symbol-level data flow in the angelic proof. By formulating obligation selection as a MaxSAT optimization problem, MathEye selects a minimal-cost set of essential obligations whose resolution suffices to complete the entire proof. MathEye presents these essential obligations to the mathematician in ordinary mathematical language and uses the mathematician&#x27;s answers to automatically reconstruct the complete Lean proof. Experiments on 30 real-world benchmarks across analysis and algebra show that MathEye solves 93.3% of the problems while reducing the number of required user interactions by 55%.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-generated Lean proof scripts often capture the right high-level structure of a complex theorem but fail on low-level obligations such as missing side conditions or misapplied lemmas. Provers then discard an otherwise viable proof outline.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">MathEye first obtains a Lean proof draft from an LLM (ChatGPT 5.1). It then runs angelic proof checking, which uses structural backtracking to replace failing fragments with sorry placeholders and yields a structurally valid proof whose residual goals are isolated. A proof dependence graph over Lean symbols is built and enriched with inferred mathematical relations. Choosing which goals to ask about is encoded as a MaxSAT/Z3 optimization that finds a minimal-cost core of obligations. These are shown to a mathematician in natural language, and the answers are used to reconstruct a complete proof that Lean rechecks.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.22103/framework-v1.png" alt=""><figcaption>Figure 2.2: Framework overview of MathEye .</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.22103/ex-angfix.png" alt=""><figcaption>Figure 4.1: Fault localization and generation of an angelic proof via structural backtracking. (a) Initial incomplete script with a semantic error caused by a misapplied tactic. (b) Structurally valid angelic proof after backtracking replaces the failing proof block with a sorry placeholder.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 30 graduate qualifying-exam theorems in analysis and algebra, formalized in Lean 4, MathEye solves 93.3% of problems. Its residual analysis cuts required user interactions by 55% compared with querying every residual goal.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

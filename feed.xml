@@ -8,6 +8,83 @@
     <language>en</language>
     <lastBuildDate>Tue, 17 Nov 2026 00:00:00 +0000</lastBuildDate>
     <item>
+      <title>A Unifying Metatheorem on Weak-Memory Robustness</title>
+      <link>https://paperswithlean.com/paper/2611.22663.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.22663.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Giovanna Kobus Conrado, Stephan Spengler, Mohamed Faouzi Atig, Andreas Pavlogiannis</dc:creator>
+      <category>verification</category><category>formalization</category><category>logic</category>
+      <description>The correctness of the unifying robustness metatheorem for KAT-definable memory models is formalized in Lean with a public repository; the PSPACE complexity bound is not formalized.
+
+Memory models specify the behaviors that concurrent programs may exhibit under compiler and hardware optimizations, which often deviate from Sequential Consistency (SC). Robustness is the property of a program P not exhibiting any weak behaviors when executing under a weak memory model MM, compared to SC. As such, the algorithmic problem of deciding whether $P$ is robust against MM has been studied extensively, and has been repeatedly shown to be in PSPACE for many memory models, such as TSO, PSO, and Release/Acquire. However, each model has required its own, dedicated proof, raising the natural question of whether robustness admits a unifying treatment across memory models. In this work, we answer this question affirmatively for a broad class of memory models definable in Kleene Algebra with Tests (KAT). We prove that robustness against any prefix-closed, KAT-definable memory model is in PSPACE. This metatheorem recovers nearly all prior PSPACE robustness results, and establishes PSPACE membership for several new models, including the full RC11 and the OCaml memory model. We have further formalized the correctness of our approach in Lean. On the other hand, we prove that robustness against the KAT-definable Relaxed model is undecidable, and thus prefix-closedness cannot be dropped, in general. Finally, we implement our algorithm in a prototype tool RoboKAT, and demonstrate its flexibility by checking robustness against nine memory models, several of which are not handled by prior work.</description>
+    </item>
+    <item>
+      <title>Datatypes In, Zippers Out!</title>
+      <link>https://paperswithlean.com/paper/2611.22572.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.22572.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Smayan Agarwal, Aalok Thakkar</dc:creator>
+      <category>verification</category><category>type-theory</category>
+      <description>A Lean 4 development mechanises simulation, move and trail bounds, and completeness of generated zipper code for finite single self-recursive datatypes.
+
+A zipper represents a focused position in an algebraic data structure together with the context needed to reconstruct the whole. Datatype derivatives determine one-hole context types, but do not by themselves choose a zipper&#x27;s concrete representation or specify navigation costs and demands. We present Kamot, a tool that converts regular algebraic datatype declarations in a restricted Haskell fragment into zipper implementations with operational contracts. Navigation, replacement, and reconstruction are proved correct against a reference traversal. Kamot supports mutual recursion and regular containers inside containers. A compositional analysis derives sound bounds on transitions and constructor demands for certified traversal directions. These bounds are affine in trail depth (the number of saved frames) and guarantee termination of each move on productive, potentially infinite inputs. For inhabited families the analysis is complete: when no move certificate is emitted, no bound depending only on trail depth exists, and some productive input makes a move diverge. We prove that the generated code preserves results and the reference order of constructor matches, including finite prefixes of divergent searches. Lean 4 verifies simulation, bounds, and completeness for finite values of single self-recursive datatypes, in both directions. On 19 datatype models and 81 generated families, every generated module passes Haskell type checking, and independent checkers validate certificates, traces, and bounds. In a prefetching workload, starting only searches whose bounds fit a budget answers every local query and avoids discarded source evaluations on long returns, but conservative bounds can lose answers that fuelled search delivers.</description>
+    </item>
+    <item>
+      <title>From Sorry to QED: Refining LLM Math Proofs via Angelic Execution</title>
+      <link>https://paperswithlean.com/paper/2611.22103.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.22103.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Yanju Chen, Hanzhi Liu, Ruizhe Qian, Jiaming Shan, Xu Yang, Yufei Ding, Osbert Bastani, Yu Feng</dc:creator>
+      <category>theorem-proving-ml</category><category>tooling</category><category>analysis</category><category>algebra</category>
+      <description>Turns LLM-generated Lean 4/Mathlib proof drafts into verified proofs by replacing failing fragments with sorry, then resolving residual goals via MaxSAT-selected human queries.
+
+Large language models (LLMs) can now generate Lean proof scripts that capture the high-level structure of many mathematical arguments. However, these scripts frequently fail on complex theorems: a single missing side condition or misapplied lemma can cause the prover to abort early and discard an otherwise viable proof outline. This paper presents MathEye, a framework that converts imperfect LLM-generated proof scripts into fully verified Lean proofs by combining symbolic reasoning with minimal human interaction. At the core of MathEye is angelic proof checking, an optimistic execution model that replaces failing proof fragments with placeholders while preserving the overall structure of the argument. This optimistic check produces an angelic proof that isolates the exact proof obligations that the LLM fails to discharge. Because these unresolved obligations are often logically interdependent, asking a mathematician to address every placeholder directly is inefficient. To minimize human effort, MathEye performs residual analysis over a proof dependence graph that captures symbol-level data flow in the angelic proof. By formulating obligation selection as a MaxSAT optimization problem, MathEye selects a minimal-cost set of essential obligations whose resolution suffices to complete the entire proof. MathEye presents these essential obligations to the mathematician in ordinary mathematical language and uses the mathematician&#x27;s answers to automatically reconstruct the complete Lean proof. Experiments on 30 real-world benchmarks across analysis and algebra show that MathEye solves 93.3% of the problems while reducing the number of required user interactions by 55%.</description>
+    </item>
+    <item>
+      <title>Positivity in symmetric webs and block permanents</title>
+      <link>https://paperswithlean.com/paper/2611.22058.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.22058.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Daniel Tubbenhauer</dc:creator>
+      <category>formalization</category><category>combinatorics</category><category>algebra</category>
+      <description>The paper&#x27;s results are formalized in Lean, with the cited literature taken as input axioms, and the formalization is available in a linked repository.
+
+We use symmetric webs to prove Marcus&#x27;s block-permanent inequality for up to four blocks of every size, for five blocks of size at least three, and for any fixed number of blocks above an explicit logarithmic bound on the block size. The proof idea is easy: Bending strands in the Schur relation turns the comparison into a calculation with squared norms.</description>
+    </item>
+    <item>
+      <title>A Temporal Algebraic Framework for Data Stream Evaluation Under Delayed Labels and Distribution Shifts</title>
+      <link>https://paperswithlean.com/paper/2611.21914.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21914.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Ronaldo C. Prati, Elaine Ribeiro de Faria</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>ml-theory</category>
+      <description>Twenty-five statements about temporal confusion-matrix aggregation are checked in Lean 4 against Mathlib, with the running example&#x27;s values recomputed; the formalization is in a public repository.
+
+In data streams, labels often arrive late or only for some instances, class prevalence drifts, and rare classes vanish from short windows. Standard evaluation then confuses a degraded decision boundary with a change in prevalence, and is biased when labels are delayed or selected by the model. We extend an algebraic framework that obtains pooled (micro) and per-class (macro) measures from one confusion matrix to streams, weighting the counts in time by exponential fading or a sliding window; the update costs O(m^2) per step, whatever the stream length, and each pooled measure stays a weighted combination of the per-class ones. Delayed and selective feedback enter as an observation mask: until its label arrives, an instance is counted with the model&#x27;s calibrated class probabilities, and the bias of this interim estimate is driven by their calibration error. Audited conventions report no value for a class without verified instances. We separate prior shift from concept drift by monitoring prior-free coordinates (recall and specificity) and attribute a change in a measure to the two sources with a first-order Jacobian decomposition. On synthetic streams and four real datasets, a detector on these coordinates with a memory per class raises no excess false alarms under label shift, unlike the Jacobian alarm and error-rate detectors. The correction for delayed labels recovers recall in some real settings and is only partial for precision, specificity and F1. Twenty-five statements are checked in Lean 4, and the code is in the aggmetrics package.</description>
+    </item>
+    <item>
+      <title>Simultaneous analysis of approximate leave-one-out cross-validation and mean-field inference II: General convex penalties</title>
+      <link>https://paperswithlean.com/paper/2611.21877.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21877.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Pierre C Bellec</dc:creator>
+      <category>formalization</category><category>probability</category><category>ml-theory</category>
+      <description>Formalizes in Lean 4 the A_der matrix construction, its recovery identities, and the ALO and mean-field statistical guarantees, with code in arXiv ancillary files.
+
+For smooth penalties and group Lasso, analyzed approximate leave-one-out (ALO) cross-validation by comparing its weights with the trace correction used in mean-field inference. For a $C^2$ penalty $R$, the matrix entering these corrections is $A=[\nabla^2R(\widehat b)+X^TDX]^{-1}$, where $\widehat b$ is the full-data estimator and $D$ is the diagonal matrix of fitted loss curvatures; for group Lasso, the penalty and loss curvatures are first restricted to the active support before taking the pseudoinverse. The obstacle to extending this argument to general convex penalties was the lack of an explicit formula for the matrix $A$ entering these corrections. For every finite-valued strongly convex penalty, we construct such a matrix from ordinary derivatives of the penalty response at the observed subgradient. Its projection–pseudoinverse formula separates the response space and penalty curvature, fixed by conditioning, from the explicit design dependence. This supplies the missing ingredient to extend the probabilistic argument of Part I. The construction recovers the inverse Hessian for smooth penalties and the active-group inverse for group Lasso, including inactive boundary groups. In the proportional regime, for Gaussian designs with general positive-definite covariance and covariance-scaled strong convexity, we obtain unconditional bounds comparing both ALO and mean-field predictions with exact leave-one-out predictions in regression and single-index models. The expected average squared prediction error is $O(n^{-1})$, and the expected absolute criterion error is $O(n^{-1/2})$, under bounded, 1-Lipschitz loss scores and suitable test functions. The matrix and ALO weights use only observed data; the mean-field correction additionally uses the design covariance. The construction, recovery identities and statistical guarantees are formalized in Lean 4.</description>
+    </item>
+    <item>
+      <title>Hidden convexity of the Eliashberg condensation energy: existence, uniqueness and continuity of the superconducting state</title>
+      <link>https://paperswithlean.com/paper/2611.21773.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21773.html</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Davis Rens</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>physics</category><category>analysis</category>
+      <description>The finite-dimensional algebraic and convex-analytic core (rearrangement identities, folding, strict convexity, finite-dimensional existence and uniqueness) is formalized in Lean 4 with Mathlib.
+
+Kiessling, Altshuler and Yuzbashyan conjectured the thermodynamic transition picture for the isotropic Eliashberg spin-chain functional with vanishing Coulomb pseudopotential: the normal state is the unique minimizer above and at a critical temperature, the superconducting minimizer below it is unique up to gauge, and the transition is continuous. We establish the nonlinear part of this picture. In the variables $ρ_n=\sin^2θ_n$, the condensation energy restricted to the first quadrant is strictly convex, and folding any admissible chain into that quadrant cannot increase its energy. For every positive, non-increasing interaction with power-law decay, hidden convexity and a compactness estimate give existence and uniqueness of the minimizer up to gauge. The normal state minimizes the energy exactly when its quadratic form is non-negative, including marginal stability. Among admissible chains, a positive solution of the nonlinear Eliashberg equations exists exactly when the normal state is linearly unstable and is then unique. For temperature-dependent families with pointwise continuity and locally uniform decay bounds, the minimizing density is continuous in a weighted $\ell^1$ norm. Together with uniqueness of the linear-stability temperature, these results prove the thermodynamic conjectures for the $γ$-model, Einstein phonons and general phonon spectra; the phonon applications use separately established spectral input. Finite-dimensional algebraic and convex-analytic components are machine-checked in Lean. The proofs were obtained independently of concurrent work that reaches overlapping conclusions.</description>
+    </item>
+    <item>
       <title>Trustworthy Numerical Software in the Age of AI: What Would Turing Do?</title>
       <link>https://paperswithlean.com/paper/2611.21570.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21570.html</guid>
@@ -589,83 +666,6 @@ We prove the touching refinement of the Theta conjecture of Interdonato and Irac
       <description>The authors formalized the paper&#x27;s results in Lean 4 with AI assistance and released the formalization in a public GitHub repository.
 
 In this paper, we prove the strong cylinder conjecture, that is, for every prime $p$, a set of $p^2$ points in $\mathbb F_p^3$ that meets every affine plane in a multiple of $p$ points is a union of $p$ distinct parallel affine lines. We use this result to resolve Rédei&#x27;s 1970 factorization conjecture in three dimensions: if $A,B\subseteq\mathbb F_p^3$ contain zero and every vector in $\mathbb F_p^3$ has a unique expression $a+b$ with $a\in A$ and $b\in B$, then one of the two sets is contained in a plane through zero.</description>
-    </item>
-    <item>
-      <title>Bisect-Index-Choose: A Fast and Exact Algorithm for EV Charging under Minimum Charging Rates</title>
-      <link>https://paperswithlean.com/paper/2611.10902.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.10902.html</guid>
-      <pubDate>Fri, 13 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Can Berk Saner</dc:creator>
-      <category>formalization</category>
-      <description>The paper&#x27;s theorems and lemmas on the BIC algorithm&#x27;s optimality are formalized in Lean 4, with the formalization released in a public repository.
-
-Electric vehicle (EV) charging stations are increasingly operated with an aggregate power limit below the sum of their port ratings, and require scheduling algorithms to divide the available power among the connected EVs. Charging standards permit a current that is either zero or at least a minimum rate, typically 6 A, which makes this allocation problem non-convex. Existing methods either solve a mixed-integer program with a commercial solver, which can be computationally expensive, adds software dependencies, and incurs licensing costs, or apply heuristics without optimality guarantees. This paper proposes Bisect-Index-Choose (BIC), a fast and solver-free scheduling algorithm that computes a globally optimal allocation among EVs under mild assumptions on their utilities. For $n$ EVs, BIC runs in $O(n \log n)$ time when all EVs share one maximum rate and in $O(n^2)$ time for two, times a logarithmic factor in the numerical precision. In tests with up to 1000 EVs, BIC attains global optimality and is up to three orders of magnitude faster than the solver. On real-world charging data, it needs less capacity and delivers more energy than existing heuristics. We implement BIC on a low-cost microcontroller and show that it solves instances with 1000 EVs in less than 90 ms.</description>
-    </item>
-    <item>
-      <title>On the estimation of linear-optical amplitudes and probabilities with entangled input state</title>
-      <link>https://paperswithlean.com/paper/2611.10500.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.10500.html</guid>
-      <pubDate>Fri, 13 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Jean Senellart, Pierre-Emmanuel Emeriau</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>quantum</category><category>probability</category>
-      <description>Formalises the Gaussian/Rademacher permanent identity, the importance-sampled estimator&#x27;s unbiasedness and variance, and the exactness of the sequential MPS sampler in Lean 4 with Mathlib.
-
-Most proposed applications of boson samplers, including photonic machine-learning models, do not use the samples themselves but estimates of output probabilities, marginals or overlaps, obtained to additive precision from a finite number of shots. For product inputs such as single photons, these quantities can already be estimated classically with Gurvits&#x27;s algorithm and its generalisations. We ask whether entangled inputs change this picture. For any $n$-photon input that is a matrix-product state of bond dimension $χ$, with one photon per site and $L$ modes per site, we give an unbiased estimator of any output amplitude of an $m$-mode interferometer, whose mean-square error after $N$ draws is at most $\|ψ\|^2/N$ whatever the interferometer, the output pattern and the entanglement of the state. Each draw costs $O(nLχ^2+nL^3+mn)$ operations after $O(nLχ^3)$ preprocessing, and an additive error $\varepsilon$ with probability at least $1-δ$ requires $O(\|ψ\|^2\varepsilon^{-2}\log(1/δ))$ draws, with memory of the order of the input size. The main application is to light emitted sequentially by quantum emitters, such as spin-based sources of photonic cluster states, for which $χ$ is bounded by the dimension of the source&#x27;s retained quantum memory: one spin gives $χ=2$ at any length, and a memory of $k$ qubits, held in emitters or in photons stored in a delay line, gives $χ\le2^k$, so the cost stays polynomial as long as $k=O(\log n)$. The same sampler also estimates traced-memory probabilities, overlaps and individual marginal probabilities. All guarantees are additive: the estimator gives neither relative estimates of exponentially small probabilities nor a sampler of the output distribution.</description>
-    </item>
-    <item>
-      <title>Telling coordination from coincidence: a no-interaction twin for collective systems</title>
-      <link>https://paperswithlean.com/paper/2611.10367.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.10367.html</guid>
-      <pubDate>Fri, 13 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Eric J. Couture</dc:creator>
-      <category>formalization</category><category>physics</category>
-      <description>Proves in Lean 4 that, for any pairwise force obeying Newton&#x27;s third law over any commutative ring, the centre of mass follows the no-interaction law exactly.
-
-Measures of emergence based on information theory or causal closure ask whether a group variable has a predictable law of its own, but not whether that law was produced by the members&#x27; interactions: the centre of mass of non-interacting random walkers passes the standard criterion $Ψ$. We introduce the interaction share S, the fraction of the forecast error of a system&#x27;s no-interaction twin (the same members with every interaction removed) that the real group law eliminates, and a projected estimator with expectation zero without interaction. For Gaussian forecasts, $-\frac{1}{2}\ln(1-S)$ is the expected Kullback-Leibler divergence of the real group law from the twin&#x27;s. S is exactly zero for the centre of mass of linearly coupled walkers, and a machine-checked proof extends this to any pairwise force obeying Newton&#x27;s third law. Across magnets, oscillators and flocking models it rises from 0 to about 1 where collective order appears. With time-shifted virtual groups and positive controls, it separates real fish schools (0.54-0.91, 17 recordings, two species) from groups that never interacted (-0.10 to 0.07), and it falls to zero when zebrafish are placed in the dark. In 221 mouse brain areas and in US stock markets the shares are small (about 1-3%) and were confirmed in pre-registered tests on unseen data. For linear forecasts the share is a memory gap, computable from two autocorrelation curves without fitting a twin; it matches measured shares (Spearman 0.97) and predicted fresh markets within 0.004. All code, data pipelines and hashed pre-registrations are public.</description>
-    </item>
-    <item>
-      <title>Matching in Random-Order Streams via Historical Deletion Bounds</title>
-      <link>https://paperswithlean.com/paper/2611.17248.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.17248.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Alireza Farhadi, Mohammadtaghi Hajiaghayi, Mohammad Mahdavi</dc:creator>
-      <category>formalization</category><category>verification</category><category>combinatorics</category>
-      <description>The approximation guarantees, the historical deletion inequality, and an exact rational LP certificate are formally verified in Lean, with a public repository.
-
-We study maximum matching when the edges of a fixed graph arrive in a uniformly random order. For any fixed $\varepsilon&gt;0$, we give a one-pass algorithm that achieves, with high probability over the arrival order, approximation ratios of $0.71295$ for unweighted graphs and $0.71295-\varepsilon$ for weighted graphs, using near-linear space with an explicit charge for weight precision. Both approximation ratios hold for bipartite and general graphs. The algorithm does not require the stream length or the weight range in advance. The main structural ingredient is a historical deletion inequality for weighted matchings. The deletion price of a vertex set is the decrease in maximum matching weight when that set is removed. We bound the sum of these prices for pairwise disjoint vertex sets, even when each price is evaluated at a different stage as edges are added to the graph. Applied to the usual unfolding of integer weights, it transfers a bipartite cardinality certificate to an original weighted matching, even when the original graph is not bipartite. This transfer preserves the approximation coefficient. We combine this transfer with a refined analysis of fractional matchings in the two auxiliary graphs arising in the transfer theorem. An exact rational linear-programming certificate proves the stated constant for every feasible graph profile. The approximation guarantees and the new structural results are formally verified in Lean.</description>
-    </item>
-    <item>
-      <title>Forbidden subset sums in a linear range: an inverse theorem and the Erdős-Graham irregularity problem</title>
-      <link>https://paperswithlean.com/paper/2611.17205.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.17205.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Mateo Matijasevick</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>combinatorics</category><category>number-theory</category>
-      <description>Main results on Erdős Problem #361, including Freiman&#x27;s 3k-4 theorem and an inverse theorem for q in {2,3}, are formalized in Lean 4 with Mathlib (about 5000 lines).
-
-For $c&gt;0$ let $f_c(n)$ be the largest size of a set $A\subseteq\{1,\dots,\lfloor cn\rfloor\}$ such that $n$ is not a sum of distinct elements of $A$. Erdős and Graham asked whether $f_c(n)$ depends on $n$ in an irregular way (Erdős Problem #361). We prove that $f_c(n)=\lfloor cn\rfloor-\lceil n/2\rceil$ for $c\ge 1$, while for $0&lt;c&lt;1$ the ratio $f_c(n)/n$ has $\limsup$ equal to $c/2$, attained along odd $n$, and, along the integers $n$ whose least non-divisor equals a prime power $q$, tends to \[ \max\Bigl\{\frac cq,\; c-\frac12+\frac{1-c}{q}\Bigr\} \qquad\text{whenever } 2^{q-2}\min\{c,1-c\}\le 1 . \] Consequently $f_c(n)/n$ converges if and only if $c\ge1$; for $0&lt;c&lt;1$ it has at least two limit points, and arbitrarily many as $c\to0^+$ or $c\to1^-$. For $c=1/2$ the set of limit points is exactly $\{1/6,1/4\}$. The upper bounds follow from an inverse theorem of independent interest: if $s\ge1$, $q$ is the least positive integer not dividing $s$, and $\varepsilon&gt;0$, then every $A\subseteq\{1,\dots,E\}$ with $|A|\ge E/q+\varepsilon T$ has a subset summing to $sT$, uniformly for all sufficiently large $T$ and all $E\le sT/2^{q-2}$. For $s=2$, this extends Alon&#x27;s theorem on subsets of $\{1,\dots,N\}$ with no subset sum equal to $2N$. The results for $c\ge1$ and the $\limsup$, as well as the limits and the inverse theorem for $q\in\{2,3\}$, have been formalized and machine-checked in the Lean 4 proof assistant.</description>
-    </item>
-    <item>
-      <title>Propositional Dynamic Logic without tests does not have Craig Interpolation</title>
-      <link>https://paperswithlean.com/paper/2611.16759.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.16759.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Malvin Gattinger</dc:creator>
-      <category>formalization</category><category>ai-agents</category><category>mathlib</category><category>logic</category>
-      <description>The counterexample to interpolation for test-free PDL is formalized in Lean, using Mathlib semilinear sets; it was found by LLM agents (Claude, Aristotle) working on an existing Lean PDL formalization.
-
-It was shown recently by Borzechowski et al. (2026) that Propositional Dynamic Logic (PDL) has Craig Interpolation. Whether test-free PDL, i.e. PDL without the `?&#x27; operator, has interpolation remained open. Here we answer this question in the negative with a counterexample: a test-free PDL validity for which no test-free interpolant exists. The validity only uses one atomic program and the Kleene star, so it implies that the basic modal logic K extended with the reflexive transitive closure does not have interpolation, as previously shown by Studer (2009). The example was originally obtained using LLMs and Lean. We describe our methodology and provide links to all prompts, LLM output summaries as well as the Lean proof.</description>
-    </item>
-    <item>
-      <title>A Polynomial-Time Sixth-Power Excluded Grid Theorem</title>
-      <link>https://paperswithlean.com/paper/2611.16755.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.16755.html</guid>
-      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Mohammad Hajiaghayi</dc:creator>
-      <category>formalization</category><category>verification</category><category>combinatorics</category><category>mathlib</category>
-      <description>A companion Lean development verifies the algorithmic construction, its success-probability guarantee, and polynomial running-time composition, with published algorithms supplied as explicit interfaces.
-
-We give a polynomial-time construction for a sixth-power excluded-grid theorem. Every graph whose treewidth is at least $g^6$ times a fixed polylogarithmic factor contains a $g\times g$ grid minor that our randomized algorithm finds with constant probability. The algorithm outputs an explicit minor model, and the exponent in its running time is independent of $g$. This improves the ninth-power existence bound of Chuzhoy and Tan \cite{CT21} and the $g^{98}$ threshold in the polynomial-time construction of Chekuri and Chuzhoy \cite{CC16}. Quantitative bounds relating treewidth to grid size are central to bidimensionality, developed by Demaine, Hajiaghayi, and collaborators \cite{DH05,DH08}. The main ingredient is an asymmetric local routing theorem that uses substantially fewer attachment paths than backbone paths. A balanced recursion preserves connectivity by charging deletions to the boundary of a fixed reference cluster. We construct the smaller attachment sets through a routing hierarchy: either it exposes an accessible well-linked boundary, or its quotient graphs contain the desired grid. These arguments implement cluster splitting using approximate cuts and flow computations. An explicit cut-matching construction and a constructive grid-extraction procedure complete the algorithm. We also give a general packing–covering hypothesis for trees meeting three prescribed terminal sets under which the exponent can be reduced below six. A companion Lean development verifies the new construction, its success guarantee, and the composition of its polynomial running time, using explicit interfaces for the published algorithms and standard finite-data operations.</description>
     </item>
   </channel>
 </rss>

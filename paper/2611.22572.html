@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Datatypes In, Zippers Out! · Papers With Lean</title>
+<meta name="description" content="A zipper represents a focused position in an algebraic data structure together with the context needed to reconstruct the whole. Datatype derivatives determine one-hole context types, but do not by themselves choose a zipper&#x27;s concrete representation or specify navigation costs…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Datatypes In, Zippers Out!">
+<meta property="og:description" content="A zipper represents a focused position in an algebraic data structure together with the context needed to reconstruct the whole. Datatype derivatives determine one-hole context types, but do not by themselves choose a zipper&#x27;s concrete representation or specify navigation costs…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.22572.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.22572.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.22572v1" target="_blank" rel="noopener"><img src="../thumbs/2611.22572.jpg" alt="First page of Datatypes In, Zippers Out!"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Datatypes In, Zippers Out!</h1>
+        <p class="authors">Smayan Agarwal, Aalok Thakkar</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Nov 17, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=type-theory">type-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.22572v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.22572" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.24193628" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A Lean 4 development mechanises simulation, move and trail bounds, and completeness of generated zipper code for finite single self-recursive datatypes.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A zipper represents a focused position in an algebraic data structure together with the context needed to reconstruct the whole. Datatype derivatives determine one-hole context types, but do not by themselves choose a zipper&#x27;s concrete representation or specify navigation costs and demands. We present Kamot, a tool that converts regular algebraic datatype declarations in a restricted Haskell fragment into zipper implementations with operational contracts. Navigation, replacement, and reconstruction are proved correct against a reference traversal. Kamot supports mutual recursion and regular containers inside containers. A compositional analysis derives sound bounds on transitions and constructor demands for certified traversal directions. These bounds are affine in trail depth (the number of saved frames) and guarantee termination of each move on productive, potentially infinite inputs. For inhabited families the analysis is complete: when no move certificate is emitted, no bound depending only on trail depth exists, and some productive input makes a move diverge. We prove that the generated code preserves results and the reference order of constructor matches, including finite prefixes of divergent searches. Lean 4 verifies simulation, bounds, and completeness for finite values of single self-recursive datatypes, in both directions. On 19 datatype models and 81 generated families, every generated module passes Haskell type checking, and independent checkers validate certificates, traces, and bounds. In a prefetching workload, starting only searches whose bounds fit a budget answers every local query and avoids discarded source evaluations on long returns, but conservative bounds can lose answers that fuelled search delivers.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Datatype derivatives give one-hole context types, but they do not fix a zipper&#x27;s concrete representation or specify its navigation costs and the constructors it forces. Programmers need zipper implementations whose correctness and operational behaviour are guaranteed, including on productive, potentially infinite inputs.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Kamot compiles regular algebraic datatypes in a restricted Haskell fragment, including mutual recursion and nested containers, into zipper modules that keep backward trails of frames. A reference machine relates the generated clauses to an ordered traversal. A compositional analysis over nullability and prefix edges derives move bounds that are affine in trail depth, and constructor-demand bounds, for certified directions. The one-sort finite results are mechanised in Lean 4 using only core Lean; families, container lowering, and infinite-input bounds are proved on paper.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Lean 4 verifies lockstep simulation, termination, root-entry and move bounds, trail-sum bounds, and completeness for finite values of single self-recursive datatypes, in both directions. On 19 datatype models and 81 generated families, every generated module type-checks, and independent checkers validate certificates, traces, and bounds. A prefetching workload shows that budgeted searches avoid discarded source evaluations, but conservative bounds can lose some answers that fuelled search finds.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

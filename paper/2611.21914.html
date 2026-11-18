@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Temporal Algebraic Framework for Data Stream Evaluation Under Delayed Labels and Distribution Shifts · Papers With Lean</title>
+<meta name="description" content="In data streams, labels often arrive late or only for some instances, class prevalence drifts, and rare classes vanish from short windows. Standard evaluation then confuses a degraded decision boundary with a change in prevalence, and is biased when labels are delayed or…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Temporal Algebraic Framework for Data Stream Evaluation Under Delayed Labels and Distribution Shifts">
+<meta property="og:description" content="In data streams, labels often arrive late or only for some instances, class prevalence drifts, and rare classes vanish from short windows. Standard evaluation then confuses a degraded decision boundary with a change in prevalence, and is biased when labels are delayed or…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.21914.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.21914.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.21914v1" target="_blank" rel="noopener"><img src="../thumbs/2611.21914.jpg" alt="First page of A Temporal Algebraic Framework for Data Stream Evaluation Under Delayed Labels and Distribution Shifts"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A Temporal Algebraic Framework for Data Stream Evaluation Under Delayed Labels and Distribution Shifts</h1>
+        <p class="authors">Ronaldo C. Prati, Elaine Ribeiro de Faria</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Nov 16, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.DB</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.21914v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.21914" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/rcprati/aggmetrics-datastream-lean" target="_blank" rel="noopener" title="rcprati/aggmetrics-datastream-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Twenty-five statements about temporal confusion-matrix aggregation are checked in Lean 4 against Mathlib, with the running example&#x27;s values recomputed; the formalization is in a public repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">In data streams, labels often arrive late or only for some instances, class prevalence drifts, and rare classes vanish from short windows. Standard evaluation then confuses a degraded decision boundary with a change in prevalence, and is biased when labels are delayed or selected by the model. We extend an algebraic framework that obtains pooled (micro) and per-class (macro) measures from one confusion matrix to streams, weighting the counts in time by exponential fading or a sliding window; the update costs O(m^2) per step, whatever the stream length, and each pooled measure stays a weighted combination of the per-class ones. Delayed and selective feedback enter as an observation mask: until its label arrives, an instance is counted with the model&#x27;s calibrated class probabilities, and the bias of this interim estimate is driven by their calibration error. Audited conventions report no value for a class without verified instances. We separate prior shift from concept drift by monitoring prior-free coordinates (recall and specificity) and attribute a change in a measure to the two sources with a first-order Jacobian decomposition. On synthetic streams and four real datasets, a detector on these coordinates with a memory per class raises no excess false alarms under label shift, unlike the Jacobian alarm and error-rate detectors. The correction for delayed labels recovers recall in some real settings and is only partial for precision, specificity and F1. Twenty-five statements are checked in Lean 4, and the code is in the aggmetrics package.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">In data streams, labels can arrive late or only for some instances, class priors drift, and rare classes may be absent from short windows. Standard evaluation then confuses changes in the decision boundary with prior shifts, and it is biased under delayed or selective labels.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Extends an indicator-matrix algebraic framework for micro and macro measures to streams through a temporal operator that weights confusion counts by exponential fading or a sliding window, at O(m^2) cost per update. Delayed and selective feedback are modeled as an observation mask, and unlabeled instances are counted using calibrated class probabilities. Prior shift is separated from concept drift by monitoring prior-free coordinates and by a first-order Jacobian decomposition. Twenty-five statements are machine-checked in Lean 4 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">A per-class detector on prior-free coordinates raises no excess false alarms under label shift, while Jacobian-alarm and error-rate detectors do. The delayed-label correction recovers recall in some real settings but only partially corrects precision, specificity and F1. Code is in the aggmetrics package, and the Lean formalization is public.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
