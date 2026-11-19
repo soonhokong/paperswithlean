@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Combinatorial Boolean Matrix Multiplication in $n^3 / 2^{Ω(\sqrt{\log n})}$ Time · Papers With Lean</title>
+<meta name="description" content="For over fifty years, combinatorial algorithms for Boolean matrix multiplication (BMM) and triangle detection saved only polylogarithmic factors over cubic time. At STOC 2024, Abboud, Fischer, Kelley, Lovett, and Meka broke this barrier with a deterministic $O(n^3 / 2^{Ω((\log…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Combinatorial Boolean Matrix Multiplication in $n^3 / 2^{Ω(\sqrt{\log n})}$ Time">
+<meta property="og:description" content="For over fifty years, combinatorial algorithms for Boolean matrix multiplication (BMM) and triangle detection saved only polylogarithmic factors over cubic time. At STOC 2024, Abboud, Fischer, Kelley, Lovett, and Meka broke this barrier with a deterministic $O(n^3 / 2^{Ω((\log…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.06717.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.06717.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.06717v2" target="_blank" rel="noopener"><img src="../thumbs/2611.06717.jpg" alt="First page of Combinatorial Boolean Matrix Multiplication in $n^3 / 2^{Ω(\sqrt{\log n})}$ Time"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Combinatorial Boolean Matrix Multiplication in $n^3 / 2^{Ω(\sqrt{\log n})}$ Time</h1>
+        <p class="authors">Piaoyang Cui, Yiming Liu, David P. Woodruff</p>
+        <div class="row">
+          <span class="badge">cs.DS</span>
+          <span class="date">Nov 4, 2026 · v2</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.06717v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.06717" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/lockqueue/bmm" target="_blank" rel="noopener" title="lockqueue/bmm">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Main theorems on combinatorial BMM and triangle detection are machine-checked in Lean 4 with zero sorries, using a cost-accounting monad for running time.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">For over fifty years, combinatorial algorithms for Boolean matrix multiplication (BMM) and triangle detection saved only polylogarithmic factors over cubic time. At STOC 2024, Abboud, Fischer, Kelley, Lovett, and Meka broke this barrier with a deterministic $O(n^3 / 2^{Ω((\log n)^{1/7})})$-time algorithm, and asked whether $n^3 / 2^{Ω(\sqrt{\log n})}$ time is achievable. We answer this question in the affirmative, giving deterministic combinatorial algorithms for both BMM and triangle detection running in $O(n^3 / 2^{Ω(\sqrt{\log n})})$ time. Following Abboud et al., we decompose $(A,B)$ into pairs of submatrices $(A_k,B_k)$, called pieces, each of which is either sparse or pseudorandom in a sense that forces $A_k\star B_k$ to be nearly all-ones on its vertex sets. Whereas their decomposition produces $2^{O(d^7)}$ pieces at regularity parameter $d$, we obtain $2^{O(d^2)}$ pieces, directly improving the runtime exponent from $(\log n)^{1/7}$ to $\sqrt{\log n}$. Prior work found pseudorandom pieces by repeatedly restricting to denser submatrices, paying worst-case vertex losses at each step that compounded across nested recursion levels, together with an expensive derandomization step. We eliminate the extra powers of $d$ by matching the vertex loss at each step to the size of its density jump so losses telescope across scales, derandomizing witness search via $L_d$-norm estimation so the sampler length stays $2^{O(d)}$, and bounding overlap across the recursion with a fractional density-weighted volume budget rather than raw submatrix volume.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Combinatorial algorithms for Boolean matrix multiplication and triangle detection long saved only polylogarithmic factors over cubic time. Abboud et al. (STOC 2024) reached n^3/2^{Ω((log n)^{1/7})} and asked whether n^3/2^{Ω(√log n)} is achievable.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The matrices are decomposed into pieces that are each sparse or pseudorandom (grid-regular), producing 2^{O(d^2)} pieces instead of 2^{O(d^7)}. Vertex losses are matched to density jumps so they telescope across scales, and witness search is derandomized via L_d-norm estimation. Overlap across the recursion is bounded with a fractional density-weighted volume budget. Gemini agents produced the proofs and a Lean 4 formalization; cited sampler and extractor bounds enter as hypotheses, and running time is tracked through a cost monad.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Deterministic combinatorial algorithms for BMM and triangle detection run in O(n^3/2^{Ω(√log n)}) time, answering the open question. Theorems 1.1, 1.3 and Proposition 3.2 are machine-checked in Lean 4 using only the standard axioms.</p><div class="sum-table"><table><thead><tr><th>Reference</th><th>Running time</th><th>Main technique</th></tr></thead><tbody><tr><td>Arlazarov et al.</td><td>O(n^3/log^2 n)</td><td>Four-Russians</td></tr><tr><td>Chan</td><td>O(n^3 (log log n)^3/log^3 n)</td><td>Word-level divide-and-conquer</td></tr><tr><td>Yu</td><td>Ô(n^3/log^4 n)</td><td>Compressed tabulation</td></tr><tr><td>Abboud et al.</td><td>O(n^3/2^{Ω((log n)^{1/7})})</td><td>Grid regularity</td></tr><tr><td>This work</td><td>O(n^3/2^{Ω(√log n)})</td><td>Dyadic grid regularity</td></tr></tbody></table><div class="tbl-cap">Progress on combinatorial BMM and triangle detection</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

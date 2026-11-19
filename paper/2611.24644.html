@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Equal Steps, Unequal Curvature: Where Muon&#x27;s Update Goes Wrong · Papers With Lean</title>
+<meta name="description" content="Muon updates each hidden weight matrix along the polar factor of its momentum, the steepest-descent direction under the spectral norm. That choice fixes two allocations without consulting the loss: every singular direction of the momentum receives the same step, and in a…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Equal Steps, Unequal Curvature: Where Muon&#x27;s Update Goes Wrong">
+<meta property="og:description" content="Muon updates each hidden weight matrix along the polar factor of its momentum, the steepest-descent direction under the spectral norm. That choice fixes two allocations without consulting the loss: every singular direction of the momentum receives the same step, and in a…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.24644.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.24644.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.24644v1" target="_blank" rel="noopener"><img src="../thumbs/2611.24644.jpg" alt="First page of Equal Steps, Unequal Curvature: Where Muon&#x27;s Update Goes Wrong"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Equal Steps, Unequal Curvature: Where Muon&#x27;s Update Goes Wrong</h1>
+        <p class="authors">Biswa Sengupta, Jinhua Wang, Léo Maxime Brunswic</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Nov 18, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.24644v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.24644" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Every theorem and proposition about Muon&#x27;s update, Newton–Schulz iteration, block polar factors and second-order criteria is proved in Lean 4 with Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Muon updates each hidden weight matrix along the polar factor of its momentum, the steepest-descent direction under the spectral norm. That choice fixes two allocations without consulting the loss: every singular direction of the momentum receives the same step, and in a non-square matrix each neuron&#x27;s step is set by its leverage score. Whether they are good is a question about curvature, which steepest-descent arguments do not answer; we measure it. Using held-out gradients and Hessian-vector products, we decompose Muon&#x27;s step by singular-value band and by neuron group and compute each group&#x27;s second-order optimal multiplier. In a 124M-parameter decoder trained on FineWeb-Edu, the multipliers rise monotonically from the top singular directions to the tail: Muon over-steps the high-curvature top of its spectrum. We prove in Lean when such a diagnostic licenses an intervention at Muon&#x27;s own update norm. On the measured curvature, the criterion predicts, and held-out losses confirm, that moving step length off the top helps mid-training and early in the cooldown, but not at its end. We then test interventions under per-step norm matching, tuned baselines and paired seeds. Orthogonalizing Q, K and V separately rather than as one fused matrix lowers the loss by 0.0250 nats and accounts for all of the gain of block-wise variants. A matmul-only, rotation-equivariant spectral tilt $σ^{-1/4}$ applied in the cooldown lowers the loss of this stronger baseline by a further 0.0120 nats, additively with NorMuon (0.0158 nats together, three seeds; the baseline needs about 4.3% more tokens to match), and by 0.0188 nats at 355M parameters (three seeds). Energy-matched Schatten-1 weight decay adds a further 0.0052 nats. Geometrically principled changes that do not act on the measured miscalibration, namely exact polar factors, steepest-descent input whitening and top-heavy decay, do not help.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Muon steps along the polar factor of the momentum. This gives every singular direction an equal step and sets each neuron&#x27;s step by leverage scores, without consulting the loss curvature. Whether these allocations are good is a curvature question that steepest-descent theory does not answer.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Held-out gradients and Hessian-vector products are used to decompose Muon&#x27;s step by singular-value band and by neuron group, and to compute second-order optimal multipliers. A family of supporting results is proved in Lean 4 with Mathlib in exact real arithmetic. These include a scale/shape decomposition of the second-order gap, a fixed-norm intervention criterion, and Newton–Schulz and block energy identities. Interventions such as split-QKV orthogonalization, a cooldown spectral tilt σ^{-1/4}, NorMuon and Schatten-1 decay are tested under norm matching with paired seeds.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Multipliers rise monotonically from the top singular directions to the tail, so Muon over-steps its high-curvature top directions. Orthogonalizing Q, K and V separately lowers loss by 0.0250 nats. The cooldown tilt adds a further 0.0120 nats, and 0.0188 nats at 355M parameters. Formal verification fixed bookkeeping and the authors&#x27; own reasoning but did not predict training benefit.</p><div class="sum-table"><table><thead><tr><th>Optimizer</th><th>Loss</th><th>Δ vs. split-QKV</th></tr></thead><tbody><tr><td>Muon (fused QKV)</td><td>3.9427</td><td>+0.0250</td></tr><tr><td>Split-QKV Muon</td><td>3.9176</td><td>—</td></tr><tr><td>+ cooldown tilt</td><td>3.9057</td><td>-0.0120</td></tr><tr><td>+ NorMuon + tilt</td><td>3.9018</td><td>-0.0158</td></tr><tr><td>+ NorMuon + tilt + Schatten-1 decay</td><td>3.8966</td><td>-0.0210</td></tr></tbody></table><div class="tbl-cap">Final held-out loss, 124M model (selected rows)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
