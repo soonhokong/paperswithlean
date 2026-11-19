@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calibrated for Which Policy? Conformal Uncertainty for Fixed World Models Under Intervention · Papers With Lean</title>
+<meta name="description" content="Changing a deployment policy can invalidate a world model&#x27;s uncertainty while leaving the physical transition mechanism and predictor unchanged. For one-step prediction, if source and target laws share the conditional mechanism $P(Y|X)=Q(Y|X)$, then the intervention is…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Calibrated for Which Policy? Conformal Uncertainty for Fixed World Models Under Intervention">
+<meta property="og:description" content="Changing a deployment policy can invalidate a world model&#x27;s uncertainty while leaving the physical transition mechanism and predictor unchanged. For one-step prediction, if source and target laws share the conditional mechanism $P(Y|X)=Q(Y|X)$, then the intervention is…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.35877.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.35877.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.35877v1" target="_blank" rel="noopener"><img src="../thumbs/2610.35877.jpg" alt="First page of Calibrated for Which Policy? Conformal Uncertainty for Fixed World Models Under Intervention"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Calibrated for Which Policy? Conformal Uncertainty for Fixed World Models Under Intervention</h1>
+        <p class="authors">Ayush Mittal, Dhruv Gupta</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Aug 20, 2026 · v1</span>
+          <span class="badge">cs.RO</span> <span class="badge">stat.ML</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-orange" href="../#tag=probability">probability</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.35877v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.35877" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/noumenal-ai/conformal-realrobot-lab" target="_blank" rel="noopener" title="noumenal-ai/conformal-realrobot-lab">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Finite-support versions of the posterior-to-ratio identity, classifier-regret bound, policy-shift factorization, and coverage composition are formalized in Lean 4 with Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Changing a deployment policy can invalidate a world model&#x27;s uncertainty while leaving the physical transition mechanism and predictor unchanged. For one-step prediction, if source and target laws share the conditional mechanism $P(Y|X)=Q(Y|X)$, then the intervention is identified by the pre-outcome change of measure $w(X)=dQ_X/dP_X$. For policy-controlled dynamics this ratio factors into state-occupancy and action-propensity terms. Weighted conformal calibration transports marginal coverage to the target law; with an estimated ratio $\hat w$, $P_Q\{Y \in C_{\hat w}(X)\} \ge 1-α-TV(Q,\hat Q) \ge 1-α-E_P|w-\hat w|$. Population log-loss regret for a source-versus-target domain classifier bounds the same ratio error. If $h$ is its clipped target posterior, $ρ$ is the target-domain prior, and $Δ(h)$ is population log-loss regret, then $E_P|w-\hat w_h| \le (1/(ργ))\sqrt{Δ(h)/2}$. An exact cancellation improves the dependence from a generic odds-map bound of order $γ^{-2}$ to $(ργ)^{-1}$. Our experiments use a released DINO-feature world model and physical Franka trajectories. Under the strongest controlled state-action shift, ordinary 90% conformal sets cover 55.0%, whereas oracle and learned-ratio calibration cover 91.0% and 90.9%. The learned surrogate remains within 0.9% total variation of the target law. Calibration is relative to the deployment law: the model can remain fixed while calibration follows the intervention. We machine-check in Lean 4 the finite-support algebraic and causal identities used in the classifier-regret argument, including its coverage-composition step.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">A world model&#x27;s conformal uncertainty is calibrated under the data-collection policy and can lose validity when the deployment policy changes, even though the transition mechanism and predictor stay the same. The question is how to transport coverage to the deployment law and bound the error introduced by an estimated density ratio.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">When the conditional mechanism is shared, the intervention is identified by a pre-outcome change of measure, which for policy-controlled dynamics factors into state-occupancy and action-propensity terms. Weighted conformal calibration transports coverage, with a total-variation penalty for an estimated ratio. A source-versus-target domain classifier&#x27;s log-loss regret bounds the ratio error at order (ργ)^{-1}, using an exact cancellation. The finite-support algebraic and causal identities and the coverage-composition step are machine-checked in Lean 4 with Mathlib, in a commit-pinned repository.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With a frozen DINO-WM on physical Franka transitions, under the strongest shift ordinary 90% conformal sets cover 55.0%, while oracle and learned-ratio calibration cover 91.0% and 90.9%. The learned surrogate stays within 0.9% total variation of the target law.</p><div class="sum-table"><table><thead><tr><th>λ</th><th>TV</th><th>Unweighted</th><th>Oracle</th><th>Estimated</th></tr></thead><tbody><tr><td>0</td><td>0.0%</td><td>90.2%</td><td>90.2%</td><td>90.3%</td></tr><tr><td>0.5</td><td>24.6%</td><td>81.6%</td><td>90.5%</td><td>90.6%</td></tr><tr><td>1</td><td>46.4%</td><td>69.0%</td><td>91.8%</td><td>91.8%</td></tr><tr><td>1.5</td><td>63.7%</td><td>55.0%</td><td>91.0%</td><td>90.9%</td></tr></tbody></table><div class="tbl-cap">Coverage at nominal 90% under controlled shift λ</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

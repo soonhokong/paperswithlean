@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dead Directions: Geometric Singular Learning · Papers With Lean</title>
+<meta name="description" content="Singular learning theory and information geometry study the same spaces: the former in resolved coordinates, the latter in original coordinates under a non-degeneracy assumption that overparameterised models violate. This paper carries one direction of the bridge between them,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dead Directions: Geometric Singular Learning">
+<meta property="og:description" content="Singular learning theory and information geometry study the same spaces: the former in resolved coordinates, the latter in original coordinates under a non-degeneracy assumption that overparameterised models violate. This paper carries one direction of the bridge between them,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2606.05957.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2606.05957.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2606.05957v2" target="_blank" rel="noopener"><img src="../thumbs/2606.05957.jpg" alt="First page of Dead Directions: Geometric Singular Learning"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Dead Directions: Geometric Singular Learning</h1>
+        <p class="authors">Tejas Pradeep Shirodkar</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Jun 4, 2026 · v2</span>
+          <span class="badge">stat.ML</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2606.05957v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2606.05957" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://arxiv.org/src/2606.05957v2/anc" target="_blank" rel="noopener" title="arXiv ancillary files">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Fourteen of fifty-seven numbered results are machine-checked in Lean 4 against Mathlib at stated scope, the rest at explicit model instances; sources shipped.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Singular learning theory and information geometry study the same spaces: the former in resolved coordinates, the latter in original coordinates under a non-degeneracy assumption that overparameterised models violate. This paper carries one direction of the bridge between them, from Watanabe&#x27;s invariants to Fisher geometry, through one primitive, the dead direction: a unit vector along which the Fisher metric degenerates, equivalently a direction crossing the analytic singular set along which the KL divergence keeps a zero of high order, its KL order set by how fast that divergence vanishes. Our central result recovers the KL order as the decay rate of the directional Fisher quadratic form approaching the singularity, in original coordinates, without a Hironaka resolution. A selection rule on smooth fibres translates this rate into Watanabe&#x27;s single-direction contribution to the real log canonical threshold, and the recovery extends to multi-component crossings, multiplicity $m$, the singular fluctuation $ν$, prior-RLCT shifts, and tempered posteriors. We then carry the rate into a deep network: a multi-layer K-FAC factorisation writes each Fisher block as a product of activation- and gradient-side rates with a duality between them, instantiated at residual streams, layer normalisation, and attention. A quotient theorem carries the rate to the gauge quotient for optimizers whose update commutes with the group action; Adam&#x27;s per-coordinate preconditioner fails that condition, so we construct DDCAdam, an equivariant Adam-family preconditioner, and prove the quotient rate along its trajectory. The result is a trajectory-rate readout of Watanabe&#x27;s triple $(λ, m, ν)$ from one checkpoint&#x27;s forward and backward passes, without posterior sampling.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Singular learning theory and information geometry study the same parameter spaces, but information geometry assumes a non-degenerate Fisher metric, and overparameterised models violate that assumption. Reading Watanabe&#x27;s invariants normally requires a Hironaka resolution, which is intractable for deep networks.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The paper introduces the dead direction, a unit vector along which the Fisher metric degenerates. It proves that the directional Fisher quadratic form decays as Θ(t^{2(k-1)}), which recovers the KL order k in original coordinates. A selection rule converts this rate into the RLCT contribution 1/(2k). The rate is lifted to deep networks through a multi-layer K-FAC factorisation, extended to residual streams, layer normalisation and attention, and carried to the gauge quotient using an equivariant Adam variant called DDCAdam. Results are machine-checked in Lean 4 with Mathlib, and a script confirms that no declaration uses axioms beyond the standard three or any sorry.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2606.05957/bridge_watanabe_amari_custom.png" alt=""><figcaption>Figure 1 : The dead direction bridges the two traditions: the same unit vector is Amari’s kernel-approaching direction of the Fisher metric F and Watanabe’s higher-order transversal to the singular set \Sigma_{T} , with KL order k the shared invariant. The trajectory Fisher-rate exponent \alpha=2(k-1) , read in original parameter coordinates, recovers k without a Hironaka resolution, and with the </figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The method reads Watanabe&#x27;s triple (λ, m, ν) from a single checkpoint&#x27;s forward and backward passes, without posterior sampling. On a deep-linear reduced-rank regression, it recovers λ̂=0.253±0.004 against a true value of 1/4. Lean checks 14 of 57 results at their stated scope and the other 43 at explicit model instances.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

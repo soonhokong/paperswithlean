@@ -32,27 +32,27 @@
     <a class="backlink" href="../">← All papers</a>
     <div class="detail">
       <div class="detail-thumb">
-        <a href="https://arxiv.org/pdf/2607.11648v3" target="_blank" rel="noopener"><img src="../thumbs/2607.11648.jpg" alt="First page of Superlinear complexity of the $(3/2)^n$ steering word"></a>
+        <a href="https://arxiv.org/pdf/2607.11648v4" target="_blank" rel="noopener"><img src="../thumbs/2607.11648.jpg" alt="First page of Superlinear complexity of the $(3/2)^n$ steering word"></a>
       </div>
       <div class="detail-main">
         <h1 class="ptitle">Superlinear complexity of the $(3/2)^n$ steering word</h1>
         <p class="authors">Ralf Stephan</p>
         <div class="row">
           <span class="badge">math.NT</span>
-          <span class="date">Jul 13, 2026 · v3</span>
+          <span class="date">Jul 13, 2026 · v4</span>
           
         </div>
-        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
         <div class="btns">
-          <a class="btn primary" href="https://arxiv.org/pdf/2607.11648v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn primary" href="https://arxiv.org/pdf/2607.11648v4" target="_blank" rel="noopener">Read PDF</a>
           <a class="btn" href="https://arxiv.org/abs/2607.11648" target="_blank" rel="noopener">arXiv abstract</a>
           <a class="btn repo-btn" href="https://github.com/rwst/Superlinear-Complexity" target="_blank" rel="noopener" title="rwst/Superlinear-Complexity">Code</a>
         </div>
         <div class="section-label first">TL;DR</div>
-        <div class="tldr-box">The full superlinear-complexity proof is formalized in Lean 4, assuming only the Evertse–Schlickewei subspace theorem as an axiom, with a public repository.</div>
+        <div class="tldr-box">The full superlinear-complexity argument is formalized in Lean 4, assuming only the Evertse–Schlickewei subspace theorem; each numbered result maps to a Lean declaration.</div>
         <div class="section-label">Abstract</div>
-        <div class="abs-full">Write $(3/2)^n = m_n + \varepsilon_n$ with $m_n$ the nearest integer and $\varepsilon_n\in[-\tfrac12,\tfrac12)$, and let $T=(t_n)$, $t_n=2m_{n+1}-3m_n$, be the resulting steering word: the step-by-step record of the map $x\mapsto\tfrac32 x$ on the orbit of 1, coded by nearest-integer rounding. Using results by Corvaja–Zannier and Nair–Kumar–Rout we prove that the subword complexity $p_{T}(k)$ of $T$ is superlinear, $p_{T}(k)/k\to\infty$. The argument is completely formalized in Lean 4 and rests on a single external input, the Evertse–Schlickewei $S$-arithmetic subspace theorem, from which both cited results are themselves derived within the formalization.</div>
-        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The steering word T records nearest-integer rounding along the orbit of 1 under x ↦ (3/2)x. The goal is to determine whether its subword complexity p_T(k) grows faster than linearly.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An exact repetition identity shows that any repeated factor forces divisibility constraints and a Diophantine inequality on ‖(3/2)^c − (3/2)^a‖. Superlinearity is reduced to finiteness of a Diophantine kernel. The kernel is closed through a gap dichotomy, using the Corvaja–Zannier theorem and a corrected form of a Nair–Kumar–Rout S-unit result. All steps, including derivations of both cited results, are formalized in Lean 4 from the Evertse–Schlickewei subspace theorem as the single external input, with Claude Code used as a coding assistant.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">p_T(k)/k → ∞. Unconditional intermediate results show that T is not eventually periodic and that p_T(k) ≥ (41/24)k − 3. Each numbered statement corresponds to a Lean declaration in the accompanying repository.</p></div></div>
+        <div class="abs-full">Write $(3/2)^n = m_n + \varepsilon_n$ with $m_n$ the nearest integer and $\varepsilon_n\in[-\tfrac12,\tfrac12)$, and let $T=(t_n)$, $t_n=2m_{n+1}-3m_n$, be the resulting steering word: the step-by-step record of the map $x\mapsto\tfrac32 x$ on the orbit of 1, coded by nearest-integer rounding. We prove that the subword complexity $p_T(k)$ of $T$ is superlinear, $p_T(k)/k\to\infty$. A pigeonhole argument reduces this to exponential pair repulsion of the orbit modulo one, which we establish by two applications of the $p$-adic Subspace Theorem: once in three variables, which handles all gaps between the two orbit points at once, and once in two variables (Ridout&#x27;s theorem) for the single degenerate family of constant gap. The argument is completely formalized in Lean 4.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The steering word T records the nearest-integer rounding steps of the map x ↦ (3/2)x on the orbit of 1. The goal is to show that its subword complexity p_T(k) is superlinear, meaning p_T(k)/k → ∞.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">An exact repetition identity shows that a repeated factor forces a Diophantine inequality between orbit points. A pigeonhole argument then reduces superlinearity to exponential pair repulsion of (3/2)^n modulo one. That repulsion is established with the p-adic Subspace Theorem, applied once in three variables and once via Ridout&#x27;s theorem for the constant-gap family. The entire argument is formalized in Lean 4 with the subspace theorem as the single external axiom, with assistance from Claude Code.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">p_T is proved superlinear, along with the unconditional results that T is not eventually periodic and that p_T(k) ≥ (41/24)k − 3. The Lean formalization is available at github.com/rwst/Superlinear-Complexity.</p></div></div>
       </div>
     </div>
   </div>

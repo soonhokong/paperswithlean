@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agenra: A Language and Verified Core for Stateful LLM Agent Authorization · Papers With Lean</title>
+<meta name="description" content="Applications that deploy LLM agents keep revising the permissions their agents use. When authority is consumable, even widening a permission can break a legitimate workflow, because an early call may use up a grant that a later call needs. Checking individual requests, or…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Agenra: A Language and Verified Core for Stateful LLM Agent Authorization">
+<meta property="og:description" content="Applications that deploy LLM agents keep revising the permissions their agents use. When authority is consumable, even widening a permission can break a legitimate workflow, because an early call may use up a grant that a later call needs. Checking individual requests, or…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.22868.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.22868.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.22868v2" target="_blank" rel="noopener"><img src="../thumbs/2608.22868.jpg" alt="First page of Agenra: A Language and Verified Core for Stateful LLM Agent Authorization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Agenra: A Language and Verified Core for Stateful LLM Agent Authorization</h1>
+        <p class="authors">Basavesh Ammanaghatta Shivakumar, Swarn Priya, Peng Gao</p>
+        <div class="row">
+          <span class="badge">cs.CR</span>
+          <span class="date">Aug 24, 2026 · v2</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.22868v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.22868" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Implements the agent authorization monitor as a compiled Lean core with proofs of client preservation under policy revisions, and Lean-checked simulation certificates for finite-quota revisions.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Applications that deploy LLM agents keep revising the permissions their agents use. When authority is consumable, even widening a permission can break a legitimate workflow, because an early call may use up a grant that a later call needs. Checking individual requests, or watching one run succeed, misses this. We present Agenra, a policy language with a Lean enforcement core that tracks the values each call uses, resources discovered at run time, and authority consumed by earlier calls. Agenra treats safety and workflow preservation as separate properties. Our key idea is to certify a revision with a simulation between the old and new permission ledgers. Quota increases, appended grants and independent reorderings admit such simulations by construction, and Lean checks proposed simulations for other finite-quota revisions. The proofs use the deployed matching predicates and extend through the full monitor, covering discovered resources, payloads that are never enumerated, failed calls and approvals. They assume serialized calls and identical service results under both policies, and they trust the Python translation layer. On 51 authored revisions, the checks certify all 21 that preserve their clients and none of the 30 that do not, and every lost workflow is confirmed by replay. They also certify a real quota increase from an open-source agent application. In a report-delivery application, raising the send quota preserves every client yet permits a second approved send, so preservation does not imply safety.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Applications deploying LLM agents frequently revise agent permissions. With consumable authority such as quotas, even widening a permission can break legitimate workflows or admit forbidden effects. Checking individual requests or single runs does not detect these failures.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Agenra is a policy language covering effects, usage limits, trusted lookups, data-flow labels and argument origins. Every call is checked by a compiled Lean enforcement core before Python invokes the tool. Revisions are certified by simulations between old and new permission ledgers. Quota increases, appended grants and independent reorderings admit such simulations by construction; for other finite-quota revisions, Lean checks a proposed simulation. A bounded workflow analyzer explores executions using the deployed Lean transitions, and a second implementation encodes a restricted fragment in Z3.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 51 authored revisions, the checks certify all 21 client-preserving revisions and none of the 30 that lose workflows; every lost workflow is confirmed by replay. The checks also certify a real quota increase from an open-source agent application. A report-delivery case shows that a revision can preserve every client while still permitting an extra approved send, so preservation does not imply safety.</p><div class="sum-table"><table><thead><tr><th>Candidate</th><th>Obligation</th><th>Result</th></tr></thead><tbody><tr><td>Public summary to bound Alice address</td><td>Flow and contract</td><td>Allow</td></tr><tr><td>Raw report to Alice</td><td>Confidentiality</td><td>Reject</td></tr><tr><td>Second send, including retry after failure</td><td>Consumed quota</td><td>Reject</td></tr><tr><td>Public body from another producer</td><td>Argument origin</td><td>Reject</td></tr><tr><td>Edited summary with old approval</td><td>Exact value identity</td><td>Reject</td></tr></tbody></table><div class="tbl-cap">Report-delivery candidate calls and monitor outcomes</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

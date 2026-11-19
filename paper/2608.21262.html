@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Exceedance Design Effect: Effective Sample Size for Thresholds under Clustering · Papers With Lean</title>
+<meta name="description" content="Suppose we want a cutoff that 90% of a population falls below. We estimate it from a sample, and another sample would give a different cutoff and a different fraction below it. We ask how much that fraction varies when observations come in independent groups, such as pupils in…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Exceedance Design Effect: Effective Sample Size for Thresholds under Clustering">
+<meta property="og:description" content="Suppose we want a cutoff that 90% of a population falls below. We estimate it from a sample, and another sample would give a different cutoff and a different fraction below it. We ask how much that fraction varies when observations come in independent groups, such as pupils in…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2608.21262.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2608.21262.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2608.21262v2" target="_blank" rel="noopener"><img src="../thumbs/2608.21262.jpg" alt="First page of The Exceedance Design Effect: Effective Sample Size for Thresholds under Clustering"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">The Exceedance Design Effect: Effective Sample Size for Thresholds under Clustering</h1>
+        <p class="authors">Adam Noonan</p>
+        <div class="row">
+          <span class="badge">stat.ML</span>
+          <span class="date">Aug 21, 2026 · v2</span>
+          <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2608.21262v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.21262" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ACNoonan/exceedance-design-effect" target="_blank" rel="noopener" title="ACNoonan/exceedance-design-effect">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The paper&#x27;s central limit theorem, propositions, finite-sample counterexample and variance-estimator consistency are machine-checked in a 59-file Lean 4 and Mathlib proof bundle.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Suppose we want a cutoff that 90% of a population falls below. We estimate it from a sample, and another sample would give a different cutoff and a different fraction below it. We ask how much that fraction varies when observations come in independent groups, such as pupils in classrooms or sentences in news articles. We prove that grouping multiplies its large-sample variance by $1+(m-1)ρ_I(p)$, where $m$ is the group size, $p$ is the target fraction, and $ρ_I(p)$ measures whether two members of a group fall on the same side of the cutoff. That correlation can differ from the correlation between the scores themselves, and it changes with the target. We give a direct proof, a counterexample to using score correlation, and an extension to unequal group sizes. A dataset therefore does not have one effective sample size. How much information it contains depends on the question you ask. In our document experiment, the same 1,000 rows carried about 217 independent observations&#x27; worth of information at the median. At the 95th percentile, they carried about 621. Nothing about the dataset changed. We asked it a different question. The number of rows is a property of the dataset. The effective sample size belongs to the analysis.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">A cutoff estimated as a sample quantile has random population coverage. The question is how that coverage variance behaves when reference observations come in independent clusters, and whether score correlation is the right quantity for an effective sample size.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors prove a large-sample normal limit for calibration-conditional coverage under iid exchangeable clusters with a continuous marginal. The variance is inflated by the exceedance design effect 1+(m-1)ρ_I(p), where ρ_I(p) is the within-cluster correlation of threshold indicators. The results are extended to bounded unequal cluster sizes and paired with a consistent count-based variance estimator. Theorem 1, the propositions, the counterexample and the estimator&#x27;s consistency are verified in Lean 4 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Score correlation can understate or overstate coverage variance. A zero-score-correlation example has design effect 13/9 at p=0.9. Effective sample size depends on the target level: in a document dataset, 1,000 rows were worth about 217 independent observations at the median and about 621 at the 95th percentile.</p><div class="sum-table"><table><thead><tr><th>Mixture weight q</th><th>Score corr ρ</th><th>Indicator corr ρ_I(0.9)</th><th>Indicator design effect</th><th>Score-based substitute</th></tr></thead><tbody><tr><td>0.75</td><td>0.50</td><td>0.7222</td><td>1.7222</td><td>1.50</td></tr><tr><td>0.50</td><td>0.00</td><td>0.4444</td><td>1.4444</td><td>1.00</td></tr><tr><td>0.30</td><td>-0.40</td><td>0.2222</td><td>1.2222</td><td>0.60</td></tr></tbody></table><div class="tbl-cap">Zero-correlation counterexample at p=0.9</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
