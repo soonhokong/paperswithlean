@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Square-Root Regret for Adversarial Multiplayer Bandits without Collision Information or Shared Randomness · Papers With Lean</title>
+<meta name="description" content="We study cooperative multiplayer bandits with adversarial rewards and no collision information. In each of $T$ rounds, each of $m$ labeled players picks one of $K&gt;m$ arms. A player alone on its arm receives that arm&#x27;s reward in $[0,1]$; players who share an arm receive $0$. Each…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Square-Root Regret for Adversarial Multiplayer Bandits without Collision Information or Shared Randomness">
+<meta property="og:description" content="We study cooperative multiplayer bandits with adversarial rewards and no collision information. In each of $T$ rounds, each of $m$ labeled players picks one of $K&gt;m$ arms. A player alone on its arm receives that arm&#x27;s reward in $[0,1]$; players who share an arm receive $0$. Each…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.05688.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.05688.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.05688v3" target="_blank" rel="noopener"><img src="../thumbs/2610.05688.jpg" alt="First page of Square-Root Regret for Adversarial Multiplayer Bandits without Collision Information or Shared Randomness"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Square-Root Regret for Adversarial Multiplayer Bandits without Collision Information or Shared Randomness</h1>
+        <p class="authors">Chenyu Gan</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Oct 5, 2026 · v3</span>
+          <span class="badge">cs.MA</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.05688v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.05688" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ChenyuGan/SquareRootBandits" target="_blank" rel="noopener" title="ChenyuGan/SquareRootBandits">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The paper&#x27;s mathematical results, excluding the computational complexity claims, are formalized in Lean, with a public repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We study cooperative multiplayer bandits with adversarial rewards and no collision information. In each of $T$ rounds, each of $m$ labeled players picks one of $K&gt;m$ arms. A player alone on its arm receives that arm&#x27;s reward in $[0,1]$; players who share an arm receive $0$. Each player observes only its own reward, so it cannot distinguish a collision from an arm with zero reward, and there is neither shared randomness nor a communication channel. Bubeck, Li, Peres and Sellke (2020) obtained regret $\widetilde O(KT^{3/4})$ for two players and $\widetilde O(mK^{3/2}T^{1-1/(2m)})$ for $m$ players, and conjectured that regret $Ω(T^{2/3})$ is unavoidable already for two players. We refute this conjecture. We give a strategy whose expected regret against every oblivious adversary is $O(m^{3/2}\sqrt{KT}\log^2(KmT))$, which is optimal in $K$ and $T$ up to logarithmic factors. Three ideas make this possible. (i) Bits are sent through deliberate collisions as random parity checks, and the regret spent while a message is delayed is charged to the number of arms with positive reward rather than to elapsed time: an adversary that jams the channel with zero rewards forfeits the regret it could inflict. (ii) An exponential-weights learner over sets of arms combines a frequently resampled coordinator arm with a follower assignment that changes only $O(\sqrt{mT/K})$ times in expectation; delayed updates are reconstructed exactly. (iii) We teach the followers a privately chosen row index in a fixed public table using reward observations alone, allowing them to coordinate without shared randomness. The bound holds simultaneously for all reward matrices, even ones chosen with knowledge of the table, and a random table works with probability $1-O(1/(KmT))$.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">In cooperative adversarial multiplayer bandits, m players choose among K arms and a collision yields zero reward. Players get no collision information and have no shared randomness. Bubeck, Li, Peres and Sellke conjectured that regret Ω(T^{2/3}) is unavoidable already for two players.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Players send bits through deliberate collisions that act as random parity checks. Regret incurred while a message is delayed is charged to the number of arms with positive reward rather than to elapsed time. An exponential-weights learner over sets of arms pairs a frequently resampled coordinator arm with slowly changing follower assignments. Followers learn a privately chosen row of a fixed public table from reward observations alone, which replaces shared randomness. The mathematical results are formalized in Lean.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Expected regret against every oblivious adversary is O(m^{3/2} sqrt(KT) log^2(KmT)), which is optimal in K and T up to logarithmic factors and refutes the conjecture. A random public table works with probability 1-O(1/(KmT)).</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

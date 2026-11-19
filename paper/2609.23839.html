@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eventual Nonnegativity of a Matrix Is in P · Papers With Lean</title>
+<meta name="description" content="Given a rational matrix $A$, is every sufficiently large power $A^n$ entrywise nonnegative? We prove that this problem is decidable in deterministic polynomial time. This is in contrast with deciding eventual nonnegativity of a single prescribed entry sequence $(A^n)_{ij}$,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eventual Nonnegativity of a Matrix Is in P">
+<meta property="og:description" content="Given a rational matrix $A$, is every sufficiently large power $A^n$ entrywise nonnegative? We prove that this problem is decidable in deterministic polynomial time. This is in contrast with deciding eventual nonnegativity of a single prescribed entry sequence $(A^n)_{ij}$,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2609.23839.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2609.23839.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2609.23839v2" target="_blank" rel="noopener"><img src="../thumbs/2609.23839.jpg" alt="First page of Eventual Nonnegativity of a Matrix Is in P"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Eventual Nonnegativity of a Matrix Is in P</h1>
+        <p class="authors">Julian D&#x27;Costa</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Sep 20, 2026 · v2</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2609.23839v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2609.23839" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/julianrdcosta/ptime-ENN-lean-formalization" target="_blank" rel="noopener" title="julianrdcosta/ptime-ENN-lean-formalization">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The structural criterion for eventual nonnegativity and key algebraic inequalities behind the complexity analysis are formalised sorry-free in Lean 4 with Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Given a rational matrix $A$, is every sufficiently large power $A^n$ entrywise nonnegative? We prove that this problem is decidable in deterministic polynomial time. This is in contrast with deciding eventual nonnegativity of a single prescribed entry sequence $(A^n)_{ij}$, which amounts to the Ultimate Positivity Problem for linear recurrence sequences, whose decidability is open. The previous decidability procedure (D&#x27;Costa, Ouaknine and Worrell, STACS 2024) splits the matrix powers into residue classes modulo a torsion exponent $D$ whose value can be exponential in the input size. We show that it is sufficient to check a single progression $A^{Dk+1}$: the exponents $n$ with $A^n \geq 0$ are closed under addition, and two consecutive exponents of the progression are coprime, so they generate every sufficiently large exponent. Along the progression, eigenvalues are grouped by their common $D$th power, and the required coefficients for each group are computed without forming $A^D$, any $λ^D$, or a splitting field: each summand is evaluated in its own root field $\mathbb{Q}(λ)$, and Galois equivariance keeps the degree and height of every class sum polynomially bounded, enabling certified zero and sign tests. The same algorithm with one case rejected decides eventual positivity, and a variant decides whether the matrix has any nonnegative power at all.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Given a rational matrix A, decide whether every sufficiently large power A^n is entrywise nonnegative. The previous decision procedure split powers into residue classes modulo a torsion exponent D that can be exponential in the input size.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Nonnegative exponents are closed under addition, so a single coprime progression A^{Dk+1} suffices to decide the problem. Eigenvalues are grouped into torsion classes by common Dth power. Grouped coefficients are computed in individual root fields Q(λ), and Galois equivariance bounds their degree and height, which enables certified zero and sign tests. The structural criterion and key inequalities are machine-checked in Lean 4; the end-to-end complexity bound is not, because Mathlib lacks infrastructure for algorithmic complexity.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Eventual nonnegativity of rational matrices is decidable in deterministic polynomial time. Variants of the algorithm decide eventual positivity and whether any nonnegative power exists. A sorry-free Lean formalisation of the criterion is publicly available.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

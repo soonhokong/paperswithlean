@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Computing distances in braid-move graphs, higher Bruhat orders, and oriented-matroid mutation graphs is NP-hard · Papers With Lean</title>
+<meta name="description" content="A wiring diagram is an arrangement of $m$ pseudolines, every two of which cross exactly once. Reading its crossings from left to right encodes it as a reduced word of the permutation $w_0\in S_m$ that reverses $1,\dots,m$, unique up to commutations, and a braid move…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computing distances in braid-move graphs, higher Bruhat orders, and oriented-matroid mutation graphs is NP-hard">
+<meta property="og:description" content="A wiring diagram is an arrangement of $m$ pseudolines, every two of which cross exactly once. Reading its crossings from left to right encodes it as a reduced word of the permutation $w_0\in S_m$ that reverses $1,\dots,m$, unique up to commutations, and a braid move…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.03808.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.03808.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.03808v2" target="_blank" rel="noopener"><img src="../thumbs/2610.03808.jpg" alt="First page of Computing distances in braid-move graphs, higher Bruhat orders, and oriented-matroid mutation graphs is NP-hard"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Computing distances in braid-move graphs, higher Bruhat orders, and oriented-matroid mutation graphs is NP-hard</h1>
+        <p class="authors">Tilen Marc</p>
+        <div class="row">
+          <span class="badge">cs.DM</span>
+          <span class="date">Oct 1, 2026 · v2</span>
+          <span class="badge">math.CO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.03808v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.03808" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/tilenmarc/braid-bruhat-mutation-distance" target="_blank" rel="noopener" title="tilenmarc/braid-bruhat-mutation-distance">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The main distance formulas, excess amplification and VC-equivalences are formally verified in core Lean 4, with a public repository and no unproved steps.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A wiring diagram is an arrangement of $m$ pseudolines, every two of which cross exactly once. Reading its crossings from left to right encodes it as a reduced word of the permutation $w_0\in S_m$ that reverses $1,\dots,m$, unique up to commutations, and a braid move $σ_iσ_{i+1}σ_i\leftrightarrowσ_{i+1}σ_iσ_{i+1}$ flips one of its triangles. We prove that deciding whether two wiring diagrams are within a given braid-move distance is NP-complete. Equivalently, deciding flip distance is NP-complete in the higher Bruhat order $B(m,2)$, for triangle flips of marked arrangements of pseudolines, and for rhombic tilings of a $2m$-gon; this answers an open question on flip graphs of pseudoline arrangements (SODA 2024). The reduction is from Vertex Cover: for every graph $G$ we construct two wiring diagrams at braid-move distance $|D|+2\operatorname{VC}(G)$, where $\operatorname{VC}(G)$ is the vertex cover number of $G$ and the Hamming distance $|D|$ is the number of triples of wires whose triangles are oriented differently. The construction glues copies of a seven-wire gadget whose braid-move distance exceeds its Hamming distance by $2$. Adding a line at infinity transfers the construction to rank-$3$ uniform oriented matroids, where two oriented matroids are adjacent in the mutation graph if their chirotopes differ in one basis; so deciding distance in the mutation graph is NP-complete in rank $3$. An iterate of Rambau&#x27;s expansion of signotopes amplifies the excess and gives NP-hardness in every fixed rank $r\ge4$, and by duality in every fixed corank at least $3$. The same instances show that flip distance in the higher Bruhat orders $B(n,k)$ is NP-complete for every fixed $k\ge2$.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Whether flip distance in the flip graph of pseudoline arrangements (braid-move distance between wiring diagrams) is NP-hard was an open question from SODA 2024. The same question arises for higher Bruhat orders, rhombic tilings, and mutation graphs of uniform oriented matroids.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The reduction is from Vertex Cover. A seven-wire gadget, whose braid-move distance exceeds its Hamming distance by 2, is glued along vertex blocks. This yields two wiring diagrams at distance |D|+2VC(G). Adding a line at infinity transfers the construction to rank-3 chirotopes, and an iterated lift based on Rambau&#x27;s expansion amplifies the excess to higher ranks. The main distance formulas and equivalences are machine-checked in core Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Braid-move distance and flip distance in B(m,2) are NP-complete. Mutation-graph distance is NP-complete in rank 3 and NP-hard in every fixed rank r≥4 and every fixed corank ≥3. Flip distance in B(n,k) is NP-complete for every fixed k≥2.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

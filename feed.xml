@@ -74,6 +74,28 @@ Quantum charge-coupled device (QCCD) architectures enable scalable trapped-ion q
 AI now produces machine-checked mathematics faster than researchers can read it. Can such theorems do practical computational work? We reuse one from OpenAI&#x27;s Lean 4 relativistic Vlasov–Maxwell library: initial fields determine the field at an outside point until plasma signals reach it, and the energy leaving a surrounding box before they reach its faces. New Lean proofs and numerical bounds give particle-free references for particle-in-cell simulations across three tasks. Domain size follows analytically from observation time, exposing boundary and initialization errors in WarpX and Smilei that global energy checks missed. Grid choice can be tested directly: combining two coarse grids recovers unknown plasma inputs within tolerance at a median 14.9-fold speedup over a fine grid, where the medium grid alone fails. For reduced models, the bounds establish the minimum number of time curves needed to predict energy loss.</description>
     </item>
     <item>
+      <title>Existence of SRB measures for some Rössler systems</title>
+      <link>https://paperswithlean.com/paper/2611.23279.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.23279.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Théophile Caby</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>analysis</category>
+      <description>The analytic homoclinic-tangency criterion and an associated Taylor bound are formalised and machine-checked in Lean 4 with Mathlib; the numerical part is not.
+
+We prove that for the Rössler system $\dot x=-(y+z)$, $\dot y=x+ay$, $\dot z=b+z(x-c)$ with $a=b=0.2$, the set of parameters $c$ within $6\cdot10^{-5}$ of the classical value $c=5.7$ for which the flow has a Hénon-like strange attractor supporting a Sinai–Ruelle–Bowen (SRB) measure has positive Lebesgue measure. The key step, proved with computer assistance, is that at a parameter localised in an explicit interval within $5.5\cdot10^{-5}$ of $5.7$ the period-one saddle of the Poincaré map has a quadratic homoclinic tangency that unfolds generically; the conclusion then follows from the theorems of Mora–Viana, Benedicks–Young and Benedicks–Viana. The same method gives two further such tangencies near $5.7$ and one at the band-merging parameter $c\approx4.507$. The proof reduces the generic-tangency conditions to finitely many inequalities, through explicit $C^2$ graph-transform bounds for the local invariant manifolds of a Poincaré map whose area contraction is of order $10^{-11}$–$10^{-14}$, and a scalar tangency function. The inequalities are checked with interval arithmetic in CAPD and re-checked with an independent implementation based on the Kv library; the analytic tangency criterion is formalised in Lean 4. Whether an SRB measure exists at $c=5.7$ itself remains open.</description>
+    </item>
+    <item>
+      <title>Delaunay Combinatorics of the Moduli and Teichmüller Space of Closed Genus-Two Riemann Surfaces</title>
+      <link>https://paperswithlean.com/paper/2611.18684.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.18684.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Armando Rodado Amaris</dc:creator>
+      <category>formalization</category><category>combinatorics</category><category>geometry</category>
+      <description>The finite combinatorial classification of Delaunay graph types, their automorphism groups and the flip orbit are verified in Lean 4 using native_decide.
+
+Every closed Riemann surface of genus two is hyperelliptic, so it is determined by six branch points on the sphere, which become cone points of angle pi in the quotient orbifold metric. The Delaunay decomposition of these cone points, dual to the Voronoi diagram of the Weierstrass points, gives a trivalent graph with eight vertices, twelve edges and six faces. We classify these graphs. When the dual triangulation is simple there are exactly two types, dual to the octahedron and to a stacked triangulation, with orientation-preserving automorphism groups of orders 24 and 2, and we determine the Whitehead-move (diagonal-flip) orbit connecting them. Allowing bigons, the orbit closes at exactly twenty types. Iterated edge contraction from the two simple types gives a seven-level hierarchy of 2, 6, 22, 32, 22, 5 and 1 types, ending at two vertices joined by six parallel edges; closing under both contraction and expansion gives all 280 maps on the sphere with six vertices and no vertex of degree one. The rank of the linear cone-angle system of each type equals the real dimension 6 of the Teichmüller space. We realize both simple types by explicit hyperbolic cone spheres, in closed form for the octahedral type, build the corresponding genus-two surfaces by cutting and doubling, and show that the boundary x_e = 0 of the angle system is exactly the concyclicity of four branch points. The classification, the automorphism groups and the flip orbit are formally verified in Lean 4, and every enumeration is reproduced by an independent program, which also determines which types are realized by Delaunay decompositions.</description>
+    </item>
+    <item>
       <title>New lower bounds for even and odd values of the partition function</title>
       <link>https://paperswithlean.com/paper/2611.10899.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2611.10899.html</guid>
@@ -94,6 +116,193 @@ Let $N_{\mathrm{odd}}(X)$ and $N_{\mathrm{even}}(X)$ denote the numbers of integ
       <description>Main theorems on combinatorial BMM and triangle detection are machine-checked in Lean 4 with zero sorries, using a cost-accounting monad for running time.
 
 For over fifty years, combinatorial algorithms for Boolean matrix multiplication (BMM) and triangle detection saved only polylogarithmic factors over cubic time. At STOC 2024, Abboud, Fischer, Kelley, Lovett, and Meka broke this barrier with a deterministic $O(n^3 / 2^{Ω((\log n)^{1/7})})$-time algorithm, and asked whether $n^3 / 2^{Ω(\sqrt{\log n})}$ time is achievable. We answer this question in the affirmative, giving deterministic combinatorial algorithms for both BMM and triangle detection running in $O(n^3 / 2^{Ω(\sqrt{\log n})})$ time. Following Abboud et al., we decompose $(A,B)$ into pairs of submatrices $(A_k,B_k)$, called pieces, each of which is either sparse or pseudorandom in a sense that forces $A_k\star B_k$ to be nearly all-ones on its vertex sets. Whereas their decomposition produces $2^{O(d^7)}$ pieces at regularity parameter $d$, we obtain $2^{O(d^2)}$ pieces, directly improving the runtime exponent from $(\log n)^{1/7}$ to $\sqrt{\log n}$. Prior work found pseudorandom pieces by repeatedly restricting to denser submatrices, paying worst-case vertex losses at each step that compounded across nested recursion levels, together with an expensive derandomization step. We eliminate the extra powers of $d$ by matching the vertex loss at each step to the size of its density jump so losses telescope across scales, derandomizing witness search via $L_d$-norm estimation so the sampler length stays $2^{O(d)}$, and bounding overlap across the recursion with a fractional density-weighted volume budget rather than raw submatrix volume.</description>
+    </item>
+    <item>
+      <title>Linearize or Discretize First? Error Estimates under Mesh-Uniform Regularity and Exponential Stability for the KdV Equation with Boundary Dissipation</title>
+      <link>https://paperswithlean.com/paper/2610.39269.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.39269.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Kangsheng Liu</dc:creator>
+      <category>formalization</category><category>analysis</category>
+      <description>Theorems 4.1–4.4 on the ordering error were checked in Lean 4 under certain premises, using AI tools following an author-designed procedure.
+
+We study the Korteweg-de Vries equation on a bounded interval with boundary dissipation, and its spatial semidiscretization by a weighted cubic Hermite Galerkin method. A small nonlinear wave can be approximated by a linear discrete simulation in two orders: linearize first and then discretize, or discretize first and then linearize. Both orders lead to the same total error. They divide this error differently between linearization and discretization. The difference of the two divisions is what we call the ordering error. We show that it is quadratic in the size of the initial datum and carries a positive power of the mesh size, for all time. It can be used to assess the effect of a coarse-mesh correction for nonlinear problems. For the continuous problem, the solution map is analytic, and the semigroup of the linearized equation has Crandall-Pazy regularity with the exact index 3/2. For the weighted scheme, the discrete semigroups of the linearized equation inherit exponential stability, Kato smoothing and Crandall-Pazy regularity, with bounds uniform in the mesh size. The nonlinear solution maps are analytic, also uniformly in the mesh size. These properties give error estimates in which the error and the datum are measured in the same norm: in the energy norm, in $H_0^1$ and in $H^2$. On every interval $[t_0,\infty)$, $t_0&gt;0$, same-norm convergence holds uniformly on balls at algebraic rates. The ordering error is of order $h^{1/6}$ times the square of the energy norm of the datum, uniformly for all $t\ge0$.</description>
+    </item>
+    <item>
+      <title>Webs and exponentially large mu-coefficients</title>
+      <link>https://paperswithlean.com/paper/2610.34982.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.34982.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Tom Goertzen, Abel Lacabanne, Daniel Tubbenhauer, Pedro Vaz</dc:creator>
+      <category>formalization</category><category>combinatorics</category><category>algebra</category>
+      <description>Lean formalization verifies the local tensor and web diagram calculations, the lattice induction, and the two-state readout for every block count; code is in a public repository.
+
+Using webs, we prove that Kazhdan-Lusztig mu-coefficients for symmetric groups grow at least exponentially with the rank, already for pairs labeled by a three-row rectangle.</description>
+    </item>
+    <item>
+      <title>Beyond Brown&#x27;s radial tests: admissibility, parabolicity, and a doubling-Poincaré prior that neither test decides</title>
+      <link>https://paperswithlean.com/paper/2610.34309.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.34309.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Oleg Roshka</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>analysis</category><category>probability</category>
+      <description>Part of the potential-theoretic results is formalized in Lean 4 with Mathlib: 37 modules and 655 theorems, with cited results carried as named hypotheses.
+
+For the estimation of a normal mean in $\mathbb{R}^m$ under quadratic loss, Brown (1971) proved that a generalized Bayes estimator $δ_F$ with bounded drift is admissible if and only if a diffusion attached to the marginal $f^*$ of the prior $F$ is recurrent, and gave two radial tests: a sphere-average test for recurrence and a ray test for transience. He observed that both tests can be silent. We read his theory as the potential theory of the weighted Euclidean space $(\mathbb{R}^m,f^*\,dx)$ and ask what the modern theory of recurrence on weighted manifolds adds inside the zone where neither test applies. Three results. (A) If $f^*\,dx$ is doubling and supports a scale-invariant Poincaré inequality, the sphere test is already complete: recurrence, Brown&#x27;s sphere test and the ball-volume test are equivalent, so geometric criteria can add decidable cases only on the inadmissible side. (B) They do add one. An explicit prior on $\mathbb{R}^3$ whose marginal is small along a lattice of circles at dyadic scales with spacing equal to the square root of the scale is doubling and Poincaré, silences both of Brown&#x27;s tests, and is transient by the ball-volume test; its generalized Bayes estimator is inadmissible. (C) Outside the doubling-Poincaré class the zone is two-sided: similar circles placed on one surface per scale give an admissible estimator, decided by a flux bound along a non-spherical exhaustion, and a logarithmic product prior gives an inadmissible one, decided by product heat kernels. A comparison lemma shows that any positive weight with Lipschitz logarithm is, up to constants, the marginal of a prior, so that explicit weights may be used throughout.</description>
+    </item>
+    <item>
+      <title>Verification and Self-Improvement in Agentic AI: Foundations and Limits</title>
+      <link>https://paperswithlean.com/paper/2610.10611.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.10611.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Chien-Ping Lu</dc:creator>
+      <category>formalization</category><category>verification</category><category>mathlib</category><category>logic</category>
+      <description>Ancillary Lean 4/Mathlib project machine-checks bounded semantic replacement, an evaluator recurrence, and adaptive-selection error-budget propositions using Mathlib probability.
+
+A self-improving agent can find accepted solutions more often without expanding the tasks its verification interface can accept. We extend task-relative verification with explicit support and transcript interfaces to distinguish search gains from changes in accepted-task coverage. A stage&#x27;s native reach contains tasks accepted with default support; its closure frontier contains tasks accepted with any support the declared interface permits. A semantic containment criterion identifies the authority or exposure condition that every verified escape must violate, while guard-transfer invariance prevents a change of representation from being counted as a capability expansion. An executable Boolean-program repair agent makes the distinction concrete: over 36,864 paired runs, counterexample feedback reduces verifier calls without changing coverage, whereas an enforced permission change admits a new target with a proof excluding every old-interface program. Exact and uniformly gapped randomized verification share this account; independent majority amplification improves reliability while preserving the accepted language. Separate adaptive-selection contracts state what is additionally required to interpret a proposed successor&#x27;s score as evidence of deployment improvement. Classical hierarchy results and finite audits provide supporting boundaries. The framework specifies the evidence needed to establish improved search, wider accepted capability, and reliable successor selection.</description>
+    </item>
+    <item>
+      <title>Two Answers on Heavy-Ball Dynamics</title>
+      <link>https://paperswithlean.com/paper/2610.09912.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.09912.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Dmitry Pasechnyuk-Vilensky, Martin Takáč</dc:creator>
+      <category>formalization</category><category>analysis</category>
+      <description>The heavy-ball worst-case rate and convergence-threshold results are accompanied by formal proofs in Lean.
+
+We determine the worst-case behavior of the heavy-ball method on smooth strongly convex functions, first for Polyak&#x27;s quadratic-optimal parameters and then for arbitrary constant parameters. For Polyak&#x27;s tuning, the exact dimension-uniform exponential rate is the largest growth factor of an interpolable mixture of rotating geometric sequences. Four algebraic families determine this rate at every condition number. Two frequencies suffice, and one function in dimension five attains the rate at every horizon up to constant factors. We recover the sharp convergence threshold $9+4\sqrt5$ of Badithela and Seiler. For general tunings, an exact linear feasibility criterion characterizes dimension-uniform linear convergence through the angle between the characteristic polynomials of the two extreme quadratics. This gives a continuous condition-number threshold and resolves the second heavy-ball riddle of Goujaud, Taylor and Dieuleveut. The regions between consecutive cycle tongues are Farey gaps, each containing convergent and divergent tunings. Regular portions of the threshold surface are analytic plateaus with fixed periodic frequency support. Every rational rotation number in a gap anchors a single-harmonic plateau; mixed-harmonic plateaus and an exact two-lag threshold point also occur. Along tongue edges, explicit multiplier inequalities and second-order expansions of competing Farey fans bound the transition from single-harmonic to mixed-harmonic extremals. The rate bounds and the extremal constructions follow from a common interpolation and separation argument that preserves initialization with zero momentum.</description>
+    </item>
+    <item>
+      <title>Rounded Clocks and Finite Precision: A Transfer Principle Between Continuous and Discrete Quantum Dynamics</title>
+      <link>https://paperswithlean.com/paper/2610.06541.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.06541.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Michael Jarret</dc:creator>
+      <category>formalization</category><category>quantum</category><category>analysis</category>
+      <description>The definitions, theorems, and examples, including the comparison identity and the O(1/T) transfer theorem, are tagged with links to Lean formalizations.
+
+I present a short approach to discretizing continuous unitary evolution in finite dimensions. For a time-dependent Hamiltonian $H(s)$ with $s\in[0,1]$ and an integer $T\ge1$, let $U(T)$ be the evolution of $H(t/T)$ over time $T$, and let $W_T=e^{-iH((T-1)/T)}\cdots e^{-iH(0)}$ be the product of the unitaries generated by its samples. With a half-step phase at each end, $V(T)=e^{-iH(1)/2}W_Te^{iH(0)/2}$ is the evolution generated by $H(\lfloor t+1/2\rfloor/T)$, where $\lfloor t+1/2\rfloor$ is a rounded clock, time at finite precision. Whereas Duhamel&#x27;s formula only bounds $\|V(T)-U(T)\|$ by a constant, I show that $\|V(T)-U(T)\|=O(1/T)$ in operator norm, with explicit constants, whenever $H&#x27;$ is Lipschitz and every sample has eigenvalue differences at most a fixed width below $2π$. The gain comes from cancellation within and between time steps. This general transfer theorem assumes neither adiabaticity nor a spectral gap, and any operator-norm bound for $U(T)$ transfers to $V(T)$ with an added $O(1/T)$. Nonetheless, discrete adiabatic theorems for $W_T$ follow from continuous ones, because the end phases commute with the spectral projectors of $H(0)$ and $H(1)$. For a product of samples of a $C^2$ unitary family, a continuously moving arc of fixed length $\vartheta$ that avoids the spectrum determines a Hermitian logarithm meeting the width condition, and the $O(1/T)$ bound has coefficients $O(\vartheta^{-3})$. In the easier direction, Duhamel&#x27;s formula shows that rounding the clock to midpoints and truncating the entries of a regulated time-dependent Hamiltonian at a fixed binary place gives a product within $T$ times the error of the rounded, truncated Hamiltonian.</description>
+    </item>
+    <item>
+      <title>Square-Root Regret for Adversarial Multiplayer Bandits without Collision Information or Shared Randomness</title>
+      <link>https://paperswithlean.com/paper/2610.05688.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.05688.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Chenyu Gan</dc:creator>
+      <category>formalization</category><category>ml-theory</category><category>probability</category>
+      <description>The paper&#x27;s mathematical results, excluding the computational complexity claims, are formalized in Lean, with a public repository.
+
+We study cooperative multiplayer bandits with adversarial rewards and no collision information. In each of $T$ rounds, each of $m$ labeled players picks one of $K&gt;m$ arms. A player alone on its arm receives that arm&#x27;s reward in $[0,1]$; players who share an arm receive $0$. Each player observes only its own reward, so it cannot distinguish a collision from an arm with zero reward, and there is neither shared randomness nor a communication channel. Bubeck, Li, Peres and Sellke (2020) obtained regret $\widetilde O(KT^{3/4})$ for two players and $\widetilde O(mK^{3/2}T^{1-1/(2m)})$ for $m$ players, and conjectured that regret $Ω(T^{2/3})$ is unavoidable already for two players. We refute this conjecture. We give a strategy whose expected regret against every oblivious adversary is $O(m^{3/2}\sqrt{KT}\log^2(KmT))$, which is optimal in $K$ and $T$ up to logarithmic factors. Three ideas make this possible. (i) Bits are sent through deliberate collisions as random parity checks, and the regret spent while a message is delayed is charged to the number of arms with positive reward rather than to elapsed time: an adversary that jams the channel with zero rewards forfeits the regret it could inflict. (ii) An exponential-weights learner over sets of arms combines a frequently resampled coordinator arm with a follower assignment that changes only $O(\sqrt{mT/K})$ times in expectation; delayed updates are reconstructed exactly. (iii) We teach the followers a privately chosen row index in a fixed public table using reward observations alone, allowing them to coordinate without shared randomness. The bound holds simultaneously for all reward matrices, even ones chosen with knowledge of the table, and a random table works with probability $1-O(1/(KmT))$.</description>
+    </item>
+    <item>
+      <title>Large deviations of the spectral radius of iid subgaussian random matrices</title>
+      <link>https://paperswithlean.com/paper/2610.05498.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.05498.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Yi Han</dc:creator>
+      <category>formalization</category><category>probability</category>
+      <description>The paper&#x27;s results on spectral-radius large deviations are formalized in Lean, with repositories released, including one for the upper-tail bounds.
+
+We study large deviations of the spectral radius of $X_n=n^{-1/2}(ξ_{ij})_{i,j=1}^n$, where the entries are iid, centered, variance-one, and subgaussian, with zero pseudovariance in the complex case. We write $ρ(X_n)$ for its spectral radius, i.e. the largest modulus among its eigenvalues. For every fixed $r&gt;1$, we prove $$ \liminf_{n\to\infty}\frac1n\log\mathbb{P}\{ρ(X_n)&gt;r\} \ge -\frac\beta2\bigl(r^2-1-2\log r\bigr), $$ where $β=1$ for real entries and $β=2$ for complex entries. We prove a matching upper bound for real symmetric laws with Gaussian-dominated even moments and for complex laws satisfying the sharp Gaussian Laplace-transform bound. These classes include discrete distributions. In the complex sharp class, we also identify the exponential rate for an eigenvalue to enter a fixed disk outside the unit disk. We then turn to lower deviations and establish a quadratic-speed bound. Under the additional assumption that the entry law $μ$ has a bounded density, we prove $$ \mathbb{P}\{ρ(X_n)\le r\}\le e^{-c_{μ,r}n^2} $$ for every fixed $0&lt;r&lt;1$ and all sufficiently large $n$, where $c_{μ,r}&gt;0$. For the matching upper-tail classes with a bounded density, these bounds give a full speed-$n$ large deviation principle, with the displayed upper-tail rate for $r\ge1$ and infinite rate for $r&lt;1$. The upper-tail proof uses a change of measure that preserves the entry support and creates an outlying eigenvalue. The lower-tail proof develops a weighted comparison for adaptive orthonormal observations and applies it to Arnoldi residuals.</description>
+    </item>
+    <item>
+      <title>Computing distances in braid-move graphs, higher Bruhat orders, and oriented-matroid mutation graphs is NP-hard</title>
+      <link>https://paperswithlean.com/paper/2610.03808.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.03808.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Tilen Marc</dc:creator>
+      <category>formalization</category><category>combinatorics</category>
+      <description>The main distance formulas, excess amplification and VC-equivalences are formally verified in core Lean 4, with a public repository and no unproved steps.
+
+A wiring diagram is an arrangement of $m$ pseudolines, every two of which cross exactly once. Reading its crossings from left to right encodes it as a reduced word of the permutation $w_0\in S_m$ that reverses $1,\dots,m$, unique up to commutations, and a braid move $σ_iσ_{i+1}σ_i\leftrightarrowσ_{i+1}σ_iσ_{i+1}$ flips one of its triangles. We prove that deciding whether two wiring diagrams are within a given braid-move distance is NP-complete. Equivalently, deciding flip distance is NP-complete in the higher Bruhat order $B(m,2)$, for triangle flips of marked arrangements of pseudolines, and for rhombic tilings of a $2m$-gon; this answers an open question on flip graphs of pseudoline arrangements (SODA 2024). The reduction is from Vertex Cover: for every graph $G$ we construct two wiring diagrams at braid-move distance $|D|+2\operatorname{VC}(G)$, where $\operatorname{VC}(G)$ is the vertex cover number of $G$ and the Hamming distance $|D|$ is the number of triples of wires whose triangles are oriented differently. The construction glues copies of a seven-wire gadget whose braid-move distance exceeds its Hamming distance by $2$. Adding a line at infinity transfers the construction to rank-$3$ uniform oriented matroids, where two oriented matroids are adjacent in the mutation graph if their chirotopes differ in one basis; so deciding distance in the mutation graph is NP-complete in rank $3$. An iterate of Rambau&#x27;s expansion of signotopes amplifies the excess and gives NP-hardness in every fixed rank $r\ge4$, and by duality in every fixed corank at least $3$. The same instances show that flip distance in the higher Bruhat orders $B(n,k)$ is NP-complete for every fixed $k\ge2$.</description>
+    </item>
+    <item>
+      <title>Continual Graph Memory and Community Infrastructure for AI-Assisted Mathematical Discovery</title>
+      <link>https://paperswithlean.com/paper/2610.02945.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.02945.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Eric Hanchen Jiang, Junyi Zhang, Jinxi Yu, Jiachen Lu, Zhi Zhang, Michael Simon, Justin Baker, Richard Cai, Sneha Agarwal, Yubei Li, Hyunsik Chae, Xinjie He, Kyle Zheng, Vigyan Sahai, Ethan Ji, Alexander K Taylor, Yiwen Kou, Kyle Hess, Xiao Liang, Yingnian Wu, J. D. Zamfirescu-Pereira, Andrea Bertozzi, Kai-Wei Chang, Eunice Jun, Raghu Meka, Nanyun Peng, Amit Sahai, Matthew Sottile, Terence Tao, Wei Wang</dc:creator>
+      <category>ai-agents</category><category>theorem-proving-ml</category><category>tooling</category><category>combinatorics</category>
+      <description>The Ansätze platform integrates a fixed-interface Lean checker for proposed proofs, covering placeholders, allowed axioms and statement fidelity; five results have reported Lean formalizations.
+
+Mathematical discovery requires preserving partial ideas and the evidence supporting their reuse. We present Ansatz, a research harness whose continual graph memory separates model-accepted claims and dependencies from curated exploration, and Ansatze, a community platform for inspecting, guiding and checking this work. On First Proof, Ansatz recorded nine local verifier closures in each of two ten-problem batches; a partial result in the Second Batch also counted as a pass under the study&#x27;s criterion. These model-assessed outcomes include continued searches and differ from expert validation. Component studies and re-review expose disagreements and their dependency reach. Open-problem investigations produced candidate results, with five Lean formalizations reported. The platform connects problem discovery, research records, manuscript analysis and formal checking while preserving distinct evidence states. Together, these systems support cumulative human-AI research through persistent investigation and inspectable contributions.</description>
+    </item>
+    <item>
+      <title>Root-sparsity scaling for Hamiltonian simulation, differential equations and linear-system solvers</title>
+      <link>https://paperswithlean.com/paper/2610.02939.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.02939.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Dominic W. Berry, Abhishek Rawat, Sophia Simon, Guang Hao Low</dc:creator>
+      <category>formalization</category><category>verification</category><category>quantum</category><category>mathlib</category>
+      <description>Accompanying Lean/Mathlib package (sparse-quantum-lean) formalizes the circuit constructions and query/gate bounds, with an appendix documenting conditional coverage.
+
+We give quantum algorithms for time-independent and time-dependent Hamiltonian simulation, linear differential equations and linear systems, all with complexity that has only square-root dependence on matrix sparsity. Our algorithms retain optimal scaling in other relevant parameters such as time, condition number and precision. For several cases we prove matching lower bounds on the joint parameters and show that the additional gate overhead is only polylogarithmic in the inverse precision. The common primitive connecting our algorithms is the Cayley transform, which provides a cheap unitary embedding of the sparse matrices. For Hamiltonian simulation and differential equations, we then use transducers to construct the desired evolution operators. For linear systems, we instead encode the solution in the kernel of a matrix and use the Cayley transform to construct a projector onto that kernel.</description>
+    </item>
+    <item>
+      <title>Minimax Quantum State Tomography with Periodic Clifford Measurements</title>
+      <link>https://paperswithlean.com/paper/2610.00210.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.00210.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Hongru Zhao</dc:creator>
+      <category>formalization</category><category>quantum</category><category>probability</category>
+      <description>All labeled theoretical results, including minimax upper and lower bounds for quantum state tomography, are formalized in Lean, with code on GitHub and Zenodo.
+
+Quantum state tomography provides a foundation for characterizing state preparation and predicting measurement outcomes. We characterize the minimax expected trace norm risk of quantum state tomography over classes with polynomial spectral decay under randomized nonadaptive single copy measurements. Under an explicit sufficient block size condition for the two layer periodic Clifford ensemble, we establish statewise expected trace norm oracle inequalities for operator norm minimum distance and measurement weighted projected least squares, with bounds that depend on each state&#x27;s actual spectral tail, while the estimators require no prior knowledge of the state&#x27;s structural characteristics, including its rank, eigenbasis, or spectral structure. Over these polynomial spectral decay classes, both estimators attain the minimax expected trace norm rates up to constants. As a direct consequence, the same estimators attain the minimax rate over every fixed rank constrained class, while remaining adaptive to the unknown structural characteristics of the state. For admissible logarithmic block sizes, the periodic Clifford measurements attain these guarantees with logarithmic elementary gate depth. The main technical ingredient is a uniform bound on the fourth moment of projectors for the periodic Clifford ensemble. The bound is sharp in dimension and holds for arbitrary test states, including those entangled across blocks. Covariance concentration and positivity yield adaptive oracle bounds, while a shared rotation information argument on spectral tail packings establishes matching lower bounds. We also provide polynomial time reconstruction algorithms, numerical comparisons, and Lean formalizations of all labeled theoretical results.</description>
+    </item>
+    <item>
+      <title>Competitive Random-Order Correlation k-Clustering</title>
+      <link>https://paperswithlean.com/paper/2609.35555.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.35555.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Mahsa Derakhshan, Andisheh Ghasemi, Rajmohan Rajaraman, Omer Wasim, Tegan Wilson</dc:creator>
+      <category>formalization</category><category>ai-agents</category><category>combinatorics</category><category>probability</category>
+      <description>All theorems on correlation k-clustering approximation and competitive ratios are formalized in Lean, with proofs generated using Aristotle and Claude and hand-checked statements.
+
+Correlation clustering has been extensively studied over the last two decades in many different computational models owing to its wide-ranging practical applications. The goal is to compute a partition of the vertex set such that the total number of disagreements, i.e. the sum of edges between clusters, and non-edges within clusters, is minimized. In this paper, we study correlation $k$-clustering, in which the total number of clusters is restricted to $k$. Correlation $k$-clustering is NP-hard, and while previous work has presented a polynomial time approximation scheme for constant $k$, there are no known results for general $k$. Our first result is a polynomial-time constant-factor approximation algorithm for correlation $k$-clustering for general $k$. The main focus of this work is in the more challenging online setting. Noting that the best competitive ratio under adversarial arrivals is known to be $Ω(n)$, we concentrate on the well-studied random-order model, where vertices arrive in random order and on arrival of a vertex, edges to its earlier-arrived neighbors are revealed. We prove a surprising lower bound of $Ω(\log k)$-competitiveness for any online algorithm, which can be extended to $Ω(\log n)$ when $k = \text{poly}(n)$. Finally, the main result of this paper is a polylogarithmic upper bound on the competitive ratio for correlation $k$-clustering, using an algorithm inspired by the classic Pivot algorithm for correlation clustering. All theorems have been verified using Lean.</description>
+    </item>
+    <item>
+      <title>Continuity of Regularized Channel Rényi Divergences</title>
+      <link>https://paperswithlean.com/paper/2609.28635.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.28635.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Jinzhao Wang, Yuxiang Yang</dc:creator>
+      <category>formalization</category><category>quantum</category><category>analysis</category>
+      <description>The main continuity theorem for regularized channel Rényi divergences is formalized in Lean, with the statement checked by Comparator and proofs replayed in the kernel.
+
+We prove that the regularized, stabilized sandwiched Rényi divergence of finite-dimensional quantum channels converges to their regularized relative entropy as the Rényi order tends to one. The key tool is the channel hockey-stick divergence: Gour&#x27;s Stinespring approximation bound and a Schatten norm estimate amplify an asymptotic bound below one into exponential decay at higher threshold rates. For channel pairs with finite max-relative entropy, known operational connections then give exponential strong converses for parallel and adaptive discrimination, a sharp zero–one testing law, and the subchannel asymptotic equipartition property.</description>
+    </item>
+    <item>
+      <title>A Szemerédi-Trotter Theorem in Arbitrary Fields</title>
+      <link>https://paperswithlean.com/paper/2609.27023.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.27023.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Mark Lewko</dc:creator>
+      <category>formalization</category><category>combinatorics</category><category>geometry</category>
+      <description>The four explicit-constant incidence bounds of the main Szemerédi–Trotter theorem over arbitrary fields are formalized in Lean, with a public repository.
+
+Let $k$ be a field of characteristic $p\ge0$. We prove that $m$ points and $n$ lines in $k^2$ determine at most $3(mn)^{2/3}+m+n+2mn/p$ incidences, the last term being omitted in characteristic zero. Over the prime field $\mathbb{F}_p$ the coefficient of $mn/p$ can be replaced by $1$. The proof uses the polynomial method, and for $m=n$ the bound is sharp up to an absolute constant over prime fields. As applications, over prime fields in which $-1$ is not a square we obtain the $L^2\to L^r$ extension estimate for the paraboloid in $\mathbb{F}_p^3$ for $r&gt;10/3$. Over every odd prime field, we show that a two-source extractor construction of Bourgain has exponentially small error at every min-entropy rate greater than $1/3$. We also improve sum-product estimates for small sets in positive characteristic and obtain projection and Furstenberg estimates over prime fields. The incidence inequalities with exact constants have been formalized in Lean.</description>
+    </item>
+    <item>
+      <title>Explicit channels with unbounded gains in classical communication using entangled inputs</title>
+      <link>https://paperswithlean.com/paper/2609.26743.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.26743.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Hao-Chung Cheng, Benjamin Lovitz, Peixue Wu</dc:creator>
+      <category>formalization</category><category>quantum</category>
+      <description>All mathematical proofs of the explicit channel construction and its entropy bounds are formally verified in Lean, with a companion Lean verification artifact.
+
+A seminal result of Hastings showed that entangled inputs can increase the rate of classical communication through independent uses of a quantum channel. While Hastings&#x27; result proved the existence of this phenomenon, it has remained a major open problem to find an explicit channel with this property. In this work, we resolve this question by constructing an explicit family of finite-dimensional quantum channels for which entangling inputs between pairs of channel uses yields an unbounded separation from the achievable communication rate using unentangled inputs. We describe a circuit implementation of our channel that uses only deterministic qudit Clifford unitaries and a single binary measurement with classical feedforward. The key ingredient is a careful design of the measurement and feedforward process that yields the required one-copy and two-copy output entropy bounds from moment estimates alone, without requiring strong convergence of the underlying unitary family.</description>
+    </item>
+    <item>
+      <title>The Zygmund conjecture and Rey&#x27;s exponential integrability conjecture</title>
+      <link>https://paperswithlean.com/paper/2609.23895.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.23895.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Henri Martikainen</dc:creator>
+      <category>formalization</category><category>analysis</category><category>mathlib</category><category>ai-agents</category>
+      <description>The main results, including the continuous Zygmund estimate and sparse overlap bounds, are formalized in Lean 4 with Mathlib-only restatements and kernel plus Nanoda checking.
+
+We prove the Zygmund conjecture in all parameters: the maximal operator associated with products of cubes with side lengths $(s_1,\ldots,s_{m-1},φ(s_1,\ldots,s_{m-1}))$, where $φ$ is any positive coordinatewise nondecreasing function, satisfies the weak $L(\log L)^{m-2}$ estimate for every $m\geq3$. The estimate is new for $m&gt;3$. Our approach is to prove Rey&#x27;s recent conjecture on the exponential integrability of the overlap function $h_{\mathcal G}=\sum_{I\in\mathcal G}\mathbf{1}_I$, with exponent $1/(m-1)$, for sparse incomparable families $\mathcal G$ of $m$-parameter dyadic rectangles, $m\geq2$. The Zygmund conjecture, even in the continuous form above, follows by strengthening a reduction given by Rey.</description>
     </item>
     <item>
       <title>$p$-harmonic polynomials</title>
@@ -457,215 +666,6 @@ Payment operations requested by an AI agent may remain executable, or their outc
       <description>Mechanizes a named-tensor language&#x27;s denotational semantics and einsum/expand rewriting rules in Lean 4 using Mathlib&#x27;s semiring and summation lemmas, with a partial Agda port.
 
 Einstein notation ($\mathsf{einsum}$) is a widely adopted tensor operation that has proven useful in areas such as machine learning and quantum computing. But it had no formal semantics until recently, and its properties had no mechanized verification. We formalize the denotational semantics of a language of tensors (multi-dimensional arrays) that supports $\mathsf{einsum}$ and repeated tensors ($\mathsf{expand}$). With this semantics, we verify equational rewriting rules about $\mathsf{einsum}$ and $\mathsf{expand}$ that improve the performance of tensor computation. Whereas typical languages use unnamed tensors, whose shape is a sequence of natural numbers, we found it advantageous for mechanization to use named tensors, whose shape is a finite map from names to natural numbers. To our knowledge, this is the first time that the semantics and rewriting rules of $\mathsf{einsum}$ are mechanized in a proof assistant. Our solution is agnostic to proof assistants; we have implemented it in Lean and partially in Agda.</description>
-    </item>
-    <item>
-      <title>Maximality of the Došen-Petrić Boolean Category</title>
-      <link>https://paperswithlean.com/paper/2611.19496.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.19496.html</guid>
-      <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Florian Lengyel</dc:creator>
-      <category>formalization</category><category>category-theory</category><category>logic</category>
-      <description>Lean 4 formalization of the free zero-identity Boolean category, Boolean Coherence, occurrence-coordinate substitution, and both maximality proofs.
-
-We prove that the zero-identity Boolean category of Došen and Petrić, freely generated by a nonempty set of propositional variables, is maximal. Every congruence preserved by the operations on morphisms and by uniform formula substitution either is equality or identifies every pair of parallel morphisms. This disproves their conjecture that the category is not maximal. We give two proofs that use Boolean Coherence and uniform formula substitution to derive equality of the product projections from an identification of distinct parallel morphisms. We also give a Lean formalization of these proofs and their dependencies. It includes Boolean Coherence and the correspondence between substitution on tagged occurrence sets and substitution on finite ordinals.</description>
-    </item>
-    <item>
-      <title>The cop number of the flower snarks, and the generalized Petersen graphs with cop number two</title>
-      <link>https://paperswithlean.com/paper/2611.18787.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.18787.html</guid>
-      <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Aarav Ghai</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>combinatorics</category>
-      <description>Formalizes in Lean 4 with Mathlib that the flower snark cop number is 3 for n≥5, and lower bounds for generalized Petersen graphs.
-
-We study two questions of Morris, Runte and Skelton (Australas. J. Combin. 83 (2022)) on the game of Cops and Robbers. First, we show that the flower snark $J_n$ has cop number $3$ for every $n\geq 5$, and that $J_3$ has cop number $2$. The upper bound comes from a three-cop strategy, which we call the rolling wall. It works on every connected graph whose vertices can be arranged in a cycle of columns, each dominated by a single vertex. Because only one cop moves on each turn, the same strategy also shows that the lazy cop number of $J_n$ is $3$ for $n\geq 5$. Second, we prove the conjecture of Morris, Runte and Skelton that the only generalized Petersen graphs with cop number $2$ are $\mathrm{GP}(n,1)$ and the four graphs $\mathrm{GP}(6,2)$, $\mathrm{GP}(8,2)$, $\mathrm{GP}(9,3)$ and $\mathrm{GP}(12,3)$. The new ingredient is an explicit robber strategy showing that two cops do not suffice on $\mathrm{GP}(3k,k)$ and $\mathrm{GP}(4k,k)$ for $k\geq 4$. The theorem on flower snarks and all of the new lower bounds have been formally verified in the Lean 4 proof assistant.</description>
-    </item>
-    <item>
-      <title>The Submodular Secretary Problem: Tight $1-1/e$ for Monotone Objectives, and Strictly Between $1/e$ and $1/2$ in General</title>
-      <link>https://paperswithlean.com/paper/2611.17292.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.17292.html</guid>
-      <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Hamed Abdi, Kiarash Banihashem, MohammadTaghi Hajiaghayi, Danny Mittal</dc:creator>
-      <category>formalization</category><category>verification</category><category>combinatorics</category>
-      <description>An AI-written Lean 4 formalization proves every result of the paper, with some finite numerical certificates in the appendices checked by native_decide.
-
-In the submodular secretary problem with a cardinality constraint, $n$ elements arrive in uniformly random order, and an algorithm must irrevocably accept or reject each one on arrival so as to maximize a nonnegative submodular function over sets of at most $k$ elements. For monotone objectives we settle the problem: the optimal competitive ratio tends to exactly $1-1/e$ as $k\to\infty$, and its worst case over all budgets $k$ is exactly $1/e$. The bound $1-1/e$ cannot be exceeded even with unlimited computation, and it is achieved by a single algorithm with at most $4n+1$ value queries; previously the best ratio without a shortlist was $1/e-o(1)$, with exponentially many queries. For general objectives, where the best known ratio was about $0.107$, we show that the optimal limiting ratio lies strictly between $1/e$ and $1/2$: we achieve $1/e+3.5\cdot10^{-6}$ for large $k$, and no algorithm achieves more than $0.497053$. We also achieve $0.2677$ at every budget. The main new ingredient of our algorithm is eligibility attenuation: an element that passes the price test at time $t$ is accepted with probability $e^{-τ}$, where $τ$ is the total earlier time during which it would have passed, which makes the probability that it has already been selected exactly $1-e^{-τ}$.</description>
-    </item>
-    <item>
-      <title>Combinatorial Bernoulli Factories with Polynomially Many Coins</title>
-      <link>https://paperswithlean.com/paper/2611.17223.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.17223.html</guid>
-      <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Renato Paes Leme, Rad Niazadeh</dc:creator>
-      <category>formalization</category><category>probability</category>
-      <description>The paper&#x27;s results on efficient combinatorial Bernoulli factories were formalized in Lean 4, with a public GitHub repository.
-
-We provide an efficient implementation of combinatorial Bernoulli factories. Such a factory turns coins of unknown biases $x$ into a random vertex of a polytope $P$ whose mean is exactly $x$. For every affine slice of the cube (the class of polytopes that admit a factory), we give a single algorithm whose expected number of coin flips and running time at every interior $x$ are polynomial in the dimension and in $1/{δ_*}$, where ${δ_*}=\min_i\{x_i,1-x_i\}$ is never supplied to the algorithm. For perfect matchings this gives $O(n^{8}{δ_*}^{-2}\log(n/{δ_*}))$ flips, while the factory of Niazadeh, Paes Leme, and Schneider [STOC 2021] spends at least $n^{2n-1}$ flips in expectation at the uniform doubly stochastic matrix. For other polytopes, our method rounds exactly given a point deep inside $P$ and the promise that $x$ is far from the boundary of $P$.</description>
-    </item>
-    <item>
-      <title>Bounded Knapsack in Truly Subquadratic Time</title>
-      <link>https://paperswithlean.com/paper/2611.15792.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.15792.html</guid>
-      <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Huanyi Zhou</dc:creator>
-      <category>formalization</category><category>verification</category><category>combinatorics</category>
-      <description>Cites a Lean 4 development at a specific commit as a machine-checked artifact supporting the paper&#x27;s results.
-
-Bounded Knapsack asks how many copies of each item to take to maximize profit under a capacity constraint. Given $n$ records with binary-encoded multiplicities, we return optimal counts in randomized time with a fixed power saving in the maximum item weight $w_{\max}$ or maximum item profit $p_{\max}$. Fix $1&lt;ρ&lt;2$ and suppose integer $(\min,+)$-convolution on length-$m$ arrays can be computed with failure probability at most $η$ in $\widetilde O(m^ρ)$ time, up to polynomial factors in the entry bit length and $\log(1/η)$. Put $f(ρ)=4(3-ρ)/(8-3ρ).$ For any fixed $ε&gt;0$, on inputs whose integers have magnitude polynomial in $n+\min(w_{\max},p_{\max})$, our algorithm runs in time $$\widetilde O\bigl(n\min(w_{\max},p_{\max})^{f(ρ)+ε}\bigr).$$ It returns optimal counts with high probability. If convolution saves $δ=2-ρ$ in its exponent, knapsack retains $δ/(1+3δ/2)$. With the integer convolution exponent $1.9601397040925$, a separate parameter choice gives $\widetilde O(n+\min(w_{\max},p_{\max})^{1.961})$, including for 0-1 Knapsack. We keep the copies compressed. Witnessed convolutions generate residual queries, and local linear programs filter them by cost. Resilient lattice cores allow recursive states to coalesce. Progression reserves support rounding, and a thin affordable fiber yields a lift that reduces the normalized column volume. This volume bounds the number of LP regions a grid lookup examines.</description>
-    </item>
-    <item>
-      <title>Beyond Worst-Case Online Algorithms via Input Subsampling</title>
-      <link>https://paperswithlean.com/paper/2611.15711.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.15711.html</guid>
-      <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Siddhartha Banerjee, Tianle Jiang, Kamesh Munagala</dc:creator>
-      <category>formalization</category><category>analysis</category>
-      <description>Analytic lemmas about the ski-rental dual-weight function U are machine-checked in Lean, partly AI-generated, with a public GitHub repository.
-
-We study whether classical competitive ratios survive input subsampling, when both the online algorithm and the offline optimum are evaluated on the same subsampled input. We consider the canonical problems of prophet inequalities and ski-rental. In these settings, for any single subsampling rate, the classical worst-case ratios remain unchanged. We ask a stronger question: can one adversarial input remain worst-case at two distinct rates $p&gt;q$? For prophet inequalities, in the model where the policy knows the sampling rate and learns item survival online, every instance has competitive ratio strictly below $2$ at one of the two rates, and we determine the tight simultaneous guarantee. For ski rental, in the fluid model where sampling scales the horizon, the answer depends on $q/p$. Against adversarial distributions over horizons, one unrestricted randomized algorithm achieves a strict simultaneous improvement over $e/(e-1)$ for every distribution exactly when $q/p$ is below approximately $0.34$. Requiring the algorithm to buy by the breakeven time lowers this threshold to approximately $0.31$, showing that unlike classical ski-rental algorithms, buying later can provably help in this setting. Our results therefore reveal a new form of beyond-worst-case fragility under input subsampling: instances that are worst-case at one rate need not remain hard at two rates simultaneously.</description>
-    </item>
-    <item>
-      <title>Existence, relative Morse index and the number of positive multi-peak solutions to subcritical Hamiltonian systems</title>
-      <link>https://paperswithlean.com/paper/2611.14899.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.14899.html</guid>
-      <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Qing Guo</dc:creator>
-      <category>formalization</category><category>analysis</category>
-      <description>Provides an accompanying Lean 4 formalization of the paper&#x27;s statements and proofs in a public repository, prepared with assistance from ChatGPT.
-
-We construct positive multi-peak solutions of a singularly perturbed Hamiltonian elliptic system with a common uniformly positive potential $a$ and powers $p,q&gt;1$ below the Sobolev critical hyperbola. The peaks concentrate at any prescribed set of $k$ distinct nondegenerate critical points $P_i$ of $a$. The Hessian of the action is strongly indefinite. A Schur complement gives exactly $kN$ eigenvalues near zero and their leading terms, which have order $\varepsilon^2$ and are determined by $D^2a(P_i)$. The solutions are nondegenerate. A scalar Schur reduction and localization of its inverse term give the relative Morse index $k+\sum_{i=1}^k\ind D^2a(P_i)$. Local Pohozaev identities give local uniqueness. A compactness argument then shows that, for $m$ prescribed nondegenerate critical points, the union of the fixed profile neighborhoods associated with their nonempty subsets contains exactly $2^m-1$ positive solutions. Using uniqueness of positive solutions of the limiting system up to translations, we obtain the same count in classes defined by nonvanishing in fixed balls and a scaled nonlinear mass bound that excludes an additional peak. We also give second-order expansions of the peak locations and rescaled profiles.</description>
-    </item>
-    <item>
-      <title>Characterizing Local Breadth in Language Generation</title>
-      <link>https://paperswithlean.com/paper/2611.14887.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.14887.html</guid>
-      <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Jon Kleinberg, Fan Wei</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>ml-theory</category><category>combinatorics</category>
-      <description>All 64 distinct numbered results were formalized in Lean 4 with Mathlib in two independent kernel-checked efforts, with AI assistance and statement-correspondence audits.
-
-Large language models sharpen the validity–breadth trade-off: a generator should avoid hallucinations without collapsing onto a narrow set of valid outputs. We study generation from positive examples of an unknown target in the Kleinberg–Mullainathan model, with arbitrary, possibly adversarial order and no distributional or computational assumptions. Breadth is measured by lower Banach density, which rules out arbitrarily large sparse holes, unlike prefix-based lower asymptotic density. 1. Exact optima in one dimension: For each target $K$ in a countable family, we characterize its optimal lower Banach density $b(K)$ via equivalent combinatorial and topological formulations. One eventually valid generator attains all $b(K)$ simultaneously. Every $α\in[0,1/2]$ occurs as $b(K)$ in some countable family; finite Cantor–Bendixson point rank guarantees $b(K)=1/2$, even without a uniform rank bound. 2. Unavoidable trade-offs in higher dimensions: For $d\ge2$, there need not be a single best generator: optimizing density for one target may worsen the guarantee for another. An explicit family quantifies this intrinsically multi-objective trade-off. 3. Complete characterization of density profiles: We characterize the full region of simultaneously achievable guarantees, with equivalent combinatorial and topological formulations, after excluding geometrically degenerate rectangles. Every prescribed product $\prod_i[0,α_i]$, $α_i\in[0,1/2]$ can occur as an exact achievable region for some language collection. 4. Near-half guarantees and the sharp endpoint: Under a near-logarithmic nondegeneracy condition, one generator achieves filtered density at least $1/2-\varepsilon$ at all finite-point-rank targets, for every $\varepsilon&gt;0$, improving the previous polylogarithmic threshold. The exact $1/2$ endpoint can fail even for a rank-zero singleton family.</description>
-    </item>
-    <item>
-      <title>Real positive definite counterexamples to a monotonicity conjecture for the $q$-permanent</title>
-      <link>https://paperswithlean.com/paper/2611.14694.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.14694.html</guid>
-      <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Carlos M. da Fonseca, Dev D. Goyal</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>combinatorics</category><category>algebra</category>
-      <description>The main counterexample theorems, small-order minimality result, gapped-family identities and bounds, and witnesses are formalized in Lean 4 with Mathlib.
-
-The $q$-permanent $P_q$ of an $n\times n$ matrix weights the term of each permutation $σ$ by $q^{\inv(σ)}$, where $\inv(σ)$ is the number of inversions of $σ$. It interpolates between the determinant ($q=-1$) and the permanent ($q=1$). Extending a conjecture of Bapat on $[-1,1]$, it was conjectured in 2010 that the $q$-permanent of every non-diagonal real symmetric positive definite matrix is strictly increasing on an interval $(\varepsilon,+\infty)$ with $\varepsilon&lt;-1$. In this note, we disprove this conjecture. An explicit real symmetric positive definite integer matrix of order five, whose $q$-permanent has only nine nonzero terms, satisfies $P_{14}(A)&gt;P_{15}(A)$. A sparse family shows that for every real $r&gt;1$ some real symmetric positive definite matrix has a $q$-permanent with negative derivative at $q=r$. The counterexamples can be chosen to be correlation matrices without zero entries or, separately, to have integer entries. We also show that the smallest order of a counterexample is four, and that matrices supported on three coordinates separated by identity blocks fail much closer to $q=1$: in order five already near $q=1.7$, and in order $O(1/(r-1))$ at any prescribed $q=r&gt;1$.</description>
-    </item>
-    <item>
-      <title>Automata for MSO over Infinite Trees with Quantification over Borel Sets of Branches</title>
-      <link>https://paperswithlean.com/paper/2611.10136.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.10136.html</guid>
-      <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Mikołaj Bojańczyk, Antonio Casares, Sven Manthe, Paweł Parys</dc:creator>
-      <category>formalization</category><category>logic</category>
-      <description>Most of the paper&#x27;s results on automata and prioritized Borel games were formalized in Lean using the Aristotle tool, provided as ancillary material.
-
-Rabin&#x27;s Tree Theorem says that the MSO theory of the infinite binary tree $2^*$ is decidable. Shelah showed that MSO logic becomes undecidable if this tree is extended to $2^{\le ω}$, i.e. by allowing quantification over sets of infinite branches. A longstanding open problem is whether the decidability can be recovered in $2^{\le ω}$ by restricting set quantification to Borel sets. We make some progress in this direction, by identifying a suitable automaton model, and showing that most of the automata-theoretic approach to Rabin&#x27;s Theorem can be extended to the new framework. The only missing part is a conjecture about finite-memory determinacy in certain games. This paper states and explores the conjecture. We prove it in some restricted cases, and give lower bounds on the memory required in those games.</description>
-    </item>
-    <item>
-      <title>How rigid is maximum cardinality search? Stability and locality of MCS orderings under edge updates, verified in Lean</title>
-      <link>https://paperswithlean.com/paper/2611.18369.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.18369.html</guid>
-      <pubDate>Sun, 15 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Md Thoriqul Islam Thonmay, Gregory Morse</dc:creator>
-      <category>formalization</category><category>verification</category><category>combinatorics</category><category>mathlib</category>
-      <description>Lean 4/Mathlib proofs of MCS ordering stability, single-edge update locality, obstructions, and refinement of a boolean-adjacency executable, re-checked by external kernels.
-
-For which sets F of edge modifications do a graph G and the modified graph share a maximum cardinality search (MCS) ordering? We prove that they do whenever, along every proper common MCS prefix, each unchosen vertex&#x27;s neighbour count in the second graph exceeds its count in the first by zero or one. In particular, inserting or deleting any matching, or flipping a single edge, preserves a common ordering, and under the same hypothesis every common MCS prefix extends to a full common ordering without backtracking. Neither part of the hypothesis can simply be dropped: inserting a triangle, a P_4 or a 2P_3 shows that the +1 bound cannot be relaxed to +2, and a disjoint mixed insert/delete pair shows that the one-directional condition is needed. For the canonical ordering (smallest-index tie-breaking) under a single-edge update, an insertion can first change the ordering only strictly between the endpoints&#x27; positions, and a deletion only at the later endpoint; when no break fires, the ordering is unchanged. A boolean-adjacency executable refines the abstract probe-then-repair update. All of these results, including the four obstructions, are proved in Lean 4 over Mathlib, re-checked by independent kernel checkers, and registered in the Palomar registry. On paper we further show that the first break of an insertion is located in O((deg(v)+1) log n) time, independent of the window length. We claim no worst-case asymptotic speedup over recomputation.</description>
-    </item>
-    <item>
-      <title>From Pen-and-Paper to Machine-Checked Proofs: Lean for System Identification</title>
-      <link>https://paperswithlean.com/paper/2611.18220.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.18220.html</guid>
-      <pubDate>Sun, 15 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Manas Mejari, Dario Piga, Marco Forgione</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>probability</category><category>analysis</category>
-      <description>Introduces Lean 4 and Mathlib to system identification researchers, formalizing identifiability, set invariance, ARX identifiability and Ljung&#x27;s noise-filter inversion lemma.
-
-Mathematical proofs in scientific papers are often long and intricate, relying on chains of references to earlier results. This makes it difficult for readers and reviewers to verify each and every step. Interactive theorem proving offers a complement: the theorem and its proof are written as code, and every inference is checked by a small, trusted piece of software called the kernel. This paper serves as an introduction to the Lean 4 proof assistant for a system identification and control audience, assuming no prior exposure to formal methods. We first show how a Lean proof is read using two elementary examples: the first on identifiability, the second on set invariance. We then illustrate how Lean can be used to analyse results from the literature, taking as example a classic lemma on the inversion of the noise filter in prediction-error identification (Ljung, 1999, Lemma 3.1). Since in Lean every step must be justified, the formalization brings to light a subtle point: the original claim of that lemma holds almost surely, although not for every realisation, as its statement may suggest. A simple counterexample makes this concrete. Finally, the paper discusses guidelines and perspectives on the use of Lean in system identification research.</description>
-    </item>
-    <item>
-      <title>Goodman-type lower bounds for graph homomorphism densities</title>
-      <link>https://paperswithlean.com/paper/2611.17885.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.17885.html</guid>
-      <pubDate>Sun, 15 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Taeyoung Kim</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>combinatorics</category><category>ai-agents</category>
-      <description>Main theorems, the 117-graph classification, counterexamples, and density-range table are formally verified in Lean 4 with Mathlib, with AI assistance.
-
-For a finite graph $H$ with $v(H)$ vertices, chromatic number $χ(H)$, and chromatic polynomial $P_H$, define $Φ_H(p)=(1-p)^{v(H)}P_H((1-p)^{-1})$. This polynomial interpolates the homomorphism densities of $H$ in balanced complete multipartite graphons. We study the lower bound $t(H,W)\geΦ_H(p)$ on the homomorphism density of $H$ in graphons $W$ of edge density $p&gt;1-1/(χ(H)-1)$, which generalises Goodman&#x27;s triangle bound. We prove the inequality for chordal graphs whose maximal cliques have equal size, for trivially perfect graphs, and for joins of a clique and an odd cycle. The proofs use entropy along clique trees and a convexity criterion for adding a universal vertex. We also prove that a nonbipartite graph satisfies the inequality at all sufficiently high edge densities if and only if its girth is odd. For a graph on $n$ vertices whose girth is odd, the bound holds whenever $p&gt;1-(72n^{12})^{-1}$. The proof combines Whitney&#x27;s forest expansion with a spectral comparison of cycle densities. Finally, among the $117$ nonbipartite graphs on at most six vertices with no isolated vertices or isolated edges, exactly $94$ satisfy the bound. The main results are formally verified in Lean 4.</description>
-    </item>
-    <item>
-      <title>Lean-PEP: Performance-Estimation Certificates to Formally Verified Algorithmic Bounds</title>
-      <link>https://paperswithlean.com/paper/2611.17618.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.17618.html</guid>
-      <pubDate>Sun, 15 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Xinyuan Guo, Andersen Ang</dc:creator>
-      <category>verification</category><category>mathlib</category><category>tooling</category><category>analysis</category>
-      <description>Implements, in Lean 4 with Mathlib, a checker that consumes exact performance-estimation certificates, plus a reusable analytic theorem that turns them into verified bounds for optimization algorithms.
-
-Performance-estimation certificates describe worst-case bounds for optimization algorithms. Turning a certificate into a formal theorem requires exact verification of its algebra and a connection between its coordinates, constraints and objective and the intended function-level problem. Lean-PEP provides a reusable interface for this task. It checks a submitted source and exact certificate against a supported canonical finite model, and a parameterized analytic theorem transfers the resulting finite bound to every admissible algorithm trajectory. Generated computation proofs discharge the obligations that depend on each certificate. An additional capture entry checks the numerical record and reconstruction policy. The implemented two-step proximal-gradient consumer verifies a new input with normalized bound 62500/499999, and a fixed eight-configuration batch yields seven distinct payloads with accepted certificates and executed Lean proofs. PG/GD cases and one-step attainment witnesses establish the corresponding algorithmic conclusions, and a fresh installation reproduces consumption of the supplied input. These results show how new certificate data can reuse a proved analytic interface to obtain function-level bounds within the supported models.</description>
-    </item>
-    <item>
-      <title>The four-dimensional Borsuk number is five or six</title>
-      <link>https://paperswithlean.com/paper/2611.17375.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.17375.html</guid>
-      <pubDate>Sun, 15 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Logan R. Chalmers</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>geometry</category><category>combinatorics</category>
-      <description>The main theorem, that every bounded set in R^4 splits into six parts of smaller diameter, is fully checked in Lean 4 with Mathlib; the artifact is on Zenodo.
-
-Can every set of diameter one in four dimensions be split into at most five parts of smaller diameter? Three parts suffice in the plane and four in three-dimensional space. In four dimensions five parts are sometimes necessary. We prove that six always suffice, improving the previous upper bound of seven. For small circumradius we use six cones. For large circumradius five balls meet every diametral pair of a compact set. At intermediate radii we bound the diameter of each part by the diameter of a rational polytope. The theorem is formalised in Lean.</description>
-    </item>
-    <item>
-      <title>Smale&#x27;s mean value constant (1981) equals 4</title>
-      <link>https://paperswithlean.com/paper/2611.17373.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.17373.html</guid>
-      <pubDate>Sun, 15 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Dave Goel</dc:creator>
-      <category>formalization</category><category>analysis</category>
-      <description>The main theorem, that Smale&#x27;s mean value constant equals 4, is formalized in Lean 4, checked with the Lean comparator, and released on GitHub.
-
-For a complex polynomial $p$ of degree $d\ge 2$ with $p(0)=0$ and $p&#x27;(0)\ne 0$, let $S(p)$ be the minimum of $|p(c)/(c\,p&#x27;(0))|$ over the critical points $c$ of $p$, and let $K(d)$ be the supremum of $S(p)$ over all such $p$ of degree $d$. In 1981 Smale proved that $K(d)\le 4$ for every $d$, and asked whether $4$ can be replaced by $1$. We prove that Smale&#x27;s mean value constant $\sup_dK(d)$ equals $4$ and that $K(d)\to4$ as $d\to\infty$, combining a reduction due to Jatar and Ng with an explicit construction. Each $K(d)$ is known to be below $4$, so the supremum is not attained. The main result has also been formalized in the Lean 4 proof assistant.</description>
-    </item>
-    <item>
-      <title>Explicit restricted isometries with $k=m^{2/3-o(1)}$</title>
-      <link>https://paperswithlean.com/paper/2611.14475.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.14475.html</guid>
-      <pubDate>Sat, 14 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Christian Kümmerle, Dustin G. Mixon</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>ai-agents</category><category>combinatorics</category>
-      <description>All theorems, including the needed case of Zahl&#x27;s incidence theorem and the Guth–Zahl result, were formalized in Lean 4 with Mathlib by AI agents.
-
-We construct an explicit family of real $m\times n$ restricted isometries with $m\to\infty$, $m/n\to 0$, $δ_k\to 0$, and $k=m^{2/3-o(1)}$. We combine Gershgorin&#x27;s circle theorem with a flat RIP estimate to reduce the problem to choosing a large vertex set in a strongly regular graph with the property that every small subset spans few edges. We select this vertex set using an incidence geometric result due to Zahl. The proof only uses the entrywise absolute value of the Gram matrix despite the conventional wisdom that such proof techniques exhibit a barrier of $m^{1/2}$. We prove that this barrier is actually $m^{2/3}$, and we show that our particular construction exhibits the same barrier.</description>
-    </item>
-    <item>
-      <title>Shape Perturbation of the Galerkin Boundary Element Dirichlet-to-Neumann Matrix on Moving Polygons</title>
-      <link>https://paperswithlean.com/paper/2611.14349.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.14349.html</guid>
-      <pubDate>Sat, 14 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Tokuhiro Eto</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>analysis</category>
-      <description>Formal counterparts of the main shape-perturbation theorems (3.3–3.7) are kernel-checked in Lean 4 with Mathlib; the formalization is archived on Zenodo.
-
-For nonlocal interface evolution problems such as the Mullins-Sekerka flow, certain parametric schemes discretize only the interface and approximate the Dirichlet-to-Neumann map by boundary elements. Their error analysis requires bounds on how this discrete operator changes as the polygon moves. In that analysis, the polygons are only Lipschitz and close to a smooth curve only in a Lipschitz norm, the perturbations are controlled only in the energy norm, and the kernels are singular on the diagonal. We study the symmetric Galerkin boundary element matrix on the polygons in a Lipschitz neighborhood of a smooth reference curve. Its first variation, tested against discrete Neumann solutions, is bounded by the energy norm of the perturbation alone. The second-order remainder of the associated mass form is bounded by the product of the energy norm and the Lipschitz norm of the perturbation, so that only one of the two factors needs a uniform bound. On the interpolating polygon, the matrix is consistent with the continuous operator without the logarithmic loss that a pointwise comparison of the kernels would suggest, and its shape derivative is consistent with that of the continuous operator. All bounds are uniform in the mesh size and depend only on the constants of the reference curve.</description>
-    </item>
-    <item>
-      <title>Agentic AI Meets Formal Verification in the Era of Agentic Hardware Development</title>
-      <link>https://paperswithlean.com/paper/2611.13705.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.13705.html</guid>
-      <pubDate>Sat, 14 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Wenji Fang, Yuchao Wu, Jing Wang, Zhiyao Xie</dc:creator>
-      <category>meta-study</category><category>verification</category><category>ai-agents</category><category>theorem-proving-ml</category>
-      <description>Survey that reviews the authors&#x27; Lean-based hardware verification work: Rtl2lean translates RTL into Lean models, and CircuitProver is an agentic Lean 4 prover.
-
-As AI agents become increasingly capable of generating and optimizing hardware circuits, ensuring the correctness of AI-generated designs becomes more important. Meanwhile, advances in AI lower the barriers to developing and applying formal methods, creating new opportunities to automate and improve hardware verification. This invited paper presents an overview of the methodologies and applications of hardware formal methods in the AI era. First, we examine how agentic AI advances hardware formal methods across three levels: specification, proof construction, and reasoning engines. Second, we discuss how formal methods support reliable AI-driven hardware development through RTL generation, debugging, and correctness-preserving optimization. We review representative research alongside our recent contributions, highlighting key technical advances and insights from experimental results. Finally, we discuss future research opportunities toward proof-native hardware development, where formal reasoning could become an integral part of autonomous hardware design.</description>
     </item>
   </channel>
 </rss>

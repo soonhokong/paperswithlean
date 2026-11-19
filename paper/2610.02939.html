@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Root-sparsity scaling for Hamiltonian simulation, differential equations and linear-system solvers · Papers With Lean</title>
+<meta name="description" content="We give quantum algorithms for time-independent and time-dependent Hamiltonian simulation, linear differential equations and linear systems, all with complexity that has only square-root dependence on matrix sparsity. Our algorithms retain optimal scaling in other relevant…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Root-sparsity scaling for Hamiltonian simulation, differential equations and linear-system solvers">
+<meta property="og:description" content="We give quantum algorithms for time-independent and time-dependent Hamiltonian simulation, linear differential equations and linear systems, all with complexity that has only square-root dependence on matrix sparsity. Our algorithms retain optimal scaling in other relevant…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2610.02939.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2610.02939.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2610.02939v2" target="_blank" rel="noopener"><img src="../thumbs/2610.02939.jpg" alt="First page of Root-sparsity scaling for Hamiltonian simulation, differential equations and linear-system solvers"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Root-sparsity scaling for Hamiltonian simulation, differential equations and linear-system solvers</h1>
+        <p class="authors">Dominic W. Berry, Abhishek Rawat, Sophia Simon, Guang Hao Low</p>
+        <div class="row">
+          <span class="badge">quant-ph</span>
+          <span class="date">Oct 2, 2026 · v2</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-purple" href="../#tag=quantum">quantum</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2610.02939v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2610.02939" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/DominicWB/sparse-quantum-lean" target="_blank" rel="noopener" title="DominicWB/sparse-quantum-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Accompanying Lean/Mathlib package (sparse-quantum-lean) formalizes the circuit constructions and query/gate bounds, with an appendix documenting conditional coverage.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We give quantum algorithms for time-independent and time-dependent Hamiltonian simulation, linear differential equations and linear systems, all with complexity that has only square-root dependence on matrix sparsity. Our algorithms retain optimal scaling in other relevant parameters such as time, condition number and precision. For several cases we prove matching lower bounds on the joint parameters and show that the additional gate overhead is only polylogarithmic in the inverse precision. The common primitive connecting our algorithms is the Cayley transform, which provides a cheap unitary embedding of the sparse matrices. For Hamiltonian simulation and differential equations, we then use transducers to construct the desired evolution operators. For linear systems, we instead encode the solution in the kernel of a matrix and use the Cayley transform to construct a projector onto that kernel.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Quantum algorithms for sparse Hamiltonian simulation, linear differential equations and linear systems usually have cost linear in the matrix sparsity s. The goal is square-root dependence on s while keeping optimal scaling in time, condition number and precision.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Each matrix entry is placed in a 2x2 Hermitian matrix, and its Cayley transform gives a cheap unitary rotation costing a constant number of sparse-oracle queries. Transducers turn these rotations into Hamiltonian evolution, which is then used for differential equations via linear combinations of Hamiltonian simulations. Linear systems are solved by encoding the solution in a kernel and projecting onto it with a Cayley-based walk filter. A Lean source archive pinned to Lean and Mathlib 4.32.1 formalizes the circuit construction and its error bounds, and Appendix E records which results it covers and under which external hypotheses.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The algorithms achieve query complexities such as O(√s τ + √(sτ log(1/ε)) + log(1/ε)) for Hamiltonian simulation and O(√s κ log(1/ε)) for linear systems. Matching lower bounds are proved in several cases, and the gate overhead is only polylogarithmic in the inverse precision.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
