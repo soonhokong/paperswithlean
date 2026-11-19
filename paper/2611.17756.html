@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compiling Matrix Formulas to Quantum Block Encodings · Papers With Lean</title>
+<meta name="description" content="Realizing the promise of quantum applications such as chemistry or fluid dynamics requires building quantum circuits that efficiently encode and manipulate exponentially large matrices. This process forces researchers to grapple with the reality that a matrix expressible as one…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Compiling Matrix Formulas to Quantum Block Encodings">
+<meta property="og:description" content="Realizing the promise of quantum applications such as chemistry or fluid dynamics requires building quantum circuits that efficiently encode and manipulate exponentially large matrices. This process forces researchers to grapple with the reality that a matrix expressible as one…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.17756.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.17756.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.17756v1" target="_blank" rel="noopener"><img src="../thumbs/2611.17756.jpg" alt="First page of Compiling Matrix Formulas to Quantum Block Encodings"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Compiling Matrix Formulas to Quantum Block Encodings</h1>
+        <p class="authors">Daksh Shami, Charles Yuan</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Nov 13, 2026 · v1</span>
+          <span class="badge">quant-ph</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-purple" href="../#tag=quantum">quantum</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.17756v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.17756" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The authors use Lean 4 to mechanize proofs that each of MARBLE&#x27;s algebraic rewrite rules preserves matrix semantics and well-formedness of the symbolic form.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Realizing the promise of quantum applications such as chemistry or fluid dynamics requires building quantum circuits that efficiently encode and manipulate exponentially large matrices. This process forces researchers to grapple with the reality that a matrix expressible as one equation on paper can map to thousands of bit-level quantum logic gates, historically written by hand. Even worse, it often ends with a discovery that the needed resources grow so quickly with matrix size that the quantum algorithm loses its asymptotic speedup. In this work, we present MARBLE, a language that automatically synthesizes an efficient circuit from the publication-style formula for the entries of a matrix. MARBLE algebraically rewrites programs into symbolic combinations of simpler matrices that have known circuit realizations. It analyzes costs of possible representations, notably the subnormalization term that dominates time complexity. It then emits an OpenQASM circuit and certifies whether its cost is poly-logarithmic in problem size, as required by quantum algorithms. When evaluated on quantum applications ranging from fluid dynamics to physical Hamiltonians, MARBLE matches or surpasses 37 of 39 published baselines. On the low end, it automatically matches many theoretically optimal circuits, and on the high end, it improves on a published construction in fluid dynamics by 10,487x in subnormalization. MARBLE produces exponentially smaller circuits than the leading tool FABLE, and it successfully compiles matrices whose dimensions exceed 2^100 within five seconds on a laptop.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Quantum linear-algebra algorithms need efficient block-encoding circuits for exponentially large matrices. These circuits are usually written by hand from publication-style formulas, a process that is error-prone and can lose the asymptotic speedup.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">MARBLE is a language in which users write entry comprehensions for matrix entries. Its compiler synthesizes mask formulas and applies algebraic rewrite rules to decompose the matrix into simpler matrices with known circuits. It then symbolically analyzes gate, qubit, and subnormalization costs, emits OpenQASM, and certifies poly-logarithmic cost. The rewrite rules are proven semantics-preserving in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">MARBLE matches or surpasses 37 of 39 published block-encoding baselines and improves one fluid-dynamics construction by 10,487x in subnormalization. It produces exponentially smaller circuits than FABLE and compiles matrices of dimension above 2^100 in under five seconds.</p><div class="sum-table"><table><thead><tr><th>Candidate</th><th>α</th><th>α(T+R)</th><th>Q</th></tr></thead><tbody><tr><td>Eq. (7)</td><td>7.2</td><td>547</td><td>20</td></tr><tr><td>Eq. (7), fewer qubits</td><td>7.2</td><td>1,368</td><td>12</td></tr><tr><td>Kuklinski et al.</td><td>146</td><td>~31,800</td><td>27</td></tr><tr><td>FABLE</td><td>64</td><td>262,144</td><td>13</td></tr></tbody></table><div class="tbl-cap">Candidate block encodings for the lattice Boltzmann collision matrix F1</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
