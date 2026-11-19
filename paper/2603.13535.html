@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Proxy to Certificate: Two-Sided Ollivier-Ricci Bounds from Balanced Forman Curvature · Papers With Lean</title>
+<meta name="description" content="Balanced Forman (BF) curvature is used in graph learning as a cheap stand-in for Ollivier-Ricci (OR) curvature, yet it does not lower-bound OR curvature. We show that the BF value of an edge certifies a two-sided interval for its lazy OR curvature without solving any optimal…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="From Proxy to Certificate: Two-Sided Ollivier-Ricci Bounds from Balanced Forman Curvature">
+<meta property="og:description" content="Balanced Forman (BF) curvature is used in graph learning as a cheap stand-in for Ollivier-Ricci (OR) curvature, yet it does not lower-bound OR curvature. We show that the BF value of an edge certifies a two-sided interval for its lazy OR curvature without solving any optimal…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.13535.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.13535.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.13535v6" target="_blank" rel="noopener"><img src="../thumbs/2603.13535.jpg" alt="First page of From Proxy to Certificate: Two-Sided Ollivier-Ricci Bounds from Balanced Forman Curvature"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">From Proxy to Certificate: Two-Sided Ollivier-Ricci Bounds from Balanced Forman Curvature</h1>
+        <p class="authors">Giorgio Micaletto, Tebe Nigrelli</p>
+        <div class="row">
+          <span class="badge">stat.CO</span>
+          <span class="date">Mar 13, 2026 · v6</span>
+          <span class="badge">cs.DM</span> <span class="badge">cs.LG</span> <span class="badge">math.CO</span> <span class="badge">math.DG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-teal" href="../#tag=geometry">geometry</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.13535v6" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.13535" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/GiorgioMB/BF-OR-Lean" target="_blank" rel="noopener" title="GiorgioMB/BF-OR-Lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The main curvature bounds and the correctness of the certify-then-solve algorithm are formalized in Lean 4 with Mathlib, sorry-free, in a public repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Balanced Forman (BF) curvature is used in graph learning as a cheap stand-in for Ollivier-Ricci (OR) curvature, yet it does not lower-bound OR curvature. We show that the BF value of an edge certifies a two-sided interval for its lazy OR curvature without solving any optimal transport problem, that BF coincides with a quadrangle-augmented Jost-Liu (JL) bound with its positive parts removed, and that when the 2-hop neighborhood is available, the interval can be sharpened at a cost of $\mathcal O(d_{\max}^{2.5})$ per edge. On 23 benchmark graphs, our quadrangle-augmented bound is tighter than the bounds of JL and Tian-Lubberts-Weber (TLW) on 13.8-100% of the edges and reduces their mean gap to the exact curvature by a median of 31.2%; intersected with the bounds of TLW, the intervals settle the curvature sign of more than half of the edges on 21 of the 23 graphs. On 15 real networks with up to 1,049,866 edges, a certify-then-solve procedure answers sign queries exactly while solving a median of 5.9 times fewer transport problems, for median speedups of 2$\times$ over exact evaluation, measured against a min-cut solver that is itself about two orders of magnitude faster than the widely used $\mathtt{GraphRicciCurvature}$. The main results are machine-checked in Lean 4.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Balanced Forman (BF) curvature is used in graph learning as a cheap proxy for Ollivier-Ricci (OR) curvature, but it does not lower-bound OR curvature. It is unclear what a BF value actually certifies about the OR curvature of an edge.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Explicit optimal-transport couplings and Lipschitz test functions give two-sided transfer moduli from the BF value to the lazy OR curvature. A quadrangle-augmented Jost-Liu lower bound uses the matching number of the cross-edge graph, and BF is shown to equal this bound with its positive parts removed. A certify-then-solve algorithm resolves sign queries exactly, solving transport problems only on undecided edges. The main bounds and the algorithm&#x27;s correctness are machine-checked in Lean 4 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 23 benchmark graphs, the augmented bound is tighter than the Jost-Liu and Tian-Lubberts-Weber bounds on 13.8-100% of edges and reduces their mean gap to the exact curvature by a median of 31.2%. On 21 of the 23 graphs, intersecting it with the Tian-Lubberts-Weber bounds settles the curvature sign of more than half the edges. On 15 real networks with up to about 1M edges, certify-then-solve solves a median of 5.9 times fewer transport problems, for a median 2x speedup over exact evaluation with a fast min-cut solver.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

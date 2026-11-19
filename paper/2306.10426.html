@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Understanding Certified Training with Interval Bound Propagation · Papers With Lean</title>
+<meta name="description" content="As robustness verification methods are becoming more precise, training certifiably robust neural networks is becoming ever more relevant. To this end, certified training methods compute and then optimize an upper bound on the worst-case loss over a robustness specification.…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Understanding Certified Training with Interval Bound Propagation">
+<meta property="og:description" content="As robustness verification methods are becoming more precise, training certifiably robust neural networks is becoming ever more relevant. To this end, certified training methods compute and then optimize an upper bound on the worst-case loss over a robustness specification.…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2306.10426.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2306.10426.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2306.10426v4" target="_blank" rel="noopener"><img src="../thumbs/2306.10426.jpg" alt="First page of Understanding Certified Training with Interval Bound Propagation"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Understanding Certified Training with Interval Bound Propagation</h1>
+        <p class="authors">Yuhao Mao, Mark Niklas Müller, Marc Fischer, Martin Vechev</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Jun 17, 2023 · v4</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2306.10426v4" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2306.10426" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/AlgebraLoveme/ibp-theory-formalization" target="_blank" rel="noopener" title="AlgebraLoveme/ibp-theory-formalization">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">All theoretical results and proofs on IBP bound tightness are formalized in Lean with the Paper Formalizer tool, and the artifact is released on GitHub.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">As robustness verification methods are becoming more precise, training certifiably robust neural networks is becoming ever more relevant. To this end, certified training methods compute and then optimize an upper bound on the worst-case loss over a robustness specification. Curiously, training methods based on the imprecise interval bound propagation (IBP) consistently outperform those leveraging more precise bounding methods. Still, we lack an understanding of the mechanisms making IBP so successful. In this work, we thoroughly investigate these mechanisms by leveraging a novel metric measuring the tightness of IBP bounds. We first show theoretically that, for deep linear models, tightness decreases with width and depth at initialization, but improves with IBP training, given sufficient network width. We, then, derive sufficient and necessary conditions on weight matrices for IBP bounds to become exact and demonstrate that these impose strong regularization, explaining the empirically observed trade-off between robustness and accuracy in certified training. Our extensive experimental evaluation validates our theoretical predictions for ReLU networks, including that wider networks improve performance, yielding state-of-the-art results. Interestingly, we observe that while all IBP-based training methods lead to high tightness, this is neither sufficient nor necessary to achieve high certifiable robustness. This hints at the existence of new training methods that do not induce the strong regularization required for tight IBP bounds, leading to improved robustness and standard accuracy.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Certified training methods based on imprecise interval bound propagation (IBP) consistently outperform methods that use more precise bounds, and the reasons for this are not understood.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors introduce propagation tightness, a metric comparing IBP bounds to optimal box bounds. They derive necessary and sufficient conditions on weight matrices for IBP bounds to be exact. They analyze how tightness depends on width and depth in deep linear networks at initialization and under IBP training, and then test these predictions on ReLU networks. The theoretical results and proofs are formalized in Lean.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For deep linear networks, tightness decreases with width and depth at initialization and improves under IBP training given sufficient width. Exact IBP bounds impose strong regularization. Wider networks improve state-of-the-art certified accuracy on MNIST, CIFAR-10 and TinyImageNet, and high tightness is neither necessary nor sufficient for high certified robustness.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Width</th><th>Accuracy</th><th>Certified</th></tr></thead><tbody><tr><td>IBP</td><td>1×</td><td>67.93</td><td>55.85</td></tr><tr><td>IBP</td><td>2×</td><td>68.06</td><td>56.18</td></tr><tr><td>SABR</td><td>1×</td><td>79.24</td><td>62.84</td></tr><tr><td>SABR</td><td>2×</td><td>79.89</td><td>63.28</td></tr></tbody></table><div class="tbl-cap">Certified and standard accuracy vs. width (CIFAR-10, ε=2/255)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Non-Negativity, Non-Singularity and Energy Conservation of the Zonal Method with Non-Reciprocal Exchange Factors · Papers With Lean</title>
+<meta name="description" content="This paper proves that the zonal balances of Hottel&#x27;s method, written in power variables for a first-interaction exchange factor matrix $\mathbf{F}$, have a unique and non-negative solution for any combination of prescribed temperatures and prescribed source terms in which at…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Non-Negativity, Non-Singularity and Energy Conservation of the Zonal Method with Non-Reciprocal Exchange Factors">
+<meta property="og:description" content="This paper proves that the zonal balances of Hottel&#x27;s method, written in power variables for a first-interaction exchange factor matrix $\mathbf{F}$, have a unique and non-negative solution for any combination of prescribed temperatures and prescribed source terms in which at…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2512.22157.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2512.22157.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2512.22157v3" target="_blank" rel="noopener"><img src="../thumbs/2512.22157.jpg" alt="First page of Non-Negativity, Non-Singularity and Energy Conservation of the Zonal Method with Non-Reciprocal Exchange Factors"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Non-Negativity, Non-Singularity and Energy Conservation of the Zonal Method with Non-Reciprocal Exchange Factors</h1>
+        <p class="authors">Nikolaj Maack Bielefeld</p>
+        <div class="row">
+          <span class="badge">physics.comp-ph</span>
+          <span class="date">Dec 16, 2025 · v3</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-blue" href="../#tag=physics">physics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2512.22157v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2512.22157" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/NikoBiele/RayTraceHeatTransfer.jl" target="_blank" rel="noopener" title="NikoBiele/RayTraceHeatTransfer.jl">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Machine-checks the discrete minimum principle, non-singularity and non-negativity of the zonal radiative-transfer linear system in Lean 4 with Mathlib, with proofs in the package repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">This paper proves that the zonal balances of Hottel&#x27;s method, written in power variables for a first-interaction exchange factor matrix $\mathbf{F}$, have a unique and non-negative solution for any combination of prescribed temperatures and prescribed source terms in which at least one element with prescribed temperature absorbs radiation, and that they conserve energy as an algebraic identity. The results hold for media ranging from transparent to absorbing, emitting and scattering, and for boundaries ranging from absorbing to reflecting. They require only that $\mathbf{F}$ be non-negative, row stochastic and irreducible: reciprocity is not needed, so the guarantees hold for Monte Carlo exchange factors as traced, without smoothing, which the symmetric notation of the zonal method does not make apparent. Both the non-singularity and the non-negativity follow from a single discrete minimum principle, and both have been machine-checked in Lean 4. To this end the balances are written as one linear system in the total radiant powers, $\mathbf{M}\mathbf{j} = \mathbf{h}$, assembled row by row from the prescribed temperatures and source terms, with a system matrix that inherits the sparsity of $\mathbf{F}$; the total exchange areas of Noble&#x27;s matrix formulation are in general dense, and the two agree symbolically and numerically to machine precision. Validation is provided symbolically against the textbook closed-form solutions for infinite parallel plates and concentric cylinders, numerically against the results of Crosbie and Schrenker for pure and partial scattering, against an exact symmetry identity in a three-dimensional enclosure, and against the diffusion approximation in an optically thick problem with about $10^6$ elements, solved in about one minute.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Hottel&#x27;s zonal method for radiative transfer is often used with Monte Carlo exchange factors that are not reciprocal. No guarantees existed that its balances then have a unique, non-negative, energy-conserving solution.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The zonal balances are rewritten as a single linear system Mj = h in total radiant powers. The system is assembled row by row from a non-negative, row-stochastic, irreducible first-interaction exchange factor matrix F, so it inherits the sparsity of F. Non-singularity and non-negativity are derived from one discrete minimum principle. These results, along with spectral-radius and conservation theorems, are machine-checked in Lean 4 using Mathlib. The Lean formalization found a gap in an earlier version&#x27;s proof.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Uniqueness, non-negativity and energy conservation hold without reciprocity, and the formulation agrees with Noble&#x27;s total exchange areas to machine precision. It matches closed-form solutions for parallel plates and concentric cylinders and the Crosbie–Schrenker scattering results. It solves a diffusion-limit problem with about 10^6 elements in about one minute.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2512.22157/sphere_symmetry.png" alt=""><figcaption>Figure 4: Symmetry validation in a black icosphere enclosure with a hot cap at 1000 Kelvin on top, an antipodal cold cap at zero Kelvin, and all other triangles in radiative equilibrium. Left: temperature field on the icosphere of 320 triangles, each triangle coloured by its temperature with no interpolation. Right: largest deviation from the antipodal identity, equation ( 70 ), relative to T_{\ma</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2512.22157/large_scale_diffusion_limit.png" alt=""><figcaption>Figure 5: Normalized emissive power (T/T_{\mathrm{hot}})^{4} along the centre line across the gap of a 1000 m by 1 m rectangle (approximately one-dimensional), divided into 1001\times 1001 elements, against the relative optical depth from the hot wall. The medium is absorbing-emitting and non-scattering with \beta=100 ( \tau_{L}=100 ), in radiative equilibrium, with one long wall hot and all walls</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

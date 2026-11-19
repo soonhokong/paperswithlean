@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Far Can a Trainable Frequency Move? Resolution, Grids and Coupling in Trainable-FrequencyQuantum Models · Papers With Lean</title>
+<meta name="description" content="Trainable-frequency quantum models train the prefactors of their encoding gates so that the circuit&#x27;s frequencies can move onto the target&#x27;s. From the unit start of prior work, training rarely reaches a target more than one resolution step away. We show that the target-driven…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How Far Can a Trainable Frequency Move? Resolution, Grids and Coupling in Trainable-FrequencyQuantum Models">
+<meta property="og:description" content="Trainable-frequency quantum models train the prefactors of their encoding gates so that the circuit&#x27;s frequencies can move onto the target&#x27;s. From the unit start of prior work, training rarely reaches a target more than one resolution step away. We show that the target-driven…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2602.23409.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2602.23409.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2602.23409v4" target="_blank" rel="noopener"><img src="../thumbs/2602.23409.jpg" alt="First page of How Far Can a Trainable Frequency Move? Resolution, Grids and Coupling in Trainable-FrequencyQuantum Models"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">How Far Can a Trainable Frequency Move? Resolution, Grids and Coupling in Trainable-FrequencyQuantum Models</h1>
+        <p class="authors">Michael Poppel, Markus Baumann, Sebastian Wölckert, Claudia Linnhoff-Popien, Jonas Stein</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Feb 26, 2026 · v4</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.ET</span> <span class="badge">quant-ph</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-purple" href="../#tag=quantum">quantum</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2602.23409v4" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2602.23409" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/mpoppel/trainable-frequency-reach" target="_blank" rel="noopener" title="mpoppel/trainable-frequency-reach">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">All Section 4 results on prefactor gradients and frequency reach are formalised in Lean 4 with Mathlib, with AI-assisted proofs checked by Lean.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Trainable-frequency quantum models train the prefactors of their encoding gates so that the circuit&#x27;s frequencies can move onto the target&#x27;s. From the unit start of prior work, training rarely reaches a target more than one resolution step away. We show that the target-driven part of the prefactor gradient is a weighted sum of slopes of the overlap $\sin u/u$, where $u$ is the model-target frequency distance scaled by the window half-width. This gives each frequency a reach: under gradient flow, an isolated real frequency whose coefficient adapts optimally reaches its target from within half a step, for every target at least one step from zero frequency; with a fixed coefficient, a phase-dependent barrier can stop it. A ternary prefactor grid places a model frequency within half a step of every band frequency, with logarithmically many encoding gates. Single-frequency circuits trained with Adam and jointly trained amplitudes behave as predicted: inside the first side lobe, a frequency starts toward its target exactly when in phase with it in 98% of runs, and only 11 of 768 frequencies starting beyond the lobe reached their target. With several frequencies, the grid start raised successful fits on synthetic targets from 69% to 84% against the best random start. With many target frequencies, least squares on the fixed grid fits near-perfectly, but the circuit does not reach the coefficients; training the prefactors narrows this shortfall, but with 8 and 24 target frequencies, training the fixed grid ten times longer fitted better. On real series, training the frequencies improved held-out $R^2$ at equal budget by 0.010–0.045 on four of seven series, but a classical screen did not separate these from the others. A classical model with independently trainable frequencies shows the same dependence on the start; our results describe how to train such models, not an advantage of the circuit.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Trainable-frequency quantum models train the prefactors of their encoding gates so that model frequencies can move onto the target&#x27;s. Started from unit prefactors, training rarely reaches targets more than one resolution step away. The question is when frequency training succeeds reliably and what it adds.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The target-driven part of the prefactor gradient is written as a weighted sum of slopes of the sinc overlap. This yields reach results under gradient flow for isolated complex and real lines, and a ternary prefactor grid start that places a model frequency within half a step of every band frequency. The results are formalised in Lean 4 with Mathlib in one file. Proofs were produced with AI assistance (Aristotle, Claude), and two sign conditions were checked separately by interval arithmetic. The predictions are tested with Adam-trained circuits on synthetic targets and real time series.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Inside the first side lobe, a frequency starts toward its target exactly when in phase with it in 98% of runs, and only 11 of 768 frequencies starting beyond the lobe reached their target. With several frequencies, the grid start raised successful fits from 69% to 84% against the best random start. On real series, frequency training improved held-out R^2 by 0.010–0.045 on four of seven series, and a classical model with trainable frequencies shows the same dependence on the start.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

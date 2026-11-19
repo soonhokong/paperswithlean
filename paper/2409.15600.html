@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Polyatomic Complexes: A topologically-informed learning representation for atomistic systems · Papers With Lean</title>
+<meta name="description" content="A representation of a molecule or material should be invariant to the symmetries of physics, unique, continuous, efficient and general. These properties, however, are hard to satisfy at once: a descriptor invariant under the full orthogonal group $O(3)$ gives a molecule and its…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Polyatomic Complexes: A topologically-informed learning representation for atomistic systems">
+<meta property="og:description" content="A representation of a molecule or material should be invariant to the symmetries of physics, unique, continuous, efficient and general. These properties, however, are hard to satisfy at once: a descriptor invariant under the full orthogonal group $O(3)$ gives a molecule and its…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2409.15600.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2409.15600.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2409.15600v3" target="_blank" rel="noopener"><img src="../thumbs/2409.15600.jpg" alt="First page of Polyatomic Complexes: A topologically-informed learning representation for atomistic systems"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Polyatomic Complexes: A topologically-informed learning representation for atomistic systems</h1>
+        <p class="authors">Rahul Khorana, Marcus Noack, Jin Qian</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Sep 23, 2024 · v3</span>
+          <span class="badge">physics.comp-ph</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2409.15600v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2409.15600" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/rahulkhorana/PolyatomicComplexes" target="_blank" rel="noopener" title="rahulkhorana/PolyatomicComplexes">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The algebraic core of the molecular descriptor (invariance, cutoff regularity, packing bound, orbit separation, Newton/Vieta multiset recovery) is machine-checked in Lean 4, sorry-free.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A representation of a molecule or material should be invariant to the symmetries of physics, unique, continuous, efficient and general. These properties, however, are hard to satisfy at once: a descriptor invariant under the full orthogonal group $O(3)$ gives a molecule and its mirror image the same value, and so cannot distinguish enantiomers whose properties differ. Pozdnyakov showed this follows from the invariance itself, not from a lack of parameters. We show the criteria can be met at once if the geometric map is graded by the sign character of $O(3)$ and pooled multisymmetrically. We construct such a map $Φ$: its even block factors through the Gram matrix and is provably chirality-blind, while its parity-odd block of signed triple products separates enantiomers on an open dense full-measure set of interacting configurations. Two standard obstructions to uniqueness, fixed output length and componentwise pooling, are artifacts of the pooling rule, removed by multisymmetric power sums of order at most $N$. We establish uniqueness for a complete descriptor $Φ^\star$ built from the distance matrix, signed volumes and atom types, injective up to $SE(3)\times S_N$ on all configurations. $Φ^\star$ is non-constructive, however; the implemented map is the bounded-cutoff $Φ$, generically injective, pooling at order $2$, running in $O(N^2)$, or $O(N)$ with neighbor lists. The algebraic core is machine-checked in Lean 4. Because the underlying object is a cell complex, it also yields invariant, stable topological features $Ψ$ (persistent homology and a Hodge-Laplacian spectrum) encoding global ring and cage structure invisible to bounded-cutoff descriptors. The pair $(Φ,Ψ)$ feeds a compact parity-graded equivariant transformer.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Molecular representations should be symmetry-invariant, unique, continuous, efficient and general. O(3)-invariant descriptors cannot distinguish enantiomers, and descriptors that pool atom features componentwise lose uniqueness.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A geometric map Φ is built that is graded by the sign character of O(3) and pooled with multisymmetric power sums. Its even block depends only on the Gram matrix, and its parity-odd block uses signed triple products. A complete descriptor Φ* built from distances, signed volumes and atom types is shown injective up to SE(3)×S_N. Topological features Ψ (persistent homology and a Hodge-Laplacian spectrum) are added, and the pair (Φ,Ψ) feeds a parity-graded equivariant transformer. Key algebraic facts are machine-checked in Lean 4, including invariance, the C^1 cutoff junction, the neighbor packing bound, finite-group orbit separation and multiset recovery.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Φ separates enantiomers on an open dense full-measure set of configurations, and Φ* is proved unique. Removing the odd block collapses enantiomer distances to zero and drops handedness accuracy to chance. The transformer reaches R² 0.83 on ESOL and 0.69 on FreeSolv, outperforming SchNet.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2409.15600/fig_ringchain_mols.png" alt=""><figcaption>Figure 3: Local descriptors cannot reliably decide whether a ring is closed; persistent homology decides it exactly, and the trend is general on real molecules. From the released ESOL, FreeSolv, and lipophilicity sets we take every molecule with exactly one aliphatic ring; the qualifying molecules span all three sets (ESOL 52 , FreeSolv 38 , lipophilicity 7 ) (filter admits up to 32 heavy atoms; t</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>molecule</th><th>even block Φ^e</th><th>full Φ</th></tr></thead><tbody><tr><td>alanine</td><td>0.0</td><td>4.04</td></tr><tr><td>2-butanol</td><td>0.0</td><td>5.52</td></tr><tr><td>lactic acid</td><td>0.0</td><td>6.15</td></tr><tr><td>handedness probe (5-fold CV acc.)</td><td>0.46</td><td>0.92</td></tr></tbody></table><div class="tbl-cap">Enantiomer separation distance: even block alone vs full Φ</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

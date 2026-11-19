@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Divisors in windows and the Euler–Mascheroni constant · Papers With Lean</title>
+<meta name="description" content="For $0&lt;c&lt;1$ the number of divisors of $q$ below $q^{c}$ averages, over $q\le B$, to $c\log B+(γ-c)+O(B^{-\min(c,1-c)})$, where $γ$ denotes the Euler–Mascheroni constant. Consequently the number of divisors in a window $(q^{a},q^{b})$ averages to $(b-a)(\log B-1)+o(1)$: the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Divisors in windows and the Euler–Mascheroni constant">
+<meta property="og:description" content="For $0&lt;c&lt;1$ the number of divisors of $q$ below $q^{c}$ averages, over $q\le B$, to $c\log B+(γ-c)+O(B^{-\min(c,1-c)})$, where $γ$ denotes the Euler–Mascheroni constant. Consequently the number of divisors in a window $(q^{a},q^{b})$ averages to $(b-a)(\log B-1)+o(1)$: the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/0810.1354.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/0810.1354.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/0810.1354v2" target="_blank" rel="noopener"><img src="../thumbs/0810.1354.jpg" alt="First page of Divisors in windows and the Euler–Mascheroni constant"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Divisors in windows and the Euler–Mascheroni constant</h1>
+        <p class="authors">David Victor Feldman</p>
+        <div class="row">
+          <span class="badge">math.NT</span>
+          <span class="date">Oct 8, 2008 · v2</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-indigo" href="../#tag=number-theory">number-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/0810.1354v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/0810.1354" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.21909843" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Principal results on divisor counts in windows and the Euler–Mascheroni constant are formally verified in Lean 4 with Mathlib, with archived source.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">For $0&lt;c&lt;1$ the number of divisors of $q$ below $q^{c}$ averages, over $q\le B$, to $c\log B+(γ-c)+O(B^{-\min(c,1-c)})$, where $γ$ denotes the Euler–Mascheroni constant. Consequently the number of divisors in a window $(q^{a},q^{b})$ averages to $(b-a)(\log B-1)+o(1)$: the constant $γ$ cancels, and the average counts for two windows stand asymptotically in the ratio of the windows&#x27; exponent lengths. In particular a number has, on average, twice as many divisors in $(n^{1/4},n^{1/2})$ as in $(n^{1/8},n^{1/4})$, by an argument nowhere mentioning $γ$. Anchoring a window at a threshold and its square root makes the logarithms cancel instead: for weakly increasing $F$ with $F(q)\to\infty$ and $q/F(q)\to\infty$, a number $q$ has, on average, exactly $γ$ more divisors below $\sqrt{F(q)}$ than in $[\sqrt{F(q)},F(q))$. For windows on the scale of $q$ itself the average depends on an endpoint convention: with $α\in(0,1)$, counting divisors below $\sqrt{αq}$ against divisors in $(\sqrt{αq},αq)$ yields the average $H_{\lfloor 1/α\rfloor}-\log(1/α)$, while the window $(\sqrt{αq},αq]$ yields $H_{\lceil 1/α\rceil-1}-\log(1/α)$; the two constants differ exactly when $1/α$ takes an integer value, and then by $α$. Either function of $α$ oscillates about $γ$, tends to $γ$ as $α\to0$, and integrates over $(0,1)$ to $ζ(2)-1$. The principal results are formally verified in Lean 4.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The paper studies how the Euler–Mascheroni constant γ arises in averages of divisor counts over intervals. It separates windows at fixed powers of q, where γ cancels, from windows anchored at a threshold and its square root, where γ survives.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Divisors are exchanged for codivisors to reduce averages to lattice-point counts, which are then estimated using harmonic-number asymptotics. The principal results are formalized in Lean 4 against Mathlib. The formal proofs rest on a single master asymptotic, and each verified limit is a linear combination of instances of it. For the rate of convergence, the Euler–Maclaurin expansion is replaced by explicit two-sided monotone bounds.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Divisors of q in (q^a, q^b) average (b−a)(log B−1)+o(1). On average, a number has exactly γ more divisors below √F(q) than in [√F(q), F(q)). Windows on the scale of q give constants H_K − log(1/α), whose value depends on the endpoint convention. The verified statements pass a clean axiom audit, and the logarithm-free approximation γ_n has an effective error bound of 2/(3n²).</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

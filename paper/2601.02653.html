@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prophecy Variables, Program Analysis, Binding Times, and Staged Compilation in the BuildIt System · Papers With Lean</title>
+<meta name="description" content="BuildIt is a lightweight C++ library system for implementing domain specific languages (DSLs) and compilers through multi-stage execution. It uses partial evaluation to generate optimized code without requiring parsers, explicit intermediate representations (IRs), or custom code…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Prophecy Variables, Program Analysis, Binding Times, and Staged Compilation in the BuildIt System">
+<meta property="og:description" content="BuildIt is a lightweight C++ library system for implementing domain specific languages (DSLs) and compilers through multi-stage execution. It uses partial evaluation to generate optimized code without requiring parsers, explicit intermediate representations (IRs), or custom code…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2601.02653.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2601.02653.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2601.02653v3" target="_blank" rel="noopener"><img src="../thumbs/2601.02653.jpg" alt="First page of Prophecy Variables, Program Analysis, Binding Times, and Staged Compilation in the BuildIt System"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Prophecy Variables, Program Analysis, Binding Times, and Staged Compilation in the BuildIt System</h1>
+        <p class="authors">Ajay Brahmakshatriya, Saman Amarasinghe, Martin Rinard</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Jan 6, 2026 · v3</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=type-theory">type-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2601.02653v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2601.02653" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/BuildIt-lang/buildit" target="_blank" rel="noopener" title="BuildIt-lang/buildit">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Mechanizes the prophecy-variable reexecution formalism and its first- and second-stage correctness theorems in Lean 4, with a verified extension down to AArch64.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">BuildIt is a lightweight C++ library system for implementing domain specific languages (DSLs) and compilers through multi-stage execution. It uses partial evaluation to generate optimized code without requiring parsers, explicit intermediate representations (IRs), or custom code generators. History variables and forward execution support analyses of past computation, but optimizations such as data movement, operator fusion, and binding-time analysis also require information about future execution. We introduce prophecy variables into BuildIt to predict future program behavior and guide code generation. Repeated first-stage execution refines predictions until they satisfy the program&#x27;s checks, extending BuildIt&#x27;s existing reexecution machinery with little additional complexity. This approach obtains information typically computed by backwards dataflow analyses over an explicit IR while preserving BuildIt&#x27;s lightweight implementation model. The cost of first-stage reexecution can be amortized over repeated executions of the generated code. We formalize the mechanism and mechanize its guarantees in Lean 4. We demonstrate prophecy variables in three applications: selective CPU-GPU data movement, neural-network operator fusion, and automatic binding-time analysis. These applications achieve performance improvements of up to 5.5x while simplifying the programming interface.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">BuildIt, a lightweight C++ multi-stage library for building DSLs, has no explicit IR and so cannot run backwards dataflow analyses. Optimizations such as data movement, operator fusion and binding-time analysis need information about future execution.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Prophecy variables over lattices predict future program behavior. Repeated first-stage reexecution refines the predictions until they satisfy all checks. The mechanism is formalized for a core language with static, dynamic and prophecy variables, and its termination, least-upper-bound and correctness theorems are mechanized in Lean 4 with no sorry. A verified extension of about 7,700 lines and 425 theorems reaches down to an AArch64 machine model.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Lean proofs establish that the first stage terminates and that it produces the least satisfying prophecy assignment with correct staged semantics. Three applications are demonstrated: CPU-GPU data movement, conv-ReLU fusion and automatic binding-time analysis. They achieve speedups of up to 5.5x.</p><div class="sum-table"><table><thead><tr><th>Size</th><th>Copy All</th><th>Unified Memory</th><th>Prophecy Enabled</th></tr></thead><tbody><tr><td>64x64</td><td>149</td><td>239</td><td>43</td></tr><tr><td>512x512</td><td>3053</td><td>1647</td><td>1059</td></tr><tr><td>4096x4096</td><td>380,378</td><td>316,443</td><td>307,830</td></tr></tbody></table><div class="tbl-cap">Second-stage execution time for matrix multiply by data-movement strategy</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

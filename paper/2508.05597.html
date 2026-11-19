@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NP-Hardness and Additive Inapproximability of Deterministic Communication Complexity · Papers With Lean</title>
+<meta name="description" content="Given the full truth table of a Boolean function whose input is split between two players, we study the complexity of determining the minimum worst-case number of bits they must communicate to compute it. This is a basic meta-complexity question, posed by Yao in 1979. We prove…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NP-Hardness and Additive Inapproximability of Deterministic Communication Complexity">
+<meta property="og:description" content="Given the full truth table of a Boolean function whose input is split between two players, we study the complexity of determining the minimum worst-case number of bits they must communicate to compute it. This is a basic meta-complexity question, posed by Yao in 1979. We prove…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2508.05597.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2508.05597.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2508.05597v6" target="_blank" rel="noopener"><img src="../thumbs/2508.05597.jpg" alt="First page of NP-Hardness and Additive Inapproximability of Deterministic Communication Complexity"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">NP-Hardness and Additive Inapproximability of Deterministic Communication Complexity</h1>
+        <p class="authors">Serge Gaspers, Tao Zixu He, Simon Mackenzie</p>
+        <div class="row">
+          <span class="badge">cs.CC</span>
+          <span class="date">Aug 7, 2025 · v6</span>
+          <span class="badge">cs.DS</span> <span class="badge">math.CO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2508.05597v6" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2508.05597" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/SimonWMackenzie/interlacing-additive-lean" target="_blank" rel="noopener" title="SimonWMackenzie/interlacing-additive-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A companion Lean development machine-checks the reduction constructions and their consequences for communication complexity and 3-SAT running times, with a public proof inspector.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Given the full truth table of a Boolean function whose input is split between two players, we study the complexity of determining the minimum worst-case number of bits they must communicate to compute it. This is a basic meta-complexity question, posed by Yao in 1979. We prove NP-hardness of approximation within every fixed additive error for deterministic communication complexity, under deterministic polynomial-time reductions. The result holds both in the standard model and in Yao&#x27;s original model, where the players alternate after every bit and only the receiver of the last bit must determine the answer. In particular, it resolves the exact computation question under Yao&#x27;s original conventions. Earlier versions of this same paper established exact NP-hardness for the standard model, independently and concurrently with Hirahara, Ilango, and Loff. In both models, a polynomial-time estimator with any fixed additive error would yield a polynomial-time $3$-SAT algorithm, deterministic or bounded-error randomized according to the estimator. For the standard model, we also give quantitative implications for errors that grow with the number $T$ of table entries. A bounded-error randomized polynomial-time estimator with additive error $c\log T/\log\log T$, for any fixed $0\le c&lt;1/8$, yields a bounded-error randomized $3$-SAT algorithm on $N$ variables and $O(N)$ clauses running in time $2^{O(N^α)}$ for every fixed $8c&lt;α&lt;1$. A deterministic polynomial-time estimator with additive error $c_*\log\log T$, for an effective absolute constant $c_*&gt;0$, yields a deterministic algorithm running in time $2^{O((\log N)^2)}$ on such formulas.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Yao asked in 1979 how hard it is to compute the deterministic communication complexity D(M) of a fully specified Boolean table. Earlier work showed exact NP-hardness in the standard model. Hardness with additive error and hardness in Yao&#x27;s original strict-alternation model remained open.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A 3-SAT formula is reduced to a bounded-degree graph that is robustly non-3-colorable in the NO case. The graph is encoded into interlaced copies of a base matrix so that a monochromatic edge forces one extra bit. Deletion-robust lower bounds make this one-round amplifier repeatable. Full products are replaced by small exactly 8192-wise independent tuple lists to keep each round polynomial-time. The constructions and their consequences are machine-checked in a companion Lean development, written with AI assistance.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Approximating D(M) within any fixed additive error is NP-hard under deterministic polynomial-time reductions, both in the standard model and in Yao&#x27;s alternating model. Estimators with error c log T/log log T (c&lt;1/8) or c* log log T would yield subexponential or quasi-polynomial 3-SAT algorithms, respectively.</p><div class="sum-table"><table><thead><tr><th>Protocol model</th><th>Additive error</th><th>Implied 3-SAT algorithm</th><th>Algorithm type</th></tr></thead><tbody><tr><td>Unrestricted</td><td>Every fixed error</td><td>Polynomial time</td><td>Same as estimator</td></tr><tr><td>Strict alternation</td><td>Every fixed error</td><td>Polynomial time</td><td>Same as estimator</td></tr><tr><td>Unrestricted</td><td>c* log log T</td><td>2^{O((log N)^2)}</td><td>Same as estimator</td></tr><tr><td>Unrestricted</td><td>c log T / log log T, c&lt;1/8</td><td>2^{O(N^α)}, every 8c&lt;α&lt;1</td><td>Randomized</td></tr></tbody></table><div class="tbl-cap">Implications of an additive-error estimator for 3-SAT</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

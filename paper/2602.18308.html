@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JPmHC Dynamical Isometry via Orthogonal Hyper-Connections · Papers With Lean</title>
+<meta name="description" content="The hyper-connection paradigm separates the skip-connections of transformers into $n$ parallel streams on which a linear mixer acts. Constraining the mixer to bistochastic matrices has proven effective in preventing gradient explosion but risk collapsing onto low-rank…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JPmHC Dynamical Isometry via Orthogonal Hyper-Connections">
+<meta property="og:description" content="The hyper-connection paradigm separates the skip-connections of transformers into $n$ parallel streams on which a linear mixer acts. Constraining the mixer to bistochastic matrices has proven effective in preventing gradient explosion but risk collapsing onto low-rank…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2602.18308.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2602.18308.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2602.18308v3" target="_blank" rel="noopener"><img src="../thumbs/2602.18308.jpg" alt="First page of JPmHC Dynamical Isometry via Orthogonal Hyper-Connections"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">JPmHC Dynamical Isometry via Orthogonal Hyper-Connections</h1>
+        <p class="authors">Biswa Sengupta, Jinhua Wang, Leo Brunswic</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Feb 20, 2026 · v3</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2602.18308v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2602.18308" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 library certifies the free-probability Jacobian spectrum theory, Cayley iteration bounds, and algorithms, and also runs the Monte Carlo experiments as executables.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The hyper-connection paradigm separates the skip-connections of transformers into $n$ parallel streams on which a linear mixer acts. Constraining the mixer to bistochastic matrices has proven effective in preventing gradient explosion but risk collapsing onto low-rank configurations, limiting expressivity. We therefore propose JPmHC (Jacobian-spectrum Preserving manifold-constrained Hyper-Connections). Our framework triages manifold constraints by computing the Jacobian singular spectrum of the end-to-end network in the mean-field limit and their spectral stability. It consists of: (i) an operator-valued free-probability library that predicts the Jacobian singular spectrum; (ii) an orthogonal mixer computed by a fixed-point Cayley iteration, which enables dynamical isometry; (iii) implicit differentiation of the Sinkhorn projection of the bistochastic baseline, with $O(1)$ backward operations; and (iv) a sensitivity theory giving the training budget before a bistochastic mixer collapses. The library is written in Lean, which certifies the mathematics and the algorithms. We validate JPmHC with TRM on ARC-AGI and nano-GPT on FineWeb-Edu: the theory predicts spectral collapse for TRM and stability for nano-GPT as observed in our experiments.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Hyper-connections split transformer skip-connections into parallel streams mixed by a learned matrix. Bistochastic mixers prevent gradient explosion, but their products can collapse to low rank, which limits expressivity and dynamical isometry.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">JPmHC computes the end-to-end Jacobian singular spectrum in the mean-field limit using operator-valued free probability. It replaces bistochastic mixers with orthogonal ones computed by a fixed-point Cayley iteration. It also derives implicit differentiation of the Sinkhorn projection and a sensitivity theory giving the training budget before a bistochastic mixer collapses. The supporting library is written in Lean 4 and certifies the algebra, theorems and algorithms, including one proposition proved only in Lean.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The nested theory matches Monte Carlo in all 12 mixer × depth cells tested. As the theory predicts, bistochastic mixers in TRM collapse, while nano-GPT&#x27;s remain stable. On ARC-AGI the orthogonal mixer improves Pass@1 from 36.5% to 40.5%, and FineWeb-Edu validation loss is comparable.</p><div class="sum-table"><table><thead><tr><th>Metric</th><th>Bistochastic</th><th>Orthogonal</th></tr></thead><tbody><tr><td>ARC-AGI Pass@1</td><td>36.5%</td><td>40.5%</td></tr><tr><td>ARC-AGI Pass@10</td><td>46.8%</td><td>53.1%</td></tr><tr><td>ARC-AGI Pass@1000</td><td>56.1%</td><td>62.7%</td></tr><tr><td>FineWeb-Edu val. loss</td><td>3.23 ± 0.008</td><td>3.24 ± 0.003</td></tr></tbody></table><div class="tbl-cap">Bistochastic vs orthogonal mixers</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

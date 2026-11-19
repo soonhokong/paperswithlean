@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dual Randomized Smoothing: Beyond Global Noise Variance · Papers With Lean</title>
+<meta name="description" content="Randomized Smoothing (RS) is a prominent technique for certifying the robustness of neural networks against adversarial perturbations. With RS, achieving high accuracy at small radii requires a small noise variance, while achieving high accuracy at large radii requires a large…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dual Randomized Smoothing: Beyond Global Noise Variance">
+<meta property="og:description" content="Randomized Smoothing (RS) is a prominent technique for certifying the robustness of neural networks against adversarial perturbations. With RS, achieving high accuracy at small radii requires a small noise variance, while achieving high accuracy at large radii requires a large…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2512.01782.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2512.01782.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2512.01782v5" target="_blank" rel="noopener"><img src="../thumbs/2512.01782.jpg" alt="First page of Dual Randomized Smoothing: Beyond Global Noise Variance"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Dual Randomized Smoothing: Beyond Global Noise Variance</h1>
+        <p class="authors">Chenhao Sun, Yuhao Mao, Martin Vechev</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Dec 1, 2025 · v5</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2512.01782v5" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2512.01782" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/AlgebraLoveme/dual-rs-formalization" target="_blank" rel="noopener" title="AlgebraLoveme/dual-rs-formalization">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">All theoretical results, including RS certification with locally constant noise variance, are formalized in Lean using the Paper Formalizer tool, with a public repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Randomized Smoothing (RS) is a prominent technique for certifying the robustness of neural networks against adversarial perturbations. With RS, achieving high accuracy at small radii requires a small noise variance, while achieving high accuracy at large radii requires a large noise variance. However, the global noise variance used in the standard RS formulation leads to a fundamental limitation: there exists no global noise variance that simultaneously achieves strong performance at both small and large radii. To break through the global variance limitation, we propose a dual RS framework which enables input-dependent noise variances. To achieve that, we first prove that RS remains valid with input-dependent noise variances, provided the variance is locally constant around each input. Building on this result, we introduce two components: (i) a variance estimator predicts an optimal noise variance for each input, (ii) this estimated variance is then used by a standard RS classifier. The variance estimator is independently smoothed via RS to ensure local constancy, enabling flexible design. We also introduce training strategies to iteratively optimize the two components. Experiments on CIFAR-10 demonstrate that our dual RS method provides strong performance for both small and large radii-unattainable with global noise variance-while incurring only a 60% computational overhead at inference. Moreover, it outperforms prior input-dependent noise approaches across most radii, with gains at radii 0.5, 0.75, and 1.0 of 15.6%, 20.0%, and 15.7%. On ImageNet, dual RS remains effective across all radii, with advantages of 8.6%, 17.1%, and 9.1% at radii 0.5, 1.0, and 1.5. Additionally, the dual RS framework provides a routing perspective for certified robustness, improving the accuracy-robustness trade-off with off-the-shelf expert RS models.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Standard randomized smoothing uses one global noise variance. Small variances give high accuracy at small radii and large variances are needed for large radii, so no single variance performs well across all radii.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors prove that RS certification remains valid with input-dependent noise variance, provided the variance is locally constant around each input. They build a dual RS framework: an RS-smoothed variance estimator predicts a per-input noise level with its own certified radius, and a second RS classifier uses that level. The final certified radius is the minimum of the two radii. The theoretical results and proofs are formalized in Lean via Paper Formalizer.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On CIFAR-10, dual RS outperforms the prior input-dependent method Multiscale at most radii, with gains of 15.6%, 20.0% and 15.7% at radii 0.5, 0.75 and 1.0, at about 60% inference overhead. On ImageNet it gains 8.6%, 17.1% and 9.1% at radii 0.5, 1.0 and 1.5.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>σ</th><th>0.0</th><th>0.5</th><th>1.0</th><th>1.5</th><th>2.0</th></tr></thead><tbody><tr><td>Multiscale</td><td>{0.5, 1.0}</td><td>75.0</td><td>55.8</td><td>41.0</td><td>30.8</td><td>25.2</td></tr><tr><td>Ours</td><td>{0.5, 1.0}</td><td>74.0</td><td>60.6</td><td>48.0</td><td>33.6</td><td>17.0</td></tr></tbody></table><div class="tbl-cap">Certified accuracy (%) on ImageNet, adaptive finetuning setting</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

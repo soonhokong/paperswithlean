@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overcoming a Learning Bottleneck in Impartial Games: A Circuit Complexity Approach · Papers With Lean</title>
+<meta name="description" content="Why can neural networks struggle to learn optimal play in a game with a simple, efficient solution algorithm? Motivated by empirical difficulties with parity in impartial games, we use NIM to study a representational bottleneck and three ways around it. We show that a restricted…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Overcoming a Learning Bottleneck in Impartial Games: A Circuit Complexity Approach">
+<meta property="og:description" content="Why can neural networks struggle to learn optimal play in a game with a simple, efficient solution algorithm? Motivated by empirical difficulties with parity in impartial games, we use NIM to study a representational bottleneck and three ways around it. We show that a restricted…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2411.06403.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2411.06403.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2411.06403v4" target="_blank" rel="noopener"><img src="../thumbs/2411.06403.jpg" alt="First page of Overcoming a Learning Bottleneck in Impartial Games: A Circuit Complexity Approach"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Overcoming a Learning Bottleneck in Impartial Games: A Circuit Complexity Approach</h1>
+        <p class="authors">Søren Riis</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 10, 2024 · v4</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2411.06403v4" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2411.06403" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/SR123/impartial-games-learning-lean" target="_blank" rel="noopener" title="SR123/impartial-games-learning-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Core theorems and circuit constructions about NIM, AC^0 simulation and bypass architectures are formalised in Lean (about 24k lines, 1,588 declarations), with classical complexity results assumed as inputs.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Why can neural networks struggle to learn optimal play in a game with a simple, efficient solution algorithm? Motivated by empirical difficulties with parity in impartial games, we use NIM to study a representational bottleneck and three ways around it. We show that a restricted model of shallow, fixed-scale quantised networks lies in $\mathrm{AC}^0$, a circuit class unable to compute parity on arbitrarily large inputs. This prevents optimal single-position play across all board sizes within the model. The obstruction also guides architectural design: two-frame inputs allow restoration from a known zero-nim-sum position; complementary rollout policies reveal the missing invariant; and persistent recurrence accumulates it row by row. Each route retains shallow network components while supplying additional information or processing time. Supervised experiments illustrate the benefits of two-frame restoration and multiple rollout heads; recurrence is a theoretical construction. These results establish representational possibilities, not guarantees of successful training: $\mathrm{AC}^0$ does not characterise practical learnability. Core mathematical results and constructions have been checked in Lean, with classical complexity results as explicit external inputs. The interactive edition and complete Lean sources are available online at <a href="https://sr123.github.io/impartial-games-learning-lean/" target="_blank" rel="noopener">https://sr123.github.io/impartial-games-learning-lean/</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Neural networks struggle to learn optimal NIM play even though a simple nim-sum algorithm solves it. The paper asks whether this difficulty is a representational bottleneck tied to computing parity.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Shallow, fixed-scale quantised threshold networks are shown to be simulable in AC^0, which cannot compute parity on unbounded inputs. Three bypasses are then constructed: two-frame inputs for restoration from zero-nim-sum positions, multiple complementary rollout heads, and persistent row-wise recurrence. The core mathematical results and explicit circuit constructions are checked in Lean, with classical complexity results treated as explicit external inputs.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Under fixed latency, single-frame quantised models cannot achieve optimal play at all board sizes, while each bypass restores the needed information or computation using AC^0 components. Supervised experiments show benefits from two-frame restoration and from multiple rollout heads. The Lean development checks 1,588 declarations across 38 files and gives explicit depth bounds for the constructed circuits.</p><div class="sum-table"><table><thead><tr><th>Component</th><th>Boolean depth</th><th>Threshold layers</th></tr></thead><tbody><tr><td>Two-frame binary move selector</td><td>≤ 20</td><td>≤ 42</td></tr><tr><td>Multi-head binary readout, given outcomes</td><td>≤ 19</td><td>≤ 40</td></tr><tr><td>One structured policy&#x27;s binary move output</td><td>≤ 17</td><td>≤ 36</td></tr><tr><td>One recurrent state update and output</td><td>≤ 8</td><td>≤ 18</td></tr><tr><td>One shootout controller tick</td><td>≤ 34</td><td>≤ 70</td></tr></tbody></table><div class="tbl-cap">Lean-checked depth bounds for constructed components</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

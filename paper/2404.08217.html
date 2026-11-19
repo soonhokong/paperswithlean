@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escape with Your Self: Sound and Expressive Bidirectional Typing with Avoidance for Reachability Types · Papers With Lean</title>
+<meta name="description" content="Reasoning about programs in the presence of mutation and aliasing is notoriously difficult. Rust has popularized lifetime-based ownership tracking in systems programming, but its &quot;shared XOR mutable&quot; model is fundamentally at odds with higher-level functional programming.…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Escape with Your Self: Sound and Expressive Bidirectional Typing with Avoidance for Reachability Types">
+<meta property="og:description" content="Reasoning about programs in the presence of mutation and aliasing is notoriously difficult. Rust has popularized lifetime-based ownership tracking in systems programming, but its &quot;shared XOR mutable&quot; model is fundamentally at odds with higher-level functional programming.…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2404.08217.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2404.08217.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2404.08217v6" target="_blank" rel="noopener"><img src="../thumbs/2404.08217.jpg" alt="First page of Escape with Your Self: Sound and Expressive Bidirectional Typing with Avoidance for Reachability Types"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Escape with Your Self: Sound and Expressive Bidirectional Typing with Avoidance for Reachability Types</h1>
+        <p class="authors">Songlin Jia, Guannan Wei, Siyuan He, Yuyan Bao, Tiark Rompf</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Apr 12, 2024 · v6</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=type-theory">type-theory</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2404.08217v6" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2404.08217" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/TiarkRompf/reachability" target="_blank" rel="noopener" title="TiarkRompf/reachability">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The declarative reachability type system, its soundness proofs, and the bidirectional typing algorithm with its soundness and termination proofs are mechanized in Lean 4.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Reasoning about programs in the presence of mutation and aliasing is notoriously difficult. Rust has popularized lifetime-based ownership tracking in systems programming, but its &quot;shared XOR mutable&quot; model is fundamentally at odds with higher-level functional programming. Reachability types offer an alternative: they enable safe sharing and escape of mutable data by tracking which resources each expression&#x27;s result can reach. To track internal reachability within complex object graphs, reachability types adopt self-references that let components refer to enclosing resources from inside, just like `this` pointers in OO languages. While natural for declaratively typing escaping data, self-references complicate subtyping and furthermore type inference: variance restricts where self-references may appear, yet useful type conversions must allow them to vary in controlled ways, which in turn imposes constraints on inference. As an undesirable result, prior works require programmers to insert term-level coercions for even just avoidance – avoiding ill-scoped names in types. With all prior works being declarative, we investigate algorithmic reachability types in this work. We introduce a refined subtyping relation that permits more flexible usages of self-references. We further develop a sound and decidable bidirectional typing algorithm, implemented and verified in Lean. The algorithm automatically avoids ill-scoped names in types, and infers qualifiers via a lightweight unification mechanism. As a step towards practical reachability programming, we show that the system is capable of tracking diverse reachability patterns without explicit coercions in complex Church-encoded datatypes.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Reachability types track which resources an expression can reach and use self-references to describe internal reachability, but self-references complicate subtyping and inference. Prior systems are purely declarative and need programmer-inserted term-level coercions even for avoidance, i.e. keeping ill-scoped names out of types.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors define G&lt;:, a refined declarative reachability type system that combines type and qualifier subtyping so self-references can vary in controlled ways. They then develop G⇔, a bidirectional typing algorithm that infers types and qualifiers using a lightweight unification over qualifier holes. G⇔ also applies avoidance conversions automatically. Both systems and their metatheory are mechanized in Lean 4, with soundness proved via a logical relation model.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The algorithm is proven sound with respect to G&lt;: and terminating, though incomplete. It tracks diverse reachability patterns in Church-encoded and natively supported data structures such as pairs and lists without explicit coercions. The artifact is released on Zenodo and GitHub.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
