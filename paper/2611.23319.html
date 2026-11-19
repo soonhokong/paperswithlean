@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reusing formal Vlasov-Maxwell proofs to certify plasma solver outputs · Papers With Lean</title>
+<meta name="description" content="AI now produces machine-checked mathematics faster than researchers can read it. Can such theorems do practical computational work? We reuse one from OpenAI&#x27;s Lean 4 relativistic Vlasov–Maxwell library: initial fields determine the field at an outside point until plasma signals…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reusing formal Vlasov-Maxwell proofs to certify plasma solver outputs">
+<meta property="og:description" content="AI now produces machine-checked mathematics faster than researchers can read it. Can such theorems do practical computational work? We reuse one from OpenAI&#x27;s Lean 4 relativistic Vlasov–Maxwell library: initial fields determine the field at an outside point until plasma signals…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.23319.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.23319.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.23319v1" target="_blank" rel="noopener"><img src="../thumbs/2611.23319.jpg" alt="First page of Reusing formal Vlasov-Maxwell proofs to certify plasma solver outputs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Reusing formal Vlasov-Maxwell proofs to certify plasma solver outputs</h1>
+        <p class="authors">Bowen Zhu, Jian Wu</p>
+        <div class="row">
+          <span class="badge">physics.plasm-ph</span>
+          <span class="date">Nov 15, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-blue" href="../#tag=physics">physics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.23319v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.23319" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/tomzhu0225/vlasov-maxwell-pic-benchmark" target="_blank" rel="noopener" title="tomzhu0225/vlasov-maxwell-pic-benchmark">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Imports a Lean 4 relativistic Vlasov–Maxwell formalization and adds eleven new Lean modules proving exterior-field, Poynting-balance, Yee-invariance and mode-rank bounds used to certify PIC solvers.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">AI now produces machine-checked mathematics faster than researchers can read it. Can such theorems do practical computational work? We reuse one from OpenAI&#x27;s Lean 4 relativistic Vlasov–Maxwell library: initial fields determine the field at an outside point until plasma signals reach it, and the energy leaving a surrounding box before they reach its faces. New Lean proofs and numerical bounds give particle-free references for particle-in-cell simulations across three tasks. Domain size follows analytically from observation time, exposing boundary and initialization errors in WarpX and Smilei that global energy checks missed. Grid choice can be tested directly: combining two coarse grids recovers unknown plasma inputs within tolerance at a median 14.9-fold speedup over a fine grid, where the medium grid alone fails. For reduced models, the bounds establish the minimum number of time curves needed to predict energy loss.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Three-dimensional relativistic plasma simulations rarely have closed-form references. Global checks such as total energy can miss local errors that cancel across space. The authors ask whether machine-generated Lean theorems can supply solver-independent references for particle-in-cell codes.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors reuse OpenAI&#x27;s Lean 4 lemma that, outside the light cone of an initially compact plasma, the field equals the source-free Maxwell evolution of the initial fields. On top of it they add Lean modules for six-face Poynting balance, discrete Yee zero-B_z invariance, opposite-probe symmetry, rational flux sums and mode-rank and query lower bounds. These build on Mathlib, OpenAI&#x27;s library and a 39-module earlier artifact. Combined with outward-rounded interval enclosures, the proofs certify probe fields and box-energy changes from initial data alone, and the certified references are compared against WarpX and Smilei simulations.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The certified references exposed boundary truncation and staggered-grid initialization errors in WarpX and Smilei that global energy checks missed. Two-grid extrapolation recovered unknown plasma inputs within tolerance at a median 14.9-fold speedup over a fine grid, where the medium grid alone failed. Lean-verified bounds show that two shared time profiles are the exact minimum needed to predict energy loss at a 1.8 μJ tolerance.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.23319/campaign-smilei.png" alt=""><figcaption>Figure 2: Grid sampling creates a spurious axial magnetic field in Smilei. a , Axial field B_{z} of the vacuum pulse on a 5 mm mesh at 80.1 ps. Pulse symmetry requires B_{z}=0 everywhere. b , The marked slice at z=+20 mm with direct sampling (left) and after enforcing zero discrete divergence of the initial pulse on the grid (right). c , Vacuum field at the positive probe for three mesh spacings. </figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

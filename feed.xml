@@ -6,7 +6,40 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 17 Nov 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 18 Nov 2026 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Only the disk: topological obstructions for warped AdS$_6\times S^2$ in Type IIB</title>
+      <link>https://paperswithlean.com/paper/2611.24320.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.24320.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Nakwoo Kim</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>physics</category><category>geometry</category>
+      <description>Counting steps of the main theorems, pointwise identities and a boundary rotation bound were formalized in Lean 4 with Mathlib; files ship as ancillary files.
+
+Supersymmetric AdS$_6\times S^2$ solutions of Type IIB supergravity are warped products over a Riemann surface $Σ$. They are determined by two holomorphic differentials on $Σ$, with five-branes at poles on its boundary. We derive restrictions on the genus and the number of boundary components of $Σ$. Without seven-branes or orientifolds, the differentials are taken to be single-valued on $Σ$. Regularity implies that the number of interior zeros of one differential equals the total rotation of the phase of the ratio of the two differentials along the boundary. It also bounds this rotation on each boundary component by the number of poles on that component. Combined with the known count of zeros on the double of $Σ$, these two statements force $Σ$ to be a disk. With mutually local seven-branes and orientifolds as interior punctures, the same conclusion follows under additional assumptions on the global structure of the differentials and on their behavior at the punctures. The disk then admits at most one orientifold puncture. On a disk without punctures, the bound applied between successive poles also recovers the known cyclic ordering of the five-brane charges along the boundary.</description>
+    </item>
+    <item>
+      <title>QCCDCert: Formally Verified Compilation for QCCD Co-Design</title>
+      <link>https://paperswithlean.com/paper/2611.23469.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.23469.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>John Zhuoyang Ye, Jens Palsberg, Ke Sun, Hartmut Haeffner</dc:creator>
+      <category>verification</category><category>quantum</category>
+      <description>Implements a QCCD trapped-ion compiler in Lean 4 and proves an end-to-end theorem that compiled code preserves program behavior and satisfies the hardware rules given as inputs.
+
+Quantum charge-coupled device (QCCD) architectures enable scalable trapped-ion quantum computing by dynamically shuttling ions between specialized processing and storage zones. A QCCD can be built with many trap sizes and layouts. Comparing them requires compiling every program under each design&#x27;s transport, capacity and control constraints, and trusting the target code of each compilation. We present a co-design framework built on one Lean-verified compiler. The hardware description and its operating rules are compiler inputs, so a single theorem covers every candidate design: the target code of every compilation preserves its program&#x27;s behavior and obeys the hardware rules. Across 75 benchmark programs of 11 to 130 qubits, the best design found takes 66% less modeled execution time on average than the worst design of equal capacity. An AI agent that proposes devices based on our compiler&#x27;s checked results beats the fastest of these designs on 71 of 75 programs. Our verified compiler provably avoids the 11 defects that we report in three previous compilers. It scales to hundreds of qubits, compiling 512-qubit programs for a 38-trap device in 1 to 29 minutes.</description>
+    </item>
+    <item>
+      <title>Reusing formal Vlasov-Maxwell proofs to certify plasma solver outputs</title>
+      <link>https://paperswithlean.com/paper/2611.23319.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.23319.html</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Bowen Zhu, Jian Wu</dc:creator>
+      <category>formalization</category><category>verification</category><category>mathlib</category><category>physics</category>
+      <description>Imports a Lean 4 relativistic Vlasov–Maxwell formalization and adds eleven new Lean modules proving exterior-field, Poynting-balance, Yee-invariance and mode-rank bounds used to certify PIC solvers.
+
+AI now produces machine-checked mathematics faster than researchers can read it. Can such theorems do practical computational work? We reuse one from OpenAI&#x27;s Lean 4 relativistic Vlasov–Maxwell library: initial fields determine the field at an outside point until plasma signals reach it, and the energy leaving a surrounding box before they reach its faces. New Lean proofs and numerical bounds give particle-free references for particle-in-cell simulations across three tasks. Domain size follows analytically from observation time, exposing boundary and initialization errors in WarpX and Smilei that global energy checks missed. Grid choice can be tested directly: combining two coarse grids recovers unknown plasma inputs within tolerance at a median 14.9-fold speedup over a fine grid, where the medium grid alone fails. For reduced models, the bounds establish the minimum number of time curves needed to predict energy loss.</description>
+    </item>
     <item>
       <title>$p$-harmonic polynomials</title>
       <link>https://paperswithlean.com/paper/2611.23136.html</link>
@@ -630,42 +663,9 @@ We study the query complexity of envy-free division for cake, chores, and resour
       <pubDate>Sat, 14 Nov 2026 00:00:00 +0000</pubDate>
       <dc:creator>Seungki Hong, Taekwang Jang</dc:creator>
       <category>formalization</category><category>mathlib</category><category>ml-theory</category>
-      <description>A companion Lean 4 development with Mathlib checks the IRB coupling algebra, mean-field stationarity, gate bounds, fixed-point convergence, and history-fusion properties.
+      <description>A companion Lean 4 project with Mathlib verifies the paper&#x27;s mean-field derivations, coupling algebra, magnetization and gate bounds, conditional fixed-point convergence, and history-fusion identities.
 
-This paper proposes Graphene, a lightweight image super-resolution architecture with two complementary feature refinement mechanisms: Ising-model-inspired local feature refinement using an Ising Refinement Block (IRB) and stage-history-based feature refinement using a History Attention (HistAttn) module. The IRB reuses attention output features and pre-softmax attention logits to construct signed pairwise token couplings within each local window, applies unrolled mean-field updates, and refines features through a gated residual correction. These signed couplings allow alignment and opposition between latent spins to modulate local feature refinement. HistAttn attends over the current stage output and earlier representations at the same token position and adaptively blends the current stage output with a history-weighted feature aggregate without adding spatial pairwise attention. On Urban100 at $\times4$, Graphene and Graphene-light improve over IET and IET-light by 0.24 dB and 0.38 dB, respectively, with 34.3%/13.7% fewer parameters, 44.8%/44.4% fewer FLOPs, 78.4%/71.5% lower latency, and 76.0%/85.5% lower peak memory. Real-world SR comparisons further show that Graphene recovers fine details and preserves textures across diverse degradations. Code and reference checkpoints are available at https://github.com/skethz/Graphene</description>
-    </item>
-    <item>
-      <title>Resolving Tusnády&#x27;s Problem</title>
-      <link>https://paperswithlean.com/paper/2611.06998.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.06998.html</guid>
-      <pubDate>Sat, 14 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Nicola Wengiel</dc:creator>
-      <category>formalization</category><category>combinatorics</category><category>analysis</category>
-      <description>The main lower bound, Nikolov&#x27;s matching upper bound, and the anchored/general box comparison are formalized in Lean 4, reusing Wei&#x27;s planar formalization.
-
-We prove a lower bound of $Ω_d((\log N)^{d-1/2})$ for the worst-case combinatorial discrepancy of $N$-point sets with respect to anchored boxes in every fixed dimension $d\ge3$. Together with Nikolov&#x27;s upper bound of the same order and Wei&#x27;s planar lower bound, this settles Tusnády&#x27;s problem: the discrepancy of axis-parallel boxes is $Θ_d((\log N)^{d-1/2})$ in every fixed dimension $d\ge2$. The proof combines smoothed product test functions, sampling discretization, and an entropy argument for conditioned Gaussian vectors. The matching upper and lower bounds are also formalized in Lean 4.</description>
-    </item>
-    <item>
-      <title>A Computer-Assisted Proof of Speed Monotonicity for the Biased Random Walk on a Galton-Watson Tree Beyond the Known Range</title>
-      <link>https://paperswithlean.com/paper/2609.29894.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.29894.html</guid>
-      <pubDate>Sat, 14 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Madhulatha Mandarapu, Sandeep Kunkunuru</dc:creator>
-      <category>formalization</category><category>verification</category><category>mathlib</category><category>probability</category>
-      <description>Reduction lemmas and an exact-integer cell certificate on [1.17,1.755] are formalized in Lean 4 with mathlib, checked by kernel reduction without native_decide.
-
-The speed $v(λ)$ of the $λ$-biased random walk on a supercritical Galton–Watson tree without leaves is conjectured to be nonincreasing on $[0,m)$, where $m$ is the mean offspring. For non-constant offspring, monotonicity is known only for small bias: $λ\le 1/1160$, $λ\le 1/2$, and, when every vertex has at least $m_1\ge 2$ children, $λ\le m_1/(1+\sqrt{1-1/m_1})$. For offspring uniform on $\{2,3\}$ ($m=2.5$) the last bound is $2/(1+\sqrt{1/2})\approx1.1716$. We prove, with computer assistance, that $v$ is strictly decreasing on $[0,1.755]$ for this law. The proof has three parts. Aïdékon&#x27;s speed formula gives $v=(R-λ)/(R+λ)$ for an explicit functional $R$, so $v$ decreases exactly when $R/λ$ does; we compare $R/λ$ at two biases directly, which avoids differentiating the conductance. A pathwise Lipschitz bound on the conductance in $λ$ turns that comparison into an inequality between expectations of explicit functions. A monotone sandwich of discretised laws gives two-sided bounds on the conductance law, and each $λ$-cell is checked in exact rational arithmetic over bounded floating-point error, with five cells re-checked in interval arithmetic; all reduction lemmas and an exact-integer certificate across $[1.17,1.755]$ are also formally verified in Lean 4. The method stops where the crude Lipschitz bound becomes too weak; sharper control of the derivative of the conductance is what the full range needs. Code and certificates are public.</description>
-    </item>
-    <item>
-      <title>51 Additions per Recursive Step for Rank-23 $3\times3$ Matrix Multiplication, Machine-Checked over Arbitrary Rings</title>
-      <link>https://paperswithlean.com/paper/2611.12907.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.12907.html</guid>
-      <pubDate>Fri, 13 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Greg Sidebottom</dc:creator>
-      <category>verification</category><category>formalization</category><category>mathlib</category><category>algebra</category>
-      <description>Lean 4/Mathlib kernel-checked proofs that the 51-addition rank-23 3x3 scheme computes AB over arbitrary rings, plus a class-optimality proof via decide.
-
-We present a rank-23 bilinear scheme for $3\times3$ matrix multiplication that uses 51 additions per recursive step in the alternative-basis (Karstadt-Schwartz) cost model, one below Nielsen&#x27;s 52 (arXiv:2609.06588). The count 51 itself was first posted, on a different scheme, by Stapleton and Perminov (arXiv:2609.32388), found by heuristic sparse-basis search; the present work is independent and complementary: exactness and breadth rather than a single construction. The scheme is valid over every ring, so it recurses on block matrices, and its correctness is machine-checked in Lean 4/Mathlib. The count is exactly optimal for the scheme&#x27;s equivalence class: we introduce an exact free-basis minimization procedure whose negative answers are exhaustion proofs, and use it to show that 51 is the minimum for this class, that 52 is exactly optimal both for Nielsen&#x27;s class and for the class of the current flat-model record, and to sweep the complete Heule-Kauers-Seidl database of rank-23 classes. The sweep is complete: exactly four classes attain 51, all in a single HKS invariant family. We machine-check Stapleton and Perminov&#x27;s scheme as well, and prove in Lean that their 51 is optimal for its class. Separately, we document a systematic gap between $\mathbb{F}_2$ and signed optima: the $\mathbb{F}_2$-optimal chains of a class typically admit no sign assignment under most of the class&#x27;s integer sign models, and certificate lifting fails where a direct signed search succeeds.</description>
+This paper proposes Graphene, a lightweight image super-resolution architecture with two complementary feature refinement mechanisms: Ising-model-inspired local feature refinement using an Ising Refinement Block (IRB) and stage-history-based feature refinement using a History Attention (HistAttn) module. The IRB reuses attention output features and pre-softmax attention logits to construct signed pairwise token couplings within each local window, applies unrolled mean-field updates, and refines features through a gated residual correction. These signed couplings allow alignment and opposition between latent spins to modulate local feature refinement. HistAttn attends over the current stage output and earlier representations at the same token position and adaptively blends the current stage output with a history-weighted feature aggregate without adding spatial pairwise attention. On Urban100 at $\times4$, Graphene and Graphene-light improve over IET and IET-light by 0.24 dB and 0.38 dB, respectively, with 34.3%/13.7% fewer parameters, 44.8%/44.4% fewer FLOPs, 83.9%/95.9% lower latency, and 63.7%/92.0% lower peak memory. Real-world SR comparisons further show that Graphene recovers fine details and preserves textures across diverse degradations. Code and reference checkpoints are available at https://github.com/skethz/Graphene</description>
     </item>
   </channel>
 </rss>
