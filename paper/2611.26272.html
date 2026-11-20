@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paper2Lean: Agentic Autoformalization of Mathematical Research Papers at Scale · Papers With Lean</title>
+<meta name="description" content="Formalizing a mathematical research paper requires more than translating isolated theorems: statements and proofs must remain semantically faithful to the source and globally consistent across long-range dependencies. We introduce Paper2Lean, an end-to-end agentic framework that…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Paper2Lean: Agentic Autoformalization of Mathematical Research Papers at Scale">
+<meta property="og:description" content="Formalizing a mathematical research paper requires more than translating isolated theorems: statements and proofs must remain semantically faithful to the source and globally consistent across long-range dependencies. We introduce Paper2Lean, an end-to-end agentic framework that…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.26272.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.26272.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.26272v1" target="_blank" rel="noopener"><img src="../thumbs/2611.26272.jpg" alt="First page of Paper2Lean: Agentic Autoformalization of Mathematical Research Papers at Scale"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Paper2Lean: Agentic Autoformalization of Mathematical Research Papers at Scale</h1>
+        <p class="authors">Yifan Bai, Yantao Li, Jian Yu, Jingwei Liang</p>
+        <div class="row">
+          <span class="badge">math.OC</span>
+          <span class="date">Nov 19, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.26272v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.26272" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/TTony2019/OptPaper" target="_blank" rel="noopener" title="TTony2019/OptPaper">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Agentic LLM framework converts optimization research papers into compiled Lean 4 projects built on Mathlib and a supporting Foundation library, released as the OptPaper-20 corpus.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Formalizing a mathematical research paper requires more than translating isolated theorems: statements and proofs must remain semantically faithful to the source and globally consistent across long-range dependencies. We introduce Paper2Lean, an end-to-end agentic framework that converts mathematical research papers into integrated Lean projects. The framework extracts mathematical content into a dependency graph and coordinates specialized agents for statement formalization, semantic checking and repair, proof construction, and project integration. We evaluate Paper2Lean on 20 mathematical optimization research papers, using mathlib and a shared library of supporting results. All 20 automatically generated projects compile successfully without proof placeholders. Following human review and semantic repair, we introduce OptPaper-20, a corpus of 20 corrected paper-level formalizations comprising 494 Lean files and 110,910 lines of Lean code. All released projects pass clean builds, with no unresolved discrepancies identified in the audit. These results demonstrate the feasibility of agentic paper-level formalization while highlighting semantic fidelity as a central challenge beyond proof verification. The source code and dataset are publicly available at <a href="https://github.com/TTony2019/OptPaper" target="_blank" rel="noopener">https://github.com/TTony2019/OptPaper</a></div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Formalizing a whole research paper is harder than translating isolated theorems. Statements must stay faithful to the source, and the project must remain consistent across long-range dependencies between results.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Paper2Lean uses MinerU OCR to extract a paper&#x27;s mathematical units into JSON and arranges them in a dependency DAG. Specialized Codex-based agents then handle statement formalization, semantic checking and repair, layer-scheduled proof construction, and project integration. The agents interact with Lean 4 via Lean LSP MCP. Formalizations build on Mathlib plus a Foundation library partly derived from Bauschke &amp; Combettes and from Optlib.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.26272/Paper2Lean.drawio.png" alt=""><figcaption>Figure 1: Overview of Paper2Lean .</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">All 20 generated projects for optimization papers compile without sorry placeholders. Before manual correction, 473 of 494 reviewed declarations were judged faithful. After repair, the OptPaper-20 corpus was released with 494 Lean files and 110,910 lines of Lean. A comparison on three papers shows GPT-5.6-Terra and DeepSeek-V4.1-Flash reaching similar alignment and proof success, with different token costs.</p><div class="sum-table"><table><thead><tr><th>Paper</th><th>GPT-5.6-Terra Proved</th><th>GPT Tokens</th><th>DeepSeek-V4.1-Flash Proved</th><th>DeepSeek Tokens</th></tr></thead><tbody><tr><td>Moudafi &amp; Oliny (2003)</td><td>11/11</td><td>34,150,330</td><td>11/11</td><td>44,088,265</td></tr><tr><td>Abbas &amp; Attouch (2015)</td><td>38/38</td><td>215,109,304</td><td>38/38</td><td>926,283,566</td></tr><tr><td>Baji &amp; Cabot (2006)</td><td>32/32</td><td>151,158,486</td><td>32/32</td><td>394,107,015</td></tr></tbody></table><div class="tbl-cap">Proof construction comparison on three papers</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

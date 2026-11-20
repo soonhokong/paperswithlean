@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sightline: Calibrated Data-Flow Summaries for LLM-Integrated Applications · Papers With Lean</title>
+<meta name="description" content="Programs increasingly call large language models (LLMs), filling prompt placeholders with program values and consuming the output. Such a call crosses the boundary between natural language and programming language (NL/PL). To follow data across it, an analysis needs a data-flow…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sightline: Calibrated Data-Flow Summaries for LLM-Integrated Applications">
+<meta property="og:description" content="Programs increasingly call large language models (LLMs), filling prompt placeholders with program values and consuming the output. Such a call crosses the boundary between natural language and programming language (NL/PL). To follow data across it, an analysis needs a data-flow…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.26221.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.26221.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.26221v1" target="_blank" rel="noopener"><img src="../thumbs/2611.26221.jpg" alt="First page of Sightline: Calibrated Data-Flow Summaries for LLM-Integrated Applications"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Sightline: Calibrated Data-Flow Summaries for LLM-Integrated Applications</h1>
+        <p class="authors">Zihao Xu, Yuekang Li, Ruitao Feng, Haifeng Shen</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Nov 19, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-amber" href="../#tag=verification">verification</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.26221v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.26221" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Mechanizes all thirteen theoretical results on attention-based data-flow soundness in transformers in Lean 4 with Mathlib (2,266 lines, 12 modules, no sorry).</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Programs increasingly call large language models (LLMs), filling prompt placeholders with program values and consuming the output. Such a call crosses the boundary between natural language and programming language (NL/PL). To follow data across it, an analysis needs a data-flow summary of which placeholders the output uses, but no code describes what the model does. Analyses of these LLM-integrated applications therefore taint every output with every input, creating spurious flows, or ask a second model to label each call, which is costly. We prove, and mechanize in Lean 4, that a placeholder flows to the output of a transformer, to first order, only through the attention that reads it (no reading, no flow), and that a faint reading or sensitivity cannot certify that a placeholder does not flow. Unlike reading, the log-probability gradients and Fisher signals of existing methods vanish on confident outputs, and single-span removal fails on duplicated content. Our tool, Sightline, reads a recorded call in one forward pass, learns from labels which reads are uses, and calibrates the pruning to miss at most a chosen fraction $α$ of true flows, on average over call sites, when deployment is exchangeable with calibration. On 2,103 unseen repository families and four models, Sightline is the most accurate summary against the seven closest methods and a hidden-state probe. Calibrated at $α$ = 1%, it misses about 1% of true flows and prunes 43.9-65.6% of spurious flows, 1.6 to 2.6 times as many as the best baseline, and still 43.8-60.1% when calibrated on another collection. Through an open surrogate, it reads models treated as closed about as accurately as they read themselves, without their labels. In the information-flow control of an LLM agent, it removes about half of the labels from inputs that do not flow.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Program analyses such as taint tracking and information-flow control need data-flow summaries of LLM calls, saying which prompt placeholders the output uses. No code describes the model&#x27;s computation, so current analyses either taint every output with every input or pay for a second model to label each call.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors prove four properties of attention &#x27;reading&#x27; and mechanize them in Lean 4 with Mathlib. Reading soundly bounds first-order local flow, a faint reading cannot certify non-flow, calibration gives a statistical guarantee, and gradient, Fisher and removal signals collapse on confident outputs or duplicated content. The tool Sightline uses these properties: it records per-head reading masses from one teacher-forced forward pass, scores each placeholder with a learned readout, and calibrates the pruning threshold per call site to miss at most an α fraction of true flows. The Lean development has 89 theorems in 2,266 lines and depends only on the standard axioms.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.26221/fig-reading-features.png" alt=""><figcaption>Figure 3. Where Sightline reads in one teacher-forced forward pass (a), the three statistics of one head (b), and the feature vector with the readout (c), as defined in Equation 4 and Equation 5 . Three panels showing which positions the output reads in a forward pass, the three statistics of one head, and the feature vector that the readout takes.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 2,103 unseen repository families and four models, Sightline is more accurate than seven baselines and a hidden-state probe. Calibrated at α=1%, it misses about 1% of true flows and prunes 43.9–65.6% of spurious flows, 1.6 to 2.6 times as many as the best baseline. In information-flow control of an LLM agent, it removes about half of the label creep.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Qwen</th><th>Granite</th><th>Gemma</th><th>Nemotron</th></tr></thead><tbody><tr><td>Sightline</td><td>86.0</td><td>84.1</td><td>86.7</td><td>81.1</td></tr><tr><td>Replacement</td><td>80.2</td><td>79.6</td><td>80.5</td><td>78.7</td></tr><tr><td>LOO</td><td>77.5</td><td>77.5</td><td>78.8</td><td>75.2</td></tr><tr><td>GIF (next token)</td><td>50.5</td><td>50.2</td><td>47.0</td><td>61.3</td></tr></tbody></table><div class="tbl-cap">Accuracy (Macro-F1) of data-flow summaries on the new batch (selected methods)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
