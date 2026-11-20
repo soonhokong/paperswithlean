@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nilpotent skew-symmetric tridiagonal Bohemian matrices: a proof of Corless&#x27;s conjecture · Papers With Lean</title>
+<meta name="description" content="Corless studied the skew-symmetric tridiagonal matrices $T_m(u)$ with superdiagonal $u \in \{1, i\}^{m-1}$. He showed that $T_m(u)$ can be nilpotent only if $m = 2^K - 1$ and that the $2^{K-1}$ vectors $u$ obtained from the empty vector by repeated application of $u \mapsto (u,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nilpotent skew-symmetric tridiagonal Bohemian matrices: a proof of Corless&#x27;s conjecture">
+<meta property="og:description" content="Corless studied the skew-symmetric tridiagonal matrices $T_m(u)$ with superdiagonal $u \in \{1, i\}^{m-1}$. He showed that $T_m(u)$ can be nilpotent only if $m = 2^K - 1$ and that the $2^{K-1}$ vectors $u$ obtained from the empty vector by repeated application of $u \mapsto (u,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.25266.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.25266.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.25266v1" target="_blank" rel="noopener"><img src="../thumbs/2611.25266.jpg" alt="First page of Nilpotent skew-symmetric tridiagonal Bohemian matrices: a proof of Corless&#x27;s conjecture"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Nilpotent skew-symmetric tridiagonal Bohemian matrices: a proof of Corless&#x27;s conjecture</h1>
+        <p class="authors">Marcel Blattner</p>
+        <div class="row">
+          <span class="badge">math.CO</span>
+          <span class="date">Nov 18, 2026 · v1</span>
+          <span class="badge">math.RA</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.25266v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.25266" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/marcelbtec/corless-nilpotent" target="_blank" rel="noopener" title="marcelbtec/corless-nilpotent">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The main theorem (Corless&#x27;s nilpotency conjecture) and its counting corollary are formalised in Lean 4 with Mathlib, in about 1,150 lines.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Corless studied the skew-symmetric tridiagonal matrices $T_m(u)$ with superdiagonal $u \in \{1, i\}^{m-1}$. He showed that $T_m(u)$ can be nilpotent only if $m = 2^K - 1$ and that the $2^{K-1}$ vectors $u$ obtained from the empty vector by repeated application of $u \mapsto (u, 1, i, \rev u)$ and $u \mapsto (u, i, 1, \rev u)$ give nilpotent matrices, and he conjectured that there are no others. We prove this conjecture. Reducing the characteristic polynomial modulo $4$ gives a necessary condition for nilpotency that is linear over $\F$. For $m &gt; 1$ it forces $u = (v, 1, i, \rev v)$ or $u = (v, i, 1, \rev v)$, and an identity implicit in Corless&#x27;s proof then reduces the problem to $v$. Since $T_m(u)$ is diagonally similar to a finite section of the Feinberg–Zee hopping matrix, the theorem also determines the nilpotent tridiagonal sign matrices. We further show that the $(1,1)$ entry of the resolvent of a nilpotent $T_m(u)$ is $λ^{-1} \pm λ^{-3} \pm λ^{-7} \pm \dots \pm λ^{-(2^K - 1)}$, with signs that determine $u$. The proof of the main theorem has been formalised in Lean 4.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Corless conjectured that the skew-symmetric tridiagonal matrices T_m(u) with superdiagonal entries in {1, i} are nilpotent only for the 2^{K-1} vectors produced by his recursive doubling construction, with m = 2^K - 1. The conjecture had been checked by exhaustive computation only for m ≤ 31.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The characteristic polynomial is expressed through a signed matching polynomial of a path. Reducing it modulo 4 gives a necessary condition for nilpotency that is linear over F_2. This condition forces a folded structure on u, and an identity from Corless&#x27;s proof then reduces the problem to the shorter vector v. The proof of the main theorem was formalised in Lean 4 with Mathlib, with the theorem defined through an inductive predicate CorlessVec.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The conjecture is proved, and the result also classifies the nilpotent tridiagonal sign matrices. The Lean theorems corless_conjecture and card_nilpotent depend only on Lean&#x27;s standard axioms. An exhaustive search confirms the case m = 63, and the (1,1) resolvent entry is shown to determine u.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
