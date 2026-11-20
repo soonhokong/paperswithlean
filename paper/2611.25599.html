@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tether: Verified Stateful Policy Engine for System-Level Monitoring of Agents · Papers With Lean</title>
+<meta name="description" content="Autonomous AI agents are increasingly deployed for long-running tasks that execute arbitrary shell commands or programs. However, these actions can result in unauthorized network requests or persistent, malicious changes to the user&#x27;s file system, processes, or privileges.…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tether: Verified Stateful Policy Engine for System-Level Monitoring of Agents">
+<meta property="og:description" content="Autonomous AI agents are increasingly deployed for long-running tasks that execute arbitrary shell commands or programs. However, these actions can result in unauthorized network requests or persistent, malicious changes to the user&#x27;s file system, processes, or privileges.…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.25599.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.25599.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.25599v1" target="_blank" rel="noopener"><img src="../thumbs/2611.25599.jpg" alt="First page of Tether: Verified Stateful Policy Engine for System-Level Monitoring of Agents"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Tether: Verified Stateful Policy Engine for System-Level Monitoring of Agents</h1>
+        <p class="authors">Meghana Aparna Sistla, Alaia Solko-Breslin, Somesh Jha, Aditya Kanade, Krishnamurthy Dj Dvijotham</p>
+        <div class="row">
+          <span class="badge">cs.CR</span>
+          <span class="date">Nov 19, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.25599v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.25599" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Implements a stateful security-policy DSL for agent monitoring as a Lean 4 EDSL that runs as the runtime monitor and proves policy metatheorems.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Autonomous AI agents are increasingly deployed for long-running tasks that execute arbitrary shell commands or programs. However, these actions can result in unauthorized network requests or persistent, malicious changes to the user&#x27;s file system, processes, or privileges. Existing defense mechanisms rely on either LLM-based monitors, which lack provable safety guarantees, or stateless policy enforcement layers, which miss multi-step data flows and execution side-effects unmodeled by the policy language (e.g., network calls initiated inside a Python script). We introduce Tether, a framework for runtime enforcement of stateful security policies over the observed side-effects of an agent&#x27;s actions. Tether executes each proposed action in an ephemeral, isolated sandbox, inferring abstract action semantics from observed system calls. Tether then enforces stateful policies over these inferred semantics, permitting actions to proceed only if they comply with the policy. Policies and action semantics are defined in an embedded DSL in Lean 4 capable of expressing diverse constraints, including information flow control (IFC), access control, and network security policies. Because actions can propagate labels from sources to destinations, a single rule can enforce fine-grained IFC policies across multi-step execution flows of arbitrary length. Expressing policies in Lean enables formal verification that they satisfy global security invariants (e.g., preventing network access after reading a sensitive file). We evaluate Tether on realistic coding-agent benchmarks across both benign and adversarial trajectories. With a single policy shared across all tasks, Tether blocks 100% of in-scope attacks while maintaining a benign false-positive rate under 5%.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Autonomous terminal agents can run arbitrary commands that exfiltrate data or make persistent malicious changes. Existing defenses are either LLM monitors without formal guarantees or stateless policy layers. Stateless layers miss multi-step information flows and side effects of commands whose effects cannot be predicted statically.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Tether runs each proposed command speculatively in an ephemeral sandbox (OverlayFS, a network proxy, paused background processes). It infers abstract actions from strace system-call traces and commits side effects only if a stateful policy allows them. Policies are written over a lattice-parametric action calculus that unifies access control and information flow control. They are implemented as an embedded DSL in Lean 4, which serves both as the executable reference monitor and as the specification for mechanized proofs. The proofs cover deny-overrides monotonicity, non-bypassability of required policies, permutation invariance, and state preservation under denial. Fuzzing over provenance DAGs checks that inferred action traces match ground-truth abstract traces.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On the MonitoringBench and LinuxArena coding-agent benchmarks, a single shared policy blocks 100% of in-scope attacks with a benign false-positive rate of 4.7%. LLM-based monitors miss some attacks on the same tasks. Red-teaming exposed gaps in the sandbox; after fixes, attack success rate fell to 0%.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
