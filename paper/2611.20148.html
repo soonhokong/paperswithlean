@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Centered Ablation: Why Last-Layer Directional Ablation Under-Fires or Collapses, and a Closed-Form Fix · Papers With Lean</title>
+<meta name="description" content="Directional ablation removes a hidden state&#x27;s component along a &quot;behaviour direction&quot; while a language model runs. It is the standard way to switch a behaviour such as refusal off, but it is erratic: on some models it barely fires, on others the text collapses into repetition.…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Centered Ablation: Why Last-Layer Directional Ablation Under-Fires or Collapses, and a Closed-Form Fix">
+<meta property="og:description" content="Directional ablation removes a hidden state&#x27;s component along a &quot;behaviour direction&quot; while a language model runs. It is the standard way to switch a behaviour such as refusal off, but it is erratic: on some models it barely fires, on others the text collapses into repetition.…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.20148.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.20148.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.20148v1" target="_blank" rel="noopener"><img src="../thumbs/2611.20148.jpg" alt="First page of Centered Ablation: Why Last-Layer Directional Ablation Under-Fires or Collapses, and a Closed-Form Fix"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Centered Ablation: Why Last-Layer Directional Ablation Under-Fires or Collapses, and a Closed-Form Fix</h1>
+        <p class="authors">Quy-Anh Dang, Chris Ngo</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Nov 15, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.20148v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.20148" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/knoveleng/centered-ablation" target="_blank" rel="noopener" title="knoveleng/centered-ablation">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The proofs of the closed-form ablation results were formalized and machine-checked in Lean 4 with Mathlib, with assistant help.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Directional ablation removes a hidden state&#x27;s component along a &quot;behaviour direction&quot; while a language model runs. It is the standard way to switch a behaviour such as refusal off, but it is erratic: on some models it barely fires, on others the text collapses into repetition. We show why, and fix it. At the last residual stream, ablation is exactly a logit bias: a fixed vocabulary footprint scaled by a gate, the cosine between the hidden state and the direction. The gate is measured from the origin, but last-layer states share a large common mode far from it, so a direction that overlaps the common mode fires on benign text and under-fires on its targets. Centered Ablation (CA) projects the common mode out of the direction, in closed form. Across 8 models, CA raises attack success by 29 and 46 points where the standard recipe under-fires, cuts collapse on Gemma-2-9B from 50% to 1%, and preserves 12 to 40 points more benign answers on high-overlap models, 39 to 46 more than the affine offset of prior work. Two numbers computed before generation predict, on models the analysis had not seen, which gain faithfulness and which gain attack success, and a collapse index marks when text degenerates. We also show that two standard safety judges score collapsed text in opposite directions, which can fabricate a 46-point effect.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Directional ablation, which removes a hidden state&#x27;s component along a behaviour direction such as refusal, behaves erratically across language models. On some models it barely fires, and on others it causes text to collapse into repetition. Existing fixes do not explain these failures or predict them in advance.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">At the last residual stream, ablation is shown to be exactly a logit bias: a fixed vocabulary footprint scaled by a gate, the cosine between the hidden state and the direction. Last-layer states share a large common mode far from the origin, so a direction that overlaps this mode misfires. Centered Ablation (CA) projects the benign common mode out of the difference-in-means direction in closed form. Diagnostics (overlap ω, η, and a collapse index β) are computed from cached activations, and the proofs are machine-checked in Lean 4 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Across 8 models, CA raises attack success by 29 and 46 points where the standard recipe under-fires. It cuts collapse on Gemma-2-9B from 50% to 1%. It preserves 12 to 40 more benign answers on high-overlap models, and 39 to 46 more than the affine offset of prior work. The pre-generation diagnostics predicted the outcomes on models the analysis had not seen, and the paper shows that two standard safety judges score collapsed text in opposite directions.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

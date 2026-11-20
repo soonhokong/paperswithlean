@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GPRidge: Gaussian-process Accelerated Calculations of Minimum Energy Paths and First-order Saddle Points · Papers With Lean</title>
+<meta name="description" content="GPRidge, a Gaussian-process (GP) library for accelerating calculations of minimum energy paths and first-order saddle points with compiled-language and Python bindings, is presented. An evaluation controller uses GP predictions to iteratively adjust the Cartesian coordinates of…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GPRidge: Gaussian-process Accelerated Calculations of Minimum Energy Paths and First-order Saddle Points">
+<meta property="og:description" content="GPRidge, a Gaussian-process (GP) library for accelerating calculations of minimum energy paths and first-order saddle points with compiled-language and Python bindings, is presented. An evaluation controller uses GP predictions to iteratively adjust the Cartesian coordinates of…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.20591.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.20591.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.20591v1" target="_blank" rel="noopener"><img src="../thumbs/2611.20591.jpg" alt="First page of GPRidge: Gaussian-process Accelerated Calculations of Minimum Energy Paths and First-order Saddle Points"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">GPRidge: Gaussian-process Accelerated Calculations of Minimum Energy Paths and First-order Saddle Points</h1>
+        <p class="authors">Rohit Goswami, Maxim Masterov, Satish Kamath, Alejandro Pena-Torres, Andreas Lynge Vishart, Thomas Bligaard, Hannes Jonsson</p>
+        <div class="row">
+          <span class="badge">physics.chem-ph</span>
+          <span class="date">Nov 16, 2026 · v1</span>
+          <span class="badge">cond-mat.mtrl-sci</span> <span class="badge">physics.comp-ph</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-blue" href="../#tag=physics">physics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.20591v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.20591" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.23776354" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A supplementary Lean 4 development formalizes some of the paper&#x27;s labelled theorems: squared-exponential kernel identities, a Schur comparison, local stability of the reflected mode, and gradient-error bounds.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">GPRidge, a Gaussian-process (GP) library for accelerating calculations of minimum energy paths and first-order saddle points with compiled-language and Python bindings, is presented. An evaluation controller uses GP predictions to iteratively adjust the Cartesian coordinates of the atoms. The fitted GP energy surface and measured energies and forces pass from the path calculation to local refinement of the saddle point. New evaluations improve the surrogate and check the candidate geometry. For the molecular calculations, acceptance requires measured-force convergence and an independent Hessian with only one negative eigenvalue. A second negative eigenvalue triggers an escape and renewed refinement. The controller supports a joint inverse-distance GP for molecules and local GP residuals on periodic systems. Applications to the 24 Baker-Chan and 20 Birkholz-Schlegel molecular reactions using the Universal Model for Atoms (UMA-S-1.1), and to 72 Pt heptamer and island rearrangements on Pt(111) using a Morse potential, are presented. On matched Baker-Chan reactions, GPRidge uses 7.8- and 7.0-fold fewer energy-and-force evaluations than climbing-image nudged elastic band (CI-NEB) and off-path climbing-image nudged elastic band (OCI-NEB), respectively, reducing validation-inclusive CI-NEB time by 41%. All 20 Birkholz-Schlegel saddle points pass the independent index-one check, compared with 17 for the classical dimer method started from the same path maxima; on those 17 reactions, the GP dimer stage uses 6.4-fold fewer evaluations. All 72 Pt(111) paths meet the OptBench force criterion, with median evaluation counts of 30 and 23 for the heptamer and island problems, against 778 and 443 for CI-NEB.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Finding minimum energy paths and first-order saddle points with nudged elastic band and dimer methods needs many expensive energy-and-force evaluations. A force criterion alone also cannot confirm that a converged point is a true index-one saddle.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">GPRidge is a Gaussian-process surrogate library with Python, C and Fortran interfaces. It shares one training set between a climbing-image band and a dimer refinement. Candidate saddles are accepted only on measured-force convergence plus an independent Hessian with exactly one negative eigenvalue. Supporting theorems are partly checked in a Lean 4 development: scalar kernel identities, a Schur comparison, mode stability, a BMA variance inequality and gradient error at surrogate critical points.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.20591/band-landscape.png" alt=""><figcaption>Figure 32: HCN isomerization: projected observations. Plane of reaction progress and orthogonal deviation, both RMSD-based and given in Å. Circles are the final band images, filled by their surrogate mean; diamonds are all potential evaluations, filled by their measured energy. Both use the colorbar scale relative to the reactant. The ring marks the climbing image and the star the saddle that pass</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">All 24 Baker–Chan and 20 Birkholz–Schlegel reactions reach validated index-one saddles. On matched Baker–Chan reactions GPRidge uses about 7.8-fold fewer evaluations than CI-NEB. On Pt(111) the median evaluation count drops from 778 to 30 for the heptamer and from 443 to 23 for the island problems.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.20591/reaction_costs_baker.png" alt=""><figcaption>Figure 22: Baker–Chan costs by reaction. Values are comparator/GPRidge search costs: (a) energy and force evaluations and (b) elapsed search time. Values above one favour GPRidge; crosses denote outcomes that fail the common checks. All 24 GPRidge reactions pass. Validation is excluded, while endpoint evaluations and ML-FSM string construction are included. Plain NEB has no saddle-refinement stage</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.20591/reaction_costs_birkholz.png" alt=""><figcaption>Figure 23: Birkholz–Schlegel costs by reaction, using the same ratio and cross conventions as Figure 22 . All 20 GPRidge reactions pass. The comparison excludes shared band preparation and independent validation. Each method starts from the band maximum, and GPRidge also reuses the band’s measured observations. Sella uses fewer evaluations on six common successes; the crosses show its unsuccessful</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Workflow</th><th>Search</th><th>Force converged</th><th>Index-one check</th></tr></thead><tbody><tr><td>Double-ended, Baker–Chan</td><td>GP-accelerated CI-NEB</td><td>24/24</td><td>24/24</td></tr><tr><td>Single-ended, Birkholz–Schlegel</td><td>GP dimer from band maximum</td><td>20/20</td><td>20/20</td></tr></tbody></table><div class="tbl-cap">Search outcomes on UMA-S-1.1 omol</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

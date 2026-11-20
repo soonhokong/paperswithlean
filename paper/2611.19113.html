@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Composable Rewrites for Layouts of Algebraic Data Types · Papers With Lean</title>
+<meta name="description" content="Algebraic data types (ADTs) decouple the logical structure of data from physical layout choices that affect performance. For example, packing small fields into a word improves spatial locality, while storing co-accessed fields contiguously can enable vectorization. Such choices…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Composable Rewrites for Layouts of Algebraic Data Types">
+<meta property="og:description" content="Algebraic data types (ADTs) decouple the logical structure of data from physical layout choices that affect performance. For example, packing small fields into a word improves spatial locality, while storing co-accessed fields contiguously can enable vectorization. Such choices…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.19113.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.19113.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.19113v2" target="_blank" rel="noopener"><img src="../thumbs/2611.19113.jpg" alt="First page of Composable Rewrites for Layouts of Algebraic Data Types"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Composable Rewrites for Layouts of Algebraic Data Types</h1>
+        <p class="authors">Christophe Gyurgyik, Alexander J Root, Benjamin Driscoll, Gabriel Radanne, Fredrik Kjolstad, Clément Pit-Claudel</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Nov 14, 2026 · v2</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=type-theory">type-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.19113v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.19113" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The layout language, rewrite rules, local refinement criterion, soundness and storage-recovery theorems are mechanized in Lean, with each formal statement cross-referenced to a Lean declaration.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Algebraic data types (ADTs) decouple the logical structure of data from physical layout choices that affect performance. For example, packing small fields into a word improves spatial locality, while storing co-accessed fields contiguously can enable vectorization. Such choices reinforce or undermine one another, with ramifications for compiler optimizations and memory management. Their interplay creates a combinatorial space of layouts with different runtime costs and memory footprints. The most favorable layout depends on the program&#x27;s construction and destruction patterns, the characteristics of input data, and the target machine. Exploring this space requires control over layout decisions and a way to compose them while preserving program semantics. We provide both through rewrite rules over layouts, independent of any particular source language or bit-level encoding. Starting from a canonical layout derived from the ADT, these rules transform its representation while leaving the source program intact. We identify a local refinement criterion for proving each rewrite rule correct, so that layouts continue to represent every value and keep distinct values apart. Adding a new rule therefore only requires a proof satisfying this local criterion. We realize these rules in Isomer, a new pure functional programming language whose compiler specializes construction, pattern matching, and memory management to the chosen layouts. Using a default layout for all ADTs, Isomer achieves competitive performance against established functional compilers that automatically select layouts. Our rewrites further improve performance by tailoring layouts to each workload, permitting representations that prior work cannot attain or can only achieve through explicit changes to the source code.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Physical layouts of algebraic data types strongly affect performance and memory footprint, and no single layout is best for every workload. Exploring the space of layouts requires composable layout transformations that provably preserve program semantics.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A layout language and local rewrite rules (padding, boxing, commuting, splitting, tagging) transform a canonical layout derived from the ADT declaration. A local refinement criterion, proved via reconstruction functions over structural representations, is lifted through contexts and recursive bindings so that rewritten layouts stay faithful. A codec recovery property connects these representations to bits. The development is mechanized in Lean and implemented in Isomer, a pure functional language whose compiler specializes construction, matching and reference counting to the chosen layouts.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Every layout reachable by valid rewrites is proved faithful, and storage recovery holds under the stated codec conditions. Isomer&#x27;s default layouts perform competitively with established functional compilers, and workload-specific rewrites improve performance further, reaching representations that prior work cannot express without source changes.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

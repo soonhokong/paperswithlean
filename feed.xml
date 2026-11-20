@@ -6,7 +6,106 @@
     <atom:link href="https://paperswithlean.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>arXiv papers that use Lean, the interactive theorem prover. Updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 19 Nov 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 20 Nov 2026 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Do Embedding-Map Distances Guide LLM Ideation? Four Tests Against What Came Next</title>
+      <link>https://paperswithlean.com/paper/2611.21408.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21408.html</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Javier Aguilar Martín</dc:creator>
+      <category>formalization</category><category>ml-theory</category>
+      <description>Three impossibility results about decoding embedding-space targets into coherent text (e.g., two_worlds) are machine-checked in Lean 4 in the paper&#x27;s repository.
+
+A popular ideation recipe treats an embedding map of existing work as a guide: pick points far from everything and decode them into ideas. I test four ways such distances could guide ideation against what appeared later. (1) Far random directions are not text: no later item reaches a raw cosine above about 0.10 with one (after centring or whitening, 22 of 24 cells stay out of reach), and an LLM decoder shown a target&#x27;s neighbours, with score-only feedback, writes those neighbours in all six target sets. A neighbour-free search writes coherent text at median cosine 0.57 and 0.47 to interior gaps, beating the nearest existing item on 15 and 14 of 20, but only 0.07 and 0.06 to far points. (2) On k-means cells of a past-only map, the registered hole score mostly tracks cell size and position; three density-based gap scores forecast which cells grow fastest at or below chance (AUC 0.30 to 0.66) and add nothing to momentum in Steam and arXiv, with patents inconclusive; more isolated new Steam games are slightly better reviewed. (3) LLM continuations of arXiv papers stay closer to the source than papers that cite it, under three user prompts and against proposal rewrites (gpt-4o) and April-December 2023 papers (OLMo). Critique lengthens this step beyond content-free revision, replicated on 150 new papers. Revealing a real follow-up&#x27;s title turns the ideas by 0.032 along a follow-up-specific direction beyond revision; reviewer, oracle and distance feedback add 0.13, 0.08 and 0.34 of that turn (upper bounds 0.46, 0.46, 0.70), and their turn is not separable from revision or their longer step. (4) For inspiration material graded by distance, no inverted U was detected, on an anticipation margin that tracks format more than content. Original tests were registered before running, follow-ups (thirteen requested in two AI-agent reviews) after the main results; all are dated only by local git commits.</description>
+    </item>
+    <item>
+      <title>An Adaptive Reduced Speed of Light Approximation</title>
+      <link>https://paperswithlean.com/paper/2611.21353.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21353.html</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Chong-Chong He, Mark R. Krumholz, Benjamin D. Wibking</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>physics</category><category>analysis</category>
+      <description>Stability-bound proofs from the von Neumann analysis, including the unequal-opacity extension and appendix lemmas, are machine-checked in Lean 4 with Mathlib.
+
+The reduced speed of light approximation (RSLA) is a common approach in radiation-hydrodynamic (RHD) simulations of non-relativistic systems where the gas speed $v_{\rm gas} \ll c$. In the RSLA one eases the severe time step constraint imposed by the speed of light $c$ by replacing it with a reduced value $\hat{c}$ chosen so that $v_{\rm gas} \ll \hat{c} \ll c$. This approach works well in flows with low or moderate optical depth, but fails in optically thick media, where it makes thermal relaxation too slow and gives incorrect RHD wave modes. Here we propose an Adaptive Reduced Speed of Light Approximation (ARSA) that removes these problems by replacing the global speed reduction factor $φ_0 \equiv \hat{c}/c$ with a local, cell-by-cell reduction factor $φ$ derived from a von Neumann stability analysis of the implicit-explicit update used by modern two-moment RHD codes. The resulting limiter has no tunable parameters, can be computed using only local operations, and improves on the classic RSLA by allowing $φ\to 1$ in cells where a reduced speed of light is not required because the exchange with the gas damps unstable modes, allowing recovery of the correct thermal relaxation and wave-damping rates in highly-opaque regions. We compare ARSA to the classic RSLA in a range of standard RHD test problems, and show that in opaque regions where gas holds most of the heat capacity the ARSA is much more accurate than the RSLA at the same time step, or that it can achieve the same accuracy as the RSLA with up to 100 times fewer time steps. However, gains are limited in regions where radiation holds a large share of the heat capacity, as it does in some astrophysical systems.</description>
+    </item>
+    <item>
+      <title>Turing Agent: Agentic Formal Verification for Mathematical Research</title>
+      <link>https://paperswithlean.com/paper/2611.21299.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21299.html</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Yang Chen, Qianyi Wang, Ronghui Yang, Zhanhao Li, Yu Cong, Chen Zhang, Hangfan Zhang, Shao Zhang, Shuai Li, Toru Takisaka, Chao Xu, Yi Zhou, Zhihao Tang, Xiao Wang, Bo Zhang, Shuyue Hu</dc:creator>
+      <category>ai-agents</category><category>autoformalization</category><category>theorem-proving-ml</category><category>mathlib</category>
+      <description>LLM agent harness that formalizes research-level TCS theorem statements and proofs in Lean using Mathlib and CSLib, checked by Lean&#x27;s kernel.
+
+Large language models (LLMs) are rapidly advancing mathematical discovery, moving beyond benchmark-level problem solving to tackle frontier research problems. This progress is ushering mathematics into an era of proof abundance, raising a fundamental challenge: how can we ensure the correctness of the ever-growing volume of AI-generated proofs and transform them into trustworthy, machine-verified mathematical knowledge? We introduce Turing Agent, an agent harness designed to orchestrate end-to-end formal verification of research-level mathematics. Its wo-scale architecture integrates theorem formalization and proof formalization agents, empowered by structured proof decomposition, parallel verification, accumulated proof experience, and selective semantic review. Leveraging our collaborations with theoretical computer science (TCS) researchers, we focus our evaluation on TCS, a particularly demanding domain characterized by intricate quantification, complex dependencies, and stringent semantic requirements. Against direct generation and general-purpose coding harnesses, including Codex CLI and Claude Code, Turing Agent achieves approximately 57-62% faithful formalization success on Formal TCS Bench and 83% overall pass@1 on a TCS-focused subset of RLMEval, using GLM-5.3 and DeepSeek-V4-Pro. Notably, Turing Agent, built on DeepSeek, successfully completes the formal verification of three previously unresolved TCS tasks from OpenAI&#x27;s October 2026 collection. One particularly challenging TCS problem required about a hundred formally verified auxiliary claims. Moreover, by actively exploring and refining the formalization process, Turing Agent can uncover simpler alternative proofs, expose unnecessary dependencies in original proofs, and generate reusable mathematical knowledge as a byproduct of verification.</description>
+    </item>
+    <item>
+      <title>GPRidge: Gaussian-process Accelerated Calculations of Minimum Energy Paths and First-order Saddle Points</title>
+      <link>https://paperswithlean.com/paper/2611.20591.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.20591.html</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Rohit Goswami, Maxim Masterov, Satish Kamath, Alejandro Pena-Torres, Andreas Lynge Vishart, Thomas Bligaard, Hannes Jonsson</dc:creator>
+      <category>formalization</category><category>physics</category>
+      <description>A supplementary Lean 4 development formalizes some of the paper&#x27;s labelled theorems: squared-exponential kernel identities, a Schur comparison, local stability of the reflected mode, and gradient-error bounds.
+
+GPRidge, a Gaussian-process (GP) library for accelerating calculations of minimum energy paths and first-order saddle points with compiled-language and Python bindings, is presented. An evaluation controller uses GP predictions to iteratively adjust the Cartesian coordinates of the atoms. The fitted GP energy surface and measured energies and forces pass from the path calculation to local refinement of the saddle point. New evaluations improve the surrogate and check the candidate geometry. For the molecular calculations, acceptance requires measured-force convergence and an independent Hessian with only one negative eigenvalue. A second negative eigenvalue triggers an escape and renewed refinement. The controller supports a joint inverse-distance GP for molecules and local GP residuals on periodic systems. Applications to the 24 Baker-Chan and 20 Birkholz-Schlegel molecular reactions using the Universal Model for Atoms (UMA-S-1.1), and to 72 Pt heptamer and island rearrangements on Pt(111) using a Morse potential, are presented. On matched Baker-Chan reactions, GPRidge uses 7.8- and 7.0-fold fewer energy-and-force evaluations than climbing-image nudged elastic band (CI-NEB) and off-path climbing-image nudged elastic band (OCI-NEB), respectively, reducing validation-inclusive CI-NEB time by 41%. All 20 Birkholz-Schlegel saddle points pass the independent index-one check, compared with 17 for the classical dimer method started from the same path maxima; on those 17 reactions, the GP dimer stage uses 6.4-fold fewer evaluations. All 72 Pt(111) paths meet the OptBench force criterion, with median evaluation counts of 30 and 23 for the heptamer and island problems, against 778 and 443 for CI-NEB.</description>
+    </item>
+    <item>
+      <title>Centered Ablation: Why Last-Layer Directional Ablation Under-Fires or Collapses, and a Closed-Form Fix</title>
+      <link>https://paperswithlean.com/paper/2611.20148.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.20148.html</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Quy-Anh Dang, Chris Ngo</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>ml-theory</category>
+      <description>The proofs of the closed-form ablation results were formalized and machine-checked in Lean 4 with Mathlib, with assistant help.
+
+Directional ablation removes a hidden state&#x27;s component along a &quot;behaviour direction&quot; while a language model runs. It is the standard way to switch a behaviour such as refusal off, but it is erratic: on some models it barely fires, on others the text collapses into repetition. We show why, and fix it. At the last residual stream, ablation is exactly a logit bias: a fixed vocabulary footprint scaled by a gate, the cosine between the hidden state and the direction. The gate is measured from the origin, but last-layer states share a large common mode far from it, so a direction that overlaps the common mode fires on benign text and under-fires on its targets. Centered Ablation (CA) projects the common mode out of the direction, in closed form. Across 8 models, CA raises attack success by 29 and 46 points where the standard recipe under-fires, cuts collapse on Gemma-2-9B from 50% to 1%, and preserves 12 to 40 points more benign answers on high-overlap models, 39 to 46 more than the affine offset of prior work. Two numbers computed before generation predict, on models the analysis had not seen, which gain faithfulness and which gain attack success, and a collapse index marks when text degenerates. We also show that two standard safety judges score collapsed text in opposite directions, which can fabricate a 46-point effect.</description>
+    </item>
+    <item>
+      <title>A Solution to the Birkhoff Problem</title>
+      <link>https://paperswithlean.com/paper/2611.20099.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.20099.html</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Kevin Schlegel</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>ai-agents</category><category>algebra</category>
+      <description>Matrix-equation computations reducing the classification were carried out by an AI model and formally verified in Lean 4 using Mathlib.
+
+For a commutative uniserial ring $R$ of length $n$ we describe the indecomposable objects in the monomorphism category of $R$ independent of the specific ring for $n\leq 5$ and only dependent on the residue field for $n = 6$. Thus, the classification problem for the monomorphism category of $\mathbb{Z}/p^6 \mathbb{Z}$ reduces to the known case of $\mathbb{F}_p[x]/(x^6)$, resolving the Birkhoff Problem.</description>
+    </item>
+    <item>
+      <title>Veech dichotomy for specific covering surface over Veech surface</title>
+      <link>https://paperswithlean.com/paper/2611.19243.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.19243.html</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Haoran Hu</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>topology</category>
+      <description>The main theorem (Theorem 1, compact branch configurations implying unique ergodicity of minimal directions) is formalized in Lean 4 with Mathlib, provided in a code repository.
+
+It is known that Veech dichotomy, which states that minimal directions are uniquely ergodic, holds for Veech surface and covering surface branched at a single non-periodic connection point of Veech surface. We give a sufficient condition for Veech dichotomy holds for a finite translation cover of a Veech surface, and applies it on branched cover of square-tiled surfaces to construct examples that satisfy Veech dichotomy but aren&#x27;t Veech surfaces.</description>
+    </item>
+    <item>
+      <title>Composable Rewrites for Layouts of Algebraic Data Types</title>
+      <link>https://paperswithlean.com/paper/2611.19113.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.19113.html</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Christophe Gyurgyik, Alexander J Root, Benjamin Driscoll, Gabriel Radanne, Fredrik Kjolstad, Clément Pit-Claudel</dc:creator>
+      <category>verification</category><category>type-theory</category>
+      <description>The layout language, rewrite rules, local refinement criterion, soundness and storage-recovery theorems are mechanized in Lean, with each formal statement cross-referenced to a Lean declaration.
+
+Algebraic data types (ADTs) decouple the logical structure of data from physical layout choices that affect performance. For example, packing small fields into a word improves spatial locality, while storing co-accessed fields contiguously can enable vectorization. Such choices reinforce or undermine one another, with ramifications for compiler optimizations and memory management. Their interplay creates a combinatorial space of layouts with different runtime costs and memory footprints. The most favorable layout depends on the program&#x27;s construction and destruction patterns, the characteristics of input data, and the target machine. Exploring this space requires control over layout decisions and a way to compose them while preserving program semantics. We provide both through rewrite rules over layouts, independent of any particular source language or bit-level encoding. Starting from a canonical layout derived from the ADT, these rules transform its representation while leaving the source program intact. We identify a local refinement criterion for proving each rewrite rule correct, so that layouts continue to represent every value and keep distinct values apart. Adding a new rule therefore only requires a proof satisfying this local criterion. We realize these rules in Isomer, a new pure functional programming language whose compiler specializes construction, pattern matching, and memory management to the chosen layouts. Using a default layout for all ADTs, Isomer achieves competitive performance against established functional compilers that automatically select layouts. Our rewrites further improve performance by tailoring layouts to each workload, permitting representations that prior work cannot attain or can only achieve through explicit changes to the source code.</description>
+    </item>
+    <item>
+      <title>Spread Too Thin: How Higher Resolution Dilutes a Vision Transformer&#x27;s Attention, and a Training-Free Rescaling</title>
+      <link>https://paperswithlean.com/paper/2611.18680.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.18680.html</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Neil D. B. Bruce</dc:creator>
+      <category>formalization</category><category>ml-theory</category>
+      <description>Every mathematical statement about softmax attention dilution and the log-ratio rescaling is proved in Lean 4 and released as ancillary files.
+
+A vision transformer read at a higher resolution than it was trained at spreads each attention row over many more patches, yet every row must still hand out exactly one unit of weight. A law of softmax attention predicts that a growing crowd of bounded scores dilutes the attention on any patch or register whose score stays fixed. The same law gives a remedy that needs no training: multiply every score, the sink&#x27;s included, by the ratio of the logarithms of the test and training token counts. Given sufficient margins at the training resolution, this keeps the attention on a match when one is present, and on a sink such as a register when none is, though trained models need not meet those margins. We test these predictions in public vision transformers and in controlled models read far above their training token count. Attention spreads as predicted. Registers lose their share, though production models compensate in part, and the rescaling holds the share of DINOv2&#x27;s registers nearly level. Applied at test time without training, the rescaling recovers part of the lost accuracy in nearly every model, with absolute or rotary positions and with registers, and on images with native detail. The calibrated multiplier rises with the logarithmic ratio on average and varies across models. Its rise is steeper than the square-root rule used in image generators; in controlled models the log ratio is also more accurate, while in the public models the two rules&#x27; accuracy difference remains unresolved. The rescaling does not restore the attention a model learned, and why it helps, beyond countering the dilution, remains open.</description>
+    </item>
     <item>
       <title>Degree Lower Bounds for Symmetric Boolean Functions: Breaking the Prime-Gap Barrier</title>
       <link>https://paperswithlean.com/paper/2611.26446.html</link>
@@ -567,105 +666,6 @@ Fraenkel&#x27;s conjecture asserts that a partition of the integers into at leas
       <description>A companion Lean 4/Mathlib formalization, publicly available on GitHub, checks the proofs of all four main circular-law theorems, apart from explicitly stated imported axioms.
 
 We consider non-Hermitian random band matrices with growing bandwidth and study convergence of their empirical spectral distributions to the circular law. Let $N$ denote the matrix size and $W_N$ the bandwidth. From a universality perspective, it is conjectured that the circular law holds whenever $W_N\to\infty$. Previous results have mainly required $W_N\gg N^{1/2}$, with the principal exception of \cite{Han2511}, which proves the $W_N\to\infty$ circular law for an open-boundary block-tridiagonal model. Here we prove the circular law at this optimal threshold for several periodic models and under the near-optimal condition $W_N\gg\log N$ for a genuinely discrete model. For the periodic hard-indicator profile and its uniform and polynomially tapered generalizations, we prove the circular law under bounded-density and finite-third-moment assumptions whenever $W_N\to\infty$. At the same threshold, we prove the circular law for continuous, integrable profiles locally bounded below on every finite interval, including exponentially and Gaussian decaying profiles, with circular complex Gaussian entries. For the periodic full-block model, we prove the circular law under bounded-density and finite-third-moment assumptions whenever $W_N\to\infty$. The finite-third-moment assumption in the bounded-density results can be weakened to a finite $(2+α)$-moment assumption. For the same full-block model without a density assumption, we prove the circular law for centered variance-one real subgaussian atoms when $W_N\gg\log N$. The proof uses compositions of random transfer operators. An established high-band circular-law input on a short auxiliary ring calibrates the full exterior coefficient norm, and a boundary-uniform local comparison lifts this calibration to target rings even when $N/W_N$ is arbitrarily large.</description>
-    </item>
-    <item>
-      <title>Bounded Relative Boundary Implies Narrow DNF Approximation</title>
-      <link>https://paperswithlean.com/paper/2609.00240.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.00240.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Chenghua Liu, Boning Meng</dc:creator>
-      <category>formalization</category><category>combinatorics</category><category>probability</category>
-      <description>The authors, with AI assistance, completed a Lean formalization of their proofs of the main DNF approximation theorem and Friedgut&#x27;s conjecture.
-
-We prove Friedgut&#x27;s conjecture (J. Amer. Math. Soc. 12 (1999)) that every increasing family in the $p$-biased discrete cube with bounded relative boundary can be approximated arbitrarily well by one whose minimal elements have size bounded independently of the dimension and the bias. For $0&lt;p\le 1/2$, every increasing Boolean function with total resampling influence at most $K$ is $\varepsilon$-close under $μ_p^n$ to a monotone DNF of width $\exp(O((K+1)^2/\varepsilon^2))$, from which the full conjecture follows for all $p\in(0,1)$. We build on Hatami&#x27;s pseudo-junta theorem (Ann. of Math. 176 (2012)), whose approximator need not be increasing. Our randomized shifts produce an increasing approximator that is measurable with respect to a controlled refinement of Hatami&#x27;s adaptive partition. Retaining only short positive certificates yields the desired narrow DNF.</description>
-    </item>
-    <item>
-      <title>A Dichotomy for Complex Boolean Holant with Binary Disequality</title>
-      <link>https://paperswithlean.com/paper/2609.00219.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2609.00219.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Chenghua Liu, Boning Meng</dc:creator>
-      <category>formalization</category><category>combinatorics</category><category>logic</category>
-      <description>The full dichotomy proof is formalized in Lean, with public statements, proofs, exact certificates, and a Comparator-based challenge file; corrections were verified in Lean.
-
-We classify Boolean Holant problems with a supplied binary disequality signature and an arbitrary fixed finite set of algebraic complex-valued signatures. Each problem is polynomial-time computable or $\#\mathsf{P}$-hard, and the tractability criterion is decidable. The proof combines arity reduction with the growth of the available binary transfer group and uses stable pairs to recover the structure of higher-arity signatures. We also prove a dichotomy for the disequality-edge model when the signature set contains an endpoint-nondegenerate irreducible eight-vertex signature, resolving the corresponding arity-four cases in the main proof.</description>
-    </item>
-    <item>
-      <title>Three omitted values and non-Blaschke point divisors in half-planes</title>
-      <link>https://paperswithlean.com/paper/2608.26062.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.26062.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Quanyu Tang, Bokai Cui, Wei He, Tao Hu, Yanyang Li, Ke Wang, Zijun Yu</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>analysis</category><category>ai-agents</category>
-      <description>The main theorem, a counterexample to Nevanlinna&#x27;s half-plane problem, is formalized in Lean 4 with Mathlib using Codex and checked by multiple independent kernels.
-
-We construct a real meromorphic function $F$ on $\mathbb C$ such that $F^{-1}(\{0,1,\infty\})\subset\mathbb R$, while $F$ is not of bounded type in either half-plane. More strongly, for every $a\in\widehat{\mathbb C}\setminus\{0,1,\infty\}$, the $a$-point divisor in either half-plane fails the Blaschke condition. Thus the construction gives a negative answer to the half-plane bounded-type question arising from Nevanlinna&#x27;s 1925 work. Postcomposition gives the analogous counterexample for any prescribed triple of distinct values in the Riemann sphere. The core construction and proof were generated during an autonomous run of GPT-5.6 Sol Ultra.</description>
-    </item>
-    <item>
-      <title>An explicit refined Gan–Gross–Prasad identity for Fourier–Jacobi periods of degree 2 Siegel cusp forms</title>
-      <link>https://paperswithlean.com/paper/2608.26007.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.26007.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Biplab Paul, Ameya Pitale, Abhishek Saha, Ralf Schmidt</dc:creator>
-      <category>formalization</category><category>number-theory</category>
-      <description>Local integral computations from Section 2 (Macdonald formula evaluations) are formalized and machine-verified in Lean 4, with a public GitHub repository.
-
-We compute the local integrals appearing in the refined Gan–Gross–Prasad conjecture for Fourier–Jacobi periods of $\mathrm{Sp}_4$ in new ramified cases and use this to formulate an explicit conjectural identity relating Petersson norms of degree 2 Siegel cusp forms and associated half-integral weight forms. We note consequences of our identity for the growth of Petersson norms, the size of Fourier coefficients, and non-vanishing of central $L$-values.</description>
-    </item>
-    <item>
-      <title>A proof of the 3-Decomposition Conjecture</title>
-      <link>https://paperswithlean.com/paper/2608.25385.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.25385.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Jicheng Ma</dc:creator>
-      <category>formalization</category><category>combinatorics</category>
-      <description>The paper&#x27;s results, including the proof of the 3-Decomposition Conjecture, are fully formalized in Lean 4, with a public GitHub repository.
-
-We prove the 3-Decomposition Conjecture: every finite connected cubic loopless multigraph decomposes into a spanning tree, a 2-regular subgraph, and a matching. The proof rests on a new theorem on matching complements in subcubic graphs. Let H be a finite connected bridgeless simple graph of maximum degree three, and let S be its set of degree-two vertices, with |S| = k &gt;= 2. We show that H has a matching of size equal to its cyclomatic number, |E(H)| - |V(H)| + 1, whose deletion leaves a single tree containing all of S, together with cycles disjoint from S. The proof is by induction on k.</description>
-    </item>
-    <item>
-      <title>Pattern-Derived Visual Swarm Games: Multi-Scale Drone-Vision States for Interception and Sustainability Audits</title>
-      <link>https://paperswithlean.com/paper/2608.23575.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.23575.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Faruk Alpay, Levent Sarioglu</dc:creator>
-      <category>formalization</category><category>verification</category>
-      <description>Ancillary Lean (and Coq) files check the finite encoder-selection inequality and fixed-point 128-by-128 numeric gain identities behind one result.
-
-We convert drone-vision annotation streams into virtual swarm-game states without controlling physical drones. VisDrone and UAVSwarm metadata are compressed into a Bloom representation; deterministic probes produce bounded capability vectors, image-space formations, finite zero-sum payoffs, and human-readable visual overlays. The audit scales from $6\times 6$ to $32\times 32$ finite games and adds a repeated Markov layer with stock, fatigue, adaptation, exposure, stress, budget, data-growth, model-improvement, and entropy-budget state variables. Local screen tuning raises robust screen security from $0.526$ to $0.593$, and the $32\times 32$ tuned screen reaches value $0.616$. A field readout audit shows that fixed-pixel rasters do not improve monotonically: $128\times 128$ accuracy is $67.2\%$ and hotspot error is $0.136$. The diagnosed error is shrinking image-plane bandwidth. A finite empirical-risk encoder over scale-normalized Gaussian bandwidths selects a scale-normalized encoder with $λ=1.50$, reaching $77.6\%$ accuracy at $128\times 128$ and reducing joint loss by $0.185$. A server-side audit checks $16{,}777{,}216$ target-localization states, and a 32-round repeated-game audit over $16{,}777{,}216$ trajectories selects a budget-adaptive policy with value $0.461$.</description>
-    </item>
-    <item>
-      <title>Agenra: A Language and Verified Core for Stateful LLM Agent Authorization</title>
-      <link>https://paperswithlean.com/paper/2608.22868.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.22868.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Basavesh Ammanaghatta Shivakumar, Swarn Priya, Peng Gao</dc:creator>
-      <category>verification</category><category>tooling</category>
-      <description>Implements the agent authorization monitor as a compiled Lean core with proofs of client preservation under policy revisions, and Lean-checked simulation certificates for finite-quota revisions.
-
-Applications that deploy LLM agents keep revising the permissions their agents use. When authority is consumable, even widening a permission can break a legitimate workflow, because an early call may use up a grant that a later call needs. Checking individual requests, or watching one run succeed, misses this. We present Agenra, a policy language with a Lean enforcement core that tracks the values each call uses, resources discovered at run time, and authority consumed by earlier calls. Agenra treats safety and workflow preservation as separate properties. Our key idea is to certify a revision with a simulation between the old and new permission ledgers. Quota increases, appended grants and independent reorderings admit such simulations by construction, and Lean checks proposed simulations for other finite-quota revisions. The proofs use the deployed matching predicates and extend through the full monitor, covering discovered resources, payloads that are never enumerated, failed calls and approvals. They assume serialized calls and identical service results under both policies, and they trust the Python translation layer. On 51 authored revisions, the checks certify all 21 that preserve their clients and none of the 30 that do not, and every lost workflow is confirmed by replay. They also certify a real quota increase from an open-source agent application. In a report-delivery application, raising the send quota preserves every client yet permits a second approved send, so preservation does not imply safety.</description>
-    </item>
-    <item>
-      <title>The Exceedance Design Effect: Effective Sample Size for Thresholds under Clustering</title>
-      <link>https://paperswithlean.com/paper/2608.21262.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.21262.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Adam Noonan</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>probability</category>
-      <description>The paper&#x27;s central limit theorem, propositions, finite-sample counterexample and variance-estimator consistency are machine-checked in a 59-file Lean 4 and Mathlib proof bundle.
-
-Suppose we want a cutoff that 90% of a population falls below. We estimate it from a sample, and another sample would give a different cutoff and a different fraction below it. We ask how much that fraction varies when observations come in independent groups, such as pupils in classrooms or sentences in news articles. We prove that grouping multiplies its large-sample variance by $1+(m-1)ρ_I(p)$, where $m$ is the group size, $p$ is the target fraction, and $ρ_I(p)$ measures whether two members of a group fall on the same side of the cutoff. That correlation can differ from the correlation between the scores themselves, and it changes with the target. We give a direct proof, a counterexample to using score correlation, and an extension to unequal group sizes. A dataset therefore does not have one effective sample size. How much information it contains depends on the question you ask. In our document experiment, the same 1,000 rows carried about 217 independent observations&#x27; worth of information at the median. At the 95th percentile, they carried about 621. Nothing about the dataset changed. We asked it a different question. The number of rows is a property of the dataset. The effective sample size belongs to the analysis.</description>
-    </item>
-    <item>
-      <title>Polynomial growth of complex polynomial Bohnenblust–Hille constants</title>
-      <link>https://paperswithlean.com/paper/2608.16584.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2608.16584.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Daniel M. Pellegrino, Eduardo V. Teixeira</dc:creator>
-      <category>formalization</category><category>analysis</category>
-      <description>The paper&#x27;s results and proofs are reported as formalized in Lean 4 using Lea, a formalization system from the authors&#x27; DARPA ExpMath project.
-
-For complex \(m\)-homogeneous polynomials, let \(D_m\) denote the optimal dimension-free constant in the polynomial Bohnenblust–Hille inequality. We prove that, for every \(B&gt;1/2\), there exists \(K_B&gt;0\) such that \[ D_m\le K_B m^B,\qquad m\ge1. \] More precisely, we obtain the square-root-scale estimate \[ D_m\le \sqrt m\,\exp\!\bigl(C\sqrt{\log m}\,\log\log m\bigr). \] The proof combines coefficient-preserving degree reduction with a weighted bootstrap, separating balanced and dominant degree profiles. We also determine the critical linear-dimensional asymptotics: \[ D_{m,n_m}\longrightarrow 2 \qquad\text{whenever}\qquad \frac{n_m}{m}\longrightarrow1, \] and consequently \(\liminf_{m\to\infty}D_m\ge2\). Further applications give two-sided bounds for homogeneous Sidon constants and a quantitative logarithmic remainder in the multidimensional Bohr-radius asymptotic.</description>
     </item>
   </channel>
 </rss>

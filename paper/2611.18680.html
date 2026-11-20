@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spread Too Thin: How Higher Resolution Dilutes a Vision Transformer&#x27;s Attention, and a Training-Free Rescaling · Papers With Lean</title>
+<meta name="description" content="A vision transformer read at a higher resolution than it was trained at spreads each attention row over many more patches, yet every row must still hand out exactly one unit of weight. A law of softmax attention predicts that a growing crowd of bounded scores dilutes the…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spread Too Thin: How Higher Resolution Dilutes a Vision Transformer&#x27;s Attention, and a Training-Free Rescaling">
+<meta property="og:description" content="A vision transformer read at a higher resolution than it was trained at spreads each attention row over many more patches, yet every row must still hand out exactly one unit of weight. A law of softmax attention predicts that a growing crowd of bounded scores dilutes the…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.18680.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.18680.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.18680v1" target="_blank" rel="noopener"><img src="../thumbs/2611.18680.jpg" alt="First page of Spread Too Thin: How Higher Resolution Dilutes a Vision Transformer&#x27;s Attention, and a Training-Free Rescaling"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Spread Too Thin: How Higher Resolution Dilutes a Vision Transformer&#x27;s Attention, and a Training-Free Rescaling</h1>
+        <p class="authors">Neil D. B. Bruce</p>
+        <div class="row">
+          <span class="badge">cs.CV</span>
+          <span class="date">Nov 1, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.18680v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.18680" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Every mathematical statement about softmax attention dilution and the log-ratio rescaling is proved in Lean 4 and released as ancillary files.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A vision transformer read at a higher resolution than it was trained at spreads each attention row over many more patches, yet every row must still hand out exactly one unit of weight. A law of softmax attention predicts that a growing crowd of bounded scores dilutes the attention on any patch or register whose score stays fixed. The same law gives a remedy that needs no training: multiply every score, the sink&#x27;s included, by the ratio of the logarithms of the test and training token counts. Given sufficient margins at the training resolution, this keeps the attention on a match when one is present, and on a sink such as a register when none is, though trained models need not meet those margins. We test these predictions in public vision transformers and in controlled models read far above their training token count. Attention spreads as predicted. Registers lose their share, though production models compensate in part, and the rescaling holds the share of DINOv2&#x27;s registers nearly level. Applied at test time without training, the rescaling recovers part of the lost accuracy in nearly every model, with absolute or rotary positions and with registers, and on images with native detail. The calibrated multiplier rises with the logarithmic ratio on average and varies across models. Its rise is steeper than the square-root rule used in image generators; in controlled models the log ratio is also more accurate, while in the public models the two rules&#x27; accuracy difference remains unresolved. The rescaling does not restore the attention a model learned, and why it helps, beyond countering the dilution, remains open.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Vision transformers run at higher resolution than they were trained at spread each attention row over many more patches. This dilutes the attention on matching patches and on sinks such as registers, and accuracy drops sharply.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A softmax attention law predicts the dilution and gives a training-free remedy: multiply every score, the sink&#x27;s included, by λ = ln N / ln N_tr. The predictions are tested on eleven public ImageNet-1k ViTs (absolute positions, rotary positions, and register models), on DINOv2 with registers, and on controlled ViT-S models, at up to 16× the training token count. Every mathematical statement is proved in a Lean 4 package provided as ancillary files.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Attention spreads as predicted, and registers lose share; the rescaling keeps DINOv2&#x27;s register share nearly level. At test time the rescaling recovers part of the lost accuracy in 10 of 11 checkpoints on enlarged crops and in all 11 on resized originals. The calibrated multiplier tracks λ on average (slope 0.945) and rises more steeply than the square-root rule.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Training-size top-1</th><th>Crops: trained → rescaled</th><th>Gain</th></tr></thead><tbody><tr><td>DeiT-S</td><td>79.9</td><td>31.3 → 53.2</td><td>+21.9</td></tr><tr><td>DeiT-B</td><td>82.0</td><td>59.7 → 67.1</td><td>+7.4</td></tr><tr><td>AugReg ViT-S</td><td>81.4</td><td>48.5 → 61.4</td><td>+12.9</td></tr><tr><td>RoPE-Mixed ViT-B</td><td>83.8</td><td>49.6 → 63.2</td><td>+13.6</td></tr><tr><td>AugReg2 ViT-B</td><td>85.1</td><td>46.3 → 45.6</td><td>−0.8</td></tr></tbody></table><div class="tbl-cap">Top-1 at 16× training tokens on enlarged crops, as trained vs. rescaled (selected models)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
