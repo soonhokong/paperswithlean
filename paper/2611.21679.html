@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FCP: Formal Context Protocol for Verifying LLM-Generated Artifacts · Papers With Lean</title>
+<meta name="description" content="When a language model writes both an artifact and the tests meant to check it, a passing test is weak evidence: one misreading of the request yields a faulty artifact and a check that accepts it. We present the Formal Context Protocol (FCP), which checks AI-generated artifacts…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FCP: Formal Context Protocol for Verifying LLM-Generated Artifacts">
+<meta property="og:description" content="When a language model writes both an artifact and the tests meant to check it, a passing test is weak evidence: one misreading of the request yields a faulty artifact and a check that accepts it. We present the Formal Context Protocol (FCP), which checks AI-generated artifacts…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.21679.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.21679.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.21679v1" target="_blank" rel="noopener"><img src="../thumbs/2611.21679.jpg" alt="First page of FCP: Formal Context Protocol for Verifying LLM-Generated Artifacts"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">FCP: Formal Context Protocol for Verifying LLM-Generated Artifacts</h1>
+        <p class="authors"> Shashank</p>
+        <div class="row">
+          <span class="badge">cs.AR</span>
+          <span class="date">Nov 15, 2026 · v1</span>
+          <span class="badge">cs.AI</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.21679v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.21679" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/shankch/FCP_oss" target="_blank" rel="noopener" title="shankch/FCP_oss">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 proves the paper&#x27;s propositions and corollary (84 theorems) and provides a reference semantics checking the FCP-PL-to-monitor compiler registers.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">When a language model writes both an artifact and the tests meant to check it, a passing test is weak evidence: one misreading of the request yields a faulty artifact and a check that accepts it. We present the Formal Context Protocol (FCP), which checks AI-generated artifacts against the request itself. FCP separates conformance (does the artifact satisfy a formal reading of a requirement?), which model checkers and SMT solvers decide, from fidelity (does the reading mean what the prose means?), which has no decision procedure but is refutable by a concrete witness. Eight ways a proof can falsely certify a requirement each become a mechanical check that returns a witness, and what no machine can settle becomes concrete questions for the request&#x27;s author. Adapters place hardware, text, agents and code on the same engines. On four hardware designs, trusting AI-written assertions certified 23% of violated requirements, and FCP certified none. On ten code tasks, code from three language models passed its own tests and violated the request every time. Trusting the tests certified all 33 violations, and FCP certified three. Agreement among models, readings or tests did not imply correctness.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">When an LLM writes both an artifact and the tests that check it, passing tests are weak evidence, because a single misreading of the request produces both the faulty artifact and a check that accepts it. Verification is needed that checks AI-generated artifacts against the request itself.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The Formal Context Protocol (FCP) separates conformance, decided by model checkers and SMT solvers (SymbiYosys PDR/BMC, z3), from fidelity, which is refuted by witnesses that distinguish independent formal readings. Eight ways a proof can falsely certify a requirement each become a mechanical check. Adapters encode hardware, text, agents and code as circuits, and symbolic execution extends proofs for Python code beyond the tested scope. The core propositions are proved in Lean 4, and the compiler&#x27;s registers are checked against a Lean reference semantics.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On four hardware designs, trusting AI-written assertions certified 23% of violated requirements, while FCP certified none. On ten code tasks, models&#x27; own tests certified all 33 violations, while FCP certified three. All 45 disagreements between formalizers were real errors.</p><div class="sum-table"><table><thead><tr><th>Measure</th><th>Self-check</th><th>FCP</th></tr></thead><tbody><tr><td>Violated requirements certified as holding</td><td>56/244 (23%)</td><td>0/244</td></tr><tr><td>Injected formalization faults certifying buggy design</td><td>71/161</td><td>0/161 (all flagged)</td></tr><tr><td>Injected RTL defects detected</td><td>28/28</td><td>28/28 (all replayed)</td></tr></tbody></table><div class="tbl-cap">Hardware study: self-check vs FCP</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
