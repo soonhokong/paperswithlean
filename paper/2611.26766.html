@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A reciprocal-matrix proof of Sendov&#x27;s theorem and applications to control theory · Papers With Lean</title>
+<meta name="description" content="This proof grew out of the author&#x27;s research on interpreting mathematical statements from the viewpoint of control theory. Its value lies both in the understanding it brings and in the applications that arise from the argument. Let $a$ be a simple zero of a polynomial of degree…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A reciprocal-matrix proof of Sendov&#x27;s theorem and applications to control theory">
+<meta property="og:description" content="This proof grew out of the author&#x27;s research on interpreting mathematical statements from the viewpoint of control theory. Its value lies both in the understanding it brings and in the applications that arise from the argument. Let $a$ be a simple zero of a polynomial of degree…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.26766.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.26766.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.26766v1" target="_blank" rel="noopener"><img src="../thumbs/2611.26766.jpg" alt="First page of A reciprocal-matrix proof of Sendov&#x27;s theorem and applications to control theory"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">A reciprocal-matrix proof of Sendov&#x27;s theorem and applications to control theory</h1>
+        <p class="authors">Latchezar P. Tomov</p>
+        <div class="row">
+          <span class="badge">math.CV</span>
+          <span class="date">Nov 19, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.26766v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.26766" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/luchesart/Sendov" target="_blank" rel="noopener" title="luchesart/Sendov">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The Sendov proof, feedback-law stability bounds, and finite-range integer-arithmetic subdivision checks are formalized in Lean 4, with an interactive proof map.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">This proof grew out of the author&#x27;s research on interpreting mathematical statements from the viewpoint of control theory. Its value lies both in the understanding it brings and in the applications that arise from the argument. Let $a$ be a simple zero of a polynomial of degree $n\ge 2$ whose zeros lie in the closed unit disk. If $c_1,\ldots,c_{n-1}$ are its critical points, counted with multiplicity, then the reciprocals $1/(a-c_j)$ are the eigenvalues of an explicit matrix built from the other zeros. A failure of Sendov&#x27;s bound at $a$ would therefore make the associated discrete-time system asymptotically stable. This observation leads to an alternative proof of the quadratic inequality of Tang and Zhang, including its equality case. Building on the reflection and centering arguments of Mazur, Tao and Zhang, we estimate the change in the integral of the derivative product when all the reciprocal displacements are replaced by their mean $s$. An exact pairwise cancellation bounds the difference in terms of the variance. For an interior zero rotated to $0&lt;a&lt;1$, the normalized trace $s$ determines a contour through $\overline{s}/a$. If the mean squared reciprocal distance is at most one, integration along this contour gives $(n-1)(2a\Re(s)-a^2)&lt;20$. A uniform phase estimate and reflection at $1/a$ then rule out this possibility in every degree $n\ge 257$. A fourth-moment estimate treats degrees two through five. For degrees five through 256, three bounds derived from one polynomial moment identity exclude the full range of the two remaining real parameters by exact integer arithmetic. As an application, Sendov&#x27;s theorem illustrates how differentiating the denominator of a closed-loop transfer function can increase robustness in discrete-time systems and decrease it in continuous-time systems. The proofs have been formalized in Lean 4.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Sendov&#x27;s conjecture says that if all zeros of a polynomial of degree n≥2 lie in the closed unit disk, then each zero has a critical point within distance one. The author proves it and relates it to stability of discrete-time control systems.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The reciprocals 1/(a−c_j) of the displacements from a marked zero to the critical points are realized as eigenvalues of an explicit matrix, so a failure of Sendov&#x27;s bound would make a discrete-time system asymptotically stable. A variance estimate with pairwise cancellation compares the integrated derivative product to the product obtained by replacing every term with the mean. That estimate is combined with integration along a complex contour, a phase bound, and reflection. Degrees n≥257 are handled analytically, degrees 2–5 by a fourth-moment estimate, and degrees 5–256 by exact integer-arithmetic subdivision checked in the Lean kernel.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Sendov&#x27;s theorem is proved, together with an alternative proof of the Tang–Zhang quadratic inequality and its equality case. Control-theoretic applications show that differentiating a closed-loop denominator can increase robustness in discrete time and decrease it in continuous time. The proofs are formalized in Lean 4 using only the standard axioms (propext, Classical.choice, Quot.sound).</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -8,6 +8,94 @@
     <language>en</language>
     <lastBuildDate>Sun, 22 Nov 2026 00:00:00 +0000</lastBuildDate>
     <item>
+      <title>Improved Accuracy Scaling with Problem Complexity in LLM Arithmetic Reasoning Using Executable Symbolic Representations</title>
+      <link>https://paperswithlean.com/paper/2611.27203.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.27203.html</guid>
+      <pubDate>Sun, 22 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Yu-Bin Liu, Shi-Ju Ran</dc:creator>
+      <category>benchmark</category><category>dataset</category>
+      <description>LLMs are fine-tuned to emit executable Lean 4 programs for arithmetic word problems, which are compiled and executed with Lean 4.27.0-rc1 for scoring.
+
+High accuracy on mathematical benchmarks does not establish whether reasoning remains reliable as problem complexity increases. We examine how executable symbolic representations change accuracy scaling in large language models compared with natural-language reasoning. To address this limitation, we introduce the GSM Arithmetic Benchmark (GSM-AB), a controlled benchmark that independently varies operand digit length and operation count to probe numerical scale and compositional complexity. We find that executable representations can improve accuracy and slow its decline as complexity increases. Lean reduces average sensitivity to operand digit length at every tested model size. By contrast, slower degradation with increasing operation count emerges at the larger model sizes. A Python program-of-thought (Python-PoT) control shows a similar operation-axis pattern, suggesting that this finding is not specific to Lean. These findings show that reasoning representation shapes arithmetic accuracy scaling and support executable symbolic representations for more reliable reasoning on complex arithmetic tasks.</description>
+    </item>
+    <item>
+      <title>Moonshine Conjecture Formalized</title>
+      <link>https://paperswithlean.com/paper/2611.27001.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.27001.html</guid>
+      <pubDate>Sun, 22 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Jin-Cheng Guu</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>meta-study</category><category>algebra</category>
+      <description>Formalizes the Moonshine theorem in Lean by connecting the VOA and CFSG repositories, migrating Lean/Mathlib versions and building Griess algebra bridges.
+
+The celebrated and intimidating Moonshine Conjecture has now been formalized in Lean. This achievement might suggest that, once a sufficiently large library compiles, the principal mathematical work is complete. This paper tells a less optimistic story. During our formalization project, we repeatedly encountered two problems that a formally checked proof alone does not settle: (1) whether the formal statements actually express the mathematics we humans expect, and (2) how that meaning survives as the repositories and their dependencies evolve. We argue that there is no magic pill that turns a large agent-produced library into mathematics a community can trust. Even after the proofs are checked by the Lean kernel, someone must judge whether the definitions and statements express the intended mathematics and whether future updates preserve that meaning. This work, even when done, can only be trusted. We must therefore return to the usual trust model: relying on the mathematical judgment of maintainers and expert communities. But semantic review is expensive, making it tempting to keep producing code and take successful kernel checks as sufficient grounds for trust. This shortcut accumulates semantic debt: definitions and results with unchecked mathematical interpretations are reused as foundations for further work. A library may keep compiling and produce the desired formal theorem while users lose track of which mathematical claims they can responsibly rely on. Reliable reuse is also a prerequisite for Terence Tao&#x27;s vision of formal mathematics as something people can navigate, explain, learn from, and build with. This paper takes our work connecting the VOA and CFSG repositories for the Moonshine Conjecture as a case study of the challenges of reliable reuse as formal developments scale.</description>
+    </item>
+    <item>
+      <title>Budget-Aware Predict-and-Verify Theorem Proving with Heterogeneous LLM Solvers</title>
+      <link>https://paperswithlean.com/paper/2611.26906.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.26906.html</guid>
+      <pubDate>Sun, 22 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Wei Jiang, Ziran Liu, Wei Wang</dc:creator>
+      <category>theorem-proving-ml</category><category>ai-agents</category>
+      <description>Allocates proof attempts from Lean-targeting LLM provers (Goedel, Kimina, DeepSeek-Prover) over decomposed subgoals; Lean checks the generated proofs, with automation tactics run first.
+
+Large language model (LLM) theorem solvers differ in both proving capability and inference cost. Applying an expensive solver to every subgoal wastes computation when cheaper models are sufficient, while always starting from the cheapest solver wastes attempts on subgoals that require stronger models. We present BudgetPV, an agentic budget-aware predict-and-verify system that allocates computation across unresolved subgoals and heterogeneous LLM solvers. BudgetPV uses a cross-solver predictor to guide solver selection for each subgoal and revises the allocation as verification feedback becomes available. The allocation problem changes as proving progresses. Early decisions mainly determine which solver should handle an untried subgoal, while later decisions determine which previously attempted subgoals should receive additional computation. We train the predictor with two objectives for these two stages. Class-weighted cross-entropy improves assignment to less frequent stronger solvers during the initial stage, while plain cross-entropy provides better calibrated probabilities for later allocation among previously attempted subgoals. We evaluate BudgetPV on Lean Workbook, miniF2F, ProofNet, and PutnamBench using three progressively expanded solver settings: a strong but expensive solver alone, adding a medium-cost solver with intermediate solving capability, and further adding a cheap solver with lower solving capability. BudgetPV requires less LLM generation computation than uniform allocation to solve the same number of subgoals across the evaluated settings. The experiments further show the computation savings obtained as medium- and lower-cost solvers are added.</description>
+    </item>
+    <item>
+      <title>The Strong AJ Conjecture for Hyperbolic Prime Knots is False</title>
+      <link>https://paperswithlean.com/paper/2611.26905.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.26905.html</guid>
+      <pubDate>Sun, 22 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>RJ Acuña</dc:creator>
+      <category>formalization</category><category>ai-agents</category><category>topology</category>
+      <description>An AI agent formalized in Lean the mathematical machinery behind the colored Jones function computation, and parts of the counterexample argument.
+
+Let $K$ be a knot in $S^3$. The strong AJ conjecture relates two of its invariants. The first is the minimal-order annihilator $\widehat A$ of the $n$th colored Jones polynomial $J(n)$. The second is the two-variable $A$-polynomial of Cooper, Culler, Gillet, Long, and Shalen. The conjecture says that after specialization $\varepsilon^*(\widehat A)\asymp A$. Zhang gave the first family of composite-knot counterexamples. For $8_{11}$ the specialization of $\widehat A$ carries an extra trefoil factor $L+M^6$. We prove this by verifying Lê&#x27;s $\widehat P=\widehat A$ conjecture. Zhang&#x27;s corrected formulation of the AJ conjecture agrees with Lê&#x27;s weak AJ conjecture, which we prove for $8_{11}$. Li, Li, and Sun have since reported counterexamples of the weak AJ conjecture among non-hyperbolic prime knots. This work was AI assisted, and parts of it have been formalized in Lean.</description>
+    </item>
+    <item>
+      <title>Finite-Time Singularity Formation for the Three-Dimensional Euler Equations</title>
+      <link>https://paperswithlean.com/paper/2611.26772.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.26772.html</guid>
+      <pubDate>Sun, 22 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Levent Alpöge, Tristan Buckmaster, Matei P. Coiculescu</dc:creator>
+      <category>formalization</category><category>analysis</category><category>physics</category>
+      <description>The proof of finite-time Euler blow-up is formalized in Lean, with the formalization in a public GitHub repository.
+
+We construct smooth periodic initial data for the three-dimensional incompressible Euler equations whose solution blows up in finite time. The velocity remains bounded, while the vorticity magnitude at the origin tends to infinity. Away from the origin, the velocity and its time derivative have smooth spatial limits at the singular time. The construction uses localized Craik–Criminale waves as building blocks of a multi-scale construction.</description>
+    </item>
+    <item>
+      <title>A reciprocal-matrix proof of Sendov&#x27;s theorem and applications to control theory</title>
+      <link>https://paperswithlean.com/paper/2611.26766.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.26766.html</guid>
+      <pubDate>Sun, 22 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Latchezar P. Tomov</dc:creator>
+      <category>formalization</category><category>analysis</category>
+      <description>The Sendov proof, feedback-law stability bounds, and finite-range integer-arithmetic subdivision checks are formalized in Lean 4, with an interactive proof map.
+
+This proof grew out of the author&#x27;s research on interpreting mathematical statements from the viewpoint of control theory. Its value lies both in the understanding it brings and in the applications that arise from the argument. Let $a$ be a simple zero of a polynomial of degree $n\ge 2$ whose zeros lie in the closed unit disk. If $c_1,\ldots,c_{n-1}$ are its critical points, counted with multiplicity, then the reciprocals $1/(a-c_j)$ are the eigenvalues of an explicit matrix built from the other zeros. A failure of Sendov&#x27;s bound at $a$ would therefore make the associated discrete-time system asymptotically stable. This observation leads to an alternative proof of the quadratic inequality of Tang and Zhang, including its equality case. Building on the reflection and centering arguments of Mazur, Tao and Zhang, we estimate the change in the integral of the derivative product when all the reciprocal displacements are replaced by their mean $s$. An exact pairwise cancellation bounds the difference in terms of the variance. For an interior zero rotated to $0&lt;a&lt;1$, the normalized trace $s$ determines a contour through $\overline{s}/a$. If the mean squared reciprocal distance is at most one, integration along this contour gives $(n-1)(2a\Re(s)-a^2)&lt;20$. A uniform phase estimate and reflection at $1/a$ then rule out this possibility in every degree $n\ge 257$. A fourth-moment estimate treats degrees two through five. For degrees five through 256, three bounds derived from one polynomial moment identity exclude the full range of the two remaining real parameters by exact integer arithmetic. As an application, Sendov&#x27;s theorem illustrates how differentiating the denominator of a closed-loop transfer function can increase robustness in discrete-time systems and decrease it in continuous-time systems. The proofs have been formalized in Lean 4.</description>
+    </item>
+    <item>
+      <title>Self-verifiable LLM-driven science and why it needs human researchers</title>
+      <link>https://paperswithlean.com/paper/2611.26754.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.26754.html</guid>
+      <pubDate>Sun, 22 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Michael G. Medvedev, Nikolai V. Krivoshchapov, Stepan N. Ostarkov</dc:creator>
+      <category>ai-agents</category><category>autoformalization</category><category>verification</category>
+      <description>An LLM agent formalizes scientific (non-mathematical) arguments in Lean 4, deriving conclusions from human-reviewed assumptions checked by the Lean kernel.
+
+Language models are now used throughout all sciences - for reading literature, extracting numbers from tables and spectra, analyzing data, drafting conclusions - and their answers arrive in the same polished confident tone whether they are right or wrong, so a result has to be re-derived by a human researcher before it can be relied on. The cost of that re-checking, not the ability to generate results, is what currently limits AI-assisted research. In the field of mathematics, this problem is solved by proof assistants like Lean 4 and Coq that let any formal statement and its proof be written down and checked - a perfect match for LLMs, which are now actively used to search for proofs with every step automatically validated, rather than relying on a human to judge the result. In this paper, we propose an extension of this approach to non-mathematical sciences. We describe an AI agent harness that aims to make LLM&#x27;s scientific reasoning verifiable: the starting assumptions are proposed by LLM and reviewed by a human, and everything built on top of them is checked by a machine with Lean 4. We illustrate how this mechanism works in practice on several examples and our results show that scientific arguments in these tasks can be expressed as formal proofs from explicit assumptions, including experimental results, known theoretical statements, and additional assumptions, produced by the agent. We suggest that this approach could change how scientific research is conducted across all sciences.</description>
+    </item>
+    <item>
+      <title>Uniformising random greedy maximal independent sets on graphs with at most five vertices</title>
+      <link>https://paperswithlean.com/paper/2611.26675.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.26675.html</guid>
+      <pubDate>Sun, 22 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>John Fairfax-Ball</dc:creator>
+      <category>formalization</category><category>probability</category><category>combinatorics</category>
+      <description>The full classification of EGU graphs on at most five vertices, including the real exponential-clock law and the P5 obstruction, is formalized in Lean 4.
+
+A random greedy algorithm scans the vertices of a finite graph in increasing order of independent exponential arrival times and accepts each vertex unless an accepted neighbour blocks it. We ask an inverse question: can strictly positive finite arrival rates be chosen so that the terminal inclusion-maximal independent sets are all equally likely? We call this exact property exponential greedy uniformisability (EGU). We establish the complete small-order classification: every finite simple graph on at most five vertices is EGU, with the unique exception of the five-vertex path $P_5$ up to graph isomorphism. A strict $2\times2$ probability minor provides an explicit obstruction for the exceptional graph; the positive cases are certified by graph-isomorphism reduction and exact constructive witnesses. We explain the independent-exponential-clock probability law and the formal Lean 4 verification, registered as Palomar PALOMAR-2026-11-19-000021 (version 1). The registration is a formal proof record, not a claim of novelty certification or journal peer review.</description>
+    </item>
+    <item>
       <title>Whitehead doubles and the failure of the AJ conjecture</title>
       <link>https://paperswithlean.com/paper/2611.24826.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2611.24826.html</guid>
@@ -578,94 +666,6 @@ For the estimation of a normal mean in $\mathbb{R}^m$ under quadratic loss, Brow
       <description>Ancillary Lean 4/Mathlib project machine-checks bounded semantic replacement, an evaluator recurrence, and adaptive-selection error-budget propositions using Mathlib probability.
 
 A self-improving agent can find accepted solutions more often without expanding the tasks its verification interface can accept. We extend task-relative verification with explicit support and transcript interfaces to distinguish search gains from changes in accepted-task coverage. A stage&#x27;s native reach contains tasks accepted with default support; its closure frontier contains tasks accepted with any support the declared interface permits. A semantic containment criterion identifies the authority or exposure condition that every verified escape must violate, while guard-transfer invariance prevents a change of representation from being counted as a capability expansion. An executable Boolean-program repair agent makes the distinction concrete: over 36,864 paired runs, counterexample feedback reduces verifier calls without changing coverage, whereas an enforced permission change admits a new target with a proof excluding every old-interface program. Exact and uniformly gapped randomized verification share this account; independent majority amplification improves reliability while preserving the accepted language. Separate adaptive-selection contracts state what is additionally required to interpret a proposed successor&#x27;s score as evidence of deployment improvement. Classical hierarchy results and finite audits provide supporting boundaries. The framework specifies the evidence needed to establish improved search, wider accepted capability, and reliable successor selection.</description>
-    </item>
-    <item>
-      <title>Two Answers on Heavy-Ball Dynamics</title>
-      <link>https://paperswithlean.com/paper/2610.09912.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.09912.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Dmitry Pasechnyuk-Vilensky, Martin Takáč</dc:creator>
-      <category>formalization</category><category>analysis</category>
-      <description>The heavy-ball worst-case rate and convergence-threshold results are accompanied by formal proofs in Lean.
-
-We determine the worst-case behavior of the heavy-ball method on smooth strongly convex functions, first for Polyak&#x27;s quadratic-optimal parameters and then for arbitrary constant parameters. For Polyak&#x27;s tuning, the exact dimension-uniform exponential rate is the largest growth factor of an interpolable mixture of rotating geometric sequences. Four algebraic families determine this rate at every condition number. Two frequencies suffice, and one function in dimension five attains the rate at every horizon up to constant factors. We recover the sharp convergence threshold $9+4\sqrt5$ of Badithela and Seiler. For general tunings, an exact linear feasibility criterion characterizes dimension-uniform linear convergence through the angle between the characteristic polynomials of the two extreme quadratics. This gives a continuous condition-number threshold and resolves the second heavy-ball riddle of Goujaud, Taylor and Dieuleveut. The regions between consecutive cycle tongues are Farey gaps, each containing convergent and divergent tunings. Regular portions of the threshold surface are analytic plateaus with fixed periodic frequency support. Every rational rotation number in a gap anchors a single-harmonic plateau; mixed-harmonic plateaus and an exact two-lag threshold point also occur. Along tongue edges, explicit multiplier inequalities and second-order expansions of competing Farey fans bound the transition from single-harmonic to mixed-harmonic extremals. The rate bounds and the extremal constructions follow from a common interpolation and separation argument that preserves initialization with zero momentum.</description>
-    </item>
-    <item>
-      <title>Rounded Clocks and Finite Precision: A Transfer Principle Between Continuous and Discrete Quantum Dynamics</title>
-      <link>https://paperswithlean.com/paper/2610.06541.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.06541.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Michael Jarret</dc:creator>
-      <category>formalization</category><category>quantum</category><category>analysis</category>
-      <description>The definitions, theorems, and examples, including the comparison identity and the O(1/T) transfer theorem, are tagged with links to Lean formalizations.
-
-I present a short approach to discretizing continuous unitary evolution in finite dimensions. For a time-dependent Hamiltonian $H(s)$ with $s\in[0,1]$ and an integer $T\ge1$, let $U(T)$ be the evolution of $H(t/T)$ over time $T$, and let $W_T=e^{-iH((T-1)/T)}\cdots e^{-iH(0)}$ be the product of the unitaries generated by its samples. With a half-step phase at each end, $V(T)=e^{-iH(1)/2}W_Te^{iH(0)/2}$ is the evolution generated by $H(\lfloor t+1/2\rfloor/T)$, where $\lfloor t+1/2\rfloor$ is a rounded clock, time at finite precision. Whereas Duhamel&#x27;s formula only bounds $\|V(T)-U(T)\|$ by a constant, I show that $\|V(T)-U(T)\|=O(1/T)$ in operator norm, with explicit constants, whenever $H&#x27;$ is Lipschitz and every sample has eigenvalue differences at most a fixed width below $2π$. The gain comes from cancellation within and between time steps. This general transfer theorem assumes neither adiabaticity nor a spectral gap, and any operator-norm bound for $U(T)$ transfers to $V(T)$ with an added $O(1/T)$. Nonetheless, discrete adiabatic theorems for $W_T$ follow from continuous ones, because the end phases commute with the spectral projectors of $H(0)$ and $H(1)$. For a product of samples of a $C^2$ unitary family, a continuously moving arc of fixed length $\vartheta$ that avoids the spectrum determines a Hermitian logarithm meeting the width condition, and the $O(1/T)$ bound has coefficients $O(\vartheta^{-3})$. In the easier direction, Duhamel&#x27;s formula shows that rounding the clock to midpoints and truncating the entries of a regulated time-dependent Hamiltonian at a fixed binary place gives a product within $T$ times the error of the rounded, truncated Hamiltonian.</description>
-    </item>
-    <item>
-      <title>Square-Root Regret for Adversarial Multiplayer Bandits without Collision Information or Shared Randomness</title>
-      <link>https://paperswithlean.com/paper/2610.05688.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.05688.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Chenyu Gan</dc:creator>
-      <category>formalization</category><category>ml-theory</category><category>probability</category>
-      <description>The paper&#x27;s mathematical results, excluding the computational complexity claims, are formalized in Lean, with a public repository.
-
-We study cooperative multiplayer bandits with adversarial rewards and no collision information. In each of $T$ rounds, each of $m$ labeled players picks one of $K&gt;m$ arms. A player alone on its arm receives that arm&#x27;s reward in $[0,1]$; players who share an arm receive $0$. Each player observes only its own reward, so it cannot distinguish a collision from an arm with zero reward, and there is neither shared randomness nor a communication channel. Bubeck, Li, Peres and Sellke (2020) obtained regret $\widetilde O(KT^{3/4})$ for two players and $\widetilde O(mK^{3/2}T^{1-1/(2m)})$ for $m$ players, and conjectured that regret $Ω(T^{2/3})$ is unavoidable already for two players. We refute this conjecture. We give a strategy whose expected regret against every oblivious adversary is $O(m^{3/2}\sqrt{KT}\log^2(KmT))$, which is optimal in $K$ and $T$ up to logarithmic factors. Three ideas make this possible. (i) Bits are sent through deliberate collisions as random parity checks, and the regret spent while a message is delayed is charged to the number of arms with positive reward rather than to elapsed time: an adversary that jams the channel with zero rewards forfeits the regret it could inflict. (ii) An exponential-weights learner over sets of arms combines a frequently resampled coordinator arm with a follower assignment that changes only $O(\sqrt{mT/K})$ times in expectation; delayed updates are reconstructed exactly. (iii) We teach the followers a privately chosen row index in a fixed public table using reward observations alone, allowing them to coordinate without shared randomness. The bound holds simultaneously for all reward matrices, even ones chosen with knowledge of the table, and a random table works with probability $1-O(1/(KmT))$.</description>
-    </item>
-    <item>
-      <title>Large deviations of the spectral radius of iid subgaussian random matrices</title>
-      <link>https://paperswithlean.com/paper/2610.05498.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.05498.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Yi Han</dc:creator>
-      <category>formalization</category><category>probability</category>
-      <description>The paper&#x27;s results on spectral-radius large deviations are formalized in Lean, with repositories released, including one for the upper-tail bounds.
-
-We study large deviations of the spectral radius of $X_n=n^{-1/2}(ξ_{ij})_{i,j=1}^n$, where the entries are iid, centered, variance-one, and subgaussian, with zero pseudovariance in the complex case. We write $ρ(X_n)$ for its spectral radius, i.e. the largest modulus among its eigenvalues. For every fixed $r&gt;1$, we prove $$ \liminf_{n\to\infty}\frac1n\log\mathbb{P}\{ρ(X_n)&gt;r\} \ge -\frac\beta2\bigl(r^2-1-2\log r\bigr), $$ where $β=1$ for real entries and $β=2$ for complex entries. We prove a matching upper bound for real symmetric laws with Gaussian-dominated even moments and for complex laws satisfying the sharp Gaussian Laplace-transform bound. These classes include discrete distributions. In the complex sharp class, we also identify the exponential rate for an eigenvalue to enter a fixed disk outside the unit disk. We then turn to lower deviations and establish a quadratic-speed bound. Under the additional assumption that the entry law $μ$ has a bounded density, we prove $$ \mathbb{P}\{ρ(X_n)\le r\}\le e^{-c_{μ,r}n^2} $$ for every fixed $0&lt;r&lt;1$ and all sufficiently large $n$, where $c_{μ,r}&gt;0$. For the matching upper-tail classes with a bounded density, these bounds give a full speed-$n$ large deviation principle, with the displayed upper-tail rate for $r\ge1$ and infinite rate for $r&lt;1$. The upper-tail proof uses a change of measure that preserves the entry support and creates an outlying eigenvalue. The lower-tail proof develops a weighted comparison for adaptive orthonormal observations and applies it to Arnoldi residuals.</description>
-    </item>
-    <item>
-      <title>Computing distances in braid-move graphs, higher Bruhat orders, and oriented-matroid mutation graphs is NP-hard</title>
-      <link>https://paperswithlean.com/paper/2610.03808.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.03808.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Tilen Marc</dc:creator>
-      <category>formalization</category><category>combinatorics</category>
-      <description>The main distance formulas, excess amplification and VC-equivalences are formally verified in core Lean 4, with a public repository and no unproved steps.
-
-A wiring diagram is an arrangement of $m$ pseudolines, every two of which cross exactly once. Reading its crossings from left to right encodes it as a reduced word of the permutation $w_0\in S_m$ that reverses $1,\dots,m$, unique up to commutations, and a braid move $σ_iσ_{i+1}σ_i\leftrightarrowσ_{i+1}σ_iσ_{i+1}$ flips one of its triangles. We prove that deciding whether two wiring diagrams are within a given braid-move distance is NP-complete. Equivalently, deciding flip distance is NP-complete in the higher Bruhat order $B(m,2)$, for triangle flips of marked arrangements of pseudolines, and for rhombic tilings of a $2m$-gon; this answers an open question on flip graphs of pseudoline arrangements (SODA 2024). The reduction is from Vertex Cover: for every graph $G$ we construct two wiring diagrams at braid-move distance $|D|+2\operatorname{VC}(G)$, where $\operatorname{VC}(G)$ is the vertex cover number of $G$ and the Hamming distance $|D|$ is the number of triples of wires whose triangles are oriented differently. The construction glues copies of a seven-wire gadget whose braid-move distance exceeds its Hamming distance by $2$. Adding a line at infinity transfers the construction to rank-$3$ uniform oriented matroids, where two oriented matroids are adjacent in the mutation graph if their chirotopes differ in one basis; so deciding distance in the mutation graph is NP-complete in rank $3$. An iterate of Rambau&#x27;s expansion of signotopes amplifies the excess and gives NP-hardness in every fixed rank $r\ge4$, and by duality in every fixed corank at least $3$. The same instances show that flip distance in the higher Bruhat orders $B(n,k)$ is NP-complete for every fixed $k\ge2$.</description>
-    </item>
-    <item>
-      <title>Continual Graph Memory and Community Infrastructure for AI-Assisted Mathematical Discovery</title>
-      <link>https://paperswithlean.com/paper/2610.02945.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.02945.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Eric Hanchen Jiang, Junyi Zhang, Jinxi Yu, Jiachen Lu, Zhi Zhang, Michael Simon, Justin Baker, Richard Cai, Sneha Agarwal, Yubei Li, Hyunsik Chae, Xinjie He, Kyle Zheng, Vigyan Sahai, Ethan Ji, Alexander K Taylor, Yiwen Kou, Kyle Hess, Xiao Liang, Yingnian Wu, J. D. Zamfirescu-Pereira, Andrea Bertozzi, Kai-Wei Chang, Eunice Jun, Raghu Meka, Nanyun Peng, Amit Sahai, Matthew Sottile, Terence Tao, Wei Wang</dc:creator>
-      <category>ai-agents</category><category>theorem-proving-ml</category><category>tooling</category><category>combinatorics</category>
-      <description>The Ansätze platform integrates a fixed-interface Lean checker for proposed proofs, covering placeholders, allowed axioms and statement fidelity; five results have reported Lean formalizations.
-
-Mathematical discovery requires preserving partial ideas and the evidence supporting their reuse. We present Ansatz, a research harness whose continual graph memory separates model-accepted claims and dependencies from curated exploration, and Ansatze, a community platform for inspecting, guiding and checking this work. On First Proof, Ansatz recorded nine local verifier closures in each of two ten-problem batches; a partial result in the Second Batch also counted as a pass under the study&#x27;s criterion. These model-assessed outcomes include continued searches and differ from expert validation. Component studies and re-review expose disagreements and their dependency reach. Open-problem investigations produced candidate results, with five Lean formalizations reported. The platform connects problem discovery, research records, manuscript analysis and formal checking while preserving distinct evidence states. Together, these systems support cumulative human-AI research through persistent investigation and inspectable contributions.</description>
-    </item>
-    <item>
-      <title>Root-sparsity scaling for Hamiltonian simulation, differential equations and linear-system solvers</title>
-      <link>https://paperswithlean.com/paper/2610.02939.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.02939.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Dominic W. Berry, Abhishek Rawat, Sophia Simon, Guang Hao Low</dc:creator>
-      <category>formalization</category><category>verification</category><category>quantum</category><category>mathlib</category>
-      <description>Accompanying Lean/Mathlib package (sparse-quantum-lean) formalizes the circuit constructions and query/gate bounds, with an appendix documenting conditional coverage.
-
-We give quantum algorithms for time-independent and time-dependent Hamiltonian simulation, linear differential equations and linear systems, all with complexity that has only square-root dependence on matrix sparsity. Our algorithms retain optimal scaling in other relevant parameters such as time, condition number and precision. For several cases we prove matching lower bounds on the joint parameters and show that the additional gate overhead is only polylogarithmic in the inverse precision. The common primitive connecting our algorithms is the Cayley transform, which provides a cheap unitary embedding of the sparse matrices. For Hamiltonian simulation and differential equations, we then use transducers to construct the desired evolution operators. For linear systems, we instead encode the solution in the kernel of a matrix and use the Cayley transform to construct a projector onto that kernel.</description>
-    </item>
-    <item>
-      <title>Minimax Quantum State Tomography with Periodic Clifford Measurements</title>
-      <link>https://paperswithlean.com/paper/2610.00210.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.00210.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Hongru Zhao</dc:creator>
-      <category>formalization</category><category>quantum</category><category>probability</category>
-      <description>All labeled theoretical results, including minimax upper and lower bounds for quantum state tomography, are formalized in Lean, with code on GitHub and Zenodo.
-
-Quantum state tomography provides a foundation for characterizing state preparation and predicting measurement outcomes. We characterize the minimax expected trace norm risk of quantum state tomography over classes with polynomial spectral decay under randomized nonadaptive single copy measurements. Under an explicit sufficient block size condition for the two layer periodic Clifford ensemble, we establish statewise expected trace norm oracle inequalities for operator norm minimum distance and measurement weighted projected least squares, with bounds that depend on each state&#x27;s actual spectral tail, while the estimators require no prior knowledge of the state&#x27;s structural characteristics, including its rank, eigenbasis, or spectral structure. Over these polynomial spectral decay classes, both estimators attain the minimax expected trace norm rates up to constants. As a direct consequence, the same estimators attain the minimax rate over every fixed rank constrained class, while remaining adaptive to the unknown structural characteristics of the state. For admissible logarithmic block sizes, the periodic Clifford measurements attain these guarantees with logarithmic elementary gate depth. The main technical ingredient is a uniform bound on the fourth moment of projectors for the periodic Clifford ensemble. The bound is sharp in dimension and holds for arbitrary test states, including those entangled across blocks. Covariance concentration and positivity yield adaptive oracle bounds, while a shared rotation information argument on spectral tail packings establishes matching lower bounds. We also provide polynomial time reconstruction algorithms, numerical comparisons, and Lean formalizations of all labeled theoretical results.</description>
     </item>
   </channel>
 </rss>

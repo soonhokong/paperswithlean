@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Budget-Aware Predict-and-Verify Theorem Proving with Heterogeneous LLM Solvers · Papers With Lean</title>
+<meta name="description" content="Large language model (LLM) theorem solvers differ in both proving capability and inference cost. Applying an expensive solver to every subgoal wastes computation when cheaper models are sufficient, while always starting from the cheapest solver wastes attempts on subgoals that…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Budget-Aware Predict-and-Verify Theorem Proving with Heterogeneous LLM Solvers">
+<meta property="og:description" content="Large language model (LLM) theorem solvers differ in both proving capability and inference cost. Applying an expensive solver to every subgoal wastes computation when cheaper models are sufficient, while always starting from the cheapest solver wastes attempts on subgoals that…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.26906.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.26906.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.26906v1" target="_blank" rel="noopener"><img src="../thumbs/2611.26906.jpg" alt="First page of Budget-Aware Predict-and-Verify Theorem Proving with Heterogeneous LLM Solvers"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Budget-Aware Predict-and-Verify Theorem Proving with Heterogeneous LLM Solvers</h1>
+        <p class="authors">Wei Jiang, Ziran Liu, Wei Wang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 19, 2026 · v1</span>
+          <span class="badge">cs.LG</span> <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.26906v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.26906" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Allocates proof attempts from Lean-targeting LLM provers (Goedel, Kimina, DeepSeek-Prover) over decomposed subgoals; Lean checks the generated proofs, with automation tactics run first.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large language model (LLM) theorem solvers differ in both proving capability and inference cost. Applying an expensive solver to every subgoal wastes computation when cheaper models are sufficient, while always starting from the cheapest solver wastes attempts on subgoals that require stronger models. We present BudgetPV, an agentic budget-aware predict-and-verify system that allocates computation across unresolved subgoals and heterogeneous LLM solvers. BudgetPV uses a cross-solver predictor to guide solver selection for each subgoal and revises the allocation as verification feedback becomes available. The allocation problem changes as proving progresses. Early decisions mainly determine which solver should handle an untried subgoal, while later decisions determine which previously attempted subgoals should receive additional computation. We train the predictor with two objectives for these two stages. Class-weighted cross-entropy improves assignment to less frequent stronger solvers during the initial stage, while plain cross-entropy provides better calibrated probabilities for later allocation among previously attempted subgoals. We evaluate BudgetPV on Lean Workbook, miniF2F, ProofNet, and PutnamBench using three progressively expanded solver settings: a strong but expensive solver alone, adding a medium-cost solver with intermediate solving capability, and further adding a cheap solver with lower solving capability. BudgetPV requires less LLM generation computation than uniform allocation to solve the same number of subgoals across the evaluated settings. The experiments further show the computation savings obtained as medium- and lower-cost solvers are added.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM theorem provers differ in capability and inference cost. Spending an expensive solver on every decomposed subgoal wastes compute, and always starting with a cheap solver wastes attempts on hard subgoals.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">BudgetPV takes a proof sketch and first applies Lean automation (simp, aesop, omega, nlinarith) to every subgoal. For the subgoals that remain, a cross-solver predictor estimates each solver&#x27;s success probability, and actions are scored by predicted success divided by generation cost. The predictor is trained on Lean Workbook proof attempts, using class-weighted cross-entropy for initial assignment and plain cross-entropy for later reallocation. Lean verification feedback from failed attempts updates the estimates in a closed loop.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.26906/framework.png" alt=""><figcaption>Figure 1: The overall framework of BudgetPV. A theorem p is decomposed into a proof sketch, and standard proof-assistant procedures first process all subgoals. At each decision step, BudgetPV predicts the success probability of each available LLM solver for each unresolved subgoal and selects a subgoal–solver action based on predicted success, computation cost, and the remaining allowed proof atte</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On Lean Workbook, miniF2F, ProofNet and PutnamBench, BudgetPV needs less GPU generation time than uniform allocation at every reported solve-rate target. At a 50% solve rate on miniF2F it uses 1,231 vs 2,672 GPU-seconds; adding medium- and low-cost solvers gives further savings in most settings.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>50%</th><th>70%</th><th>90%</th></tr></thead><tbody><tr><td>Uniform</td><td>2,672</td><td>3,580</td><td>5,056</td></tr><tr><td>BudgetPV</td><td>1,231</td><td>1,955</td><td>4,881</td></tr></tbody></table><div class="tbl-cap">Live proving on miniF2F: GPU-seconds of generation needed to reach each solve rate (single expensive solver)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
