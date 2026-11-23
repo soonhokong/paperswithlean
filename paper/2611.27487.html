@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verifying and Strengthening Neural Tangent Kernel Theory · Papers With Lean</title>
+<meta name="description" content="Writing Neural tangent kernel (NTK) theory explains why very wide neural networks trained by gradient methods converge in the lazy-training regime. Its standard proof combines matrix concentration, random Gram matrices, continuous-time dynamics, spectral perturbation, and a…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Verifying and Strengthening Neural Tangent Kernel Theory">
+<meta property="og:description" content="Writing Neural tangent kernel (NTK) theory explains why very wide neural networks trained by gradient methods converge in the lazy-training regime. Its standard proof combines matrix concentration, random Gram matrices, continuous-time dynamics, spectral perturbation, and a…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.27487.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.27487.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.27487v1" target="_blank" rel="noopener"><img src="../thumbs/2611.27487.jpg" alt="First page of Verifying and Strengthening Neural Tangent Kernel Theory"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Verifying and Strengthening Neural Tangent Kernel Theory</h1>
+        <p class="authors">Hao Zhu</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Nov 20, 2026 · v1</span>
+          <span class="badge">stat.ML</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.27487v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.27487" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formalizes end-to-end NTK lazy-training convergence for two-layer networks in Lean 4 with Mathlib, including matrix Bernstein and gradient-flow existence and uniqueness.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Writing Neural tangent kernel (NTK) theory explains why very wide neural networks trained by gradient methods converge in the lazy-training regime. Its standard proof combines matrix concentration, random Gram matrices, continuous-time dynamics, spectral perturbation, and a bootstrap argument, but has lacked machine-checked verification. We present a Lean\ 4 formalisation for two-layer networks, proving an end-to-end theorem: for a smooth bounded activation (instantiated with $σ=\tanh$), frozen biases, paired $\pm 1$ initialisation, and explicit width conditions, gradient flow exists uniquely with probability at least $1-δ$, and $$ \|r(t)\|^2 \leq \|y\|^2 e^{-λ_0 t/2}. $$ The sole data assumption is population NTK non-degeneracy, $λ_0&gt;0$. Initial coercivity, kernel drift, the movement bootstrap, the residual ODE, and flow existence and uniqueness are formally proved. The formalisation also sharpens the standard analysis in two ways. First, replacing the conventional matrix-Bernstein variance proxy with the classical row-covariance proxy yields estimated concentration-width certificates for $\tanh$ that are $36$–$53\times$ smaller at $(m,d)=(16,8)$ and $94$–$121\times$ smaller at $(32,16)$. Lean certifies the inequality; the ratios are numerical. Second, the network Hessian has operator norm $Θ(\sqrt{p})$ on the sup-norm parameter ball (a paper calculation), preventing the expected $O(1/\sqrt{p})$ linearisation bound via sup-norm Taylor estimates. An $L^2$ parameter geometry resolves this issue. Required widths remain polynomial but far beyond practical scales, limiting applicability.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Neural tangent kernel theory explains why wide networks trained by gradient flow converge in the lazy regime. Its standard proof chains matrix concentration, random Gram matrices, ODE dynamics, spectral perturbation and a bootstrap argument, and it had not been machine-checked.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A sorry-free Lean 4 formalisation covers two-layer networks with smooth bounded activation (instantiated for tanh), frozen biases and paired ±1 initialisation. It proves matrix Bernstein from Lieb&#x27;s concavity via Tropp&#x27;s argument, initial coercivity with high probability, kernel drift, the movement bootstrap, the residual ODE, and existence and uniqueness of the flow. The Bernstein statement takes its variance proxy as an explicit argument, which allows the classical row-covariance proxy to be used. A paper-only calculation shows the sup-norm Hessian obstruction and motivates an L² parameter geometry.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With probability at least 1−δ, under explicit width conditions and λ₀&gt;0, gradient flow exists uniquely and ‖r(t)‖² ≤ ‖y‖² e^{−λ₀t/2}. The row-covariance proxy gives estimated concentration-width certificates 36–53× smaller at (m,d)=(16,8) and 94–121× smaller at (32,16); Lean certifies the inequality, while the ratios are numerical. The required widths remain far beyond practical scales.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -8,6 +8,39 @@
     <language>en</language>
     <lastBuildDate>Sun, 22 Nov 2026 00:00:00 +0000</lastBuildDate>
     <item>
+      <title>Verifying and Strengthening Neural Tangent Kernel Theory</title>
+      <link>https://paperswithlean.com/paper/2611.27487.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.27487.html</guid>
+      <pubDate>Sun, 22 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Hao Zhu</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>ml-theory</category><category>probability</category>
+      <description>Formalizes end-to-end NTK lazy-training convergence for two-layer networks in Lean 4 with Mathlib, including matrix Bernstein and gradient-flow existence and uniqueness.
+
+Writing Neural tangent kernel (NTK) theory explains why very wide neural networks trained by gradient methods converge in the lazy-training regime. Its standard proof combines matrix concentration, random Gram matrices, continuous-time dynamics, spectral perturbation, and a bootstrap argument, but has lacked machine-checked verification. We present a Lean\ 4 formalisation for two-layer networks, proving an end-to-end theorem: for a smooth bounded activation (instantiated with $σ=\tanh$), frozen biases, paired $\pm 1$ initialisation, and explicit width conditions, gradient flow exists uniquely with probability at least $1-δ$, and $$ \|r(t)\|^2 \leq \|y\|^2 e^{-λ_0 t/2}. $$ The sole data assumption is population NTK non-degeneracy, $λ_0&gt;0$. Initial coercivity, kernel drift, the movement bootstrap, the residual ODE, and flow existence and uniqueness are formally proved. The formalisation also sharpens the standard analysis in two ways. First, replacing the conventional matrix-Bernstein variance proxy with the classical row-covariance proxy yields estimated concentration-width certificates for $\tanh$ that are $36$–$53\times$ smaller at $(m,d)=(16,8)$ and $94$–$121\times$ smaller at $(32,16)$. Lean certifies the inequality; the ratios are numerical. Second, the network Hessian has operator norm $Θ(\sqrt{p})$ on the sup-norm parameter ball (a paper calculation), preventing the expected $O(1/\sqrt{p})$ linearisation bound via sup-norm Taylor estimates. An $L^2$ parameter geometry resolves this issue. Required widths remain polynomial but far beyond practical scales, limiting applicability.</description>
+    </item>
+    <item>
+      <title>Dugong: Composing Uncertified DAG Consensus</title>
+      <link>https://paperswithlean.com/paper/2611.27473.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.27473.html</guid>
+      <pubDate>Sun, 22 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>George Danezis, Lefteris Kokoris-Kogias, Alberto Sonnino</dc:creator>
+      <category>verification</category><category>ai-agents</category>
+      <description>Formalizes a parameterized DAG consensus protocol in Lean 4 and Mathlib, proving safety, liveness and composition across about 125,000 lines, with mostly AI-generated proofs.
+
+There is a significant number of uncertified DAG consensus protocols spanning partial synchrony and asynchrony as well as crash, Byzantine, and hybrid fault models, yet each protocol is designed, proved, and implemented from scratch. We introduce Dugong, a single parameterized protocol that unifies uncertified DAG consensus protocols. Its core algorithm, the Decider can implement eight existing protocols and yields four new ones by just tuning its parameters. Given the property that DAGs decouple throughput from latency Dugong presents a simple trade-off between latency and resilience to network and node faults. An operator can adapt the parameters of their protocol epoch-by-epoch to adjust the resilience without needing to develop a new protocol or worry about throughput. Around the Decider, Dugong layers production feature mechanisms (adaptive leader scheduling, checkpoints, responsive liveness, and crash recovery) that provably compose with each other and with the Decider&#x27;s configurations. We formalize Dugong in Lean 4, proving safety and liveness under the established definitions of Byzantine atomic broadcast, and identify and repair gaps in published proofs. Finally, we implement Dugong as a reusable Rust library paired with a discrete-event network simulator, enabling direct latency comparisons across network and fault models.</description>
+    </item>
+    <item>
+      <title>Trotter Error Bounds in Lean 4 with a Cancellation-Aware Analysis of the Fourth-Order Suzuki Formula</title>
+      <link>https://paperswithlean.com/paper/2611.27359.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.27359.html</guid>
+      <pubDate>Sun, 22 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Bingyu Xia, Jue Xu, Yue Wang</dc:creator>
+      <category>formalization</category><category>verification</category><category>quantum</category><category>mathlib</category>
+      <description>Formalizes the Childs et al. commutator-scaling Trotter error bound and fourth-order Suzuki formula estimates in Lean 4 with Mathlib.
+
+We formalize the commutator-scaling bound of Childs et al. in Lean 4. For skew-adjoint generators, the local order condition gives an explicit integer step count sufficient to meet a prescribed error tolerance. We apply the theorem in Lean to the binary fourth-order Suzuki formula. For this formula we can also account for cancellation within and between steps. Using local remainder estimates of Casas and Murua, we sum the signed quintic and centered seventh-degree error terms after conjugating each to the interaction picture. For every positive integer step count, we bound the difference between this sum and the global error operator. At fixed time the explicit remainder is eighth order in the step size, and the integral of the conjugated quintic term gives the exact leading error coefficient. The Lean proofs cover the two-generator finite-sum estimates, including the spectral norm for complex matrices. On five ten-site nearest-neighbor Heisenberg instances at time $10$ and tolerance $10^{-3}$, the transported sum meets the tolerance at a mean of $129.4$ steps. Taking a separate norm at each step with the same polynomial and remainder gives a mean first crossing between $184.6$ and $185.2$ steps. The accumulated Casas–Murua local bound at $q=8$ gives a mean of $184.8$ steps.</description>
+    </item>
+    <item>
       <title>Improved Accuracy Scaling with Problem Complexity in LLM Arithmetic Reasoning Using Executable Symbolic Representations</title>
       <link>https://paperswithlean.com/paper/2611.27203.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2611.27203.html</guid>
@@ -633,39 +666,6 @@ We study the Korteweg-de Vries equation on a bounded interval with boundary diss
       <description>Finite-support versions of the posterior-to-ratio identity, classifier-regret bound, policy-shift factorization, and coverage composition are formalized in Lean 4 with Mathlib.
 
 Changing a deployment policy can invalidate a world model&#x27;s uncertainty while leaving the physical transition mechanism and predictor unchanged. For one-step prediction, if source and target laws share the conditional mechanism $P(Y|X)=Q(Y|X)$, then the intervention is identified by the pre-outcome change of measure $w(X)=dQ_X/dP_X$. For policy-controlled dynamics this ratio factors into state-occupancy and action-propensity terms. Weighted conformal calibration transports marginal coverage to the target law; with an estimated ratio $\hat w$, $P_Q\{Y \in C_{\hat w}(X)\} \ge 1-α-TV(Q,\hat Q) \ge 1-α-E_P|w-\hat w|$. Population log-loss regret for a source-versus-target domain classifier bounds the same ratio error. If $h$ is its clipped target posterior, $ρ$ is the target-domain prior, and $Δ(h)$ is population log-loss regret, then $E_P|w-\hat w_h| \le (1/(ργ))\sqrt{Δ(h)/2}$. An exact cancellation improves the dependence from a generic odds-map bound of order $γ^{-2}$ to $(ργ)^{-1}$. Our experiments use a released DINO-feature world model and physical Franka trajectories. Under the strongest controlled state-action shift, ordinary 90% conformal sets cover 55.0%, whereas oracle and learned-ratio calibration cover 91.0% and 90.9%. The learned surrogate remains within 0.9% total variation of the target law. Calibration is relative to the deployment law: the model can remain fixed while calibration follows the intervention. We machine-check in Lean 4 the finite-support algebraic and causal identities used in the classifier-regret argument, including its coverage-composition step.</description>
-    </item>
-    <item>
-      <title>Webs and exponentially large mu-coefficients</title>
-      <link>https://paperswithlean.com/paper/2610.34982.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.34982.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Tom Goertzen, Abel Lacabanne, Daniel Tubbenhauer, Pedro Vaz</dc:creator>
-      <category>formalization</category><category>combinatorics</category><category>algebra</category>
-      <description>Lean formalization verifies the local tensor and web diagram calculations, the lattice induction, and the two-state readout for every block count; code is in a public repository.
-
-Using webs, we prove that Kazhdan-Lusztig mu-coefficients for symmetric groups grow at least exponentially with the rank, already for pairs labeled by a three-row rectangle.</description>
-    </item>
-    <item>
-      <title>Beyond Brown&#x27;s radial tests: admissibility, parabolicity, and a doubling-Poincaré prior that neither test decides</title>
-      <link>https://paperswithlean.com/paper/2610.34309.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.34309.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Oleg Roshka</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>analysis</category><category>probability</category>
-      <description>Part of the potential-theoretic results is formalized in Lean 4 with Mathlib: 37 modules and 655 theorems, with cited results carried as named hypotheses.
-
-For the estimation of a normal mean in $\mathbb{R}^m$ under quadratic loss, Brown (1971) proved that a generalized Bayes estimator $δ_F$ with bounded drift is admissible if and only if a diffusion attached to the marginal $f^*$ of the prior $F$ is recurrent, and gave two radial tests: a sphere-average test for recurrence and a ray test for transience. He observed that both tests can be silent. We read his theory as the potential theory of the weighted Euclidean space $(\mathbb{R}^m,f^*\,dx)$ and ask what the modern theory of recurrence on weighted manifolds adds inside the zone where neither test applies. Three results. (A) If $f^*\,dx$ is doubling and supports a scale-invariant Poincaré inequality, the sphere test is already complete: recurrence, Brown&#x27;s sphere test and the ball-volume test are equivalent, so geometric criteria can add decidable cases only on the inadmissible side. (B) They do add one. An explicit prior on $\mathbb{R}^3$ whose marginal is small along a lattice of circles at dyadic scales with spacing equal to the square root of the scale is doubling and Poincaré, silences both of Brown&#x27;s tests, and is transient by the ball-volume test; its generalized Bayes estimator is inadmissible. (C) Outside the doubling-Poincaré class the zone is two-sided: similar circles placed on one surface per scale give an admissible estimator, decided by a flux bound along a non-spherical exhaustion, and a logarithmic product prior gives an inadmissible one, decided by product heat kernels. A comparison lemma shows that any positive weight with Lipschitz logarithm is, up to constants, the marginal of a prior, so that explicit weights may be used throughout.</description>
-    </item>
-    <item>
-      <title>Verification and Self-Improvement in Agentic AI: Foundations and Limits</title>
-      <link>https://paperswithlean.com/paper/2610.10611.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2610.10611.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Chien-Ping Lu</dc:creator>
-      <category>formalization</category><category>verification</category><category>mathlib</category><category>logic</category>
-      <description>Ancillary Lean 4/Mathlib project machine-checks bounded semantic replacement, an evaluator recurrence, and adaptive-selection error-budget propositions using Mathlib probability.
-
-A self-improving agent can find accepted solutions more often without expanding the tasks its verification interface can accept. We extend task-relative verification with explicit support and transcript interfaces to distinguish search gains from changes in accepted-task coverage. A stage&#x27;s native reach contains tasks accepted with default support; its closure frontier contains tasks accepted with any support the declared interface permits. A semantic containment criterion identifies the authority or exposure condition that every verified escape must violate, while guard-transfer invariance prevents a change of representation from being counted as a capability expansion. An executable Boolean-program repair agent makes the distinction concrete: over 36,864 paired runs, counterexample feedback reduces verifier calls without changing coverage, whereas an enforced permission change admits a new target with a proof excluding every old-interface program. Exact and uniformly gapped randomized verification share this account; independent majority amplification improves reliability while preserving the accepted language. Separate adaptive-selection contracts state what is additionally required to interpret a proposed successor&#x27;s score as evidence of deployment improvement. Classical hierarchy results and finite audits provide supporting boundaries. The framework specifies the evidence needed to establish improved search, wider accepted capability, and reliable successor selection.</description>
     </item>
   </channel>
 </rss>
