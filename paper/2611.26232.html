@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Time Series Structure Learning with Local Causal Parent Discovery · Papers With Lean</title>
+<meta name="description" content="Learning and inference on time series can pose significant statistical challenges, including autocorrelated observations, distribution shift over time, and the curse of dimensionality. These challenges complicate the practical application of causal discovery algorithms, which…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Time Series Structure Learning with Local Causal Parent Discovery">
+<meta property="og:description" content="Learning and inference on time series can pose significant statistical challenges, including autocorrelated observations, distribution shift over time, and the curse of dimensionality. These challenges complicate the practical application of causal discovery algorithms, which…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.26232.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.26232.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.26232v1" target="_blank" rel="noopener"><img src="../thumbs/2611.26232.jpg" alt="First page of Time Series Structure Learning with Local Causal Parent Discovery"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Time Series Structure Learning with Local Causal Parent Discovery</h1>
+        <p class="authors">Jacqueline Maasch, Shu Wan, Hank Zhu, Huan Liu, Zhiguang Wang</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Nov 19, 2026 · v1</span>
+          <span class="badge">stat.ML</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.26232v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.26232" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/jmaasch/itpd" target="_blank" rel="noopener" title="jmaasch/itpd">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Soundness and completeness theorems for the ITPD causal discovery algorithm are formalized in Lean 4 core (no Mathlib) via AI-assisted autoformalization, with code released.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Learning and inference on time series can pose significant statistical challenges, including autocorrelated observations, distribution shift over time, and the curse of dimensionality. These challenges complicate the practical application of causal discovery algorithms, which already suffer from high computational and sample complexity in the general case. To mitigate these issues, this work introduces Iterative Temporal Parent Discovery (ITPD): a sound and complete constraint-based procedure for causal structure learning on multivariate time series with causal nonstationarity. ITPD takes a local-to-global learning approach that discovers the global graph by sequentially discovering the parent set for each variable. ITPD exploits temporal structural priors, graph partitioning, and the local Markov condition to swap higher-order conditional independence tests for lower-order alternatives. With an exact oracle, ITPD performed the least number of tests and used the smallest average conditioning set sizes relative to baselines. In benchmarking simulations, ITPD sat on the Pareto frontier with respect to F1 and wall-clock time and was faster than baselines on large graphs ($\geq$ 1000 nodes). For graphs with 2000 nodes, ITPD ran $2.3\times$, $9.1\times$, and $40.9\times$ faster than iterative IAMB, DF-PC, and PCMCI, respectively.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Constraint-based causal discovery on multivariate time series is hampered by autocorrelation, causal nonstationarity, and the high computational and sample cost of conditional independence (CI) tests on large graphs.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors propose Iterative Temporal Parent Discovery (ITPD), a local-to-global procedure that learns the parent set of each variable in turn. It uses temporal structural priors, graph partitioning, and the local Markov condition to replace higher-order CI tests with lower-order ones, and it does not assume a recurring window graph. Selected soundness and completeness results were autoformalized with AI assistance in Lean 4.33.1, using only the core library. The five main theorems depend only on the standard axioms.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">With an exact oracle, ITPD ran the fewest CI tests and used the smallest average conditioning sets of the methods compared. In simulations it lay on the Pareto frontier of F1 versus wall-clock time. On 2000-node graphs it ran 2.3×, 9.1×, and 40.9× faster than iterative IAMB, DF-PC, and PCMCI, respectively.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.26232/scaling_time.png" alt=""><figcaption>Figure 4: Seconds per run (left) and F1 of ITPD (right) versus total time-indexed variables, using Fisher-z CI tests at M=2000 and d=2 . Left: For each method, numbers in parentheses give the fitted exponent for the power by which wall-clock time scaled with total variables. Open marks are methods timed in separate runs on shared nodes. Each point is a mean over 10 graphs, and the shaded bands are</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>N</th><th>ITPD d=2 (s)</th><th>IAMB d=2 (s)</th><th>ITPD d=5 (s)</th><th>IAMB d=5 (s)</th></tr></thead><tbody><tr><td>20</td><td>3.4–3.6</td><td>5.5</td><td>3.8–4.0</td><td>11–12</td></tr><tr><td>50</td><td>27–29</td><td>56–57</td><td>31–33</td><td>111–119</td></tr><tr><td>100</td><td>96–99</td><td>230–231</td><td>109–115</td><td>450–490</td></tr></tbody></table><div class="tbl-cap">ITPD vs IAMB wall-clock time (seconds) by graph size N</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

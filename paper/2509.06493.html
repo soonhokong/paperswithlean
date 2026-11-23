@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scaling up Multi-Turn Off-Policy RL and Multi-Agent Tree Search for LLM Step-Provers · Papers With Lean</title>
+<meta name="description" content="The integration of Large Language Models (LLMs) into automated theorem proving has shown immense promise, yet is fundamentally constrained by challenges in scaling up both training-time reinforcement learning (RL) and inference-time compute. This paper introduces BFS-Prover-V2,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scaling up Multi-Turn Off-Policy RL and Multi-Agent Tree Search for LLM Step-Provers">
+<meta property="og:description" content="The integration of Large Language Models (LLMs) into automated theorem proving has shown immense promise, yet is fundamentally constrained by challenges in scaling up both training-time reinforcement learning (RL) and inference-time compute. This paper introduces BFS-Prover-V2,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2509.06493.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2509.06493.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2509.06493v2" target="_blank" rel="noopener"><img src="../thumbs/2509.06493.jpg" alt="First page of Scaling up Multi-Turn Off-Policy RL and Multi-Agent Tree Search for LLM Step-Provers"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Scaling up Multi-Turn Off-Policy RL and Multi-Agent Tree Search for LLM Step-Provers</h1>
+        <p class="authors">Ran Xin, Zeyu Zheng, Yanchen Nie, Kun Yuan, Xia Xiao</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Sep 8, 2025 · v2</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2509.06493v2" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2509.06493" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ByteDance-Seed/BFS-Prover-V2" target="_blank" rel="noopener" title="ByteDance-Seed/BFS-Prover-V2">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Trains an LLM step-prover that generates Lean4 tactics with Lean compiler feedback via LeanDojo, evaluated on miniF2F and ProofNet in Lean.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The integration of Large Language Models (LLMs) into automated theorem proving has shown immense promise, yet is fundamentally constrained by challenges in scaling up both training-time reinforcement learning (RL) and inference-time compute. This paper introduces BFS-Prover-V2, a system designed to address this dual scaling problem. We present two primary innovations. The first is a novel multi-turn off-policy RL framework for continually improving the performance of LLM step-prover at training time. This framework, inspired by the principles of AlphaZero, utilizes a multi-stage expert iteration pipeline featuring adaptive tactic-level data filtering and periodic retraining to surmount the performance plateaus that typically curtail long-term RL in LLM-based agents. The second innovation is a planner-enhanced multi-agent search architecture that scales reasoning capabilities at inference time. This architecture employs a general reasoning model as a high-level planner to iteratively decompose complex theorems into a sequence of simpler subgoals. This hierarchical approach substantially reduces the search space, enabling a team of parallel prover agents to collaborate efficiently by leveraging a shared proof cache. We demonstrate that this dual approach to scaling yields state-of-the-art results on established formal mathematics benchmarks. BFS-Prover-V2 achieves 95.08% and 41.4% on the MiniF2F and ProofNet test sets respectively. While demonstrated in the domain of formal mathematics, the RL and inference techniques presented in this work are of broader interest and may be applied to other domains requiring long-horizon multi-turn reasoning and complex search.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-based theorem provers are limited by performance plateaus during long-term RL training and by the cost of inference-time search on complex theorems.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">BFS-Prover-V2 models Lean4 tactic-mode proving as an MDP in which the LLM proposes tactics and the Lean compiler acts as the environment. Training uses multi-stage expert iteration with best-first search, perplexity-based tactic-level data filtering, and periodic retraining from the base model to escape plateaus. The training corpus is about 3 million formal statements, built largely by autoformalizing NuminaMath with Lean compiler feedback. At inference time, a general reasoning model (Gemini 2.5 Pro) acts as a planner that decomposes theorems into subgoals, which parallel prover agents solve using a shared subgoal cache, with dynamic replanning when they get stuck.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">BFS-Prover-V2-32B with the planner reaches 95.1% on miniF2F-test and 95.5% on miniF2F-valid. Without the planner it reaches 41.4% on ProofNet-test. Its step-level proofs are often far shorter than whole-proof outputs, for example a one-tactic simp proof where DeepSeek-Prover-V2 produced roughly 2000 lines.</p><div class="sum-table"><table><thead><tr><th>Prover</th><th>miniF2F-test</th><th>miniF2F-valid</th><th>ProofNet-test</th></tr></thead><tbody><tr><td>BFS-Prover-V2-7B</td><td>82.4%</td><td>-</td><td>-</td></tr><tr><td>BFS-Prover-V2-32B</td><td>86.1%</td><td>85.5%</td><td>41.4%</td></tr><tr><td>BFS-Prover-V2-32B w/ Planner</td><td>95.1%</td><td>95.5%</td><td>-</td></tr><tr><td>DeepSeek-Prover-V2-671B</td><td>88.9%</td><td>90.6%</td><td>37.1%</td></tr></tbody></table><div class="tbl-cap">Comparison with leading provers (selected rows)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

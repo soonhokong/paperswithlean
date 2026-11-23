@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>APE-Bench: Evaluating Automated Proof Engineering for Formal Math Libraries · Papers With Lean</title>
+<meta name="description" content="While frontier formal mathematics systems now routinely develop repository-scale proof engineering artifacts requiring multi-file coordination and semantic correctness beyond compilation, existing evaluation benchmarks remain focused on isolated theorem proving. We introduce…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="APE-Bench: Evaluating Automated Proof Engineering for Formal Math Libraries">
+<meta property="og:description" content="While frontier formal mathematics systems now routinely develop repository-scale proof engineering artifacts requiring multi-file coordination and semantic correctness beyond compilation, existing evaluation benchmarks remain focused on isolated theorem proving. We introduce…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2504.19110.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2504.19110.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2504.19110v3" target="_blank" rel="noopener"><img src="../thumbs/2504.19110.jpg" alt="First page of APE-Bench: Evaluating Automated Proof Engineering for Formal Math Libraries"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">APE-Bench: Evaluating Automated Proof Engineering for Formal Math Libraries</h1>
+        <p class="authors">Huajian Xin, Luming Li, Xiaoran Jin, Jacques Fleuriot, Wenda Li</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Apr 27, 2025 · v3</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2504.19110v3" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2504.19110" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/xinhjBrant/APE-Bench" target="_blank" rel="noopener" title="xinhjBrant/APE-Bench">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a benchmark of proof-engineering tasks mined from Mathlib4 commit histories, verified by Lean 4 compilation plus an LLM judge.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">While frontier formal mathematics systems now routinely develop repository-scale proof engineering artifacts requiring multi-file coordination and semantic correctness beyond compilation, existing evaluation benchmarks remain focused on isolated theorem proving. We introduce Automated Proof Engineering (APE), the first systematic framework for evaluating repository-scale proof engineering through dual verification that validates both syntactic compilation and semantic requirement satisfaction in pinned library environments. We present a complete infrastructure comprising APE-Bench, which automatically extracts proof engineering tasks from real library commit histories, and APE-Harness, a unified execution framework based on task contract abstraction. This contract-based design enables standardized evaluation across diverse formal mathematics tasks and fair systematic comparison of different agent implementations (including our APE-Agent reference scaffold alongside Claude Code and Codex CLI) on identical task specifications. We demonstrate the framework&#x27;s effectiveness through comprehensive evaluation. All code and benchmark dataset are released as open-source at <a href="https://github.com/xinhjBrant/APE-Bench" target="_blank" rel="noopener">https://github.com/xinhjBrant/APE-Bench</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Existing formal mathematics benchmarks such as miniF2F and FATE test isolated theorem proving. They miss the repository-scale proof engineering found in real library development: multi-file coordination, library evolution and maintenance.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors define Automated Proof Engineering (APE) tasks. Each task has a natural-language instruction, a pinned Mathlib commit and Lean toolchain, and dual verification: Lean compilation plus LLM-as-judge semantic checks. APE-Bench builds these tasks automatically by filtering Mathlib commits, synthesizing instructions from the diffs and validating that the tasks are solvable. APE-Harness is a contract-based execution framework that runs different agent scaffolds (APE-Agent, Claude Code, Codex CLI) on the same task specifications.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">A 100-task instance was built from 67 Mathlib commits made in January 2026. The best model, Gemini 3 Flash, solved 47% of tasks, compared with 92–100% on miniCTX. The semantic judge reached 90.6% overall accuracy. Removing retrieval and other tools lowered the pass rate only modestly (44–45%).</p><div class="sum-table"><table><thead><tr><th>Model</th><th>miniCTX-mathlib</th><th>miniCTX-others</th><th>APE-Bench</th></tr></thead><tbody><tr><td>Gemini 3 Flash</td><td>100.0%</td><td>92.6%</td><td>47.0%</td></tr><tr><td>GPT-5.2</td><td>92.0%</td><td>89.8%</td><td>27.0%</td></tr><tr><td>Gemini 3 Pro</td><td>94.0%</td><td>85.6%</td><td>24.0%</td></tr></tbody></table><div class="tbl-cap">Pass rates across benchmarks</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
