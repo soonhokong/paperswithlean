@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SafeJIT: A Speculating JIT Engine Verified Down to the Machine Code · Papers With Lean</title>
+<meta name="description" content="JIT compilers are among the most attacked components of modern software. They compile attacker-chosen programs, speculate on attacker-influenced type feedback, and run the result at full native privilege. A single wrongly eliminated guard or a missing deoptimization becomes…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SafeJIT: A Speculating JIT Engine Verified Down to the Machine Code">
+<meta property="og:description" content="JIT compilers are among the most attacked components of modern software. They compile attacker-chosen programs, speculate on attacker-influenced type feedback, and run the result at full native privilege. A single wrongly eliminated guard or a missing deoptimization becomes…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.28436.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.28436.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.28436v1" target="_blank" rel="noopener"><img src="../thumbs/2611.28436.jpg" alt="First page of SafeJIT: A Speculating JIT Engine Verified Down to the Machine Code"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">SafeJIT: A Speculating JIT Engine Verified Down to the Machine Code</h1>
+        <p class="authors">Gabriel Ebner</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Nov 21, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-cyan" href="../#tag=tactic-automation">tactic-automation</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.28436v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.28436" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Machine-checked Lean 4 proof, using iris-lean separation logic over Sail ISA models, that the SafeJIT RISC-V and x86-64 binaries never crash.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">JIT compilers are among the most attacked components of modern software. They compile attacker-chosen programs, speculate on attacker-influenced type feedback, and run the result at full native privilege. A single wrongly eliminated guard or a missing deoptimization becomes memory corruption. We present SafeJIT, a small JavaScript engine with a speculating baseline JIT, together with a machine-checked proof in Lean 4 that its statically linked RISC-V and x86-64 executables never crash, on any input, in a model of a Linux user process. The theorem is about the shipped binaries, executed instruction by instruction on Sail ISA models (for RISC-V, the official one), and it covers everything in them: the parser and bytecode compiler, the interpreter and its type-feedback recording, the JIT compiler, all machine code the JIT can generate for any program and any feedback (type guards, guard elimination, loop type facts, register allocation with deoptimization metadata, inline caches, deoptimization and on-stack replacement), a mark-sweep garbage collector, the runtime, and a freestanding libc. The C compiler, assembler and linker are not trusted, and neither is floating-point arithmetic. The proof uses separation logic (iris-lean) over a model of a Linux user process whose stuck states are exactly the ways a process can crash, including fetching code that has not been made executable or whose instruction cache has not been flushed.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">JIT compilers compile attacker-chosen programs and speculate on attacker-influenced type feedback, so a single optimizer logic error becomes exploitable memory corruption. Prior verified JITs did not handle speculation, deoptimization or feedback, and did not reach the shipped machine code.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">SafeJIT is a small JavaScript engine in C with a speculating baseline JIT. It comes with a Lean 4 proof that its statically linked RISC-V and x86-64 executables never get stuck, in a process model whose stuck states are exactly the ways a Linux process can crash, including stale instruction caches. Sail ISA models are compiled to Lean, and one bridge lemma per instruction form is proved with a symbolic-execution tactic (twalk). Iris separation logic (iris-lean) is then used over whole instructions, with the JIT handled by a Lean functional model of the compiler plus a refinement proof against the binary.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The development comprises about 6,500 lines of C and 485,000 lines of Lean, with no sorry, built over four weeks with heavy AI-agent assistance. Making the trusted model faithful exposed two real bugs: an unchecked instruction-cache flush result and an address-space size assumption. The JIT runs 2-25x faster than the interpreter.</p><div class="sum-table"><table><thead><tr><th>bench</th><th>RV interp</th><th>RV JIT</th><th>x86 interp</th><th>x86 JIT</th></tr></thead><tbody><tr><td>fib</td><td>0.29</td><td>0.13</td><td>0.037</td><td>0.014</td></tr><tr><td>loop</td><td>7.75</td><td>2.27</td><td>0.438</td><td>0.148</td></tr><tr><td>mandel</td><td>5.10</td><td>0.22</td><td>0.362</td><td>0.039</td></tr><tr><td>sieve</td><td>3.77</td><td>0.15</td><td>0.459</td><td>0.057</td></tr></tbody></table><div class="tbl-cap">Benchmark times (s): interpreter vs JIT (RISC-V under qemu; x86-64)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

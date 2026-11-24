@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Covering hypercubic grids by polygonal trails: capacity bounds and the optimum for $P(4,3)$ · Papers With Lean</title>
+<meta name="description" content="The classical nine-dot puzzle asks for a polygonal trail through a square grid using as few segments as possible. We study its higher-dimensional analogue on $P(n,k):=\{0,\ldots,n-1\}^k$ for integers $n,k\ge2$, allowing arbitrary real vertices and unrestricted segment…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Covering hypercubic grids by polygonal trails: capacity bounds and the optimum for $P(4,3)$">
+<meta property="og:description" content="The classical nine-dot puzzle asks for a polygonal trail through a square grid using as few segments as possible. We study its higher-dimensional analogue on $P(n,k):=\{0,\ldots,n-1\}^k$ for integers $n,k\ge2$, allowing arbitrary real vertices and unrestricted segment…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.28108.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.28108.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.28108v1" target="_blank" rel="noopener"><img src="../thumbs/2611.28108.jpg" alt="First page of Covering hypercubic grids by polygonal trails: capacity bounds and the optimum for $P(4,3)$"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Covering hypercubic grids by polygonal trails: capacity bounds and the optimum for $P(4,3)$</h1>
+        <p class="authors">Aldo Roberto Pessolano, Marco Ripà</p>
+        <div class="row">
+          <span class="badge">math.GM</span>
+          <span class="date">Nov 17, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-teal" href="../#tag=geometry">geometry</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.28108v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.28108" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.24145830" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Capacity theorem, large-grid lower bound, and boxed construction are verified in Lean 4 with Mathlib; finite exclusions are checked via native_decide reflection.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The classical nine-dot puzzle asks for a polygonal trail through a square grid using as few segments as possible. We study its higher-dimensional analogue on $P(n,k):=\{0,\ldots,n-1\}^k$ for integers $n,k\ge2$, allowing arbitrary real vertices and unrestricted segment directions, and denote the minimum number of segments by $h(n,k)$. For $n\ge3$ and $k\ge2$, we give a geometric proof of the previously stated capacity bound: a trail of $r\ge1$ segments meets at most $1+r(n-1)$ grid points. Refinements of this bound, combined with exhaustive finite checks, establish $h(4,3)=23$ and $h(5,3)\ge32$. We also exhibit a $22$-segment trail through $63$ points of $P(4,3)$, the maximum possible, and a $23$-segment covering trail contained in $[0,4]^3$, which settles the corresponding box-constrained problem. The general capacity theorem, a large-grid lower bound refuting a previously proposed formula for $h(n,k)$, and the boxed construction are verified by the Lean 4 kernel, whereas the finite exclusions use native reflection and additionally trust the native compiler and runtime. A companion technical note provides the computational specification and reproducible proof artifacts.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The work studies the higher-dimensional nine-dot puzzle: find the minimum number h(n,k) of segments in a polygonal trail covering the grid {0,...,n-1}^k. Vertices may be arbitrary real points and segment directions are unrestricted.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A geometric least-counterexample argument proves the capacity bound that an r-segment trail meets at most 1+r(n-1) grid points. Refined capacity bounds for P(4,3) and P(5,3) reduce the problem to finite predicates over oriented segment states, which are settled by exhaustive search. The general theorem, the reductions, and the constructions are formalized in Lean 4 with Mathlib. The finite checks use native_decide, which also trusts the compiler and runtime.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The authors establish h(4,3)=23 and h(5,3)≥32. They give a 22-segment trail through 63 points of P(4,3) and a 23-segment covering trail inside [0,4]^3, and a large-grid lower bound refutes a previously proposed formula for h(n,k).</p><div class="sum-table"><table><thead><tr><th>n \ k</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead><tbody><tr><td>2</td><td>3</td><td>6</td><td>12</td><td>24</td></tr><tr><td>3</td><td>4</td><td>13</td><td>40</td><td>121</td></tr><tr><td>4</td><td>6</td><td>**23**</td><td>[85,95]</td><td>[341,383]</td></tr><tr><td>5</td><td>8</td><td>[**32**,36]</td><td>[156,184]</td><td>[781,924]</td></tr></tbody></table><div class="tbl-cap">Known values and bounds for h(n,k) (rows n, columns k)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -8,6 +8,50 @@
     <language>en</language>
     <lastBuildDate>Mon, 23 Nov 2026 00:00:00 +0000</lastBuildDate>
     <item>
+      <title>Praxis: Practical Witness Encryption for NP</title>
+      <link>https://paperswithlean.com/paper/2611.28552.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.28552.html</guid>
+      <pubDate>Mon, 23 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>David Tse, Nikhil Vanjani, Psi Vesely</dc:creator>
+      <category>verification</category><category>cryptography</category>
+      <description>Lean 4 formalization proving correctness and extraction of the Praxis witness encryption scheme at its concrete instantiation parameters, with public repository.
+
+Witness encryption encrypts a message to an NP statement so that whoever holds a witness can decrypt. Over a decade after its introduction, known constructions for general NP statements are far from practical or rest on heuristic or broken assumptions. We propose Praxis, a practical scheme for NP, and prove it extractable in the bilinear generic group and random oracle models under Module-SIS. Our instantiation encrypts to a Groth16 verifier on BN254, set up honestly, which serves every NP relation at the same cost: at $100$-bit security, its ciphertext is $7.88$ GiB, encryption takes $2^{34.2}$ base-field multiplications, and decryption with a Groth16 proof $2^{33.0}$ on average. We give Lean 4 proofs of correctness and extraction at this instantiation&#x27;s parameters. Praxis starts from the rank-gap template of the recent feasibility result [Hair and Sahai, arXiv 2026]. Where they raise the gap to keep decryption polynomial, we fix it, so decryption ends with a search that is exponential but concretely fast: $O(2^{λ/4} N^{1/4})$ expected operations for a statement in $N$ Boolean unknowns at $λ$-bit security. A quadratic arithmetic program makes our hidden matrix low rank, so where their ciphertext encodes a basis of a matrix space, ours holds factors of width two, which a pairing multiplies. Weights and identities from an extension field tie copies of this matrix, so an adversary telling encryptions apart yields a witness or a Module-SIS solution. For the same Groth16 statement and $100$-bit security level, Praxis reduces the ciphertext size and the cost of encryption of either of their constructions by over ten orders of magnitude, and that of decryption by over six.</description>
+    </item>
+    <item>
+      <title>SafeJIT: A Speculating JIT Engine Verified Down to the Machine Code</title>
+      <link>https://paperswithlean.com/paper/2611.28436.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.28436.html</guid>
+      <pubDate>Mon, 23 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Gabriel Ebner</dc:creator>
+      <category>verification</category><category>tactic-automation</category><category>ai-agents</category>
+      <description>Machine-checked Lean 4 proof, using iris-lean separation logic over Sail ISA models, that the SafeJIT RISC-V and x86-64 binaries never crash.
+
+JIT compilers are among the most attacked components of modern software. They compile attacker-chosen programs, speculate on attacker-influenced type feedback, and run the result at full native privilege. A single wrongly eliminated guard or a missing deoptimization becomes memory corruption. We present SafeJIT, a small JavaScript engine with a speculating baseline JIT, together with a machine-checked proof in Lean 4 that its statically linked RISC-V and x86-64 executables never crash, on any input, in a model of a Linux user process. The theorem is about the shipped binaries, executed instruction by instruction on Sail ISA models (for RISC-V, the official one), and it covers everything in them: the parser and bytecode compiler, the interpreter and its type-feedback recording, the JIT compiler, all machine code the JIT can generate for any program and any feedback (type guards, guard elimination, loop type facts, register allocation with deoptimization metadata, inline caches, deoptimization and on-stack replacement), a mark-sweep garbage collector, the runtime, and a freestanding libc. The C compiler, assembler and linker are not trusted, and neither is floating-point arithmetic. The proof uses separation logic (iris-lean) over a model of a Linux user process whose stuck states are exactly the ways a process can crash, including fetching code that has not been made executable or whose instruction cache has not been flushed.</description>
+    </item>
+    <item>
+      <title>Lean Census: A Distributional Analysis of AI-Generated Lean Code</title>
+      <link>https://paperswithlean.com/paper/2611.28430.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.28430.html</guid>
+      <pubDate>Mon, 23 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Justin Asher, Pietro Pellegrino</dc:creator>
+      <category>meta-study</category><category>mathlib</category><category>tooling</category>
+      <description>Measures code statistics of human-written and AI-generated Lean libraries against Mathlib, and releases a Lean analysis package, lean-census.
+
+We compare two human-written and four AI-generated Lean libraries with Mathlib through the distributions of simple statistics of their code. For each library we measure inline claims in proofs, proof length, how often each declaration is used, and design choices such as instances and private declarations, and we read each against the variation among Mathlib&#x27;s own areas. The AI-generated libraries have more inline claims per theorem, longer proofs, fewer instances, and more private declarations than the human-written ones. We release the code for the analysis as a package, lean-census, at https://github.com/project-numina/lean-census.</description>
+    </item>
+    <item>
+      <title>Covering hypercubic grids by polygonal trails: capacity bounds and the optimum for $P(4,3)$</title>
+      <link>https://paperswithlean.com/paper/2611.28108.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.28108.html</guid>
+      <pubDate>Mon, 23 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Aldo Roberto Pessolano, Marco Ripà</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>combinatorics</category><category>geometry</category>
+      <description>Capacity theorem, large-grid lower bound, and boxed construction are verified in Lean 4 with Mathlib; finite exclusions are checked via native_decide reflection.
+
+The classical nine-dot puzzle asks for a polygonal trail through a square grid using as few segments as possible. We study its higher-dimensional analogue on $P(n,k):=\{0,\ldots,n-1\}^k$ for integers $n,k\ge2$, allowing arbitrary real vertices and unrestricted segment directions, and denote the minimum number of segments by $h(n,k)$. For $n\ge3$ and $k\ge2$, we give a geometric proof of the previously stated capacity bound: a trail of $r\ge1$ segments meets at most $1+r(n-1)$ grid points. Refinements of this bound, combined with exhaustive finite checks, establish $h(4,3)=23$ and $h(5,3)\ge32$. We also exhibit a $22$-segment trail through $63$ points of $P(4,3)$, the maximum possible, and a $23$-segment covering trail contained in $[0,4]^3$, which settles the corresponding box-constrained problem. The general capacity theorem, a large-grid lower bound refuting a previously proposed formula for $h(n,k)$, and the boxed construction are verified by the Lean 4 kernel, whereas the finite exclusions use native reflection and additionally trust the native compiler and runtime. A companion technical note provides the computational specification and reproducible proof artifacts.</description>
+    </item>
+    <item>
       <title>Time Series Structure Learning with Local Causal Parent Discovery</title>
       <link>https://paperswithlean.com/paper/2611.26232.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2611.26232.html</guid>
@@ -622,50 +666,6 @@ Closing a longstanding gap in the theory, we establish uniform interior $C^{k,β
       <description>The entire choreographic calculus Nyarlathotep, including EPP soundness, completeness, communication safety and deadlock freedom, is mechanised in about 20,000 lines of Lean 4 using CSLib.
 
 Choreographic programming (CP) describes a distributed system as a global program and compiles it into communicating network programs via endpoint projection (EPP). Asynchrony captures the independent progress of communicating processes, while nondeterminism captures the range of behaviours that can arise from their interactions. However, the integration of both features into a theory of CP is absent. We present Nyarlathotep, the first asynchronous nondeterministic CP framework. We define its operational semantics of choreographies and networks using labelled transition systems. Besides asynchrony and choreographic nondeterminism, Nyarlathotep supports expressive features including general branching, out-of-order execution, and general recursion with parameterised procedures that processes can enter independently. We prove EPP sound and complete, establishing strong behavioural equivalence between the semantics of choreographies and their projected networks. We prove that projected networks are communication-safe and deadlock-free. We mechanised all our results in Lean 4.</description>
-    </item>
-    <item>
-      <title>Equal Steps, Unequal Curvature: Where Muon&#x27;s Update Goes Wrong</title>
-      <link>https://paperswithlean.com/paper/2611.24644.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.24644.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Biswa Sengupta, Jinhua Wang, Léo Maxime Brunswic</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>ml-theory</category>
-      <description>Every theorem and proposition about Muon&#x27;s update, Newton–Schulz iteration, block polar factors and second-order criteria is proved in Lean 4 with Mathlib.
-
-Muon updates each hidden weight matrix along the polar factor of its momentum, the steepest-descent direction under the spectral norm. That choice fixes two allocations without consulting the loss: every singular direction of the momentum receives the same step, and in a non-square matrix each neuron&#x27;s step is set by its leverage score. Whether they are good is a question about curvature, which steepest-descent arguments do not answer; we measure it. Using held-out gradients and Hessian-vector products, we decompose Muon&#x27;s step by singular-value band and by neuron group and compute each group&#x27;s second-order optimal multiplier. In a 124M-parameter decoder trained on FineWeb-Edu, the multipliers rise monotonically from the top singular directions to the tail: Muon over-steps the high-curvature top of its spectrum. We prove in Lean when such a diagnostic licenses an intervention at Muon&#x27;s own update norm. On the measured curvature, the criterion predicts, and held-out losses confirm, that moving step length off the top helps mid-training and early in the cooldown, but not at its end. We then test interventions under per-step norm matching, tuned baselines and paired seeds. Orthogonalizing Q, K and V separately rather than as one fused matrix lowers the loss by 0.0250 nats and accounts for all of the gain of block-wise variants. A matmul-only, rotation-equivariant spectral tilt $σ^{-1/4}$ applied in the cooldown lowers the loss of this stronger baseline by a further 0.0120 nats, additively with NorMuon (0.0158 nats together, three seeds; the baseline needs about 4.3% more tokens to match), and by 0.0188 nats at 355M parameters (three seeds). Energy-matched Schatten-1 weight decay adds a further 0.0052 nats. Geometrically principled changes that do not act on the measured miscalibration, namely exact polar factors, steepest-descent input whitening and top-heavy decay, do not help.</description>
-    </item>
-    <item>
-      <title>Only the disk: topological obstructions for warped AdS$_6\times S^2$ in Type IIB</title>
-      <link>https://paperswithlean.com/paper/2611.24320.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.24320.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Nakwoo Kim</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>physics</category><category>geometry</category>
-      <description>Counting steps of the main theorems, pointwise identities and a boundary rotation bound were formalized in Lean 4 with Mathlib; files ship as ancillary files.
-
-Supersymmetric AdS$_6\times S^2$ solutions of Type IIB supergravity are warped products over a Riemann surface $Σ$. They are determined by two holomorphic differentials on $Σ$, with five-branes at poles on its boundary. We derive restrictions on the genus and the number of boundary components of $Σ$. Without seven-branes or orientifolds, the differentials are taken to be single-valued on $Σ$. Regularity implies that the number of interior zeros of one differential equals the total rotation of the phase of the ratio of the two differentials along the boundary. It also bounds this rotation on each boundary component by the number of poles on that component. Combined with the known count of zeros on the double of $Σ$, these two statements force $Σ$ to be a disk. With mutually local seven-branes and orientifolds as interior punctures, the same conclusion follows under additional assumptions on the global structure of the differentials and on their behavior at the punctures. The disk then admits at most one orientifold puncture. On a disk without punctures, the bound applied between successive poles also recovers the known cyclic ordering of the five-brane charges along the boundary.</description>
-    </item>
-    <item>
-      <title>QCCDCert: Formally Verified Compilation for QCCD Co-Design</title>
-      <link>https://paperswithlean.com/paper/2611.23469.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.23469.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>John Zhuoyang Ye, Jens Palsberg, Ke Sun, Hartmut Haeffner</dc:creator>
-      <category>verification</category><category>quantum</category>
-      <description>Implements a QCCD trapped-ion compiler in Lean 4 and proves an end-to-end theorem that compiled code preserves program behavior and satisfies the hardware rules given as inputs.
-
-Quantum charge-coupled device (QCCD) architectures enable scalable trapped-ion quantum computing by dynamically shuttling ions between specialized processing and storage zones. A QCCD can be built with many trap sizes and layouts. Comparing them requires compiling every program under each design&#x27;s transport, capacity and control constraints, and trusting the target code of each compilation. We present a co-design framework built on one Lean-verified compiler. The hardware description and its operating rules are compiler inputs, so a single theorem covers every candidate design: the target code of every compilation preserves its program&#x27;s behavior and obeys the hardware rules. Across 75 benchmark programs of 11 to 130 qubits, the best design found takes 66% less modeled execution time on average than the worst design of equal capacity. An AI agent that proposes devices based on our compiler&#x27;s checked results beats the fastest of these designs on 71 of 75 programs. Our verified compiler provably avoids the 11 defects that we report in three previous compilers. It scales to hundreds of qubits, compiling 512-qubit programs for a 38-trap device in 1 to 29 minutes.</description>
-    </item>
-    <item>
-      <title>Reusing formal Vlasov-Maxwell proofs to certify plasma solver outputs</title>
-      <link>https://paperswithlean.com/paper/2611.23319.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.23319.html</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Bowen Zhu, Jian Wu</dc:creator>
-      <category>formalization</category><category>verification</category><category>mathlib</category><category>physics</category>
-      <description>Imports a Lean 4 relativistic Vlasov–Maxwell formalization and adds eleven new Lean modules proving exterior-field, Poynting-balance, Yee-invariance and mode-rank bounds used to certify PIC solvers.
-
-AI now produces machine-checked mathematics faster than researchers can read it. Can such theorems do practical computational work? We reuse one from OpenAI&#x27;s Lean 4 relativistic Vlasov–Maxwell library: initial fields determine the field at an outside point until plasma signals reach it, and the energy leaving a surrounding box before they reach its faces. New Lean proofs and numerical bounds give particle-free references for particle-in-cell simulations across three tasks. Domain size follows analytically from observation time, exposing boundary and initialization errors in WarpX and Smilei that global energy checks missed. Grid choice can be tested directly: combining two coarse grids recovers unknown plasma inputs within tolerance at a median 14.9-fold speedup over a fine grid, where the medium grid alone fails. For reduced models, the bounds establish the minimum number of time curves needed to predict energy loss.</description>
     </item>
   </channel>
 </rss>
