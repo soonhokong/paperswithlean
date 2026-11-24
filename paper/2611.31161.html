@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geometry, Reliability, and Spacetime Dynamics of Hyper-Simplex Fractal Networks · Papers With Lean</title>
+<meta name="description" content="Large-scale, delay-tolerant peer-to-peer networks that need strong consistency usually separate naming, routing, consensus, and ordering into independent layers. To bring deterministic network properties into complex peer-to-peer structures, we unify all four on a single…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Geometry, Reliability, and Spacetime Dynamics of Hyper-Simplex Fractal Networks">
+<meta property="og:description" content="Large-scale, delay-tolerant peer-to-peer networks that need strong consistency usually separate naming, routing, consensus, and ordering into independent layers. To bring deterministic network properties into complex peer-to-peer structures, we unify all four on a single…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.31161.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.31161.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.31161v1" target="_blank" rel="noopener"><img src="../thumbs/2611.31161.jpg" alt="First page of Geometry, Reliability, and Spacetime Dynamics of Hyper-Simplex Fractal Networks"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Geometry, Reliability, and Spacetime Dynamics of Hyper-Simplex Fractal Networks</h1>
+        <p class="authors">Hao Xu, Kaiwen Yang, Jiacheng Qian, Yinuo Liu, Chih-Lin I</p>
+        <div class="row">
+          <span class="badge">cs.NI</span>
+          <span class="date">Nov 23, 2026 · v1</span>
+          <span class="badge">cs.DC</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.31161v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.31161" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Tongji708A/hsfn-lean" target="_blank" rel="noopener" title="Tongji708A/hsfn-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4/Mathlib mechanization (49 modules,  19.7k lines) machine-checks 853 statements about HSFN addressing, routing, consensus, and reconfiguration results.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Large-scale, delay-tolerant peer-to-peer networks that need strong consistency usually separate naming, routing, consensus, and ordering into independent layers. To bring deterministic network properties into complex peer-to-peer structures, we unify all four on a single recursive topology. Modeling mutual equality among N peers in Euclidean space requires dimension at least N-1, which prevents flat equal groups from scaling at fixed dimension. The hyper-simplex fractal network G(N,m) escapes this limit by recursion. Each non-leaf node anchors a half-scale N-clique. From the resulting digit-word addresses alone, nodes decide adjacency without routing tables, forward greedily along exact shortest paths, and converge geometrically to a self-similar attractor of dimension log_2 N. Running hierarchical PBFT on the same prefix tree achieves linear message load and logarithmic fault-free latency, with an explicit reliability threshold under independent faults and analytical recursions for anchor exposure, dual homing, and event registration. Reversible topology edits generate the Higman-Thompson group V_N on the address boundary, block order characterizes service-topology hosting beyond treewidth, and root-anchored block heights yield persistent spacetime coordinates with compact light-client proofs.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Large delay-tolerant peer-to-peer networks with strong consistency usually handle naming, routing, consensus, and ordering in separate layers. Flat equal peer groups cannot scale at fixed dimension, because N mutually equidistant peers need Euclidean dimension at least N-1.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The hyper-simplex fractal network G(N,m) grows recursively: each non-leaf node anchors a half-scale N-clique, and nodes are addressed by digit words. From addresses alone, the authors derive table-free adjacency, greedy shortest-path routing, hierarchical PBFT committees, reliability recursions, reversible reconfiguration edits generating the Higman-Thompson group V_N, and spacetime coordinates from block heights. Results are checked by exhaustive enumeration, fault sampling, a protocol simulator, and Lean 4/Mathlib proofs.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Greedy routing is exact, with diameter 2m-1 and degree at most 2N. Hierarchical PBFT has linear message load and logarithmic fault-free latency, with an explicit reliability threshold, and the self-similar attractor has dimension log_2 N. The Lean development machine-checks 853 statements with no sorry and only the standard axioms.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.31161/sierpinski_highdim.png" alt=""><figcaption>Fig. 18: The limit set \mathcal{S}\Delta_{N} from three viewpoints, N=4 in \mathbb{R}^{3} (top) and N=5 in \mathbb{R}^{4} orthogonally projected to \mathbb{R}^{3} (bottom). Orthogonal projection commutes with corner similitudes.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>N (f)</th><th>Deg. (phys./dual)</th><th>Overlay f_N</th><th>Phys. g_N</th><th>Dual h_N</th></tr></thead><tbody><tr><td>5 (1)</td><td>10 / 16</td><td>0.150</td><td>0.115</td><td>0.150</td></tr><tr><td>8 (2)</td><td>16 / 25</td><td>0.177</td><td>0.127</td><td>0.173</td></tr><tr><td>16 (5)</td><td>32 / 49</td><td>0.269</td><td>0.206</td><td>0.258</td></tr></tbody></table><div class="tbl-cap">Reliability thresholds by cell size (overlay, physical, dual-homed recursions)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
