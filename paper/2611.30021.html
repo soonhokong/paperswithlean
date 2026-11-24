@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StatClaim: Study Designs as Types, Protocols as Programs and Statistical Claims as Proof Obligations · Papers With Lean</title>
+<meta name="description" content="Statistical guarantees depend on the compatibility of a study&#x27;s model, hypotheses, sampling plan and analysis. StatClaim is a declarative domain-specific language for encoding research protocols and statistical analysis plans as programs built from objects whose types encode…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="StatClaim: Study Designs as Types, Protocols as Programs and Statistical Claims as Proof Obligations">
+<meta property="og:description" content="Statistical guarantees depend on the compatibility of a study&#x27;s model, hypotheses, sampling plan and analysis. StatClaim is a declarative domain-specific language for encoding research protocols and statistical analysis plans as programs built from objects whose types encode…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.30021.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.30021.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.30021v1" target="_blank" rel="noopener"><img src="../thumbs/2611.30021.jpg" alt="First page of StatClaim: Study Designs as Types, Protocols as Programs and Statistical Claims as Proof Obligations"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">StatClaim: Study Designs as Types, Protocols as Programs and Statistical Claims as Proof Obligations</h1>
+        <p class="authors">Supun Manathunga</p>
+        <div class="row">
+          <span class="badge">stat.CO</span>
+          <span class="date">Nov 23, 2026 · v1</span>
+          <span class="badge">cs.PL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.30021v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.30021" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ssm123ssm/statClaim" target="_blank" rel="noopener" title="ssm123ssm/statClaim">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean is the verification backend: generated proof obligations for Type I error, familywise error, power and coverage claims are proved and checked in Lean.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Statistical guarantees depend on the compatibility of a study&#x27;s model, hypotheses, sampling plan and analysis. StatClaim is a declarative domain-specific language for encoding research protocols and statistical analysis plans as programs built from objects whose types encode their statistical roles within the study design. The compiler checks type compatibility and applies contracts to check additional requirements on the values and relationships of these objects. When verification is requested, StatClaim&#x27;s backend constructs and checks proofs of supported statistical claims using Lean under stated assumptions. These claims concern Type I error, familywise error, power and interval coverage, including supported combinations of analyses and procedures with planned stopping rules. Reports distinguish formally proved, conditional, cited and author-declared guarantees and provide replayable certificates for verified claims. The same specification supports sample-size searches, power calculations and interval-precision assessment using exact calculations, analytical approximations or reproducible simulation. A command-line interface, editor integration and graphical block editor use a shared compiler and execution layer. Validation reproduces 102 optimal and minimax two-stage designs from Simon&#x27;s published tables and verifies their error and power bounds in Lean. A clinical trial case study illustrates partial encoding of a published analysis plan using cited methods and conditional proofs. The open-source implementation includes runnable tutorials and examples for specifying and checking study designs before outcomes are collected.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">A statistical analysis can be computed correctly yet still be unjustified for a given study design. Examples are familywise error under multiple endpoints, or guarantees under adaptive stopping rules. Researchers need to check that models, hypotheses, sampling plans and analyses are compatible before data collection.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">StatClaim is a declarative DSL in which study components are typed objects and compatibility contracts are checked by a compiler. On verification requests, a backend generates Lean statements and proofs for supported claims (Type I error, familywise error, power, interval coverage) and emits replayable certificates (Proof.lean, .olean, certificate.json). Evidence is graded as proved, conditional, cited or declared. The system also offers a CLI, an LSP editor integration and a block editor.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Validation reproduces all 102 optimal and minimax two-stage designs from Simon&#x27;s published tables and checks their error and power bounds in Lean. A COPD clinical trial case study partially encodes a published analysis plan using cited methods and conditional composition proofs.</p><div class="sum-table"><table><thead><tr><th>Check</th><th>Entries</th><th>Basis</th></tr></thead><tbody><tr><td>Error and power targets met</td><td>102/102</td><td>Exact calculation</td></tr><tr><td>Error and power bounds checked in Lean</td><td>102/102</td><td>Formal proof</td></tr><tr><td>Bounded search returns the tabulated design</td><td>102/102</td><td>Calculation</td></tr><tr><td>clinfun returns the tabulated design</td><td>102/102</td><td>Comparison</td></tr><tr><td>Printed early-stopping probability agrees</td><td>98/102</td><td>Comparison</td></tr></tbody></table><div class="tbl-cap">Simon two-stage design validation</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
