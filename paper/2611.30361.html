@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeanReviewBench: Semantic Alignment Review in Mathematical Lean Projects · Papers With Lean</title>
+<meta name="description" content="Lean verifies that a proof establishes its formal proposition, but whether that proposition preserves the mathematical content of an informal source requires separate review. In project-scale formalizations, this correspondence can depend on definitions and constraints…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeanReviewBench: Semantic Alignment Review in Mathematical Lean Projects">
+<meta property="og:description" content="Lean verifies that a proof establishes its formal proposition, but whether that proposition preserves the mathematical content of an informal source requires separate review. In project-scale formalizations, this correspondence can depend on definitions and constraints…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.30361.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.30361.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.30361v1" target="_blank" rel="noopener"><img src="../thumbs/2611.30361.jpg" alt="First page of LeanReviewBench: Semantic Alignment Review in Mathematical Lean Projects"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">LeanReviewBench: Semantic Alignment Review in Mathematical Lean Projects</h1>
+        <p class="authors">Ruichen Qiu, Hao Shen, Lihong Zhi, Xiao-Shan Gao</p>
+        <div class="row">
+          <span class="badge">cs.CL</span>
+          <span class="date">Nov 23, 2026 · v1</span>
+          <span class="badge">cs.SE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.30361v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.30361" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a benchmark of 197 Lean declaration sets from 18 real Lean projects, reconstructed under Lean 4.34.1, for reviewing informal-formal semantic alignment.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Lean verifies that a proof establishes its formal proposition, but whether that proposition preserves the mathematical content of an informal source requires separate review. In project-scale formalizations, this correspondence can depend on definitions and constraints distributed across many declarations. We introduce LeanReviewBench, a benchmark for project-level semantic alignment review containing 197 versioned inputs collected from 18 real Lean projects, with 87 aligned and 110 misaligned reference judgments. Each input binds an informal mathematical target to selected formal declarations and an extracted dependency context. Construction combines development-history discovery, independent target binding, reconstruction under a common Lean environment, and Astra annotation with human review of uncertain cases. The collection spans diverse mathematical domains and includes 69 historical pairs. We evaluate six language models with Direct and ReForm prompts on all 197 inputs against final human-reviewed reference labels. GPT-6.1 Sol with Direct prompting achieves the highest reported accuracy of 0.827 and misalignment-detection F1 of 0.844; the effects of prompting vary across models. LeanReviewBench provides a testbed for reviewing semantic correspondence in existing mathematical formalization projects. LeanReviewBench is available at <a href="https://github.com/MechMath/LeanReviewBench" target="_blank" rel="noopener">https://github.com/MechMath/LeanReviewBench</a>.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Lean checks that a proof establishes its formal proposition, but not whether that proposition faithfully captures the informal mathematical source. In project-scale formalizations, the relevant meaning depends on definitions and constraints spread across many declarations, which makes reviewing alignment difficult.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">LeanReviewBench collects 197 versioned review inputs from 18 Lean projects, including PrimeNumberTheoremAnd, pfr, carleson and ArkLib. Candidate discrepancies were discovered from commit and development histories. Each input pairs an independently sourced informal target with selected Lean root declarations and an extracted dependency context with proof bodies removed, all rebuilt under a common Lean 4.34.1/Mathlib environment. Labels were produced by an LLM annotator with human review of uncertain cases; six language models were then evaluated with Direct and ReForm prompts.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The benchmark has 87 aligned and 110 misaligned labels, including 69 historical pairs. GPT-6.1 Sol with Direct prompting scored highest (accuracy 0.827, misalignment F1 0.844). The effect of prompting strategy varied across models, and output-validity failures lowered the scores of small models.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Prompt</th><th>Accuracy</th><th>Valid</th><th>F1</th></tr></thead><tbody><tr><td>GPT-6.1 Sol</td><td>Direct</td><td>0.827</td><td>196</td><td>0.844</td></tr><tr><td>GPT-6.1 Sol</td><td>ReForm</td><td>0.746</td><td>194</td><td>0.811</td></tr><tr><td>Kimi K3.1 Pro</td><td>ReForm</td><td>0.777</td><td>192</td><td>0.808</td></tr><tr><td>Qwen3.8 Max</td><td>ReForm</td><td>0.650</td><td>191</td><td>0.656</td></tr><tr><td>Gemma 4 E4B</td><td>ReForm</td><td>0.137</td><td>42</td><td>0.667</td></tr></tbody></table><div class="tbl-cap">Selected model results on all 197 inputs (F1 computed on valid outputs, misaligned as positive)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
