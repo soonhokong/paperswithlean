@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nilpotent tridiagonal matrices with entries in {-1,0,1} · Papers With Lean</title>
+<meta name="description" content="We determine all nilpotent tridiagonal matrices with entries in $\{-1,0,1\}$. The problem reduces to describing the set $\cN_n$ of pairs $(d,b)\in\{-1,0,1\}^n\times\{-1,1\}^{n-1}$ for which the tridiagonal matrices with diagonal $d$ and with products $b_k$ of opposite…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nilpotent tridiagonal matrices with entries in {-1,0,1}">
+<meta property="og:description" content="We determine all nilpotent tridiagonal matrices with entries in $\{-1,0,1\}$. The problem reduces to describing the set $\cN_n$ of pairs $(d,b)\in\{-1,0,1\}^n\times\{-1,1\}^{n-1}$ for which the tridiagonal matrices with diagonal $d$ and with products $b_k$ of opposite…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.28952.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.28952.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.28952v1" target="_blank" rel="noopener"><img src="../thumbs/2611.28952.jpg" alt="First page of Nilpotent tridiagonal matrices with entries in {-1,0,1}"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Nilpotent tridiagonal matrices with entries in {-1,0,1}</h1>
+        <p class="authors">Marcel Blattner</p>
+        <div class="row">
+          <span class="badge">math.CO</span>
+          <span class="date">Nov 21, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a> <a class="tag c-purple" href="../#tag=algebra">algebra</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.28952v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.28952" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/marcelbtec/nilpotent-tridiagonal" target="_blank" rel="noopener" title="marcelbtec/nilpotent-tridiagonal">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Main classification, rigidity theorem, cardinality and modular criterion are formalised in Lean 4 with Mathlib ( 3,000 lines), with a Zenodo artifact.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We determine all nilpotent tridiagonal matrices with entries in $\{-1,0,1\}$. The problem reduces to describing the set $\cN_n$ of pairs $(d,b)\in\{-1,0,1\}^n\times\{-1,1\}^{n-1}$ for which the tridiagonal matrices with diagonal $d$ and with products $b_k$ of opposite off-diagonal entries have characteristic polynomial $λ^n$. We show that $\cN_n$ is obtained from $\cN_{\lfloor n/2\rfloor}$ by one of two explicit “folding” operations, according to the parity of $n$. As a consequence, $\cN_n$ is non-empty precisely when $n=1$ or $3\cdot2^j-1\le n\le2^{j+2}-1$ for some $j\ge0$, in which case it has $2^{\lfloor\log_2n\rfloor}$ elements. This yields a formula for the number of nilpotent $n\times n$ tridiagonal matrices with entries in $\{-1,0,1\}$, which begins $1,9,73,585,4809,39113$. The case $d=0$ is a conjecture of Corless, established in an earlier paper. The main new ingredient is a rigidity phenomenon: a pair as above, of size $n\ge2$, whose characteristic polynomial is congruent to $λ^n$ modulo $4$ is necessarily a fold of a smaller pair. It follows that such a pair is nilpotent as soon as its characteristic polynomial is congruent to $λ^n$ modulo $2^{1+\lfloor\log_2n\rfloor}$. Finally we show that the eigenvalue zero of an $m\times m$ matrix in Corless&#x27;s skew-symmetric family has multiplicity at most $2^{v_2(m+1)}-1$, with equality attained. The classification, the rigidity statement, the cardinality of the sets $\cN_n$ and the criterion modulo $2^{1+\lfloor\log_2n\rfloor}$ have been formalised in Lean 4.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The paper asks which tridiagonal matrices with entries in {-1,0,1} are nilpotent. This extends Corless&#x27;s conjecture, which covers the zero-diagonal case.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The problem reduces to pairs (d,b) whose characteristic polynomial is λ^n. Two explicit folding operations, Φ_ε and Ψ_δ, build these pairs recursively from smaller ones. A rigidity result shows that any pair with characteristic polynomial congruent to λ^n mod 4 is a fold of a smaller pair. The main theorems are formalised in Lean 4 using Mathlib, with tridiagonal matrices and an inductive Folded predicate.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">N_n is non-empty exactly when n=1 or 3·2^j−1 ≤ n ≤ 2^{j+2}−1, and then has 2^{⌊log2 n⌋} elements. This gives a count of nilpotent matrices starting 1, 9, 73, 585, 4809, 39113. The paper also gives a nilpotency criterion modulo 2^{1+⌊log2 n⌋} and a sharp bound on the multiplicity of the zero eigenvalue in Corless&#x27;s family. The Lean proofs depend only on the standard axioms.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

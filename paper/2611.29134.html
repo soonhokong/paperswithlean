@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Undecidable quantum storage: no algorithm can tell from the noise rate whether a fixed circuit remembers · Papers With Lean</title>
+<meta name="description" content="Below a threshold noise rate, error correction lets larger quantum memories store a qubit for longer, without limit. Can the noise rate alone tell us whether a given noisy circuit does this? We construct fixed local circuits for which no algorithm can, already in one dimension…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Undecidable quantum storage: no algorithm can tell from the noise rate whether a fixed circuit remembers">
+<meta property="og:description" content="Below a threshold noise rate, error correction lets larger quantum memories store a qubit for longer, without limit. Can the noise rate alone tell us whether a given noisy circuit does this? We construct fixed local circuits for which no algorithm can, already in one dimension…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.29134.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.29134.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.29134v1" target="_blank" rel="noopener"><img src="../thumbs/2611.29134.jpg" alt="First page of Undecidable quantum storage: no algorithm can tell from the noise rate whether a fixed circuit remembers"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Undecidable quantum storage: no algorithm can tell from the noise rate whether a fixed circuit remembers</h1>
+        <p class="authors">Seth Douglas, Nidhal Mghirbi</p>
+        <div class="row">
+          <span class="badge">quant-ph</span>
+          <span class="date">Nov 22, 2026 · v1</span>
+          <span class="badge">math-ph</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-purple" href="../#tag=quantum">quantum</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.29134v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.29134" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://doi.org/10.5281/zenodo.24254845" target="_blank" rel="noopener" title="Zenodo artifact">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A Lean 4 library with Mathlib, archived on Zenodo, machine-checks selected lemmas, conditional fidelity bounds, lifetime estimates and the certification theorem. The main theorems are not formalized.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Below a threshold noise rate, error correction lets larger quantum memories store a qubit for longer, without limit. Can the noise rate alone tell us whether a given noisy circuit does this? We construct fixed local circuits for which no algorithm can, already in one dimension under single-qubit noise. Each circuit is translation-invariant and time-periodic, with depolarizing noise on every wire after every layer, including all classical control. A computable list of disjoint rate intervals is indexed by the inputs $n$ of a universal Turing machine; local noise statistics select the input that the circuit simulates, and halting triggers erasure. If the machine runs forever on $n$, a qubit is stored throughout the $n$-th interval at entanglement fidelity at least $15/16$ for a time that grows without bound with size: linearly on rings, exponentially in six dimensions. The encoding and decoding maps are noiseless and global; they depend on $n$, the system size and, for decoding, the time, but not on the rate. If it halts, the fidelity of every encoding falls below $1/2+η$, for any fixed $η&gt;0$, after a time independent of size and rate. The labels of the intervals with unbounded storage form a $Π^0_1$-complete set, and intervals of both kinds accumulate at zero, so these circuits have no noise threshold. Without rate selection, the ring construction is a translation-invariant, time-periodic memory: from an initialized classical hierarchy it stores a qubit for a time linear in the ring length at every sufficiently small rate, addressing the memory part of a one-dimensional question raised by Dünnweber, Styliaris and Trivedi. These are existence results: registers and interaction ranges are very large and the rates astronomically small.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The question is whether the noise rate alone can determine if a fixed local noisy quantum circuit stores a qubit for a time that grows without bound with system size.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors build translation-invariant, time-periodic local circuits with depolarizing noise on every wire. Local noise statistics select which input a universal Turing machine runs, and halting triggers erasure of the quantum data. Protected classical clocks, concatenated CSS codes or toric-code fibres store the qubit in 1D, 3D, 4D and 6D variants. Selected lemmas, conditional fidelity bounds, lifetime estimates and the certification theorem are checked in Lean 4 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On non-halting rate windows a qubit is stored with entanglement fidelity at least 15/16 for unbounded time: linear in size on rings, exponential in six dimensions. On halting windows every encoding forgets after a time independent of size and rate. The labels of the storing windows form a Π^0_1-complete set, and both kinds of window accumulate at zero, so these circuits have no noise threshold.</p><div class="sum-table"><table><thead><tr><th>Circuit</th><th>Lower bound</th><th>Lifetime upper bound</th><th>Labels</th></tr></thead><tbody><tr><td>6D (A)</td><td>2^{floor(c_e L)} rounds</td><td>exp(O_n(L^4)) rounds</td><td>Π^0_1-complete</td></tr><tr><td>4D (B)</td><td>exp(c_4 L^{α_4}) layers</td><td>exp(O_n(L^4)) layers</td><td>Π^0_1-complete</td></tr><tr><td>3D (C)</td><td>floor(cL) rounds</td><td>&lt;201L+C_0 rounds</td><td>Π^0_1-complete</td></tr><tr><td>1D (D)</td><td>floor(c_1 L) layers</td><td>exp(O_n(L)) layers</td><td>Π^0_1-complete</td></tr></tbody></table><div class="tbl-cap">Storage lower and upper bounds by construction</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

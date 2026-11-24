@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Does a Frontier Large Language Model Know What It Can Solve? A 100-Conjecture Calibration Study · Papers With Lean</title>
+<meta name="description" content="How does confidence correlate with actual performance in large language models, when attacking open research-level math problems? We address this question by studying the performance of ChatGPT 5.6 Sol Ultra on a set of 100 open conjectures in geometric analysis. By…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Does a Frontier Large Language Model Know What It Can Solve? A 100-Conjecture Calibration Study">
+<meta property="og:description" content="How does confidence correlate with actual performance in large language models, when attacking open research-level math problems? We address this question by studying the performance of ChatGPT 5.6 Sol Ultra on a set of 100 open conjectures in geometric analysis. By…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.28827.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.28827.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.28827v1" target="_blank" rel="noopener"><img src="../thumbs/2611.28827.jpg" alt="First page of Does a Frontier Large Language Model Know What It Can Solve? A 100-Conjecture Calibration Study"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Does a Frontier Large Language Model Know What It Can Solve? A 100-Conjecture Calibration Study</h1>
+        <p class="authors">Ayush Khaitan, Liam Fowl, Tomàs Ortega, Alex Kontorovich, Sanjeev Arora</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 21, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.28827v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.28827" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Each of the nine claimed conjecture resolutions comes with a machine-checked Lean 4 certificate built against Mathlib, with axioms audited via #print axioms.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">How does confidence correlate with actual performance in large language models, when attacking open research-level math problems? We address this question by studying the performance of ChatGPT 5.6 Sol Ultra on a set of 100 open conjectures in geometric analysis. By construction, the model first selected open problems in geometric analysis that it assessed that it had at least a 50% chance of proving or disproving, and then assigned a probability of success to each question. 13 questions were then excluded after an audit, and the model was asked to resolve the remaining 87 problems. Its mean stated resolution probability was $0.617$, versus an observed rate of $0.103$ (Brier score $0.351$, ECE $0.513$), thereby demonstrating that the model was systematically over-confident in its self-assessment. However, the scores retained ranking signal (AUROC $0.714$). The model was highly overconfident in probability magnitude but did more often than not assign a high probability of success to the problems that it did resolve, than the problems that it did not. Hence, its probabilities were numerically mis-calibrated but directionally correct. All proofs have been formalized in Lean, thereby verifying correctness, and have been run through a semantic equivalence pipeline to ensure semantic equivalence between the formalized and informal statements. These are exploratory campaign outcomes, not fixed-budget success probabilities. The certificates prove formal statements; for a couple of questions, some geometric inputs are assumed in the lean proofs.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Self-calibration of frontier LLMs on research-level mathematics has not been well studied. The question is whether a model&#x27;s stated probability of solving an open conjecture predicts its actual success.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ChatGPT 5.6 Sol Ultra selected 100 open conjectures in geometric analysis that it judged it had at least a 50% chance of resolving, and assigned each a success probability. After an audit removed 13 items, the model attacked the remaining 87. Calibration was measured with Brier score, ECE and AUROC. Every claimed closure was certified by a Lean 4 file importing Mathlib, compiled with no sorry and checked for axioms, and statements were checked for semantic equivalence with the informal versions. Some geometric inputs absent from Mathlib were assumed in a few of the proofs.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Mean stated probability was 0.617, but the observed resolution rate was 0.103 (9/87). The Brier score was 0.351 and ECE 0.513, so the model was strongly overconfident. AUROC of 0.714 shows the probabilities still carried useful ranking signal.</p><div class="sum-table"><table><thead><tr><th>Endpoint</th><th>N</th><th>Solved</th><th>Mean p</th><th>Brier</th><th>ECE</th><th>AUROC</th></tr></thead><tbody><tr><td>Legacy raw registry</td><td>100</td><td>13</td><td>.624</td><td>.346</td><td>.494</td><td>.709</td></tr><tr><td>Open at cutoff</td><td>92</td><td>11</td><td>.615</td><td>.347</td><td>.495</td><td>.660</td></tr><tr><td>Strict open</td><td>92</td><td>9</td><td>.615</td><td>.350</td><td>.517</td><td>.718</td></tr><tr><td>Strict valid-open (primary)</td><td>87</td><td>9</td><td>.617</td><td>.351</td><td>.513</td><td>.714</td></tr></tbody></table><div class="tbl-cap">Calibration by endpoint</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

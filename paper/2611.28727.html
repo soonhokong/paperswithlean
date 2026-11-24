@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How many mistakes does it take to learn an interval? Exact Littlestone dimensions of intervals and their unions · Papers With Lean</title>
+<meta name="description" content="The Littlestone dimension of a hypothesis class equals the smallest number of mistakes an online learner can guarantee against an adaptive adversary. For discrete intervals and unions of $j$ intervals on $m$ points, only its order of growth was known. We determine it exactly.…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How many mistakes does it take to learn an interval? Exact Littlestone dimensions of intervals and their unions">
+<meta property="og:description" content="The Littlestone dimension of a hypothesis class equals the smallest number of mistakes an online learner can guarantee against an adaptive adversary. For discrete intervals and unions of $j$ intervals on $m$ points, only its order of growth was known. We determine it exactly.…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.28727.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.28727.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.28727v1" target="_blank" rel="noopener"><img src="../thumbs/2611.28727.jpg" alt="First page of How many mistakes does it take to learn an interval? Exact Littlestone dimensions of intervals and their unions"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">How many mistakes does it take to learn an interval? Exact Littlestone dimensions of intervals and their unions</h1>
+        <p class="authors">Miit Daga, Swarna Priya Ramu</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Nov 21, 2026 · v1</span>
+          <span class="badge">cs.LO</span> <span class="badge">stat.ML</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.28727v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.28727" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/researchbackup27-sudo/exact-littlestone-intervals" target="_blank" rel="noopener" title="researchbackup27-sudo/exact-littlestone-intervals">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Exact Littlestone-dimension formulas for intervals and switch-budget classes are machine-checked in Lean 4 with Mathlib across 20 files in a public repository.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The Littlestone dimension of a hypothesis class equals the smallest number of mistakes an online learner can guarantee against an adaptive adversary. For discrete intervals and unions of $j$ intervals on $m$ points, only its order of growth was known. We determine it exactly. For every switch budget $k$ (with both end labels fixed when $k$ is odd), the smallest size on which $d$ mistakes can be forced follows a three-regime law: $d+1$ while $d\le k$, then $2d-k+1$, and beyond $d=\lceil 3k/2\rceil+k-1$ doubling the size adds exactly $k$ mistakes. Unions of $j$ intervals on $m$ points correspond to $k=2j$ and size $m+1$, and a single interval gives the thresholds $1,2,3,5,7,10,14,20,\dots$. The natural learner that waits for a positive example and binary-searches both endpoints is not optimal: it can be forced into one extra mistake for 50,847 of the domain sizes below $10^5$. Upper bounds come from a gap potential and a block-pairing learner, and lower bounds from adversary strategies and a refinement step. These tools give an explicit optimal learner with $O(\log m)$ time per round, which on random streams makes more mistakes on average than the natural learner. For randomised learners, we compute the randomised Littlestone dimension of thresholds exactly and prove that a greedy adversary forces an explicit closed-form number of expected mistakes on intervals; this bound is within $0.64$ of optimal and, we conjecture, exact (confirmed for $m\le70$). Exact computation tests every result, and the formulas for every switch budget are machine-checked in Lean 4.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The Littlestone dimension (optimal mistake bound) of discrete intervals and unions of j intervals on m points was known only up to constant factors. Exact values, and whether the natural wait-then-binary-search learner is optimal, were open.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Upper bounds come from a gap potential and a block-pairing learner. Lower bounds come from adversary strategies, a reduction to a cutting game on heap-labelled admissible trees, and a refinement step. The results are cross-checked by exhaustive computation. In Lean 4 with Mathlib, the Littlestone dimension is defined recursively, shown equal to the shattered-tree definition, and the main theorems are verified using only standard axioms.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.28727/fig0_motivation.png" alt=""><figcaption>Figure 1: From interval rules to exact mistake bounds. Left: examples of interval rules (the settings shown are illustrative), each learned online from one label at a time. Top: the online game. The strip shows a worst-case game against the natural wait-then-search learner on m=7 points, with the learner’s guess above the true label on each card; the learner makes 5 mistakes, one more than \operat</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The smallest domain size forcing d mistakes follows a three-regime law (d+1, then 2d-k+1, then doubling adds k mistakes), giving thresholds 1,2,3,5,7,10,14,20,... for a single interval. The natural learner makes one extra mistake for 50,847 domain sizes below 10^5. An explicit optimal learner runs in O(log m) per round. Randomised bounds are within 0.64 of optimal.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.28727/fig8_closing.png" alt=""><figcaption>Figure 11: What the results give a system that learns an interval rule online, for a reading with m=4{,}095 levels. Middle top, any arrival order: the optimal learner can be forced into \operatorname{Ldim}(\mathrm{Int}_{m})=22 mistakes (Theorem 1 ), the wait-then-search learner into 23 (Remark 25 ), and the best randomised learner into an expected number between R(m+1)=11.37 and \tilde{\lambda}(m+</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>d</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th></tr></thead><tbody><tr><td>P(d)</td><td>1</td><td>2</td><td>3</td><td>5</td><td>7</td><td>10</td><td>14</td><td>20</td></tr></tbody></table><div class="tbl-cap">Smallest size P(d) on which d mistakes can be forced for a single interval (Ldim(Int_m) = max{d : P(d) ≤ m+1})</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

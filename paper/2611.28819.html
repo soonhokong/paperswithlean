@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Improving semantic equivalence in research-level math formalization · Papers With Lean</title>
+<meta name="description" content="Formalizing mathematics in Lean is never a word-for-word translation of a paper: a Lean formalization changes definitions, strengthens hypotheses, splits arguments, and adds lemmas the paper never mentions. It stands to reason that a model that is good at autoformalization must…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Improving semantic equivalence in research-level math formalization">
+<meta property="og:description" content="Formalizing mathematics in Lean is never a word-for-word translation of a paper: a Lean formalization changes definitions, strengthens hypotheses, splits arguments, and adds lemmas the paper never mentions. It stands to reason that a model that is good at autoformalization must…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.28819.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.28819.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.28819v1" target="_blank" rel="noopener"><img src="../thumbs/2611.28819.jpg" alt="First page of Improving semantic equivalence in research-level math formalization"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Improving semantic equivalence in research-level math formalization</h1>
+        <p class="authors">Ayush Khaitan, Liam Fowl, Tomàs Ortega, Alex Kontorovich, Sanjeev Arora</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 21, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-lime" href="../#tag=dataset">dataset</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.28819v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.28819" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Builds a dataset and benchmark of differences between papers and their Lean formalizations, and fine-tunes models to write Lean inside research projects.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Formalizing mathematics in Lean is never a word-for-word translation of a paper: a Lean formalization changes definitions, strengthens hypotheses, splits arguments, and adds lemmas the paper never mentions. It stands to reason that a model that is good at autoformalization must be a good predictor of how a natural language source must differ from its faithful Lean formalization. With that in mind, we collect 4{,}076 audited examples of such changes from 832 Lean projects that formalize research-level mathematics, and use them to ask a practical question: how well can a model write Lean inside a real research-level project that may contain tens of thousands of lines of code, and does training on discrepancies between natural language sources and their faithful Lean formalizations help? Our training set consists of 3{,}431 tasks from 141 repositories, and the test set consists of 645 tasks from the remaining 27 repositories. Training on in-project Lean nearly doubles complete proofs ($11\% \to 20\%$) and raises the share of statements in gold agreement with the project&#x27;s own formalization by nearly a third ($30\%$ to $39\%$). The gain comes from the pairs themselves: an adapter trained only to predict how the Lean will differ, or a model told the difference in advance, barely helps. Training on where formalizations depart from their sources is thus an effective way of improving semantic equivalence in research-level formalization.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Faithful Lean formalizations of research mathematics differ from their natural-language sources: definitions change, hypotheses are added, and proofs are restructured. Existing benchmarks focus on short, self-contained problems rather than writing Lean inside large research projects.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors audited 832 public Lean repositories, kept 171, and collected 4,076 records of source-to-formalization differences, each linked to a Lean line and a source sentence. A LoRA writer adapter on Qwen3.8-27B was trained on 3,256 in-project writing examples (file prefix plus informal passage to Lean declaration). Seven models were evaluated on 645 held-out tasks from 27 projects covering definitions, statements and proofs. Statements were scored on compilation, agreement with the paper (NL agreement), and agreement with the project&#x27;s own declaration (gold agreement).</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The writer adapter raised proof completion from 11.2% to 20.4% and statement gold agreement from 30.4% to 39.2%, the highest of all models tested, while slightly lowering statement compilation. A gap adapter trained only to predict differences, and hints that state the difference in advance, helped little.</p><div class="sum-table"><table><thead><tr><th>Model</th><th>Compiles thm</th><th>Compiles proof</th><th>NL agr. thm</th><th>Gold agr. thm</th></tr></thead><tbody><tr><td>Qwen3.8-27B</td><td>.744</td><td>.112</td><td>.360</td><td>.304</td></tr><tr><td>+ writer adapter</td><td>.700</td><td>.204</td><td>.356</td><td>.392</td></tr><tr><td>gpt-oss-120b</td><td>.647</td><td>.224</td><td>.332</td><td>.332</td></tr><tr><td>Goedel-Prover-32B</td><td>.784</td><td>.244</td><td>.304</td><td>.288</td></tr></tbody></table><div class="tbl-cap">Selected results (rates) on held-out research-level Lean tasks</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
