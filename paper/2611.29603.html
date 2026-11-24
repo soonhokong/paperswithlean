@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hashing Theorems Modulo Rewrites and Binder Permutation Enables Equivalence Search over 200k Mathlib Theorems · Papers With Lean</title>
+<meta name="description" content="Like all code, Lean libraries accumulate technical debt and structural deficiencies over the course of their development. A particular concern is duplicate theorems: different parts of a big library can unwittingly contain and prove the same theorem, duplicating maintenance…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hashing Theorems Modulo Rewrites and Binder Permutation Enables Equivalence Search over 200k Mathlib Theorems">
+<meta property="og:description" content="Like all code, Lean libraries accumulate technical debt and structural deficiencies over the course of their development. A particular concern is duplicate theorems: different parts of a big library can unwittingly contain and prove the same theorem, duplicating maintenance…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.29603.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.29603.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.29603v1" target="_blank" rel="noopener"><img src="../thumbs/2611.29603.jpg" alt="First page of Hashing Theorems Modulo Rewrites and Binder Permutation Enables Equivalence Search over 200k Mathlib Theorems"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Hashing Theorems Modulo Rewrites and Binder Permutation Enables Equivalence Search over 200k Mathlib Theorems</h1>
+        <p class="authors">Samuel Leßmann, Simon Henniger, Gabriel Poesia, Nada Amin</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Nov 22, 2026 · v1</span>
+          <span class="badge">cs.PL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=type-theory">type-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.29603v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.29603" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Implements a Lean tool that normalizes Mathlib theorem statements to detect duplicates, emitting kernel-checked equivalence certificates; its rewrite-system metatheory is proved in Lean.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Like all code, Lean libraries accumulate technical debt and structural deficiencies over the course of their development. A particular concern is duplicate theorems: different parts of a big library can unwittingly contain and prove the same theorem, duplicating maintenance efforts. Tools can help detect redundancy and clean up. For instance, Mathlib&#x27;s duplicate-declarations linter compares theorem types syntactically after sorting top-level binders and erasing binder information and universe levels. If detecting an equivalence requires unfolding, reorientation, or logical transformations, it escapes this comparison. In this work, we present a method to detect theorems which are equivalent with regard to argument order and currying/uncurrying of dependent types. We implement our method for Lean. By applying it to Mathlib, a library of more than 200k theorems, we demonstrate that it is computationally cheap and scalable. We discuss how our work may enhance efforts to tackle the maintenance burden of Lean libraries.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Large Lean libraries such as Mathlib accumulate duplicate theorems that waste maintenance effort. Mathlib&#x27;s duplicate-declarations linter only compares statements syntactically, so it misses equivalences up to argument reordering, currying/uncurrying, or simple unfoldings.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Lean propositions are embedded into a syntactic term fragment and normalized with a terminating eight-rule rewrite system based on type isomorphisms for dependent products and sums. Normal forms are represented as annotated graphs, bucketed by a color-refinement signature, and compared by graph isomorphism up to binder permutation and renaming. Each detected pair is certified by a Lean proof term of T1 ↔ T2 that is checked by the kernel. The metatheory of the rewrite system and isomorphism procedure is proved in Lean.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 286,264 statements from Lean core, Batteries and Mathlib, the run took about half an hour on an 8-vCPU server. It found 7,525 duplicate classes and produced 8,309 kernel-checked certificates, 2,016 of them for pairs that are not definitionally equal. It also identified 873 maintenance candidates.</p><div class="sum-table"><table><thead><tr><th>Quantity</th><th>Count</th></tr></thead><tbody><tr><td>Theorem statements extracted</td><td>286,264</td></tr><tr><td>Duplicate classes (≥2 members)</td><td>7,525</td></tr><tr><td>Kernel-checked certificate pairs</td><td>8,309</td></tr><tr><td>Pairs definitionally equal</td><td>6,293 (76%)</td></tr><tr><td>Pairs not definitionally equal</td><td>2,016</td></tr></tbody></table><div class="tbl-cap">Tool run over Lean core, Batteries and Mathlib (selected rows)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

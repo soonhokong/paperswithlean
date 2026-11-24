@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>An $n^{1/O(\log^* n)}$ Lower Bound for Online Coloring of $k$-Colorable Graphs · Papers With Lean</title>
+<meta name="description" content="In online coloring, the vertices of a graph arrive one at a time with their edges to earlier vertices, and each vertex must be colored irrevocably on arrival. For graphs promised to be $k$-colorable, with $k\ge 3$ fixed, the best deterministic algorithms use $n^{1-Θ(1/k^2)}$…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="An $n^{1/O(\log^* n)}$ Lower Bound for Online Coloring of $k$-Colorable Graphs">
+<meta property="og:description" content="In online coloring, the vertices of a graph arrive one at a time with their edges to earlier vertices, and each vertex must be colored irrevocably on arrival. For graphs promised to be $k$-colorable, with $k\ge 3$ fixed, the best deterministic algorithms use $n^{1-Θ(1/k^2)}$…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.29672.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.29672.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.29672v1" target="_blank" rel="noopener"><img src="../thumbs/2611.29672.jpg" alt="First page of An $n^{1/O(\log^* n)}$ Lower Bound for Online Coloring of $k$-Colorable Graphs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">An $n^{1/O(\log^* n)}$ Lower Bound for Online Coloring of $k$-Colorable Graphs</h1>
+        <p class="authors">Sajad Faghfoor Maghrebi</p>
+        <div class="row">
+          <span class="badge">cs.DS</span>
+          <span class="date">Nov 22, 2026 · v1</span>
+          <span class="badge">cs.DM</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.29672v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.29672" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/sfmqrb/lean-verifications-k-colorable" target="_blank" rel="noopener" title="sfmqrb/lean-verifications-k-colorable">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">All numbered results, including the main lower-bound theorems, are formalized in Lean 4 with Mathlib; small-case strategies are verified by a kernel-evaluated sound checker.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">In online coloring, the vertices of a graph arrive one at a time with their edges to earlier vertices, and each vertex must be colored irrevocably on arrival. For graphs promised to be $k$-colorable, with $k\ge 3$ fixed, the best deterministic algorithms use $n^{1-Θ(1/k^2)}$ colors, while the best lower bound was Vishwanathan&#x27;s $Ω(\log^{k-1}n)$ from 1990 until Li recently proved $2^{Ω((\log n)^{1/3}(\log\log n)^{2/3})}$. For every fixed $k\ge 3$ and all sufficiently large $n$, we prove a lower bound of $n^{1/(\log^*n+3)}$ colors for deterministic online algorithms on $n$-vertex $k$-colorable graphs, and the same lower bound in expectation for randomized online algorithms. Both bounds hold on a single triangle-free $3$-colorable graph: even an algorithm that is shown this graph in advance, but is not told which of its vertices each arriving vertex is, can be forced to use this many colors by a suitable arrival order. The hard instances are iterated blow-ups of a clique, in which every vertex becomes a block of independent vertices and every edge a private server in the earlier block; each blow-up keeps the forced colors and replaces the chromatic number $χ$ by about $\logχ$, so about $\log^*n$ blow-ups bring it down to $k$. We also show that deterministic lower bounds for different values of $k\ge 3$ are polynomially equivalent, and that no adversary presenting such iterated blow-ups can force more than $n^{1/(\log^*n-O(1))}$ colors. All numbered results are formalized in Lean 4.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Online coloring of k-colorable graphs (k≥3) has had a large gap between polynomial upper bounds and quasi-polylogarithmic lower bounds. Kierstead asked for an n^ε lower bound.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Adversaries present iterated reservation blow-ups of a clique. Each vertex becomes a block of independent vertices and each edge becomes a reserved server vertex. Each blow-up preserves the number of forced colors and lowers the chromatic number from χ to about log χ, analyzed through a label-poset calculus related to arc and shift graphs. A uniform-tower variant with random servers tracks unused mass to handle randomized algorithms and known graphs. All numbered results are formalized in Lean 4 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Deterministic and randomized online algorithms need n^{1/(log* n+3)} colors on a single triangle-free 3-colorable graph. The paper also shows that deterministic bounds for different k are polynomially equivalent, and that iterated blow-up adversaries cannot force more than n^{1/(log* n−O(1))} colors.</p><div class="sum-table"><table><thead><tr><th>bound</th><th>deterministic</th><th>randomized</th></tr></thead><tbody><tr><td>upper, k=3</td><td>O(n^{2/3} log^{1/3} n)</td><td>O(n^{1/2})</td></tr><tr><td>lower, previous</td><td>2^{Ω((log n)^{1/3}(log log n)^{2/3})}</td><td>2^{Ω((log n)^{1/3}(log log n)^{2/3})}</td></tr><tr><td>lower, this paper</td><td>n^{1/(log* n+O(1))}</td><td>n^{1/(log* n+O(1))}</td></tr></tbody></table><div class="tbl-cap">Bounds for online coloring of k-colorable graphs</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
