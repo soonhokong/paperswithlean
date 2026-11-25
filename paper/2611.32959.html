@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Polynomial-Time Learning of Random Automata from One Label per Word · Papers With Lean</title>
+<meta name="description" content="We study a binary deterministic finite automaton whose $2n$ transitions are chosen independently and uniformly from its $n$ states. The learner observes independent uniform words of length $m$, each labeled with a single bit indicating acceptance. For every fixed $β&gt;0$ we give a…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Polynomial-Time Learning of Random Automata from One Label per Word">
+<meta property="og:description" content="We study a binary deterministic finite automaton whose $2n$ transitions are chosen independently and uniformly from its $n$ states. The learner observes independent uniform words of length $m$, each labeled with a single bit indicating acceptance. For every fixed $β&gt;0$ we give a…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.32959.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.32959.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.32959v1" target="_blank" rel="noopener"><img src="../thumbs/2611.32959.jpg" alt="First page of Polynomial-Time Learning of Random Automata from One Label per Word"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Polynomial-Time Learning of Random Automata from One Label per Word</h1>
+        <p class="authors">Yilin Cheng</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Nov 24, 2026 · v1</span>
+          <span class="badge">cs.FL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.32959v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.32959" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/Yilin-Cheng23/random-automata-lean" target="_blank" rel="noopener" title="Yilin-Cheng23/random-automata-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">A Lean repository of 22 modules formalizes selected proof steps, including the four-source coefficient, deletion bounds, and finite counting inequalities.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We study a binary deterministic finite automaton whose $2n$ transitions are chosen independently and uniformly from its $n$ states. The learner observes independent uniform words of length $m$, each labeled with a single bit indicating acceptance. For every fixed $β&gt;0$ we give a polynomial-time algorithm that works outside a set of transition tables of probability $o(n^{-β})$. On each remaining table, for any start state and accepting set, the predictor has error at most $ε$ on fresh uniform words of length $m$ with probability at least $1-γ$ over the training sample and the learner&#x27;s random choices. Its sample size and running time are polynomial in $n$, $m$, $1/ε$ and $\log(2/γ)$, with degree depending only on $β$. Although each word reveals only one output, comparing label moments at two consecutive history lengths lets us estimate the expected product of the signed outputs of two continuations from the same hidden state. We also refute Conjecture 4 of Fish and Reyzin on meeting times. For two distinct states fixed before the table is drawn and every fixed $c&gt;0$, the fraction of words of length $\lfloor cn\rfloor$ that send them to different states converges in probability to $e^{-c}$. On a typical table, driving this fraction down to $1/n$ takes asymptotically $n\log n$ letters. Selected proof steps are formalized in Lean.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The task is passive learning of a random binary DFA when each uniform training word reveals only one acceptance bit, with no view of the intermediate states. A second question is Fish and Reyzin&#x27;s Conjecture 4 on meeting times of two states driven by a common random word.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The learner compares label moments at two consecutive history lengths. This estimates same-state products of signed outputs, which then feed a spectral reconstruction of the recurrent predictive classes. Separate regressions and survival-coefficient thresholds handle small closed components. Selected proof steps, including counting inequalities and scalar gap deductions, are formalized across 22 Lean modules.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">For every fixed β&gt;0 there is a polynomial-time algorithm that learns to error ε on all transition tables outside a set of probability o(n^{-β}). Conjecture 4 is refuted: the fraction of length-⌊cn⌋ words that keep two prescribed states distinct converges in probability to e^{-c}. Numerical checks show the diagonal-extraction error decaying quickly with the lag.</p><div class="sum-table"><table><thead><tr><th>n</th><th>t=3</th><th>t=10</th><th>t=20</th><th>t=40</th></tr></thead><tbody><tr><td>6</td><td>0.261</td><td>0.00413</td><td>1.31e-5</td><td>1.14e-10</td></tr><tr><td>16</td><td>1.72</td><td>0.121</td><td>2.57e-3</td><td>1.48e-6</td></tr><tr><td>64</td><td>8.77</td><td>0.732</td><td>0.0202</td><td>1.60e-5</td></tr></tbody></table><div class="tbl-cap">Median population diagonal-extraction error (sum of absolute entries) over 24 random tables per n</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
