@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When Is Product Decoding of ECOC MAP-Consistent? Pair Structure and the n-vs-Rest Codes · Papers With Lean</title>
+<meta name="description" content="Error-Correcting Output Codes (ECOC) combine binary classifiers by the sum decoder, which totals probabilities, or the product decoder, which totals log-likelihoods. In the noiseless setting, where the binary classifiers output the true posteriors, we ask on which code matrices…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="When Is Product Decoding of ECOC MAP-Consistent? Pair Structure and the n-vs-Rest Codes">
+<meta property="og:description" content="Error-Correcting Output Codes (ECOC) combine binary classifiers by the sum decoder, which totals probabilities, or the product decoder, which totals log-likelihoods. In the noiseless setting, where the binary classifiers output the true posteriors, we ask on which code matrices…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.33044.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.33044.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.33044v1" target="_blank" rel="noopener"><img src="../thumbs/2611.33044.jpg" alt="First page of When Is Product Decoding of ECOC MAP-Consistent? Pair Structure and the n-vs-Rest Codes"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">When Is Product Decoding of ECOC MAP-Consistent? Pair Structure and the n-vs-Rest Codes</h1>
+        <p class="authors">Gendo Kumoi</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Nov 24, 2026 · v1</span>
+          <span class="badge">cs.IT</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.33044v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.33044" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://arxiv.org/src/2611.33044v1/anc" target="_blank" rel="noopener" title="arXiv ancillary files">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">All theorems, lemmas, propositions and corollaries on ECOC decoder MAP-consistency are machine-checked in Lean 4 with Mathlib, provided as arXiv ancillary files.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Error-Correcting Output Codes (ECOC) combine binary classifiers by the sum decoder, which totals probabilities, or the product decoder, which totals log-likelihoods. In the noiseless setting, where the binary classifiers output the true posteriors, we ask on which code matrices each decoder always agrees with the Bayes-optimal (MAP) class. For the sum decoder the answer is known: the code must be equidistant (James and Hastie, 1998). We answer the question for the product decoder. Two classes are compared through the votes of the columns on which they differ: the sum decoder decides by their sample mean, the product decoder by an M-estimator with influence function artanh, and each vote is the MAP margin plus a bias determined by the other classes alone. Our main theorem states that the product decoder is MAP-consistent if and only if, for every class pair, the columns on which the two classes differ are matched with the columns obtained by swapping the two classes (or their complements), and equivalently if and only if the code is a union of n-vs-Rest codes. Efficient equidistant codes are therefore excluded: Hadamard codes ($M\ge 8$), which meet the Plotkin bound with $M-1$ columns, have no such pairs, and for the Sylvester type the reversal margin can be at least a constant 0.0182 independent of $M$. All theorems are machine-checked in Lean 4. On six real datasets with estimated probabilities, the product decoder is slightly more accurate when each column is calibrated, and the sum decoder is better when the calibration error differs across columns; in either case the decoders disagree only near ties.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Error-Correcting Output Codes combine binary classifiers using either a sum decoder or a product (log-likelihood) decoder. For the sum decoder, MAP-consistency in the noiseless setting is known to require an equidistant code. The question here is which code matrices make the product decoder MAP-consistent.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Each class-pair comparison is expressed as a sample of column votes. The sum decoder decides by the sample mean of the votes, and the product decoder by an artanh M-estimator. Each vote decomposes into the MAP margin plus a bias that depends only on the background classes. All results in Sections 3–6, including the appendix proofs, are machine-checked in Lean 4 with Mathlib. Experiments cover noiseless numerical checks and six real datasets.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The product decoder is MAP-consistent if and only if every class pair has pair structure, equivalently if and only if the code is a union of n-vs-Rest codes. Hadamard codes with M≥8 therefore fail, and for the Sylvester type the reversal margin is at least 0.0182. On real data the product decoder is slightly better when each column is calibrated, the sum decoder is better when calibration error varies across columns, and the two disagree only near ties.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.33044/fig_disagreement_heatmap.png" alt=""><figcaption>Figure 2: Disagreement rate with MAP in the noiseless setting (%, mean over four series). Left: sum; right: product. The sum decoder is 0 on all equidistant codes (all but logM), the product decoder only on codes with pair structure (1-vs-Rest, 2vR, half-vs-half, Hadamard with M=4 ) (Proposition 1 and Theorem 1 ). n/c: not computed. Half-vs-half has \binom{M}{M/2}/2 columns (6435 at M=16 , about 3</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Code</th><th>Equidistant</th><th>Pair structure</th><th>Sum</th><th>Product</th></tr></thead><tbody><tr><td>1-vs-Rest</td><td>Yes, d=2</td><td>Yes</td><td>Yes</td><td>Yes</td></tr><tr><td>2vR</td><td>Yes, d=2(M-2)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr><tr><td>Hadamard (M=4)</td><td>Yes, d=2</td><td>Yes</td><td>Yes</td><td>Yes</td></tr><tr><td>Hadamard (M≥8)</td><td>Yes, d=M/2</td><td>No</td><td>Yes</td><td>No</td></tr><tr><td>logM</td><td>No</td><td>No</td><td>No</td><td>No</td></tr></tbody></table><div class="tbl-cap">Code families and MAP-consistency of the sum and product decoders</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Reliability Function of Error-Correcting Output Codes with Noisy Binary Classifiers · Papers With Lean</title>
+<meta name="description" content="Error-correcting output coding (ECOC) builds a multi-class classifier from binary classifiers. We study the excess error rate of ECOC over the Bayes (MAP) classifier when each binary classifier outputs a posterior estimate whose log-odds is corrupted by Gaussian noise. Recasting…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Reliability Function of Error-Correcting Output Codes with Noisy Binary Classifiers">
+<meta property="og:description" content="Error-correcting output coding (ECOC) builds a multi-class classifier from binary classifiers. We study the excess error rate of ECOC over the Bayes (MAP) classifier when each binary classifier outputs a posterior estimate whose log-odds is corrupted by Gaussian noise. Recasting…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.33068.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.33068.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.33068v1" target="_blank" rel="noopener"><img src="../thumbs/2611.33068.jpg" alt="First page of The Reliability Function of Error-Correcting Output Codes with Noisy Binary Classifiers"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">The Reliability Function of Error-Correcting Output Codes with Noisy Binary Classifiers</h1>
+        <p class="authors">Gendo Kumoi, Hideki Yagi, Manabu Kobayashi, Shigeichi Hirasawa</p>
+        <div class="row">
+          <span class="badge">cs.IT</span>
+          <span class="date">Nov 24, 2026 · v1</span>
+          <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-orange" href="../#tag=probability">probability</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.33068v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.33068" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://arxiv.org/src/2611.33068v1/anc" target="_blank" rel="noopener" title="arXiv ancillary files">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">All lemmas, propositions and theorems on ECOC excess-error bounds and the reliability function are machine-checked in Lean 4 with Mathlib, provided as ancillary files.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Error-correcting output coding (ECOC) builds a multi-class classifier from binary classifiers. We study the excess error rate of ECOC over the Bayes (MAP) classifier when each binary classifier outputs a posterior estimate whose log-odds is corrupted by Gaussian noise. Recasting decoding as a test over a Gaussian channel, we derive an upper bound from the union and Chernoff bounds and a lower bound from the nearest competing category and the Mills ratio. The bounds show that a large Hamming distance is both necessary and sufficient for reducing the excess error rate. The excess error rate stays bounded away from zero, by a constant that depends on the two largest posteriors and the noise level but not on the number of categories $M$, whenever the distance between the code words of the two most probable categories is bounded; for equidistant codes this distance is $d_{\min}$. Conversely, it is at most $M-1$ times a factor that is exponentially small in the minimum distance $d_{\min}$, and it vanishes whenever $κ\,d_{\min}-\ln(M-1)\to\infty$ for an explicit $κ$ (for general codes, under a posterior condition). For $n$-vs-rest codes with $n\geq2$, the upper and lower exponents coincide asymptotically, which determines the reliability function of ECOC in closed form. The results extend to correlated Gaussian noise with the Hamming distance replaced by an effective distance; when noise is shared at the level of categories, the effective distance stays bounded and the excess error rate does not vanish for any code. All theorems are machine-checked in Lean 4. In a semi-synthetic setting, the measured decay agrees with the predicted exponent. On ResNet-50 features of CIFAR-10/100 and ImageNet-1k, the excess error over a log-likelihood decoding reference decreases with $d_{\min}$ and, for larger $M$, levels off at a moderate distance, while codes with $d_{\min}=1$ degrade as $M$ grows.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Error-correcting output coding (ECOC) builds a multi-class classifier from binary classifiers. It is unclear how the Hamming distance of the code governs the excess error rate over the Bayes classifier when the binary classifiers&#x27; log-odds outputs are corrupted by Gaussian noise.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">ECOC decoding is recast as an M-ary hypothesis test over a Gaussian channel. An upper bound is derived from the union and Chernoff bounds, and a lower bound from the nearest competing category and the Mills ratio. For n-vs-rest codes, the asymptotics of the two exponents are compared, and the analysis is extended to correlated noise via an effective distance. All theorems of Sections 2–8 are formalized in Lean 4 with Mathlib.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">A large Hamming distance is both necessary and sufficient for driving the excess error rate to zero. For n-vs-rest codes with n≥2, the upper and lower exponents coincide, which gives the reliability function in closed form. When noise is shared at the category level, the excess error does not vanish for any code. Experiments on ResNet-50 features of CIFAR-10/100 and ImageNet-1k agree with the predictions; these experiments are not part of the formalization.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

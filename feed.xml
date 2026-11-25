@@ -8,6 +8,28 @@
     <language>en</language>
     <lastBuildDate>Tue, 24 Nov 2026 00:00:00 +0000</lastBuildDate>
     <item>
+      <title>The Reliability Function of Error-Correcting Output Codes with Noisy Binary Classifiers</title>
+      <link>https://paperswithlean.com/paper/2611.33068.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.33068.html</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Gendo Kumoi, Hideki Yagi, Manabu Kobayashi, Shigeichi Hirasawa</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>probability</category><category>ml-theory</category>
+      <description>All lemmas, propositions and theorems on ECOC excess-error bounds and the reliability function are machine-checked in Lean 4 with Mathlib, provided as ancillary files.
+
+Error-correcting output coding (ECOC) builds a multi-class classifier from binary classifiers. We study the excess error rate of ECOC over the Bayes (MAP) classifier when each binary classifier outputs a posterior estimate whose log-odds is corrupted by Gaussian noise. Recasting decoding as a test over a Gaussian channel, we derive an upper bound from the union and Chernoff bounds and a lower bound from the nearest competing category and the Mills ratio. The bounds show that a large Hamming distance is both necessary and sufficient for reducing the excess error rate. The excess error rate stays bounded away from zero, by a constant that depends on the two largest posteriors and the noise level but not on the number of categories $M$, whenever the distance between the code words of the two most probable categories is bounded; for equidistant codes this distance is $d_{\min}$. Conversely, it is at most $M-1$ times a factor that is exponentially small in the minimum distance $d_{\min}$, and it vanishes whenever $κ\,d_{\min}-\ln(M-1)\to\infty$ for an explicit $κ$ (for general codes, under a posterior condition). For $n$-vs-rest codes with $n\geq2$, the upper and lower exponents coincide asymptotically, which determines the reliability function of ECOC in closed form. The results extend to correlated Gaussian noise with the Hamming distance replaced by an effective distance; when noise is shared at the level of categories, the effective distance stays bounded and the excess error rate does not vanish for any code. All theorems are machine-checked in Lean 4. In a semi-synthetic setting, the measured decay agrees with the predicted exponent. On ResNet-50 features of CIFAR-10/100 and ImageNet-1k, the excess error over a log-likelihood decoding reference decreases with $d_{\min}$ and, for larger $M$, levels off at a moderate distance, while codes with $d_{\min}=1$ degrade as $M$ grows.</description>
+    </item>
+    <item>
+      <title>When Is Product Decoding of ECOC MAP-Consistent? Pair Structure and the n-vs-Rest Codes</title>
+      <link>https://paperswithlean.com/paper/2611.33044.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.33044.html</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Gendo Kumoi</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>ml-theory</category>
+      <description>All theorems, lemmas, propositions and corollaries on ECOC decoder MAP-consistency are machine-checked in Lean 4 with Mathlib, provided as arXiv ancillary files.
+
+Error-Correcting Output Codes (ECOC) combine binary classifiers by the sum decoder, which totals probabilities, or the product decoder, which totals log-likelihoods. In the noiseless setting, where the binary classifiers output the true posteriors, we ask on which code matrices each decoder always agrees with the Bayes-optimal (MAP) class. For the sum decoder the answer is known: the code must be equidistant (James and Hastie, 1998). We answer the question for the product decoder. Two classes are compared through the votes of the columns on which they differ: the sum decoder decides by their sample mean, the product decoder by an M-estimator with influence function artanh, and each vote is the MAP margin plus a bias determined by the other classes alone. Our main theorem states that the product decoder is MAP-consistent if and only if, for every class pair, the columns on which the two classes differ are matched with the columns obtained by swapping the two classes (or their complements), and equivalently if and only if the code is a union of n-vs-Rest codes. Efficient equidistant codes are therefore excluded: Hadamard codes ($M\ge 8$), which meet the Plotkin bound with $M-1$ columns, have no such pairs, and for the Sylvester type the reversal margin can be at least a constant 0.0182 independent of $M$. All theorems are machine-checked in Lean 4. On six real datasets with estimated probabilities, the product decoder is slightly more accurate when each column is calibrated, and the sum decoder is better when the calibration error differs across columns; in either case the decoders disagree only near ties.</description>
+    </item>
+    <item>
       <title>Polynomial-Time Learning of Random Automata from One Label per Word</title>
       <link>https://paperswithlean.com/paper/2611.32959.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2611.32959.html</guid>
@@ -644,28 +666,6 @@ There is a significant number of uncertified DAG consensus protocols spanning pa
       <description>Formalizes the Childs et al. commutator-scaling Trotter error bound and fourth-order Suzuki formula estimates in Lean 4 with Mathlib.
 
 We formalize the commutator-scaling bound of Childs et al. in Lean 4. For skew-adjoint generators, the local order condition gives an explicit integer step count sufficient to meet a prescribed error tolerance. We apply the theorem in Lean to the binary fourth-order Suzuki formula. For this formula we can also account for cancellation within and between steps. Using local remainder estimates of Casas and Murua, we sum the signed quintic and centered seventh-degree error terms after conjugating each to the interaction picture. For every positive integer step count, we bound the difference between this sum and the global error operator. At fixed time the explicit remainder is eighth order in the step size, and the integral of the conjugated quintic term gives the exact leading error coefficient. The Lean proofs cover the two-generator finite-sum estimates, including the spectral norm for complex matrices. On five ten-site nearest-neighbor Heisenberg instances at time $10$ and tolerance $10^{-3}$, the transported sum meets the tolerance at a mean of $129.4$ steps. Taking a separate norm at each step with the same polynomial and remainder gives a mean first crossing between $184.6$ and $185.2$ steps. The accumulated Casas–Murua local bound at $q=8$ gives a mean of $184.8$ steps.</description>
-    </item>
-    <item>
-      <title>Improved Accuracy Scaling with Problem Complexity in LLM Arithmetic Reasoning Using Executable Symbolic Representations</title>
-      <link>https://paperswithlean.com/paper/2611.27203.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.27203.html</guid>
-      <pubDate>Sun, 22 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Yu-Bin Liu, Shi-Ju Ran</dc:creator>
-      <category>benchmark</category><category>dataset</category>
-      <description>LLMs are fine-tuned to emit executable Lean 4 programs for arithmetic word problems, which are compiled and executed with Lean 4.27.0-rc1 for scoring.
-
-High accuracy on mathematical benchmarks does not establish whether reasoning remains reliable as problem complexity increases. We examine how executable symbolic representations change accuracy scaling in large language models compared with natural-language reasoning. To address this limitation, we introduce the GSM Arithmetic Benchmark (GSM-AB), a controlled benchmark that independently varies operand digit length and operation count to probe numerical scale and compositional complexity. We find that executable representations can improve accuracy and slow its decline as complexity increases. Lean reduces average sensitivity to operand digit length at every tested model size. By contrast, slower degradation with increasing operation count emerges at the larger model sizes. A Python program-of-thought (Python-PoT) control shows a similar operation-axis pattern, suggesting that this finding is not specific to Lean. These findings show that reasoning representation shapes arithmetic accuracy scaling and support executable symbolic representations for more reliable reasoning on complex arithmetic tasks.</description>
-    </item>
-    <item>
-      <title>Moonshine Conjecture Formalized</title>
-      <link>https://paperswithlean.com/paper/2611.27001.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.27001.html</guid>
-      <pubDate>Sun, 22 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Jin-Cheng Guu</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>meta-study</category><category>algebra</category>
-      <description>Formalizes the Moonshine theorem in Lean by connecting the VOA and CFSG repositories, migrating Lean/Mathlib versions and building Griess algebra bridges.
-
-The celebrated and intimidating Moonshine Conjecture has now been formalized in Lean. This achievement might suggest that, once a sufficiently large library compiles, the principal mathematical work is complete. This paper tells a less optimistic story. During our formalization project, we repeatedly encountered two problems that a formally checked proof alone does not settle: (1) whether the formal statements actually express the mathematics we humans expect, and (2) how that meaning survives as the repositories and their dependencies evolve. We argue that there is no magic pill that turns a large agent-produced library into mathematics a community can trust. Even after the proofs are checked by the Lean kernel, someone must judge whether the definitions and statements express the intended mathematics and whether future updates preserve that meaning. This work, even when done, can only be trusted. We must therefore return to the usual trust model: relying on the mathematical judgment of maintainers and expert communities. But semantic review is expensive, making it tempting to keep producing code and take successful kernel checks as sufficient grounds for trust. This shortcut accumulates semantic debt: definitions and results with unchecked mathematical interpretations are reused as foundations for further work. A library may keep compiling and produce the desired formal theorem while users lose track of which mathematical claims they can responsibly rely on. Reliable reuse is also a prerequisite for Terence Tao&#x27;s vision of formal mathematics as something people can navigate, explain, learn from, and build with. This paper takes our work connecting the VOA and CFSG repositories for the Moonshine Conjecture as a case study of the challenges of reliable reuse as formal developments scale.</description>
     </item>
   </channel>
 </rss>
