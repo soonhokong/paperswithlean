@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Anatomy of Piecewise-Linear Learned Indexes · Papers With Lean</title>
+<meta name="description" content="Piecewise-linear approximation (PLA) learned indexes (PGM-index, FITing-Tree, RadixSpline, PLEX, PLIN) compress sorted keys into $\pm\varepsilon$ segments, yet prior theory stops at coarse $Θ(\varepsilon^2)$ single-segment bounds. At the bottom layer, optimal greedy PLA covers…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Anatomy of Piecewise-Linear Learned Indexes">
+<meta property="og:description" content="Piecewise-linear approximation (PLA) learned indexes (PGM-index, FITing-Tree, RadixSpline, PLEX, PLIN) compress sorted keys into $\pm\varepsilon$ segments, yet prior theory stops at coarse $Θ(\varepsilon^2)$ single-segment bounds. At the bottom layer, optimal greedy PLA covers…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.32049.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.32049.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.32049v1" target="_blank" rel="noopener"><img src="../thumbs/2611.32049.jpg" alt="First page of The Anatomy of Piecewise-Linear Learned Indexes"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">The Anatomy of Piecewise-Linear Learned Indexes</h1>
+        <p class="authors">Yue Chen, Yong Zhang</p>
+        <div class="row">
+          <span class="badge">cs.DS</span>
+          <span class="date">Nov 24, 2026 · v1</span>
+          <span class="badge">math.PR</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.32049v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.32049" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/cylindrical2002/PLAStochastic" target="_blank" rel="noopener" title="cylindrical2002/PLAStochastic">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Core probabilistic theorems on PLA learned-index fanout and hierarchy height are formalized in Lean 4/Mathlib in a 2,682-module library, PLAStochastic, with no sorrys.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Piecewise-linear approximation (PLA) learned indexes (PGM-index, FITing-Tree, RadixSpline, PLEX, PLIN) compress sorted keys into $\pm\varepsilon$ segments, yet prior theory stops at coarse $Θ(\varepsilon^2)$ single-segment bounds. At the bottom layer, optimal greedy PLA covers $κ_{\rm opt}\varepsilon^2/v_0 \approx 3.54\,\varepsilon^2/v_0$ keys per segment on independent gaps and $κ_{\rm opt}\varepsilon^2$ under any smooth density ($v_0=1$), while anchored and chord fitters retain $Θ(\varepsilon^2/v_0)$ coverage. Across recursive layers, a law-of-large-numbers heuristic–invoked to claim $O(\log\log n)$ height for the PGM-index–suggests summing $Θ(\varepsilon^2)$ gaps averages out fluctuations. We prove this fails under Endpoint Promotion (EP): stopping-time fluctuations reset relative gap variance at every depth, locking fanout at $C_\varepsilon \approx 19.861\,\varepsilon^2$, expected height at $\log n/\log C_\varepsilon + O(1)$, and lookup at $Θ(\log n)$. To break this barrier, Rank-Equispaced Promotion (RE) samples pivots at equal rank strides. Each stride sums a fixed number of base gaps, so relative variance decays across layers and cumulative coverage squares at each step. Expected height drops to $\log_2\log_\varepsilon n + O(1)$ on independent gaps and $\log_2\log_\varepsilon n + \log_2^+(\log n/\log(\varepsilon/δ)) + O(1)$ on smooth densities with curvature $δ$. A compact bucket directory routes across unaligned RE pivots with $&lt;1$ extra comparison per layer on average, giving RE-PGM $O(\log\varepsilon \cdot \log\log_\varepsilon n)$ expected lookup in $Θ(n/\varepsilon^2)$ space and $O(n)$ build time without radix skew sensitivity. Our constants match empirical fanout within $0.3\%$ down to $\varepsilon=2$, and all core theorems are formalized in Lean 4.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Piecewise-linear learned indexes such as the PGM-index were previously analyzed only through coarse Θ(ε²) single-segment coverage bounds. A law-of-large-numbers heuristic had been used to claim O(log log n) height for recursive PGM hierarchies.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A Brownian functional limit gives exact constants for optimal greedy PLA segment coverage and dispersion. Endpoint Promotion (EP) is analyzed via stopping-time variance decomposition. Rank-Equispaced Promotion (RE) is proposed, together with a compact CSR bucket directory for routing across layers. Eight core theorem packages are machine-checked in a Lean 4/Mathlib library, PLAStochastic, using only the standard axioms.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Under EP, fanout locks at C_ε ≈ 19.861 ε², so height is Θ(log n). Under RE, height drops to log₂ log_ε n + O(1), plus a curvature term for smooth densities, giving O(log ε · log log_ε n) expected lookup. The constants match empirical fanout within 0.3% down to ε=2.</p><div class="sum-table"><table><thead><tr><th>Promotion</th><th>Input model</th><th>E[H]</th></tr></thead><tbody><tr><td>Endpoint (EP)</td><td>Model G</td><td>log n / log C_ε + O(1)</td></tr><tr><td>Endpoint (EP)</td><td>Model K</td><td>log n / log C_ε + O(1)</td></tr><tr><td>Equispaced (RE)</td><td>Model G</td><td>log₂(log n / log ε) + O(1)</td></tr><tr><td>Equispaced (RE)</td><td>Model K (F_δ)</td><td>log₂(log n / log ε) + log₂⁺(log n / log(ε/δ)) + O(1)</td></tr></tbody></table><div class="tbl-cap">Expected hierarchy height by promotion rule and input model</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Breaking Resonance: Square-root acceleration for Metropolis-adjusted randomized Hamiltonian Monte Carlo · Papers With Lean</title>
+<meta name="description" content="Hamiltonian Monte Carlo with a fixed integration time can fail to mix because of resonances, and randomizing the integration time removes them. We prove that Metropolis-adjusted HMC with velocity Verlet and random integration times mixes from a warm start in a number of…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Breaking Resonance: Square-root acceleration for Metropolis-adjusted randomized Hamiltonian Monte Carlo">
+<meta property="og:description" content="Hamiltonian Monte Carlo with a fixed integration time can fail to mix because of resonances, and randomizing the integration time removes them. We prove that Metropolis-adjusted HMC with velocity Verlet and random integration times mixes from a warm start in a number of…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.32322.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.32322.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.32322v1" target="_blank" rel="noopener"><img src="../thumbs/2611.32322.jpg" alt="First page of Breaking Resonance: Square-root acceleration for Metropolis-adjusted randomized Hamiltonian Monte Carlo"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Breaking Resonance: Square-root acceleration for Metropolis-adjusted randomized Hamiltonian Monte Carlo</h1>
+        <p class="authors">Nawaf Bou-Rabee</p>
+        <div class="row">
+          <span class="badge">math.PR</span>
+          <span class="date">Nov 24, 2026 · v1</span>
+          <span class="badge">math.NA</span> <span class="badge">stat.CO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.32322v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.32322" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/nawafbourabee/breaking-resonance-lean" target="_blank" rel="noopener" title="nawafbourabee/breaking-resonance-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Main theorems (mixing bound and Hessian-necessity lower bound) and a Gaussian lower bound are formalized and checked in Lean 4 with Mathlib; sources released on GitHub.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Hamiltonian Monte Carlo with a fixed integration time can fail to mix because of resonances, and randomizing the integration time removes them. We prove that Metropolis-adjusted HMC with velocity Verlet and random integration times mixes from a warm start in a number of transitions that does not depend on the condition number, for every integration-time law satisfying a Fourier condition that we call non-resonant; uniform, exponential and triangular laws are examples. For a target density proportional to $e^{-U}$ on $\mathbb R^d$, where $U$ is $m$-strongly convex with $L$-Lipschitz gradient and $L_H$-Lipschitz Hessian and $κ=L/m$, the number of gradient evaluations needed to reach a fixed total variation accuracy is, up to constants and logarithmic factors, $\sqrt{κd}+\sqrt{L_H}\,(d/m)^{3/4}$. This is the first square-root condition-number bound for this sampler beyond Gaussian targets. The proof converts relative-entropy contraction of the unadjusted proposal into a conductance bound for the adjusted chain, and shows that the integration-time law enters only through its characteristic function. Hessian regularity cannot be dropped for a fixed step size: without it there are targets in the class for which the cost is at least of order $κ^{2/3}$, up to logarithmic factors, even from a warm start.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">With a fixed integration time, Hamiltonian Monte Carlo can fail to mix because of resonances. The open question was whether Metropolis-adjusted randomized HMC with velocity Verlet achieves square-root condition-number dependence beyond Gaussian targets.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The integration-time law is required to satisfy a Fourier &#x27;non-resonant&#x27; condition; uniform, exponential and triangular laws are examples. Relative-entropy contraction of the unadjusted proposal is converted into a restricted conductance bound for the adjusted chain. The duration law enters only through its characteristic function, and a modified-energy argument controls the Verlet energy error. Theorems 1 and 2 and Proposition B.1 were formalized and checked in Lean 4 against Mathlib, using only Lean&#x27;s three standard axioms.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">From a warm start, the gradient cost to reach fixed total variation accuracy is of order sqrt(κd) + sqrt(L_H)(d/m)^{3/4}, up to logarithmic factors. Without Hessian regularity and with a fixed step size, there are targets in the class whose cost is at least of order κ^{2/3}.</p><div class="sum-table"><table><thead><tr><th>Law of τ</th><th>E[τ]</th><th>Re ρ̂ bound</th></tr></thead><tbody><tr><td>Uniform on [0,2/√m]</td><td>1/√m</td><td>≤ 1/4</td></tr><tr><td>Exponential</td><td>1/√m</td><td>≤ 1/5</td></tr><tr><td>Decreasing triangular on [0,4/√m]</td><td>4/(3√m)</td><td>≤ 1/16</td></tr></tbody></table><div class="tbl-cap">Example non-resonant duration laws</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
