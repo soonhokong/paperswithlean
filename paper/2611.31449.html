@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CrossCheck II: A Compiler Plugin for Certified Cost Bounds of Real-Time C and C++ Code, and its Evaluation · Papers With Lean</title>
+<meta name="description" content="We describe a plugin for the Clang compiler that bounds the cost of C and C++ functions intended for real-time use, and rejects at compile time the functions that allocate, throw, call through pointers, or contain a loop or a recursion for which no bound is found. Loops are…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CrossCheck II: A Compiler Plugin for Certified Cost Bounds of Real-Time C and C++ Code, and its Evaluation">
+<meta property="og:description" content="We describe a plugin for the Clang compiler that bounds the cost of C and C++ functions intended for real-time use, and rejects at compile time the functions that allocate, throw, call through pointers, or contain a loop or a recursion for which no bound is found. Loops are…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.31449.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.31449.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.31449v1" target="_blank" rel="noopener"><img src="../thumbs/2611.31449.jpg" alt="First page of CrossCheck II: A Compiler Plugin for Certified Cost Bounds of Real-Time C and C++ Code, and its Evaluation"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">CrossCheck II: A Compiler Plugin for Certified Cost Bounds of Real-Time C and C++ Code, and its Evaluation</h1>
+        <p class="authors">Luca Dall&#x27;Olio</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Nov 23, 2026 · v1</span>
+          <span class="badge">cs.PL</span> <span class="badge">cs.SE</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.31449v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.31449" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/ldallolio/crosscheck" target="_blank" rel="noopener" title="ldallolio/crosscheck">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Cost certificates emitted by a Clang plugin are validated by a checker compiled from a Lean 4 definition proved sound, with mini-C semantics defined in Lean.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We describe a plugin for the Clang compiler that bounds the cost of C and C++ functions intended for real-time use, and rejects at compile time the functions that allocate, throw, call through pointers, or contain a loop or a recursion for which no bound is found. Loops are bounded by affine ranking potentials synthesized with an SMT solver through Farkas&#x27; Lemma, or by logarithmic ones, recursion by depth and size potentials, and callees are analyzed in the calling context in which they are used. For functions in a linear fragment, the plugin emits a cost certificate that a checker, compiled from a Lean 4 definition proved sound in a companion paper, validates with integer arithmetic only; the bound then depends neither on the analyzer nor on the solver. On the 29 kernels of the TACLeBench collection, without annotations, the plugin bounds 142 of 220 loops in the calling contexts of the programs, 131 of them exactly as the benchmarks&#x27; flow facts, and 161 of the 165 bounded functions receive a certificate that the checker accepts, 152 of them also validated against an independent description of the source. On the CMSIS-DSP library for Cortex-M (786 functions), with assumed input ranges, it bounds 616 functions. We compare the loop bounds with loop counts observed by running the kernels and with five existing analyzers (LLVM&#x27;s ScalarEvolution, KoAT2, CoFloCo, Infer and oRange), and the plugin with KoAT2 and CoFloCo on the C programs of the Termination and Complexity Competition: without annotations, 147 of 553 programs receive a certified bound that holds for all inputs, where the two tools bound 288 and 264. Loop bounds, exported annotations and the checker program are also tested on random programs and on mutated certificates.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Hard real-time C/C++ code needs bounds on loops and recursion, which are usually written by hand. Compilers do not check such bounds at compile time.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A Clang plugin rejects real-time functions that allocate, throw, call through pointers, or contain unbounded loops or recursion. Loops are bounded by affine ranking potentials synthesized with an SMT solver via Farkas&#x27; Lemma, or by logarithmic potentials, and recursion by depth and size potentials. For a linear fragment the plugin emits cost certificates, which a checker compiled from a Lean 4 definition proved sound validates using integer arithmetic only. A mini-C export, whose semantics is defined in Lean, enables translation validation against the source.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On the 29 TACLeBench kernels the plugin bounds 142 of 220 loops in calling context, 131 of them exactly matching the benchmarks&#x27; flow facts. 161 of the 165 bounded functions receive certificates the checker accepts, and 616 of 786 CMSIS-DSP functions are bounded. On TermComp C programs it certifies 147 of 553, fewer than KoAT2 (288) and CoFloCo (264).</p><div class="sum-table"><table><thead><tr><th></th><th>CrossCheck</th><th>KoAT2</th><th>CoFloCo</th><th>Infer</th></tr></thead><tbody><tr><td>29 entry functions, numeric</td><td>12</td><td>5</td><td>8</td><td>14</td></tr><tr><td>29 entry functions, symbolic</td><td>0</td><td>5</td><td>0</td><td>2</td></tr><tr><td>all 267: numeric / symbolic</td><td>165 / 0</td><td>119 / 23</td><td>128 / 11</td><td>190 / 14</td></tr></tbody></table><div class="tbl-cap">Functions bounded (TACLeBench)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

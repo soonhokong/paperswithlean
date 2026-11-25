@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>An Order-Optimal Square-Root Bound for Online Maximin Share Allocation with Known Types · Papers With Lean</title>
+<meta name="description" content="An allocator knows the indivisible goods, the number $n$ of agents, and the $k$ possible additive valuations. Each agent reveals their type on arrival and must immediately receive an irrevocable bundle. Kulkarni, Mehta, and Shahkar established a deterministic guarantee of $1/k$…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="An Order-Optimal Square-Root Bound for Online Maximin Share Allocation with Known Types">
+<meta property="og:description" content="An allocator knows the indivisible goods, the number $n$ of agents, and the $k$ possible additive valuations. Each agent reveals their type on arrival and must immediately receive an irrevocable bundle. Kulkarni, Mehta, and Shahkar established a deterministic guarantee of $1/k$…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.31732.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.31732.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.31732v1" target="_blank" rel="noopener"><img src="../thumbs/2611.31732.jpg" alt="First page of An Order-Optimal Square-Root Bound for Online Maximin Share Allocation with Known Types"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">An Order-Optimal Square-Root Bound for Online Maximin Share Allocation with Known Types</h1>
+        <p class="authors">Zheyu Zhou</p>
+        <div class="row">
+          <span class="badge">cs.DS</span>
+          <span class="date">Nov 24, 2026 · v1</span>
+          <span class="badge">cs.GT</span> <span class="badge">math.OC</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-lime" href="../#tag=economics">economics</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.31732v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.31732" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/EsperZhou/online-mms-lean" target="_blank" rel="noopener" title="EsperZhou/online-mms-lean">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">The paper&#x27;s numbered results, including the Θ(k^{-1/2}) guarantee and the antichain enumeration, are formalized in Lean 4.19 with Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">An allocator knows the indivisible goods, the number $n$ of agents, and the $k$ possible additive valuations. Each agent reveals their type on arrival and must immediately receive an irrevocable bundle. Kulkarni, Mehta, and Shahkar established a deterministic guarantee of $1/k$ of maximin share (MMS) and an upper bound of $2/(\sqrt{k}-2)$ for $k&gt;4$. We determine the optimal order $Θ(k^{-1/2})$ by constructing a deterministic polynomial-time algorithm, Single-or-Select. On every arrival sequence, it gives each agent a fraction $(1/\sqrt{2}-o(1))/\sqrt{k}$ of their truncated proportional share. This share dominates MMS and is the largest target $y$ for which the item values capped at $y$ sum to at least $ny$. By specializing the construction of Kulkarni et al. to two arrivals and counting its types exactly, we sharpen the upper bound to $(\sqrt{2}+o(1))/\sqrt{k}$ even for binary valuations. For two arrivals with binary valuations and every $k\ge2$, the optimal fraction is $1/p$, where $p$ is the largest integer with $1+\binom{2p}{2}\le k$. In particular, up to six binary types permit full maximin share. For two arbitrary additive types, a different polynomial-time algorithm guarantees $4/7$ of maximin share for any number of agents. This ratio is tight for the algorithm. With three arrivals and two types, the optimal deterministic fraction is exactly $9/10$. For randomized policies with $k$ known additive types, the optimal MMS fraction guaranteed to all agents with probability at least $1-δ$ on every fixed arrival sequence is $Θ(\max\{k^{-1/2},\sqrtδ\})$ for $0\leδ&lt;1$.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">In online allocation of indivisible goods with k known additive valuation types, each arriving agent must immediately receive an irrevocable bundle. Prior work gave a 1/k maximin share (MMS) guarantee and an upper bound of 2/(√k−2), which left the optimal order open.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">A deterministic polynomial-time algorithm, Single-or-Select, adapts the bucketing strategy of Chawla et al. It chooses goods deterministically rather than by random sampling, so that the value available to every possible future type is preserved, and it measures guarantees against the truncated proportional share. Upper bounds come from exactly counting the types in Kulkarni et al.&#x27;s pair construction for two arrivals. Separate algorithms handle the binary and two-type cases. The results are formalized in Lean 4 with Mathlib, and the kernel also checks the finite enumeration of 7,581 antichains.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The optimal fraction is Θ(k^{-1/2}): Single-or-Select achieves (1/√2−o(1))/√k and the upper bound is (√2+o(1))/√k. For two binary arrivals the optimal fraction is exactly 1/p, two additive types admit a 4/7 MMS guarantee, the three-agent two-type optimum is 9/10, and randomized policies achieve Θ(max{k^{-1/2},√δ}).</p><div class="sum-table"><table><thead><tr><th>Valuations</th><th>Agents</th><th>Lower bound</th><th>Upper bound</th></tr></thead><tbody><tr><td>k additive types</td><td>any n</td><td>(1/√2−o(1))/√k</td><td>(√2+o(1))/√k</td></tr><tr><td>k≥2 binary types</td><td>n=2</td><td>1/p</td><td>1/p</td></tr><tr><td>Two additive types</td><td>any n</td><td>4/7</td><td>9/10</td></tr></tbody></table><div class="tbl-cap">Summary of bounds</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

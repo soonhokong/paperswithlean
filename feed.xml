@@ -8,6 +8,127 @@
     <language>en</language>
     <lastBuildDate>Tue, 24 Nov 2026 00:00:00 +0000</lastBuildDate>
     <item>
+      <title>How Far Apart Are Two Proofs? Measuring Proof Dissimilarity in a Proof Kernel and in Lean/Mathlib</title>
+      <link>https://paperswithlean.com/paper/2611.31811.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.31811.html</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Nikolaos Nikolaou</dc:creator>
+      <category>meta-study</category><category>mathlib</category><category>tooling</category><category>logic</category>
+      <description>Writes 19 Lean 4/Mathlib proofs of three theorems and automatically extracts 18 dissimilarity measures from their elaborated terms and dependencies.
+
+We now live in the age of machine-generated mathematics: AI systems produce research-level proofs faster than the human mathematical community can read them. Verification is only part of the challenge. We also need to know whether a &quot;new proof&quot; is indeed new, whether a thousand generated proofs contain one idea or many, and where each sits relative to human mathematics. All of these require measuring distances between proofs. Following Hilbert&#x27;s 24th problem and the identity-of-proofs problem, we ask how far apart two proofs of one theorem are, and what shape the proof space they inhabit has. We define 19 dissimilarity measures in 6 families (syntactic, structural, dependency &amp; resource, semantic, information-theoretic, higher-categorical) and 10 desirable properties, which we argue are the conditions for safely optimising a measure. In a Curry-Howard kernel, 5 machine-checked proofs that the primes are infinite show that raw syntax cannot tell a rewrite from a new argument, that dependency-based and structural measures reproduce the intuitive ordering (Euclid rewritten &lt; Goldbach &lt; Furstenberg), and that semantic measures invert it: Furstenberg&#x27;s topological proof produces exactly Euclid&#x27;s witness. A replication in Lean 4/Mathlib (3 theorems, 19 proofs, 18 measures) confirms that dependency-closure measures track intuition best, and shows that equality of normal forms never holds between differently written versions of the same argument, that proofs by citation look unlike the arguments they cite, and that proof irrelevance cannot distinguish any two proofs. We argue for reporting dissimilarity as a multi-level profile, extend the measures to proofs of different theorems, and discuss uses, from detecting duplicated AI proofs and orchestrating prover agents to interpreting AI proofs via their nearest human-understandable counterparts. Code, Lean sources and data are released.</description>
+    </item>
+    <item>
+      <title>Defining the mathematical family tree with a minimal programming language</title>
+      <link>https://paperswithlean.com/paper/2611.31775.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.31775.html</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Max Tegmark</dc:creator>
+      <category>formalization</category><category>verification</category><category>mathlib</category><category>logic</category>
+      <description>Definitions, key theorems, and model relations of a family tree of mathematical theories, plus the correctness of the MLISP language, are verified in Lean.
+
+I introduce MLISP, a Turing-complete language with nine single-character commands (a b c d f 0 i j k), and use it to define 88 mathematical structures and a family tree of 65 theories that they model, with three aims: Pedagogy: It presents the mathematical structures in a unified way, with standardized presentation tableaus that define them and axiomatized theories that describe them. Connections: It highlights how they are related in the family tree via added symbols, axioms, etc. While the full tree is obviously infinite, its lower parts naturally separate into six main branches: the relational branch, the algebraic branch, the logic branch, the number branch, the set branch and the continuum branch. Foundations: The definitions, key theorems and models of each entry are verified in Lean. Mathematical structures are defined as equivalence classes of presentations, which in a constructivist spirit are defined in a simple, explicit and self-contained way in standardized presentation tableaus with minimal human baggage. For finite structures, the generating functions are defined by lookup tables. For countably infinite ones, they are instead defined computationally using MLISP, since more complex languages such as Lean are massive overkill for rigorously defining standard arithmetic operations (for example, the program &quot;jibjbfid&quot; defines subtraction). An interactive version is available at https://tegmark.org/mathtree. The Lean code is public, also verifies the correctness of MLISP and includes 43% of the theorems from Mathlib 2026-10-11. \end{abstract}</description>
+    </item>
+    <item>
+      <title>Verified Proof Refactoring with Codex and Qwen</title>
+      <link>https://paperswithlean.com/paper/2611.31762.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.31762.html</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Lazar Milikic, Gordan Đurić, Viktor Kunčak</dc:creator>
+      <category>theorem-proving-ml</category><category>ai-agents</category><category>tooling</category>
+      <description>An LLM agent refactors existing Lean 4 proofs to shorten them and cut checking cost; every replacement is accepted only if Lean verifies it on all required versions.
+
+We refactor existing Lean 4 proofs to reduce source length and checking cost while preserving theorem statements and compatibility across Lean versions. A locally served Qwen model uses the open-source Codex CLI to inspect source, retrieve declarations, and test proof replacements. The host keeps a replacement only if it improves the objective and Lean accepts it on every required version. A deterministic CPU pass then refines the verified proofs. On the 60 problems in Lean Refactor Arena, model search achieves a local mean combined score of 82.07, and cleanup raises it to 82.18. The final proofs pass all 127 required proof–version checks. Our system placed first in the open-source LLM track of Lean Refactor Arena at VeriCodeGen.</description>
+    </item>
+    <item>
+      <title>The VC-Dimension of Visibility in Simple Polygons Is Six</title>
+      <link>https://paperswithlean.com/paper/2611.31760.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.31760.html</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Dror Aiger, Sariel Har-Peled</dc:creator>
+      <category>formalization</category><category>verification</category><category>geometry</category><category>combinatorics</category>
+      <description>A Lean 4/Mathlib development verifies the VC-dimension upper bound against an axiomatic polygon interface, using geometric lemmas plus a RUP checker proved sound in Lean.
+
+Six targets in a simple polygon can be placed so that, for every subset of the targets, some point in the polygon sees precisely that subset—that is, the polygon shatters the six targets. We prove that no simple polygon shatters seven targets. Together with Valtr&#x27;s six-target construction, this determines the maximum visibility VC-dimension of a simple polygon to be six (even when the targets must lie in strictly convex position) and improves the previous upper bound of $14$ due to Gilbers and Klein. To rule out a shattered set of seven targets, we classify its convex-hull structure into $74$ cases. In each case, the absence of holes in the polygon forces visibility relations that we encode as Boolean constraints on links and triple orientations. Independently checkable SAT refutations exclude all $74$ cases. The upper-bound proof was derived using AI. A separate Lean 4 formalization independently verifies the upper bound against an axiomatic interface for simple polygons.</description>
+    </item>
+    <item>
+      <title>Density elimination for weakly commutative pseudo-uninorm logic:a correction and an explicit theory-level completeness proof</title>
+      <link>https://paperswithlean.com/paper/2611.31751.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.31751.html</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>SanMin Wang</dc:creator>
+      <category>formalization</category><category>logic</category>
+      <description>The paper&#x27;s main results on density elimination and standard completeness for pseudo-uninorm logic are formally verified in Lean 4, released as the GpsUL-1.0.0 artifact.
+
+We correct the density-elimination argument for weakly commutative pseudo-uninorm logic in Wang, Symmetry 11 (2019), 368, retaining its basic ideas and overall strategy. The published definition of a labelled copy permits independent renamings of antecedent and succedent labels. Under the syntactic splicing interpretation used in that argument, a contraction-free derivable hypersequent and a four-element residuated chain refute the claimed compatibility of the resulting contraction with ordered density elimination. We require a single renaming on both sides of each closed block and prove that the linear rules and coherent closed-block contraction preserve provability of every member of the associated Cartesian families. An occurrence-based separation argument, together with normalization to cuts on the monoidal unit, establishes strong density elimination. We then derive standard completeness from density, retaining the original conclusion for formula theorems. For an explicit Hilbert presentation with independent conjugation parameters, we give a direct relative chain-countermodel proof for arbitrary theories in a countable language. Combined with the full bounded embedding of Wang (2026), this recovers the corresponding strong standard completeness result already stated there. The distinguished constant $f$, when present, is interpreted independently of the monoidal unit and the lattice bounds. The main results of this paper have been formally verified in Lean 4.</description>
+    </item>
+    <item>
+      <title>An Order-Optimal Square-Root Bound for Online Maximin Share Allocation with Known Types</title>
+      <link>https://paperswithlean.com/paper/2611.31732.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.31732.html</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Zheyu Zhou</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>economics</category><category>combinatorics</category>
+      <description>The paper&#x27;s numbered results, including the Θ(k^{-1/2}) guarantee and the antichain enumeration, are formalized in Lean 4.19 with Mathlib.
+
+An allocator knows the indivisible goods, the number $n$ of agents, and the $k$ possible additive valuations. Each agent reveals their type on arrival and must immediately receive an irrevocable bundle. Kulkarni, Mehta, and Shahkar established a deterministic guarantee of $1/k$ of maximin share (MMS) and an upper bound of $2/(\sqrt{k}-2)$ for $k&gt;4$. We determine the optimal order $Θ(k^{-1/2})$ by constructing a deterministic polynomial-time algorithm, Single-or-Select. On every arrival sequence, it gives each agent a fraction $(1/\sqrt{2}-o(1))/\sqrt{k}$ of their truncated proportional share. This share dominates MMS and is the largest target $y$ for which the item values capped at $y$ sum to at least $ny$. By specializing the construction of Kulkarni et al. to two arrivals and counting its types exactly, we sharpen the upper bound to $(\sqrt{2}+o(1))/\sqrt{k}$ even for binary valuations. For two arrivals with binary valuations and every $k\ge2$, the optimal fraction is $1/p$, where $p$ is the largest integer with $1+\binom{2p}{2}\le k$. In particular, up to six binary types permit full maximin share. For two arbitrary additive types, a different polynomial-time algorithm guarantees $4/7$ of maximin share for any number of agents. This ratio is tight for the algorithm. With three arrivals and two types, the optimal deterministic fraction is exactly $9/10$. For randomized policies with $k$ known additive types, the optimal MMS fraction guaranteed to all agents with probability at least $1-δ$ on every fixed arrival sequence is $Θ(\max\{k^{-1/2},\sqrtδ\})$ for $0\leδ&lt;1$.</description>
+    </item>
+    <item>
+      <title>Safe Autoformalization: Sufficiency and Necessity with Entailment Graphs</title>
+      <link>https://paperswithlean.com/paper/2611.31571.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.31571.html</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Umut A. Acar, Eli Goldweber</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>autoformalization</category><category>logic</category>
+      <description>All theorems about entailment-graph search, frontiers, and ambiguity residue are machine-checked in Lean 4 with Mathlib over an arbitrary Boolean algebra.
+
+Autoformalization translates a natural-language statement into a formula that captures its intent, which depends on the statement&#x27;s context: the background that disambiguates it. LLMs make autoformalization practical, but their probabilistic output carries no formal guarantees. We propose techniques for safe autoformalization that certify one-sided logical adequacy: a formula sufficient for the intent is safe to enforce, and a formula necessary for it is safe to rely on. We use LLMs to generate candidate formulas and order them by logical strength in an Entailment Graph (EG), an ordering a solver decides. Each edge carries a residual and a co-residual, the two adjoints of the entailment order, all fixed by the candidate pool alone. In a context, two searches return the sufficient frontier, the weakest candidates that entail the statement, and the necessary frontier, the strongest candidates the statement entails; each step is one local check against an edge&#x27;s residual or co-residual. The frontiers bracket the statement and yield the ambiguity residue, which holds exactly of the situations the candidates certify neither as satisfying nor as violating it; the statement is ambiguous precisely when the residue is satisfiable. For natural-language statements and contexts, an LLM entailment oracle decides the checks; it is sound if it accepts only checks that hold, and complete if it accepts every check that holds. We prove that a sound oracle makes the search safe regardless of pool quality, and that a complete one makes the frontiers tight. On security-critical AWS properties, EGs are safe in all 20 cases of an expert-adjudicated study, where majority vote over equivalence clusters and Universal Self-Consistency are unsafe in 25% and 10%. An ablation with the same oracle but no graph is unsafe in 25% and rejects every candidate in another 30%. We machine-checked our proofs in Lean.</description>
+    </item>
+    <item>
+      <title>A Hereditarily Atomic Domain without ACCP</title>
+      <link>https://paperswithlean.com/paper/2611.31549.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.31549.html</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Matthew Toeniskoetter</dc:creator>
+      <category>formalization</category><category>algebra</category>
+      <description>The main theorems (a hereditarily atomic domain failing ACCP) and several variations are formalized in a companion Lean 4 library on GitHub.
+
+An integral domain for which every subring is atomic is said to be hereditarily atomic. Every hereditarily atomic cancellative commutative monoid satisfies the ascending chain condition on principal ideals (ACCP), but it remained an open question whether every hereditarily atomic domain satisfies ACCP. We construct a hereditarily atomic domain which does not satisfy ACCP, answering this question in the negative. This domain is an overring of the ring of integer-valued polynomials $Int(\mathbb{Z})$, and its subrings that fail ACCP are precisely those of finite additive index.</description>
+    </item>
+    <item>
+      <title>CrossCheck II: A Compiler Plugin for Certified Cost Bounds of Real-Time C and C++ Code, and its Evaluation</title>
+      <link>https://paperswithlean.com/paper/2611.31449.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.31449.html</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Luca Dall&#x27;Olio</dc:creator>
+      <category>verification</category><category>tooling</category>
+      <description>Cost certificates emitted by a Clang plugin are validated by a checker compiled from a Lean 4 definition proved sound, with mini-C semantics defined in Lean.
+
+We describe a plugin for the Clang compiler that bounds the cost of C and C++ functions intended for real-time use, and rejects at compile time the functions that allocate, throw, call through pointers, or contain a loop or a recursion for which no bound is found. Loops are bounded by affine ranking potentials synthesized with an SMT solver through Farkas&#x27; Lemma, or by logarithmic ones, recursion by depth and size potentials, and callees are analyzed in the calling context in which they are used. For functions in a linear fragment, the plugin emits a cost certificate that a checker, compiled from a Lean 4 definition proved sound in a companion paper, validates with integer arithmetic only; the bound then depends neither on the analyzer nor on the solver. On the 29 kernels of the TACLeBench collection, without annotations, the plugin bounds 142 of 220 loops in the calling contexts of the programs, 131 of them exactly as the benchmarks&#x27; flow facts, and 161 of the 165 bounded functions receive a certificate that the checker accepts, 152 of them also validated against an independent description of the source. On the CMSIS-DSP library for Cortex-M (786 functions), with assumed input ranges, it bounds 616 functions. We compare the loop bounds with loop counts observed by running the kernels and with five existing analyzers (LLVM&#x27;s ScalarEvolution, KoAT2, CoFloCo, Infer and oRange), and the plugin with KoAT2 and CoFloCo on the C programs of the Termination and Complexity Competition: without annotations, 147 of 553 programs receive a certified bound that holds for all inputs, where the two tools bound 288 and 264. Loop bounds, exported annotations and the checker program are also tested on random programs and on mutated certificates.</description>
+    </item>
+    <item>
+      <title>CrossCheck I: Cost Bounds of Imperative Programs as Constrained Optimization, with a Sound Cost Logic and a Verified Certificate Checker</title>
+      <link>https://paperswithlean.com/paper/2611.31430.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.31430.html</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Luca Dall&#x27;Olio</dc:creator>
+      <category>verification</category><category>formalization</category><category>mathlib</category><category>logic</category>
+      <description>Mechanizes the trace semantics, sound cost logic, and integer-arithmetic certificate checker in about 11,000 lines of Lean 4 over mathlib, with no sorry.
+
+Static analysis of imperative programs often relies on iterative fixed-point approximations or concrete path exploration. We show that structured imperative control flow—while loops, linear recursion and branching recursion—can be mapped into constrained optimization problems over the free monoid of execution traces and the free algebra of computation trees. Ordering traces and trees by an intensional order-by-composition ($\sqsubseteq$), halting is characterized as finding the minimal trace or tree that satisfies the exit condition, and we prove that this characterization coincides with the standard big-step semantics. Exact state recurrences are undecidable in general, so we relax them into cost envelopes, using ranking potentials and the tropical $(\max,+)$ reading of the timing schema, and obtain sound upper bounds on execution cost. The bounds compose over whole programs in a cost logic for a small language with nondeterministic actions, procedures, recursion and assumed contracts, which we prove sound for terminating and non-terminating executions. A linear instance of the logic has certificates—programs annotated with invariants, potentials and Farkas multipliers—and a checker that validates them with integer arithmetic only; an accepted certificate bounds the cost of every execution. All results, the checker and the worked examples are machine-checked in Lean 4. A companion paper describes a Clang plugin that produces such certificates and its evaluation.</description>
+    </item>
+    <item>
+      <title>Quadratic periods after adjoining one move to a fixed subtraction game</title>
+      <link>https://paperswithlean.com/paper/2611.31336.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.31336.html</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Yuwen Pan</dc:creator>
+      <category>formalization</category><category>combinatorics</category>
+      <description>Formalizes in Lean 4 the complete classification of periods and preperiods for subtraction game {3,6,17} plus one move, and Theorem 11.
+
+Zhang conjectured that adjoining one move $c$ to a fixed subtraction set $S$ gives a Grundy sequence whose least preperiod and period are both $O_S(c)$. For every $q=20+9s$ with $s\ge0$, take $S=\{3,6,q-3\}$. Along $c=qk+1$ with $k\ge2$, the Grundy and win/loss sequences are periodic from heap zero with common least period $(k+2)(c+6)-11$, asymptotic to $c^2/q$. For $\{3,6,17\}$ we determine both least periods and preperiods for every positive $c$ and verify the complete table in Lean. Fixed bases with the same entire Grundy sequence realize infinitely many distinct positive quadratic coefficients for the augmented period. A second fixed triple gives a quadratic Grundy preperiod while the win/loss sequence repeats from heap zero. A third has a quadratic Grundy period but only a linear win/loss period. For an arbitrary fixed $S$, a linear bound on both Grundy invariants implies eventual affine formulas with integer coefficients on residue classes. The same finite-state method extends four numerical tables of Zhang. We also give the entire augmented sequence for $c&gt;\max S$ when the losing heaps of $S$ are exactly the multiples of a fixed integer.</description>
+    </item>
+    <item>
       <title>Geometry, Reliability, and Spacetime Dynamics of Hyper-Simplex Fractal Networks</title>
       <link>https://paperswithlean.com/paper/2611.31161.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2611.31161.html</guid>
@@ -39,6 +160,28 @@ Circuit theory provides the mathematical foundation for the analysis and design 
       <description>Main theorem (2n+2 EPR pairs suffice for f-routing) is formalized in Lean using only standard axioms; code on GitHub, written by an AI model.
 
 In $f$-routing, Alice receives an $n$-bit string $x$ and an unknown qubit, and Bob receives an $n$-bit string $y$. They share a state prepared in advance and exchange one simultaneous message each. The party selected by the Boolean function $f(x,y)$ must then recover the unknown qubit without further communication. To perform $f$-routing successfully, Alice and Bob need to share entanglement that scales with $n$ for some functions $f$, but the lower and upper bounds for the entanglement are not tight. This paper shows that $2n+2$ shared EPR pairs suffice for every function $f$. The best previous bound that holds for all functions is a shared state of $2^{O(\sqrt{n\log n})}$ qubits. The new strategy moves the cost from the shared state to the messages: Alice sends an exponentially long message of $2^{n+1}+1$ qubits, while Bob sends only classical bits. When the messages are counted towards the resources as well, the previous strategy remains the cheapest known. The result also limits lower bounds that count only the shared state: they cannot exceed a linear number of EPR pairs. The result is formalized in Lean.</description>
+    </item>
+    <item>
+      <title>Sharpness of the Martin-O&#x27;Bryant autoconvolution inequality</title>
+      <link>https://paperswithlean.com/paper/2611.12685.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.12685.html</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Tonći Crmarić, Vjekoslav Kovač, Jelena Rupčić</dc:creator>
+      <category>formalization</category><category>mathlib</category><category>analysis</category>
+      <description>Theorem 1, that the autoconvolution ratio supremum equals 1, was formally verified in Lean 4 with Mathlib; the formal proof was produced with ChatGPT.
+
+We show that there does not exist a constant $c&lt;1$ such that ${\lVert f\ast f\rVert}_{L^{2}}^2\le c\,{\lVert f\ast f\rVert}_{L^{1}}{\lVert f\ast f\rVert}_{L^{\infty}}$ holds for every nonnegative $f\in L^1(\mathbb{R})\cap L^2(\mathbb{R})$.</description>
+    </item>
+    <item>
+      <title>The Algebraic Landscape of Kochen-Specker Sets in Dimension Three</title>
+      <link>https://paperswithlean.com/paper/2603.16988.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2603.16988.html</guid>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Michael Kernaghan</dc:creator>
+      <category>formalization</category><category>verification</category><category>quantum</category><category>mathlib</category>
+      <description>Lean 4 with Mathlib kernel-checks the roots-of-unity uncolorability theorem, the 45-word circle uncolorability, and minimum KS subset sizes for six pools.
+
+The classic three-dimensional Kochen-Specker (KS) proofs take their ray coordinates from a small set of numbers: {0, +-1, +-sqrt(2)} for the 33 rays of Peres and {0, +-1, +-2} for the 31 rays of Conway and Kochen. We treat that set, the coordinate alphabet, as a parameter. An alphabet generates a finite pool of rays, and the pool is or is not KS-uncolorable. We determine the uncolorable alphabets in four families. (A) Two-symbol alphabets {0, +-1, +-x}, x complex: uncolorable only when x or 1/x is +-2, +-sqrt(2), +-sqrt(-2), or x is a primitive third or sixth root of unity; no KS set with such coordinates has fewer than 31 rays. (B) Real three-symbol alphabets {0, +-1, +-x, +-y} with 1 &lt; x &lt; y: uncolorable exactly when two letters have ratio 2 or sqrt(2), or at eight further points; again no KS set has fewer than 31 rays. (C) Conjugate-closed alphabets {0, +-1, +-x, +-x*}: uncolorable exactly when |x|^2 = 2, or |x|^2 = 1/2, or x*/x is a primitive third or sixth root of unity, or x is +-2 or +-1/2. The uncolorable alphabets are therefore not isolated. On the circle |x|^2 = 2 a fixed list of 45 words is uncolorable at every point, and no shorter fixed list is; the circle |x|^2 = 1/2 carries the 33-ray family of Gould and Aravind. (D) The pool of 0 and the n-th roots of unity is uncolorable if and only if 6 divides n. Minimum KS subsets are certified by exact computation for eleven named pools. The Lean proof assistant checks (D) for n &gt;= 3, the uncolorability of the 45 words at every point of the circle, and the minima 31, 33, 33, 33, 43 and 47 of six pools. This version replaces the classification by &quot;cancellation mechanisms&quot; and &quot;islands&quot; proposed in versions 1-9, which did not survive checking; an appendix lists the withdrawn claims, among them a golden-ratio minimum of 52 (a 51-ray set exists).</description>
     </item>
     <item>
       <title>A $(17/7-o(1))n$ Circuit Lower Bound for Binary-Encoded 3-SAT</title>
@@ -523,149 +666,6 @@ For marked Whitehead doubles of torus knots with coprime parameters $2\le r&lt;s
       <description>Proof of Stafford&#x27;s conjecture, including Gabber&#x27;s involutivity theorem and further generalizations, is fully formalized in Lean 4 with archived sources.
 
 We prove that over a Weyl algebra over a field of characteristic zero $A_n(k)$, every nonzero $d\in A_n(k)$ admits $F,R,S\in A_n(k)$ such that $1=dR+FdS$, a conjecture Stafford proposed in 1978. As a consequence, every finitely generated torsion right $A_n(k)$-module is cyclic. The proof maps $d$, by a symplectic change of variables, to a normal form $\tilde d$ and shows that the cyclic module $Q=A_n(k)/(\tilde dA_n(k)+x_1^N\tilde dA_n(k))$ vanishes. We first show that right multiplication by $x_1$ is surjective on $Q$. A comparison of lengths of localized modules over the associated graded ring then gives $\operatorname{gr}Q=x_1\operatorname{gr}Q$, so that the characteristic variety of $Q$ is disjoint from the hyperplane $\{x_1=0\}$. Finally, Gabber&#x27;s involutivity theorem together with an argument about conormal directions at infinity from algebraic geometry shows that such a characteristic variety must be empty and therefore, $Q = 0$.</description>
-    </item>
-    <item>
-      <title>Free Products of Vector Lattices</title>
-      <link>https://paperswithlean.com/paper/2611.24528.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.24528.html</guid>
-      <pubDate>Sun, 22 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Gonzalo Martínez-Fernández, Pedro Tradacete</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>analysis</category><category>algebra</category>
-      <description>All numbered results and definitions are formalized in Lean 4 with Mathlib and a Banach lattice library, each statement linked to its Lean declaration.
-
-We study free products of vector lattices and their relation to free products of Banach lattices. We characterize the Archimedean vector lattices whose vector lattice free product with every Archimedean vector lattice is again Archimedean: these are precisely those whose finitely generated sublattices are projective. For finitely generated lattices, this connects the free-product property with polyhedral geometry through Baker–Beynon duality. We also show that the Banach lattice free product is the completion of the Archimedean vector lattice free product under the largest lattice norm making the canonical maps contractive. For finitely many factors, the Archimedean vector lattice free product is order dense in the Banach lattice free product. Moreover, it is shown that bounded families of injective lattice homomorphisms also induce injective homomorphisms between Banach lattice free products. Finally, in analogy with the theory of separably injective Banach lattices, we study relative injectivity and universal disposition for the class of vector lattices with countably many proper prime ideals. Every vector lattice embeds into one of universal disposition for this class, while ordered ultrapowers of the real line provide relatively injective examples of cardinality continuum.</description>
-    </item>
-    <item>
-      <title>Scalable Non-Parametric Bayesian Inference of Free Energy Landscapes and Emission Functions from Observations</title>
-      <link>https://paperswithlean.com/paper/2611.24678.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.24678.html</guid>
-      <pubDate>Sat, 21 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Eliane Briand, Helmut Grubmüller</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>probability</category>
-      <description>Partially formalizes the convergence proof of the parallel-in-time filtering algorithm in Lean 4/Mathlib, assuming missing pieces such as Birkhoff contraction and SDE theory as hypotheses.
-
-Free-energy landscapes govern processes from protein conformational change to climate oscillations, but are typically observed only indirectly, through observables such as FRET intensity or optical-tweezer transmittance. Neither the landscape shape, nor the emission function mapping latent state to signal, is usually known, and distinct states may produce the same signal. We therefore infer landscape and emission function jointly and non-parametrically, using the exact non-linear Bayesian filtering likelihood, to fully use the information contained in observable trajectories that are often noisy, scarce and costly to acquire. A novel parallel-in-time algorithm makes this tractable: it is up to 27 times faster than sequential filtering on one GPU, scales near-ideally across GPUs, and, given enough resources, has runtime independent of trajectory length. We demonstrate the method on a single-protein optical tweezer recording, where distinct conformations produce the same signal, and beyond biology on the El Nino-Southern Oscillation and financial market volatility.</description>
-    </item>
-    <item>
-      <title>First Order Geometry of Equilateral Small Polygons</title>
-      <link>https://paperswithlean.com/paper/2611.23066.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.23066.html</guid>
-      <pubDate>Sat, 21 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>José Ayala Hoffmann, Tomás Ayala Coppola</dc:creator>
-      <category>formalization</category><category>verification</category><category>geometry</category>
-      <description>A Lean 4 formalisation in the ESP1 package verifies the strict local maximality criterion and the maximality results for A16, A32, A64, Z32 and Z64.
-
-We develop a first order calculus based on the geometry of realised diameter graphs for perimeter maximisation among convex equilateral small polygons. Polygon side equalities and active diameter constraints define a linearised feasible cone and an associated equality space. We prove that an equilateral small polygon is a strict local maximiser of perimeter modulo Euclidean motions if a multiplier balance holds with strictly positive active diameter multipliers and the active equality space consists only of infinitesimal Euclidean motions. The proof uses a local Euclidean slice and a geometric limiting argument and requires neither independence of the active constraint gradients nor second order information. As an application, we combine our criterion with validated interval arithmetic to establish strict local maximality for Bingane and Audet&#x27;s polygons $A_{16}$, $A_{32}$, $A_{64}$ and for reconstructions of their polygons $Z_{32}$ and $Z_{64}$. For each $n\in\{32,64\}$, the perimeter of $Z_n$ is strictly larger than that of $A_n$. Thus, strict local maximisers with different perimeters coexist in the space of convex equilateral small polygons with the same number of sides.</description>
-    </item>
-    <item>
-      <title>Convergence of a Parametric Symmetric Galerkin Boundary Element Method for the Mullins-Sekerka Flow</title>
-      <link>https://paperswithlean.com/paper/2611.22862.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.22862.html</guid>
-      <pubDate>Sat, 21 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Tokuhiro Eto</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>analysis</category>
-      <description>The main convergence theorem and principal auxiliary results are formalized in Lean 4 with Mathlib, archived on Zenodo, and built on a prior Lean formalization.
-
-We prove convergence of the fully discrete parametric scheme for the two-phase Mullins-Sekerka flow of a closed curve in the plane. The scheme combines piecewise linear parametric curves, a curvature discretization of Barrett–Garcke–Nürnberg type and a symmetric Galerkin boundary element approximation of the Dirichlet-to-Neumann map. For a smooth solution whose curves satisfy a capacity condition, a uniform parameter mesh of size $h$, a constant time step $τ$ and exact boundary element integrals, we show that the discrete curves stay regular and embedded, and that their distance to the exact curves in the topology $W^{1,\infty}$, after reparametrization by arclength, tends to zero in the first order of the time-step size $τ$ whenever the mesh size $h$ is bounded by $c_0τ^2$ for some $c_0$.</description>
-    </item>
-    <item>
-      <title>Obstructions to Hadamard Deformations of Fourier Matrices</title>
-      <link>https://paperswithlean.com/paper/2611.21871.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21871.html</guid>
-      <pubDate>Sat, 21 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Shuler Hopkins, Remus Nicoara</dc:creator>
-      <category>formalization</category><category>algebra</category>
-      <description>The authors state the manuscript&#x27;s results were formalized in Lean 4 with assistance from ChatGPT Astra; no Lean repository is cited.
-
-We study deformations of the Fourier spin model commuting square in the space of commuting squares, or equivalently deformations of the matrix $\sqrt nF_n$, where $F_n$ denotes the Fourier matrix, by complex Hadamard matrices. If $n$ is neither a prime power nor twice a prime, we show that there exist unit vectors in the enveloping tangent space that cannot be realized as directions of convergence of sequential deformations. Consequently, the derivative of any differentiable Hadamard family through $\sqrt nF_n$ has rank strictly smaller than the dimension of the enveloping tangent space at $\sqrt nF_n$ (i.e., the defect of $F_n$). This is particularly surprising because for every $n$ there exist enough one-parameter analytic families to provide a basis of directions in the enveloping tangent space. We obtain cubic obstructions when $n$ has at least three distinct prime divisors, quartic obstructions when it has exactly two and a repeated factor, and quintic obstructions when it is the product of two distinct odd primes. These results extend our order $30$ result from \cite{HN}.</description>
-    </item>
-    <item>
-      <title>Robust Passive Quantum Memory in Three Dimensions, Part I: Thermal and Zero-Temperature Perturbative Stability</title>
-      <link>https://paperswithlean.com/paper/2611.21749.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21749.html</guid>
-      <pubDate>Sat, 21 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Patrick Hayden</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>quantum</category>
-      <description>Core stability theorems are stated in Challenge.lean and machine-checked in Lean 4 with Mathlib, with a repository cross-referenced to the paper&#x27;s results.
-
-Whether a three-dimensional quantum many-body system with geometrically local, bounded-degree interactions can passively protect encoded quantum information has remained a central open question since Kitaev introduced topological quantum computation. Passive protection requires stability against both thermal noise at nonzero temperature and generic static Hamiltonian perturbations Balasubramanian, Davydova, and Lin (BDL) recently established unperturbed three-dimensional thermal self-correction using a recursively defined family of stabilizer Hamiltonians. However, they left open whether their construction remains stable against quantum perturbations, even at zero temperature. In this paper, we show that a slight variant of the BDL code family achieves stability along both boundary axes of the perturbation-temperature phase diagram as the system size grows. Following BDL, in the absence of perturbation it is thermally stable below a critical temperature, achieving a stretched-exponentially long memory lifetime when coupled to any local Markovian thermal bath generated by single-site system-bath interactions satisfying detailed balance with bounded coupling rates. At zero temperature under arbitrary weak, superpolynomially decaying quantum perturbations, the family maintains a uniform bulk spectral gap, superpolynomially small ground-space splitting, and a superpolynomially long closed-system unitary memory lifetime for quasi-locally dressed logical observables. To prove this zero-temperature stability, we establish local topological quantum order across the multiscale hierarchy using a linearly dilated relaxation of the usual Bravyi-Hastings-Michalakis criteria. In the companion paper, we combine the tools developed here with finite-temperature worldline cluster expansions to establish passive self-correction throughout the phase diagram&#x27;s positive-temperature perturbed interior.</description>
-    </item>
-    <item>
-      <title>FCP: Formal Context Protocol for Verifying LLM-Generated Artifacts</title>
-      <link>https://paperswithlean.com/paper/2611.21679.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21679.html</guid>
-      <pubDate>Sat, 21 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator> Shashank</dc:creator>
-      <category>verification</category><category>formalization</category><category>logic</category>
-      <description>Lean 4 proves the paper&#x27;s propositions and corollary (84 theorems) and provides a reference semantics checking the FCP-PL-to-monitor compiler registers.
-
-When a language model writes both an artifact and the tests meant to check it, a passing test is weak evidence: one misreading of the request yields a faulty artifact and a check that accepts it. We present the Formal Context Protocol (FCP), which checks AI-generated artifacts against the request itself. FCP separates conformance (does the artifact satisfy a formal reading of a requirement?), which model checkers and SMT solvers decide, from fidelity (does the reading mean what the prose means?), which has no decision procedure but is refutable by a concrete witness. Eight ways a proof can falsely certify a requirement each become a mechanical check that returns a witness, and what no machine can settle becomes concrete questions for the request&#x27;s author. Adapters place hardware, text, agents and code on the same engines. On four hardware designs, trusting AI-written assertions certified 23% of violated requirements, and FCP certified none. On ten code tasks, code from three language models passed its own tests and violated the request every time. Trusting the tests certified all 33 violations, and FCP certified three. Agreement among models, readings or tests did not imply correctness.</description>
-    </item>
-    <item>
-      <title>Counting formulas and refined generating functions for inversion-sequence Classes 152 and 207</title>
-      <link>https://paperswithlean.com/paper/2611.21657.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21657.html</guid>
-      <pubDate>Sat, 21 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Haobo Ma, Toufik Mansour, Wenlin Zhang</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>combinatorics</category>
-      <description>Results are machine-checked in Lean 4 with Mathlib, with pinned versions and a check command given in the supplementary material.
-
-For the two Class 152 pattern sets, we prove that the common number of inversion sequences of length \(n\geq 1\) is \(a_n=1+\sum_{j=1}^{n-1}\binom{2j}{j}\). The Class 152 proof uses first-descent and last-zero decompositions, with weighted Dyck paths evaluating the resulting generating functions. For Class 207, we prove equality of the three total-count series and give their common generating function as an explicit Lambert-series expression after the substitution \(z=q/(1+q)^2\). Complete legal-site and catalytic recurrences lead to a Lambert series for one class and \(q\)-product orbit sums for another. A cubic limit of the balanced nonterminating \({}_3φ_2\) \(q\)-Saalschutz summation identifies these expressions. Fixed-maximum expansions, finite verification data, refined analytic obstructions, and signed specializations are recorded in the supplementary material.</description>
-    </item>
-    <item>
-      <title>Nearly Settling the Complexity of Connected $\varepsilon$-Envy-Free Cake Cutting</title>
-      <link>https://paperswithlean.com/paper/2611.20890.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.20890.html</guid>
-      <pubDate>Sat, 21 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Simon Mackenzie, Mashbat Suzuki</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>economics</category><category>ai-agents</category>
-      <description>A Lean 4 development using Mathlib verifies the paper&#x27;s query-complexity theorems (upper bounds for four and five agents, lower bound for seven or more).
-
-Envy-free cake cutting has been one of the central problems in fair division. In cake cutting, agents&#x27; preferences over the cake are accessed through Robertson–Webb (RW) queries. For three or more agents, no algorithm that makes finitely many RW queries can always find a contiguous, exactly envy-free allocation. For contiguous $\varepsilon$-envy-free allocations, however, Hollender and Rubinstein (JACM, 2025) showed that $\poly(\log(1/\varepsilon))$ RW queries suffice for four agents, leaving open whether such a bound is possible for five or more agents. In this paper, we establish a striking change in query complexity: $\poly(\log(1/\varepsilon))$ RW queries suffice for up to five agents, whereas $(1/\varepsilon)^{Ω(1)}$ queries are necessary for seven or more agents, even when valuations are additive. Thus, we resolve the five-agent case and, more broadly, determine whether polylogarithmic query complexity is possible for every number of agents except six. We also explore the computational complexity of finding contiguous $\varepsilon$-envy-free allocations. When monotone Lipschitz valuations are given by polynomial-time evaluation procedures (e.g., arithmetic circuits and efficiently computable Turing machines), we show that an $\varepsilon$-envy-free division can be computed in polynomial time for five agents. In contrast, even for additive valuations, finding an $\varepsilon$-envy-free division is UEOPL-hard for every fixed number of agents $n\ge7$ and PPAD-complete for every fixed $n\ge13$.</description>
-    </item>
-    <item>
-      <title>Affine Combiners for Reed-Solomon Proximity Gaps</title>
-      <link>https://paperswithlean.com/paper/2611.15128.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.15128.html</guid>
-      <pubDate>Sat, 21 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Alessandro Chiesa, Guy Weissenberg, Eylon Yogev, Kai Zhe Zheng</dc:creator>
-      <category>formalization</category><category>cryptography</category><category>ai-agents</category>
-      <description>Main Reed–Solomon affine-combiner proximity gap theorem was formalized in Lean with AI assistance; Reed–Muller and equal-degree extensions are not covered.
-
-Reed-Solomon proximity gaps establish soundness guarantees for protocols that test received words through random combinations. For length-$n$ codes over $\mathbb{F}_q$, classical scalar combiners achieve error $O(n/q)$ in the unique-decoding regime, with larger known bounds near the Johnson radius. We prove smaller error bounds using affine combiners, which combine two received words $f,g$ as $f(x)+(α+βx)g(x)$, where $α,β$ are independent uniform elements of $\mathbb{F}_q$. For output degree bound $d=ρn$, fixed $ρ\in(0,1)$ and $0&lt;η&lt;1-\sqrtρ$, and sufficiently large block length $n$, we prove mutual correlated agreement (MCA) with one coordinate of agreement loss at threshold $A=\lceil(\sqrtρ+η)n\rceil$, with error $O_{ρ,η}\left(\frac{1}{q}+\frac{n^2}{q^2}\right)$. The result holds over arbitrary evaluation domains in every finite field, including prime and binary extension fields. The agreement threshold can approach the Johnson threshold, beyond unique decoding. For $q\ge n^2$, our error is $O_{ρ,η}(1/q)$, an asymptotic factor-$n$ separation from scalar combiners: we prove that their worst-case MCA error is $Ω_{ρ,η}(n/q)$ at the same agreement threshold and with the same one-coordinate loss. We also prove that affine combiners incur worst-case error $Ω_{ρ,η}(n/q)$ when no agreement loss is allowed. Thus one coordinate of agreement loss is necessary for our guarantee; this relaxation of standard MCA reduces the guaranteed common agreement fraction by at most $1/n$. We also extend the result to $k$-variate Reed-Muller codes on subfield grids, obtaining MCA error $O_{ρ,η,k}(q^{-k})$ for fixed $ρ,η,k$, sufficiently large $n$, and $q\ge n^{k+1}$, with agreement loss $n^{1-1/k}$.</description>
-    </item>
-    <item>
-      <title>Do Embedding-Map Distances Guide LLM Ideation? Four Tests Against What Came Next</title>
-      <link>https://paperswithlean.com/paper/2611.21408.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21408.html</guid>
-      <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Javier Aguilar Martín</dc:creator>
-      <category>formalization</category><category>ml-theory</category>
-      <description>Three impossibility results about decoding embedding-space targets into coherent text (e.g., two_worlds) are machine-checked in Lean 4 in the paper&#x27;s repository.
-
-A popular ideation recipe treats an embedding map of existing work as a guide: pick points far from everything and decode them into ideas. I test four ways such distances could guide ideation against what appeared later. (1) Far random directions are not text: no later item reaches a raw cosine above about 0.10 with one (after centring or whitening, 22 of 24 cells stay out of reach), and an LLM decoder shown a target&#x27;s neighbours, with score-only feedback, writes those neighbours in all six target sets. A neighbour-free search writes coherent text at median cosine 0.57 and 0.47 to interior gaps, beating the nearest existing item on 15 and 14 of 20, but only 0.07 and 0.06 to far points. (2) On k-means cells of a past-only map, the registered hole score mostly tracks cell size and position; three density-based gap scores forecast which cells grow fastest at or below chance (AUC 0.30 to 0.66) and add nothing to momentum in Steam and arXiv, with patents inconclusive; more isolated new Steam games are slightly better reviewed. (3) LLM continuations of arXiv papers stay closer to the source than papers that cite it, under three user prompts and against proposal rewrites (gpt-4o) and April-December 2023 papers (OLMo). Critique lengthens this step beyond content-free revision, replicated on 150 new papers. Revealing a real follow-up&#x27;s title turns the ideas by 0.032 along a follow-up-specific direction beyond revision; reviewer, oracle and distance feedback add 0.13, 0.08 and 0.34 of that turn (upper bounds 0.46, 0.46, 0.70), and their turn is not separable from revision or their longer step. (4) For inspiration material graded by distance, no inverted U was detected, on an anticipation margin that tracks format more than content. Original tests were registered before running, follow-ups (thirteen requested in two AI-agent reviews) after the main results; all are dated only by local git commits.</description>
-    </item>
-    <item>
-      <title>An Adaptive Reduced Speed of Light Approximation</title>
-      <link>https://paperswithlean.com/paper/2611.21353.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21353.html</guid>
-      <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Chong-Chong He, Mark R. Krumholz, Benjamin D. Wibking</dc:creator>
-      <category>formalization</category><category>mathlib</category><category>physics</category><category>analysis</category>
-      <description>Stability-bound proofs from the von Neumann analysis, including the unequal-opacity extension and appendix lemmas, are machine-checked in Lean 4 with Mathlib.
-
-The reduced speed of light approximation (RSLA) is a common approach in radiation-hydrodynamic (RHD) simulations of non-relativistic systems where the gas speed $v_{\rm gas} \ll c$. In the RSLA one eases the severe time step constraint imposed by the speed of light $c$ by replacing it with a reduced value $\hat{c}$ chosen so that $v_{\rm gas} \ll \hat{c} \ll c$. This approach works well in flows with low or moderate optical depth, but fails in optically thick media, where it makes thermal relaxation too slow and gives incorrect RHD wave modes. Here we propose an Adaptive Reduced Speed of Light Approximation (ARSA) that removes these problems by replacing the global speed reduction factor $φ_0 \equiv \hat{c}/c$ with a local, cell-by-cell reduction factor $φ$ derived from a von Neumann stability analysis of the implicit-explicit update used by modern two-moment RHD codes. The resulting limiter has no tunable parameters, can be computed using only local operations, and improves on the classic RSLA by allowing $φ\to 1$ in cells where a reduced speed of light is not required because the exchange with the gas damps unstable modes, allowing recovery of the correct thermal relaxation and wave-damping rates in highly-opaque regions. We compare ARSA to the classic RSLA in a range of standard RHD test problems, and show that in opaque regions where gas holds most of the heat capacity the ARSA is much more accurate than the RSLA at the same time step, or that it can achieve the same accuracy as the RSLA with up to 100 times fewer time steps. However, gains are limited in regions where radiation holds a large share of the heat capacity, as it does in some astrophysical systems.</description>
-    </item>
-    <item>
-      <title>Turing Agent: Agentic Formal Verification for Mathematical Research</title>
-      <link>https://paperswithlean.com/paper/2611.21299.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.21299.html</guid>
-      <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Yang Chen, Qianyi Wang, Ronghui Yang, Zhanhao Li, Yu Cong, Chen Zhang, Hangfan Zhang, Shao Zhang, Shuai Li, Toru Takisaka, Chao Xu, Yi Zhou, Zhihao Tang, Xiao Wang, Bo Zhang, Shuyue Hu</dc:creator>
-      <category>ai-agents</category><category>autoformalization</category><category>theorem-proving-ml</category><category>mathlib</category>
-      <description>LLM agent harness that formalizes research-level TCS theorem statements and proofs in Lean using Mathlib and CSLib, checked by Lean&#x27;s kernel.
-
-Large language models (LLMs) are rapidly advancing mathematical discovery, moving beyond benchmark-level problem solving to tackle frontier research problems. This progress is ushering mathematics into an era of proof abundance, raising a fundamental challenge: how can we ensure the correctness of the ever-growing volume of AI-generated proofs and transform them into trustworthy, machine-verified mathematical knowledge? We introduce Turing Agent, an agent harness designed to orchestrate end-to-end formal verification of research-level mathematics. Its wo-scale architecture integrates theorem formalization and proof formalization agents, empowered by structured proof decomposition, parallel verification, accumulated proof experience, and selective semantic review. Leveraging our collaborations with theoretical computer science (TCS) researchers, we focus our evaluation on TCS, a particularly demanding domain characterized by intricate quantification, complex dependencies, and stringent semantic requirements. Against direct generation and general-purpose coding harnesses, including Codex CLI and Claude Code, Turing Agent achieves approximately 57-62% faithful formalization success on Formal TCS Bench and 83% overall pass@1 on a TCS-focused subset of RLMEval, using GLM-5.3 and DeepSeek-V4-Pro. Notably, Turing Agent, built on DeepSeek, successfully completes the formal verification of three previously unresolved TCS tasks from OpenAI&#x27;s October 2026 collection. One particularly challenging TCS problem required about a hundred formally verified auxiliary claims. Moreover, by actively exploring and refining the formalization process, Turing Agent can uncover simpler alternative proofs, expose unnecessary dependencies in original proofs, and generate reusable mathematical knowledge as a byproduct of verification.</description>
     </item>
   </channel>
 </rss>

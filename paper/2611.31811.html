@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Far Apart Are Two Proofs? Measuring Proof Dissimilarity in a Proof Kernel and in Lean/Mathlib · Papers With Lean</title>
+<meta name="description" content="We now live in the age of machine-generated mathematics: AI systems produce research-level proofs faster than the human mathematical community can read them. Verification is only part of the challenge. We also need to know whether a &quot;new proof&quot; is indeed new, whether a thousand…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How Far Apart Are Two Proofs? Measuring Proof Dissimilarity in a Proof Kernel and in Lean/Mathlib">
+<meta property="og:description" content="We now live in the age of machine-generated mathematics: AI systems produce research-level proofs faster than the human mathematical community can read them. Verification is only part of the challenge. We also need to know whether a &quot;new proof&quot; is indeed new, whether a thousand…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.31811.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.31811.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.31811v1" target="_blank" rel="noopener"><img src="../thumbs/2611.31811.jpg" alt="First page of How Far Apart Are Two Proofs? Measuring Proof Dissimilarity in a Proof Kernel and in Lean/Mathlib"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">How Far Apart Are Two Proofs? Measuring Proof Dissimilarity in a Proof Kernel and in Lean/Mathlib</h1>
+        <p class="authors">Nikolaos Nikolaou</p>
+        <div class="row">
+          <span class="badge">cs.LO</span>
+          <span class="date">Nov 24, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-slate" href="../#tag=meta-study">meta-study</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-teal" href="../#tag=tooling">tooling</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.31811v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.31811" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Writes 19 Lean 4/Mathlib proofs of three theorems and automatically extracts 18 dissimilarity measures from their elaborated terms and dependencies.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We now live in the age of machine-generated mathematics: AI systems produce research-level proofs faster than the human mathematical community can read them. Verification is only part of the challenge. We also need to know whether a &quot;new proof&quot; is indeed new, whether a thousand generated proofs contain one idea or many, and where each sits relative to human mathematics. All of these require measuring distances between proofs. Following Hilbert&#x27;s 24th problem and the identity-of-proofs problem, we ask how far apart two proofs of one theorem are, and what shape the proof space they inhabit has. We define 19 dissimilarity measures in 6 families (syntactic, structural, dependency &amp; resource, semantic, information-theoretic, higher-categorical) and 10 desirable properties, which we argue are the conditions for safely optimising a measure. In a Curry-Howard kernel, 5 machine-checked proofs that the primes are infinite show that raw syntax cannot tell a rewrite from a new argument, that dependency-based and structural measures reproduce the intuitive ordering (Euclid rewritten &lt; Goldbach &lt; Furstenberg), and that semantic measures invert it: Furstenberg&#x27;s topological proof produces exactly Euclid&#x27;s witness. A replication in Lean 4/Mathlib (3 theorems, 19 proofs, 18 measures) confirms that dependency-closure measures track intuition best, and shows that equality of normal forms never holds between differently written versions of the same argument, that proofs by citation look unlike the arguments they cite, and that proof irrelevance cannot distinguish any two proofs. We argue for reporting dissimilarity as a multi-level profile, extend the measures to proofs of different theorems, and discuss uses, from detecting duplicated AI proofs and orchestrating prover agents to interpreting AI proofs via their nearest human-understandable counterparts. Code, Lean sources and data are released.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Machine-generated proofs are multiplying, so it matters whether a new proof is genuinely new and how alternative proofs of one theorem relate to each other. This requires quantitative measures of distance between proofs.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Defines 19 dissimilarity measures in six families (syntactic, structural, dependency &amp; resource, semantic, information-theoretic, higher-categorical) and 10 desirable properties. They are first evaluated on five machine-checked proofs of the infinitude of primes in a Curry-Howard kernel (Euclid variants, Goldbach, Furstenberg). The study is then replicated in Lean 4 against pinned Mathlib with 19 tactic-mode proofs of three theorems (infinitude of primes, irrationality of sqrt 2, Gauss&#x27;s sum), extracting 18 measures from elaborated terms.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Dependency-closure and structural measures reproduce the intuitive ordering. Semantic measures invert it: Furstenberg&#x27;s proof yields Euclid&#x27;s witness. In Lean, normal-form equality never holds between rewrites of the same argument, citation-based proofs look unlike the arguments they cite, and proof irrelevance distinguishes nothing. Dependency-Jaccard gets the full ordering on all theorems and satisfies 9/10 properties.</p><div class="sum-table"><table><thead><tr><th>Metric</th><th>(E,E&#x27;) same</th><th>(E,G) similar</th><th>(E,F) dissimilar</th><th>order</th></tr></thead><tbody><tr><td>Raw TED</td><td>0.512</td><td>0.500</td><td>0.514</td><td>✗</td></tr><tr><td>Dependency-Jaccard</td><td>1.000</td><td>0.429</td><td>0.333</td><td>✓</td></tr><tr><td>MSC-EMD</td><td>1.000</td><td>0.652</td><td>0.407</td><td>✓</td></tr><tr><td>Herbrand-witness</td><td>1.000</td><td>0.160</td><td>1.000</td><td>✗</td></tr></tbody></table><div class="tbl-cap">Kernel study: similarity s=1-d for intuitive pairs (selected measures)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

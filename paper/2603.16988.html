@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Algebraic Landscape of Kochen-Specker Sets in Dimension Three · Papers With Lean</title>
+<meta name="description" content="The classic three-dimensional Kochen-Specker (KS) proofs take their ray coordinates from a small set of numbers: {0, +-1, +-sqrt(2)} for the 33 rays of Peres and {0, +-1, +-2} for the 31 rays of Conway and Kochen. We treat that set, the coordinate alphabet, as a parameter. An…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Algebraic Landscape of Kochen-Specker Sets in Dimension Three">
+<meta property="og:description" content="The classic three-dimensional Kochen-Specker (KS) proofs take their ray coordinates from a small set of numbers: {0, +-1, +-sqrt(2)} for the 33 rays of Peres and {0, +-1, +-2} for the 31 rays of Conway and Kochen. We treat that set, the coordinate alphabet, as a parameter. An…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2603.16988.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2603.16988.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2603.16988v10" target="_blank" rel="noopener"><img src="../thumbs/2603.16988.jpg" alt="First page of The Algebraic Landscape of Kochen-Specker Sets in Dimension Three"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">The Algebraic Landscape of Kochen-Specker Sets in Dimension Three</h1>
+        <p class="authors">Michael Kernaghan</p>
+        <div class="row">
+          <span class="badge">quant-ph</span>
+          <span class="date">Mar 17, 2026 · v10</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-purple" href="../#tag=quantum">quantum</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2603.16988v10" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2603.16988" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/michaelkernaghan/contextuality" target="_blank" rel="noopener" title="michaelkernaghan/contextuality">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 with Mathlib kernel-checks the roots-of-unity uncolorability theorem, the 45-word circle uncolorability, and minimum KS subset sizes for six pools.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The classic three-dimensional Kochen-Specker (KS) proofs take their ray coordinates from a small set of numbers: {0, +-1, +-sqrt(2)} for the 33 rays of Peres and {0, +-1, +-2} for the 31 rays of Conway and Kochen. We treat that set, the coordinate alphabet, as a parameter. An alphabet generates a finite pool of rays, and the pool is or is not KS-uncolorable. We determine the uncolorable alphabets in four families. (A) Two-symbol alphabets {0, +-1, +-x}, x complex: uncolorable only when x or 1/x is +-2, +-sqrt(2), +-sqrt(-2), or x is a primitive third or sixth root of unity; no KS set with such coordinates has fewer than 31 rays. (B) Real three-symbol alphabets {0, +-1, +-x, +-y} with 1 &lt; x &lt; y: uncolorable exactly when two letters have ratio 2 or sqrt(2), or at eight further points; again no KS set has fewer than 31 rays. (C) Conjugate-closed alphabets {0, +-1, +-x, +-x*}: uncolorable exactly when |x|^2 = 2, or |x|^2 = 1/2, or x*/x is a primitive third or sixth root of unity, or x is +-2 or +-1/2. The uncolorable alphabets are therefore not isolated. On the circle |x|^2 = 2 a fixed list of 45 words is uncolorable at every point, and no shorter fixed list is; the circle |x|^2 = 1/2 carries the 33-ray family of Gould and Aravind. (D) The pool of 0 and the n-th roots of unity is uncolorable if and only if 6 divides n. Minimum KS subsets are certified by exact computation for eleven named pools. The Lean proof assistant checks (D) for n &gt;= 3, the uncolorability of the 45 words at every point of the circle, and the minima 31, 33, 33, 33, 43 and 47 of six pools. This version replaces the classification by &quot;cancellation mechanisms&quot; and &quot;islands&quot; proposed in versions 1-9, which did not survive checking; an appendix lists the withdrawn claims, among them a golden-ratio minimum of 52 (a 51-ray set exists).</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Three-dimensional Kochen-Specker sets such as Peres&#x27; 33 rays and Conway-Kochen&#x27;s 31 rays draw their coordinates from small sets of numbers. The paper asks which such coordinate alphabets generate ray pools that admit no KS coloring, and how small the minimum KS subsets of those pools are.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The alphabet is treated as a parameter. The method enumerates every integer relation that can make an inner product of two words vanish, then decides colorability exactly for each resulting orthogonality graph. Minimum KS subsets are certified with exact computation and SAT-style certificates. Several key results are proved in Lean 4 with Mathlib, where orthogonality is recomputed inside Lean and externally computed certificates are checked by the kernel.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The uncolorable alphabets are classified for four families: two-symbol, real three-symbol, conjugate-closed, and roots of unity (uncolorable iff 6 divides n). For each of the first two families, no KS set with such coordinates has fewer than 31 rays. Lean verifies the roots-of-unity theorem for n≥3, the uncolorability of the 45-word list at every point of the circle |x|²=2, and minima of 31, 33, 33, 33, 43 and 47 rays for six pools.</p><div class="sum-table"><table><thead><tr><th>Alphabet</th><th>Rays</th><th>Minimum KS subset</th></tr></thead><tbody><tr><td>{0,±1,±2}</td><td>49</td><td>31, certified, L</td></tr><tr><td>{0,±1,±√2}</td><td>49</td><td>33, certified, L</td></tr><tr><td>{0,±1,±ω,±ω²}</td><td>57</td><td>33, certified, L</td></tr><tr><td>{0,±1,±α,±α*}</td><td>145</td><td>43, certified, L</td></tr><tr><td>{0,±1,±ψ,±ψ²}</td><td>109</td><td>47, certified, L</td></tr></tbody></table><div class="tbl-cap">Selected raw pools and their minimum KS subsets (L = also proved in Lean)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

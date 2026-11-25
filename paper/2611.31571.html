@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Safe Autoformalization: Sufficiency and Necessity with Entailment Graphs · Papers With Lean</title>
+<meta name="description" content="Autoformalization translates a natural-language statement into a formula that captures its intent, which depends on the statement&#x27;s context: the background that disambiguates it. LLMs make autoformalization practical, but their probabilistic output carries no formal guarantees.…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Safe Autoformalization: Sufficiency and Necessity with Entailment Graphs">
+<meta property="og:description" content="Autoformalization translates a natural-language statement into a formula that captures its intent, which depends on the statement&#x27;s context: the background that disambiguates it. LLMs make autoformalization practical, but their probabilistic output carries no formal guarantees.…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.31571.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.31571.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.31571v1" target="_blank" rel="noopener"><img src="../thumbs/2611.31571.jpg" alt="First page of Safe Autoformalization: Sufficiency and Necessity with Entailment Graphs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Safe Autoformalization: Sufficiency and Necessity with Entailment Graphs</h1>
+        <p class="authors">Umut A. Acar, Eli Goldweber</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 23, 2026 · v1</span>
+          <span class="badge">cs.LO</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.31571v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.31571" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">All theorems about entailment-graph search, frontiers, and ambiguity residue are machine-checked in Lean 4 with Mathlib over an arbitrary Boolean algebra.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Autoformalization translates a natural-language statement into a formula that captures its intent, which depends on the statement&#x27;s context: the background that disambiguates it. LLMs make autoformalization practical, but their probabilistic output carries no formal guarantees. We propose techniques for safe autoformalization that certify one-sided logical adequacy: a formula sufficient for the intent is safe to enforce, and a formula necessary for it is safe to rely on. We use LLMs to generate candidate formulas and order them by logical strength in an Entailment Graph (EG), an ordering a solver decides. Each edge carries a residual and a co-residual, the two adjoints of the entailment order, all fixed by the candidate pool alone. In a context, two searches return the sufficient frontier, the weakest candidates that entail the statement, and the necessary frontier, the strongest candidates the statement entails; each step is one local check against an edge&#x27;s residual or co-residual. The frontiers bracket the statement and yield the ambiguity residue, which holds exactly of the situations the candidates certify neither as satisfying nor as violating it; the statement is ambiguous precisely when the residue is satisfiable. For natural-language statements and contexts, an LLM entailment oracle decides the checks; it is sound if it accepts only checks that hold, and complete if it accepts every check that holds. We prove that a sound oracle makes the search safe regardless of pool quality, and that a complete one makes the frontiers tight. On security-critical AWS properties, EGs are safe in all 20 cases of an expert-adjudicated study, where majority vote over equivalence clusters and Universal Self-Consistency are unsafe in 25% and 10%. An ablation with the same oracle but no graph is unsafe in 25% and rejects every candidate in another 30%. We machine-checked our proofs in Lean.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">LLM-based autoformalization produces multiple inequivalent candidate formulas with no guarantee of logical adequacy with respect to the intent of a natural-language statement in context.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Candidates are clustered by equivalence and ordered by entailment into an Entailment Graph decided by an SMT solver, with residuals and co-residuals on each edge. Downward and upward searches, driven by an LLM entailment oracle, return the weakest sufficient and strongest necessary candidates, and these frontiers define an ambiguity residue. Soundness and tightness theorems for the searches are mechanized in Lean 4 on Mathlib over an arbitrary Boolean algebra, with no sorry and only standard axioms.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On 20 expert-adjudicated AWS security properties, Entailment Graphs were safe in all cases. Majority vote over equivalence clusters was unsafe in 25% of cases and Universal Self-Consistency in 10%. A graph-free ablation using the same oracle was unsafe in 25% and rejected every candidate in another 30%.</p><div class="sum-table"><table><thead><tr><th>Method</th><th>Unsafe</th></tr></thead><tbody><tr><td>Entailment Graphs</td><td>0%</td></tr><tr><td>Majority vote (equivalence clusters)</td><td>25%</td></tr><tr><td>Universal Self-Consistency</td><td>10%</td></tr><tr><td>Oracle without graph (ablation)</td><td>25% (+30% reject all)</td></tr></tbody></table><div class="tbl-cap">Unsafe rate on 20 AWS properties</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

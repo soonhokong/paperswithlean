@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Defining the mathematical family tree with a minimal programming language · Papers With Lean</title>
+<meta name="description" content="I introduce MLISP, a Turing-complete language with nine single-character commands (a b c d f 0 i j k), and use it to define 88 mathematical structures and a family tree of 65 theories that they model, with three aims: Pedagogy: It presents the mathematical structures in a…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Defining the mathematical family tree with a minimal programming language">
+<meta property="og:description" content="I introduce MLISP, a Turing-complete language with nine single-character commands (a b c d f 0 i j k), and use it to define 88 mathematical structures and a family tree of 65 theories that they model, with three aims: Pedagogy: It presents the mathematical structures in a…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.31775.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.31775.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.31775v1" target="_blank" rel="noopener"><img src="../thumbs/2611.31775.jpg" alt="First page of Defining the mathematical family tree with a minimal programming language"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Defining the mathematical family tree with a minimal programming language</h1>
+        <p class="authors">Max Tegmark</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Nov 24, 2026 · v1</span>
+          <span class="badge">math-ph</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.31775v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.31775" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/mtegmark/mlisp9" target="_blank" rel="noopener" title="mtegmark/mlisp9">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Definitions, key theorems, and model relations of a family tree of mathematical theories, plus the correctness of the MLISP language, are verified in Lean.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">I introduce MLISP, a Turing-complete language with nine single-character commands (a b c d f 0 i j k), and use it to define 88 mathematical structures and a family tree of 65 theories that they model, with three aims: Pedagogy: It presents the mathematical structures in a unified way, with standardized presentation tableaus that define them and axiomatized theories that describe them. Connections: It highlights how they are related in the family tree via added symbols, axioms, etc. While the full tree is obviously infinite, its lower parts naturally separate into six main branches: the relational branch, the algebraic branch, the logic branch, the number branch, the set branch and the continuum branch. Foundations: The definitions, key theorems and models of each entry are verified in Lean. Mathematical structures are defined as equivalence classes of presentations, which in a constructivist spirit are defined in a simple, explicit and self-contained way in standardized presentation tableaus with minimal human baggage. For finite structures, the generating functions are defined by lookup tables. For countably infinite ones, they are instead defined computationally using MLISP, since more complex languages such as Lean are massive overkill for rigorously defining standard arithmetic operations (for example, the program &quot;jibjbfid&quot; defines subtraction). An interactive version is available at <a href="https://tegmark.org/mathtree" target="_blank" rel="noopener">https://tegmark.org/mathtree</a>. The Lean code is public, also verifies the correctness of MLISP and includes 43% of the theorems from Mathlib 2026-10-11. \end{abstract}</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Basic mathematical theories and structures lack a unified, human-readable presentation of how they relate to one another. There is also little agreement on how to rigorously define presentations and mathematical structures.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The author introduces MLISP, a Turing-complete language with nine single-character commands. MLISP is used to define 88 mathematical structures through standardized presentation tableaus: lookup tables for finite structures and short programs for countably infinite ones. These structures are organized into a family tree of 65 theories in six branches, with structures defined as equivalence classes of presentations. Lean is used to verify the definitions, key theorems and model relations, and to check the correctness of MLISP itself.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">A public interactive family tree and a public Lean codebase (github.com/mtegmark/mlisp9) are released. The Lean code verifies MLISP and the tree&#x27;s model relations, and is reported to include 43% of the theorems from a Mathlib snapshot. The tree&#x27;s arrows agree with Mathlib&#x27;s &quot;extends&quot; constructions.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.31775/tree.png" alt=""><figcaption>Figure 1: Family tree of mathematical theories. If you are reading this on a computer, you can click any of the boxes for details. You will find a fully interactive version at https://tegmark.org/mathtree . Boxes denote mathematical theories (equivalence classes of formal systems). Ovals, and the boxes Presentations , Mathematical Structures and Clones , denote foundational concepts that are not t</figcaption></figure></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
