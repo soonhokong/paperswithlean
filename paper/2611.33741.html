@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlashProve-Next: Verifiable Inference for Production LLM APIs · Papers With Lean</title>
+<meta name="description" content="Clients of closed-weight LLM APIs cannot verify whether a provider ran the advertised model, precision, hidden prompt, and reasoning budget. Existing approaches either trust hardware or third parties, or re-prove every layer of an integer surrogate at high cost while diverging…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FlashProve-Next: Verifiable Inference for Production LLM APIs">
+<meta property="og:description" content="Clients of closed-weight LLM APIs cannot verify whether a provider ran the advertised model, precision, hidden prompt, and reasoning budget. Existing approaches either trust hardware or third parties, or re-prove every layer of an integer surrogate at high cost while diverging…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.33741.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.33741.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.33741v1" target="_blank" rel="noopener"><img src="../thumbs/2611.33741.jpg" alt="First page of FlashProve-Next: Verifiable Inference for Production LLM APIs"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">FlashProve-Next: Verifiable Inference for Production LLM APIs</h1>
+        <p class="authors">Liang Song</p>
+        <div class="row">
+          <span class="badge">cs.CR</span>
+          <span class="date">Nov 25, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.LG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-amber" href="../#tag=cryptography">cryptography</a> <a class="tag c-pink" href="../#tag=ml-theory">ml-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.33741v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.33741" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/s-JoL/FlashProve-Next" target="_blank" rel="noopener" title="s-JoL/FlashProve-Next">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Twenty-eight Lean 4 + Mathlib modules (696 declarations, no sorry) mechanize sampling correctness, round-by-round soundness bounds, field-choice constraints, and executable verifiers.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Clients of closed-weight LLM APIs cannot verify whether a provider ran the advertised model, precision, hidden prompt, and reasoning budget. Existing approaches either trust hardware or third parties, or re-prove every layer of an integer surrogate at high cost while diverging from native floating-point serving. FlashProve-Next produces verifiable, zero-knowledge-masked proofs for individual LLM API responses without modifying native serving (bf16/fp8/mxfp4, random sampling, FlashAttention, CUDA graphs, batching, prefix caching) and without disclosing weights, hidden prompts, hidden reasoning, or activations (dense profiles fix coarse geometry; cross-architecture hiding is deferred). A non-depleting Reed-Solomon weight commitment model_id opens inside proofs via hidden column openings, while local per-operator rounding contracts remove integer surrogates and the refusal-bit leak. Cost-weighted spot-checking supports non-interactive public verification (NI-315, $\varepsilon \le 2^{-40}$, $Q \le 2^{64}$) and external-seed C_pre mode (ExtSeed-153, $\varepsilon \le 2^{-20}$, $Q_{\rm samp} \le 2^{30}$). Twenty-eight Lean 4 modules (696 declarations, zero sorry, standard axioms only) mechanize round-by-round soundness, bucketed sampling, $\mathbb{F}_{p^3}$ constrained-mask binding, causal masking, six IR gadgets, and executable FPN2 verifiers. Five-model Blackwell calibration gives zero false rejections across 1.85M GEMM/MoE blocks and 1.96M non-GEMM rows. Our zero-Phase-2 folded backend (folded ZK simulator open) proves Qwen3-0.6B ExtSeed-153 (1.47B cells, 8 MiB) in 450.2 s GPU (10.76 s CPU) at unique-decoding $Q=128$, passes a 14/14 cheating matrix, and scales to 36-layer Qwen3-4B (dev $4+2$) and live vLLM Qwen3-30B-A3B-FP8 Relation 6 (1.49 s prove, 23.4 ms Rust verify, public weight tiles). Rust fpn-verify checks 8 MiB FPN2 Relation 2 proofs in 10.1 ms on CPU.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Clients of closed-weight LLM APIs cannot check whether the provider actually ran the advertised model, precision, hidden prompt, and reasoning budget. Existing approaches either trust hardware or third parties, or prove integer surrogates at high cost that diverge from native floating-point serving.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">FlashProve-Next generates zero-knowledge-masked proofs for individual API responses without modifying native serving. It uses a non-depleting Reed-Solomon weight commitment opened through hidden column openings, per-operator floating-point rounding contracts in place of integer surrogates, a bucketed keyed sampling rule, and cost-weighted spot-checking. Key lemmas are machine-checked in Lean 4 with Mathlib: nucleus and bucket-sampling completeness, speculative-decoding equivalence, the spot-check sample counts (e.g. 105 per pool sufficient, 104 insufficient), and extension-field sufficiency over Goldilocks.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Calibration on five models gives zero false rejections across 1.85M GEMM/MoE blocks and 1.96M non-GEMM rows. Qwen3-0.6B is proved in 450.2 s on GPU with 8 MiB proofs, and the prototype scales to Qwen3-4B and live vLLM Qwen3-30B-A3B-FP8. A Rust verifier checks 8 MiB proofs in about 10 ms on CPU.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
