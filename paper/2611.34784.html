@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Territorial Conflict as a Cellular Automaton: Frozen Domains and Active Fronts in a Risk-Derived Local Rule · Papers With Lean</title>
+<meta name="description" content="We formulate the attack and fortification rules of the game Risk as a synchronous cellular automaton on a graph, with battles resolved by exact dice odds. We prove, and verify in Lean, that for the default exchange ratio the rule has radius 6, or 5 for deterministic battles with…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Territorial Conflict as a Cellular Automaton: Frozen Domains and Active Fronts in a Risk-Derived Local Rule">
+<meta property="og:description" content="We formulate the attack and fortification rules of the game Risk as a synchronous cellular automaton on a graph, with battles resolved by exact dice odds. We prove, and verify in Lean, that for the default exchange ratio the rule has radius 6, or 5 for deterministic battles with…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.34784.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.34784.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.34784v1" target="_blank" rel="noopener"><img src="../thumbs/2611.34784.jpg" alt="First page of Territorial Conflict as a Cellular Automaton: Frozen Domains and Active Fronts in a Risk-Derived Local Rule"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Territorial Conflict as a Cellular Automaton: Frozen Domains and Active Fronts in a Risk-Derived Local Rule</h1>
+        <p class="authors">Maria Teresa Arias</p>
+        <div class="row">
+          <span class="badge">math.DS</span>
+          <span class="date">Nov 25, 2026 · v1</span>
+          <span class="badge">nlin.CG</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=combinatorics">combinatorics</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.34784v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.34784" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/MaTeArNog/RiskAutomata" target="_blank" rel="noopener" title="MaTeArNog/RiskAutomata">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Formal properties of a Risk-derived cellular automaton (radius bounds, irreversibility, finite-time freezing, locality) are machine-checked in Lean 4 without sorry.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We formulate the attack and fortification rules of the game Risk as a synchronous cellular automaton on a graph, with battles resolved by exact dice odds. We prove, and verify in Lean, that for the default exchange ratio the rule has radius 6, or 5 for deterministic battles with a positive attack threshold, both attained; that its deterministic form is irreversible except at the highest attack thresholds without growth and with fortification absent or inactive; that without troop growth it freezes in finite time; and that the dynamics near an interface is locally determined. The coupling of the ownership field to a troop field separates frozen domains from active fronts: with a positive attack threshold, saturated domains cannot be conquered, while interfaces with heterogeneous troops keep fighting. In 14252 runs, with attractors classified operationally in Wolfram&#x27;s scheme, raising the attack threshold takes the system from dominance by one faction to a frozen fragmented partition. The share of the largest faction drops between the same two threshold values at every size up to L=128, in a step about 0.5 wide under a continuous threshold (L=64-96), whereas the probability of complete consolidation is a size-dependent crossover governed by saturated minority domains. Long-period attractors combine spatially fixed local oscillators; apparent class-IV gliders are artefacts of index-ordered tie-breaking. Straight fronts stayed within two cells of their initial position for up to 500,000 steps, over which they are one-dimensional automata with non-recurrent, incompressible dynamics and positive Lyapunov speeds, constant for L&gt;=48. Compared with mean-field and random-regular-graph controls, the lattice lengthens conflicts about twentyfold and clusters conquest: a cell next to a fresh conquest is about five times as likely as average to be conquered next, against 1.1-1.5 in the controls.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The attack and fortification rules of the game Risk have not previously been studied as a spatial dynamical system. Mathematical work on Risk has treated single battles as Markov chains, which gives no spatial information. The paper asks what formal properties such a rule has and how its long-run dynamics depend on the attack margin.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Risk&#x27;s combat is written as a synchronous cellular automaton on a graph, with battles resolved by exact dice odds. The authors prove that the rule has bounded radius, is irreversible, freezes without growth, and is locally determined near interfaces. An independent Lean 4 implementation, with the battle operator as a parameter, machine-checks these results for every board, state and dice realisation. The dynamics are then studied in 14,252 simulation runs and compared with mean-field and random-regular-graph controls.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.34784/fig1_battle_kernel.png" alt=""><figcaption>Figure 2 : Probability that a committed units defeat d defenders, with the 50% contour (black) and the deterministic boundary a=d/\rho (dashed).</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The rule has radius 6 (5 for deterministic battles with a positive threshold), and both bounds are attained; all formal results are kernel-checked in Lean. Raising the attack threshold moves the system from dominance by one faction to a frozen fragmented partition. Straight fronts stay confined for up to 500,000 steps with irregular dynamics. Relative to the controls, the lattice lengthens conflicts about twentyfold and clusters conquest.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.34784/fig3_phase_diagram.png" alt=""><figcaption>Figure 4 : Phase diagram on \mathbb{T}_{32} (16 runs per cell). Colour: the quantity named above each panel (damage, C and \sigma_{S} : mean over runs); labels: majority label (Section 4.2 ).</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.34784/fig13_front_spacetime.png" alt=""><figcaption>Figure 15 : Space-time diagrams of one stalemated front ( \mathbb{T}_{64} , P=2 , g=1 , \theta=1 , deterministic; 200 steps). Left: displacement of one interface in each column, relative to its time mean. Right: columns in which the state differs after a one-unit change of a single front cell at t=0 ; the damage region widens at roughly constant speed until it covers the front.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>L</th><th>θ* (95% CI)</th><th>10–90% width (95% CI)</th><th>upper plateau</th><th>lower plateau</th></tr></thead><tbody><tr><td>32</td><td>4.77 [4.72, 4.97]</td><td>0.81 [0.27, 1.88]</td><td>0.92</td><td>0.46</td></tr><tr><td>48</td><td>4.76 [4.71, 4.84]</td><td>0.70 [0.43, 1.33]</td><td>0.88</td><td>0.34</td></tr><tr><td>64</td><td>4.77 [4.73, 4.80]</td><td>0.46 [0.31, 0.76]</td><td>0.84</td><td>0.34</td></tr><tr><td>96</td><td>4.67 [4.63, 4.70]</td><td>0.57 [0.38, 0.85]</td><td>0.87</td><td>0.30</td></tr></tbody></table><div class="tbl-cap">Transition location and width of the largest faction&#x27;s share under a continuous attack threshold</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
