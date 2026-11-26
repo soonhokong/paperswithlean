@@ -8,6 +8,17 @@
     <language>en</language>
     <lastBuildDate>Thu, 26 Nov 2026 00:00:00 +0000</lastBuildDate>
     <item>
+      <title>Schur decomposition with logarithmic precision in cubic time up to logarithmic factors</title>
+      <link>https://paperswithlean.com/paper/2611.29923.html</link>
+      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.29923.html</guid>
+      <pubDate>Thu, 26 Nov 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Matthew J. Colbrook</dc:creator>
+      <category>formalization</category><category>verification</category><category>analysis</category>
+      <description>The main theorem on the randomised Schur decomposition algorithm (logarithmic precision, cubic time) has been formally verified in Lean, cited as a separate artifact.
+
+How much arithmetic precision is needed to compute a Schur decomposition to a prescribed tolerance? Let $A$ be a complex matrix of order $n$ with spectral norm at most one, let $0&lt;δ&lt;1/2$ be the tolerance, and let $0&lt;p&lt;1/2$ be the requested failure probability. Our randomised floating-point algorithm uses $O(\log(n/(δp)))$ mantissa bits per real component and $O(n^3\log^2(n/(δp)))$ arithmetic operations on every execution, with universal constants. It returns $Q$ and an exactly upper triangular $T$. With probability at least $1-p$, both $\|A-QTQ^*\|_2$ and $\|Q^*Q-I\|_2$ are at most $δ$. We sample a small perturbation using finitely many bits and use Gaussian estimates to bound the eigenvector conditioning and eigenvalue gap. A single contour estimate bounds the effect of a rounding error through any number of remaining Newton steps. At each subdivision level, the full matrix is unitarily similar to a small perturbation of the regularised input. This allows us to bound the conditioning of each diagonal block directly from that input and to use the same precision throughout.</description>
+    </item>
+    <item>
       <title>An Asymptotic One-Sample Surrogate for Non-Gaussian ERM with General Convex Regularization</title>
       <link>https://paperswithlean.com/paper/2611.27754.html</link>
       <guid isPermaLink="true">https://paperswithlean.com/paper/2611.27754.html</guid>
@@ -655,17 +666,6 @@ Below a threshold noise rate, error correction lets larger quantum memories stor
       <description>Main classification, rigidity theorem, cardinality and modular criterion are formalised in Lean 4 with Mathlib ( 3,000 lines), with a Zenodo artifact.
 
 We determine all nilpotent tridiagonal matrices with entries in $\{-1,0,1\}$. The problem reduces to describing the set $\cN_n$ of pairs $(d,b)\in\{-1,0,1\}^n\times\{-1,1\}^{n-1}$ for which the tridiagonal matrices with diagonal $d$ and with products $b_k$ of opposite off-diagonal entries have characteristic polynomial $λ^n$. We show that $\cN_n$ is obtained from $\cN_{\lfloor n/2\rfloor}$ by one of two explicit “folding” operations, according to the parity of $n$. As a consequence, $\cN_n$ is non-empty precisely when $n=1$ or $3\cdot2^j-1\le n\le2^{j+2}-1$ for some $j\ge0$, in which case it has $2^{\lfloor\log_2n\rfloor}$ elements. This yields a formula for the number of nilpotent $n\times n$ tridiagonal matrices with entries in $\{-1,0,1\}$, which begins $1,9,73,585,4809,39113$. The case $d=0$ is a conjecture of Corless, established in an earlier paper. The main new ingredient is a rigidity phenomenon: a pair as above, of size $n\ge2$, whose characteristic polynomial is congruent to $λ^n$ modulo $4$ is necessarily a fold of a smaller pair. It follows that such a pair is nilpotent as soon as its characteristic polynomial is congruent to $λ^n$ modulo $2^{1+\lfloor\log_2n\rfloor}$. Finally we show that the eigenvalue zero of an $m\times m$ matrix in Corless&#x27;s skew-symmetric family has multiplicity at most $2^{v_2(m+1)}-1$, with equality attained. The classification, the rigidity statement, the cardinality of the sets $\cN_n$ and the criterion modulo $2^{1+\lfloor\log_2n\rfloor}$ have been formalised in Lean 4.</description>
-    </item>
-    <item>
-      <title>Does a Frontier Large Language Model Know What It Can Solve? A 100-Conjecture Calibration Study</title>
-      <link>https://paperswithlean.com/paper/2611.28827.html</link>
-      <guid isPermaLink="true">https://paperswithlean.com/paper/2611.28827.html</guid>
-      <pubDate>Mon, 23 Nov 2026 00:00:00 +0000</pubDate>
-      <dc:creator>Ayush Khaitan, Liam Fowl, Tomàs Ortega, Alex Kontorovich, Sanjeev Arora</dc:creator>
-      <category>theorem-proving-ml</category><category>formalization</category><category>mathlib</category><category>analysis</category>
-      <description>Each of the nine claimed conjecture resolutions comes with a machine-checked Lean 4 certificate built against Mathlib, with axioms audited via #print axioms.
-
-How does confidence correlate with actual performance in large language models, when attacking open research-level math problems? We address this question by studying the performance of ChatGPT 5.6 Sol Ultra on a set of 100 open conjectures in geometric analysis. By construction, the model first selected open problems in geometric analysis that it assessed that it had at least a 50% chance of proving or disproving, and then assigned a probability of success to each question. 13 questions were then excluded after an audit, and the model was asked to resolve the remaining 87 problems. Its mean stated resolution probability was $0.617$, versus an observed rate of $0.103$ (Brier score $0.351$, ECE $0.513$), thereby demonstrating that the model was systematically over-confident in its self-assessment. However, the scores retained ranking signal (AUROC $0.714$). The model was highly overconfident in probability magnitude but did more often than not assign a high probability of success to the problems that it did resolve, than the problems that it did not. Hence, its probabilities were numerically mis-calibrated but directionally correct. All proofs have been formalized in Lean, thereby verifying correctness, and have been run through a semantic equivalence pipeline to ensure semantic equivalence between the formalized and informal statements. These are exploratory campaign outcomes, not fixed-budget success probabilities. The certificates prove formal statements; for a couple of questions, some geometric inputs are assumed in the lean proofs.</description>
     </item>
   </channel>
 </rss>
