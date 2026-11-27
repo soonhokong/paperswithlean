@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pearl: TEE-Enabled Fair Ordering with Minimal Replication · Papers With Lean</title>
+<meta name="description" content="Recent research has investigated fair transaction ordering in blockchain consensus. An orthogonal line of work has demonstrated that equipping replicas with trusted execution environments (TEEs) enables more efficient consensus protocols with only $2f{+}1$ replicas. In this…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pearl: TEE-Enabled Fair Ordering with Minimal Replication">
+<meta property="og:description" content="Recent research has investigated fair transaction ordering in blockchain consensus. An orthogonal line of work has demonstrated that equipping replicas with trusted execution environments (TEEs) enables more efficient consensus protocols with only $2f{+}1$ replicas. In this…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.31468.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.31468.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.31468v1" target="_blank" rel="noopener"><img src="../thumbs/2611.31468.jpg" alt="First page of Pearl: TEE-Enabled Fair Ordering with Minimal Replication"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Pearl: TEE-Enabled Fair Ordering with Minimal Replication</h1>
+        <p class="authors">Vian Robotin, Jérémie Decouchant, Shaokang Xie, Dakai Kang, Mohammad Sadoghi</p>
+        <div class="row">
+          <span class="badge">cs.DC</span>
+          <span class="date">Nov 23, 2026 · v1</span>
+          <span class="badge">cs.CR</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.31468v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.31468" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/VianRobotin/incubator-resilientdb" target="_blank" rel="noopener" title="VianRobotin/incubator-resilientdb">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Impossibility results and the safety and liveness of both Pearl protocol variants are machine-checked in Lean 4 on a model of the protocols.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Recent research has investigated fair transaction ordering in blockchain consensus. An orthogonal line of work has demonstrated that equipping replicas with trusted execution environments (TEEs) enables more efficient consensus protocols with only $2f{+}1$ replicas. In this work, we bridge these two areas and demonstrate that two key fair-ordering properties, ordering linearizability and $γ$-batch-order fairness with minimal batching, cannot be implemented in partially synchronous networks with $2f{+}1$ replicas, even when the replicas are equipped with TEEs. We show that Byzantine replicas can circumvent TEE protections by manipulating the timing of transaction submissions to the enclave, thereby biasing the resulting ordering indicators. However, we prove that assuming a synchronous network allows both properties to be implemented with a reduced replica count. We propose two mechanisms: one uses absolute TEE-attested timestamps to guarantee ordering linearizability in a system of $n \ge 2f{+}1$ replicas, and the other uses TEE-maintained relative sequence numbers to guarantee $γ$-batch-order fairness when $n &gt; \frac{2γf}{2γ-1}$. Ultimately, we integrate these mechanisms into a synchronous lane-based consensus algorithm, achieving strong fair-ordering properties and superior performance while requiring fewer replicas than representative state-of-the-art baselines.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Fair transaction ordering in BFT consensus (ordering linearizability and γ-batch-order fairness) has required at least 3f+1 replicas. It is unclear whether trusted execution environments (TEEs), which reduce standard BFT to 2f+1 replicas, also allow fair ordering with fewer replicas.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The authors prove that neither property can be achieved with 2f+1 replicas in partially synchronous networks, even with TEEs, because Byzantine hosts can manipulate when transactions reach the enclave. Under synchrony they propose two mechanisms: TEE-attested absolute timestamps for ordering linearizability (n ≥ 2f+1), and TEE-maintained sequence counters for γ-batch-order fairness (n &gt; 2γf/(2γ−1)). These are integrated into a lane-based protocol built on Autobahn-style dissemination and Sync HotStuff. The impossibility results and the safety and liveness of both variants are machine-checked in Lean 4.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">A C++ prototype on ResilientDB with SGX (simulation mode) on DAS-5 reaches up to 40k tx/s at n=7, with latency of 226–302 ms. It outperforms Pompē, Themis, FairDAG and Tusk baselines while using fewer replicas.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vx: A Programming Language for Scalable, Maintainable and Secure Systems · Papers With Lean</title>
+<meta name="description" content="A program for a modern machine runs on several kinds of chips. Its memory spaces, links and capacities are invisible to the compilers of today. So a host that reads device memory, a working set that does not fit, or a data race shows up only when the program runs. Vx is a…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vx: A Programming Language for Scalable, Maintainable and Secure Systems">
+<meta property="og:description" content="A program for a modern machine runs on several kinds of chips. Its memory spaces, links and capacities are invisible to the compilers of today. So a host that reads device memory, a working set that does not fit, or a data race shows up only when the program runs. Vx is a…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.32217.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.32217.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.32217v1" target="_blank" rel="noopener"><img src="../thumbs/2611.32217.jpg" alt="First page of Vx: A Programming Language for Scalable, Maintainable and Secure Systems"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Vx: A Programming Language for Scalable, Maintainable and Secure Systems</h1>
+        <p class="authors">Aditya Kumar</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Nov 24, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-pink" href="../#tag=type-theory">type-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.32217v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.32217" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/vx-lang/Vx" target="_blank" rel="noopener" title="vx-lang/Vx">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 proofs (60 files, 777 theorems, no sorry) establish data-race freedom, DRF-SC, and scheduler properties for model languages of Vx&#x27;s concurrency checks.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">A program for a modern machine runs on several kinds of chips. Its memory spaces, links and capacities are invisible to the compilers of today. So a host that reads device memory, a working set that does not fit, or a data race shows up only when the program runs. Vx is a systems programming language that puts these facts in the program text. A machine is a source file of declarations. A value&#x27;s type says which memory it lives in. Apart from one stated exception, a function&#x27;s signature is the whole contract that its callers see. A flag lists the code and the facts that the compiler trusts without a proof. This report is a tour of the language at one commit. It describes six design principles, the core language, and the features that serve three qualities. Vx is scalable because one program text runs across machines, cores and GPU threads. With an option, the compiler also checks its function bodies in parallel. It is maintainable because a signature is the contract of a function and most diagnostics have codes. The output of the parallel compiler does not depend on the number of threads. It is secure because safe code has ownership, borrow, race and placement checks, and in safe code, a file or a socket of the standard library opens only with a right. For every feature, the report gives its status and the evidence for it. It also lists where the implementation does not yet meet the design.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Programs for heterogeneous machines run on CPUs, GPUs and remote nodes. Their memory spaces, capacities and links are invisible to today&#x27;s compilers, so placement errors, out-of-capacity working sets and data races appear only at run time.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Vx is a systems language in which machines are source files of declarations and a value&#x27;s type records its memory space. Function signatures form the whole contract, and safe code gets ownership, borrow, race and placement checks plus capability-gated I/O. The concurrency model&#x27;s soundness is backed by Lean 4 proofs on model languages, alongside herd7, memalloy, GenMC and TLA+ checks. The Lean proofs concern models, not the vxc compiler itself.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The report gives a status and evidence for each feature. The Lean development is 60 files, 18,446 lines and 777 theorems with no sorry or axioms, and it agrees with herd7 on 36 litmus tests. It also lists known gaps, such as bounds checks being off by default.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

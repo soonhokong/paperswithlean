@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI-Assisted Auto-formalization for Trustworthy Scientific Computing: Case Studies and Lessons Learned · Papers With Lean</title>
+<meta name="description" content="Agentic AI tools have recently had success in mathematical reasoning. Both general purpose coding agents such as Claude Code and Codex, and specialized mathematics agents such as Aristotle, have been used for formalizing mathematical problems such as Fermat&#x27;s last theorem, Erdős…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI-Assisted Auto-formalization for Trustworthy Scientific Computing: Case Studies and Lessons Learned">
+<meta property="og:description" content="Agentic AI tools have recently had success in mathematical reasoning. Both general purpose coding agents such as Claude Code and Codex, and specialized mathematics agents such as Aristotle, have been used for formalizing mathematical problems such as Fermat&#x27;s last theorem, Erdős…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.31033.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.31033.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.31033v1" target="_blank" rel="noopener"><img src="../thumbs/2611.31033.jpg" alt="First page of AI-Assisted Auto-formalization for Trustworthy Scientific Computing: Case Studies and Lessons Learned"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">AI-Assisted Auto-formalization for Trustworthy Scientific Computing: Case Studies and Lessons Learned</h1>
+        <p class="authors">Mohit Tekriwal, Het Mankad, Naifeng Zhang, Keita Teranishi, Sahil Bhola, Daisuke Uchida, Jean-Baptiste Jeannin, Franz Franchetti, Karthik Duraisamy, Jeffrey Vetter, Yohann Dudouit</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 23, 2026 · v1</span>
+          <span class="badge">cs.MS</span> <span class="badge">math.NA</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.31033v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.31033" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses AI coding agents (Claude Code, Codex, Aristotle) to formalize scientific-computing proofs in Lean with Mathlib and TorchLean, analyzing failure modes.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Agentic AI tools have recently had success in mathematical reasoning. Both general purpose coding agents such as Claude Code and Codex, and specialized mathematics agents such as Aristotle, have been used for formalizing mathematical problems such as Fermat&#x27;s last theorem, Erdős problems and several IMO level math problems. However, much of these efforts are concentrated in the pure mathematics domain, which benefits from relatively self-contained theorem statements, fixed mathematical representation and extensive support in existing formal libraries. Applied mathematics, on the other hand, presents additional challenges because the source may describe a computational procedure or modeling transformation rather than a declarative theorem. In this work, we present a systematic study of AI-assisted auto-formalization for scientific computing (SC), a domain in applied mathematics central to U.S. Department of Energy applications. Through case studies spanning hierarchical abstraction layers in SC software stack, we evaluate not only whether AI agents can complete numerical proofs, but also where and why they fail across the stack. Our primary contribution is a cross-layer taxonomy of failure modes and an analysis of the form of expert feedback required at each layer to recover mathematical soundness. From these observations, we derive a workflow for recurring proof patterns and practical guidance for using AI agents while preserving mathematical soundness. Our results characterize both the practical value and the current limitations of AI-assisted formalization for trustworthy scientific computing.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Most AI-assisted autoformalization work targets pure mathematics. Scientific computing proofs instead involve computational procedures, numerical models, and implementation details, and these pose different challenges.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Pen-and-paper proofs (TeX) plus a CLAUDE.md file were given to Claude Code, Codex and Aristotle. The CLAUDE.md file specified the workflow, a modular Lean file structure, and guardrails against unsound hypotheses. Case studies span four layers of the scientific-computing stack: finite-difference and Mehrstellen stencils, convergence of conjugate-gradient and stationary iterative solvers, floating-point error bounds for parallel tree reduction (built on TorchLean), and equivalence of SPIRAL IR rewrite rules using Mathlib Kronecker products. Failure modes and the expert feedback needed at each layer were catalogued.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.31033/workflow_agents.png" alt=""><figcaption>Figure 1. Workflow for auto-formalization of pen-and-paper proof in Lean</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Simpler cases (second-order stencils, the SPIRAL Kronecker identity) were formalized by Codex in minutes without sorry or human intervention. Implementation-level cases, such as the floating-point reductions, needed several expert feedback rounds. Agents tended to weaken statements or add unsound assumptions to get proofs to compile, so humans had to audit the formal specifications.</p><div class="sum-table"><table><thead><tr><th>Layer</th><th>Representative case</th><th>Characteristic obligation</th></tr></thead><tbody><tr><td>Numerical discretization</td><td>stencil operators</td><td>indexing, boundaries, neighborhood equivalence</td></tr><tr><td>Numerical algorithm</td><td>stationary/Krylov recurrences and convergence</td><td>norms, spectra, convergence assumptions</td></tr><tr><td>Finite precision</td><td>summation/dot product reductions</td><td>IEEE-754 rounding, underflow, error bounds</td></tr><tr><td>Implementation/refinement</td><td>program or IR equivalence</td><td>loops, arrays, memory, compiler transformations</td></tr></tbody></table><div class="tbl-cap">Layers of the scientific-computing stack and their characteristic proof obligations</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

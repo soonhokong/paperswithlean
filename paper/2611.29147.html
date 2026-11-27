@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VeriLogic: Reinforcement Learning over Verifiable Logical Reasoning Traces · Papers With Lean</title>
+<meta name="description" content="Logical reasoning derives conclusions from premises through explicit intermediate inference steps, providing a natural basis for process-level verification and supervision. However, existing learning methods often rely on response-level outcome signals, which overlook…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VeriLogic: Reinforcement Learning over Verifiable Logical Reasoning Traces">
+<meta property="og:description" content="Logical reasoning derives conclusions from premises through explicit intermediate inference steps, providing a natural basis for process-level verification and supervision. However, existing learning methods often rely on response-level outcome signals, which overlook…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.29147.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.29147.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.29147v1" target="_blank" rel="noopener"><img src="../thumbs/2611.29147.jpg" alt="First page of VeriLogic: Reinforcement Learning over Verifiable Logical Reasoning Traces"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">VeriLogic: Reinforcement Learning over Verifiable Logical Reasoning Traces</h1>
+        <p class="authors">ZeLiang Chen, Yunyao Zhang, Xinglang Zhang, Wenbing Li, Junqing Yu, Zikai Song</p>
+        <div class="row">
+          <span class="badge">cs.LG</span>
+          <span class="date">Nov 22, 2026 · v1</span>
+          <span class="badge">cs.AI</span> <span class="badge">cs.CL</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-indigo" href="../#tag=autoformalization">autoformalization</a> <a class="tag c-slate" href="../#tag=logic">logic</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.29147v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.29147" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Translates natural-language logic problems into Lean4 premises and goals, using Lean4 proof checking as an RL reward signal and for iterative proof repair.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Logical reasoning derives conclusions from premises through explicit intermediate inference steps, providing a natural basis for process-level verification and supervision. However, existing learning methods often rely on response-level outcome signals, which overlook heterogeneous correctness within the reasoning trace: a correct answer may contain invalid reasoning, while valid intermediate steps may also appear in an incorrect response. To address this issue, we introduce Reinforcement Learning on Verifiable Logical Reasoning (VeriLogic), which turns internal reasoning traces into explicit and verifiable learning objects. Rather than treating a response as an indivisible learning unit, VeriLogic decomposes logical reasoning into explicit intermediate judgments, proofs, and final decisions, and organizes them into a unified &quot;Grounding - Optimization - Refinement&quot; pipeline: (1) Verification-Grounded Reasoning Environment Construction grounds logical reasoning into explicit intermediate states and formally checkable proof obligations, making the internal reasoning process accessible to verification and learning; (2) Logical Structured Policy Optimization learns from verifier feedback through complementary global and local rewards, jointly optimizing the overall reasoning outcome while providing targeted optimization signals to different intermediate reasoning paths; and (3) Verifier-Guided Iterative Refinement acts on verifier feedback by leveraging proof states and error messages to iteratively diagnose and repair failed reasoning. Experiments on six logical reasoning benchmarks show consistent gains over strong baselines, with average improvements of 6.39% and 5.00% on Qwen3 and Llama-3.1. These results highlight the value of making logical reasoning traces verifiable, learnable, and refinable beyond final-answer supervision.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Reinforcement learning for LLM logical reasoning mostly uses response-level outcome rewards. These rewards ignore that a correct answer may rest on invalid reasoning, and that an incorrect response may still contain valid intermediate steps.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">VeriLogic splits each True/False/Unknown problem into Positive, Negative and Unknown reasoning paths. It translates the context and query into a Lean4 premise set and target proposition, so proofs on the Positive and Negative paths can be checked by Lean4. PSAR-GRPO adds a global outcome advantage to path-specific local advantages, with Lean4 verification run inside the on-policy rollout loop. At inference time, failed proofs are repaired iteratively using Lean4 proof states and error messages.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.29147/pipelinegai.png" alt=""><figcaption>Figure 2 . Overview of VeriLogic. VeriLogic follows a unified Grounding–Optimization–Refinement pipeline: it constructs explicit and verifiable reasoning paths, combines global outcome supervision with path-specific local advantages through PSAR-GRPO, and iteratively repairs unsuccessful proofs using Lean4 feedback at inference time.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">On six logical reasoning benchmarks (MultiLogic, ProofWriter, FOLIO, ProverQA, LogiQA, e-SNLI), VeriLogic improves average accuracy over the strongest baseline by 1.83 points on Qwen3-8B, 5.00 on Llama-3.1-8B and 6.39 on Qwen3-4B. Ablations show that correct path routing and verifier-guided refinement both contribute.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.29147/figure14.png" alt=""><figcaption>Figure 3 . Component ablation of VeriLogic on Qwen3-8B. Macro-averaged accuracy over six logical reasoning datasets under formalization, GRPO, PSAR-GRPO, verifier-guided refinement, and full VeriLogic configurations, together with matched controls.</figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.29147/figure10.png" alt=""><figcaption>Figure 5 . Verifier feedback by repair round.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Model</th><th>Base</th><th>GRPO</th><th>Best baseline</th><th>VeriLogic</th></tr></thead><tbody><tr><td>Qwen3-8B</td><td>90.00</td><td>92.70</td><td>94.70 (LogicReward)</td><td>96.53</td></tr><tr><td>Llama-3.1-8B</td><td>56.50</td><td>61.06</td><td>62.39 (LogicReward)</td><td>67.39</td></tr><tr><td>Qwen3-4B</td><td>76.70</td><td>81.03</td><td>84.06 (LPT)</td><td>90.44</td></tr></tbody></table><div class="tbl-cap">Average accuracy (%) over six benchmarks under the Lean4-formalized setting</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
