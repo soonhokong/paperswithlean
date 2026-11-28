@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DéjàVu: Plurality Consensus by First Repetition · Papers With Lean</title>
+<meta name="description" content="We analyze DéjàVu, a simple protocol for plurality consensus: in each synchronous round, each agent samples one uniformly random agent and adopts the first opinion it observes twice, resetting its memory after every adoption. The rule requires neither frequency counters nor…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DéjàVu: Plurality Consensus by First Repetition">
+<meta property="og:description" content="We analyze DéjàVu, a simple protocol for plurality consensus: in each synchronous round, each agent samples one uniformly random agent and adopts the first opinion it observes twice, resetting its memory after every adoption. The rule requires neither frequency counters nor…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.34534.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.34534.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.34534v1" target="_blank" rel="noopener"><img src="../thumbs/2611.34534.jpg" alt="First page of DéjàVu: Plurality Consensus by First Repetition"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">DéjàVu: Plurality Consensus by First Repetition</h1>
+        <p class="authors">Niccolò D&#x27;Archivio, George Giakkoupis, Frédéric Giroire, Emanuele Natale</p>
+        <div class="row">
+          <span class="badge">cs.DC</span>
+          <span class="date">Nov 25, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-orange" href="../#tag=probability">probability</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.34534v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.34534" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">AI agents formalized all statements and proofs of an earlier version of the paper in Lean 4 as a proofreading aid.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">We analyze DéjàVu, a simple protocol for plurality consensus: in each synchronous round, each agent samples one uniformly random agent and adopts the first opinion it observes twice, resetting its memory after every adoption. The rule requires neither frequency counters nor knowledge of the population size or the number of opinions. It relies only on repetition detection, an ability documented in single neurons and reflected in the mere-exposure effect. For a population of $n$ agents with $k$ initial opinions, let $M_0$ be the initial count of the plurality opinion (so $n/M_0 \le k$) and $Δ_0$ its bias, the difference between $M_0$ and the count of the second most popular opinion. We prove that, whenever $Δ_0 = Ω(\sqrt{M_0 \log n})$, DéjàVu reaches consensus on the initial plurality opinion within $O(\sqrt{n/M_0} \log(e M_0 / Δ_0) + \log\log n)$ rounds with high probability. Moreover, we show that, for the same bias regime, DéjàVu is asymptotically never slower than the $h$-majority protocol, collecting its $h$ samples one per round, for every fixed choice of $h$, even one chosen optimally for the initial configuration. There are also initial configurations for which DéjàVu is asymptotically faster for every $h$. The opinion counts alone do not determine the dynamics: each adoption depends on a hidden memory filled over many rounds while the population changed, and agents with older (hence fuller) memories tend to reset sooner, so an advantage held mostly by them can be lost. The few rigorous convergence results we are aware of for such dynamics concern only two opinions. We derive the exact law of the memories given the history of opinions and resets, and track how the plurality opinion&#x27;s advantage is distributed across memory ages, giving more weight to recently reset agents as they are less likely to reset again soon.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Plurality consensus asks n agents holding k opinions to agree on the initially most frequent opinion. The goal is to do this with simple agents that need no frequency counters and no knowledge of n, k, or a sample-size parameter.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">The paper analyzes DéjàVu in the uniform PULL model. Each round, an agent samples one random agent, adopts the first opinion it has observed twice, and then resets its memory. The analysis reveals a public history of opinions and reset times, which makes the hidden memories conditionally independent with an exact law. Agents are grouped into cohorts by their last reset time, and the plurality opinion&#x27;s advantage is tracked across cohorts, with more weight on recently reset agents. An earlier version of the statements and proofs was formalized in Lean 4 by AI agents as a proofreading aid.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">When the bias is Δ0 = Ω(√(M0 log n)), DéjàVu reaches consensus on the plurality opinion within O(√(n/M0) log(eM0/Δ0) + log log n) rounds with high probability. In the same bias regime it is asymptotically never slower than streaming h-Majority for any fixed h, and some initial configurations make it strictly faster for every h.</p></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

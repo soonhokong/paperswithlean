@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AutoformBench: A Lean Formalization Benchmark for Advanced Mathematics · Papers With Lean</title>
+<meta name="description" content="AI systems are increasingly capable of producing machine-checked Lean proofs of advanced mathematical results. Real mathematical formalization, however, is not isolated theorem proving: it requires building the definitions and intermediate lemmas that connect a result to a…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AutoformBench: A Lean Formalization Benchmark for Advanced Mathematics">
+<meta property="og:description" content="AI systems are increasingly capable of producing machine-checked Lean proofs of advanced mathematical results. Real mathematical formalization, however, is not isolated theorem proving: it requires building the definitions and intermediate lemmas that connect a result to a…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.33165.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.33165.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.33165v1" target="_blank" rel="noopener"><img src="../thumbs/2611.33165.jpg" alt="First page of AutoformBench: A Lean Formalization Benchmark for Advanced Mathematics"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">AutoformBench: A Lean Formalization Benchmark for Advanced Mathematics</h1>
+        <p class="authors">Charles Arnal, Ahmad Rammal, Niket Patel, Fabian Gloeckle, Bartosz Piotrowski, Amaury Hayat, Julia Kempe, Rémi Munos, Vivien Cabannes</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Oct 4, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.33165v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.33165" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/facebookresearch/autoformbench" target="_blank" rel="noopener" title="facebookresearch/autoformbench">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Introduces a benchmark of 341 expert-audited Lean 4 statements on advanced mathematics; agents must prove them against Mathlib, with grading by Comparator and Nanoda.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">AI systems are increasingly capable of producing machine-checked Lean proofs of advanced mathematical results. Real mathematical formalization, however, is not isolated theorem proving: it requires building the definitions and intermediate lemmas that connect a result to a formal library. Existing evaluations often provide isolated theorem statements in settings where much of this supporting theory is already available in Mathlib. We introduce AutoformBench, a benchmark of 341 Lean 4 formalization tasks drawn from 24 advanced mathematical sources. Lean-experienced mathematicians formalized and audited each target statement, leaving the corresponding Lean proof to the evaluated agent. Each problem is embedded in a broader mathematical development: agents receive the informal proof but must translate it into Lean while constructing the missing definitions, intermediate lemmas, and supporting infrastructure. We compare the performance of frontier models on these problems. We find a largely shared difficulty frontier: success depends less on mathematical domain than on models&#x27; ability to construct missing formal infrastructure. Data and code at <a href="https://github.com/facebookresearch/autoformbench" target="_blank" rel="noopener">https://github.com/facebookresearch/autoformbench</a></div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Existing Lean benchmarks mostly test isolated theorem statements whose supporting theory is already in Mathlib. Real formalization also requires building the missing definitions and intermediate lemmas, and current evaluations do not measure this.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Lean-experienced mathematicians formalized and audited 341 target statements from 24 advanced sources, mostly MIT OpenCourseWare texts, chosen to lie beyond direct Mathlib coverage. Each task supplies a Lean workspace with the frozen statement, its local context and the informal proof. Agents run in isolated Docker environments through the Harbor harness, with access to a REPL, Loogle search, project builds and file tools, under a $200 per-task budget. Submissions are checked by Comparator against the original statements and permitted axioms, then replayed by the independent Nanoda kernel.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.33165/autoformbench_harness.png" alt=""><figcaption>Figure 2: AutoformBench evaluation protocol. A multi-turn model edits an isolated Lean workspace using library search, executable Lean feedback, and file tools. Submitted solutions are independently checked in a fresh Comparator workspace; long runs continue through conversation compaction.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">GPT-6 Astra solved 281 of the 341 tasks and led at most token and turn budgets. Its accepted solutions relied heavily on agent-built infrastructure: 92.9% used auxiliary lemmas and 73.3% introduced new definitions. Without tools or compiler feedback, models solved under 3% of single-hole tasks; removing both the REPL and build access collapsed success on a 72-problem panel from 36–45 to 1–4.</p><div class="sum-table"><table><thead><tr><th>Condition</th><th>Gemini 3.7 Flash</th><th>GPT-5.6 Sol</th></tr></thead><tbody><tr><td>Full tools (three runs)</td><td>38, 36, 38</td><td>43, 44, 43</td></tr><tr><td>No build</td><td>24</td><td>39</td></tr><tr><td>No REPL or build</td><td>1</td><td>4</td></tr><tr><td>Files only</td><td>1</td><td>1</td></tr></tbody></table><div class="tbl-cap">Verified successes under tool ablations on the fixed 72-problem panel</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

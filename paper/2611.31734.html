@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verified two-sided bounds for the inf-sup constant of the divergence on planar polygons · Papers With Lean</title>
+<meta name="description" content="The inf-sup constant $β(Ω)$ of the divergence governs the stability of the Stokes problem. For polygons, analytic lower bounds are far from the true value, and numerical methods either bound $β$ from above or require spectral-gap and mesh-fineness hypotheses that cannot…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Verified two-sided bounds for the inf-sup constant of the divergence on planar polygons">
+<meta property="og:description" content="The inf-sup constant $β(Ω)$ of the divergence governs the stability of the Stokes problem. For polygons, analytic lower bounds are far from the true value, and numerical methods either bound $β$ from above or require spectral-gap and mesh-fineness hypotheses that cannot…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.31734.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.31734.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.31734v1" target="_blank" rel="noopener"><img src="../thumbs/2611.31734.jpg" alt="First page of Verified two-sided bounds for the inf-sup constant of the divergence on planar polygons"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Verified two-sided bounds for the inf-sup constant of the divergence on planar polygons</h1>
+        <p class="authors">Xuefeng Liu</p>
+        <div class="row">
+          <span class="badge">math.NA</span>
+          <span class="date">Nov 24, 2026 · v1</span>
+          <span class="badge">math.SP</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-green" href="../#tag=mathlib">mathlib</a> <a class="tag c-blue" href="../#tag=analysis">analysis</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.31734v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.31734" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Parts of the certificate theory and selected numerical certificates for the square&#x27;s Friedrichs constant are formally checked in Lean 4 with Mathlib.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">The inf-sup constant $β(Ω)$ of the divergence governs the stability of the Stokes problem. For polygons, analytic lower bounds are far from the true value, and numerical methods either bound $β$ from above or require spectral-gap and mesh-fineness hypotheses that cannot presently be checked. We propose a method that produces verified lower bounds without any such hypothesis. It rests on the Friedrichs formulation of $β$ in the Bergman space and on a multiplier identity that controls the non-compact corner contribution pointwise, with the sharp corner constant; the remaining compact part is bounded by a finite matrix inequality that is checked in exact and ball arithmetic. We prove that the bounds converge to $β$. Together with enclosed Rayleigh quotients of explicit trial functions (and, for the square, the bottom $\frac12-\frac1π$ of the essential spectrum) this yields two-sided enclosures, e.g.\ $0.426245\leβ\le0.426252$ for the square and $0.303973\leβ\le0.304078$ for the L-shaped domain. For a square with a square hole, which is neither simply connected nor star-shaped, we obtain $0.154596\leβ\le0.154781$. For the rectangles $(0,1)\times(0,r)$ we enclose $β$ for eight aspect ratios and prove for the five ratios $r\in\{\frac14,\frac38,\frac12,\frac9{16},\frac58\}$ that $β^2$ is an isolated eigenvalue below the essential spectrum; the last two lie beyond the range covered by the explicit bound of Costabel, Crouzeix, Dauge and Lafranche. As an application, the certified values give guaranteed a posteriori bounds for Taylor–Hood approximations of the Stokes equations, including the doubly connected domain, for which, to our knowledge, no explicit lower bound for $β$ had been available.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">The inf-sup (LBB) constant β of the divergence controls the stability of the Stokes problem. On polygons, analytic lower bounds are poor, and numerical methods either give only upper bounds or depend on hypotheses that cannot currently be checked.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">β is expressed through the Friedrichs constant on the Bergman space. A multiplier identity controls the non-compact corner contribution pointwise with the sharp corner constant. The remaining compact part reduces to a finite matrix inequality, which is verified in exact and ball (Arb) arithmetic. Parts of the argument (the Taylor lemma, the representer identity, the dual form, the proof of Theorem 4.13) and some certificates for the square are formalized in Lean 4 with Mathlib. One hypothesis remains in the Lean statements: the existence of the correctors whose Gram-form enclosures were computed with Arb.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.31734/fig_mesh_square.png" alt=""><figcaption>Figure 3. An illustrative multiplier for the square ( 16 sectors, two passive rings, 1184 triangles), not one of the designs used for the certified results (which have three or four passive rings, Section 7 ): modulus of the weight w=1-\partial_{\bar{z}}m . Of the triangles, 736 have w=0 , 192 are passive with 0&lt;|w|\leq 0.637644 , and 256 are active.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">The bounds are proved to converge to β. Two-sided enclosures include 0.426245 ≤ β ≤ 0.426252 for the square, 0.303973 ≤ β ≤ 0.304078 for the L-shape, and 0.154596 ≤ β ≤ 0.154781 for a square with a square hole, plus enclosures for eight rectangle aspect ratios. For a subset of these results, the step from each certified rational bound to the stated decimal bound for β is kernel-checked in Lean, 37 statements in total. The certified values give guaranteed a posteriori bounds for Taylor–Hood Stokes approximations.</p><div class="sum-table"><table><thead><tr><th>Domain</th><th>Lower bound</th><th>Upper bound</th></tr></thead><tbody><tr><td>Square</td><td>0.426245</td><td>0.426252</td></tr><tr><td>L-shape</td><td>0.303973</td><td>0.304078</td></tr><tr><td>Square with hole</td><td>0.154596</td><td>0.154781</td></tr></tbody></table><div class="tbl-cap">Verified two-sided enclosures of β</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

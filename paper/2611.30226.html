@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VeriWorld: A Verifiable Visual SWE-Bench for Spatial Reasoning in 3D Environments · Papers With Lean</title>
+<meta name="description" content="Vision-language models (VLMs) are increasingly used for spatial tasks such as navigation and manipulation, where they must infer geometry and object relationships from visual input in order to act correctly. Existing benchmarks usually test perception and reasoning in isolation,…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VeriWorld: A Verifiable Visual SWE-Bench for Spatial Reasoning in 3D Environments">
+<meta property="og:description" content="Vision-language models (VLMs) are increasingly used for spatial tasks such as navigation and manipulation, where they must infer geometry and object relationships from visual input in order to act correctly. Existing benchmarks usually test perception and reasoning in isolation,…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.30226.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.30226.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.30226v1" target="_blank" rel="noopener"><img src="../thumbs/2611.30226.jpg" alt="First page of VeriWorld: A Verifiable Visual SWE-Bench for Spatial Reasoning in 3D Environments"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">VeriWorld: A Verifiable Visual SWE-Bench for Spatial Reasoning in 3D Environments</h1>
+        <p class="authors">Yan Zheng, ShengYun Peng, Xuyao Liang, Xiaoyan Cong, Nuo Chen, Bangya Liu, Zihan Wang, Wenyan Cong, Zhiwen Fan, Zhangyang Wang</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 23, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-orange" href="../#tag=benchmark">benchmark</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.30226v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.30226" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/VITA-Group/VeriWorld" target="_blank" rel="noopener" title="VITA-Group/VeriWorld">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Uses Lean 4 per-seed theorems, decided via native_decide, to certify maze reachability and solvability for benchmark task instances; the Lean source is released.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Vision-language models (VLMs) are increasingly used for spatial tasks such as navigation and manipulation, where they must infer geometry and object relationships from visual input in order to act correctly. Existing benchmarks usually test perception and reasoning in isolation, making it hard to tell whether failures come from visual understanding, downstream reasoning, or the bridge between them. We introduce VeriWorld, a benchmark for spatial reasoning in interactive 3D environments with executable actions and deterministic verification. For task families where all three channels are well-defined, we evaluate matched visual, structured, and combined input conditions on the same instance, environment, and verifier; families without a clean visual/structured/combined split are reported separately. This design supports controlled comparisons of perception, reasoning, and their interaction. Using this setup, we uncover two diagnostic findings. First, models often perform much better when task-relevant information, such as object identity, current state, or target location, is given explicitly than when it must be read from the rendered scene, revealing a recurring visual-to-structure gap. Second, action-space and harness design can change outcomes even under the same task and information condition, showing that interaction protocol is itself a confounding variable. VeriWorld is open-sourced to support reproducible and fine-grained evaluation of spatial reasoning in VLMs.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Existing spatial-reasoning benchmarks for vision-language models test perception and reasoning separately. This makes it hard to tell whether failures come from visual understanding, downstream reasoning, or the link between them.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">VeriWorld provides 11 interactive 3D task families built in Unreal Engine 5, with executable actions and deterministic Python verifiers. Matched visual, structured, and combined input conditions are evaluated on the same seed-generated instances, and the action harness (e.g., batch vs. single-step control) is varied as a separate experimental variable. Some families carry solvability certificates: Lean 4 per-seed reachability theorems for mazes, or deterministic Slang/CUDA physics simulation.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.30226/maze_navfps.png" alt=""><figcaption>Table 5: Material texture ablation (4 \times 4 maze, batch free). Each cell shows pass rate, with average rounds in parentheses. Richer visual textures (mat3) tend to improve VP pass rates by providing distinguishable landmarks.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Models often do much better when task-relevant information is given explicitly than when it must be read from rendered scenes, revealing a visual-to-structure gap. Harness design also changes outcomes: batch control raises MazeNavFPS Pass@1 for Gemini-3.1-Pro from 0.57 to 0.93 (VP) and 0.97 (VRP) under an equal move budget.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.30226/teaser_diagnose.png" alt=""><figcaption>Figure 1 : Batch control improves performance under both evaluated information channels at an equal move budget. Same task (MazeNavFPS, 30 mazes), same model (Gemini-3.1-Pro), and the same budget of primitive moves for both protocols (125/170/210 moves for 3{\times}3 / 4{\times}4 / 5{\times}5 grids): switching the action interface from Single (one move per call) to Batch (3–6 moves per call) lifts</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Model</th><th>VP Batch</th><th>VP Single</th><th>VRP Batch</th><th>VRP Single</th></tr></thead><tbody><tr><td>Gemini-3.1-Pro</td><td>0.93</td><td>0.57</td><td>0.97</td><td>0.57</td></tr><tr><td>Sonnet-4.6</td><td>0.83</td><td>0.70</td><td>0.73</td><td>0.37</td></tr><tr><td>GPT-5.2</td><td>0.67</td><td>0.43</td><td>0.60</td><td>0.43</td></tr><tr><td>GPT-4.1</td><td>0.47</td><td>0.33</td><td>0.67</td><td>0.33</td></tr><tr><td>Pooled</td><td>0.72</td><td>0.51</td><td>0.74</td><td>0.42</td></tr></tbody></table><div class="tbl-cap">MazeNavFPS Pass@1, Batch vs. Single action interface under VP and VRP conditions</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

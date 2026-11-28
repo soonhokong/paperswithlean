@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interactive Proofs as a Unified Framework for Evaluating and Leveraging Verifiable Proof Generation by LLM Agents · Papers With Lean</title>
+<meta name="description" content="Recent advances in LLM-assisted theorem proving and program verification have attracted widespread attention. Beyond determining whether a proposition is true, LLM agents must produce evidence that can be independently checked by humans or formal verification tools. To evaluate…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Interactive Proofs as a Unified Framework for Evaluating and Leveraging Verifiable Proof Generation by LLM Agents">
+<meta property="og:description" content="Recent advances in LLM-assisted theorem proving and program verification have attracted widespread attention. Beyond determining whether a proposition is true, LLM agents must produce evidence that can be independently checked by humans or formal verification tools. To evaluate…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.33676.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.33676.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.33676v1" target="_blank" rel="noopener"><img src="../thumbs/2611.33676.jpg" alt="First page of Interactive Proofs as a Unified Framework for Evaluating and Leveraging Verifiable Proof Generation by LLM Agents"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Interactive Proofs as a Unified Framework for Evaluating and Leveraging Verifiable Proof Generation by LLM Agents</h1>
+        <p class="authors">Yankai Shu, Xingyu Zhao, Chuan Mao, Congchi Yin</p>
+        <div class="row">
+          <span class="badge">cs.AI</span>
+          <span class="date">Nov 25, 2026 · v1</span>
+          
+        </div>
+        <div class="tagrow row"><a class="tag c-orange" href="../#tag=benchmark">benchmark</a> <a class="tag c-rose" href="../#tag=ai-agents">ai-agents</a> <a class="tag c-purple" href="../#tag=theorem-proving-ml">theorem-proving-ml</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.33676v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.33676" target="_blank" rel="noopener">arXiv abstract</a>
+          <a class="btn repo-btn" href="https://github.com/syksykCCC/Merlin-Bench" target="_blank" rel="noopener" title="syksykCCC/Merlin-Bench">Code</a>
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Lean 4 is one of three real-world verifiers in Tier 3, where agents submit Lean proofs checked by a pinned native checker.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Recent advances in LLM-assisted theorem proving and program verification have attracted widespread attention. Beyond determining whether a proposition is true, LLM agents must produce evidence that can be independently checked by humans or formal verification tools. To evaluate the underlying, protocol-agnostic ability of LLM agents to construct verifiable proofs-rather than their proficiency with any particular proof language or verification tool, we introduce Merlin-Bench. Drawing on interactive proof systems from computational complexity theory, we cast an LLM agent as the prover: under a designated protocol, the agent interacts with a formal verifier to substantiate its claimed answer to a problem instance. We develop an automated framework for constructing test cases and use it to create 100 cases across 15 problem families, each formulated within this prover-verifier framework. Experiments with 10 frontier LLMs across multiple agent harnesses show that reliably producing verifiable proofs in accordance with specified protocols remains a substantial challenge. Our case studies further provide actionable insights into improving agents&#x27; ability to generate verifier-accepted proofs: tool use is essential for completing practical proof tasks; different forms of guidance, ranging from engineering instructions to problem-specific knowledge, substantially affect success rates on interactive-proof tasks; and proof-solving experience distilled from abstract tasks can transfer to concrete, real-world verification tasks.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Existing benchmarks for LLM proof generation are either not agent-oriented, use non-rigorous LLM judges, are hard to scale, or are tied to a specific verification tool. They do not measure a general, protocol-agnostic ability to produce verifiable proofs.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Merlin-Bench casts the LLM agent as the prover (Merlin) in an interactive proof system, interacting with a formal verifier (Arthur) under a designated protocol with bounded completeness and soundness error. An automated framework generates randomized instances across 15 problem families in three tiers: deterministic single-round, probabilistic multi-round, and real-world protocols. Tier 3 uses Lean, Dafny, and DRAT checkers as verifiers.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.33676/fig_pipeline_redesign.png" alt=""><figcaption>Figure 2: Overview of the Merlin-Bench construction and evaluation pipeline. (Left) Test cases are developed through problem selection, literature research, generator implementation, and automatic checks under human supervision, followed by feasibility and discrimination checks. (Right) The frozen case bank generates an instance, an agent workspace, and a verifier service for each evaluation. The </figcaption></figure><figure class="sum-fig"><img loading="lazy" src="../figures/2611.33676/fig_tasks_redesign.png" alt=""><figcaption>Figure 3: Representative tasks and verification processes across the three tiers of Merlin-Bench . (Left) Tier 1 is deterministic single round verification. (Middle) Tier 2 is probabilistic multi-round verification. (Right) Tier 3 gives a demonstration of this framework in real-world tasks.</figcaption></figure></div></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Ten frontier LLMs across several agent harnesses were evaluated on 100 cases. The best overall score was 62/100 (GPT-5.6-Sol with Codex). Case studies find that tool use is essential, that prompt guidance strongly affects success, and that experience from abstract tasks transfers to real-world verification tasks.</p><div class="sum-table"><table><thead><tr><th>Harness</th><th>Model</th><th>Tier 1 (36)</th><th>Tier 2 (40)</th><th>Tier 3 (24)</th><th>Overall (100)</th></tr></thead><tbody><tr><td>Codex</td><td>GPT-5.6-Sol</td><td>24</td><td>24</td><td>14</td><td>62</td></tr><tr><td>Claude Code</td><td>Claude 5 Opus</td><td>24</td><td>18</td><td>17</td><td>59</td></tr><tr><td>Claude Code</td><td>Claude 5 Sonnet</td><td>21</td><td>13</td><td>19</td><td>53</td></tr><tr><td>Codex</td><td>DeepSeek V4 Pro</td><td>18</td><td>7</td><td>7</td><td>32</td></tr><tr><td>Codex</td><td>Kimi K3</td><td>16</td><td>3</td><td>3</td><td>22</td></tr></tbody></table><div class="tbl-cap">Selected overall results (cases solved) by harness and model</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>

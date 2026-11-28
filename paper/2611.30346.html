@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ziv: A Language for Correctly Rounded Math Libraries · Papers With Lean</title>
+<meta name="description" content="Developing performant, correctly rounded math libraries is challenging. Such implementations often rely on extended-precision arithmetic for correct rounding and precomputed constants for performance. Existing implementation languages, however, provide limited support for (i)…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ziv: A Language for Correctly Rounded Math Libraries">
+<meta property="og:description" content="Developing performant, correctly rounded math libraries is challenging. Such implementations often rely on extended-precision arithmetic for correct rounding and precomputed constants for performance. Existing implementation languages, however, provide limited support for (i)…">
+<meta property="og:url" content="https://paperswithlean.com/paper/2611.30346.html">
+<meta property="og:image" content="https://paperswithlean.com/thumbs/2611.30346.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<!-- All assets self-hosted under the site (no external CDNs). See .watcher/vendor.py -->
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css?v=d87ab40ca3">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/auto-render.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="titlebar">
+      <h1><a href="../">Papers <span class="with">With</span> <img class="leanlogo" src="../assets/lean-logo.png" alt="Lean"></a></h1>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <a class="backlink" href="../">← All papers</a>
+    <div class="detail">
+      <div class="detail-thumb">
+        <a href="https://arxiv.org/pdf/2611.30346v1" target="_blank" rel="noopener"><img src="../thumbs/2611.30346.jpg" alt="First page of Ziv: A Language for Correctly Rounded Math Libraries"></a>
+      </div>
+      <div class="detail-main">
+        <h1 class="ptitle">Ziv: A Language for Correctly Rounded Math Libraries</h1>
+        <p class="authors">Lucas Yunkyu Lee, Sungjin Hwang, Wonyeol Lee</p>
+        <div class="row">
+          <span class="badge">cs.PL</span>
+          <span class="date">Nov 23, 2026 · v1</span>
+          <span class="badge">cs.MS</span>
+        </div>
+        <div class="tagrow row"><a class="tag c-amber" href="../#tag=verification">verification</a> <a class="tag c-blue" href="../#tag=formalization">formalization</a> <a class="tag c-pink" href="../#tag=type-theory">type-theory</a></div>
+        <div class="btns">
+          <a class="btn primary" href="https://arxiv.org/pdf/2611.30346v1" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="https://arxiv.org/abs/2611.30346" target="_blank" rel="noopener">arXiv abstract</a>
+          
+        </div>
+        <div class="section-label first">TL;DR</div>
+        <div class="tldr-box">Ziv&#x27;s type soundness and compiler correctness results are formalized in Lean 4, with the formalization provided as supplementary material.</div>
+        <div class="section-label">Abstract</div>
+        <div class="abs-full">Developing performant, correctly rounded math libraries is challenging. Such implementations often rely on extended-precision arithmetic for correct rounding and precomputed constants for performance. Existing implementation languages, however, provide limited support for (i) high-level abstractions for such arithmetic and (ii) staged computation to combine precomputation and runtime computation in one program. As a result, existing implementations often miss abstraction opportunities and hard-code constants precomputed using separate programs. These practices make it difficult to write, understand, and modify these libraries. We present Ziv, a programming system for developing correctly rounded math libraries. It consists of a small language, a rich standard library, and a provably sound compiler targeting C. Ziv supports (i) high-level numerical abstractions via types and operations for extended-precision numbers, and (ii) staged computation via compile-time evaluation of expressions known to be input-independent. These features enable high-level code that unifies precomputation and runtime computation. We embed Ziv in Julia and evaluate it by reimplementing 19 functions from two state-of-the-art libraries targeting correct rounding; we achieve competitive performance with 2.63$\times$ reductions in lines of code. We also implement three new functions and automatically explore 824,256 variants, achieving 96.5$\times$ average speedup over an arbitrary-precision library.</div>
+        <div class="summary"><div class="sum-block"><div class="section-label">Problem</div><p class="sum-text">Correctly rounded math libraries need extended-precision arithmetic and precomputed constants. Existing implementation languages give little support for high-level abstractions or for staged computation that mixes precomputation with runtime code. The resulting libraries are large and hard to write, understand, and modify.</p></div><div class="sum-block"><div class="section-label">Approach</div><p class="sum-text">Ziv is a small language embedded in Julia, with a standard library of extended-precision types (Dyadic, MultiWord, Table) and a compiler targeting C. Information-flow-style labels identify input-independent expressions, which are evaluated at compile time. The type system&#x27;s soundness and the compiler&#x27;s correctness are proved, and all results are formalized in Lean 4. Codex helped construct parts of the Lean artifact, with every proof checked by the Lean kernel.</p></div><div class="sum-block"><div class="section-label">Results</div><p class="sum-text">Ziv reimplementations of 19 CORE-MATH and LLVM-libc functions have competitive performance and use 2.63x fewer lines of code. Automatic exploration of 824,256 variants of three new functions gives a 96.5x average speedup over MPFR.</p><div class="sum-figs"><figure class="sum-fig"><img loading="lazy" src="../figures/2611.30346/fig-eval-variants.png" alt=""><figcaption>Figure 10. Maximum observed ulp errors versus cycles per call for implementation variants generated by Ziv . Each colored curve varies polynomial degree while keeping all other parameters constant; curves are colored sequentially to indicate table size from small to large . Black curves represent Pareto frontiers.</figcaption></figure></div><div class="sum-table"><table><thead><tr><th>Function</th><th>CORE-MATH Orig</th><th>CORE-MATH Ziv</th><th>LLVM-libc Orig</th><th>LLVM-libc Ziv</th></tr></thead><tbody><tr><td>exp</td><td>210</td><td>136</td><td>466</td><td>123</td></tr><tr><td>log</td><td>1,051</td><td>155</td><td>941</td><td>125</td></tr><tr><td>sin</td><td>140</td><td>12</td><td>112</td><td>69</td></tr><tr><td>tan</td><td>195</td><td>109</td><td>138</td><td>87</td></tr></tbody></table><div class="tbl-cap">Lines of code, original vs. Ziv (selected functions)</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Auto-generated daily from the <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv</a> API.
+    Relevance note and tags by Claude.
+  </div>
+</footer>
+
+<script defer>
+function renderMath(root) {
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        {left:"$$", right:"$$", display:true},
+        {left:"\\[", right:"\\]", display:true},
+        {left:"$", right:"$", display:false},
+        {left:"\\(", right:"\\)", display:false},
+      ],
+      throwOnError: false,
+      ignoredTags: ["script","noscript","style","textarea","pre"],
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded", () => renderMath(document.body));
+</script>
+</body>
+</html>
